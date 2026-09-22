@@ -38,7 +38,9 @@ export type IconName =
   | "github"
   | "linkedin"
   | "copy"
-  | "star";
+  | "star"
+  | "phone"
+  | "mail";
 
 export type ToolStatus = "coming-soon" | "available";
 

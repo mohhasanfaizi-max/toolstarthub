@@ -11,6 +11,7 @@ const navLinks = [
   { href: "/categories", label: "Categories" },
   { href: "/guides", label: "Guides" },
   { href: "/about", label: "About" },
+  { href: "/contact", label: "Contact" },
 ];
 
 export function MobileNav() {

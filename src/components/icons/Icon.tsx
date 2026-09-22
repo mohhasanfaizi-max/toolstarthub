@@ -235,6 +235,19 @@ export function Icon({ name, ...props }: IconProps) {
           <path d="m12 4 2.4 4.9 5.4.8-3.9 3.8.9 5.4L12 16.8 7.2 18.9l.9-5.4-3.9-3.8 5.4-.8z" />
         </Svg>
       );
+    case "phone":
+      return (
+        <Svg {...props}>
+          <path d="M8 3.8h2.1l1.1 2.8-1.5 1a11 11 0 0 0 5.6 5.6l1-1.5 2.8 1.1V15a2 2 0 0 1-2.2 2A12.2 12.2 0 0 1 7 6a2 2 0 0 1 1-2.2z" />
+        </Svg>
+      );
+    case "mail":
+      return (
+        <Svg {...props}>
+          <rect x="3.5" y="5.5" width="17" height="13" rx="2" />
+          <path d="m4 7 8 6 8-6" />
+        </Svg>
+      );
     default: {
       const exhaustive: never = name;
       return exhaustive;

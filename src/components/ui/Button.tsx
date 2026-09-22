@@ -54,6 +54,21 @@ export function Button({
 
   if ("href" in props && props.href) {
     const { href } = props;
+    if (/^(https?:|mailto:|tel:)/i.test(href)) {
+      const opensNewTab = /^https?:/i.test(href);
+      return (
+        <a
+          href={href}
+          className={classes}
+          {...(opensNewTab
+            ? { target: "_blank", rel: "noopener noreferrer" }
+            : {})}
+        >
+          {children}
+        </a>
+      );
+    }
+
     return (
       <Link href={href} className={classes}>
         {children}

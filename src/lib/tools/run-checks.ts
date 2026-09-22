@@ -100,7 +100,7 @@ import { categories } from "../../data/categories.ts";
 import { guides } from "../../data/guides.ts";
 import { getToolContent } from "../../data/tool-content.ts";
 import { toolQuickAnswers } from "../../data/tool-answers.ts";
-import { PRODUCTION_SITE_URL, siteConfig } from "../site.ts";
+import { PRODUCTION_SITE_URL, siteConfig, siteContact } from "../site.ts";
 import { getGuideContent } from "../../data/guide-content.ts";
 import {
   bannedPhraseIssues,
@@ -748,7 +748,29 @@ assert(md.ok && md.html.includes("<ul>") && md.html.includes("&lt;script&gt;"), 
 assert(md.ok && md.html.includes('href="https://www.toolstarhub.com"'), "Markdown safe link");
 assert(!markdownToHtml("").ok, "Empty markdown fails");
 assert(sanitizeHref("javascript:alert(1)") === null, "javascript: href rejected");
+assert(sanitizeHref(" javascript:alert(1)") === null, "javascript: with leading whitespace rejected");
+assert(sanitizeHref("java\nscript:alert(1)") === null, "javascript: with embedded whitespace rejected");
+assert(sanitizeHref("JaVaScRiPt:alert(1)") === null, "javascript: scheme is case-insensitive");
+assert(sanitizeHref("vbscript:msgbox(1)") === null, "vbscript: href rejected");
+assert(sanitizeHref("data:text/html,hi") === null, "data: href rejected");
+assert(sanitizeHref("//attacker.example") === null, "protocol-relative href rejected");
+assert(sanitizeHref("  //attacker.example") === null, "protocol-relative href with whitespace rejected");
+assert(sanitizeHref("/\t/attacker.example") === null, "protocol-relative href with a tab rejected");
+assert(sanitizeHref("/\\attacker.example") === null, "backslash protocol-relative href rejected");
+assert(sanitizeHref("/%2Fattacker.example") === null, "percent-encoded protocol-relative href rejected");
+assert(sanitizeHref("/%2f%2Fattacker.example") === null, "percent-encoded slash pair rejected");
+assert(sanitizeHref("/about") === "/about", "root-relative path allowed");
+assert(sanitizeHref("/tools/pdf") === "/tools/pdf", "nested site path allowed");
+assert(sanitizeHref("/foo/bar?x=1") === "/foo/bar?x=1", "site path with query allowed");
 assert(sanitizeHref("https://example.com") === "https://example.com", "https href allowed");
+assert(sanitizeHref("http://example.com") === "http://example.com", "http href allowed");
+assert(sanitizeHref("mailto:test@example.com") === "mailto:test@example.com", "mailto href allowed");
+assert(sanitizeHref("#section") === "#section", "hash href allowed");
+const protocolRelative = markdownToHtml("[go](//attacker.example)");
+assert(
+  protocolRelative.ok && !protocolRelative.html.includes("<a ") && protocolRelative.html.includes("//attacker.example"),
+  "protocol-relative markdown link stays text",
+);
 
 const htmlMd = htmlToMarkdown("<h2>Hello</h2><p>This is <strong>bold</strong> and <em>italic</em>.</p><ul><li>One</li></ul><script>alert(1)</script><a href=\"https://www.toolstarhub.com\">Site</a>");
 assert(htmlMd.ok && htmlMd.markdown.includes("## Hello"), "HTML heading to markdown");
@@ -1178,6 +1200,10 @@ if (!process.env.NEXT_PUBLIC_SITE_URL) {
     "Canonical production URL is https://www.toolstarhub.com",
   );
 }
+assert(siteContact.email === "eshigari110@gmail.com", "Public contact email");
+assert(siteContact.phoneE164 === "+923462559008", "Public contact phone");
+assert(siteContact.phoneDisplay === "+92 346 2559008", "Public phone display");
+assert(siteContact.whatsappUrl === "https://wa.me/923462559008", "WhatsApp contact link");
 assert(
   siteConfig.url.startsWith("https://") &&
     !siteConfig.url.includes("localhost") &&

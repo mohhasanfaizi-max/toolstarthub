@@ -211,12 +211,28 @@ function renderInline(source: string): string {
   return text.replace(/\u0000(\d+)\u0000/g, (_, key: string) => placeholders[Number(key)] ?? "");
 }
 
+function hrefSecurityProbe(value: string): string {
+  const compact = value.replace(/[\u0000-\u001F\u007F\s]+/g, "").replace(/\\/g, "/");
+  if (!compact.includes("%")) {
+    return compact;
+  }
+  try {
+    return decodeURIComponent(compact);
+  } catch {
+    return compact;
+  }
+}
+
+function isBlockedHref(value: string): boolean {
+  return value.startsWith("//") || /^(javascript|vbscript|data):/i.test(value);
+}
+
 export function sanitizeHref(href: string): string | null {
   const trimmed = href.trim();
   if (trimmed === "") {
     return null;
   }
-  if (/^(javascript|vbscript|data):/i.test(trimmed)) {
+  if (isBlockedHref(trimmed) || isBlockedHref(hrefSecurityProbe(trimmed))) {
     return null;
   }
   if (/^(https?:|mailto:|\/|#)/i.test(trimmed)) {

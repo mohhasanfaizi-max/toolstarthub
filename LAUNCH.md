@@ -47,7 +47,7 @@ Optional (set in Vercel Production only):
 |---|---|
 | `NEXT_PUBLIC_SITE_URL` | Override the canonical origin. Leave unset unless you need a non-production canonical. Default is `https://www.toolstarhub.com`. Do **not** point this at a preview URL for production. |
 | `NEXT_PUBLIC_GOOGLE_SITE_VERIFICATION` | Search Console HTML-tag token only. |
-| `NEXT_PUBLIC_CONTACT_EMAIL` | Public mailto address on `/contact`. Set only when a real mailbox exists. |
+| `NEXT_PUBLIC_CONTACT_EMAIL` | Optional override for the mailbox on `/contact`. The page already lists the public phone number and mailbox from `src/lib/site.ts`. |
 
 Redeploy after changing `NEXT_PUBLIC_*` values.
 
@@ -90,7 +90,7 @@ Share `https://www.toolstarhub.com` in a debugger after HTTPS is live (Facebook 
 ## Legal before traffic
 
 - `/privacy` describes browser-local processing, localStorage keys, and the current absence of ads/analytics.
-- `/contact` shows an email only after `NEXT_PUBLIC_CONTACT_EMAIL` is set.
+- `/contact` lists the public phone number and email. `NEXT_PUBLIC_CONTACT_EMAIL` replaces the default mailbox only when it is set.
 - Do not claim “we collect nothing” or “100% private.”
 
 ## Cookies / consent

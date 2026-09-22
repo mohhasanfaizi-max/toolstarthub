@@ -20,6 +20,13 @@ function resolveSiteUrl(): string {
   }
 }
 
+export const siteContact = {
+  email: "eshigari110@gmail.com",
+  phoneDisplay: "+92 346 2559008",
+  phoneE164: "+923462559008",
+  whatsappUrl: "https://wa.me/923462559008",
+} as const;
+
 export function getPublicContactEmail(): string | null {
   const value = process.env.NEXT_PUBLIC_CONTACT_EMAIL?.trim() ?? "";
   if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value)) {

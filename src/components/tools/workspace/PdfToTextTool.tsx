@@ -42,10 +42,22 @@ export function PdfToTextTool() {
   const [progress, setProgress] = useState("");
   const [percent, setPercent] = useState(0);
   const cancelled = useRef(false);
+  const extractGeneration = useRef(0);
 
   useEffect(() => {
+    cancelled.current = false;
+
+    const onPageShow = (event: PageTransitionEvent) => {
+      if (event.persisted) {
+        cancelled.current = false;
+      }
+    };
+
+    window.addEventListener("pageshow", onPageShow);
     return () => {
       cancelled.current = true;
+      extractGeneration.current += 1;
+      window.removeEventListener("pageshow", onPageShow);
     };
   }, []);
 
@@ -108,6 +120,10 @@ export function PdfToTextTool() {
       return;
     }
 
+    const generation = ++extractGeneration.current;
+    cancelled.current = false;
+    const isStale = () => cancelled.current || extractGeneration.current !== generation;
+
     setBusy(true);
     setError("");
     setText("");
@@ -117,7 +133,7 @@ export function PdfToTextTool() {
       try {
         const extracted: Array<{ page: number; text: string }> = [];
         for (let index = 0; index < pages.pages.length; index += 1) {
-          if (cancelled.current) {
+          if (isStale()) {
             return;
           }
           const pageNumber = pages.pages[index] ?? 1;
@@ -132,6 +148,9 @@ export function PdfToTextTool() {
           );
           extracted.push({ page: pageNumber, text: itemsToPlainText(items) });
         }
+        if (isStale()) {
+          return;
+        }
         const joined = joinExtractedPages(extracted);
         setText(joined.text);
         setEmptyPages(joined.emptyPages);
@@ -139,7 +158,9 @@ export function PdfToTextTool() {
         await task.destroy();
       }
     } catch (caught) {
-      setError(pdfClientError(caught));
+      if (!isStale()) {
+        setError(pdfClientError(caught));
+      }
     } finally {
       setBusy(false);
       setProgress("");

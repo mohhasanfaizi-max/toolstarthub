@@ -62,6 +62,17 @@ export function PdfToJpgTool() {
     objectUrls.current = [];
   }
 
+  function revokeTracked(urls: readonly string[]) {
+    if (urls.length === 0) {
+      return;
+    }
+    const drop = new Set(urls);
+    for (const url of drop) {
+      URL.revokeObjectURL(url);
+    }
+    objectUrls.current = objectUrls.current.filter((url) => !drop.has(url));
+  }
+
   async function releasePdf() {
     const task = taskRef.current;
     taskRef.current = null;
@@ -128,9 +139,12 @@ export function PdfToJpgTool() {
       }
       setThumbs(nextThumbs);
     } catch (caught) {
+      revokeAll();
       void releasePdf();
       setFile(null);
       setPageCount(0);
+      setThumbs([]);
+      setOutputs([]);
       setError(pdfErrorMessage(caught));
     } finally {
       setBusy(false);
@@ -153,6 +167,7 @@ export function PdfToJpgTool() {
     setBusy(true);
     setError("");
     const nextOutputs: PdfOutput[] = [];
+    const createdUrls: string[] = [];
     try {
       for (let index = 0; index < pages.pages.length; index += 1) {
         const pageNumber = pages.pages[index] ?? 1;
@@ -160,15 +175,18 @@ export function PdfToJpgTool() {
         setPercent(((index + 1) / pages.pages.length) * 100);
         const blob = await renderPage(doc, pageNumber, PDF_RENDER_SCALE, quality);
         const name = `${(file?.name ?? "page").replace(/\.pdf$/i, "")}-page-${pageNumber}.jpg`;
+        const url = trackUrl(URL.createObjectURL(blob));
+        createdUrls.push(url);
         nextOutputs.push({
           page: pageNumber,
           blob,
-          url: trackUrl(URL.createObjectURL(blob)),
+          url,
           name,
         });
       }
       setOutputs(nextOutputs);
     } catch (caught) {
+      revokeTracked([...createdUrls, ...outputs.map((item) => item.url)]);
       setOutputs([]);
       setError(pdfErrorMessage(caught));
     } finally {
