@@ -1,0 +1,49 @@
+---
+description: Phase 10 humanized writing rules for every ToolsTartHub blog article and guide
+alwaysApply: true
+---
+
+# Phase 10 content style
+
+Apply this to every blog article and every guide. Write like a helpful person answering a search query. Do not write AI SEO filler.
+
+## Voice
+
+Simple American English. Short sentences. Start with the answer. No padded intros.
+
+Never use: "In today's digital world", "ever-evolving landscape", "Whether you're a beginner or an expert", "Unlock the power of", "Revolutionize your workflow", "Let's dive into", "Understanding the importance of", "Here's everything you need to know", "Let's explore", "Let's take a closer look", "Not only... but also...", "In conclusion", "Ultimately", "It is important to note".
+
+Do not claim "experts agree", "studies show", "millions of users", ranking guarantees, fake stats, fake reviews, or fake authors.
+
+## Visible body text
+
+Do not use `#`, `*`, or `-` as visible formatting in article body copy.
+
+No markdown headings. No markdown bullets. No `---` separators in the rendered article.
+
+Use semantic HTML/React: one `h1` title, `h2` major sections, `h3` subsections, `ol` for real numbered steps, paragraphs for explanation. Tables only when they help. Lists in the DOM are fine when they are real HTML lists, not characters typed as markdown.
+
+Hyphens inside normal words (leap-day, PDF-to-text) are allowed. A line that starts with `- ` or `* ` as a bullet is not.
+
+## Structure (use only what helps)
+
+1. Direct answer in the first 2–4 sentences
+2. Why the method is useful
+3. Numbered steps
+4. One realistic example (no invented statistics)
+5. Limits, mistakes, or caveats if they matter
+6. 3–5 genuine FAQs (not 15 SEO questions)
+7. One contextual CTA to the relevant ToolsTartHub tool
+8. Related tools/guides already on the page
+
+Target about 500–900 useful words for simple topics. Go longer only when the extra depth helps. Cut any paragraph that can be removed without losing information.
+
+## SEO without spam
+
+Satisfy search intent first. Put the primary phrase naturally in the title, H1, opening, metadata, and slug. Cover related questions in normal language. Do not stuff keywords. Do not repeat the title. One tool CTA is enough.
+
+Each article needs unique metadata, a canonical URL, accurate Article (or BlogPosting) JSON-LD, a sitemap entry, and a working mobile layout.
+
+## Quality gate
+
+If the first paragraph does not answer the query, or the copy sounds generic, rewrite it before publishing.

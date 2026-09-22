@@ -1,0 +1,82 @@
+@import "tailwindcss";
+
+@custom-variant dark (&:where([data-theme="dark"], [data-theme="dark"] *));
+
+:root {
+  --background: #ffffff;
+  --foreground: #0b1f3a;
+  --muted: #f4f7fb;
+  --muted-foreground: #5a6b80;
+  --accent: #2563eb;
+  --accent-foreground: #ffffff;
+  --accent-soft: #eff5ff;
+  --border: #e6eef6;
+  --card: #ffffff;
+  --ring: #2563eb;
+  --header: #ffffff;
+  --footer: #0b1f3a;
+  --footer-foreground: #e8eef6;
+  color-scheme: light;
+}
+
+[data-theme="dark"] {
+  --background: #0b1220;
+  --foreground: #e8eef6;
+  --muted: #121a2b;
+  --muted-foreground: #9aabc0;
+  --accent: #3b82f6;
+  --accent-foreground: #ffffff;
+  --accent-soft: #15233d;
+  --border: #243044;
+  --card: #101827;
+  --ring: #3b82f6;
+  --header: #0b1220;
+  --footer: #070b14;
+  --footer-foreground: #e8eef6;
+  color-scheme: dark;
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-accent-soft: var(--accent-soft);
+  --color-border: var(--border);
+  --color-card: var(--card);
+  --color-ring: var(--ring);
+  --color-header: var(--header);
+  --color-footer: var(--footer);
+  --color-footer-foreground: var(--footer-foreground);
+  --font-sans:
+    "Segoe UI", system-ui, -apple-system, BlinkMacSystemFont, "Helvetica Neue",
+    Arial, sans-serif;
+}
+
+@layer base {
+  html {
+    height: 100%;
+    scroll-behavior: smooth;
+    overflow-x: clip;
+  }
+
+  body {
+    background: var(--background);
+    color: var(--foreground);
+    font-family: var(--font-sans);
+  }
+
+  a,
+  button,
+  input,
+  select,
+  textarea {
+    @apply focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-ring;
+  }
+
+  ::selection {
+    background: color-mix(in srgb, var(--accent) 20%, transparent);
+  }
+}
