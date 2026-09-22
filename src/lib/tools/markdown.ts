@@ -122,7 +122,7 @@ export const MARKDOWN_SAMPLE = `# ToolsTartHub notes
 Convert **Markdown** to *HTML* in your browser.
 
 - Headings and lists
-- [A link](https://www.toolstarhub.com)
+- [A link](https://toolstarthub.com)
 - \`inline code\`
 
 \`\`\`

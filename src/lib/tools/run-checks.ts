@@ -741,11 +741,11 @@ assert(!(await buildTextPdf("   ", {
   pageNumbers: false,
 })).ok, "Empty text to PDF fails");
 
-const md = markdownToHtml("# Title\n\nHello **bold** and *em* and `code`.\n\n- one\n- two\n\n[site](https://www.toolstarhub.com)\n\n```\n<script>nope</script>\n```\n");
+const md = markdownToHtml("# Title\n\nHello **bold** and *em* and `code`.\n\n- one\n- two\n\n[site](https://toolstarthub.com)\n\n```\n<script>nope</script>\n```\n");
 assert(md.ok && md.html.includes("<h1>") && md.html.includes("<strong>bold</strong>"), "Markdown headings and bold");
 assert(md.ok && md.html.includes("<em>em</em>") && md.html.includes("<code>code</code>"), "Markdown italic and code");
 assert(md.ok && md.html.includes("<ul>") && md.html.includes("&lt;script&gt;"), "Markdown list and escaped fence");
-assert(md.ok && md.html.includes('href="https://www.toolstarhub.com"'), "Markdown safe link");
+assert(md.ok && md.html.includes('href="https://toolstarthub.com"'), "Markdown safe link");
 assert(!markdownToHtml("").ok, "Empty markdown fails");
 assert(sanitizeHref("javascript:alert(1)") === null, "javascript: href rejected");
 assert(sanitizeHref(" javascript:alert(1)") === null, "javascript: with leading whitespace rejected");
@@ -772,12 +772,12 @@ assert(
   "protocol-relative markdown link stays text",
 );
 
-const htmlMd = htmlToMarkdown("<h2>Hello</h2><p>This is <strong>bold</strong> and <em>italic</em>.</p><ul><li>One</li></ul><script>alert(1)</script><a href=\"https://www.toolstarhub.com\">Site</a>");
+const htmlMd = htmlToMarkdown("<h2>Hello</h2><p>This is <strong>bold</strong> and <em>italic</em>.</p><ul><li>One</li></ul><script>alert(1)</script><a href=\"https://toolstarthub.com\">Site</a>");
 assert(htmlMd.ok && htmlMd.markdown.includes("## Hello"), "HTML heading to markdown");
 assert(htmlMd.ok && htmlMd.markdown.includes("**bold**") && htmlMd.markdown.includes("*italic*"), "HTML emphasis");
 assert(htmlMd.ok && htmlMd.markdown.includes("- One"), "HTML list");
 assert(htmlMd.ok && !htmlMd.markdown.includes("alert(1)"), "Script content skipped");
-assert(htmlMd.ok && htmlMd.markdown.includes("[Site](https://www.toolstarhub.com)"), "HTML link");
+assert(htmlMd.ok && htmlMd.markdown.includes("[Site](https://toolstarthub.com)"), "HTML link");
 assert(!htmlToMarkdown("").ok, "Empty HTML fails");
 
 const lineDiff = diffText("alpha\nbeta\ngamma", "alpha\ndelta\ngamma", "lines");
@@ -1196,8 +1196,8 @@ if (!process.env.NEXT_PUBLIC_SITE_URL) {
     "Default site URL is the production domain",
   );
   assert(
-    siteConfig.url === "https://www.toolstarhub.com",
-    "Canonical production URL is https://www.toolstarhub.com",
+    siteConfig.url === "https://toolstarthub.com",
+    "Canonical production URL is https://toolstarthub.com",
   );
 }
 assert(siteContact.email === "eshigari110@gmail.com", "Public contact email");
@@ -1211,9 +1211,9 @@ assert(
   "Site URL is HTTPS and not a local development host",
 );
 assert(
-  !siteConfig.url.includes("toolstarthub.com") &&
-    !PRODUCTION_SITE_URL.includes("toolstarthub.com"),
-  "Misspelled toolstarthub.com is not used as the site URL",
+  !siteConfig.url.includes("toolstarhub.com") &&
+    !PRODUCTION_SITE_URL.includes("toolstarhub.com"),
+  "Misspelled toolstarhub.com is not used as the site URL",
 );
 
 const pdfMagic = new TextEncoder().encode("%PDF-1.7\n");

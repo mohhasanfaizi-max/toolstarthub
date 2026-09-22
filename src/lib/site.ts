@@ -1,6 +1,6 @@
-export const PRODUCTION_ROOT_DOMAIN = "toolstarhub.com";
-export const PRODUCTION_CANONICAL_HOST = "www.toolstarhub.com";
-export const PRODUCTION_SITE_URL = "https://www.toolstarhub.com";
+export const PRODUCTION_ROOT_DOMAIN = "toolstarthub.com";
+export const PRODUCTION_CANONICAL_HOST = "toolstarthub.com";
+export const PRODUCTION_SITE_URL = "https://toolstarthub.com";
 export const PRODUCTION_DOMAIN = PRODUCTION_ROOT_DOMAIN;
 
 function resolveSiteUrl(): string {

@@ -1,13 +1,12 @@
 import { NextResponse } from "next/server";
 import type { NextRequest } from "next/server";
 
-const CANONICAL_HOST = "www.toolstarhub.com";
-const ROOT_HOST = "toolstarhub.com";
+const CANONICAL_HOST = "toolstarthub.com";
 
 export function proxy(request: NextRequest) {
   const host = request.headers.get("host")?.split(":")[0]?.toLowerCase() ?? "";
 
-  if (host === ROOT_HOST) {
+  if (host === `www.${CANONICAL_HOST}`) {
     const url = request.nextUrl.clone();
     url.hostname = CANONICAL_HOST;
     url.protocol = "https:";

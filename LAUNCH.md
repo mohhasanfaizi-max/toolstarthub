@@ -1,7 +1,6 @@
 # ToolsTartHub launch checklist
 
-Canonical domain: `https://www.toolstarhub.com`  
-Root domain: `https://toolstarhub.com` (redirect to www once DNS/Vercel is set)  
+Canonical domain: `https://toolstarthub.com`
 Hosting: Vercel  
 This file is a launch runbook. It does not mean the site is already deployed.
 The custom domain has not been claimed as connected.
@@ -9,7 +8,7 @@ The custom domain has not been claimed as connected.
 ## Codebase status
 
 - 50 tools, no accounts, no database, no payments
-- Canonical URLs, sitemap, robots, and JSON-LD default to `https://www.toolstarhub.com`
+- Canonical URLs, sitemap, robots, and JSON-LD default to `https://toolstarthub.com`
 - Analytics and ads are **not** active
 
 ## Vercel
@@ -29,11 +28,11 @@ If Vercel shows **No Production Deployment**, the usual cause is that the GitLab
 
 ## Domain
 
-1. In the Vercel project, add `www.toolstarhub.com` as the primary production domain.
-2. Add the root domain `toolstarhub.com` and redirect **apex → www**. Canonical host is **https://www.toolstarhub.com**.
+1. In the Vercel project, add `toolstarthub.com` as the primary production domain.
+2. Canonical host is **https://toolstarthub.com**. If `www.toolstarthub.com` is also attached, it should redirect to that apex host.
 3. Apply the DNS records Vercel shows in the dashboard (typically an A record and/or CNAME). Exact values come from your Vercel account — they are not hardcoded here.
-4. Wait until HTTPS shows as active for both hosts.
-5. Visit `https://toolstarhub.com` and `https://www.toolstarhub.com` and confirm the root host redirects to www.
+4. Wait until HTTPS shows as active.
+5. Visit `https://toolstarthub.com` and confirm it serves the site without redirecting to another host.
 
 Do not treat the domain as live until those records are actually configured and verified in Vercel.
 
@@ -45,7 +44,7 @@ Optional (set in Vercel Production only):
 
 | Variable | Purpose |
 |---|---|
-| `NEXT_PUBLIC_SITE_URL` | Override the canonical origin. Leave unset unless you need a non-production canonical. Default is `https://www.toolstarhub.com`. Do **not** point this at a preview URL for production. |
+| `NEXT_PUBLIC_SITE_URL` | Override the canonical origin. Leave unset unless you need a non-production canonical. Default is `https://toolstarthub.com`. Do **not** point this at a preview URL for production. |
 | `NEXT_PUBLIC_GOOGLE_SITE_VERIFICATION` | Search Console HTML-tag token only. |
 | `NEXT_PUBLIC_CONTACT_EMAIL` | Optional override for the mailbox on `/contact`. The page already lists the public phone number and mailbox from `src/lib/site.ts`. |
 
@@ -56,36 +55,36 @@ Redeploy after changing `NEXT_PUBLIC_*` values.
 From your machine, against production:
 
 ```bash
-npm run verify:production -- https://www.toolstarhub.com
+npm run verify:production -- https://toolstarthub.com
 ```
 
 Manually open:
 
-- `https://www.toolstarhub.com/`
+- `https://toolstarthub.com/`
 - `/tools`, `/categories`, `/guides`
 - `/sitemap.xml`, `/robots.txt`, `/manifest.webmanifest`
 - `/opengraph-image`
 - `/privacy`, `/terms`, `/disclaimer`, `/contact`
 - One calculator, one PDF tool, one image tool
 
-Confirm HTTPS, no mixed-content warnings, and that page titles/canonicals use `www.toolstarhub.com`.
+Confirm HTTPS, no mixed-content warnings, and that page titles/canonicals use `toolstarthub.com`.
 
 ## Google Search Console (manual)
 
 The codebase cannot log into Google for you.
 
-1. Create a **URL-prefix** property for `https://www.toolstarhub.com`.
+1. Create a **URL-prefix** property for `https://toolstarthub.com`.
 2. Verify ownership with either:
    - HTML tag: paste the token into `NEXT_PUBLIC_GOOGLE_SITE_VERIFICATION` and redeploy, or
    - HTML file: save the file Search Console provides into `/public` (example: `public/googleXXXXXXXX.html`) and redeploy.
-3. Submit `https://www.toolstarhub.com/sitemap.xml`.
+3. Submit `https://toolstarthub.com/sitemap.xml`.
 4. Request indexing for the homepage after the sitemap is accepted.
 
 Do not invent a verification token in the repository.
 
 ## Social preview
 
-Share `https://www.toolstarhub.com` in a debugger after HTTPS is live (Facebook Sharing Debugger, LinkedIn Post Inspector, or similar). The OG image is the `/opengraph-image` route (1200×630).
+Share `https://toolstarthub.com` in a debugger after HTTPS is live (Facebook Sharing Debugger, LinkedIn Post Inspector, or similar). The OG image is the `/opengraph-image` route (1200×630).
 
 ## Legal before traffic
 
