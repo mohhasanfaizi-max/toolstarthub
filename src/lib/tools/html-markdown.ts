@@ -48,7 +48,7 @@ export const HTML_SAMPLE = `<h1>ToolsTartHub notes</h1>
 <p>Convert <strong>HTML</strong> to <em>Markdown</em> locally.</p>
 <ul>
   <li>Headings and lists</li>
-  <li><a href="https://toolstarthub.com">A link</a></li>
+  <li><a href="https://toolstarhub.com">A link</a></li>
   <li><code>inline code</code></li>
 </ul>
 <pre><code>function hello() {
