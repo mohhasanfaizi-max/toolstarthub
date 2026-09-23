@@ -3,12 +3,14 @@
 import { useEffect, useId, useState } from "react";
 import Link from "next/link";
 import { Icon } from "@/components/icons/Icon";
+import { Button } from "@/components/ui/Button";
 import { categories } from "@/data/categories";
 
 const navLinks = [
   { href: "/tools", label: "Tools" },
-  { href: "/tools?view=favorites", label: "Favorites" },
   { href: "/categories", label: "Categories" },
+  { href: "/#how-it-works", label: "How It Works" },
+  { href: "/#pricing", label: "Pricing" },
   { href: "/guides", label: "Guides" },
   { href: "/about", label: "About" },
   { href: "/contact", label: "Contact" },
@@ -43,7 +45,7 @@ export function MobileNav() {
     <div className="lg:hidden">
       <button
         type="button"
-        className="inline-flex size-10 items-center justify-center rounded-xl text-foreground hover:bg-muted"
+        className="inline-flex size-10 items-center justify-center rounded-lg text-foreground hover:bg-muted"
         aria-expanded={open}
         aria-controls={panelId}
         aria-label={open ? "Close menu" : "Open menu"}
@@ -55,16 +57,21 @@ export function MobileNav() {
       {open ? (
         <div
           id={panelId}
-          className="fixed inset-x-0 top-16 z-40 border-b border-border bg-background shadow-lg"
+          className="fixed inset-x-0 top-16 bottom-0 z-40 overflow-y-auto border-t border-border bg-background"
         >
-          <div className="mx-auto max-w-6xl space-y-5 px-4 py-5 sm:px-6">
+          <div className="mx-auto max-w-6xl space-y-6 px-4 py-5 sm:px-6">
+            <div onClick={() => setOpen(false)}>
+              <Button href="/tools" className="w-full">
+                Get Started
+              </Button>
+            </div>
             <nav aria-label="Mobile">
               <ul className="space-y-1">
                 {navLinks.map((link) => (
                   <li key={link.href}>
                     <Link
                       href={link.href}
-                      className="block rounded-xl px-3 py-2.5 text-base font-medium text-foreground hover:bg-muted"
+                      className="block rounded-lg px-3 py-3 text-base font-medium text-foreground hover:bg-muted"
                       onClick={() => setOpen(false)}
                     >
                       {link.label}
@@ -82,7 +89,7 @@ export function MobileNav() {
                   <li key={category.slug}>
                     <Link
                       href={category.route}
-                      className="block rounded-xl px-3 py-2 text-sm text-foreground hover:bg-muted"
+                      className="block rounded-lg px-3 py-2.5 text-sm text-foreground hover:bg-muted"
                       onClick={() => setOpen(false)}
                     >
                       {category.name}

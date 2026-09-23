@@ -80,3 +80,86 @@
     background: color-mix(in srgb, var(--accent) 20%, transparent);
   }
 }
+
+@keyframes home-enter {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.home-enter {
+  animation: home-enter 0.55s ease;
+}
+
+.home-card {
+  transition:
+    transform 0.2s ease,
+    box-shadow 0.2s ease,
+    border-color 0.2s ease,
+    background-color 0.2s ease;
+}
+
+.home-card:hover {
+  transform: translateY(-3px);
+  box-shadow:
+    0 1px 2px rgb(15 39 68 / 0.04),
+    0 14px 32px rgb(15 39 68 / 0.08);
+}
+
+.home-category {
+  background-image: linear-gradient(
+    180deg,
+    var(--accent-soft) 0%,
+    var(--card) 3.25rem
+  );
+}
+
+.home-search form > div {
+  box-shadow:
+    0 1px 2px rgb(15 39 68 / 0.04),
+    0 12px 32px rgb(15 39 68 / 0.06);
+}
+
+.home-search:focus-within form > div {
+  border-color: var(--accent);
+  box-shadow: 0 0 0 4px color-mix(in srgb, var(--accent) 16%, transparent);
+}
+
+.home-btn {
+  transition:
+    transform 0.2s ease,
+    background-color 0.2s ease,
+    border-color 0.2s ease;
+}
+
+.home-btn:hover {
+  transform: translateY(-1px);
+}
+
+.home-pad {
+  padding: 1.5rem;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .home-enter {
+    animation: none;
+  }
+
+  .home-card,
+  .home-card:hover,
+  .home-btn:hover {
+    transform: none;
+    transition: none;
+  }
+
+  .home-card:hover span,
+  .home-card:hover svg {
+    transform: none;
+  }
+}

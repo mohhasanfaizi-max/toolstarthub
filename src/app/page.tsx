@@ -3,8 +3,10 @@ import { Categories } from "@/components/home/Categories";
 import { FinalCTA } from "@/components/home/FinalCTA";
 import { HelpfulGuides } from "@/components/home/HelpfulGuides";
 import { Hero } from "@/components/home/Hero";
+import { HowItWorks } from "@/components/home/HowItWorks";
 import { PopularTools } from "@/components/home/PopularTools";
-import { RecentlyAdded } from "@/components/home/RecentlyAdded";
+import { Pricing } from "@/components/home/Pricing";
+import { ToolCatalog } from "@/components/home/ToolCatalog";
 import { JsonLd } from "@/components/seo/JsonLd";
 import {
   createPageMetadata,
@@ -26,10 +28,12 @@ export default function Home() {
       <JsonLd data={organizationJsonLd()} />
       <Hero />
       <PopularTools />
+      <ToolCatalog />
       <Categories />
       <Benefits />
-      <RecentlyAdded />
+      <HowItWorks />
       <HelpfulGuides />
+      <Pricing />
       <FinalCTA />
     </>
   );

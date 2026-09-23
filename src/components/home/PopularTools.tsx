@@ -1,38 +1,35 @@
-import Link from "next/link";
+import { HomeHeading } from "@/components/home/HomeHeading";
+import { HomeToolCard } from "@/components/home/HomeToolCard";
 import { Section } from "@/components/ui/Section";
-import { ToolCard } from "@/components/tools/ToolCard";
-import { getFeaturedTools } from "@/data/tools";
-import { Icon } from "@/components/icons/Icon";
+import { getToolBySlug } from "@/data/tools";
+
+const popularSlugs = [
+  "pdf-to-jpg",
+  "pdf-to-text",
+  "image-compressor",
+  "markdown-to-html",
+  "json-formatter",
+  "percentage-calculator",
+] as const;
 
 export function PopularTools() {
-  const tools = getFeaturedTools();
+  const tools = popularSlugs.flatMap((slug) => {
+    const tool = getToolBySlug(slug);
+    return tool ? [tool] : [];
+  });
 
   return (
-    <Section ariaLabelledby="popular-tools-heading">
-      <div className="flex flex-col gap-4 sm:flex-row sm:items-end sm:justify-between">
-        <div>
-          <h2
-            id="popular-tools-heading"
-            className="text-2xl font-semibold tracking-tight text-foreground sm:text-3xl"
-          >
-            Popular Tools
-          </h2>
-          <p className="mt-2 max-w-xl text-muted-foreground">
-            Start with the most requested calculators, text tools and developer
-            utilities.
-          </p>
-        </div>
-        <Link
-          href="/tools"
-          className="inline-flex items-center gap-1 text-sm font-medium text-accent hover:underline"
-        >
-          View all tools
-          <Icon name="arrow-right" className="size-4" />
-        </Link>
-      </div>
-      <div className="mt-8 grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4">
+    <Section className="!py-14 sm:!py-16 lg:!py-20" ariaLabelledby="popular-tools-heading">
+      <HomeHeading
+        id="popular-tools-heading"
+        title="Popular Tools"
+        description="Open a tool people use for files, images, text, and everyday calculations."
+        href="/tools"
+        linkLabel="View all tools"
+      />
+      <div className="mt-8 grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
         {tools.map((tool) => (
-          <ToolCard key={tool.slug} tool={tool} />
+          <HomeToolCard key={tool.slug} tool={tool} prominent />
         ))}
       </div>
     </Section>

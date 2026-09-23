@@ -12,12 +12,14 @@ type ToolSearchProps = {
   variant?: "hero" | "header" | "page";
   initialQuery?: string;
   id?: string;
+  placeholder?: string;
 };
 
 export function ToolSearch({
   variant = "hero",
   initialQuery = "",
   id,
+  placeholder = "Search for a tool...",
 }: ToolSearchProps) {
   const router = useRouter();
   const generatedId = useId();
@@ -100,7 +102,7 @@ export function ToolSearch({
           className={cn(
             "flex items-center gap-2 rounded-2xl border bg-card shadow-sm",
             isHero
-              ? "border-border px-4 py-3 sm:px-5 sm:py-4"
+              ? "border-border px-4 py-4 sm:px-5 sm:py-5"
               : "border-border px-3 py-2",
           )}
         >
@@ -111,7 +113,7 @@ export function ToolSearch({
             type="search"
             value={query}
             autoComplete="off"
-            placeholder="Search for a tool..."
+            placeholder={placeholder}
             role="combobox"
             aria-autocomplete="list"
             aria-controls={listId}
