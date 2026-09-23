@@ -2,8 +2,7 @@
 
 Canonical domain: `https://toolstarhub.com`
 Hosting: Vercel  
-This file is a launch runbook. It does not mean the site is already deployed.
-The custom domain has not been claimed as connected.
+This file is a launch runbook. Domain assignment is done in the Vercel dashboard, not in the app.
 
 ## Codebase status
 
@@ -15,8 +14,8 @@ The custom domain has not been claimed as connected.
 
 Vercel only creates a Production Deployment after it can build a Git commit on the production branch.
 
-1. This project must live in a GitLab repository on the `main` branch.
-2. In Vercel, import that GitLab repository (GitLab → Vercel Git integration).
+1. This project lives on GitHub at `https://github.com/mohhasanfaizi-max/toolstarthub` on the `main` branch.
+2. In Vercel, import that GitHub repository.
 3. Framework preset: Next.js. Build command: `npm run build`. Output: default.
 4. Production branch: `main`.
 5. Node.js: 20.x or newer (`package.json` engines: `>=20.9.0`).
@@ -24,12 +23,12 @@ Vercel only creates a Production Deployment after it can build a Git commit on t
 
 Do not add extra rewrites, serverless functions, or regions unless you have a reason.
 
-If Vercel shows **No Production Deployment**, the usual cause is that the GitLab project is empty, the production branch is not `main`, or GitLab is not connected to the Vercel project.
+If Vercel shows **No Production Deployment**, the usual cause is that the production branch is not `main`, or GitHub is not connected to the Vercel project.
 
 ## Domain
 
-1. In the Vercel project, add `toolstarhub.com` as the primary production domain.
-2. Canonical host is **https://toolstarhub.com**. If `www.toolstarhub.com` is also attached, it should redirect to that apex host.
+1. In the Vercel project, add `toolstarhub.com` as the only production domain.
+2. Do not add `www.toolstarhub.com`. The app does not redirect between hosts. `https://toolstarhub.com` must serve the deployment directly.
 3. Apply the DNS records Vercel shows in the dashboard (typically an A record and/or CNAME). Exact values come from your Vercel account — they are not hardcoded here.
 4. Wait until HTTPS shows as active.
 5. Visit `https://toolstarhub.com` and confirm it serves the site without redirecting to another host.

@@ -15,13 +15,13 @@ npm run start
 npm run lint
 ```
 
-## Deploy on Vercel (GitLab)
+## Deploy on Vercel (GitHub)
 
 Vercel creates a Production Deployment from Git. This app’s production branch is `main`.
 
-1. Push this repository to GitLab (`main` branch).
-2. In Vercel, import that GitLab project (or reconnect Git if the Vercel project already exists).
+1. Push this repository to GitHub `main`: `https://github.com/mohhasanfaizi-max/toolstarthub`.
+2. In Vercel, import that GitHub repository.
 3. Framework Preset: Next.js. Build Command: `npm run build`. Output Directory: leave default.
 4. Production Branch: `main`.
 5. Environment variables are optional. Canonical URLs already default to `https://toolstarhub.com`.
-6. Click Deploy. After a successful build, assign `toolstarhub.com` as the production domain.
+6. Click Deploy. After a successful build, assign only `toolstarhub.com` as the production domain. Do not add `www`.
