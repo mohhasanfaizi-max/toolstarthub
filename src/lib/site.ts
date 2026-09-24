@@ -1,6 +1,6 @@
 export const PRODUCTION_ROOT_DOMAIN = "toolstarhub.com";
-export const PRODUCTION_CANONICAL_HOST = "toolstarhub.com";
-export const PRODUCTION_SITE_URL = "https://toolstarhub.com";
+export const PRODUCTION_CANONICAL_HOST = "www.toolstarhub.com";
+export const PRODUCTION_SITE_URL = "https://www.toolstarhub.com";
 export const PRODUCTION_DOMAIN = PRODUCTION_ROOT_DOMAIN;
 
 function resolveSiteUrl(): string {
@@ -12,6 +12,9 @@ function resolveSiteUrl(): string {
   try {
     const parsed = new URL(raw);
     if (parsed.protocol !== "https:" && parsed.protocol !== "http:") {
+      return PRODUCTION_SITE_URL;
+    }
+    if (parsed.hostname === PRODUCTION_ROOT_DOMAIN || parsed.hostname === PRODUCTION_CANONICAL_HOST) {
       return PRODUCTION_SITE_URL;
     }
     return parsed.origin;

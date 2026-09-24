@@ -1,10 +1,10 @@
 #!/usr/bin/env node
 /**
- * Production URL checker. Does not run against https://toolstarhub.com unless you
+ * Production URL checker. Does not run against https://www.toolstarhub.com unless you
  * pass that URL. Safe for local development:
  *
  *   node scripts/verify-production.mjs http://localhost:3000
- *   npm run verify:production -- https://toolstarhub.com
+ *   npm run verify:production -- https://www.toolstarhub.com
  */
 
 const baseInput = process.argv[2] || process.env.BASE_URL;

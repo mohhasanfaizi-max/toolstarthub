@@ -1746,8 +1746,8 @@ if (!process.env.NEXT_PUBLIC_SITE_URL) {
     "Default site URL is the production domain",
   );
   assert(
-    siteConfig.url === "https://toolstarhub.com",
-    "Canonical production URL is https://toolstarhub.com",
+    siteConfig.url === "https://www.toolstarhub.com",
+    "Canonical production URL is https://www.toolstarhub.com",
   );
 }
 assert(siteContact.email === "eshigari110@gmail.com", "Public contact email");
