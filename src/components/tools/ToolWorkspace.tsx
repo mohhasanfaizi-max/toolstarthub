@@ -97,6 +97,11 @@ const workspaces: Record<string, ComponentType> = {
   "debt-payoff-calculator": lazyTool(async () => (await import("./workspace/DebtPayoffCalculatorTool")).DebtPayoffCalculatorTool),
   "credit-card-payoff-calculator": lazyTool(async () => (await import("./workspace/CreditCardPayoffCalculatorTool")).CreditCardPayoffCalculatorTool),
   "savings-goal-calculator": lazyTool(async () => (await import("./workspace/SavingsGoalCalculatorTool")).SavingsGoalCalculatorTool),
+  "hourly-wage-calculator": lazyTool(async () => (await import("./workspace/HourlyWageCalculatorTool")).HourlyWageCalculatorTool),
+  "paycheck-estimator": lazyTool(async () => (await import("./workspace/PaycheckEstimatorTool")).PaycheckEstimatorTool),
+  "rent-vs-buy-calculator": lazyTool(async () => (await import("./workspace/RentVsBuyCalculatorTool")).RentVsBuyCalculatorTool),
+  "fuel-cost-calculator": lazyTool(async () => (await import("./workspace/FuelCostCalculatorTool")).FuelCostCalculatorTool),
+  "business-days-calculator": lazyTool(async () => (await import("./workspace/BusinessDaysCalculatorTool")).BusinessDaysCalculatorTool),
 };
 
 type ToolWorkspaceProps = {

@@ -145,6 +145,16 @@ export const toolQuickAnswers: Record<string, string> = {
     "A credit card payoff calculator estimates months and interest for one card from the balance, APR, and the minimum or fixed payment you enter.",
   "savings-goal-calculator":
     "A savings goal calculator estimates the regular amount to set aside so current savings can reach a target. The rate you enter is an assumption, not a promised return.",
+  "hourly-wage-calculator":
+    "An hourly wage calculator turns an hourly rate and a weekly schedule into weekly, monthly, and annual pay. It can also turn a salary into an hourly rate. Taxes are not included.",
+  "paycheck-estimator":
+    "A paycheck estimator subtracts the pre-tax deductions, withholding, and post-tax deductions you enter from gross pay. Withholding is your assumption, not an official tax calculation.",
+  "rent-vs-buy-calculator":
+    "A rent vs buy calculator estimates rent paid and the cash cost and equity of buying over the years you choose. Rent growth and home-value change are assumptions, not a recommendation.",
+  "fuel-cost-calculator":
+    "A fuel cost calculator estimates fuel used and trip cost from distance, fuel economy, and the price you type. It does not look up a live fuel price.",
+  "business-days-calculator":
+    "A business days calculator counts Monday through Friday between two dates. It does not apply a holiday calendar. You can exclude dates yourself.",
 };
 
 export function getToolQuickAnswer(

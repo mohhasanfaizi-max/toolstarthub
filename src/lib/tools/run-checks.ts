@@ -7,6 +7,11 @@ import { calculateHomeAffordability } from "./home-affordability.ts";
 import { calculateDebtPayoff } from "./debt-payoff.ts";
 import { calculateCreditCardPayoff } from "./credit-card-payoff.ts";
 import { calculateSavingsGoal } from "./savings-goal.ts";
+import { calculateHourlyWage } from "./hourly-wage.ts";
+import { calculatePaycheck } from "./paycheck.ts";
+import { calculateRentVsBuy } from "./rent-vs-buy.ts";
+import { calculateFuelCost } from "./fuel-cost.ts";
+import { calculateBusinessDays } from "./business-days.ts";
 import { addLineNumbers } from "./line-numbers.ts";
 import { calculateDateDifference } from "./date-diff.ts";
 import { calculateSalesTax } from "./sales-tax.ts";
@@ -1512,8 +1517,166 @@ assert(
   "A goal already reached is rejected",
 );
 
-assert(tools.length === 73, "Registry has 73 tools");
-assert(new Set(tools.map((tool) => tool.slug)).size === 73, "Tool slugs are unique");
+const wage = calculateHourlyWage({
+  mode: "hourly",
+  hourlyRaw: "20",
+  salaryRaw: "0",
+  hoursRaw: "40",
+  weeksRaw: "52",
+  overtimeHoursRaw: "5",
+  multiplierRaw: "1.5",
+});
+assert(wage.ok && wage.hourlyRate === 20 && wage.overtimePay === 7800 && wage.annualPay === 49400 && wage.weeklyPay === 950, "Hourly wage includes overtime at 1.5");
+const salaryWage = calculateHourlyWage({
+  mode: "salary",
+  hourlyRaw: "0",
+  salaryRaw: "52000",
+  hoursRaw: "40",
+  weeksRaw: "52",
+  overtimeHoursRaw: "0",
+  multiplierRaw: "1",
+});
+assert(salaryWage.ok && salaryWage.hourlyRate === 25 && salaryWage.annualPay === 52000, "Salary converts to hourly using hours times weeks");
+assert(
+  !calculateHourlyWage({
+    mode: "salary",
+    hourlyRaw: "0",
+    salaryRaw: "52000",
+    hoursRaw: "40",
+    weeksRaw: "0",
+    overtimeHoursRaw: "0",
+    multiplierRaw: "1",
+  }).ok,
+  "Salary mode rejects zero weeks",
+);
+
+const weeklyPay = calculatePaycheck({
+  grossRaw: "1000",
+  frequency: "weekly",
+  preTaxRaw: "0",
+  withholdingMode: "percent",
+  withholdingRaw: "10",
+  postTaxRaw: "0",
+});
+assert(weeklyPay.ok && weeklyPay.net === 900 && weeklyPay.periods === 52 && weeklyPay.annualGross === 52000 && weeklyPay.annualNet === 46800, "Weekly 10 percent withholding");
+const biweeklyPay = calculatePaycheck({
+  grossRaw: "1000",
+  frequency: "biweekly",
+  preTaxRaw: "",
+  withholdingMode: "amount",
+  withholdingRaw: "200",
+  postTaxRaw: "",
+});
+assert(biweeklyPay.ok && biweeklyPay.preTax === 0 && biweeklyPay.withholding === 200 && biweeklyPay.net === 800 && biweeklyPay.periods === 26, "Biweekly dollar withholding with blank deductions");
+assert(
+  calculatePaycheck({ grossRaw: "2000", frequency: "semimonthly", preTaxRaw: "0", withholdingMode: "percent", withholdingRaw: "0", postTaxRaw: "0" }).ok &&
+    calculatePaycheck({ grossRaw: "2000", frequency: "semimonthly", preTaxRaw: "0", withholdingMode: "percent", withholdingRaw: "0", postTaxRaw: "0" }).ok,
+  "Semimonthly zero withholding is accepted",
+);
+const semi = calculatePaycheck({ grossRaw: "2000", frequency: "semimonthly", preTaxRaw: "0", withholdingMode: "percent", withholdingRaw: "0", postTaxRaw: "0" });
+const monthPay = calculatePaycheck({ grossRaw: "2000", frequency: "monthly", preTaxRaw: "100", withholdingMode: "percent", withholdingRaw: "100", postTaxRaw: "0" });
+assert(semi.ok && semi.periods === 24 && semi.net === 2000, "Semimonthly uses 24 periods");
+assert(monthPay.ok && monthPay.basis === 1900 && monthPay.withholding === 1900 && monthPay.net === 0 && monthPay.periods === 12, "Monthly 100 percent withholding");
+assert(
+  !calculatePaycheck({ grossRaw: "1000", frequency: "weekly", preTaxRaw: "1200", withholdingMode: "percent", withholdingRaw: "0", postTaxRaw: "0" }).ok,
+  "Pre-tax deductions larger than gross are rejected",
+);
+
+const rentFlat = calculateRentVsBuy({
+  rentRaw: "1000",
+  rentGrowthRaw: "0",
+  priceRaw: "120000",
+  downRaw: "120000",
+  rateRaw: "6",
+  termYearsRaw: "30",
+  taxRaw: "0",
+  insuranceRaw: "0",
+  hoaRaw: "0",
+  maintenanceRaw: "0",
+  valueChangeRaw: "0",
+  yearsRaw: "1",
+});
+assert(rentFlat.ok && rentFlat.totalRent === 12000 && rentFlat.buyingCash === 120000 && rentFlat.equity === 120000 && rentFlat.netBuy === 0 && rentFlat.remainingBalance === 0, "100 percent down with flat value");
+const rentZero = calculateRentVsBuy({
+  rentRaw: "0",
+  rentGrowthRaw: "0",
+  priceRaw: "12000",
+  downRaw: "0",
+  rateRaw: "0",
+  termYearsRaw: "1",
+  taxRaw: "0",
+  insuranceRaw: "0",
+  hoaRaw: "0",
+  maintenanceRaw: "0",
+  valueChangeRaw: "0",
+  yearsRaw: "1",
+});
+assert(rentZero.ok && rentZero.remainingBalance === 0 && rentZero.buyingCash === 12000 && rentZero.netBuy === 0, "Zero-interest loan is paid off in the comparison year");
+const rentGrown = calculateRentVsBuy({
+  rentRaw: "1000",
+  rentGrowthRaw: "10",
+  priceRaw: "100000",
+  downRaw: "100000",
+  rateRaw: "0",
+  termYearsRaw: "1",
+  taxRaw: "0",
+  insuranceRaw: "0",
+  hoaRaw: "0",
+  maintenanceRaw: "0",
+  valueChangeRaw: "10",
+  yearsRaw: "2",
+});
+assert(rentGrown.ok && rentGrown.totalRent === 25200 && rentGrown.homeValue === 121000, "Rent and home value change by the entered rates");
+const rentLong = calculateRentVsBuy({
+  rentRaw: "0",
+  rentGrowthRaw: "0",
+  priceRaw: "1200",
+  downRaw: "0",
+  rateRaw: "0",
+  termYearsRaw: "1",
+  taxRaw: "0",
+  insuranceRaw: "0",
+  hoaRaw: "0",
+  maintenanceRaw: "0",
+  valueChangeRaw: "-10",
+  yearsRaw: "2",
+});
+assert(
+  rentLong.ok && rentLong.remainingBalance === 0 && rentLong.buyingCash === 1200 && rentLong.homeValue === roundTo(1200 * 0.9 * 0.9, 2),
+  "Costs stop after the loan term and a negative value change is applied",
+);
+assert(
+  roundTo(monthlyInstallment(12000, 0, 12), 2) === 1000,
+  "Zero-interest installment used by rent vs buy is principal divided by months",
+);
+
+const mpg = calculateFuelCost({ mode: "mpg", distanceRaw: "100", economyRaw: "25", priceRaw: "4", tripsRaw: "2" });
+assert(mpg.ok && mpg.fuelPerTrip === 4 && mpg.costPerTrip === 16 && mpg.totalFuel === 8 && mpg.totalCost === 32, "MPG fuel cost");
+const liters = calculateFuelCost({ mode: "l100", distanceRaw: "100", economyRaw: "8", priceRaw: "2", tripsRaw: "1" });
+assert(liters.ok && liters.fuelPerTrip === 8 && liters.costPerTrip === 16, "Liters per 100 km fuel cost");
+const zeroDistance = calculateFuelCost({ mode: "mpg", distanceRaw: "0", economyRaw: "25", priceRaw: "4", tripsRaw: "1" });
+assert(zeroDistance.ok && zeroDistance.totalCost === 0, "Zero distance uses no fuel");
+assert(!calculateFuelCost({ mode: "mpg", distanceRaw: "10", economyRaw: "0", priceRaw: "4", tripsRaw: "1" }).ok, "Zero miles per gallon is rejected");
+assert(!calculateFuelCost({ mode: "l100", distanceRaw: "-1", economyRaw: "8", priceRaw: "2", tripsRaw: "1" }).ok, "Negative distance is rejected");
+
+const weekdays = calculateBusinessDays({ startRaw: "2024-01-01", endRaw: "2024-01-05", includeEnd: true, excludedRaw: "" });
+assert(weekdays.ok && weekdays.businessDays === 5 && weekdays.weekendDays === 0 && weekdays.calendarDays === 5, "Monday through Friday is five business days");
+const weekend = calculateBusinessDays({ startRaw: "2024-01-06", endRaw: "2024-01-07", includeEnd: true, excludedRaw: "" });
+assert(weekend.ok && weekend.businessDays === 0 && weekend.weekendDays === 2, "A Saturday and Sunday range has no business days");
+const leapDay = calculateBusinessDays({ startRaw: "2024-02-29", endRaw: "2024-02-29", includeEnd: true, excludedRaw: "" });
+const sameExcluded = calculateBusinessDays({ startRaw: "2024-02-29", endRaw: "2024-02-29", includeEnd: false, excludedRaw: "" });
+assert(leapDay.ok && leapDay.businessDays === 1, "Leap day Thursday counts as one business day");
+assert(sameExcluded.ok && sameExcluded.calendarDays === 0, "Excluding the end date on a same-day range counts zero days");
+const reversed = calculateBusinessDays({ startRaw: "2024-01-05", endRaw: "2024-01-01", includeEnd: true, excludedRaw: "" });
+assert(reversed.ok && reversed.reversed && reversed.businessDays === 5, "Reversed dates still count the span");
+const excluded = calculateBusinessDays({ startRaw: "2024-01-01", endRaw: "2024-01-05", includeEnd: true, excludedRaw: "2024-01-01\n2024-01-01\n2024-02-01" });
+assert(
+  excluded.ok && excluded.businessDays === 4 && excluded.excludedWeekdays.length === 1 && excluded.excludedWeekdays[0] === "2024-01-01",
+  "A duplicate excluded weekday is counted once and a date outside the range is ignored",
+);
+
+assert(tools.length === 78, "Registry has 78 tools");
+assert(new Set(tools.map((tool) => tool.slug)).size === 78, "Tool slugs are unique");
 assert(getNewTools().length === 4, "Homepage recently added stays at 4 tools");
 assert(
   tools.every((tool) => tool.status === "available"),
@@ -1570,7 +1733,7 @@ assert(
 );
 assert(searchTools("json").some((tool) => tool.slug === "json-formatter"), "Partial json match");
 assert(searchTools("xyzzy-no-such-tool").length === 0, "Unknown query has no results");
-assert(searchTools("").length === 73, "Empty query returns all tools");
+assert(searchTools("").length === 78, "Empty query returns all tools");
 assert(searchTools("compress pdf")[0]?.slug === "pdf-compressor", "compress pdf ranks compressor");
 assert(searchTools("extract text").some((tool) => tool.slug === "pdf-to-text"), "extract text finds PDF to Text");
 assert(searchTools("remove pdf metadata").some((tool) => tool.slug === "pdf-metadata"), "metadata search");
