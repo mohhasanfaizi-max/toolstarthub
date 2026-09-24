@@ -35,8 +35,17 @@ export default function DisclaimerPage() {
           financial, medical, engineering or tax advice.
         </p>
         <p>
+          Calculators perform the arithmetic described on each tool page. They
+          do not calculate tax, loans, medical doses, or engineering loads.
+          PDF text extraction can miss text on a scanned page. Image and PDF
+          compression or conversion can reduce quality. A QR code contains the
+          text you enter, and a scanned link should be read before you open it.
+          The password generator creates a string in your browser. It does not
+          store passwords or replace a password manager.
+        </p>
+        <p>
           Tool output can be affected by the values you enter and by browser
-          limitations. Check important calculations, conversions, and document
+          limits. Check important calculations, conversions, and document
           changes independently.
         </p>
         <p>

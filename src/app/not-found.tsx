@@ -5,7 +5,7 @@ import { categories } from "@/data/categories";
 
 export const metadata = {
   title: "Page not found",
-  description: "That ToolsTartHub page does not exist. Browse tools or return home.",
+  description: "That Tools Star Hub page does not exist. Browse tools or return home.",
   robots: { index: false, follow: false },
 };
 
@@ -17,7 +17,7 @@ export default function NotFound() {
         Page not found
       </h1>
       <p className="mx-auto mt-3 max-w-md text-muted-foreground">
-        That page does not exist on ToolsTartHub. Search the tools, pick a
+        That page does not exist on Tools Star Hub. Search the tools, pick a
         category, or go back to the homepage.
       </p>
       <div className="mt-8 flex flex-wrap items-center justify-center gap-3">

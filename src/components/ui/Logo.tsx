@@ -35,7 +35,7 @@ export function Logo({
           compact ? "text-base" : "text-lg",
         )}
       >
-        ToolsTartHub
+        {siteConfig.name}
       </span>
     </Link>
   );

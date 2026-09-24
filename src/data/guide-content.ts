@@ -148,7 +148,7 @@ export const guideContent: Record<string, GuideContent> = {
       {
         question: "Does this site upload my image?",
         answer:
-          "The image tools on ToolsTartHub decode and encode in your browser. The file stays on your device unless you download the result.",
+          "The image tools on Tools Star Hub decode and encode in your browser. The file stays on your device unless you download the result.",
       },
       {
         question: "What if I need a PDF instead of an image?",
@@ -199,7 +199,7 @@ export const guideContent: Record<string, GuideContent> = {
       {
         question: "How do I format JSON online?",
         answer:
-          "Paste the text into a formatter, run format or validate, then copy the result. On ToolsTartHub this happens in the browser, so the payload is not uploaded.",
+          "Paste the text into a formatter, run format or validate, then copy the result. On Tools Star Hub this happens in the browser, so the payload is not uploaded.",
       },
       {
         question: "Why did my JSON fail to parse?",
@@ -363,7 +363,7 @@ export const guideContent: Record<string, GuideContent> = {
   },
   "how-to-work-with-pdfs-in-your-browser": {
     intro:
-      "You can compress a PDF, extract its text, inspect metadata, merge or split pages, and turn text into a PDF in the browser. The file is read in your tab. It is not uploaded to ToolsTartHub. Pick the tool that matches the job, and expect large files to be slower on a phone.",
+      "You can compress a PDF, extract its text, inspect metadata, merge or split pages, and turn text into a PDF in the browser. The file is read in your tab. It is not uploaded to Tools Star Hub. Pick the tool that matches the job, and expect large files to be slower on a phone.",
     why:
       "Email caps, form uploads, and quick edits often do not need a desktop PDF suite. Local processing also keeps the document on the device you already trust.",
     stepsHeading: "How to work with a PDF locally",
@@ -415,7 +415,7 @@ export const guideContent: Record<string, GuideContent> = {
       {
         question: "Are my PDFs uploaded?",
         answer:
-          "No. These ToolsTartHub tools process the file in your browser. The site does not receive the document.",
+          "No. These Tools Star Hub tools process the file in your browser. The site does not receive the document.",
       },
       {
         question: "Can I turn notes into a PDF?",
@@ -432,7 +432,7 @@ export const guideContent: Record<string, GuideContent> = {
   },
   "how-to-clean-and-compare-text": {
     intro:
-      "To clean a list, remove duplicate lines, tidy whitespace, then sort. To compare two drafts, paste both sides into a diff tool and read added, removed, and unchanged blocks. On ToolsTartHub this stays in the browser. Pasted text is not saved to an account.",
+      "To clean a list, remove duplicate lines, tidy whitespace, then sort. To compare two drafts, paste both sides into a diff tool and read added, removed, and unchanged blocks. On Tools Star Hub this stays in the browser. Pasted text is not saved to an account.",
     why:
       "Spreadsheets, logs, and policy drafts pick up repeats, odd spacing, and silent edits. Cleaning first makes a comparison easier to trust.",
     stepsHeading: "How to clean and compare text",

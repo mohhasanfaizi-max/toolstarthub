@@ -40,7 +40,7 @@ export function getDefaultToolFaqs(toolName: string) {
     {
       question: `Is the ${toolName} free?`,
       answer:
-        "Yes. Core tools on ToolsTartHub are free to use and do not require payment.",
+        "Yes. Core tools on Tools Star Hub are free to use and do not require payment.",
     },
     {
       question: "Do I need to create an account?",
@@ -49,7 +49,7 @@ export function getDefaultToolFaqs(toolName: string) {
     {
       question: "Is my data sent to a server?",
       answer:
-        "This tool is designed to run in your browser. When it launches, this page will state clearly whether data stays on your device or is sent to a server.",
+        "This tool runs in your browser. The text or file you provide is not uploaded to a Tools Star Hub server.",
     },
   ];
 }

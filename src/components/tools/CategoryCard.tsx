@@ -32,7 +32,7 @@ export function CategoryCard({
         {category.name}
       </Heading>
       <p className="mt-1 text-xs font-medium uppercase tracking-wide text-muted-foreground">
-        {count} tool{count === 1 ? "" : "s"}
+        {`${count} ${count === 1 ? "tool" : "tools"}`}
       </p>
       <p className="mt-2 text-sm leading-6 text-muted-foreground">
         {category.description}

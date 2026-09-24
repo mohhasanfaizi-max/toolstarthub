@@ -4,6 +4,7 @@ export const categorySlugs = [
   "developer-tools",
   "image-tools",
   "seo-utilities",
+  "ai-tools",
 ] as const;
 
 export type CategorySlug = (typeof categorySlugs)[number];
@@ -66,6 +67,9 @@ export type Category = {
   shortDescription: string;
   icon: IconName;
   route: string;
+  intro: string;
+  audience: string;
+  startingSlugs: string[];
 };
 
 export type Guide = {

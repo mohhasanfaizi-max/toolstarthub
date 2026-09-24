@@ -48,7 +48,7 @@ export default function OpenGraphImage() {
           >
             T
           </div>
-          ToolsTartHub
+          {siteConfig.name}
         </div>
         <div style={{ display: "flex", flexDirection: "column" }}>
           <div

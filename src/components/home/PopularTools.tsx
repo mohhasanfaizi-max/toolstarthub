@@ -19,7 +19,11 @@ export function PopularTools() {
   });
 
   return (
-    <Section className="!py-14 sm:!py-16 lg:!py-20" ariaLabelledby="popular-tools-heading">
+    <Section
+      id="popular-tools"
+      className="scroll-mt-20 !py-14 sm:!py-16 lg:!py-20"
+      ariaLabelledby="popular-tools-heading"
+    >
       <HomeHeading
         id="popular-tools-heading"
         title="Popular Tools"

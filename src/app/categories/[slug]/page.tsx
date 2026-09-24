@@ -1,3 +1,4 @@
+import Link from "next/link";
 import { notFound } from "next/navigation";
 import { Container } from "@/components/ui/Container";
 import { PageHeader } from "@/components/ui/PageHeader";
@@ -12,7 +13,7 @@ import {
 } from "@/data/categories";
 import { relatedCategorySlugs } from "@/data/discovery";
 import { getGuidesByCategory } from "@/data/guides";
-import { getToolsByCategory } from "@/data/tools";
+import { getToolBySlug, getToolsByCategory } from "@/data/tools";
 import type { Category } from "@/data/types";
 import {
   breadcrumbJsonLd,
@@ -54,6 +55,10 @@ export default async function CategoryPage({
   }
 
   const categoryTools = getToolsByCategory(category.slug);
+  const startingTools = category.startingSlugs.flatMap((slug) => {
+    const tool = getToolBySlug(slug);
+    return tool ? [tool] : [];
+  });
   const relatedCategories = relatedCategorySlugs(category.slug)
     .map((item) => getCategoryBySlug(item))
     .filter((item): item is Category => item !== undefined);
@@ -87,10 +92,38 @@ export default async function CategoryPage({
         description={category.description}
       >
         <p className="mt-3 text-sm text-muted-foreground">
-          {categoryTools.length} tool{categoryTools.length === 1 ? "" : "s"} in
-          this category.
+          {`${categoryTools.length} ${categoryTools.length === 1 ? "tool" : "tools"} in this category.`}
         </p>
       </PageHeader>
+      <div className="mt-8 max-w-3xl space-y-4 text-base leading-7 text-muted-foreground">
+        <p>{category.intro}</p>
+        <p>{category.audience}</p>
+      </div>
+      {startingTools.length > 0 ? (
+        <section aria-labelledby="starting-points-heading" className="mt-8">
+          <h2
+            id="starting-points-heading"
+            className="text-xl font-semibold tracking-tight text-foreground"
+          >
+            Useful starting points
+          </h2>
+          <ul className="mt-4 grid grid-cols-1 gap-3 sm:grid-cols-2">
+            {startingTools.map((tool) => (
+              <li key={tool.slug}>
+                <Link
+                  href={tool.route}
+                  className="block rounded-2xl border border-border bg-card px-4 py-3 hover:border-accent/40"
+                >
+                  <span className="font-medium text-foreground">{tool.name}</span>
+                  <span className="mt-1 block text-sm leading-6 text-muted-foreground">
+                    {tool.description}
+                  </span>
+                </Link>
+              </li>
+            ))}
+          </ul>
+        </section>
+      ) : null}
       {categoryTools.length === 0 ? (
         <p className="mt-8 rounded-2xl border border-border bg-card p-6 text-muted-foreground">
           No tools in this category yet.

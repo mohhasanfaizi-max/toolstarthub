@@ -41,7 +41,7 @@ export function getGoogleSiteVerification(): string | undefined {
 }
 
 export const siteConfig = {
-  name: "ToolsTartHub",
+  name: "Tools Star Hub",
   domain: PRODUCTION_DOMAIN,
   url: resolveSiteUrl(),
   tagline: "Free Online Tools That Just Work",
@@ -49,8 +49,8 @@ export const siteConfig = {
     "Fast, free and easy-to-use online tools for calculations, text, developers, images, SEO and everyday tasks. No signup required.",
   shortDescription:
     "Fast, simple, accurate tools for calculations, text, developers, images, SEO and everyday tasks.",
-  positioning: ["Fast", "Free", "No Signup", "Privacy Friendly"] as const,
-  footerTagline: "Fast • Free • Private • No Signup",
+  positioning: ["Fast", "Free", "No Signup", "Browser tools"] as const,
+  footerTagline: "Fast • Free • Browser tools • No Signup",
   locale: "en",
 } as const;
 

@@ -1,3 +1,7 @@
+import { aiToolContent } from "./ai-tool-content.ts";
+import { financeToolContent } from "./finance-tool-content.ts";
+import { nextToolContent } from "./next-tool-content.ts";
+
 export type ToolExample = {
   title: string;
   body: string;
@@ -13,12 +17,16 @@ export type ToolContent = {
   examples: ToolExample[];
   explanation: string;
   faqs: ToolFaq[];
+  about?: string;
+  features?: string[];
+  tips?: string[];
+  limitations?: string;
 };
 
 const localProcessingFaq = {
   question: "Is my input sent to a server?",
   answer:
-    "No. This tool runs in your browser. ToolsTartHub does not send this input to a server or save it in local storage.",
+    "No. This tool runs in your browser. Tools Star Hub does not send this input to a server or save it in local storage.",
 };
 
 const freeFaq = (name: string): ToolFaq => ({
@@ -166,7 +174,7 @@ export const toolContent: Record<string, ToolContent> = {
       {
         question: "Is my text uploaded?",
         answer:
-          "No. Counting runs in your browser. The text is not sent to ToolsTartHub or stored.",
+          "No. Counting runs in your browser. The text is not sent to Tools Star Hub or stored.",
       },
       {
         question: "How are extra spaces counted?",
@@ -983,7 +991,7 @@ export const toolContent: Record<string, ToolContent> = {
       {
         question: "Are my photos uploaded?",
         answer:
-          "No. Images are read and written to a PDF in your browser. They are not sent to ToolsTartHub.",
+          "No. Images are read and written to a PDF in your browser. They are not sent to Tools Star Hub.",
       },
       {
         question: "Why was my image resized?",
@@ -1257,7 +1265,7 @@ export const toolContent: Record<string, ToolContent> = {
       },
     ],
     explanation:
-      "Low and Balanced rewrite PDF structure without turning pages into pictures, so vectors and text stay. Strong renders each page to a JPEG and rebuilds the document, which can shrink photo-heavy files and will destroy selectable text. ToolsTartHub does not claim a guaranteed reduction. Some files stay similar in size or grow slightly.",
+      "Low and Balanced rewrite PDF structure without turning pages into pictures, so vectors and text stay. Strong renders each page to a JPEG and rebuilds the document, which can shrink photo-heavy files and will destroy selectable text. Tools Star Hub does not claim a guaranteed reduction. Some files stay similar in size or grow slightly.",
     faqs: [
       freeFaq("PDF Compressor"),
       {
@@ -1553,5 +1561,5 @@ export const toolContent: Record<string, ToolContent> = {
 };
 
 export function getToolContent(slug: string): ToolContent | undefined {
-  return toolContent[slug];
+  return toolContent[slug] ?? aiToolContent[slug] ?? nextToolContent[slug] ?? financeToolContent[slug];
 }

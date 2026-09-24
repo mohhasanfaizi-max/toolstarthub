@@ -97,6 +97,17 @@
   animation: home-enter 0.55s ease;
 }
 
+.home-hero {
+  background-color: var(--background);
+  background-image:
+    radial-gradient(
+      ellipse 72% 48% at 50% -8%,
+      color-mix(in srgb, var(--accent) 14%, transparent),
+      transparent 68%
+    ),
+    linear-gradient(180deg, var(--muted) 0%, var(--background) 72%);
+}
+
 .home-card {
   transition:
     transform 0.2s ease,

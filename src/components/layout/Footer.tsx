@@ -1,7 +1,6 @@
 import Link from "next/link";
 import { Container } from "@/components/ui/Container";
 import { Logo } from "@/components/ui/Logo";
-import { Icon } from "@/components/icons/Icon";
 import { categories } from "@/data/categories";
 import { siteConfig } from "@/lib/site";
 
@@ -84,23 +83,6 @@ export function Footer() {
                 </li>
               ))}
             </ul>
-            <div className="mt-6">
-              <p className="text-sm font-semibold text-white">Social</p>
-              <p className="mt-2 text-sm text-white/70">
-                Profiles will be added here when they are available.
-              </p>
-              <div className="mt-3 flex gap-2" aria-hidden="true">
-                <span className="inline-flex size-9 items-center justify-center rounded-lg border border-white/15 text-white/50">
-                  <Icon name="x" className="size-4" />
-                </span>
-                <span className="inline-flex size-9 items-center justify-center rounded-lg border border-white/15 text-white/50">
-                  <Icon name="github" className="size-4" />
-                </span>
-                <span className="inline-flex size-9 items-center justify-center rounded-lg border border-white/15 text-white/50">
-                  <Icon name="linkedin" className="size-4" />
-                </span>
-              </div>
-            </div>
           </div>
         </div>
 

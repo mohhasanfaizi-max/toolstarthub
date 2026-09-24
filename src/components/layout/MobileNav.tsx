@@ -7,12 +7,13 @@ import { Button } from "@/components/ui/Button";
 import { categories } from "@/data/categories";
 
 const navLinks = [
-  { href: "/tools", label: "Tools" },
+  { href: "/", label: "Home" },
+  { href: "/tools", label: "All Tools" },
   { href: "/categories", label: "Categories" },
-  { href: "/#how-it-works", label: "How It Works" },
-  { href: "/#pricing", label: "Pricing" },
-  { href: "/guides", label: "Guides" },
+  { href: "/#popular-tools", label: "Popular Tools" },
   { href: "/about", label: "About" },
+  { href: "/guides", label: "Guides" },
+  { href: "/#how-it-works", label: "How It Works" },
   { href: "/contact", label: "Contact" },
 ];
 
@@ -62,7 +63,7 @@ export function MobileNav() {
           <div className="mx-auto max-w-6xl space-y-6 px-4 py-5 sm:px-6">
             <div onClick={() => setOpen(false)}>
               <Button href="/tools" className="w-full">
-                Get Started
+                Explore Tools
               </Button>
             </div>
             <nav aria-label="Mobile">

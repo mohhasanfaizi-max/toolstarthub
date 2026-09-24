@@ -10,9 +10,9 @@ import type { IconName } from "@/data/types";
 import { breadcrumbJsonLd, createPageMetadata, faqJsonLd } from "@/lib/seo";
 import { getPublicContactEmail, siteConfig, siteContact } from "@/lib/site";
 
-const pageTitle = "Contact ToolsTartHub | Online Tools Support";
+const pageTitle = "Contact Tools Star Hub | Online Tools Support";
 const pageDescription =
-  "Contact ToolsTartHub for questions, feedback, tool issues, and suggestions. Reach us by email or phone.";
+  "Contact Tools Star Hub for questions, feedback, tool issues, and suggestions. Reach us by email or phone.";
 
 const relatedPages = [
   { href: "/tools", label: "Tools" },
@@ -36,7 +36,7 @@ const helpTopics: Array<{ title: string; text: string; icon: IconName }> = [
   {
     title: "Feedback",
     icon: "text",
-    text: "Tell us how we can improve ToolsTartHub.",
+    text: "Tell us how we can improve Tools Star Hub.",
   },
   {
     title: "General question",
@@ -58,7 +58,7 @@ export default function ContactPage() {
   const email = getPublicContactEmail() ?? siteContact.email;
   const contactFaqs = [
     {
-      question: "How can I contact ToolsTartHub?",
+      question: "How can I contact Tools Star Hub?",
       answer: `Email ${email} or call or WhatsApp ${siteContact.phoneDisplay}. You can send a tool problem, a suggestion, feedback, or a general question.`,
     },
     {
@@ -90,7 +90,7 @@ export default function ContactPage() {
           <div className="mt-6 max-w-3xl">
             <p className="text-sm font-medium text-accent">{siteConfig.footerTagline}</p>
             <h1 className="mt-3 text-3xl font-semibold tracking-tight text-foreground sm:text-4xl">
-              Contact ToolsTartHub
+              Contact Tools Star Hub
             </h1>
             <p className="mt-4 text-base leading-7 text-muted-foreground sm:text-lg">
               Have a question, found a problem, or have a suggestion for a new tool? We&apos;d love to hear from you.

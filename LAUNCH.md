@@ -1,4 +1,4 @@
-# ToolsTartHub launch checklist
+# Tools Star Hub launch checklist
 
 Canonical domain: `https://toolstarhub.com`
 Hosting: Vercel  
@@ -87,13 +87,13 @@ Share `https://toolstarhub.com` in a debugger after HTTPS is live (Facebook Shar
 
 ## Legal before traffic
 
-- `/privacy` describes browser-local processing, localStorage keys, and the current absence of ads/analytics.
+- `/privacy` describes browser-local processing, localStorage keys, the absence of ads, and Google Analytics 4 page measurement.
 - `/contact` lists the public phone number and email. `NEXT_PUBLIC_CONTACT_EMAIL` replaces the default mailbox only when it is set.
 - Do not claim “we collect nothing” or “100% private.”
 
 ## Cookies / consent
 
-No cookie banner is shown because analytics and advertising are off. If you later enable a tracker or ads that store non-essential cookies, add a real consent flow for the jurisdictions that require it. Do not add a fake banner now.
+No cookie banner is shown. Google Analytics 4 is loaded with the official Google tag. Advertising is off. If a jurisdiction requires consent before analytics cookies, add a real consent flow before serving that region. Do not add a fake banner.
 
 ## Advertising
 
@@ -101,7 +101,7 @@ No cookie banner is shown because analytics and advertising are off. If you late
 
 ## Analytics
 
-`trackEvent` is a no-op. If you later enable a privacy-conscious product analytics tool, collect only product events (tool opened, tool completed, category viewed, guide viewed). Never collect passwords, files, PDF contents, QR payloads, or pasted private text.
+Page views are sent by the Google tag (`G-R1HFS36NG4`) in the root layout. `trackEvent` stays unused so tool inputs are never sent. Never collect passwords, files, PDF contents, QR payloads, or pasted private text.
 
 ## Post-launch monitoring
 

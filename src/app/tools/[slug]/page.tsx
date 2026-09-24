@@ -119,7 +119,7 @@ export default async function ToolPage({
         </p>
         <section aria-labelledby="quick-answer-heading" className="mt-5">
           <h2 id="quick-answer-heading" className="text-sm font-semibold text-foreground">
-            What is {tool.name}?
+            {`What is ${tool.name}?`}
           </h2>
           <p className="mt-2 text-sm leading-6 text-muted-foreground">{quickAnswer}</p>
         </section>

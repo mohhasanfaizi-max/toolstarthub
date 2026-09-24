@@ -12,6 +12,7 @@ const filters = [
   { id: "developer-tools", label: "Developer" },
   { id: "calculators", label: "Calculators" },
   { id: "seo-utilities", label: "Utilities" },
+  { id: "ai-tools", label: "AI" },
 ] as const;
 
 type FilterId = (typeof filters)[number]["id"];
@@ -34,7 +35,8 @@ function matches(tool: Tool, filter: FilterId) {
     filter === "text-tools" ||
     filter === "developer-tools" ||
     filter === "calculators" ||
-    filter === "seo-utilities"
+    filter === "seo-utilities" ||
+    filter === "ai-tools"
   ) {
     return tool.category === filter;
   }

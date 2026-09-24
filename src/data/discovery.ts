@@ -11,6 +11,7 @@ export const discoveryFilterIds = [
   "color",
   "qr",
   "seo-utilities",
+  "ai-tools",
 ] as const;
 
 export type DiscoveryFilterId = (typeof discoveryFilterIds)[number];
@@ -26,6 +27,7 @@ const categoryLabels: Record<CategorySlug, string> = {
   "text-tools": "Text",
   "developer-tools": "Developer",
   "seo-utilities": "SEO",
+  "ai-tools": "AI",
 };
 
 export const discoveryFilters: DiscoveryFilter[] = [
@@ -38,6 +40,7 @@ export const discoveryFilters: DiscoveryFilter[] = [
   { id: "color", label: "Color" },
   { id: "qr", label: "QR" },
   { id: "seo-utilities", label: categoryLabels["seo-utilities"] },
+  { id: "ai-tools", label: categoryLabels["ai-tools"] },
 ];
 
 const colorTokens = ["color", "colour", "hex", "rgb", "hsl", "contrast", "gradient", "palette"];

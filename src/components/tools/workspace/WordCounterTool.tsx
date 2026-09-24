@@ -13,7 +13,7 @@ import { CopyButton } from "@/components/tools/CopyButton";
 import { getTextStats } from "@/lib/tools/text-stats";
 
 const SAMPLE =
-  "ToolsTartHub counts words in your browser.\n\nPaste a paragraph, a list, or a full draft. Multiple spaces and blank lines are handled cleanly.";
+  "Tools Star Hub counts words in your browser.\n\nPaste a paragraph, a list, or a full draft. Multiple spaces and blank lines are handled cleanly.";
 
 export function WordCounterTool() {
   const [text, setText] = useState("");

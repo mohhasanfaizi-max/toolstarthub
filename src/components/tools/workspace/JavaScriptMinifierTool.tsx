@@ -9,7 +9,7 @@ const SAMPLE = `function greet(name) {
   return message;
 }
 
-greet("ToolsTartHub");
+greet("Tools Star Hub");
 `;
 
 export function JavaScriptMinifierTool() {

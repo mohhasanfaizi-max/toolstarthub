@@ -37,6 +37,20 @@ export function ToolDetails({ slug, toolName }: ToolDetailsProps) {
 
   return (
     <>
+      {content?.about ? (
+        <section aria-labelledby="about-tool-heading" className="mt-14">
+          <h2
+            id="about-tool-heading"
+            className="text-xl font-semibold tracking-tight text-foreground"
+          >
+            What this tool does
+          </h2>
+          <p className="mt-3 max-w-3xl text-sm leading-7 text-muted-foreground">
+            {content.about}
+          </p>
+        </section>
+      ) : null}
+
       <section aria-labelledby="how-to-use-heading" className="mt-14">
         <h2
           id="how-to-use-heading"
@@ -84,6 +98,22 @@ export function ToolDetails({ slug, toolName }: ToolDetailsProps) {
         )}
       </section>
 
+      {content?.features && content.features.length > 0 ? (
+        <section aria-labelledby="features-heading" className="mt-14">
+          <h2
+            id="features-heading"
+            className="text-xl font-semibold tracking-tight text-foreground"
+          >
+            Main features
+          </h2>
+          <ul className="mt-4 list-disc space-y-2 pl-5 text-sm leading-6 text-muted-foreground">
+            {content.features.map((feature) => (
+              <li key={feature}>{feature}</li>
+            ))}
+          </ul>
+        </section>
+      ) : null}
+
       {content?.explanation ? (
         <section aria-labelledby="explanation-heading" className="mt-14">
           <h2
@@ -98,6 +128,22 @@ export function ToolDetails({ slug, toolName }: ToolDetailsProps) {
         </section>
       ) : null}
 
+      {content?.tips && content.tips.length > 0 ? (
+        <section aria-labelledby="tips-heading" className="mt-14">
+          <h2
+            id="tips-heading"
+            className="text-xl font-semibold tracking-tight text-foreground"
+          >
+            Tips
+          </h2>
+          <ul className="mt-4 list-disc space-y-2 pl-5 text-sm leading-6 text-muted-foreground">
+            {content.tips.map((tip) => (
+              <li key={tip}>{tip}</li>
+            ))}
+          </ul>
+        </section>
+      ) : null}
+
       <section aria-labelledby="limitations-heading" className="mt-14">
         <h2
           id="limitations-heading"
@@ -105,14 +151,18 @@ export function ToolDetails({ slug, toolName }: ToolDetailsProps) {
         >
           Limitations
         </h2>
+        {content?.limitations ? (
+          <p className="mt-3 max-w-3xl text-sm leading-7 text-muted-foreground">
+            {content.limitations}
+          </p>
+        ) : null}
         <p className="mt-3 max-w-3xl text-sm leading-7 text-muted-foreground">
-          Results depend on the values or files you provide and on your
-          browser. Large files can be slower or fail if the device is low on
-          memory. Check important output before you rely on it. See the{" "}
+          Check the result before you rely on it. Large files can be slower or
+          fail if the device is low on memory. See the{" "}
           <Link href="/disclaimer" className="font-medium text-accent hover:underline">
             disclaimer
-          </Link>
-          .
+          </Link>{" "}
+          for what these tools do not cover.
         </p>
       </section>
 

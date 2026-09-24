@@ -86,7 +86,7 @@ export function ToolSearch({
   const isHero = variant === "hero";
 
   return (
-    <div ref={containerRef} className={cn("relative w-full", isHero && "mx-auto max-w-2xl")}>
+    <div ref={containerRef} className={cn("relative w-full", isHero && "mx-auto w-full max-w-[44rem]")}>
       <form
         role="search"
         action="/tools"

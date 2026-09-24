@@ -13,7 +13,7 @@ import { CopyButton } from "@/components/tools/CopyButton";
 import { formatJson, minifyJson, validateJson } from "@/lib/tools/json";
 
 const SAMPLE = `{
-  "name": "ToolsTartHub",
+  "name": "Tools Star Hub",
   "free": true,
   "tools": ["json", "utm", "percentage"]
 }`;

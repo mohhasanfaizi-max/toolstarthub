@@ -99,6 +99,52 @@ export const toolQuickAnswers: Record<string, string> = {
     "A whitespace remover trims, collapses spaces, converts tabs and cleans blank lines according to the options you select.",
   "line-sorter":
     "A line sorter orders multiline text alphabetically, numerically or by length, with optional duplicate removal.",
+  "ai-prompt-generator":
+    "An AI prompt generator assembles a structured prompt from the topic, goal, audience, and format you enter. It does not call an AI model.",
+  "prompt-to-image":
+    "A prompt-to-image tool writes a copyable image prompt from a subject and style. It does not create the picture.",
+  "prompt-to-video":
+    "A prompt-to-video tool writes a shot description you can paste into a video model. It does not render the clip.",
+  "ai-article-detector":
+    "This page reviews writing patterns such as sentence length and repeated phrases. It does not decide whether a person or a model wrote the text.",
+  "ai-article-compressor":
+    "An article compressor shortens a draft by cutting filler and repeated sentences. Check the result before you publish it.",
+  "tip-calculator":
+    "A tip calculator turns a bill, a tip rate, and a headcount into the tip, the total, and each person's share.",
+  "sales-tax-calculator":
+    "A sales tax calculator adds a tax rate to a price and shows the tax amount and the final price.",
+  "date-difference-calculator":
+    "A date difference calculator counts the days between two dates and also shows a calendar span. Months are not treated as a fixed 30 days.",
+  "find-and-replace":
+    "Find and replace changes the first match or every match in text you paste. You can turn case matching on or off.",
+  "remove-line-breaks":
+    "Remove line breaks joins wrapped lines with spaces, deletes the breaks, or keeps a blank line between paragraphs.",
+  "add-line-numbers":
+    "Add line numbers puts a number and a separator in front of each line without changing the line itself.",
+  "json-to-csv":
+    "JSON to CSV turns an array of objects into a CSV file you can copy or download. Nested values stay in the cell as JSON text.",
+  "csv-to-json":
+    "CSV to JSON reads a header row and quoted cells, then writes formatted or compact JSON.",
+  "regex-tester":
+    "A regex tester runs your pattern against sample text and lists matches, positions, and groups. It does not run other JavaScript.",
+  "hash-generator":
+    "A hash generator creates a SHA-256, SHA-384, or SHA-512 digest in the browser. A hash is not encryption and cannot be turned back into the text.",
+  "compound-interest-calculator":
+    "A compound interest calculator shows how a starting amount can grow when interest is added back to the balance. It is a formula, not a promised return.",
+  "loan-calculator":
+    "A loan calculator estimates the monthly payment and total interest for a fixed-rate installment loan from the amount, rate, and term you enter.",
+  "mortgage-calculator":
+    "A mortgage calculator estimates principal and interest from a home price, down payment, rate, and term, and can include housing costs and extra payments you type in.",
+  "auto-loan-calculator":
+    "An auto loan calculator estimates the amount financed and the monthly car payment from the vehicle price, tax rate, fees, down payment, trade-in, and APR you enter.",
+  "home-affordability-calculator":
+    "A home affordability calculator estimates a home price from income, existing debts, a down payment, and housing costs you choose. It is a budget estimate, not lender approval.",
+  "debt-payoff-calculator":
+    "A debt payoff calculator estimates how many months several balances take to reach zero, and the interest, when you choose where the extra payment goes.",
+  "credit-card-payoff-calculator":
+    "A credit card payoff calculator estimates months and interest for one card from the balance, APR, and the minimum or fixed payment you enter.",
+  "savings-goal-calculator":
+    "A savings goal calculator estimates the regular amount to set aside so current savings can reach a target. The rate you enter is an assumption, not a promised return.",
 };
 
 export function getToolQuickAnswer(

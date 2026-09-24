@@ -117,7 +117,7 @@ export function markdownToHtml(input: string): MarkdownResult {
   return { ok: true, html: html.join("\n") };
 }
 
-export const MARKDOWN_SAMPLE = `# ToolsTartHub notes
+export const MARKDOWN_SAMPLE = `# Tools Star Hub notes
 
 Convert **Markdown** to *HTML* in your browser.
 

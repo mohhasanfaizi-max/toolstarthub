@@ -7,7 +7,7 @@ import { siteConfig } from "@/lib/site";
 
 export const metadata = createPageMetadata({
   title: "Privacy Policy",
-  description: `How ${siteConfig.name} handles browser storage, local processing, and the absence of accounts, ads, and analytics.`,
+  description: `How ${siteConfig.name} handles browser storage, local processing, and Google Analytics.`,
   path: "/privacy",
 });
 
@@ -30,9 +30,12 @@ export default function PrivacyPage() {
       />
       <div className="mt-8 max-w-3xl space-y-5 text-base leading-7 text-muted-foreground">
         <p>
-          {siteConfig.name} currently has no user accounts, no payment system,
-          no advertising, no third-party analytics, and no database of personal
-          profiles. You can browse and use tools without creating an account.
+          {siteConfig.name} has no user accounts, no payment system, no
+          advertising, and no database of personal profiles. You can browse and
+          use tools without creating an account. The site loads Google
+          Analytics 4 to count visits and pages. Google may receive pages
+          viewed and basic device data. Passwords, uploaded files, PDF
+          contents, private text, and QR payloads are not sent to analytics.
         </p>
         <p>
           Tools are designed to run in your browser. Files you choose for image
@@ -55,8 +58,8 @@ export default function PrivacyPage() {
           Hosting providers and the browser you use may create technical logs
           such as IP addresses, timestamps, and requested URLs as part of
           normal website delivery. This policy does not claim that nothing is
-          ever recorded by infrastructure. It will be updated if analytics,
-          advertising, accounts, or other data collection are added.
+          ever recorded by infrastructure. It will be updated if advertising,
+          accounts, or other data collection are added.
         </p>
       </div>
     </Container>

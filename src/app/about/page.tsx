@@ -10,7 +10,7 @@ import { PRODUCTION_CANONICAL_HOST, siteConfig } from "@/lib/site";
 export const metadata = createPageMetadata({
   title: "About",
   description:
-    "Learn what ToolsTartHub is: a fast, free collection of online tools with no signup required.",
+    "Learn what Tools Star Hub is: a fast, free collection of online tools with no signup required.",
   path: "/about",
 });
 
@@ -33,16 +33,17 @@ export default function AboutPage() {
       />
       <div className="mt-8 max-w-3xl space-y-5 text-base leading-7 text-muted-foreground">
         <p>
-          {siteConfig.name} is a free collection of 50 browser tools across five
+          {siteConfig.name} is a free collection of 73 browser tools across six
           categories: calculators, text tools, developer helpers, image and PDF
-          tools, and SEO utilities. The site is published at{" "}
+          tools, SEO utilities, and AI tools. The site is published at{" "}
           {PRODUCTION_CANONICAL_HOST}.
         </p>
         <p>
           Open a tool, use it, and get a result. Tools are designed to run in
           your browser. Files and pasted text stay on this device and are not
           uploaded to our server. Where a tool has limits, the tool page says
-          so.
+          so. Page visits are measured with Google Analytics. That measurement
+          does not include the files or text you put into a tool.
         </p>
         <p>
           There is no signup, no account, and no payment system. Pages stay

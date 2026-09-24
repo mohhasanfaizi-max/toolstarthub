@@ -8,16 +8,18 @@ import { Logo } from "@/components/ui/Logo";
 
 export function Header() {
   return (
-    <header className="sticky top-0 z-50 border-b border-border bg-header shadow-[0_1px_2px_rgb(15_39_68/0.05)]">
-      <Container className="flex h-16 items-center gap-3">
+    <header className="sticky top-0 z-50 border-b border-border bg-header/95 backdrop-blur-sm">
+      <Container className="grid h-16 grid-cols-[auto_1fr_auto] items-center gap-3 lg:grid-cols-[1fr_auto_1fr]">
         <Logo compact />
-        <HeaderNav />
-        <div className="ml-auto flex items-center gap-1 sm:gap-2">
+        <div className="justify-self-center">
+          <HeaderNav />
+        </div>
+        <div className="flex items-center justify-end gap-1 sm:gap-2">
           <HeaderSearch />
           <ThemeToggle />
-          <div className="hidden sm:block">
+          <div className="hidden lg:block">
             <Button href="/tools" size="sm">
-              Get Started
+              Explore Tools
             </Button>
           </div>
           <MobileNav />

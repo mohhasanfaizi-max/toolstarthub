@@ -10,7 +10,8 @@ const valueTitles = ["Fast", "Free", "Private", "No Signup"] as const;
 const valueNotes: Record<(typeof valueTitles)[number], string> = {
   Fast: "Most tools run in the browser and return a result on the same page.",
   Free: "The tools on this site do not require payment.",
-  Private: "Where possible, files and data are processed on your device.",
+  Private:
+    "Files and pasted text are processed on your device. Page visits are measured separately, as the privacy policy explains.",
   "No Signup": "Open a tool and use it. An account is not required.",
 };
 

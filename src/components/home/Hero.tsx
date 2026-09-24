@@ -1,74 +1,64 @@
 import Link from "next/link";
 import { ToolSearch } from "@/components/tools/ToolSearch";
-import { Button } from "@/components/ui/Button";
 import { Container } from "@/components/ui/Container";
 import { Icon } from "@/components/icons/Icon";
 import { getToolBySlug } from "@/data/tools";
 import { siteConfig } from "@/lib/site";
 
-const shortcutSlugs = [
-  "pdf-to-jpg",
-  "pdf-to-text",
-  "image-compressor",
-  "markdown-to-html",
+const popularLinks = [
+  { slug: "pdf-to-jpg", label: "PDF to JPG" },
+  { slug: "image-compressor", label: "Image Compressor" },
+  { slug: "word-counter", label: "Word Counter" },
+  { slug: "qr-code-generator", label: "QR Code Generator" },
+  { slug: "percentage-calculator", label: "Percentage Calculator" },
 ] as const;
 
 const trustItems = [
-  "Free to start",
-  "No installation",
-  "Fast browser tools",
-  "Privacy focused",
+  "Free to use",
+  "No sign-up required",
+  "Fast and easy",
+  "Files stay in your browser",
 ];
 
 export function Hero() {
-  const shortcuts = shortcutSlugs.flatMap((slug) => {
-    const tool = getToolBySlug(slug);
-    return tool ? [tool] : [];
+  const popular = popularLinks.flatMap((item) => {
+    const tool = getToolBySlug(item.slug);
+    return tool ? [{ href: tool.route, label: item.label }] : [];
   });
 
   return (
-    <section className="border-b border-border bg-background">
-      <Container className="py-14 sm:py-16 lg:py-20">
+    <section className="home-hero border-b border-border">
+      <Container className="py-12 sm:py-16 lg:py-20">
         <div className="home-enter mx-auto max-w-3xl text-center">
-          <h1 className="text-balance text-3xl font-semibold tracking-tight text-foreground sm:text-5xl sm:leading-tight">
-            Powerful online tools. Simple, fast, and free.
+          <p className="text-sm font-medium text-accent">{siteConfig.name}</p>
+          <h1 className="mx-auto mt-3 max-w-[18ch] text-balance text-[2rem] font-bold leading-[1.15] tracking-tight text-foreground sm:text-[2.375rem] md:text-[2.75rem] lg:text-5xl xl:text-6xl">
+            Free Online Tools for Everyday Tasks
           </h1>
-          <p className="mx-auto mt-4 max-w-2xl text-base leading-7 text-muted-foreground sm:text-lg">
-            {siteConfig.name} converts PDFs, compresses images, calculates
-            everyday figures, and formats text or code in the browser. No
-            installation and no account.
+          <p className="mx-auto mt-4 max-w-xl text-base leading-7 text-muted-foreground sm:text-lg">
+            Find a tool, use it, and get a result. {siteConfig.name} is a simple
+            place for PDFs, images, calculations, and text, with no account.
           </p>
           <div className="home-search mt-8 text-left">
-            <ToolSearch variant="hero" placeholder="What do you want to do?" />
+            <ToolSearch variant="hero" />
           </div>
-          <div className="mt-4 flex flex-wrap items-center justify-center gap-2">
-            {shortcuts.map((tool) => (
-              <Link
-                key={tool.slug}
-                href={tool.route}
-                className="rounded-lg border border-border bg-card px-3 py-1.5 text-sm font-medium text-foreground hover:border-accent/40 hover:bg-accent-soft"
-              >
-                {tool.name}
-              </Link>
-            ))}
-          </div>
-          <div className="mt-6 flex flex-col items-stretch justify-center gap-3 sm:flex-row sm:items-center">
-            <Button href="/tools" size="lg" className="home-btn">
-              Explore All Tools
-            </Button>
-            <Button
-              href="/tools/pdf-to-jpg"
-              variant="secondary"
-              size="lg"
-              className="home-btn"
-            >
-              Try a Tool
-            </Button>
-          </div>
-          <ul className="mt-8 flex flex-wrap items-center justify-center gap-x-5 gap-y-2 text-sm text-muted-foreground">
+          {popular.length > 0 ? (
+            <div className="mt-5 flex flex-wrap items-center justify-center gap-x-2 gap-y-2 text-sm">
+              <span className="font-medium text-foreground">Popular:</span>
+              {popular.map((item) => (
+                <Link
+                  key={item.href}
+                  href={item.href}
+                  className="rounded-lg px-2.5 py-1.5 text-muted-foreground hover:bg-card hover:text-foreground"
+                >
+                  {item.label}
+                </Link>
+              ))}
+            </div>
+          ) : null}
+          <ul className="mt-6 flex flex-wrap items-center justify-center gap-x-5 gap-y-2 text-sm text-muted-foreground">
             {trustItems.map((item) => (
               <li key={item} className="inline-flex items-center gap-1.5">
-                <Icon name="check" className="size-4 text-accent" />
+                <Icon name="check" className="size-4 text-accent" aria-hidden="true" />
                 {item}
               </li>
             ))}

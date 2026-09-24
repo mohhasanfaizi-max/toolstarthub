@@ -9,7 +9,7 @@ import { breadcrumbJsonLd, createPageMetadata } from "@/lib/seo";
 export const metadata = createPageMetadata({
   title: "Categories",
   description:
-    "Explore ToolsTartHub by category: calculators, text tools, developer tools, image tools, and SEO utilities.",
+    "Explore Tools Star Hub by category: calculators, text tools, developer tools, image tools, and SEO utilities.",
   path: "/categories",
 });
 
@@ -30,6 +30,13 @@ export default function CategoriesPage() {
         title="Categories"
         description="Choose a category to find the right tool faster."
       />
+      <p className="mt-6 max-w-3xl text-base leading-7 text-muted-foreground">
+        Calculators handle everyday numbers. Text tools count and clean writing.
+        Developer tools format, encode, and minify. Image tools also include PDF
+        tasks such as merging, splitting, and extracting text. SEO and utilities
+        cover campaign links, slugs, QR codes, and passwords. AI tools build
+        prompts and shorten drafts in the browser. They do not call an AI model.
+      </p>
       <div className="mt-8 grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
         {categories.map((category) => (
           <CategoryCard

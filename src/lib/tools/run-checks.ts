@@ -1,3 +1,27 @@
+import { roundTo } from "./numbers.ts";
+import { calculateCompoundInterest } from "./compound-interest.ts";
+import { calculateLoan, monthlyInstallment } from "./loan.ts";
+import { calculateMortgage } from "./mortgage.ts";
+import { calculateAutoLoan } from "./auto-loan.ts";
+import { calculateHomeAffordability } from "./home-affordability.ts";
+import { calculateDebtPayoff } from "./debt-payoff.ts";
+import { calculateCreditCardPayoff } from "./credit-card-payoff.ts";
+import { calculateSavingsGoal } from "./savings-goal.ts";
+import { addLineNumbers } from "./line-numbers.ts";
+import { calculateDateDifference } from "./date-diff.ts";
+import { calculateSalesTax } from "./sales-tax.ts";
+import { calculateTip } from "./tip.ts";
+import { csvToJson } from "./csv-to-json.ts";
+import { findAndReplace } from "./find-replace.ts";
+import { hashText } from "./hash.ts";
+import { jsonToCsv } from "./json-to-csv.ts";
+import { removeLineBreaks } from "./line-breaks.ts";
+import { testRegularExpression } from "./regex-test.ts";
+import { compressArticle } from "./article-compress.ts";
+import { buildAiPrompt } from "./ai-prompt.ts";
+import { buildImagePrompt } from "./image-prompt.ts";
+import { buildVideoPrompt, EMPTY_VIDEO_PROMPT } from "./video-prompt.ts";
+import { analyzeWritingPatterns } from "./writing-patterns.ts";
 import { calculateAge, parseISODate } from "./age.ts";
 import { decodeBase64, encodeBase64 } from "./base64.ts";
 import { convertCase } from "./case-convert.ts";
@@ -962,8 +986,534 @@ const fitted = imageDrawRect(
 );
 assert(fitted.width === 100 && fitted.height === 50, "Fit keeps aspect ratio");
 
-assert(tools.length === 50, "Registry has 50 tools");
-assert(new Set(tools.map((tool) => tool.slug)).size === 50, "Tool slugs are unique");
+assert(!buildAiPrompt({ useCase: "", topic: "", goal: "", audience: "", tone: "", language: "English", format: "", detail: "Medium", instructions: "" }).ok, "Prompt needs a topic or goal");
+const builtPrompt = buildAiPrompt({ useCase: "Email", topic: "Office hours", goal: "", audience: "Customers", tone: "Brief", language: "English", format: "Email", detail: "Brief", instructions: "" });
+assert(builtPrompt.ok && builtPrompt.prompt.includes("Office hours"), "Prompt includes the topic");
+assert(!buildImagePrompt({ subject: "", environment: "", style: "", composition: "", lighting: "", camera: "", palette: "", aspectRatio: "1:1", mood: "", quality: "", negative: "" }).ok, "Image prompt needs a subject");
+const imagePrompt = buildImagePrompt({ subject: "a mug", environment: "", style: "Studio", composition: "", lighting: "", camera: "", palette: "", aspectRatio: "1:1", mood: "", quality: "", negative: "logos" });
+assert(imagePrompt.ok && imagePrompt.prompt.includes("a mug") && imagePrompt.negative === "logos", "Image prompt keeps subject and negative text");
+assert(!buildVideoPrompt({ ...EMPTY_VIDEO_PROMPT, subject: "", action: "" }).ok, "Video prompt needs a subject or action");
+const videoPrompt = buildVideoPrompt({ ...EMPTY_VIDEO_PROMPT, action: "steam rises" });
+assert(videoPrompt.ok && videoPrompt.prompt.includes("one continuous shot"), "Video prompt stays one shot");
+assert(!analyzeWritingPatterns("Too short.").ok, "Pattern check rejects a short sample");
+const patterns = analyzeWritingPatterns("The same small phrase appears here. The same small phrase appears again. The same small phrase appears once more in this longer sample so the draft has enough words to study sentence length and repetition without pretending to know the author.");
+assert(patterns.ok && patterns.report.repeatedPhrases.length > 0, "Repeated phrase is reported");
+const compressed = compressArticle("In order to finish the form you must sign it. In order to finish the form you must sign it.", "medium");
+assert(compressed.ok && compressed.afterWords < compressed.beforeWords, "Medium compression removes a repeated sentence");
+assert(!compressArticle("Too short.", "light").ok, "Compressor rejects a tiny draft");
+
+const tip = calculateTip("100", "15", "2");
+assert(tip.ok && tip.tipAmount === 15 && tip.total === 115 && tip.tipPerPerson === 7.5 && tip.totalPerPerson === 57.5, "Tip splits 15% of 100 across 2 people");
+assert(!calculateTip("-1", "15", "1").ok, "Negative bill is rejected");
+assert(!calculateTip("10", "15", "0").ok, "Zero people is rejected");
+assert(!calculateTip("", "15", "1").ok, "Empty bill is rejected");
+const tax = calculateSalesTax("100", "8");
+assert(tax.ok && tax.taxAmount === 8 && tax.finalPrice === 108, "8% tax on 100");
+assert(!calculateSalesTax("-5", "8").ok, "Negative price is rejected");
+const sameDateSpan = calculateDateDifference("2026-09-23", "2026-09-23");
+assert(sameDateSpan.ok && sameDateSpan.same && sameDateSpan.totalDays === 0, "Same date is 0 days");
+const reversedDates = calculateDateDifference("2026-09-24", "2026-09-23");
+assert(reversedDates.ok && reversedDates.reversed && reversedDates.totalDays === 1, "Earlier end date is flagged and still counted");
+assert(!calculateDateDifference("2026-02-31", "2026-03-01").ok, "Invalid calendar date is rejected");
+const replaced = findAndReplace("Ana ana", "ana", "Ana", "all", false);
+assert(replaced.ok && replaced.count === 2 && replaced.text === "Ana Ana", "Case-insensitive replace all");
+assert(!findAndReplace("", "a", "b", "all", true).ok, "Empty find-and-replace source is rejected");
+const joinedLines = removeLineBreaks("one\ntwo", "spaces");
+assert(joinedLines.ok && joinedLines.text === "one two", "Line breaks become spaces");
+const kept = removeLineBreaks("one\ntwo\n\nthree\nfour", "paragraphs");
+assert(kept.ok && kept.text === "one two\n\nthree four", "Paragraph breaks stay");
+const numbered = addLineNumbers("First line\nSecond line\nThird line", "1", ". ");
+assert(numbered.ok && numbered.text === "1. First line\n2. Second line\n3. Third line", "Line numbers do not change the line text");
+const csv = jsonToCsv('[{"name":"Doe, Jane","age":30},{"name":"Sara","note":null,"extra":{"city":"Ada"}}]');
+assert(csv.ok && csv.csv.includes('"Doe, Jane"') && csv.csv.includes('"{""city"":""Ada""}"'), "CSV quotes commas and keeps nested JSON");
+assert(!jsonToCsv("{").ok, "Invalid JSON is rejected");
+const json = csvToJson('name,note\n"Doe, Jane","say ""hi"""\nSara,', false);
+assert(json.ok && json.json.includes('"Doe, Jane"') && json.json.includes('say \\"hi\\"') && json.json.includes('"note":""'), "CSV quotes and empty cells become JSON");
+assert(!csvToJson('name\n"open', true).ok, "Unclosed CSV quote is rejected");
+const regex = testRegularExpression("\\d+", "g", "Order 14 and order 3");
+assert(regex.ok && regex.count === 2 && regex.matches[0]?.text === "14" && regex.matches[0]?.index === 6, "Regex lists matches and positions");
+const grouped = testRegularExpression("Name: (\\w+)", "g", "Name: Sara");
+assert(grouped.ok && grouped.matches[0]?.groups[0] === "Sara", "Regex capture group");
+assert(!testRegularExpression("(", "g", "text").ok, "Invalid regex is rejected");
+assert(!testRegularExpression("", "g", "text").ok, "Empty regex is rejected");
+
+const compound = calculateCompoundInterest("10000", "5", "10", "years", "monthly", "0");
+assert(compound.ok && compound.finalBalance > 16000 && compound.finalBalance < 17000, "Monthly compound growth of 10000 at 5% for 10 years");
+assert(compound.ok && compound.totalContributions === 0, "Zero contribution stays zero");
+const compoundContrib = calculateCompoundInterest("10000", "5", "1", "years", "monthly", "100");
+assert(compoundContrib.ok && compoundContrib.totalContributions === 1200, "Twelve monthly contributions");
+const compoundZero = calculateCompoundInterest("10000", "0", "10", "years", "annually", "0");
+assert(compoundZero.ok && compoundZero.interestEarned === 0 && compoundZero.finalBalance === 10000, "Zero interest earns nothing");
+const compoundDaily = calculateCompoundInterest("1000", "5", "1", "years", "daily", "0");
+const compoundAnnual = calculateCompoundInterest("1000", "5", "1", "years", "annually", "0");
+assert(compoundDaily.ok && compoundAnnual.ok && compoundDaily.finalBalance > compoundAnnual.finalBalance, "Daily compounding exceeds annual compounding");
+assert(!calculateCompoundInterest("-1", "5", "10", "years", "monthly", "0").ok, "Negative principal is rejected");
+const compoundAnnualExact = calculateCompoundInterest("1000", "10", "2", "years", "annually", "0");
+assert(compoundAnnualExact.ok && compoundAnnualExact.finalBalance === 1210 && compoundAnnualExact.simpleInterest === 200, "Annual compound matches 1000*1.1^2 and simple interest is 200");
+const compoundQuarterly = calculateCompoundInterest("1000", "10", "2", "years", "quarterly", "0");
+const quarterlyExpected = roundTo(1000 * (1.025 ** 8), 2);
+assert(compoundQuarterly.ok && compoundQuarterly.finalBalance === quarterlyExpected, "Quarterly compound matches (1.025)^8");
+const compoundStandard = calculateCompoundInterest("10000", "5", "10", "years", "monthly", "0");
+const monthlyExpected = roundTo(10000 * ((1 + 0.05 / 12) ** 120), 2);
+assert(compoundStandard.ok && compoundStandard.finalBalance === monthlyExpected && compoundStandard.interestEarned === roundTo(monthlyExpected - 10000, 2), "Monthly compound matches the closed formula");
+assert(!calculateCompoundInterest("10", "5", "10", "years", "monthly", "nope").ok, "Invalid contribution is rejected");
+
+const loan = calculateLoan("20000", "7", "5", "years", "0");
+assert(loan.ok && loan.months === 60 && loan.payment > 0 && loan.totalInterest > 0, "Five-year loan has 60 payments and interest");
+const loanZero = calculateLoan("20000", "0", "5", "years", "100");
+assert(loanZero.ok && loanZero.payment === 333.33 && loanZero.totalInterest === 0 && loanZero.totalCost === 20100, "Zero-interest loan splits principal and adds the fee");
+assert(!calculateLoan("0", "7", "5", "years", "0").ok, "Zero loan amount is rejected");
+assert(!calculateLoan("20000", "7", "0", "years", "0").ok, "Zero loan term is rejected");
+const loanFormula = 20000 * ((0.07 / 12) * (1 + 0.07 / 12) ** 60) / ((1 + 0.07 / 12) ** 60 - 1);
+assert(loan.ok && Math.abs(loan.payment - roundTo(loanFormula, 2)) < 0.001, "60-month payment matches the installment formula");
+const loanFee = calculateLoan("20000", "7", "60", "months", "500");
+assert(loanFee.ok && loan.ok && loanFee.payment === loan.payment && loanFee.totalInterest === loan.totalInterest && loanFee.totalCost === roundTo(loan.totalPaid + 500, 2), "Fee is not financed");
+if (loan.ok) {
+  const principalSum = loan.yearly.reduce((sum, row) => sum + row.principalPaid, 0);
+  const interestSum = loan.yearly.reduce((sum, row) => sum + row.interestPaid, 0);
+  assert(Math.abs(principalSum - 20000) < 0.1 && Math.abs(interestSum - loan.totalInterest) < 0.1, "Yearly schedule sums to principal and interest");
+  assert(loan.monthly.at(-1)?.balance === 0, "Loan schedule ends at zero");
+  const first = loan.monthly[0];
+  const firstInterest = roundTo(20000 * (0.07 / 12), 2);
+  assert(first !== undefined && first.interestPaid === firstInterest, "First loan interest is the opening balance times the monthly rate");
+}
+
+const mortgage = calculateMortgage({
+  priceRaw: "400000",
+  downRaw: "20",
+  downMode: "percent",
+  rateRaw: "6.5",
+  yearsRaw: "30",
+  taxRaw: "2400",
+  insuranceRaw: "1200",
+  hoaRaw: "50",
+  pmiRaw: "",
+  extraMonthlyRaw: "",
+  oneTimeRaw: "",
+});
+assert(mortgage.ok && mortgage.loanAmount === 320000 && mortgage.taxMonthly === 200 && mortgage.insuranceMonthly === 100 && mortgage.hoaMonthly === 50, "Mortgage loan amount and housing costs");
+assert(mortgage.ok && mortgage.housingPayment === roundTo(mortgage.payment + 350, 2), "Housing cost adds tax, insurance, and HOA");
+const mortgageZero = calculateMortgage({
+  priceRaw: "120000",
+  downRaw: "0",
+  downMode: "amount",
+  rateRaw: "0",
+  yearsRaw: "10",
+  taxRaw: "",
+  insuranceRaw: "",
+  hoaRaw: "",
+  pmiRaw: "",
+  extraMonthlyRaw: "",
+  oneTimeRaw: "",
+});
+assert(mortgageZero.ok && mortgageZero.payment === 1000 && mortgageZero.totalInterest === 0, "Zero-interest mortgage divides the loan");
+const mortgageBasic = calculateMortgage({
+  priceRaw: "400000",
+  downRaw: "80000",
+  downMode: "amount",
+  rateRaw: "6",
+  yearsRaw: "30",
+  taxRaw: "4800",
+  insuranceRaw: "1200",
+  hoaRaw: "200",
+  pmiRaw: "100",
+  extraMonthlyRaw: "",
+  oneTimeRaw: "",
+});
+const mortgageRate = 0.06 / 12;
+const mortgageFactor = (1 + mortgageRate) ** 360;
+const mortgageFormula = 320000 * (mortgageRate * mortgageFactor) / (mortgageFactor - 1);
+assert(
+  mortgageBasic.ok &&
+    mortgageBasic.loanAmount === 320000 &&
+    mortgageBasic.downPayment === 80000 &&
+    Math.abs(mortgageBasic.payment - roundTo(mortgageFormula, 2)) < 0.001 &&
+    mortgageBasic.taxMonthly === 400 &&
+    mortgageBasic.insuranceMonthly === 100 &&
+    mortgageBasic.hoaMonthly === 200 &&
+    mortgageBasic.pmiMonthly === 100 &&
+    mortgageBasic.housingPayment === roundTo(mortgageBasic.payment + 800, 2),
+  "Mortgage payment and housing costs match an independent formula",
+);
+const mortgagePercent = calculateMortgage({
+  priceRaw: "400000",
+  downRaw: "20",
+  downMode: "percent",
+  rateRaw: "6",
+  yearsRaw: "30",
+  taxRaw: "",
+  insuranceRaw: "",
+  hoaRaw: "",
+  pmiRaw: "",
+  extraMonthlyRaw: "",
+  oneTimeRaw: "",
+});
+assert(mortgagePercent.ok && mortgagePercent.downPayment === 80000 && mortgagePercent.loanAmount === 320000, "20 percent down matches 80000 dollars");
+const mortgageFree = calculateMortgage({
+  priceRaw: "300000",
+  downRaw: "60000",
+  downMode: "amount",
+  rateRaw: "0",
+  yearsRaw: "30",
+  taxRaw: "",
+  insuranceRaw: "",
+  hoaRaw: "",
+  pmiRaw: "",
+  extraMonthlyRaw: "",
+  oneTimeRaw: "",
+});
+assert(mortgageFree.ok && mortgageFree.loanAmount === 240000 && mortgageFree.payment === 666.67 && mortgageFree.totalInterest === 0, "Zero-interest 30-year mortgage is 240000/360");
+const mortgagePayoff = calculateMortgage({
+  priceRaw: "200000",
+  downRaw: "0",
+  downMode: "amount",
+  rateRaw: "6",
+  yearsRaw: "30",
+  taxRaw: "",
+  insuranceRaw: "",
+  hoaRaw: "",
+  pmiRaw: "",
+  extraMonthlyRaw: "200",
+  oneTimeRaw: "",
+});
+assert(
+  mortgagePayoff.ok &&
+    mortgagePayoff.payoff !== null &&
+    mortgagePayoff.payoff.monthsSaved > 0 &&
+    mortgagePayoff.payoff.interestSaved > 0,
+  "Extra mortgage payment shortens the term and saves interest",
+);
+assert(
+  !calculateMortgage({
+    priceRaw: "100000",
+    downRaw: "150000",
+    downMode: "amount",
+    rateRaw: "6",
+    yearsRaw: "30",
+    taxRaw: "",
+    insuranceRaw: "",
+    hoaRaw: "",
+    pmiRaw: "",
+    extraMonthlyRaw: "",
+    oneTimeRaw: "",
+  }).ok,
+  "Down payment above the home price is rejected",
+);
+
+const auto = calculateAutoLoan({
+  priceRaw: "30000",
+  downRaw: "3000",
+  tradeRaw: "2000",
+  taxRateRaw: "6",
+  feesRaw: "500",
+  aprRaw: "5",
+  monthsRaw: "60",
+  addonsRaw: "1000",
+  insuranceRaw: "",
+  fuelRaw: "",
+  maintenanceRaw: "",
+});
+const autoFinanced = 30000 + 30000 * 0.06 + 500 + 1000 - 3000 - 2000;
+const autoPayment = monthlyInstallment(autoFinanced, 5, 60);
+assert(
+  auto.ok &&
+    auto.salesTax === 1800 &&
+    auto.amountFinanced === autoFinanced &&
+    auto.payment === roundTo(autoPayment, 2),
+  "Auto loan finances price, tax, fees, and add-ons after down payment and trade-in",
+);
+const autoZero = calculateAutoLoan({
+  priceRaw: "20000",
+  downRaw: "2000",
+  tradeRaw: "0",
+  taxRateRaw: "0",
+  feesRaw: "0",
+  aprRaw: "0",
+  monthsRaw: "60",
+  addonsRaw: "0",
+  insuranceRaw: "",
+  fuelRaw: "",
+  maintenanceRaw: "",
+});
+assert(autoZero.ok && autoZero.amountFinanced === 18000 && autoZero.payment === 300 && autoZero.totalInterest === 0, "Zero-interest auto loan divides the amount financed");
+assert(
+  !calculateAutoLoan({
+    priceRaw: "10000",
+    downRaw: "8000",
+    tradeRaw: "5000",
+    taxRateRaw: "0",
+    feesRaw: "0",
+    aprRaw: "5",
+    monthsRaw: "60",
+    addonsRaw: "0",
+    insuranceRaw: "",
+    fuelRaw: "",
+    maintenanceRaw: "",
+  }).ok,
+  "Auto loan rejects a non-positive amount financed",
+);
+if (auto.ok) {
+  const compared = auto.comparison.find((row) => row.months === 60);
+  assert(compared !== undefined && compared.payment === auto.payment, "60-month comparison uses the same payment");
+  assert(auto.monthly[0]?.interestPaid === roundTo(autoFinanced * (0.05 / 12), 2), "First auto loan month uses the full balance");
+  assert(auto.monthly[auto.monthly.length - 1]?.balance === 0, "Auto loan schedule ends at zero");
+  const principalSum = auto.monthly.reduce((sum, row) => sum + row.principalPaid, 0);
+  assert(Math.abs(principalSum - autoFinanced) < 0.1 && Math.abs(auto.totalInterest - (auto.totalPayments - auto.amountFinanced)) < 0.001, "Auto loan principal and interest stay consistent");
+  assert(auto.comparison.every((row) => row.totalInterest >= 0), "Term comparison does not invent negative interest");
+}
+const autoOwn = calculateAutoLoan({
+  priceRaw: "20000",
+  downRaw: "0",
+  tradeRaw: "0",
+  taxRateRaw: "0",
+  feesRaw: "0",
+  aprRaw: "0",
+  monthsRaw: "60",
+  addonsRaw: "0",
+  insuranceRaw: "100",
+  fuelRaw: "150",
+  maintenanceRaw: "50",
+});
+assert(autoOwn.ok && autoOwn.ownershipMonthly === roundTo(autoOwn.payment + 300, 2), "Ownership cost adds the monthly estimates you type");
+
+const afford = calculateHomeAffordability({
+  incomeRaw: "120000",
+  debtRaw: "500",
+  downRaw: "20",
+  downMode: "percent",
+  rateRaw: "6",
+  yearsRaw: "30",
+  taxRateRaw: "1.2",
+  insuranceRaw: "1200",
+  hoaRaw: "0",
+  pmiRaw: "0",
+  dtiRaw: "36",
+});
+const affordFactor = monthlyInstallment(1, 6, 360);
+const affordBudget = 120000 / 12 * 0.36 - 500;
+const affordPrice = (affordBudget - 100) / (0.8 * affordFactor + 0.012 / 12);
+assert(
+  afford.ok &&
+    afford.monthlyGross === 10000 &&
+    afford.housingBudget === roundTo(affordBudget, 2) &&
+    afford.homePrice === roundTo(affordPrice, 2) &&
+    Math.abs(afford.loanAmount - roundTo(affordPrice * 0.8, 2)) < 0.02 &&
+    afford.insuranceMonthly === 100 &&
+    afford.downPayment === roundTo(affordPrice * 0.2, 2),
+  "Affordability solves price from income, debt, tax, and insurance",
+);
+assert(afford.ok && afford.scenarios.filter((row) => row.ok).length === 3, "28, 30, and 36 percent scenarios all solve");
+const affordCash = calculateHomeAffordability({
+  incomeRaw: "120000",
+  debtRaw: "0",
+  downRaw: "40000",
+  downMode: "amount",
+  rateRaw: "0",
+  yearsRaw: "30",
+  taxRateRaw: "0",
+  insuranceRaw: "",
+  hoaRaw: "200",
+  pmiRaw: "100",
+  dtiRaw: "30",
+});
+const cashBudget = 10000 * 0.3 - 300;
+const cashLoan = cashBudget / (1 / 360);
+assert(
+  affordCash.ok &&
+    affordCash.hoaMonthly === 200 &&
+    affordCash.pmiMonthly === 100 &&
+    affordCash.loanAmount === roundTo(cashLoan, 2) &&
+    affordCash.homePrice === roundTo(cashLoan + 40000, 2) &&
+    affordCash.payment === roundTo(cashLoan / 360, 2),
+  "Dollar down payment and zero interest size the loan from the leftover budget",
+);
+assert(
+  !calculateHomeAffordability({
+    incomeRaw: "60000",
+    debtRaw: "2000",
+    downRaw: "20",
+    downMode: "percent",
+    rateRaw: "6",
+    yearsRaw: "30",
+    taxRateRaw: "1",
+    insuranceRaw: "",
+    hoaRaw: "",
+    pmiRaw: "",
+    dtiRaw: "28",
+  }).ok,
+  "Debt above the target ratio leaves no housing budget",
+);
+assert(!calculateHomeAffordability({
+  incomeRaw: "nope",
+  debtRaw: "0",
+  downRaw: "20",
+  downMode: "percent",
+  rateRaw: "6",
+  yearsRaw: "30",
+  taxRateRaw: "1",
+  insuranceRaw: "",
+  hoaRaw: "",
+  pmiRaw: "",
+  dtiRaw: "36",
+}).ok, "Non-numeric income is rejected");
+
+const debt = calculateDebtPayoff({
+  debts: [
+    { name: "A", balanceRaw: "1000", aprRaw: "0", minimumRaw: "100" },
+    { name: "B", balanceRaw: "500", aprRaw: "0", minimumRaw: "100" },
+  ],
+  extraRaw: "0",
+  strategy: "snowball",
+});
+assert(
+  debt.ok && debt.months === 8 && debt.totalInterest === 0 && debt.order[0]?.name === "B" && debt.order[0]?.months === 5 && debt.order[1]?.months === 8,
+  "Snowball pays the smaller zero-interest debt first and finishes in 8 months",
+);
+const debtInterest = calculateDebtPayoff({
+  debts: [{ name: "Only", balanceRaw: "1200", aprRaw: "12", minimumRaw: "200" }],
+  extraRaw: "0",
+  strategy: "avalanche",
+});
+let expectedBalance = 1200;
+let expectedInterest = 0;
+let expectedMonths = 0;
+while (expectedBalance > 0.0000001 && expectedMonths < 24) {
+  const interest = expectedBalance * 0.01;
+  expectedInterest += interest;
+  expectedBalance = expectedBalance + interest - Math.min(200, expectedBalance + interest);
+  expectedMonths += 1;
+}
+assert(
+  debtInterest.ok && debtInterest.months === expectedMonths && debtInterest.totalInterest === roundTo(expectedInterest, 2) && debtInterest.startingBalance === 1200,
+  "Single-debt interest matches an independent month loop",
+);
+assert(
+  !calculateDebtPayoff({
+    debts: [{ name: "High", balanceRaw: "1000", aprRaw: "24", minimumRaw: "10" }],
+    extraRaw: "0",
+    strategy: "avalanche",
+  }).ok,
+  "A minimum that does not cover interest is rejected",
+);
+const debtExtra = calculateDebtPayoff({
+  debts: [{ name: "Only", balanceRaw: "1000", aprRaw: "0", minimumRaw: "100" }],
+  extraRaw: "100",
+  strategy: "avalanche",
+});
+assert(debtExtra.ok && debtExtra.months === 5 && debtExtra.interestSaved === 0, "Extra payment shortens a zero-interest debt and saves no interest");
+const debtPlans = calculateDebtPayoff({
+  debts: [
+    { name: "High", balanceRaw: "2000", aprRaw: "18", minimumRaw: "80" },
+    { name: "Low", balanceRaw: "800", aprRaw: "6", minimumRaw: "40" },
+  ],
+  extraRaw: "120",
+  strategy: "avalanche",
+});
+const debtSnow = calculateDebtPayoff({
+  debts: [
+    { name: "High", balanceRaw: "2000", aprRaw: "18", minimumRaw: "80" },
+    { name: "Low", balanceRaw: "800", aprRaw: "6", minimumRaw: "40" },
+  ],
+  extraRaw: "120",
+  strategy: "snowball",
+});
+assert(
+  debtPlans.ok &&
+    debtSnow.ok &&
+    debtPlans.order.length === 2 &&
+    debtSnow.order[0]?.name === "Low" &&
+    debtPlans.order[0]?.name === "High" &&
+    debtPlans.totalInterest < debtSnow.totalInterest &&
+    debtPlans.interestSaved > 0 &&
+    debtPlans.comparison.length === 4,
+  "Avalanche and snowball finish different debts first and the extra payment lowers interest",
+);
+
+const card = calculateCreditCardPayoff({
+  balanceRaw: "1000",
+  aprRaw: "0",
+  percentRaw: "0",
+  floorRaw: "0",
+  desiredRaw: "100",
+  extraRaw: "0",
+});
+assert(
+  card.ok && card.months === 10 && card.totalInterest === 0 && card.payment === 100 && card.schedule[card.schedule.length - 1]?.balance === 0,
+  "Zero-interest card payment clears 1000 in 10 payments",
+);
+const cardRate = calculateCreditCardPayoff({
+  balanceRaw: "1000",
+  aprRaw: "12",
+  percentRaw: "0",
+  floorRaw: "0",
+  desiredRaw: "100",
+  extraRaw: "50",
+});
+assert(cardRate.ok && cardRate.payment === 150 && cardRate.schedule[0]?.interest === 10, "First card month charges 1000 * 1%");
+assert(
+  !calculateCreditCardPayoff({
+    balanceRaw: "5000",
+    aprRaw: "24",
+    percentRaw: "0",
+    floorRaw: "10",
+    desiredRaw: "",
+    extraRaw: "0",
+  }).ok,
+  "A card minimum below interest is rejected",
+);
+
+const saveZero = calculateSavingsGoal({
+  targetRaw: "10000",
+  currentRaw: "0",
+  rateRaw: "0",
+  yearsRaw: "2",
+  frequency: "monthly",
+});
+assert(
+  saveZero.ok && saveZero.contribution === roundTo(10000 / 24, 2) && saveZero.totalContributions === 10000 && saveZero.interest === 0 && saveZero.periods === 24,
+  "Zero-interest savings goal splits the gap across 24 months",
+);
+const saveHave = calculateSavingsGoal({
+  targetRaw: "10000",
+  currentRaw: "4000",
+  rateRaw: "0",
+  yearsRaw: "1",
+  frequency: "monthly",
+});
+assert(saveHave.ok && saveHave.contribution === 500, "Existing savings reduce the zero-interest contribution");
+const saveAnnual = calculateSavingsGoal({
+  targetRaw: "5000",
+  currentRaw: "0",
+  rateRaw: "0",
+  yearsRaw: "5",
+  frequency: "annual",
+});
+assert(saveAnnual.ok && saveAnnual.contribution === 1000 && saveAnnual.periods === 5, "Annual zero-interest goal is the gap divided by years");
+const saveRate = 0.05 / 12;
+const savePeriods = 12;
+const savePayment = (10000 * saveRate) / ((1 + saveRate) ** savePeriods - 1);
+const saveGrown = calculateSavingsGoal({
+  targetRaw: "10000",
+  currentRaw: "0",
+  rateRaw: "5",
+  yearsRaw: "1",
+  frequency: "monthly",
+});
+assert(saveGrown.ok && saveGrown.contribution === roundTo(savePayment, 2), "Monthly savings contribution matches the future-value annuity");
+assert(saveGrown.ok && saveGrown.scenarios.map((row) => row.rate).join(",") === "0,3,5,7", "Savings scenarios use 0, 3, 5, and 7 percent");
+assert(
+  !calculateSavingsGoal({
+    targetRaw: "10000",
+    currentRaw: "10000",
+    rateRaw: "3",
+    yearsRaw: "2",
+    frequency: "monthly",
+  }).ok,
+  "A goal already reached is rejected",
+);
+
+assert(tools.length === 73, "Registry has 73 tools");
+assert(new Set(tools.map((tool) => tool.slug)).size === 73, "Tool slugs are unique");
 assert(getNewTools().length === 4, "Homepage recently added stays at 4 tools");
 assert(
   tools.every((tool) => tool.status === "available"),
@@ -1020,7 +1570,7 @@ assert(
 );
 assert(searchTools("json").some((tool) => tool.slug === "json-formatter"), "Partial json match");
 assert(searchTools("xyzzy-no-such-tool").length === 0, "Unknown query has no results");
-assert(searchTools("").length === 50, "Empty query returns all tools");
+assert(searchTools("").length === 73, "Empty query returns all tools");
 assert(searchTools("compress pdf")[0]?.slug === "pdf-compressor", "compress pdf ranks compressor");
 assert(searchTools("extract text").some((tool) => tool.slug === "pdf-to-text"), "extract text finds PDF to Text");
 assert(searchTools("remove pdf metadata").some((tool) => tool.slug === "pdf-metadata"), "metadata search");
@@ -1176,7 +1726,7 @@ const sitemapPaths = new Set([
 assert(![...sitemapPaths].some((path) => path.includes("?")), "Sitemap paths have no query strings");
 assert(
   tools.every((tool) => sitemapPaths.has(tool.route)),
-  "All 50 tool routes are in the sitemap set",
+  "All tool routes are in the sitemap set",
 );
 assert(
   !sitemapPaths.has("/tools?view=favorites") && ![...sitemapPaths].some((path) => path.includes("q=")),
@@ -1215,6 +1765,13 @@ assert(
     !PRODUCTION_SITE_URL.includes("toolstarthub.com"),
   "Misspelled toolstarthub.com is not used as the site URL",
 );
+
+const abcHash = await hashText("abc", "SHA-256");
+assert(
+  abcHash.ok && abcHash.hex === "ba7816bf8f01cfea414140de5dae2223b00361a396177a9cb410ff61f20015ad",
+  "SHA-256 of abc",
+);
+assert(!(await hashText("abc", "MD5" as "SHA-256")).ok, "Unknown hash algorithm is rejected");
 
 const pdfMagic = new TextEncoder().encode("%PDF-1.7\n");
 assert(looksLikePdf(pdfMagic), "PDF magic bytes are detected");

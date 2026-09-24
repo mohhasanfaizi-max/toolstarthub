@@ -2,8 +2,9 @@ import { Container } from "@/components/ui/Container";
 import { PageHeader } from "@/components/ui/PageHeader";
 import { Breadcrumbs } from "@/components/seo/Breadcrumbs";
 import { JsonLd } from "@/components/seo/JsonLd";
+import Link from "next/link";
 import { breadcrumbJsonLd, createPageMetadata } from "@/lib/seo";
-import { siteConfig } from "@/lib/site";
+import { siteConfig, siteContact } from "@/lib/site";
 
 export const metadata = createPageMetadata({
   title: "Terms of Use",
@@ -26,25 +27,51 @@ export default function TermsPage() {
       <PageHeader
         className="mt-6"
         title="Terms of Use"
-        description="Simple terms for using the ToolsTartHub website."
+        description="Simple terms for using the Tools Star Hub website."
       />
       <div className="mt-8 max-w-3xl space-y-5 text-base leading-7 text-muted-foreground">
         <p>
-          By using {siteConfig.name}, you agree to use the website and its tools
-          lawfully and at your own discretion.
+          {siteConfig.name} is an independent website at {siteConfig.url}. By
+          using it, you agree to use the site and its tools lawfully and at
+          your own discretion.
         </p>
         <p>
-          The tools are provided free of charge, without an account, in their
-          current form. Results should be checked before you rely on them for
-          important decisions.
+          The tools are free and do not require an account. They are provided
+          in their current form. Check a result before you rely on it for
+          money, health, legal, or other important decisions. The{" "}
+          <Link href="/disclaimer" className="font-medium text-accent hover:underline">
+            disclaimer
+          </Link>{" "}
+          explains those limits.
         </p>
         <p>
-          You may not attempt to disrupt the site, overload it, or misuse the
-          tools for unlawful activity.
+          Files and text you put into a tool are processed in your browser.
+          You keep that material. Do not submit information you are not allowed
+          to use. The site’s own pages, names, and layout stay with{" "}
+          {siteConfig.name}.
         </p>
         <p>
-          These terms may be updated as the site grows. The latest version will
-          always be published on this page.
+          You may not disrupt the site, overload it, or use the tools for
+          unlawful activity.
+        </p>
+        <p>
+          Page visits may be measured with Google Analytics, as described in
+          the{" "}
+          <Link href="/privacy" className="font-medium text-accent hover:underline">
+            privacy policy
+          </Link>
+          . The site does not sell accounts or paid plans.
+        </p>
+        <p>
+          These terms can change. The version on this page is the current one.
+          Questions can go to{" "}
+          <a
+            href={`mailto:${siteContact.email}`}
+            className="font-medium text-accent hover:underline"
+          >
+            {siteContact.email}
+          </a>
+          .
         </p>
       </div>
     </Container>

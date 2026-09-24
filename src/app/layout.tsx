@@ -1,8 +1,11 @@
 import type { Metadata, Viewport } from "next";
 import Script from "next/script";
+import { Suspense } from "react";
+import { GoogleAnalyticsRouteChange } from "@/components/analytics/GoogleAnalyticsRouteChange";
 import { Footer } from "@/components/layout/Footer";
 import { Header } from "@/components/layout/Header";
 import { SkipLink } from "@/components/layout/SkipLink";
+import { GA_MEASUREMENT_ID } from "@/lib/analytics";
 import { getGoogleSiteVerification, siteConfig } from "@/lib/site";
 import "./globals.css";
 
@@ -70,6 +73,21 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
         <Script id="theme-init" strategy="beforeInteractive">
           {`(function(){try{var t=localStorage.getItem("tsh-theme");var d=t==="dark"||(t!=="light"&&window.matchMedia("(prefers-color-scheme: dark)").matches);document.documentElement.setAttribute("data-theme",d?"dark":"light");}catch(e){}})();`}
         </Script>
+        <Script
+          src={`https://www.googletagmanager.com/gtag/js?id=${GA_MEASUREMENT_ID}`}
+          strategy="afterInteractive"
+        />
+        <Script id="ga4-gtag" strategy="afterInteractive">
+          {`
+            window.dataLayer = window.dataLayer || [];
+            function gtag(){dataLayer.push(arguments);}
+            gtag('js', new Date());
+            gtag('config', '${GA_MEASUREMENT_ID}');
+          `}
+        </Script>
+        <Suspense fallback={null}>
+          <GoogleAnalyticsRouteChange />
+        </Suspense>
         <SkipLink />
         <Header />
         <main id="main-content" className="flex-1">

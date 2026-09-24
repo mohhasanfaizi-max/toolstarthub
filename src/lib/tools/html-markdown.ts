@@ -44,7 +44,7 @@ export function htmlToMarkdown(input: string): HtmlMarkdownResult {
   return { ok: true, markdown };
 }
 
-export const HTML_SAMPLE = `<h1>ToolsTartHub notes</h1>
+export const HTML_SAMPLE = `<h1>Tools Star Hub notes</h1>
 <p>Convert <strong>HTML</strong> to <em>Markdown</em> locally.</p>
 <ul>
   <li>Headings and lists</li>
