@@ -12,6 +12,11 @@ import { calculatePaycheck } from "./paycheck.ts";
 import { calculateRentVsBuy } from "./rent-vs-buy.ts";
 import { calculateFuelCost } from "./fuel-cost.ts";
 import { calculateBusinessDays } from "./business-days.ts";
+import { calculateGpa } from "./gpa.ts";
+import { calculateSquareFootage } from "./square-footage.ts";
+import { numberToWords, wordsToNumber } from "./number-words.ts";
+import { convertTimeZone } from "./time-zone.ts";
+import { parseAbsoluteUrl } from "./url-parse.ts";
 import { addLineNumbers } from "./line-numbers.ts";
 import { calculateDateDifference } from "./date-diff.ts";
 import { calculateSalesTax } from "./sales-tax.ts";
@@ -1675,8 +1680,96 @@ assert(
   "A duplicate excluded weekday is counted once and a date outside the range is ignored",
 );
 
-assert(tools.length === 78, "Registry has 78 tools");
-assert(new Set(tools.map((tool) => tool.slug)).size === 78, "Tool slugs are unique");
+const gpaMixed = calculateGpa([
+  { gradeRaw: "A", creditsRaw: "3", numeric: false },
+  { gradeRaw: "B", creditsRaw: "1", numeric: false },
+]);
+assert(gpaMixed.ok && gpaMixed.totalCredits === 4 && gpaMixed.totalPoints === 15 && gpaMixed.gpa === 3.75, "Different credits weight the GPA");
+const gpaSame = calculateGpa([
+  { gradeRaw: "A", creditsRaw: "3", numeric: false },
+  { gradeRaw: "A", creditsRaw: "1", numeric: false },
+]);
+assert(gpaSame.ok && gpaSame.gpa === 4 && gpaSame.totalPoints === 16, "The same letter with different credits stays a 4.0");
+const gpaNumeric = calculateGpa([{ gradeRaw: "3.333", creditsRaw: "3", numeric: true }]);
+assert(gpaNumeric.ok && gpaNumeric.gpa === roundTo(3.333, 2), "Numeric points keep the quotient before display rounding");
+const gpaZeroCredit = calculateGpa([
+  { gradeRaw: "A", creditsRaw: "0", numeric: false },
+  { gradeRaw: "B", creditsRaw: "3", numeric: false },
+]);
+assert(gpaZeroCredit.ok && gpaZeroCredit.totalCredits === 3 && gpaZeroCredit.gpa === 3, "A zero-credit course does not change the GPA");
+assert(!calculateGpa([{ gradeRaw: "A", creditsRaw: "0", numeric: false }]).ok, "Zero total credits is rejected");
+assert(!calculateGpa([]).ok, "An empty course list is rejected");
+assert(!calculateGpa([{ gradeRaw: "Z", creditsRaw: "3", numeric: false }]).ok, "An unrecognized letter grade is rejected");
+
+const oneRoom = calculateSquareFootage([{ lengthRaw: "10", widthRaw: "10", unit: "feet" }]);
+assert(oneRoom.ok && oneRoom.squareFeet === 100 && oneRoom.squareMeters === roundTo(100 * 0.09290304, 2), "A 10 by 10 foot room is 100 square feet");
+const meterRoom = calculateSquareFootage([{ lengthRaw: "10", widthRaw: "10", unit: "meters" }]);
+assert(meterRoom.ok && meterRoom.squareMeters === 100 && meterRoom.squareFeet === roundTo(100 / 0.09290304, 2), "A 10 by 10 meter room converts to square feet");
+const twoRooms = calculateSquareFootage([
+  { lengthRaw: "10", widthRaw: "10", unit: "feet" },
+  { lengthRaw: "2", widthRaw: "5", unit: "feet" },
+]);
+assert(twoRooms.ok && twoRooms.squareFeet === 110 && twoRooms.rooms.length === 2, "Two rooms are added");
+const zeroSide = calculateSquareFootage([{ lengthRaw: "0", widthRaw: "10", unit: "feet" }]);
+assert(zeroSide.ok && zeroSide.squareFeet === 0, "A zero side has zero area");
+assert(!calculateSquareFootage([{ lengthRaw: "-1", widthRaw: "10", unit: "feet" }]).ok, "A negative side is rejected");
+assert(!calculateSquareFootage([{ lengthRaw: "1000001", widthRaw: "1", unit: "meters" }]).ok, "A very large side is rejected");
+const blankRoom = calculateSquareFootage([
+  { lengthRaw: "10", widthRaw: "10", unit: "feet" },
+  { lengthRaw: "", widthRaw: "", unit: "feet" },
+]);
+assert(blankRoom.ok && blankRoom.rooms.length === 1 && blankRoom.squareFeet === 100, "A blank extra room is skipped");
+
+const zeroWords = numberToWords("0");
+const sevenWords = numberToWords("7");
+const tensWords = numberToWords("42");
+const hundredWords = numberToWords("100");
+const thousandWords = numberToWords("1234");
+const millionWords = numberToWords("1000000");
+const negativeWords = numberToWords("-7");
+const leadingZeroWords = numberToWords("007");
+const parsedWords = wordsToNumber("one hundred twenty-three");
+assert(zeroWords.ok && zeroWords.words === "zero", "Zero is zero");
+assert(sevenWords.ok && sevenWords.words === "seven", "A single digit");
+assert(tensWords.ok && tensWords.words === "forty-two", "Tens use a hyphen");
+assert(hundredWords.ok && hundredWords.words === "one hundred", "One hundred");
+assert(thousandWords.ok && thousandWords.words === "one thousand two hundred thirty-four", "Thousands");
+assert(millionWords.ok && millionWords.words === "one million", "One million");
+assert(negativeWords.ok && negativeWords.words === "minus seven", "A negative number");
+assert(leadingZeroWords.ok && leadingZeroWords.value === 7 && leadingZeroWords.words === "seven", "Leading zeros are ignored");
+assert(!numberToWords("").ok, "Empty number input is rejected");
+assert(!numberToWords("1.5").ok, "A decimal is rejected");
+assert(!numberToWords("1000000000").ok, "A value past millions is rejected");
+assert(parsedWords.ok && parsedWords.value === 123, "Simple words parse back to a number");
+assert(!wordsToNumber("not a number").ok, "Invalid words are rejected");
+
+const london = convertTimeZone({ dateRaw: "2024-06-15", timeRaw: "12:00", sourceZone: "America/New_York", targetZone: "Europe/London" });
+assert(london.ok && london.sourceDateTime === "2024-06-15 12:00" && london.targetDateTime === "2024-06-15 17:00" && london.sourceOffset === "UTC-04:00" && london.targetOffset === "UTC+01:00", "New York noon in June is 17:00 in London");
+const sameZone = convertTimeZone({ dateRaw: "2024-06-15", timeRaw: "12:00", sourceZone: "Europe/London", targetZone: "Europe/London" });
+assert(sameZone.ok && sameZone.sourceDateTime === sameZone.targetDateTime && sameZone.sourceOffset === sameZone.targetOffset, "The same zone keeps the same clock time");
+assert(!convertTimeZone({ dateRaw: "2024-03-10", timeRaw: "02:30", sourceZone: "America/New_York", targetZone: "Europe/London" }).ok, "A spring-forward gap is rejected");
+const fallback = convertTimeZone({ dateRaw: "2024-11-03", timeRaw: "01:30", sourceZone: "America/New_York", targetZone: "Europe/London" });
+assert(fallback.ok && fallback.ambiguous && fallback.sourceOffset === "UTC-04:00", "A fall-back hour uses the earlier offset and says so");
+const dateLine = convertTimeZone({ dateRaw: "2024-01-15", timeRaw: "10:00", sourceZone: "Pacific/Auckland", targetZone: "America/Los_Angeles" });
+assert(dateLine.ok && dateLine.targetDateTime === "2024-01-14 13:00", "A date-line conversion can change the calendar day");
+assert(!convertTimeZone({ dateRaw: "2024-02-31", timeRaw: "12:00", sourceZone: "Europe/London", targetZone: "Europe/London" }).ok, "An invalid date is rejected");
+
+const parsed = parseAbsoluteUrl("https://example.com:8080/docs/page?topic=a&topic=&ref=hub#section");
+assert(
+  parsed.ok && parsed.protocol === "https" && parsed.hostname === "example.com" && parsed.port === "8080" && parsed.pathname === "/docs/page" && parsed.hash === "section" && parsed.params.length === 3 && parsed.params[0].key === "topic" && parsed.params[0].value === "a" && parsed.params[1].value === "" && parsed.params[2].key === "ref",
+  "A URL keeps the port, fragment, duplicate keys, and an empty value",
+);
+const noQuery = parseAbsoluteUrl("https://example.com/docs");
+assert(noQuery.ok && noQuery.params.length === 0 && noQuery.hash === "" && noQuery.port === "", "A URL with no query has an empty parameter list");
+const idn = parseAbsoluteUrl("https://bücher.example/path");
+assert(idn.ok && idn.hostname === "xn--bcher-kva.example", "An internationalized hostname is returned as the URL parser encodes it");
+const longUrl = parseAbsoluteUrl(`https://example.com/${"a".repeat(4000)}`);
+assert(longUrl.ok && longUrl.pathname.length === 4001, "A long absolute URL still parses");
+assert(!parseAbsoluteUrl("/docs/page").ok, "A missing protocol is rejected");
+assert(!parseAbsoluteUrl("http://[").ok, "An invalid URL is rejected");
+
+assert(tools.length === 83, "Registry has 83 tools");
+assert(new Set(tools.map((tool) => tool.slug)).size === 83, "Tool slugs are unique");
 assert(getNewTools().length === 4, "Homepage recently added stays at 4 tools");
 assert(
   tools.every((tool) => tool.status === "available"),
@@ -1733,7 +1826,7 @@ assert(
 );
 assert(searchTools("json").some((tool) => tool.slug === "json-formatter"), "Partial json match");
 assert(searchTools("xyzzy-no-such-tool").length === 0, "Unknown query has no results");
-assert(searchTools("").length === 78, "Empty query returns all tools");
+assert(searchTools("").length === 83, "Empty query returns all tools");
 assert(searchTools("compress pdf")[0]?.slug === "pdf-compressor", "compress pdf ranks compressor");
 assert(searchTools("extract text").some((tool) => tool.slug === "pdf-to-text"), "extract text finds PDF to Text");
 assert(searchTools("remove pdf metadata").some((tool) => tool.slug === "pdf-metadata"), "metadata search");
@@ -1913,7 +2006,7 @@ if (!process.env.NEXT_PUBLIC_SITE_URL) {
     "Canonical production URL is https://www.toolstarhub.com",
   );
 }
-assert(siteContact.email === "eshigari110@gmail.com", "Public contact email");
+assert(siteContact.email === "esd.shigri110@gmail.com", "Public contact email");
 assert(siteContact.phoneE164 === "+923462559008", "Public contact phone");
 assert(siteContact.phoneDisplay === "+92 346 2559008", "Public phone display");
 assert(siteContact.whatsappUrl === "https://wa.me/923462559008", "WhatsApp contact link");

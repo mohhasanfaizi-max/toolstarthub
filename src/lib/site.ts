@@ -24,7 +24,7 @@ function resolveSiteUrl(): string {
 }
 
 export const siteContact = {
-  email: "eshigari110@gmail.com",
+  email: "esd.shigri110@gmail.com",
   phoneDisplay: "+92 346 2559008",
   phoneE164: "+923462559008",
   whatsappUrl: "https://wa.me/923462559008",

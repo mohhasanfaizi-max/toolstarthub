@@ -155,6 +155,16 @@ export const toolQuickAnswers: Record<string, string> = {
     "A fuel cost calculator estimates fuel used and trip cost from distance, fuel economy, and the price you type. It does not look up a live fuel price.",
   "business-days-calculator":
     "A business days calculator counts Monday through Friday between two dates. It does not apply a holiday calendar. You can exclude dates yourself.",
+  "gpa-calculator":
+    "A GPA calculator divides total grade points by total credits. Grade points are the course points times the credits. The page uses one common 4.0 letter map, and a school may use a different map.",
+  "square-footage-calculator":
+    "A square footage calculator multiplies length by width for each room, then adds the rooms. Results are shown in square feet and square meters.",
+  "number-to-words":
+    "A number to words converter writes whole numbers from -999,999,999 through 999,999,999 in English. It can also read simple number words back into a number.",
+  "time-zone-converter":
+    "A time zone converter shows one instant in a source zone and a target zone, with the UTC offset for each. It uses the browser time-zone list.",
+  "url-parser":
+    "A URL parser splits one absolute URL into protocol, hostname, port, path, fragment, and each query parameter. The URL stays in your browser.",
 };
 
 export function getToolQuickAnswer(
