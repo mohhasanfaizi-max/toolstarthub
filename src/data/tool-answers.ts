@@ -100,15 +100,15 @@ export const toolQuickAnswers: Record<string, string> = {
   "line-sorter":
     "A line sorter orders multiline text alphabetically, numerically or by length, with optional duplicate removal.",
   "ai-prompt-generator":
-    "An AI prompt generator assembles a structured prompt from the topic, goal, audience, and format you enter. It does not call an AI model.",
+    "An AI prompt generator assembles a structured prompt from the topic, goal, audience, and format you enter. Generate prompt stays in the browser. Generate with AI sends those fields to Google's Gemini API through ToolStarHub.",
   "prompt-to-image":
-    "A prompt-to-image tool writes a copyable image prompt from a subject and style. It does not create the picture.",
+    "A prompt-to-image tool writes a copyable image prompt from a subject and style. It does not create the picture. Generate with AI only returns a more detailed prompt.",
   "prompt-to-video":
-    "A prompt-to-video tool writes a shot description you can paste into a video model. It does not render the clip.",
+    "A prompt-to-video tool writes a shot description you can paste into a video model. It does not render the clip. Generate with AI only returns the written prompt.",
   "ai-article-detector":
-    "This page reviews writing patterns such as sentence length and repeated phrases. It does not decide whether a person or a model wrote the text.",
+    "This page reviews writing patterns such as sentence length and repeated phrases. Analyze with AI is also a writing-pattern analysis. It does not decide whether a person or a model wrote the text.",
   "ai-article-compressor":
-    "An article compressor shortens a draft by cutting filler and repeated sentences. Check the result before you publish it.",
+    "An article compressor shortens a draft by cutting filler and repeated sentences. Compress with AI asks Gemini to keep the main meaning. Check the result before you publish it.",
   "tip-calculator":
     "A tip calculator turns a bill, a tip rate, and a headcount into the tip, the total, and each person's share.",
   "sales-tax-calculator":

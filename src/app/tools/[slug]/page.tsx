@@ -130,7 +130,7 @@ export default async function ToolPage({
       </div>
       <AdSlot placement="tool-intro" />
 
-      <ToolPrivacyNote />
+      <ToolPrivacyNote slug={tool.slug} />
       <ToolDetails slug={tool.slug} toolName={tool.name} />
       <RelatedTools tools={relatedTools} />
       <RelatedGuides guides={relatedGuides} />

@@ -11,6 +11,7 @@ import {
   ToolPanel,
   toolControlClass,
 } from "@/components/tools/ToolForm";
+import { AiResult, useAiGenerate } from "@/components/tools/useAiGenerate";
 import {
   buildImagePrompt,
   EMPTY_IMAGE_PROMPT,
@@ -23,6 +24,7 @@ export function PromptToImageTool() {
   const [error, setError] = useState("");
   const [prompt, setPrompt] = useState("");
   const [negative, setNegative] = useState("");
+  const ai = useAiGenerate();
 
   function update(key: keyof ImagePromptDraft, value: string) {
     setDraft((current) => ({ ...current, [key]: value }));
@@ -44,7 +46,7 @@ export function PromptToImageTool() {
   return (
     <ToolPanel>
       <p className="text-sm leading-6 text-muted-foreground">
-        This writes an image prompt. It does not create an image and it is not connected to an image API.
+        Build prompt writes an image prompt in your browser. Generate with AI sends your description to Google&apos;s Gemini API through ToolStarHub and returns a more detailed image prompt. This page does not render an image. The text is not stored.
       </p>
       <fieldset className="mt-4">
         <legend className="text-sm font-medium text-foreground">Style presets</legend>
@@ -94,6 +96,29 @@ export function PromptToImageTool() {
       <div className="mt-4">
         <ToolActions>
           <Button type="button" onClick={generate}>Build prompt</Button>
+          <Button
+            type="button"
+            variant="secondary"
+            disabled={ai.status === "loading"}
+            onClick={() => {
+              const input = [draft.subject, draft.environment, draft.style].filter(Boolean).join(". ");
+              void ai.run("prompt-to-image", input, {
+                subject: draft.subject,
+                environment: draft.environment,
+                style: draft.style,
+                composition: draft.composition,
+                lighting: draft.lighting,
+                camera: draft.camera,
+                colors: draft.palette,
+                aspectRatio: draft.aspectRatio,
+                mood: draft.mood,
+                quality: draft.quality,
+                negative: draft.negative,
+              });
+            }}
+          >
+            Generate with AI
+          </Button>
           <CopyButton value={prompt} label="Copy prompt" />
           <CopyButton value={negative} label="Copy negative prompt" />
           <Button type="button" variant="ghost" onClick={() => { setDraft(EMPTY_IMAGE_PROMPT); setPrompt(""); setNegative(""); setError(""); }}>
@@ -109,6 +134,7 @@ export function PromptToImageTool() {
           <p className="whitespace-pre-wrap break-words text-sm leading-6">{negative || "Optional."}</p>
         </ToolOutput>
       </div>
+      <AiResult status={ai.status} text={ai.text} error={ai.error} label="AI image prompt" copyLabel="Copy AI prompt" />
     </ToolPanel>
   );
 }

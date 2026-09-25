@@ -11,6 +11,7 @@ import {
   ToolPanel,
   toolControlClass,
 } from "@/components/tools/ToolForm";
+import { AiResult, useAiGenerate } from "@/components/tools/useAiGenerate";
 import {
   buildAiPrompt,
   EMPTY_PROMPT_DRAFT,
@@ -22,6 +23,7 @@ export function AiPromptGeneratorTool() {
   const [draft, setDraft] = useState<PromptDraft>(EMPTY_PROMPT_DRAFT);
   const [error, setError] = useState("");
   const [prompt, setPrompt] = useState("");
+  const ai = useAiGenerate();
 
   function update(key: keyof PromptDraft, value: string) {
     setDraft((current) => ({ ...current, [key]: value }));
@@ -41,7 +43,7 @@ export function AiPromptGeneratorTool() {
   return (
     <ToolPanel>
       <p className="text-sm leading-6 text-muted-foreground">
-        This builds a prompt in your browser. It does not call an AI model.
+        Generate prompt builds a prompt in your browser. Generate with AI sends the fields you filled in to Google&apos;s Gemini API through ToolStarHub and returns a polished prompt. The text is not stored.
       </p>
       <fieldset className="mt-4">
         <legend className="text-sm font-medium text-foreground">Presets</legend>
@@ -103,6 +105,26 @@ export function AiPromptGeneratorTool() {
           <Button type="button" onClick={generate}>
             Generate prompt
           </Button>
+          <Button
+            type="button"
+            variant="secondary"
+            disabled={ai.status === "loading"}
+            onClick={() => {
+              const input = [draft.topic, draft.goal, draft.instructions].filter(Boolean).join("\n");
+              void ai.run("ai-prompt-generator", input, {
+                topic: draft.topic,
+                goal: draft.goal,
+                audience: draft.audience,
+                tone: draft.tone,
+                language: draft.language,
+                format: draft.format,
+                detail: draft.detail,
+                instructions: draft.instructions,
+              });
+            }}
+          >
+            Generate with AI
+          </Button>
           <CopyButton value={prompt} label="Copy prompt" />
           <Button
             type="button"
@@ -122,6 +144,7 @@ export function AiPromptGeneratorTool() {
           <p className="whitespace-pre-wrap break-words text-sm leading-6">{prompt || "The prompt will appear here."}</p>
         </ToolOutput>
       </div>
+      <AiResult status={ai.status} text={ai.text} error={ai.error} label="AI prompt" copyLabel="Copy AI prompt" />
     </ToolPanel>
   );
 }

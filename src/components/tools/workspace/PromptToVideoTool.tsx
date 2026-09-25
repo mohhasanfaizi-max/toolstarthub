@@ -11,6 +11,7 @@ import {
   ToolPanel,
   toolControlClass,
 } from "@/components/tools/ToolForm";
+import { AiResult, useAiGenerate } from "@/components/tools/useAiGenerate";
 import {
   buildVideoPrompt,
   EMPTY_VIDEO_PROMPT,
@@ -38,6 +39,7 @@ export function PromptToVideoTool() {
   const [error, setError] = useState("");
   const [prompt, setPrompt] = useState("");
   const [negative, setNegative] = useState("");
+  const ai = useAiGenerate();
 
   function update(key: keyof VideoPromptDraft, value: string) {
     setDraft((current) => ({ ...current, [key]: value }));
@@ -59,7 +61,7 @@ export function PromptToVideoTool() {
   return (
     <ToolPanel>
       <p className="text-sm leading-6 text-muted-foreground">
-        This writes a video prompt. It does not render a video and it is not connected to a video API.
+        Build prompt writes a video prompt in your browser. Generate with AI sends your description to Google&apos;s Gemini API through ToolStarHub and returns a shot prompt. This page does not render a video. The text is not stored.
       </p>
       <fieldset className="mt-4">
         <legend className="text-sm font-medium text-foreground">Presets</legend>
@@ -99,6 +101,30 @@ export function PromptToVideoTool() {
       <div className="mt-4">
         <ToolActions>
           <Button type="button" onClick={generate}>Build prompt</Button>
+          <Button
+            type="button"
+            variant="secondary"
+            disabled={ai.status === "loading"}
+            onClick={() => {
+              const input = [draft.subject, draft.scene, draft.action, draft.environment].filter(Boolean).join(". ");
+              void ai.run("prompt-to-video", input, {
+                subject: draft.subject,
+                scene: draft.scene,
+                environment: draft.environment,
+                action: draft.action,
+                camera: [draft.cameraMove, draft.cameraAngle, draft.lens].filter(Boolean).join(", "),
+                lighting: draft.lighting,
+                style: draft.style,
+                duration: draft.duration,
+                aspectRatio: draft.aspectRatio,
+                mood: draft.mood,
+                audio: draft.audio,
+                negative: draft.negative,
+              });
+            }}
+          >
+            Generate with AI
+          </Button>
           <CopyButton value={prompt} label="Copy prompt" />
           <CopyButton value={negative} label="Copy negative prompt" />
           <Button type="button" variant="ghost" onClick={() => { setDraft(EMPTY_VIDEO_PROMPT); setPrompt(""); setNegative(""); setError(""); }}>
@@ -114,6 +140,7 @@ export function PromptToVideoTool() {
           <p className="whitespace-pre-wrap break-words text-sm leading-6">{negative || "Optional."}</p>
         </ToolOutput>
       </div>
+      <AiResult status={ai.status} text={ai.text} error={ai.error} label="AI video prompt" copyLabel="Copy AI prompt" />
     </ToolPanel>
   );
 }

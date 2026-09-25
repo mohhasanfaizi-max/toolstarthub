@@ -11,6 +11,7 @@ import {
   ToolPanel,
   toolControlClass,
 } from "@/components/tools/ToolForm";
+import { AiResult, useAiGenerate } from "@/components/tools/useAiGenerate";
 import { compressArticle, type CompressionLevel } from "@/lib/tools/article-compress";
 
 const levels: Array<{ id: CompressionLevel; label: string }> = [
@@ -25,6 +26,7 @@ export function AiArticleCompressorTool() {
   const [error, setError] = useState("");
   const [output, setOutput] = useState("");
   const [counts, setCounts] = useState("");
+  const ai = useAiGenerate();
 
   function run() {
     const result = compressArticle(text, level);
@@ -42,7 +44,7 @@ export function AiArticleCompressorTool() {
   return (
     <ToolPanel>
       <p className="text-sm leading-6 text-muted-foreground">
-        This shortens a draft with fixed rules in your browser. It does not call an AI model, and it does not claim the result will pass a detector.
+        Shorten article uses fixed rules in your browser. Compress with AI sends the article to Google&apos;s Gemini API through ToolStarHub and returns a shorter draft. The article is not stored. Check the result before you publish it.
       </p>
       <div className="mt-4">
         <ToolField id="compress-text" label="Article">
@@ -77,6 +79,18 @@ export function AiArticleCompressorTool() {
       <div className="mt-4">
         <ToolActions>
           <Button type="button" onClick={run}>Shorten article</Button>
+          <Button
+            type="button"
+            variant="secondary"
+            disabled={ai.status === "loading"}
+            onClick={() =>
+              void ai.run("ai-article-compressor", text, {
+                level: level === "light" ? "Short" : level === "strong" ? "Detailed" : "Medium",
+              })
+            }
+          >
+            Compress with AI
+          </Button>
           <CopyButton value={output} label="Copy shorter draft" />
           <Button type="button" variant="ghost" onClick={() => { setText(""); setOutput(""); setError(""); setCounts(""); setLevel("medium"); }}>
             Clear
@@ -89,6 +103,7 @@ export function AiArticleCompressorTool() {
           {counts ? <p className="mt-3 text-sm text-muted-foreground">{counts}</p> : null}
         </ToolOutput>
       </div>
+      <AiResult status={ai.status} text={ai.text} error={ai.error} label="AI shorter draft" copyLabel="Copy AI draft" />
     </ToolPanel>
   );
 }

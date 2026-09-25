@@ -38,9 +38,13 @@ export default function PrivacyPage() {
           contents, private text, and QR payloads are not sent to analytics.
         </p>
         <p>
-          Tools are designed to run in your browser. Files you choose for image
-          or PDF tools, and text you paste into a tool, are processed on this
-          device and are not uploaded to our server. We do not put passwords,
+          Most tools run in your browser. Files you choose for image or PDF
+          tools, and text you paste into those tools, are processed on this
+          device and are not uploaded to our server. When you press an AI
+          button on an AI tool, the text you submit is sent to Google&apos;s
+          Gemini API through ToolStarHub so it can generate or analyze the
+          result. That text is not saved on this site. On the free tier, Google
+          may use it to improve its products. We do not put passwords,
           uploaded files, PDF contents, private text, or QR payloads into page
           URLs or local storage.
         </p>

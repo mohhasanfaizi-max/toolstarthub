@@ -3,7 +3,7 @@ import type { ToolContent } from "./tool-content.ts";
 const local = {
   question: "Is my text sent to a server?",
   answer:
-    "No. The work happens in your browser. Tools Star Hub does not upload the draft or the prompt.",
+    "The original buttons stay in your browser and do not upload the text. When you choose Generate with AI, Analyze with AI, or Compress with AI, the text you submit is sent to Google's Gemini API through ToolStarHub to produce the result. ToolStarHub does not save that text. On the free tier, Google may use it to improve its products.",
 };
 
 export const aiToolContent: Record<string, ToolContent> = {
@@ -14,7 +14,7 @@ export const aiToolContent: Record<string, ToolContent> = {
       "Choose a preset or type your own use case.",
       "Add a topic or a goal. The tool needs at least one of those.",
       "Set the audience, tone, language, format, and how much detail you want.",
-      "Press Generate prompt, then copy the result into the model you already use.",
+      "Press Generate prompt to assemble a prompt in the browser, or Generate with AI to have Gemini rewrite it.",
       "Press Clear to empty the form.",
     ],
     features: [
@@ -34,7 +34,7 @@ export const aiToolContent: Record<string, ToolContent> = {
       },
     ],
     explanation:
-      "The generator joins your answers into labeled lines. It does not rewrite them with a model. If both topic and goal are blank, it stops and asks for one.",
+      "Generate prompt joins your answers into labeled lines. If both topic and goal are blank, it stops and asks for one. Generate with AI sends those fields to Gemini and returns a rewritten prompt.",
     tips: [
       "Name the reader. “New parents” is more useful than “everyone.”",
       "Say what the output should look like: a list, an email, a script.",
@@ -43,7 +43,7 @@ export const aiToolContent: Record<string, ToolContent> = {
     faqs: [
       {
         question: "Does this tool use AI?",
-        answer: "No. It builds the prompt on this page. You paste that prompt into a model elsewhere if you want a generated draft.",
+        answer: "Generate prompt builds the prompt on this page. Generate with AI sends the fields to Google's Gemini API through ToolStarHub and returns a rewritten prompt. You can still paste either result into another model.",
       },
       {
         question: "What if I only know the topic?",
@@ -87,7 +87,7 @@ export const aiToolContent: Record<string, ToolContent> = {
     faqs: [
       {
         question: "Why is there no picture?",
-        answer: "This site does not have an image-generation API. The tool’s job is the prompt you paste into a service that does create images.",
+        answer: "This page writes a prompt. It does not render an image. Generate with AI asks Gemini for a more detailed prompt. You still paste that prompt into a service that creates images.",
       },
       {
         question: "Will every model read the prompt the same way?",
@@ -131,7 +131,7 @@ export const aiToolContent: Record<string, ToolContent> = {
     faqs: [
       {
         question: "Can I download a video from this page?",
-        answer: "No. There is no video API on this site. Copy the prompt into a video tool you trust.",
+        answer: "No. This page does not render a video. Generate with AI only returns a written shot prompt from Gemini. Copy that prompt into a video tool you trust.",
       },
       {
         question: "What if I only describe the action?",
@@ -145,7 +145,7 @@ export const aiToolContent: Record<string, ToolContent> = {
       "AI Article Detector looks at the draft you paste and reports sentence length, how much those lengths vary, how wide the vocabulary is, and which short phrases repeat. The heading on the result is Writing pattern analysis. That is the whole claim.",
     howTo: [
       "Paste at least 40 words.",
-      "Press Analyze writing.",
+      "Press Analyze writing for the browser check, or Analyze with AI for a Gemini writing-pattern analysis.",
       "Read the counts and the note under them.",
       "If the sample is too short, the page says so instead of scoring it.",
       "Clear removes the text from the page.",
@@ -180,7 +180,7 @@ export const aiToolContent: Record<string, ToolContent> = {
       },
       {
         question: "Why is there no percentage score?",
-        answer: "A percentage would look like proof. The tool does not have a detection model, so it does not invent a score.",
+        answer: "A percentage would look like proof. Analyze writing and Analyze with AI both describe patterns. Neither one claims it can tell who wrote the text.",
       },
       local,
     ],
@@ -191,7 +191,7 @@ export const aiToolContent: Record<string, ToolContent> = {
     howTo: [
       "Paste the article. It needs at least 12 words.",
       "Choose light, medium, or strong compression.",
-      "Press Shorten article.",
+      "Press Shorten article for the browser rules, or Compress with AI to have Gemini shorten it.",
       "Compare the word counts, then copy the shorter draft if it still says what you meant.",
       "Clear empties both boxes and returns the setting to medium.",
     ],
@@ -212,7 +212,7 @@ export const aiToolContent: Record<string, ToolContent> = {
       },
     ],
     explanation:
-      "The tool uses a fixed list of replacements. It does not paraphrase with a model. Strong compression also skips a later sentence that starts with the same six words as an earlier one. That can remove a useful follow-up, which is why the page asks you to read the draft.",
+      "Shorten article uses a fixed list of replacements. Strong compression also skips a later sentence that starts with the same six words as an earlier one. Compress with AI asks Gemini to shorten the article at the level you chose. Read either result before you rely on it.",
     tips: [
       "Start with light if the article is already tight.",
       "Use strong on a rough paste, then restore any sentence that mattered.",
@@ -225,7 +225,7 @@ export const aiToolContent: Record<string, ToolContent> = {
       },
       {
         question: "Does it keep my meaning?",
-        answer: "It keeps most of the words and removes some filler and repeats. A deleted sentence is gone. Read the shorter draft before you rely on it.",
+        answer: "Shorten article keeps most of the words and removes some filler and repeats. Compress with AI asks Gemini to keep the main meaning and important facts. Read the shorter draft before you rely on it.",
       },
       local,
     ],

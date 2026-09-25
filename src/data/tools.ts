@@ -880,7 +880,7 @@ export const tools: Tool[] = [
     slug: "ai-prompt-generator",
     name: "AI Prompt Generator",
     description:
-      "Build a structured prompt from a topic, goal, audience, and format. It runs in the browser and does not call an AI model.",
+      "Build a structured prompt from a topic, goal, audience, and format. Generate prompt stays in the browser. Generate with AI sends the fields to Gemini through this site.",
     category: "ai-tools",
     icon: "bolt",
     route: "/tools/ai-prompt-generator",
@@ -940,7 +940,7 @@ export const tools: Tool[] = [
     slug: "ai-article-compressor",
     name: "AI Article Compressor",
     description:
-      "Shorten a long draft by removing filler and repeated sentences. The shorter text stays in your browser.",
+      "Shorten a long draft in the browser, or send it to Gemini to compress it. Submitted text is not saved on this site.",
     category: "ai-tools",
     icon: "text",
     route: "/tools/ai-article-compressor",

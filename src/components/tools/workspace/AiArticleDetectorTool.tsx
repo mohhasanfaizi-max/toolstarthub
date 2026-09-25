@@ -11,12 +11,14 @@ import {
   ToolStatGrid,
   toolControlClass,
 } from "@/components/tools/ToolForm";
+import { AiResult, useAiGenerate } from "@/components/tools/useAiGenerate";
 import { analyzeWritingPatterns, type WritingPatternReport } from "@/lib/tools/writing-patterns";
 
 export function AiArticleDetectorTool() {
   const [text, setText] = useState("");
   const [error, setError] = useState("");
   const [report, setReport] = useState<WritingPatternReport | null>(null);
+  const ai = useAiGenerate();
 
   function analyze() {
     const result = analyzeWritingPatterns(text);
@@ -32,7 +34,7 @@ export function AiArticleDetectorTool() {
   return (
     <ToolPanel>
       <p className="text-sm leading-6 text-muted-foreground">
-        This is a writing-pattern check, not an authorship verdict. It runs in your browser and does not call a detection API.
+        Analyze writing checks patterns in your browser. Analyze with AI sends the draft to Google&apos;s Gemini API through ToolStarHub for a writing-pattern analysis. Neither result can decide who wrote the text. The draft is not stored.
       </p>
       <div className="mt-4">
         <ToolField id="pattern-text" label="Article or draft" hint="Paste at least 40 words.">
@@ -47,6 +49,9 @@ export function AiArticleDetectorTool() {
       <div className="mt-4">
         <ToolActions>
           <Button type="button" onClick={analyze}>Analyze writing</Button>
+          <Button type="button" variant="secondary" disabled={ai.status === "loading"} onClick={() => void ai.run("ai-article-detector", text)}>
+            Analyze with AI
+          </Button>
           <Button type="button" variant="ghost" onClick={() => { setText(""); setError(""); setReport(null); }}>
             Clear
           </Button>
@@ -83,6 +88,7 @@ export function AiArticleDetectorTool() {
           </ToolOutput>
         </div>
       ) : null}
+      <AiResult status={ai.status} text={ai.text} error={ai.error} label="AI writing analysis" />
     </ToolPanel>
   );
 }

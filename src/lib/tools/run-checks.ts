@@ -1,3 +1,4 @@
+import { runAiChecks } from "../ai/ai-checks.ts";
 import { roundTo } from "./numbers.ts";
 import { calculateCompoundInterest } from "./compound-interest.ts";
 import { calculateLoan, monthlyInstallment } from "./loan.ts";
@@ -2163,5 +2164,7 @@ assert(
   !SENSITIVE_PARAM_KEYS.includes("fg" as (typeof SENSITIVE_PARAM_KEYS)[number]),
   "Share color params are not treated as private payloads",
 );
+
+await runAiChecks(assert);
 
 console.log("All tool calculation checks passed.");
