@@ -17,6 +17,11 @@ import { calculateSquareFootage } from "./square-footage.ts";
 import { numberToWords, wordsToNumber } from "./number-words.ts";
 import { convertTimeZone } from "./time-zone.ts";
 import { parseAbsoluteUrl } from "./url-parse.ts";
+import { morseToText, textToMorse } from "./morse.ts";
+import { integerToRoman, romanToInteger } from "./roman.ts";
+import { calculateAspectRatio } from "./aspect-ratio.ts";
+import { decodeJwt } from "./jwt-decode.ts";
+import { generateRobotsTxt } from "./robots-txt.ts";
 import { addLineNumbers } from "./line-numbers.ts";
 import { calculateDateDifference } from "./date-diff.ts";
 import { calculateSalesTax } from "./sales-tax.ts";
@@ -1768,8 +1773,110 @@ assert(longUrl.ok && longUrl.pathname.length === 4001, "A long absolute URL stil
 assert(!parseAbsoluteUrl("/docs/page").ok, "A missing protocol is rejected");
 assert(!parseAbsoluteUrl("http://[").ok, "An invalid URL is rejected");
 
-assert(tools.length === 83, "Registry has 83 tools");
-assert(new Set(tools.map((tool) => tool.slug)).size === 83, "Tool slugs are unique");
+const hello = textToMorse("HELLO");
+const sos = textToMorse("SOS");
+const lowerHello = textToMorse("hello");
+const twoWords = textToMorse("HELLO WORLD");
+assert(hello.ok && hello.morse === ".... . .-.. .-.. ---", "HELLO in Morse");
+assert(sos.ok && sos.morse === "... --- ...", "SOS in Morse");
+assert(lowerHello.ok && lowerHello.text === "HELLO" && lowerHello.morse === hello.morse, "Lowercase text is normalized");
+assert(twoWords.ok && twoWords.morse === ".... . .-.. .-.. --- / .-- --- .-. .-.. -..", "Words are separated by a slash");
+const alphabet = textToMorse("ABCDEFGHIJKLMNOPQRSTUVWXYZ");
+const digits = textToMorse("0123456789");
+const alphabetBack = alphabet.ok ? morseToText(alphabet.morse) : alphabet;
+const digitsBack = digits.ok ? morseToText(digits.morse) : digits;
+assert(alphabetBack.ok && alphabetBack.text === "ABCDEFGHIJKLMNOPQRSTUVWXYZ", "A through Z round-trips");
+assert(digitsBack.ok && digitsBack.text === "0123456789", "Digits round-trip");
+const spacedMorse = morseToText("....  . .-.. .-.. --- /");
+assert(spacedMorse.ok && spacedMorse.text === "HELLO", "Extra spaces and a trailing separator are handled");
+assert(!textToMorse("").ok, "Empty Morse text is rejected");
+assert(!textToMorse("HELLO!").ok, "Punctuation is rejected");
+assert(!morseToText("......").ok, "Malformed Morse is rejected");
+
+const roman1 = integerToRoman("1");
+const roman4 = integerToRoman("4");
+const roman9 = integerToRoman("9");
+const roman40 = integerToRoman("40");
+const roman90 = integerToRoman("90");
+const roman400 = integerToRoman("400");
+const roman900 = integerToRoman("900");
+const roman3999 = integerToRoman("3999");
+const romanBack = romanToInteger("XIV");
+const romanMax = romanToInteger("MMMCMXCIX");
+assert(roman1.ok && roman1.roman === "I", "1 is I");
+assert(roman4.ok && roman4.roman === "IV", "4 is IV");
+assert(roman9.ok && roman9.roman === "IX", "9 is IX");
+assert(roman40.ok && roman40.roman === "XL", "40 is XL");
+assert(roman90.ok && roman90.roman === "XC", "90 is XC");
+assert(roman400.ok && roman400.roman === "CD", "400 is CD");
+assert(roman900.ok && roman900.roman === "CM", "900 is CM");
+assert(roman3999.ok && roman3999.roman === "MMMCMXCIX", "3999 is MMMCMXCIX");
+assert(romanBack.ok && romanBack.value === 14, "A valid numeral converts back");
+assert(romanMax.ok && romanMax.value === 3999, "3999 converts back");
+assert(!integerToRoman("0").ok, "Zero is rejected");
+assert(!integerToRoman("-1").ok, "A negative number is rejected");
+assert(!integerToRoman("4000").ok, "4000 is outside the supported range");
+assert(!romanToInteger("IIII").ok, "IIII is rejected");
+assert(!romanToInteger("IC").ok, "IC is rejected");
+assert(!romanToInteger("IL").ok, "IL is rejected");
+assert(!romanToInteger("").ok, "Empty Roman input is rejected");
+
+const hd = calculateAspectRatio({ mode: "simplify", widthRaw: "1920", heightRaw: "1080", ratioWidthRaw: "", ratioHeightRaw: "" });
+assert(hd.ok && hd.ratioWidth === 16 && hd.ratioHeight === 9, "1920 by 1080 is 16:9");
+const hdSmall = calculateAspectRatio({ mode: "simplify", widthRaw: "1280", heightRaw: "720", ratioWidthRaw: "", ratioHeightRaw: "" });
+assert(hdSmall.ok && hdSmall.ratioWidth === 16 && hdSmall.ratioHeight === 9, "1280 by 720 is 16:9");
+const square = calculateAspectRatio({ mode: "simplify", widthRaw: "1080", heightRaw: "1080", ratioWidthRaw: "", ratioHeightRaw: "" });
+assert(square.ok && square.ratioWidth === 1 && square.ratioHeight === 1, "A square is 1:1");
+const fromWidth = calculateAspectRatio({ mode: "from-width", widthRaw: "800", heightRaw: "", ratioWidthRaw: "4", ratioHeightRaw: "3" });
+assert(fromWidth.ok && fromWidth.height === 600, "4:3 at width 800 has height 600");
+const fromHeight = calculateAspectRatio({ mode: "from-height", widthRaw: "", heightRaw: "1080", ratioWidthRaw: "16", ratioHeightRaw: "9" });
+assert(fromHeight.ok && fromHeight.width === 1920, "16:9 at height 1080 has width 1920");
+const decimalRatio = calculateAspectRatio({ mode: "simplify", widthRaw: "1.5", heightRaw: "1", ratioWidthRaw: "", ratioHeightRaw: "" });
+assert(decimalRatio.ok && decimalRatio.ratioWidth === 3 && decimalRatio.ratioHeight === 2, "1.5 by 1 simplifies to 3:2");
+assert(!calculateAspectRatio({ mode: "simplify", widthRaw: "0", heightRaw: "10", ratioWidthRaw: "", ratioHeightRaw: "" }).ok, "A zero side is rejected");
+assert(!calculateAspectRatio({ mode: "simplify", widthRaw: "-1", heightRaw: "10", ratioWidthRaw: "", ratioHeightRaw: "" }).ok, "A negative side is rejected");
+assert(!calculateAspectRatio({ mode: "from-width", widthRaw: "800", heightRaw: "", ratioWidthRaw: "a", ratioHeightRaw: "3" }).ok, "An invalid ratio is rejected");
+assert(!calculateAspectRatio({ mode: "from-width", widthRaw: "800", heightRaw: "", ratioWidthRaw: "0", ratioHeightRaw: "3" }).ok, "A zero ratio term is rejected");
+
+function jwtPart(text: string): string {
+  const bytes = new TextEncoder().encode(text);
+  let binary = "";
+  for (const byte of bytes) binary += String.fromCharCode(byte);
+  return btoa(binary).replaceAll("+", "-").replaceAll("/", "_").replace(/=+$/, "");
+}
+const sampleJwt = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxNTE2MjM5MDIyfQ.SflKxwRJSMeKKF2QT4fwpMeJf36POk6yJV_adQssw5c";
+const sampleDecoded = decodeJwt(sampleJwt);
+assert(sampleDecoded.ok && sampleDecoded.signaturePresent && !sampleDecoded.signatureEmpty && sampleDecoded.payload.includes("John Doe"), "A sample JWT decodes without calling the signature valid");
+const unicodeJwt = `${jwtPart('{"alg":"none"}')}.${jwtPart('{"name":"café"}')}.`;
+const unicodeDecoded = decodeJwt(unicodeJwt);
+assert(unicodeDecoded.ok && unicodeDecoded.signatureEmpty && unicodeDecoded.payload.includes("café"), "A Unicode payload decodes and an empty signature is reported");
+assert(!decodeJwt("only-one").ok, "A missing JWT segment is rejected");
+assert(!decodeJwt("a.b.c.d").ok, "More than three JWT segments are rejected");
+assert(!decodeJwt(`${jwtPart("not-json")}.${jwtPart('{"ok":true}')}.sig`).ok, "Invalid header JSON is rejected");
+assert(!decodeJwt("abc$.payload.sig").ok, "Invalid base64url is rejected");
+
+const oneGroup = generateRobotsTxt([{ userAgent: "*", allowRaw: "", disallowRaw: "/admin" }], "");
+assert(oneGroup.ok && oneGroup.text === "User-agent: *\nDisallow: /admin\n", "One group writes a user-agent and a disallow rule");
+const manyRules = generateRobotsTxt([{ userAgent: "*", allowRaw: "/public\n/assets", disallowRaw: "/admin\n/private" }], "https://example.com/sitemap.xml");
+assert(
+  manyRules.ok && manyRules.text.includes("Allow: /public") && manyRules.text.includes("Allow: /assets") && manyRules.text.includes("Disallow: /admin") && manyRules.text.includes("Disallow: /private") && manyRules.text.endsWith("Sitemap: https://example.com/sitemap.xml\n"),
+  "Several allow and disallow rules and a sitemap are written",
+);
+const twoGroups = generateRobotsTxt(
+  [
+    { userAgent: "*", allowRaw: "", disallowRaw: "/admin" },
+    { userAgent: "Bingbot", allowRaw: "/", disallowRaw: "" },
+  ],
+  "",
+);
+assert(twoGroups.ok && twoGroups.text.includes("User-agent: Bingbot") && !twoGroups.text.includes("Sitemap:"), "Two groups are written and a blank sitemap is omitted");
+const blankPaths = generateRobotsTxt([{ userAgent: "*", allowRaw: "\n/ok\n", disallowRaw: "\n" }], "");
+assert(blankPaths.ok && blankPaths.text === "User-agent: *\nAllow: /ok\n", "Blank paths are skipped");
+assert(!generateRobotsTxt([{ userAgent: "", allowRaw: "", disallowRaw: "" }], "").ok, "An empty group is rejected");
+assert(!generateRobotsTxt([{ userAgent: "*", allowRaw: "", disallowRaw: "" }], "example.com/sitemap.xml").ok, "A sitemap without a protocol is rejected");
+
+assert(tools.length === 88, "Registry has 88 tools");
+assert(new Set(tools.map((tool) => tool.slug)).size === 88, "Tool slugs are unique");
 assert(getNewTools().length === 4, "Homepage recently added stays at 4 tools");
 assert(
   tools.every((tool) => tool.status === "available"),
@@ -1826,7 +1933,7 @@ assert(
 );
 assert(searchTools("json").some((tool) => tool.slug === "json-formatter"), "Partial json match");
 assert(searchTools("xyzzy-no-such-tool").length === 0, "Unknown query has no results");
-assert(searchTools("").length === 83, "Empty query returns all tools");
+assert(searchTools("").length === 88, "Empty query returns all tools");
 assert(searchTools("compress pdf")[0]?.slug === "pdf-compressor", "compress pdf ranks compressor");
 assert(searchTools("extract text").some((tool) => tool.slug === "pdf-to-text"), "extract text finds PDF to Text");
 assert(searchTools("remove pdf metadata").some((tool) => tool.slug === "pdf-metadata"), "metadata search");

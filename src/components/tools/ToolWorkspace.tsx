@@ -107,6 +107,11 @@ const workspaces: Record<string, ComponentType> = {
   "number-to-words": lazyTool(async () => (await import("./workspace/NumberToWordsTool")).NumberToWordsTool),
   "time-zone-converter": lazyTool(async () => (await import("./workspace/TimeZoneConverterTool")).TimeZoneConverterTool),
   "url-parser": lazyTool(async () => (await import("./workspace/UrlParserTool")).UrlParserTool),
+  "morse-code": lazyTool(async () => (await import("./workspace/MorseCodeTool")).MorseCodeTool),
+  "roman-numeral-converter": lazyTool(async () => (await import("./workspace/RomanNumeralTool")).RomanNumeralTool),
+  "aspect-ratio-calculator": lazyTool(async () => (await import("./workspace/AspectRatioCalculatorTool")).AspectRatioCalculatorTool),
+  "jwt-decoder": lazyTool(async () => (await import("./workspace/JwtDecoderTool")).JwtDecoderTool),
+  "robots-txt-generator": lazyTool(async () => (await import("./workspace/RobotsTxtGeneratorTool")).RobotsTxtGeneratorTool),
 };
 
 type ToolWorkspaceProps = {

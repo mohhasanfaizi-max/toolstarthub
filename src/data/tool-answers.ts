@@ -165,6 +165,16 @@ export const toolQuickAnswers: Record<string, string> = {
     "A time zone converter shows one instant in a source zone and a target zone, with the UTC offset for each. It uses the browser time-zone list.",
   "url-parser":
     "A URL parser splits one absolute URL into protocol, hostname, port, path, fragment, and each query parameter. The URL stays in your browser.",
+  "morse-code":
+    "A Morse code translator turns A-Z and 0-9 text into International Morse, or reads Morse back into text. Letters are separated by spaces and words by a slash.",
+  "roman-numeral-converter":
+    "A Roman numeral converter turns whole numbers from 1 through 3999 into standard numerals, and reads those numerals back into numbers. Values above 3999 are not supported.",
+  "aspect-ratio-calculator":
+    "An aspect ratio calculator simplifies a width and height, or finds a missing side from a ratio. It does not resize an image file.",
+  "jwt-decoder":
+    "A JWT decoder reads the header and payload of a compact JSON Web Token in your browser. Decoding does not verify the signature or prove the token is authentic.",
+  "robots-txt-generator":
+    "A robots.txt generator writes User-agent, Allow, and Disallow lines from the rules you type. It can add a sitemap URL. It does not publish or test a live site.",
 };
 
 export function getToolQuickAnswer(

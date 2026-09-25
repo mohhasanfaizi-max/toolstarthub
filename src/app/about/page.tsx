@@ -33,7 +33,7 @@ export default function AboutPage() {
       />
       <div className="mt-8 max-w-3xl space-y-5 text-base leading-7 text-muted-foreground">
         <p>
-          {siteConfig.name} is a free collection of 83 browser tools across six
+          {siteConfig.name} is a free collection of 88 browser tools across six
           categories: calculators, text tools, developer helpers, image and PDF
           tools, SEO utilities, and AI tools. The site is published at{" "}
           {PRODUCTION_CANONICAL_HOST}.
