@@ -10,12 +10,12 @@ export const categories: Category[] = [
     icon: "calculator",
     route: "/categories/calculators",
     intro:
-      "These calculators answer a specific number question: a percent of a value, a percent change, a sale price, a tip split, sales tax, the days between two dates, an age on a date, a unit conversion, or a random number in a range.",
+      "These calculators answer a specific number question: a percent, a percent change, a sale price, a tip, sales tax, age, days or business days between dates, a unit conversion, a loan or mortgage estimate, wages, room area, GPA, or a random number in a range.",
     audience:
-      "Use them when a spreadsheet is more than the job needs. They are arithmetic helpers. They are not tax, loan, medical, or engineering advice.",
+      "Use them when a spreadsheet is more than the job needs. They are arithmetic helpers. Loan, tax, and wage results are estimates. They are not financial, tax, medical, or engineering advice.",
     startingSlugs: [
       "percentage-calculator",
-      "discount-calculator",
+      "loan-calculator",
       "age-calculator",
       "unit-converter",
     ],

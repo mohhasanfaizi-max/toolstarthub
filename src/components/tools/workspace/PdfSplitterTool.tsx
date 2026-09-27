@@ -178,7 +178,7 @@ export function PdfSplitterTool() {
       <div className="mt-4">{error ? <ToolError>{error}</ToolError> : null}</div>
 
       <ToolPrivacyNote>
-        Your PDF is processed in your browser and is not uploaded to our server.
+        Selected pages are copied into a new PDF in this tab. The original file is not sent to a server.
       </ToolPrivacyNote>
     </ToolPanel>
   );

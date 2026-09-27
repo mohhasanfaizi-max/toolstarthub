@@ -150,7 +150,7 @@ export function LineSorterTool() {
       </div>
 
       <ToolPrivacyNote>
-        Your text is processed in your browser and is not uploaded to our server.
+        The lines are sorted in this tab. The list is not sent to Tools Star Hub.
       </ToolPrivacyNote>
     </ToolPanel>
   );

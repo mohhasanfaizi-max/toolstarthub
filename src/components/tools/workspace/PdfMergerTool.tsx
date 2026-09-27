@@ -129,7 +129,7 @@ export function PdfMergerTool() {
       <div className="mt-4">{error ? <ToolError>{error}</ToolError> : null}</div>
 
       <ToolPrivacyNote>
-        Your PDFs are processed in your browser and are not uploaded to our server.
+        The PDFs are joined in this tab, in the order you set. They are not uploaded.
       </ToolPrivacyNote>
     </ToolPanel>
   );

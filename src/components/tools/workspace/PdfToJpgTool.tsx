@@ -354,7 +354,7 @@ export function PdfToJpgTool() {
       </div>
 
       <ToolPrivacyNote>
-        Your PDF is processed in your browser and is not uploaded to our server.
+        Selected pages are rendered to JPEG in this tab. The PDF is not sent anywhere.
       </ToolPrivacyNote>
     </ToolPanel>
   );

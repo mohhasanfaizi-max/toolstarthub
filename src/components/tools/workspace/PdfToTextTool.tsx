@@ -283,7 +283,7 @@ export function PdfToTextTool() {
       </p>
 
       <ToolPrivacyNote>
-        Your PDF is processed in your browser and is not uploaded to our server.
+        The text layer is read in this tab. The file is not posted to a server.
       </ToolPrivacyNote>
     </ToolPanel>
   );

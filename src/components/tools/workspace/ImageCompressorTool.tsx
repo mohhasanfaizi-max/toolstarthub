@@ -216,7 +216,7 @@ export function ImageCompressorTool() {
       </div>
 
       <ToolPrivacyNote>
-        Your image is processed in your browser and is not uploaded to our server.
+        The JPG, PNG, or WebP is re-encoded in this tab at the quality you set. The file is not sent to Tools Star Hub.
       </ToolPrivacyNote>
     </ToolPanel>
   );

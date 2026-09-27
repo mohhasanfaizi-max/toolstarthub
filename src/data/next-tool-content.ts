@@ -1,9 +1,5 @@
+import { OCR_MAX_EDGE, OCR_PANEL_LEAD, ocrFirstRunMegabytes } from "../lib/tools/ocr.ts";
 import type { ToolContent } from "./tool-content.ts";
-
-const local = {
-  question: "Is my input sent to a server?",
-  answer: "No. The calculation or conversion runs in your browser. The values you type are not uploaded.",
-};
 
 export const nextToolContent: Record<string, ToolContent> = {
   "tip-calculator": {
@@ -47,7 +43,10 @@ export const nextToolContent: Record<string, ToolContent> = {
         question: "What happens if I leave the bill blank?",
         answer: "The page asks for a bill amount. It does not treat a blank field as zero.",
       },
-      local,
+      {
+        question: "Is my input sent to a server?",
+        answer: "No. The bill, tip rate, and headcount are split in this tab. They are not uploaded.",
+      },
     ],
   },
   "sales-tax-calculator": {
@@ -91,7 +90,10 @@ export const nextToolContent: Record<string, ToolContent> = {
         question: "Can the rate be 0?",
         answer: "Yes. The tax amount is 0 and the final price equals the original price.",
       },
-      local,
+      {
+        question: "Is my input sent to a server?",
+        answer: "No. The price and tax rate are calculated in this tab. They are not sent to a server.",
+      },
     ],
   },
   "date-difference-calculator": {
@@ -136,7 +138,10 @@ export const nextToolContent: Record<string, ToolContent> = {
         question: "Does February change the result?",
         answer: "Yes, for the calendar span. A period that crosses February uses that month’s real length. The total day count is still exact.",
       },
-      local,
+      {
+        question: "Is my input sent to a server?",
+        answer: "No. The two dates are counted in this tab. They are not uploaded.",
+      },
     ],
   },
   "find-and-replace": {
@@ -181,7 +186,10 @@ export const nextToolContent: Record<string, ToolContent> = {
         question: "Why did a short word change inside a longer word?",
         answer: "The search is a character search. Finding “cat” also matches the start of “catalog.” Add spaces if you only want a whole word, or use the regex tester with a word boundary.",
       },
-      local,
+      {
+        question: "Is my input sent to a server?",
+        answer: "No. The text and the search string stay in this tab. They are not posted to a server.",
+      },
     ],
   },
   "remove-line-breaks": {
@@ -225,7 +233,10 @@ export const nextToolContent: Record<string, ToolContent> = {
         question: "What if I only paste spaces?",
         answer: "The page asks you to paste some text. Whitespace alone is not enough.",
       },
-      local,
+      {
+        question: "Is my input sent to a server?",
+        answer: "No. The pasted text is rewritten in this tab. It is not uploaded.",
+      },
     ],
   },
   "add-line-numbers": {
@@ -269,7 +280,10 @@ export const nextToolContent: Record<string, ToolContent> = {
         question: "Can I start at 0?",
         answer: "Yes. 0 and negative whole numbers are accepted. A decimal such as 1.5 is not.",
       },
-      local,
+      {
+        question: "Is my input sent to a server?",
+        answer: "No. The lines and the starting number stay in this tab. They are not sent to a server.",
+      },
     ],
   },
   "json-to-csv": {
@@ -314,7 +328,10 @@ export const nextToolContent: Record<string, ToolContent> = {
         question: "How are quotes inside a cell handled?",
         answer: "The cell is wrapped in quotes, and each quote inside it is doubled, which is the usual CSV rule.",
       },
-      local,
+      {
+        question: "Is my input sent to a server?",
+        answer: "No. The JSON is converted in this tab. It is not uploaded.",
+      },
     ],
   },
   "csv-to-json": {
@@ -359,7 +376,10 @@ export const nextToolContent: Record<string, ToolContent> = {
         question: "Are empty cells null?",
         answer: "No. An empty cell becomes an empty string so you can see that the column was present.",
       },
-      local,
+      {
+        question: "Is my input sent to a server?",
+        answer: "No. The CSV stays in this tab while it is parsed. It is not sent to a server.",
+      },
     ],
   },
   "regex-tester": {
@@ -403,7 +423,10 @@ export const nextToolContent: Record<string, ToolContent> = {
         question: "Does this execute code from the pattern?",
         answer: "No. The pattern is passed to the RegExp constructor. It is not evaluated as a program.",
       },
-      local,
+      {
+        question: "Is my input sent to a server?",
+        answer: "No. The pattern and the sample text are tested in this tab. They are not uploaded.",
+      },
     ],
   },
   "hash-generator": {
@@ -447,7 +470,572 @@ export const nextToolContent: Record<string, ToolContent> = {
         question: "Can I get the original text from the hash?",
         answer: "No. This page only creates the digest. It cannot recover the text.",
       },
-      local,
+      {
+        question: "Is my input sent to a server?",
+        answer: "No. The text is hashed in this tab. It is not sent to a server, and the digest cannot be turned back into the original.",
+      },
+    ],
+  },
+  "time-calculator": {
+    about:
+      "Add or subtract one block of hours and minutes from another. The result is hours and leftover minutes, plus the signed total in minutes. This is duration arithmetic. It does not look up a clock, a date, or a time zone.",
+    howTo: [
+      "Enter the starting hours and minutes. Both must be whole numbers, zero or greater.",
+      "Enter the hours and minutes to add or subtract.",
+      "Choose Add or Subtract, then press Calculate.",
+    ],
+    features: [
+      "Minutes of 60 or more are carried into hours.",
+      "A result below zero is marked minus and still shows the remaining hours and minutes.",
+      "Total minutes, so you can check the arithmetic.",
+    ],
+    examples: [
+      {
+        title: "Two and a half hours plus 1 hour 45 minutes",
+        body: "2 hours 30 minutes plus 1 hour 45 minutes is 4 hours 15 minutes, which is 255 minutes.",
+      },
+      {
+        title: "Subtracting more than the start",
+        body: "1 hour 0 minutes minus 1 hour 30 minutes is minus 0 hours 30 minutes, which is -30 minutes.",
+      },
+    ],
+    explanation:
+      "Each side is turned into minutes, the second side is added or subtracted, and the signed total is split back into hours and leftover minutes. This is duration arithmetic. It does not look up a clock, a date, or a time zone.",
+    tips: [
+      "Type 90 in the minutes box if you do not want to convert it to 1 hour 30 minutes first. The page carries the extra minutes.",
+      "Use the Date Difference Calculator when the question is days between two calendar dates.",
+    ],
+    limitations:
+      "Hours and minutes must be whole numbers from 0 through 100,000. A blank box is rejected. Decimals and negative inputs are rejected. The page does not convert time zones.",
+    faqs: [
+      {
+        question: "Is the Time Calculator free?",
+        answer:
+          "Yes. You can add or subtract hours and minutes here without paying or creating an account.",
+      },
+      {
+        question: "What if the minutes are 60 or more?",
+        answer: "They are included in the total and then shown as hours plus a remainder from 0 to 59.",
+      },
+      {
+        question: "Can the result be negative?",
+        answer: "Yes, when you subtract more than the starting duration. The page marks that result as minus.",
+      },
+      {
+        question: "Are these numbers sent to a server?",
+        answer:
+          "No. The hours and minutes are calculated in this browser tab. Tools Star Hub does not send those numbers to a server or save them in local storage.",
+      },
+    ],
+  },
+  "average-calculator": {
+    about:
+      "Paste a list of numbers and get the count, the mean, the median, and the mode. Separate values with commas, spaces, or new lines. The list can hold up to 1,000 numbers, and the values are not weighted.",
+    howTo: [
+      "Paste the numbers. A blank list is rejected.",
+      "Press Calculate.",
+      "Read the mean, the middle value, and any mode.",
+    ],
+    features: [
+      "Mean rounded to at most 10 decimal places.",
+      "Median of an even count is the average of the two middle numbers.",
+      "More than one mode when several values tie for the highest count.",
+    ],
+    examples: [
+      {
+        title: "Four numbers with no repeat",
+        body: "1, 2, 3, 4 has a mean of 2.5, a median of 2.5, and no mode.",
+      },
+      {
+        title: "A repeated pair",
+        body: "1, 2, 2, 3 has a mean of 2, a median of 2, and a mode of 2. 1, 1, 2, 2, 3 has a mean of 1.8, a median of 2, and modes 1 and 2.",
+      },
+    ],
+    explanation:
+      "The mean is the sum divided by how many numbers you entered. The median is the middle number after sorting, or the average of the two middle numbers when the count is even. The mode is the value that appears most often. If every distinct value appears once, there is no mode. A single number is its own mode.",
+    tips: [
+      "GPA uses letter grades and credits. Use the GPA Calculator for that, not this list of raw numbers.",
+    ],
+    limitations:
+      "Up to 1,000 numbers. A token that is not a number rejects the whole list. This page does not weight the values.",
+    faqs: [
+      {
+        question: "Is the Average Calculator free?",
+        answer:
+          "Yes. You can find the mean, median, and mode of a list here without paying or creating an account.",
+      },
+      {
+        question: "What is the median of an even list?",
+        answer: "The average of the two middle numbers after the list is sorted. 1, 2, 3, 4 has a median of 2.5.",
+      },
+      {
+        question: "When is there no mode?",
+        answer: "When every different number appears the same number of times and more than one number is in the list. 1, 2, 3, 4 has no mode.",
+      },
+      {
+        question: "Are these numbers sent to a server?",
+        answer:
+          "No. The list is calculated in this browser tab. Tools Star Hub does not send those numbers to a server or save them in local storage.",
+      },
+    ],
+  },
+  "text-repeater": {
+    about:
+      "Repeat a word, phrase, or line from 1 to 200 times. Put nothing, a space, or a new line between the copies. The source can be up to 5,000 characters, and the joined result can be up to 100,000 characters.",
+    howTo: [
+      "Enter the text to repeat. An empty box is rejected.",
+      "Enter a whole-number count from 1 to 200.",
+      "Choose nothing, a space, or a new line between copies, then press Repeat.",
+    ],
+    features: [
+      "One copy when the count is 1, with no extra separator.",
+      "A space or a new line only between copies, not after the last one.",
+      "A length limit so a huge result does not fill the page.",
+    ],
+    examples: [
+      {
+        title: "A word three times",
+        body: "ha, count 3, with a space between copies, becomes ha ha ha.",
+      },
+      {
+        title: "A line twice",
+        body: "Ready, count 2, with a new line between copies, becomes Ready on one line and Ready on the next.",
+      },
+    ],
+    explanation:
+      "The page copies the text the number of times you ask and joins those copies with the separator you chose. It does not generate placeholder Latin, and it does not remove duplicates.",
+    tips: [
+      "Use a new line when you want a list of identical rows. Use a space when you want one line.",
+    ],
+    limitations:
+      "The source can be up to 5,000 characters, the count can be up to 200, and the joined result can be up to 100,000 characters. A longer result is rejected.",
+    faqs: [
+      {
+        question: "Is the Text Repeater free?",
+        answer: "Yes. You can repeat text here without paying or creating an account.",
+      },
+      {
+        question: "Does a count of 1 add a separator?",
+        answer: "No. One copy is the text you typed, with nothing added.",
+      },
+      {
+        question: "Can I repeat a blank line?",
+        answer: "An empty box is rejected. A line that contains only spaces is allowed, because those spaces are text.",
+      },
+      {
+        question: "Is the text sent to a server?",
+        answer:
+          "No. The copies are built in this browser tab. Tools Star Hub does not send that text to a server or save it in local storage.",
+      },
+    ],
+  },
+  "password-strength-checker": {
+    about:
+      "Type a password and see a Short, Moderate, or Strong rating. The estimate uses the length and the character types that appear in it. It does not look up breaches, and it does not know whether a site will accept the password.",
+    howTo: [
+      "Type the password. An empty box is rejected.",
+      "Press Check.",
+      "Read the rating, the length, the estimated bits, and the character types found.",
+    ],
+    features: [
+      "Uppercase, lowercase, numbers, and the symbol set are counted only when they appear.",
+      "Any other character, including a space or a backtick, adds one to the pool for each distinct character.",
+      "Short is under 50 bits, Moderate is under 80, and Strong is 80 or more.",
+    ],
+    examples: [
+      {
+        title: "A lowercase word",
+        body: "password is 8 characters of lowercase letters. The pool is 26, the estimate rounds to 38 bits, and the rating is Short.",
+      },
+      {
+        title: "Letters, a number, and a symbol",
+        body: "Abcdefghijklm12! is 16 characters with uppercase, lowercase, numbers, and a symbol. The pool is 85, the estimate rounds to 103 bits, and the rating is Strong.",
+      },
+    ],
+    explanation:
+      "Bits are the length times the base-2 log of the pool. The pool is 26 for uppercase if an A through Z appears, 26 for lowercase, 10 for a digit, and 23 for a symbol in !@#$%^&*()-_=+[]{};:,.?. A character outside those sets is not treated as the whole symbol set. It adds one. This is not the password generator, which rates a password from the types you selected before it was created.",
+    tips: [
+      "A longer password from several character types rates higher than a short word.",
+      "Use the Password Generator when you want a new password instead of a rating.",
+    ],
+    limitations:
+      "Up to 256 characters. The page does not look up breaches, and it does not know whether a site will accept the password. Accented letters count as other characters, not as A through Z.",
+    faqs: [
+      {
+        question: "Is the Password Strength Checker free?",
+        answer: "Yes. You can rate a password here without paying or creating an account.",
+      },
+      {
+        question: "Does this compare the password with leaked passwords?",
+        answer: "No. The rating is only the length and the character types in what you typed.",
+      },
+      {
+        question: "Why is a digits-only password Short?",
+        answer: "Eight digits use a pool of 10. That is about 27 bits, which is under 50, so the rating is Short.",
+      },
+      {
+        question: "Is the password sent to a server?",
+        answer:
+          "No. The check runs in this browser tab. Tools Star Hub does not send the password to a server or save it in local storage.",
+      },
+    ],
+  },
+  "gitignore-generator": {
+    about:
+      "Choose templates and optional custom patterns. The page writes .gitignore text with a comment heading for each section. Creating that text does not update a Git repository.",
+    howTo: [
+      "Check the templates you want. Node is checked when the page opens.",
+      "Add custom patterns, one per line, if you need them.",
+      "Press Generate, then copy the text into a file named .gitignore.",
+    ],
+    features: [
+      "Templates for Node, Next.js, environment files, operating-system files, logs, and build folders.",
+      "Custom patterns are added after the templates.",
+      "A custom pattern that repeats a selected template line is written once.",
+    ],
+    examples: [
+      {
+        title: "Node and environment files",
+        body: "Node plus Environment files, with no custom patterns, starts with a Node heading and node_modules/, then an Environment files heading with .env and .env.*.",
+      },
+      {
+        title: "A custom pattern",
+        body: "Node plus a custom line secrets/ writes the Node block, then a Custom heading and secrets/. A custom node_modules/ line is not repeated.",
+      },
+    ],
+    explanation:
+      "Each selected template becomes a comment and its patterns. Templates stay in a fixed order. Custom lines are trimmed, blank lines are skipped, and a line already written by a template is left out. Creating the text does not update a Git repository.",
+    tips: [
+      "Robots.txt is a different file. Use the Robots.txt Generator for crawler rules.",
+    ],
+    limitations:
+      "Up to 50 custom patterns, each up to 200 characters. The templates are a short starter set, not every language or editor.",
+    faqs: [
+      {
+        question: "Is the .gitignore Generator free?",
+        answer: "Yes. You can build the file text here without paying or creating an account.",
+      },
+      {
+        question: "Does this create the file in a repository?",
+        answer: "No. It writes the text. You copy it into .gitignore yourself.",
+      },
+      {
+        question: "What if a custom line matches a template?",
+        answer: "That line is kept from the template and skipped in the Custom section.",
+      },
+      {
+        question: "Are the patterns sent to a server?",
+        answer:
+          "No. The file text is built in this browser tab. Tools Star Hub does not send those patterns to a server or save them in local storage.",
+      },
+    ],
+  },
+  "cron-expression-generator": {
+    about:
+      "Build a five-field cron expression, or paste one and read a plain-language summary. The fields are minute, hour, day of month, month, and day of week. Sunday is 0. Names such as MON or JAN are not accepted, and a seconds field is not accepted.",
+    howTo: [
+      "Choose Build and fill the five fields, or choose Explain and paste an expression.",
+      "Press Build or Explain.",
+      "Read the expression and the summary. Copy the expression if you want to keep it.",
+    ],
+    features: [
+      "Stars, single numbers, ranges, comma lists, and star steps such as */15.",
+      "A summary for common schedules, including every minute, hourly, daily, weekdays, and a monthly day.",
+      "A note when both the day of month and the day of week are restricted.",
+    ],
+    examples: [
+      {
+        title: "Every 15 minutes",
+        body: "*/15 * * * * means every 15 minutes.",
+      },
+      {
+        title: "Weekdays at 09:00",
+        body: "0 9 * * 1-5 means at 09:00 on Monday through Friday. Sunday is 0.",
+      },
+    ],
+    explanation:
+      "The five fields are minute, hour, day of month, month, and day of week. A star means every value in that field. */15 in the minute field means every 15 minutes. 1-5 in the day-of-week field means Monday through Friday. When both the day of month and the day of week are set to something other than a star, cron matches either day, not both.",
+    tips: [
+      "Use the Timestamp Converter when you have a clock time and need a Unix timestamp, not a schedule.",
+    ],
+    limitations:
+      "Five fields only. Names such as MON or JAN are rejected. A step inside a range, such as 0-30/10, is rejected. Day of week 7 is rejected. Sunday is 0.",
+    faqs: [
+      {
+        question: "Is the Cron Expression Generator free?",
+        answer:
+          "Yes. You can build or explain a five-field expression here without paying or creating an account.",
+      },
+      {
+        question: "What if both the day of month and the day of week are set?",
+        answer:
+          "Cron matches either day, not both. 0 9 1 * 1 means 09:00 on the 1st of the month or on Monday. It does not mean only a Monday that falls on the 1st.",
+      },
+      {
+        question: "Why was MON or a six-field expression rejected?",
+        answer:
+          "This page uses numbers only, in five fields. Sunday is 0 and Saturday is 6. Day of week 7 is rejected. Names such as MON or JAN are rejected. A leading seconds field is not accepted. A step inside a range, such as 0-30/10, is rejected.",
+      },
+      {
+        question: "Is the expression sent to a server?",
+        answer:
+          "No. The expression and the summary are built in this browser tab. Tools Star Hub does not send that text to a server or save it in local storage.",
+      },
+    ],
+  },
+  "favicon-generator": {
+    about:
+      "Pick a background color, a letter color, and up to two letters. The page draws PNG icons at 16, 32, and 180 pixels in this tab. The ICO file holds the 16 and 32 pixel images only.",
+    howTo: [
+      "Enter a 6-digit background color and a 6-digit letter color.",
+      "Enter one or two letters, or leave the letters blank for a solid color.",
+      "Press Generate, then download the PNG sizes or the ICO file.",
+    ],
+    features: [
+      "PNG files at 16, 32, and 180 pixels.",
+      "An ICO file that contains the 16 and 32 pixel PNGs.",
+      "A blank letter box draws a solid color.",
+    ],
+    examples: [
+      {
+        title: "A blue icon with T",
+        body: "#2563eb background, #ffffff letters, and the letter T draws a blue square with a white T.",
+      },
+      {
+        title: "A solid color",
+        body: "The same colors with the letters left blank draw a solid blue square at each size.",
+      },
+    ],
+    explanation:
+      "Each size is a square canvas filled with the background color. One or two letters are centered in the letter color. The ICO file is a small header plus the 16 and 32 pixel PNG bytes. The 180 pixel image is the apple-touch PNG and is not placed inside the ICO.",
+    tips: [
+      "Use the Image Resizer when you already have a picture and only need a new pixel size.",
+    ],
+    limitations:
+      "Colors must be 6-digit hex, such as #2563eb. Three-digit hex is rejected. The letters are plain text on a flat color, not a logo trace. The ICO holds 16 and 32 pixel images only.",
+    faqs: [
+      {
+        question: "Is the Favicon Generator free?",
+        answer: "Yes. You can draw the icons here without paying or creating an account.",
+      },
+      {
+        question: "Which file is the browser tab icon?",
+        answer: "favicon.ico, or the 16 and 32 pixel PNGs. The 180 pixel PNG is the apple-touch icon.",
+      },
+      {
+        question: "Does a blank letter box fail?",
+        answer: "No. It draws the background color with no letters.",
+      },
+      {
+        question: "Is the icon uploaded?",
+        answer:
+          "No. The files are drawn in this browser tab. Tools Star Hub does not send the colors or letters to a server or save them in local storage.",
+      },
+    ],
+  },
+  "meta-tag-generator": {
+    about:
+      "Fill in a title and the optional tags you want. The page writes HTML you can paste into the head of a page. It does not fetch a live URL or check how a site will share the link.",
+    howTo: [
+      "Enter a title. A blank title is rejected.",
+      "Add a description, a canonical URL, robots choices, and any Open Graph or Twitter fields you want.",
+      "Press Generate, then copy the HTML.",
+    ],
+    features: [
+      "A charset tag, a title, and a robots tag on every result.",
+      "Optional description, canonical link, Open Graph tags, and Twitter tags.",
+      "Quotes and ampersands in the text are escaped.",
+    ],
+    examples: [
+      {
+        title: "A title and description",
+        body: "Title Sample page and description A short description of the page., with index and follow, writes a charset tag, the title, the description, and a robots tag of index, follow.",
+      },
+      {
+        title: "An ampersand in the title",
+        body: "Title A & B is written as A &amp; B inside the title tag.",
+      },
+    ],
+    explanation:
+      "The HTML is assembled from the fields you fill. Empty optional fields are left out. A canonical URL, an Open Graph image, an Open Graph URL, and a Twitter image must be absolute http or https URLs. The page does not request those URLs.",
+    tips: [
+      "Use the Open Graph fields here when you want the tags in your own HTML. A live share preview is a different check.",
+    ],
+    limitations:
+      "The title can be up to 200 characters and the description up to 500. Open Graph type is website, article, or none. Twitter card is summary, summary_large_image, or none. A Twitter title without a card is rejected.",
+    faqs: [
+      {
+        question: "Is the Meta Tag Generator free?",
+        answer: "Yes. You can write the tags here without paying or creating an account.",
+      },
+      {
+        question: "Does this check how a link will look on a social site?",
+        answer: "No. It only writes the tags. It does not open the URL.",
+      },
+      {
+        question: "What robots value is written?",
+        answer: "The index choice and the follow choice, such as index, follow or noindex, nofollow.",
+      },
+      {
+        question: "Is the text sent to a server?",
+        answer:
+          "No. The HTML is built in this browser tab. Tools Star Hub does not send those fields to a server or save them in local storage.",
+      },
+    ],
+  },
+  "open-graph-preview": {
+    about:
+      "Enter a public http or https URL. Check preview sends that URL to this site. The site requests the page and shows the title, description, image, and Twitter card it finds. The page is not saved here. A private or local address is rejected before the page is read.",
+    howTo: [
+      "Enter an absolute http or https URL.",
+      "Press Check preview.",
+      "Read the card. A rejected address, a timeout, or a non-http URL shows a short error and no page contents.",
+    ],
+    features: [
+      "Title, description, image address, and Twitter card fields from the public page.",
+      "The address after redirects, when the redirect stays on a public http or https URL.",
+      "A short error when the address is private, the request times out, or the protocol is not http or https.",
+    ],
+    examples: [
+      {
+        title: "A public page",
+        body: "https://example.com/ returns the title Example Domain. That page has no description, image, or Twitter card, so those fields read Not found.",
+      },
+      {
+        title: "A local address",
+        body: "http://127.0.0.1/ and the decimal form http://2130706433/ both show That address cannot be fetched.",
+      },
+    ],
+    explanation:
+      "The browser sends only the URL to this site. The site resolves the host, rejects a private, loopback, link-local, or reserved address, and checks again after each redirect. It reads at most 512 KiB of the decompressed page, then returns the tags. The raw page is not returned and is not saved.",
+    tips: [
+      "Use the Meta Tag Generator when you want to write the tags yourself. This page reads tags that are already on a public URL.",
+    ],
+    limitations:
+      "Only http and https. A file URL, a URL with a username, and a private address are rejected. The request stops after 8 seconds. A share image may be listed even when the image host blocks the preview picture.",
+    faqs: [
+      {
+        question: "Is the Open Graph Preview free?",
+        answer:
+          "Yes. You can check the share tags on a public page without paying or creating an account. The URL is still sent to this site so the tags can be read.",
+      },
+      {
+        question: "Is the URL sent off this device?",
+        answer:
+          "Yes. Check preview sends the URL to this site, which requests that public page and reads its tags. The page is not saved here. A private or non-http address is rejected.",
+      },
+      {
+        question: "Why was a local URL rejected?",
+        answer:
+          "Addresses such as 127.0.0.1, a private network, and the decimal form of a loopback address are rejected before the page is read.",
+      },
+      {
+        question: "What does a timeout look like?",
+        answer: "The card is not shown. The page says the preview request timed out.",
+      },
+    ],
+  },
+  "image-to-text": {
+    about: OCR_PANEL_LEAD,
+    howTo: [
+      "Choose one JPG, PNG, or WebP image.",
+      "Press Read text. The first time, this browser downloads the recognition engine and the English language file.",
+      "Wait for the text. A large photo is reduced before it is read.",
+      "Check the text, then copy it if it looks right.",
+    ],
+    features: [
+      "English text from one photo, in this tab.",
+      `A long side over ${OCR_MAX_EDGE.toLocaleString()} pixels is reduced before reading.`,
+      "The recognition files stay on this site. They are not loaded from another host.",
+    ],
+    examples: [
+      {
+        title: "A posted sign on a tree",
+        body: "A real outdoor photo of a printed sign, with bark and leaves around it. The hunting and trespassing lines came back. PRIVATE PROPERTY came back missing letters, and VIOLATORS came back as VIOLKTORS. The largest word, POSTED, did not come back as a clean word, and the bark added extra lines.",
+      },
+    ],
+    explanation:
+      "After you press Read text, this tab loads the recognition engine and the English language file from this site. The photo is drawn smaller when its long side is over 1,600 pixels, then the words are read in this tab. The image is not uploaded.",
+    tips: [
+      "A straight, well-lit photo of large type is easier to read than a distant or tilted one.",
+      "Compare the result with the photo. Do not treat a misread word as the original.",
+    ],
+    limitations: `English only. One image at a time. JPG, PNG, and WebP only, up to 25 MB. The first run downloads about ${ocrFirstRunMegabytes()} MB. Later runs on this browser reuse that download. Reading a photo is slower than the canvas image tools. The result depends on the photo. A readable sign can still come back with wrong letters, and a busy background can add lines that are not text. Blur, glare, and small type make that worse. A long side over ${OCR_MAX_EDGE.toLocaleString()} pixels is reduced before reading.`,
+    faqs: [
+      {
+        question: "Is the Image to Text tool free?",
+        answer: "Yes. You can read English text from one photo here without paying or creating an account.",
+      },
+      {
+        question: "Is the photo uploaded?",
+        answer:
+          "No. The photo is read in this browser tab. Tools Star Hub does not send the image to a server or save it in local storage. The recognition engine and the English language file are loaded from this site.",
+      },
+      {
+        question: "Why is the first run slow?",
+        answer: `The first time, this browser downloads the recognition engine and the English language file, about ${ocrFirstRunMegabytes()} MB. Later runs on this browser reuse that download. Reading the photo is also slower than resizing or compressing an image.`,
+      },
+      {
+        question: "Will a clear photo be read correctly?",
+        answer: "Not always. On a real outdoor photo of a printed sign, some lines came back and some letters were wrong. A busy background can add lines that are not text. Blur, glare, and small type make that worse. Check the text before you use it.",
+      },
+      {
+        question: "Does it read languages other than English?",
+        answer: "No. English is the only language file included.",
+      },
+    ],
+  },
+  "word-to-pdf": {
+    about:
+      "Word to PDF reads the words from a .docx file and places them in a plain PDF. Images, tables as grids, headers, footers, and text styling are left out. It is not a copy of the Word layout.",
+    howTo: [
+      "Choose a .docx file. A .doc file is rejected.",
+      "Optionally add a title. Choose A4 or Letter, a margin, font size, and line spacing.",
+      "Press Create PDF. The words are wrapped onto pages with Helvetica.",
+      "Download word.pdf. The file stays in this tab.",
+    ],
+    features: [
+      "Paragraph text, heading words, list item words, and table cell words.",
+      "The same page sizes, margins, and Helvetica font as Text to PDF.",
+      "A note when a character is replaced because Helvetica cannot draw it.",
+    ],
+    examples: [
+      {
+        title: "A heading, a table, a list, and a picture",
+        body: "The heading words, the cell words, and the list item words are kept. The picture is left out. Word’s automatic list numbers are not kept. The table is not drawn as a grid.",
+      },
+      {
+        title: "A .doc file renamed to .docx",
+        body: "The page says that file could not be read as a Word document. It does not show an internal error.",
+      },
+    ],
+    explanation:
+      "The file is unzipped in this tab and the paragraph text is read. That text is then placed with the same Helvetica PDF builder as pasted text. A Word page break does not start a new PDF page.",
+    tips: [
+      "If the document is only a picture, there is no text to convert.",
+      "Check the PDF. A character Helvetica cannot draw becomes a question mark.",
+    ],
+    limitations:
+      "Images, drawings, charts, and shapes are dropped. Bold, italic, colors, fonts, and heading sizes are dropped. A table becomes the cell text in reading order, not a grid. A list keeps the item text and does not keep Word’s automatic numbers. Headers, footers, footnotes, comments, and text boxes are not included. A .doc file is rejected. A character Helvetica cannot draw becomes “?”. More than 100,000 characters of extracted text is refused.",
+    faqs: [
+      {
+        question: "Is the Word to PDF converter free?",
+        answer: "Yes. You can turn a .docx file into a plain PDF here without paying or creating an account.",
+      },
+      {
+        question: "Will the PDF look like my Word document?",
+        answer:
+          "No. Images, tables as grids, headers, footers, and text styling are left out. It is not a copy of the Word layout.",
+      },
+      {
+        question: "What if I choose a .doc file?",
+        answer: "Use a .docx file. This tool does not read .doc files. A .doc file renamed to .docx cannot be read as a Word document.",
+      },
+      {
+        question: "Is my file sent to a server?",
+        answer:
+          "No. The PDF is built in this browser tab from the .docx you choose. Tools Star Hub does not send that file to a server or save it in local storage.",
+      },
     ],
   },
 };

@@ -210,7 +210,7 @@ export function QrCodeScannerTool() {
       </div>
 
       <ToolPrivacyNote>
-        Your camera frames and uploaded images are processed in your browser and are not uploaded to our server.
+        Frames after Start camera, and a PNG or JPG you choose, are decoded in this tab. Neither is sent to Tools Star Hub.
       </ToolPrivacyNote>
     </ToolPanel>
   );

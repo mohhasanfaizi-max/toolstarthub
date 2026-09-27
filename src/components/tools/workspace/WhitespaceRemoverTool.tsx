@@ -186,7 +186,7 @@ export function WhitespaceRemoverTool() {
       </div>
 
       <ToolPrivacyNote>
-        Your text is processed in your browser and is not uploaded to our server.
+        Spaces, tabs, and blank lines are cleaned in this tab. The text is not posted to a server.
       </ToolPrivacyNote>
     </ToolPanel>
   );

@@ -94,7 +94,7 @@ export function PdfPageCounterTool() {
       </p>
 
       <ToolPrivacyNote>
-        Your PDF is processed in your browser and is not uploaded to our server.
+        The page count is read in this tab. The PDF is not posted to a server.
       </ToolPrivacyNote>
     </ToolPanel>
   );

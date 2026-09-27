@@ -94,7 +94,7 @@ export function HtmlToMarkdownTool() {
       </p>
 
       <ToolPrivacyNote>
-        Your text is processed in your browser and is not uploaded to our server.
+        The HTML source is converted in this tab. It is not uploaded, and it is not run as a page.
       </ToolPrivacyNote>
     </ToolPanel>
   );

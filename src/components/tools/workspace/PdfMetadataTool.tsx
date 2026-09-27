@@ -192,7 +192,7 @@ export function PdfMetadataTool() {
       </p>
 
       <ToolPrivacyNote>
-        Your PDF is processed in your browser and is not uploaded to our server.
+        Info fields are read in this tab, and a cleared copy is built here. The PDF is not sent to Tools Star Hub.
       </ToolPrivacyNote>
     </ToolPanel>
   );

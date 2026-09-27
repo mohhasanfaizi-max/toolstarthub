@@ -261,7 +261,7 @@ export function ImageResizerTool() {
       </div>
 
       <ToolPrivacyNote>
-        Your image is processed in your browser and is not uploaded to our server.
+        The new width and height are drawn in this tab. The photo is not posted to a server.
       </ToolPrivacyNote>
     </ToolPanel>
   );

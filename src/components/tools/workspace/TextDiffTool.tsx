@@ -151,7 +151,7 @@ export function TextDiffTool() {
       </p>
 
       <ToolPrivacyNote>
-        Your text is processed in your browser and is not uploaded to our server.
+        Both drafts are compared in this tab. The text is not sent to a server.
       </ToolPrivacyNote>
     </ToolPanel>
   );

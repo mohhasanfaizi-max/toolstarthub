@@ -1,10 +1,5 @@
 import type { ToolContent } from "./tool-content.ts";
 
-const local = {
-  question: "Are these numbers sent to a server?",
-  answer: "No. The math runs in your browser from the values you type.",
-};
-
 export const financeToolContent: Record<string, ToolContent> = {
   "compound-interest-calculator": {
     about:
@@ -51,7 +46,10 @@ export const financeToolContent: Record<string, ToolContent> = {
         question: "How does monthly compounding work?",
         answer: "The annual rate is divided by 12. That monthly rate is applied to the balance each month.",
       },
-      local,
+      {
+        question: "Are these numbers sent to a server?",
+        answer: "No. The balance, rate, and contribution are compounded in this tab. Those figures are not posted to a server.",
+      },
     ],
   },
   "loan-calculator": {
@@ -99,7 +97,10 @@ export const financeToolContent: Record<string, ToolContent> = {
         question: "What is the difference between interest rate and APR?",
         answer: "The rate in the form is the annual rate used to compute the payment. APR can also include fees. This page adds an optional fee to the total cost and does not label that total as an APR.",
       },
-      local,
+      {
+        question: "Are these numbers sent to a server?",
+        answer: "No. Payment and interest are calculated here from the numbers you type. They are not uploaded.",
+      },
     ],
   },
   "mortgage-calculator": {
@@ -153,7 +154,10 @@ export const financeToolContent: Record<string, ToolContent> = {
         question: "How do extra mortgage payments reduce interest?",
         answer: "In this estimate, an extra monthly payment and an optional one-time payment reduce the balance faster. The page then shows the shorter payoff and the interest that was not charged.",
       },
-      local,
+      {
+        question: "Are these numbers sent to a server?",
+        answer: "No. The home price, down payment, and rate stay in this tab while the payment is estimated. They are not sent to a server.",
+      },
     ],
   },
   "auto-loan-calculator": {
@@ -213,7 +217,10 @@ export const financeToolContent: Record<string, ToolContent> = {
         question: "How much does an auto loan cost in total?",
         answer: "Total of payments is the amount financed plus interest. Total purchase cost adds the vehicle price, tax, fees, add-ons, and interest.",
       },
-      local,
+      {
+        question: "Are these numbers sent to a server?",
+        answer: "No. Vehicle price, tax, and term are used only in this tab. They are not stored or uploaded.",
+      },
     ],
   },
   "home-affordability-calculator": {
@@ -278,7 +285,10 @@ export const financeToolContent: Record<string, ToolContent> = {
         question: "Do property taxes and insurance affect affordability?",
         answer: "Yes. The tax rate is applied to the home price, and yearly insurance is divided by 12. Both reduce the amount left for the loan payment.",
       },
-      local,
+      {
+        question: "Are these numbers sent to a server?",
+        answer: "No. Income, debts, and the down-payment percent are used in this tab. They are not sent anywhere.",
+      },
     ],
   },
   "debt-payoff-calculator": {
@@ -334,7 +344,10 @@ export const financeToolContent: Record<string, ToolContent> = {
         question: "How much interest will I pay?",
         answer: "Total interest is the sum of the monthly interest charged until the balances reach zero. It changes with the rates, the minimums, and where the extra payment goes.",
       },
-      local,
+      {
+        question: "Are these numbers sent to a server?",
+        answer: "No. The balances and minimums stay on this page. They are not uploaded.",
+      },
     ],
   },
   "credit-card-payoff-calculator": {
@@ -390,7 +403,10 @@ export const financeToolContent: Record<string, ToolContent> = {
         question: "How is credit card payoff estimated?",
         answer: "The balance grows by one month of interest, then the payment is subtracted. The last payment is only what is left. It is not a copy of a specific issuer’s bill.",
       },
-      local,
+      {
+        question: "Are these numbers sent to a server?",
+        answer: "No. The card balance, APR, and payment are estimated in this tab. They are not posted to a server.",
+      },
     ],
   },
   "savings-goal-calculator": {
@@ -446,7 +462,10 @@ export const financeToolContent: Record<string, ToolContent> = {
         question: "How long will it take to reach my savings goal?",
         answer: "You enter the time. The page then solves for the contribution, rather than solving for the date.",
       },
-      local,
+      {
+        question: "Are these numbers sent to a server?",
+        answer: "No. The goal, rate, and current savings are solved in this tab. They are not saved or uploaded.",
+      },
     ],
   },
   "hourly-wage-calculator": {
@@ -471,7 +490,10 @@ export const financeToolContent: Record<string, ToolContent> = {
       { question: "How is overtime pay calculated?", answer: "Overtime hours per week are multiplied by the hourly rate, the multiplier, and the weeks per year." },
       { question: "What weeks per year should I use?", answer: "Use 52 for a job that is paid every week. Use fewer weeks if some weeks are unpaid." },
       { question: "Does this include taxes?", answer: "No. The totals are before taxes and other deductions." },
-      local,
+      {
+        question: "Are these numbers sent to a server?",
+        answer: "No. The wage, hours, and overtime multiplier stay in this tab. They are not sent to a server.",
+      },
     ],
   },
   "paycheck-estimator": {
@@ -496,7 +518,10 @@ export const financeToolContent: Record<string, ToolContent> = {
       { question: "How does withholding percent work?", answer: "The percent is applied to gross pay after pre-tax deductions. 0 percent withholds nothing. 100 percent withholds all of that remaining amount." },
       { question: "What do the pay frequencies mean?", answer: "Weekly uses 52 paychecks, every two weeks uses 26, twice a month uses 24, and monthly uses 12." },
       { question: "Is this an official tax calculation?", answer: "No. It uses only the withholding percent or dollar amount you type." },
-      local,
+      {
+        question: "Are these numbers sent to a server?",
+        answer: "No. Gross pay and the withholding you typed are estimated here. They are not uploaded.",
+      },
     ],
   },
   "rent-vs-buy-calculator": {
@@ -521,7 +546,10 @@ export const financeToolContent: Record<string, ToolContent> = {
       { question: "What happens when the comparison is longer than the loan?", answer: "Principal and interest stop when the term ends. The other yearly and monthly costs you entered continue." },
       { question: "How is home equity estimated?", answer: "The home price is changed by your annual value assumption, then the remaining loan balance is subtracted." },
       { question: "Are rent growth and home prices forecasts?", answer: "No. Both are rates you type for this estimate." },
-      local,
+      {
+        question: "Are these numbers sent to a server?",
+        answer: "No. Rent, price, and the rates you assume are compared in this tab. They are not sent to a server.",
+      },
     ],
   },
   "fuel-cost-calculator": {
@@ -546,7 +574,10 @@ export const financeToolContent: Record<string, ToolContent> = {
       { question: "Does this use today's gas price?", answer: "No. It uses the price you type." },
       { question: "How do multiple trips work?", answer: "One-trip fuel and cost are multiplied by the number of trips." },
       { question: "What if I drive zero miles?", answer: "Fuel used and cost are 0. A miles-per-gallon value of 0 is rejected because the trip cannot be divided by zero." },
-      local,
+      {
+        question: "Are these numbers sent to a server?",
+        answer: "No. Distance, economy, and the price you type are multiplied in this tab. They are not uploaded.",
+      },
     ],
   },
   "business-days-calculator": {
@@ -571,7 +602,10 @@ export const financeToolContent: Record<string, ToolContent> = {
       { question: "What if the end date is a weekend?", answer: "A Saturday or Sunday end date adds a weekend day when the end date is included. It does not add a business day." },
       { question: "Can I exclude specific dates?", answer: "Yes. Put one date per line. A weekday inside the range is removed from the business-day count and listed." },
       { question: "Does this include holidays?", answer: "Only if you leave them in. The page does not know which dates are holidays." },
-      local,
+      {
+        question: "Are these numbers sent to a server?",
+        answer: "No. The dates you enter are counted in this tab. They are not posted to a server.",
+      },
     ],
   },
   "gpa-calculator": {
@@ -590,7 +624,10 @@ export const financeToolContent: Record<string, ToolContent> = {
       { question: "Can I enter numeric grade points?", answer: "Yes. Mark that course as numeric and enter a value from 0 to 4.0." },
       { question: "What if a course has zero credits?", answer: "It does not change the totals. If the only credits are zero, the page does not divide." },
       { question: "Does every school use this map?", answer: "No. Use your school's points if they differ, and enter them as numeric grade points." },
-      local,
+      {
+        question: "Are these numbers sent to a server?",
+        answer: "No. Grades and credits are averaged in this tab. They are not uploaded.",
+      },
     ],
   },
   "square-footage-calculator": {
@@ -607,7 +644,10 @@ export const financeToolContent: Record<string, ToolContent> = {
       { question: "Can rooms use different units?", answer: "Yes. Each room has its own feet or meters choice, and the totals are converted into both units." },
       { question: "What if an extra room is blank?", answer: "A row with no length and no width is skipped." },
       { question: "Are negative sizes allowed?", answer: "No. A negative length or width is rejected." },
-      local,
+      {
+        question: "Are these numbers sent to a server?",
+        answer: "No. Length and width are multiplied in this tab. Those measurements are not sent to a server.",
+      },
     ],
   },
   "number-to-words": {
@@ -624,7 +664,10 @@ export const financeToolContent: Record<string, ToolContent> = {
       { question: "What happens to leading zeros?", answer: "They are ignored. 007 is seven." },
       { question: "Can decimals be converted?", answer: "No. Enter a whole number." },
       { question: "Can words be turned back into a number?", answer: "Yes, for simple English words in this range, such as one hundred twenty-three or minus twenty." },
-      local,
+      {
+        question: "Are these numbers sent to a server?",
+        answer: "No. The number or the words stay in this tab while they are converted. They are not uploaded.",
+      },
     ],
   },
   "time-zone-converter": {
@@ -641,7 +684,10 @@ export const financeToolContent: Record<string, ToolContent> = {
       { question: "What happens during a spring-forward gap?", answer: "A local time that does not exist is rejected instead of being shown as a normal conversion." },
       { question: "What happens when clocks fall back?", answer: "The local time happens twice. The page uses the earlier instant and says so." },
       { question: "Can the date change?", answer: "Yes. A conversion across the date line can show the previous or next calendar day." },
-      local,
+      {
+        question: "Are these numbers sent to a server?",
+        answer: "No. The clock time and the two zones are converted in this tab. They are not sent to a server.",
+      },
     ],
   },
   "url-parser": {
@@ -674,7 +720,10 @@ export const financeToolContent: Record<string, ToolContent> = {
       { question: "What separates words?", answer: "A slash separates words. A space separates letters inside a word." },
       { question: "What if I type punctuation?", answer: "The page names the unsupported character and does not guess a code for it." },
       { question: "Is the text sent anywhere?", answer: "No. The conversion runs in your browser." },
-      local,
+      {
+        question: "Are these numbers sent to a server?",
+        answer: "No. Letters and Morse patterns are converted in this tab. They are not posted to a server.",
+      },
     ],
   },
   "roman-numeral-converter": {
@@ -691,7 +740,10 @@ export const financeToolContent: Record<string, ToolContent> = {
       { question: "Why is IIII rejected?", answer: "IIII is not the standard form of 4. The standard form is IV." },
       { question: "Can numerals above 3999 be converted?", answer: "No. Extended notation for larger numbers is not supported." },
       { question: "Can a numeral be turned back into a number?", answer: "Yes, when it is a standard numeral from 1 through 3999." },
-      local,
+      {
+        question: "Are these numbers sent to a server?",
+        answer: "No. The number or the numeral is converted in this tab. It is not uploaded.",
+      },
     ],
   },
   "aspect-ratio-calculator": {
@@ -708,7 +760,10 @@ export const financeToolContent: Record<string, ToolContent> = {
       { question: "Does this resize an image?", answer: "No. It only calculates the ratio or the missing side." },
       { question: "Can the sides be decimals?", answer: "Yes. They must be greater than 0. The ratio is reduced after the decimals are scaled to whole numbers." },
       { question: "What if a side is zero?", answer: "Zero and negative sizes are rejected." },
-      local,
+      {
+        question: "Are these numbers sent to a server?",
+        answer: "No. Width, height, and the ratio are calculated in this tab. They are not sent to a server.",
+      },
     ],
   },
   "jwt-decoder": {
@@ -741,7 +796,10 @@ export const financeToolContent: Record<string, ToolContent> = {
       { question: "What happens to a blank path?", answer: "A blank line is skipped, so it does not create an empty Allow or Disallow rule." },
       { question: "Does this test my live site?", answer: "No. It only generates the text. It does not publish the file or request your site." },
       { question: "What sitemap URL is accepted?", answer: "An absolute http or https URL. A path without a protocol is rejected." },
-      local,
+      {
+        question: "Are these numbers sent to a server?",
+        answer: "No. The user-agent lines and paths are assembled in this tab. They are not uploaded, and the page does not request your site.",
+      },
     ],
   },
 };

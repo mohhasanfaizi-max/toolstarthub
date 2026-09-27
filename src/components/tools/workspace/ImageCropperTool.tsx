@@ -220,7 +220,7 @@ export function ImageCropperTool() {
       </div>
 
       <ToolPrivacyNote>
-        Your image is processed in your browser and is not uploaded to our server.
+        The crop is drawn in this tab from the JPG, PNG, or WebP you picked. The photo is not sent to Tools Star Hub.
       </ToolPrivacyNote>
     </ToolPanel>
   );

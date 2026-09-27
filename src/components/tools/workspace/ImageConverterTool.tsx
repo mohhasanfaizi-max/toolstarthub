@@ -216,7 +216,7 @@ export function ImageConverterTool() {
       </div>
 
       <ToolPrivacyNote>
-        Your image is processed in your browser and is not uploaded to our server.
+        JPG and PNG conversion stays on this page. The file is not posted to a server.
         Converting to JPG is lossy and cannot keep transparency.
       </ToolPrivacyNote>
     </ToolPanel>

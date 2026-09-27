@@ -158,7 +158,7 @@ export function ImageColorAnalyzerTool() {
       </p>
 
       <ToolPrivacyNote>
-        Your image is analyzed in your browser and is not uploaded to our server.
+        The JPG, PNG, or WebP is sampled in this tab. The photo is not sent to Tools Star Hub.
       </ToolPrivacyNote>
     </ToolPanel>
   );

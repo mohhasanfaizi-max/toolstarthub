@@ -136,7 +136,7 @@ export function DuplicateLineRemoverTool() {
       </div>
 
       <ToolPrivacyNote>
-        Your text is processed in your browser and is not uploaded to our server.
+        Repeated lines are dropped in this tab. The list is not uploaded.
       </ToolPrivacyNote>
     </ToolPanel>
   );

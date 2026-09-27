@@ -193,7 +193,7 @@ export function TextToPdfTool() {
       </p>
 
       <ToolPrivacyNote>
-        Your text is processed in your browser and is not uploaded to our server.
+        The PDF is built in this tab from the text you paste. That text is not uploaded.
       </ToolPrivacyNote>
     </ToolPanel>
   );

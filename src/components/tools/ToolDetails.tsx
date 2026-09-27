@@ -156,14 +156,24 @@ export function ToolDetails({ slug, toolName }: ToolDetailsProps) {
             {content.limitations}
           </p>
         ) : null}
-        <p className="mt-3 max-w-3xl text-sm leading-7 text-muted-foreground">
-          Check the result before you rely on it. Large files can be slower or
-          fail if the device is low on memory. See the{" "}
-          <Link href="/disclaimer" className="font-medium text-accent hover:underline">
-            disclaimer
-          </Link>{" "}
-          for what these tools do not cover.
-        </p>
+        {content?.limitations ? (
+          <p className="mt-3 max-w-3xl text-sm leading-7 text-muted-foreground">
+            See the{" "}
+            <Link href="/disclaimer" className="font-medium text-accent hover:underline">
+              disclaimer
+            </Link>{" "}
+            for what these tools do not cover.
+          </p>
+        ) : (
+          <p className="mt-3 max-w-3xl text-sm leading-7 text-muted-foreground">
+            Check the result before you rely on it. Large files can be slower or
+            fail if the device is low on memory. See the{" "}
+            <Link href="/disclaimer" className="font-medium text-accent hover:underline">
+              disclaimer
+            </Link>{" "}
+            for what these tools do not cover.
+          </p>
+        )}
       </section>
 
       <FaqList items={faqs} />

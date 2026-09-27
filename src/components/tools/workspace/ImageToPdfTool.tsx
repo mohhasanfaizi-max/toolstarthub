@@ -283,7 +283,7 @@ export function ImageToPdfTool() {
       </div>
 
       <ToolPrivacyNote>
-        Your images are processed in your browser and are not uploaded to our server.
+        The JPG and PNG files are assembled into a PDF in this tab. They are not sent to Tools Star Hub.
       </ToolPrivacyNote>
     </ToolPanel>
   );

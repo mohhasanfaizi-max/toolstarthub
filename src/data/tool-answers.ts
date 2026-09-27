@@ -83,8 +83,12 @@ export const toolQuickAnswers: Record<string, string> = {
     "A PDF compressor rewrites or rasterizes a PDF in your browser to try to reduce file size. Smaller output is not guaranteed.",
   "pdf-to-text":
     "PDF to Text copies selectable text from PDF pages in your browser. Image-only scans usually produce little or no text because OCR is not included.",
+  "image-to-text":
+    "Image to Text reads English words from one photo in your browser. The first run downloads the recognition engine and the English language file. A readable sign can still come back with wrong letters, so check the text before you use it.",
   "pdf-metadata":
     "PDF metadata is extra document information such as title and author. This tool can show common Info fields and clear them in a downloaded copy.",
+  "word-to-pdf":
+    "A Word to PDF tool reads the words from a .docx file and places them in a plain PDF. Images, tables as grids, headers, footers, and text styling are left out. It is not a copy of the Word layout.",
   "text-to-pdf":
     "Text to PDF places wrapped plain text onto A4 or Letter pages in your browser and downloads a PDF.",
   "markdown-to-html":
@@ -109,6 +113,8 @@ export const toolQuickAnswers: Record<string, string> = {
     "This page reviews writing patterns such as sentence length and repeated phrases. Analyze with AI is also a writing-pattern analysis. It does not decide whether a person or a model wrote the text.",
   "ai-article-compressor":
     "An article compressor shortens a draft by cutting filler and repeated sentences. Compress with AI asks Gemini to keep the main meaning. Check the result before you publish it.",
+  "ai-text-humanizer":
+    "An AI text humanizer rewrites stock phrases with a fixed list in the browser. Humanize with AI sends the draft to Google's Gemini API through ToolStarHub. The tool does not try to bypass an AI detector, and it does not claim the result will look like a particular kind of author.",
   "tip-calculator":
     "A tip calculator turns a bill, a tip rate, and a headcount into the tip, the total, and each person's share.",
   "sales-tax-calculator":
@@ -175,6 +181,24 @@ export const toolQuickAnswers: Record<string, string> = {
     "A JWT decoder reads the header and payload of a compact JSON Web Token in your browser. Decoding does not verify the signature or prove the token is authentic.",
   "robots-txt-generator":
     "A robots.txt generator writes User-agent, Allow, and Disallow lines from the rules you type. It can add a sitemap URL. It does not publish or test a live site.",
+  "time-calculator":
+    "A time calculator adds or subtracts hours and minutes and shows the result as hours, leftover minutes, and total minutes.",
+  "average-calculator":
+    "An average calculator finds the mean, median, and mode of numbers you paste. An even count uses the average of the two middle numbers as the median.",
+  "text-repeater":
+    "A text repeater copies a word, phrase, or line from 1 to 200 times, with nothing, a space, or a new line between the copies.",
+  "password-strength-checker":
+    "A password strength checker estimates bits from the length and the character types actually present. It does not upload the password or compare it with a breach list.",
+  "gitignore-generator":
+    "A gitignore generator writes comment headings and patterns for the templates you choose, then adds custom patterns that are not already included.",
+  "cron-expression-generator":
+    "A cron expression generator builds or explains five fields: minute, hour, day of month, month, and day of week. Sunday is 0.",
+  "favicon-generator":
+    "A favicon generator draws PNG icons at 16, 32, and 180 pixels from a color and up to two letters, and packages the 16 and 32 pixel PNGs into an ICO file.",
+  "meta-tag-generator":
+    "A meta tag generator writes HTML title, description, robots, canonical, Open Graph, and Twitter tags. It does not fetch a page.",
+  "open-graph-preview":
+    "An Open Graph preview sends a page URL to this site, reads the public title and share tags, and does not save the page. Private and non-http addresses are rejected.",
 };
 
 export function getToolQuickAnswer(

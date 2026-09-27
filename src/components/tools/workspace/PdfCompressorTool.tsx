@@ -252,7 +252,7 @@ export function PdfCompressorTool() {
       </p>
 
       <ToolPrivacyNote>
-        Your PDF is processed in your browser and is not uploaded to our server.
+        The PDF is rewritten in this tab with the preset you pick. The file is not posted to a server.
       </ToolPrivacyNote>
     </ToolPanel>
   );
