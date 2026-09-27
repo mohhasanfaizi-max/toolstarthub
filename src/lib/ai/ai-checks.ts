@@ -1,6 +1,7 @@
 import { publicAiError } from "./errors.ts";
 import { handleAiGenerate } from "./handle-generate.ts";
-import { maxInputLength } from "./limits.ts";
+import { maxInputLength, OUTPUT_TOKENS } from "./limits.ts";
+import { buildModelPrompt } from "./prompts.ts";
 import { resetRateLimits } from "./rate-limit.ts";
 
 type Assert = (condition: unknown, message: string) => void;
@@ -77,6 +78,40 @@ export async function runAiChecks(assert: Assert): Promise<void> {
   const second = await handleAiGenerate(sample, "limit", 6_100, async () => "two");
   const third = await handleAiGenerate(sample, "limit", 6_200, async () => "three");
   assert(first.status === 200 && second.status === 200 && third.status === 429, "Rate limit returns HTTP 429");
+
+  const humanizerInstruction =
+    "Rewrite the submitted text in plain, direct sentences. Keep the same facts, names, and numbers. Replace stock phrasing with simpler wording. Do not add new claims. Do not shorten it into a summary. Return only the rewritten text. Do not say the result was written by a person. Do not say it will pass, fool, or evade an AI detector. Do not give a score.";
+  const humanizerPrompt = buildModelPrompt({ tool: "ai-text-humanizer", input: "Hello there.", options: {} });
+  assert(humanizerPrompt.startsWith(humanizerInstruction), "Humanizer instruction is exact");
+  assert(humanizerPrompt.includes("Do not say it will pass, fool, or evade an AI detector."), "Humanizer prompt forbids an evasion claim");
+  assert(!humanizerPrompt.includes("Details:"), "Humanizer prompt has no options block");
+  assert(maxInputLength("ai-text-humanizer") === 4000, "Humanizer input limit is 4000 characters");
+  assert(OUTPUT_TOKENS["ai-text-humanizer"] === 1200, "Humanizer output budget is 1200 tokens");
+
+  const humanizerTooLong = await handleAiGenerate(
+    { tool: "ai-text-humanizer", input: "a".repeat(maxInputLength("ai-text-humanizer") + 1) },
+    "humanizer-length",
+    6_500,
+    async () => "should not run",
+  );
+  assert(humanizerTooLong.status === 400, "Humanizer input over 4000 characters is rejected");
+
+  process.env.AI_RATE_LIMIT_MAX = "1";
+  resetRateLimits();
+  const humanizerCall = await handleAiGenerate(
+    { tool: "ai-text-humanizer", input: "A short line for the shared bucket." },
+    "shared-bucket",
+    7_000,
+    async () => "rewritten",
+  );
+  const sharedOther = await handleAiGenerate(sample, "shared-bucket", 7_100, async () => "other");
+  const otherVisitor = await handleAiGenerate(
+    { tool: "ai-text-humanizer", input: "A short line for another visitor." },
+    "other-visitor",
+    7_200,
+    async () => "rewritten",
+  );
+  assert(humanizerCall.status === 200 && sharedOther.status === 429 && otherVisitor.status === 200, "Humanizer shares the AI rate-limit bucket");
 
   assert(publicAiError({ status: 404 }).includes("unavailable"), "Unknown model maps to a public error");
   assert(publicAiError({ status: 429 }).includes("busy"), "Provider rate limit maps to a public error");

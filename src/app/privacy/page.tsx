@@ -44,7 +44,10 @@ export default function PrivacyPage() {
           button on an AI tool, the text you submit is sent to Google&apos;s
           Gemini API through ToolStarHub so it can generate or analyze the
           result. That text is not saved on this site. On the free tier, Google
-          may use it to improve its products. We do not put passwords,
+          may use it to improve its products. The Open Graph preview
+          sends the page URL you enter to this site. The site requests that
+          public page, reads the title and share tags, and does not save the
+          page. We do not put passwords,
           uploaded files, PDF contents, private text, or QR payloads into page
           URLs or local storage.
         </p>

@@ -4,6 +4,7 @@ export const AI_TOOLS = [
   "prompt-to-video",
   "ai-article-detector",
   "ai-article-compressor",
+  "ai-text-humanizer",
 ] as const;
 
 export type AiToolId = (typeof AI_TOOLS)[number];
@@ -14,6 +15,7 @@ const MAX_INPUT: Record<AiToolId, number> = {
   "prompt-to-video": 3000,
   "ai-article-detector": 12000,
   "ai-article-compressor": 12000,
+  "ai-text-humanizer": 4000,
 };
 
 const MAX_OPTION = 1000;
@@ -25,6 +27,7 @@ export const OUTPUT_TOKENS: Record<AiToolId, number> = {
   "prompt-to-video": 900,
   "ai-article-detector": 800,
   "ai-article-compressor": 1200,
+  "ai-text-humanizer": 1200,
 };
 
 export type AiRequest = {
