@@ -1,4 +1,6 @@
 import { runAiChecks } from "../ai/ai-checks.ts";
+import { runOgChecks } from "../og/og-checks.ts";
+import { runPublicationChecks } from "../content/publication-checks.ts";
 import { roundTo } from "./numbers.ts";
 import { calculateCompoundInterest } from "./compound-interest.ts";
 import { calculateLoan, monthlyInstallment } from "./loan.ts";
@@ -23,6 +25,14 @@ import { integerToRoman, romanToInteger } from "./roman.ts";
 import { calculateAspectRatio } from "./aspect-ratio.ts";
 import { decodeJwt } from "./jwt-decode.ts";
 import { generateRobotsTxt } from "./robots-txt.ts";
+import { calculateTime } from "./time-calculator.ts";
+import { calculateAverage } from "./average.ts";
+import { repeatText } from "./text-repeater.ts";
+import { checkPasswordStrength } from "./password-strength.ts";
+import { generateGitignore } from "./gitignore.ts";
+import { buildCron, explainCron } from "./cron.ts";
+import { buildPngIco, faviconPlan } from "./favicon.ts";
+import { generateMetaTags } from "./meta-tags.ts";
 import { addLineNumbers } from "./line-numbers.ts";
 import { calculateDateDifference } from "./date-diff.ts";
 import { calculateSalesTax } from "./sales-tax.ts";
@@ -34,6 +44,7 @@ import { jsonToCsv } from "./json-to-csv.ts";
 import { removeLineBreaks } from "./line-breaks.ts";
 import { testRegularExpression } from "./regex-test.ts";
 import { compressArticle } from "./article-compress.ts";
+import { HUMANIZE_MAX_CHARS, humanizeText } from "./humanize.ts";
 import { buildAiPrompt } from "./ai-prompt.ts";
 import { buildImagePrompt } from "./image-prompt.ts";
 import { buildVideoPrompt, EMPTY_VIDEO_PROMPT } from "./video-prompt.ts";
@@ -101,6 +112,17 @@ import { compressPdfBytes } from "./pdf-compress.ts";
 import { itemsToPlainText, joinExtractedPages, parsePdfTextPages } from "./pdf-text.ts";
 import { hasDocumentMetadata, readPdfMetadata, stripPdfMetadata } from "./pdf-meta.ts";
 import { buildTextPdf, toPdfSafeText } from "./text-to-pdf.ts";
+import { readDocxText, validateDocxFile } from "./word-to-pdf.ts";
+import { readFileSync, statSync } from "node:fs";
+import {
+  OCR_FIRST_RUN_BYTES,
+  OCR_MAX_EDGE,
+  OCR_PANEL_LEAD,
+  ocrFirstRunMegabytes,
+  ocrStatusLabel,
+  ocrTargetSize,
+} from "./ocr.ts";
+import { emptyDocxBytes, imageOnlyDocxBytes, mixedDocxBytes, renamedDocBytes } from "./word-docx-sample.ts";
 import { markdownToHtml, sanitizeHref } from "./markdown.ts";
 import { htmlToMarkdown } from "./html-markdown.ts";
 import { diffText } from "./text-diff.ts";
@@ -137,7 +159,7 @@ import { serializeJsonLd } from "../serialize-json-ld.ts";
 import { searchTools, tools, getRelatedTools, getToolBySlug, getNewTools } from "../../data/tools.ts";
 import { filterToolsByDiscovery } from "../../data/discovery.ts";
 import { categories } from "../../data/categories.ts";
-import { guides } from "../../data/guides.ts";
+import { getPublicGuides } from "../../data/guides.ts";
 import { getToolContent } from "../../data/tool-content.ts";
 import { toolQuickAnswers } from "../../data/tool-answers.ts";
 import { PRODUCTION_SITE_URL, siteConfig, siteContact } from "../site.ts";
@@ -781,6 +803,84 @@ assert(!(await buildTextPdf("   ", {
   pageNumbers: false,
 })).ok, "Empty text to PDF fails");
 
+assert(!validateDocxFile(null).ok, "Missing docx is rejected");
+assert(validateDocxFile({ name: "notes.doc", size: 64 }).ok === false, "A .doc extension is rejected before reading");
+const ole = renamedDocBytes();
+assert(validateDocxFile({ name: "notes.docx", size: ole.length }).ok, "A renamed .doc passes the extension check");
+let renamedThrew = false;
+let renamedRead: { ok: true; text: string } | { ok: false; error: string } | undefined;
+try {
+  renamedRead = await readDocxText(ole);
+} catch {
+  renamedThrew = true;
+}
+assert(!renamedThrew && renamedRead?.ok === false && renamedRead.error === "That file could not be read as a Word document.", "A .doc file renamed to .docx is a public read error");
+const brokenZip = new Uint8Array([0x50, 0x4b, 0x03, 0x04, 0, 0, 0, 0]);
+let brokenThrew = false;
+let brokenRead: { ok: true; text: string } | { ok: false; error: string } | undefined;
+try {
+  brokenRead = await readDocxText(brokenZip);
+} catch {
+  brokenThrew = true;
+}
+assert(!brokenThrew && brokenRead?.ok === false && brokenRead.error === "That file could not be read as a Word document.", "A broken zip is the same public read error");
+const emptyDocx = await readDocxText(emptyDocxBytes());
+assert(!emptyDocx.ok && emptyDocx.ok === false && emptyDocx.error === "That document has no text to convert.", "An empty docx has no text");
+const imageOnly = await readDocxText(imageOnlyDocxBytes());
+assert(!imageOnly.ok, "An image-only docx has no text");
+const mixed = await readDocxText(mixedDocxBytes());
+assert(mixed.ok, "A mixed docx can be read");
+if (mixed.ok) {
+  assert(mixed.text.includes("Quarter notes"), "Heading words are kept");
+  assert(mixed.text.includes("due Friday"), "Bold words are kept as text");
+  assert(mixed.text.includes("Item") && mixed.text.includes("Count") && mixed.text.includes("Pens") && mixed.text.includes("4"), "Table cell words are kept");
+  assert(mixed.text.includes("Sign the form") && mixed.text.includes("Bring a pen"), "List item words are kept");
+  assert(!mixed.text.includes("1. Sign") && !mixed.text.includes("2. Bring"), "Automatic list numbers are not kept");
+  assert(!mixed.text.includes("pixel.png") && !mixed.text.includes("iVBORw0KGgo"), "The image is not copied into the text");
+  const mixedPdf = await buildTextPdf(mixed.text, {
+    pageSize: "a4",
+    margin: "medium",
+    fontSize: 12,
+    lineSpacing: "1.5",
+    title: "",
+    pageNumbers: true,
+  });
+  assert(mixedPdf.ok, "Mixed docx text becomes a PDF");
+  if (mixedPdf.ok) {
+    assert(mixedPdf.pageCount >= 1, "Mixed docx PDF has a page");
+    const pngSignature = [137, 80, 78, 71, 13, 10, 26, 10];
+    const embedsPng = mixedPdf.bytes.some((_, index) => pngSignature.every((byte, offset) => mixedPdf.bytes[index + offset] === byte));
+    assert(!embedsPng, "PDF does not embed the PNG");
+  }
+}
+
+const smallPhoto = ocrTargetSize(800, 600);
+assert(smallPhoto.width === 800 && smallPhoto.height === 600 && smallPhoto.scaled === false, "A small photo is not enlarged");
+const widePhoto = ocrTargetSize(3200, 2000);
+assert(widePhoto.width === 1600 && widePhoto.height === 1000 && widePhoto.scaled, "A wide photo is reduced to the long-side cap");
+const tallPhoto = ocrTargetSize(2000, 3200);
+assert(tallPhoto.width === 1000 && tallPhoto.height === 1600 && tallPhoto.scaled, "A tall photo is reduced to the long-side cap");
+const exactEdge = ocrTargetSize(OCR_MAX_EDGE, 900);
+assert(exactEdge.scaled === false && exactEdge.width === OCR_MAX_EDGE, "A photo already at the cap is not scaled");
+assert(ocrTargetSize(0, 400).width === 0, "A zero-width image is not scaled");
+assert(ocrStatusLabel("loading tesseract core") === "Downloading the recognition engine…", "Core status stays public");
+assert(ocrStatusLabel("loading language traineddata") === "Downloading the English language file…", "Language status stays public");
+assert(ocrStatusLabel("recognizing text") === "Reading the image…", "Recognize status stays public");
+assert(!ocrStatusLabel("initializing tesseract").toLowerCase().includes("tesseract"), "Other statuses do not name the engine");
+const hostedFirstRun =
+  statSync("public/tesseract/worker.min.js").size +
+  statSync("public/tesseract/core/tesseract-core-relaxedsimd-lstm.wasm.js").size +
+  statSync("public/tesseract/lang/eng.traineddata.gz").size;
+assert(hostedFirstRun === OCR_FIRST_RUN_BYTES, "OCR first-run size matches the hosted engine and English file");
+assert(ocrFirstRunMegabytes() === "6.6", "OCR first-run label is the measured size");
+assert(OCR_PANEL_LEAD.includes("about 6.6 MB"), "The panel states the measured first-run size");
+assert(OCR_PANEL_LEAD.includes("slower than the canvas image tools"), "The panel says recognition is slower");
+assert(OCR_PANEL_LEAD.includes("depends on the photo"), "The panel says accuracy depends on the photo");
+assert(OCR_PANEL_LEAD.includes("wrong letters"), "The panel says a readable photo can still be wrong");
+assert(OCR_PANEL_LEAD.includes("busy background"), "The panel says a busy background can add lines");
+const traineddata = readFileSync("public/tesseract/lang/eng.traineddata.gz");
+assert(traineddata[0] === 0x1f && traineddata[1] === 0x8b, "English trained data is gzipped");
+
 const md = markdownToHtml("# Title\n\nHello **bold** and *em* and `code`.\n\n- one\n- two\n\n[site](https://toolstarhub.com)\n\n```\n<script>nope</script>\n```\n");
 assert(md.ok && md.html.includes("<h1>") && md.html.includes("<strong>bold</strong>"), "Markdown headings and bold");
 assert(md.ok && md.html.includes("<em>em</em>") && md.html.includes("<code>code</code>"), "Markdown italic and code");
@@ -1017,6 +1117,22 @@ assert(patterns.ok && patterns.report.repeatedPhrases.length > 0, "Repeated phra
 const compressed = compressArticle("In order to finish the form you must sign it. In order to finish the form you must sign it.", "medium");
 assert(compressed.ok && compressed.afterWords < compressed.beforeWords, "Medium compression removes a repeated sentence");
 assert(!compressArticle("Too short.", "light").ok, "Compressor rejects a tiny draft");
+const humanized = humanizeText("In today's digital world, let's dive into the setup. It is important to note that you can unlock the power of a short checklist.");
+assert(humanized.ok && humanized.text === "here is the setup. you can use a short checklist.", "Humanizer swaps the locked sample");
+assert(humanizeText("Too short.").ok === false && humanizeText("").ok === false, "Humanizer rejects a tiny or empty draft");
+assert(!humanizeText("a".repeat(HUMANIZE_MAX_CHARS + 1)).ok, "Humanizer rejects more than 4000 characters");
+const repeatedDraft = humanizeText("The form is short. The form is short. Please sign it before noon today and bring a pen.");
+assert(repeatedDraft.ok && repeatedDraft.text === "The form is short. The form is short. Please sign it before noon today and bring a pen.", "Humanizer keeps a repeated sentence");
+const keptOrder = humanizeText("In order to finish the form you must sign it before noon and bring a pen.");
+assert(keptOrder.ok && keptOrder.text.includes("In order to"), "Humanizer does not apply the compressor phrase list");
+const notOnly = humanizeText("Please not only the title but also the date when you file the form with the office today.");
+assert(notOnly.ok && notOnly.text === "Please the title and the date when you file the form with the office today.", "Humanizer rewrites not only / but also");
+const utilized = humanizeText("Teams utilize the portal when they file the weekly report before noon.");
+assert(utilized.ok && utilized.text === "Teams use the portal when they file the weekly report before noon.", "Humanizer replaces utilize");
+const utilization = humanizeText("The utilization report is due before noon today so the office can file it.");
+assert(utilization.ok && utilization.text.includes("utilization"), "Humanizer does not change utilization");
+const curly = humanizeText("Let’s dive into the setup steps before the office closes today for the holiday.");
+assert(curly.ok && curly.text.startsWith("Let’s dive into"), "A curly apostrophe does not match the phrase list");
 
 const tip = calculateTip("100", "15", "2");
 assert(tip.ok && tip.tipAmount === 15 && tip.total === 115 && tip.tipPerPerson === 7.5 && tip.totalPerPerson === 57.5, "Tip splits 15% of 100 across 2 people");
@@ -1876,8 +1992,124 @@ assert(blankPaths.ok && blankPaths.text === "User-agent: *\nAllow: /ok\n", "Blan
 assert(!generateRobotsTxt([{ userAgent: "", allowRaw: "", disallowRaw: "" }], "").ok, "An empty group is rejected");
 assert(!generateRobotsTxt([{ userAgent: "*", allowRaw: "", disallowRaw: "" }], "example.com/sitemap.xml").ok, "A sitemap without a protocol is rejected");
 
-assert(tools.length === 88, "Registry has 88 tools");
-assert(new Set(tools.map((tool) => tool.slug)).size === 88, "Tool slugs are unique");
+const addedTime = calculateTime({ operation: "add", startHoursRaw: "2", startMinutesRaw: "30", changeHoursRaw: "1", changeMinutesRaw: "45" });
+assert(addedTime.ok && addedTime.hours === 4 && addedTime.minutes === 15 && addedTime.totalMinutes === 255 && !addedTime.negative, "2h 30m plus 1h 45m is 4h 15m");
+const leftoverTime = calculateTime({ operation: "subtract", startHoursRaw: "1", startMinutesRaw: "10", changeHoursRaw: "0", changeMinutesRaw: "40" });
+assert(leftoverTime.ok && leftoverTime.hours === 0 && leftoverTime.minutes === 30 && leftoverTime.totalMinutes === 30, "1h 10m minus 40m is 30m");
+const negativeTime = calculateTime({ operation: "subtract", startHoursRaw: "1", startMinutesRaw: "0", changeHoursRaw: "1", changeMinutesRaw: "30" });
+assert(negativeTime.ok && negativeTime.negative && negativeTime.hours === 0 && negativeTime.minutes === 30 && negativeTime.totalMinutes === -30, "Subtracting past zero stays negative");
+const carriedMinutes = calculateTime({ operation: "add", startHoursRaw: "0", startMinutesRaw: "0", changeHoursRaw: "0", changeMinutesRaw: "90" });
+assert(carriedMinutes.ok && carriedMinutes.hours === 1 && carriedMinutes.minutes === 30, "90 minutes carry into 1 hour 30 minutes");
+assert(!calculateTime({ operation: "add", startHoursRaw: "", startMinutesRaw: "0", changeHoursRaw: "0", changeMinutesRaw: "0" }).ok, "A blank time field is rejected");
+assert(!calculateTime({ operation: "add", startHoursRaw: "1.5", startMinutesRaw: "0", changeHoursRaw: "0", changeMinutesRaw: "0" }).ok, "A decimal hour is rejected");
+assert(!calculateTime({ operation: "subtract", startHoursRaw: "-1", startMinutesRaw: "0", changeHoursRaw: "0", changeMinutesRaw: "0" }).ok, "A negative time input is rejected");
+
+const noMode = calculateAverage("1, 2, 3, 4");
+assert(noMode.ok && noMode.count === 4 && noMode.mean === 2.5 && noMode.median === 2.5 && noMode.modes.length === 0, "1 through 4 has mean 2.5 and no mode");
+const oneMode = calculateAverage("1, 2, 2, 3");
+assert(oneMode.ok && oneMode.mean === 2 && oneMode.median === 2 && oneMode.modes.join(",") === "2", "A repeated 2 is the mode");
+const twoModes = calculateAverage("1 1 2 2 3");
+assert(twoModes.ok && twoModes.mean === 1.8 && twoModes.median === 2 && twoModes.modes.join(",") === "1,2", "Tied modes are both reported");
+assert(!calculateAverage("").ok, "An empty average list is rejected");
+assert(!calculateAverage("1, a").ok, "A non-numeric token is rejected");
+
+const spacedRepeat = repeatText("ha", "3", "space");
+assert(spacedRepeat.ok && spacedRepeat.text === "ha ha ha", "A word repeats with spaces");
+const lineRepeat = repeatText("Ready", "2", "newline");
+assert(lineRepeat.ok && lineRepeat.text === "Ready\nReady", "A line repeats on new lines");
+const once = repeatText("ha", "1", "newline");
+assert(once.ok && once.text === "ha", "One copy adds no separator");
+assert(!repeatText("", "3", "space").ok, "Empty repeat text is rejected");
+assert(!repeatText("ha", "0", "space").ok, "A repeat count of 0 is rejected");
+assert(!repeatText("ha", "201", "space").ok, "A repeat count above 200 is rejected");
+
+const lowercasePassword = checkPasswordStrength("password");
+assert(lowercasePassword.ok && lowercasePassword.length === 8 && lowercasePassword.charsetSize === 26 && lowercasePassword.label === "Short" && lowercasePassword.classes.join(",") === "Lowercase" && Math.round(lowercasePassword.bits) === 38, "password is a short lowercase rating");
+const digitPassword = checkPasswordStrength("12345678");
+assert(digitPassword.ok && digitPassword.charsetSize === 10 && digitPassword.label === "Short" && Math.round(digitPassword.bits) === 27, "Eight digits use a pool of 10");
+const mixedPassword = checkPasswordStrength("Abcdefghijklm12!");
+assert(mixedPassword.ok && mixedPassword.length === 16 && mixedPassword.charsetSize === 85 && mixedPassword.label === "Strong" && mixedPassword.classes.join(",") === "Uppercase,Lowercase,Numbers,Symbols" && Math.round(mixedPassword.bits) === 103, "A 16 character mixed password is strong");
+const spacedPassword = checkPasswordStrength("abc def");
+assert(spacedPassword.ok && spacedPassword.charsetSize === 27 && spacedPassword.classes.join(",") === "Lowercase,Other", "A space counts as one other character");
+const backtickPassword = checkPasswordStrength("a`");
+assert(backtickPassword.ok && backtickPassword.charsetSize === 27 && backtickPassword.classes.join(",") === "Lowercase,Other", "A backtick is not the full symbol set");
+assert(!checkPasswordStrength("").ok, "An empty password is rejected");
+assert(!checkPasswordStrength("a".repeat(257)).ok, "A password over 256 characters is rejected");
+
+const nodeIgnore = generateGitignore(["env", "node"], "");
+assert(nodeIgnore.ok && nodeIgnore.text === "# Node\nnode_modules/\nnpm-debug.log*\n\n# Environment files\n.env\n.env.*\n", "Node and environment templates keep a fixed order");
+const customIgnore = generateGitignore(["node"], "secrets/\nnode_modules/\n");
+assert(customIgnore.ok && customIgnore.text === "# Node\nnode_modules/\nnpm-debug.log*\n\n# Custom\nsecrets/\n", "A repeated template line is not written again");
+assert(!generateGitignore([], " \n").ok, "An empty gitignore is rejected");
+assert(!generateGitignore(["nope"], "").ok, "An unknown gitignore template is rejected");
+
+const everyFifteen = explainCron("*/15 * * * *");
+assert(everyFifteen.ok && everyFifteen.summary === "Every 15 minutes.", "A star step of 15 minutes is explained");
+const weekdayCron = explainCron("0 9 * * 1-5");
+assert(weekdayCron.ok && weekdayCron.expression === "0 9 * * 1-5" && weekdayCron.summary === "At 09:00 on Monday through Friday.", "Weekdays at 09:00 are explained");
+const mondayCron = buildCron("0", "9", "*", "*", "1");
+assert(mondayCron.ok && mondayCron.summary === "At 09:00 on Monday.", "Monday at 09:00 is explained");
+const monthlyCron = explainCron("0 0 1 * *");
+assert(monthlyCron.ok && monthlyCron.summary === "At 00:00 on day 1 of every month.", "A monthly day is explained");
+const eitherDay = explainCron("0 9 1 * 1");
+assert(eitherDay.ok && eitherDay.summary.includes("either day, not both"), "A restricted day of month and weekday is called out");
+assert(!explainCron("* * * *").ok, "Four cron fields are rejected");
+assert(!explainCron("* * * * * *").ok, "Six cron fields are rejected");
+assert(!explainCron("60 * * * *").ok, "Minute 60 is rejected");
+assert(!explainCron("0 0 * * MON").ok, "A weekday name is rejected");
+
+const iconPlan = faviconPlan("#2563EB", "#FFFFFF", " T ");
+assert(iconPlan.ok && iconPlan.background === "#2563eb" && iconPlan.textColor === "#ffffff" && iconPlan.letters === "T", "Favicon colors are normalized and letters are trimmed");
+assert(!faviconPlan("#fff", "#ffffff", "T").ok, "A 3-digit hex color is rejected");
+assert(!faviconPlan("#2563eb", "#ffffff", "ABC").ok, "More than two letters are rejected");
+const pngBytes = Uint8Array.from([0x89, 0x50, 0x4e, 0x47, 0x0d, 0x0a, 0x1a, 0x0a, 1, 2, 3]);
+const ico = buildPngIco([{ size: 16, png: pngBytes }, { size: 32, png: pngBytes }]);
+assert(ico.ok && ico.bytes[6] === 16 && ico.bytes[22] === 32, "The ICO directory lists 16 and 32 pixel images");
+const icoView = new DataView(ico.ok ? ico.bytes.buffer : new ArrayBuffer(0), ico.ok ? ico.bytes.byteOffset : 0, ico.ok ? ico.bytes.byteLength : 0);
+assert(ico.ok && icoView.getUint16(2, true) === 1 && icoView.getUint32(18, true) === 38, "The first PNG starts after the ICO header");
+assert(!buildPngIco([{ size: 180, png: pngBytes }]).ok, "A 180 pixel image is not packed into the ICO");
+assert(!buildPngIco([{ size: 16, png: Uint8Array.from([1, 2, 3]) }]).ok, "A non-PNG payload is rejected");
+
+const basicMeta = generateMetaTags({
+  title: "Sample page",
+  description: "A short description of the page.",
+  canonical: "",
+  index: true,
+  follow: true,
+  ogTitle: "",
+  ogDescription: "",
+  ogImage: "",
+  ogUrl: "",
+  ogType: "",
+  twitterCard: "",
+  twitterTitle: "",
+  twitterDescription: "",
+  twitterImage: "",
+});
+assert(basicMeta.ok && basicMeta.html === "<meta charset=\"utf-8\">\n<title>Sample page</title>\n<meta name=\"description\" content=\"A short description of the page.\">\n<meta name=\"robots\" content=\"index, follow\">\n", "A title and description become head tags");
+const escapedMeta = generateMetaTags({
+  title: "A & B",
+  description: "Say \"hi\"",
+  canonical: "",
+  index: false,
+  follow: false,
+  ogTitle: "",
+  ogDescription: "",
+  ogImage: "",
+  ogUrl: "",
+  ogType: "article",
+  twitterCard: "summary",
+  twitterTitle: "Hello",
+  twitterDescription: "",
+  twitterImage: "",
+});
+assert(escapedMeta.ok && escapedMeta.html.includes("<title>A &amp; B</title>") && escapedMeta.html.includes("content=\"Say &quot;hi&quot;\"") && escapedMeta.html.includes("noindex, nofollow") && escapedMeta.html.includes("og:type\" content=\"article\"") && escapedMeta.html.includes("twitter:card\" content=\"summary\""), "Meta text is escaped and optional tags are included");
+assert(!generateMetaTags({ title: "Page", description: "", canonical: "javascript:alert(1)", index: true, follow: true, ogTitle: "", ogDescription: "", ogImage: "", ogUrl: "", ogType: "", twitterCard: "", twitterTitle: "", twitterDescription: "", twitterImage: "" }).ok, "A script canonical URL is rejected");
+assert(!generateMetaTags({ title: "", description: "", canonical: "", index: true, follow: true, ogTitle: "", ogDescription: "", ogImage: "", ogUrl: "", ogType: "", twitterCard: "", twitterTitle: "", twitterDescription: "", twitterImage: "" }).ok, "A blank title is rejected");
+assert(!generateMetaTags({ title: "Page", description: "", canonical: "", index: true, follow: true, ogTitle: "", ogDescription: "", ogImage: "", ogUrl: "", ogType: "", twitterCard: "", twitterTitle: "Hello", twitterDescription: "", twitterImage: "" }).ok, "A Twitter title without a card is rejected");
+
+assert(tools.length === 100, "Registry has 100 tools");
+assert(new Set(tools.map((tool) => tool.slug)).size === 100, "Tool slugs are unique");
 assert(getNewTools().length === 4, "Homepage recently added stays at 4 tools");
 assert(
   tools.every((tool) => tool.status === "available"),
@@ -1934,7 +2166,7 @@ assert(
 );
 assert(searchTools("json").some((tool) => tool.slug === "json-formatter"), "Partial json match");
 assert(searchTools("xyzzy-no-such-tool").length === 0, "Unknown query has no results");
-assert(searchTools("").length === 88, "Empty query returns all tools");
+assert(searchTools("").length === 100, "Empty query returns all tools");
 assert(searchTools("compress pdf")[0]?.slug === "pdf-compressor", "compress pdf ranks compressor");
 assert(searchTools("extract text").some((tool) => tool.slug === "pdf-to-text"), "extract text finds PDF to Text");
 assert(searchTools("remove pdf metadata").some((tool) => tool.slug === "pdf-metadata"), "metadata search");
@@ -2043,7 +2275,7 @@ for (const tool of tools) {
 }
 
 const pdfTools = filterToolsByDiscovery(tools, "pdf");
-assert(pdfTools.length === 9, "PDF discovery filter has 9 tools");
+assert(pdfTools.length === 10, "PDF discovery filter has 10 tools");
 const colorTools = filterToolsByDiscovery(tools, "color");
 assert(colorTools.length >= 5, "Color discovery filter has at least 5 tools");
 const qrTools = filterToolsByDiscovery(tools, "qr");
@@ -2054,6 +2286,7 @@ for (const category of categories) {
   assert(count > 0, `${category.slug} has tools`);
 }
 
+const guides = getPublicGuides();
 assert(guides.every((guide) => guide.relatedToolSlugs.every((slug) => getToolBySlug(slug))), "Guides link to real tools");
 
 for (const guide of guides) {
@@ -2166,5 +2399,7 @@ assert(
 );
 
 await runAiChecks(assert);
+await runOgChecks(assert);
+runPublicationChecks(assert);
 
 console.log("All tool calculation checks passed.");

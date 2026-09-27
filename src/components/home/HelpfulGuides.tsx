@@ -1,10 +1,10 @@
 import { HomeHeading } from "@/components/home/HomeHeading";
 import { GuideCard } from "@/components/guides/GuideCard";
 import { Section } from "@/components/ui/Section";
-import { guides } from "@/data/guides";
+import { getPublicGuides } from "@/data/guides";
 
 export function HelpfulGuides() {
-  const featuredGuides = guides.slice(0, 4);
+  const featuredGuides = getPublicGuides(new Date()).slice(0, 4);
 
   return (
     <Section

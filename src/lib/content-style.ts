@@ -38,8 +38,12 @@ export function markdownFormattingIssues(text: string): string | null {
   return null;
 }
 
+function withoutQuotedSpecimens(text: string): string {
+  return text.replace(/[“"][^“”"]*[”"]/g, " ");
+}
+
 export function bannedPhraseIssues(text: string): string | null {
-  const lower = text.toLowerCase();
+  const lower = withoutQuotedSpecimens(text).toLowerCase();
   const hit = BANNED_PHRASES.find((phrase) => lower.includes(phrase));
   return hit ? `banned phrase: ${hit}` : null;
 }

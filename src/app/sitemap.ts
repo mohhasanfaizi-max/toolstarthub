@@ -1,8 +1,10 @@
 import type { MetadataRoute } from "next";
 import { categories } from "@/data/categories";
-import { guides } from "@/data/guides";
+import { getPublicGuides } from "@/data/guides";
 import { tools } from "@/data/tools";
 import { siteConfig } from "@/lib/site";
+
+export const dynamic = "force-dynamic";
 
 const staticRoutes = [
   "",
@@ -35,7 +37,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     priority: 0.7,
   }));
 
-  const guidePages: MetadataRoute.Sitemap = guides.map((guide) => ({
+  const guidePages: MetadataRoute.Sitemap = getPublicGuides(new Date()).map((guide) => ({
     url: `${siteConfig.url}${guide.route}`,
     changeFrequency: "monthly",
     priority: 0.5,

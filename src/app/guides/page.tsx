@@ -3,8 +3,10 @@ import { PageHeader } from "@/components/ui/PageHeader";
 import { Breadcrumbs } from "@/components/seo/Breadcrumbs";
 import { JsonLd } from "@/components/seo/JsonLd";
 import { GuideCard } from "@/components/guides/GuideCard";
-import { guides } from "@/data/guides";
+import { getPublicGuides } from "@/data/guides";
 import { breadcrumbJsonLd, createPageMetadata } from "@/lib/seo";
+
+export const dynamic = "force-dynamic";
 
 export const metadata = createPageMetadata({
   title: "Guides",
@@ -31,7 +33,7 @@ export default function GuidesPage() {
         description="Short articles that answer a task, then point to the tool that does it."
       />
       <div className="mt-8 grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
-        {guides.map((guide) => (
+        {getPublicGuides(new Date()).map((guide) => (
           <GuideCard key={guide.slug} guide={guide} headingAs="h2" />
         ))}
       </div>
