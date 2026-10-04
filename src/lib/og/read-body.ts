@@ -1,5 +1,5 @@
-import { Readable } from "node:stream";
-import { createBrotliDecompress, createGunzip, createInflate, type Zlib } from "node:zlib";
+import { Readable, type Transform } from "node:stream";
+import { createBrotliDecompress, createGunzip, createInflate } from "node:zlib";
 
 /** Cap for the decompressed response body. Compressed wire size is not this limit. */
 export const OG_MAX_BODY_BYTES = 512 * 1024;
@@ -64,7 +64,7 @@ function encodingName(contentEncoding: string | undefined): "identity" | "gzip" 
   return "unsupported";
 }
 
-function decoderFor(encoding: "gzip" | "deflate" | "br"): Zlib {
+function decoderFor(encoding: "gzip" | "deflate" | "br"): Transform {
   if (encoding === "gzip") return createGunzip();
   if (encoding === "deflate") return createInflate();
   return createBrotliDecompress();

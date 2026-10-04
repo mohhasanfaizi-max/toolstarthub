@@ -68,7 +68,7 @@ export function FaviconGeneratorTool() {
       }
       setError("");
       clear(drawn);
-      setIco(new Blob([icon.bytes], { type: "image/x-icon" }));
+      setIco(new Blob([new Uint8Array(icon.bytes)], { type: "image/x-icon" }));
     } catch {
       setError("The icon could not be drawn in this browser.");
       clear();

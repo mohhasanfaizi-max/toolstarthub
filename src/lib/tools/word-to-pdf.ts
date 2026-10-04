@@ -1,10 +1,3 @@
-declare module "mammoth" {
-  export function extractRawText(input: {
-    buffer?: Uint8Array;
-    arrayBuffer?: ArrayBuffer;
-  }): Promise<{ value: string; messages: unknown[] }>;
-}
-
 import mammoth from "mammoth";
 
 export const MAX_DOCX_BYTES = 20 * 1024 * 1024;
@@ -33,9 +26,11 @@ export async function readDocxText(
   bytes: Uint8Array,
 ): Promise<{ ok: true; text: string } | { ok: false; error: string }> {
   try {
-    const arrayBuffer = bytes.buffer.slice(bytes.byteOffset, bytes.byteOffset + bytes.byteLength);
+    // Copy the view's bytes into a standalone ArrayBuffer (same bytes as before).
+    const arrayBuffer: ArrayBuffer = bytes.slice().buffer;
     // Node's mammoth reads `buffer`. The browser build reads `arrayBuffer`.
-    const result = await mammoth.extractRawText({ buffer: bytes, arrayBuffer });
+    const input = { buffer: bytes, arrayBuffer };
+    const result = await mammoth.extractRawText(input);
     const text = typeof result.value === "string" ? result.value : "";
     if (text.trim() === "") {
       return { ok: false, error: "That document has no text to convert." };

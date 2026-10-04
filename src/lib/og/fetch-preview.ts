@@ -2,7 +2,7 @@ import { lookup } from "node:dns/promises";
 import type { LookupOptions } from "node:dns";
 import http from "node:http";
 import https from "node:https";
-import { isIP } from "node:net";
+import { isIP, type TcpNetConnectOpts } from "node:net";
 import { Readable } from "node:stream";
 import { isBlockedAddress } from "./blocked-address.ts";
 import { extractPreview, type OpenGraphPreview } from "./extract-preview.ts";
@@ -92,25 +92,26 @@ export function requestPinnedPage(
     };
 
     try {
-      request = transport.request(
-        {
-          protocol: target.protocol,
-          hostname,
-          port,
-          method: "GET",
-          path: `${target.pathname}${target.search}`,
-          headers: {
-            Host: target.host,
-            Accept: "text/html",
-            "Accept-Encoding": "identity",
-            "User-Agent": "ToolsStarHub-LinkPreview/1.0",
-          },
-          servername: hostname,
-          lookup: pinnedLookup(address, family),
-          autoSelectFamily: false,
-          agent: false,
-          timeout: remaining,
+      const options: https.RequestOptions & Pick<TcpNetConnectOpts, "autoSelectFamily"> = {
+        protocol: target.protocol,
+        hostname,
+        port,
+        method: "GET",
+        path: `${target.pathname}${target.search}`,
+        headers: {
+          Host: target.host,
+          Accept: "text/html",
+          "Accept-Encoding": "identity",
+          "User-Agent": "ToolsStarHub-LinkPreview/1.0",
         },
+        servername: hostname,
+        lookup: pinnedLookup(address, family),
+        autoSelectFamily: false,
+        agent: false,
+        timeout: remaining,
+      };
+      request = transport.request(
+        options,
         (response) => {
           if (settled) {
             response.destroy();
