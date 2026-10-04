@@ -41,7 +41,8 @@ export type IconName =
   | "copy"
   | "star"
   | "phone"
-  | "mail";
+  | "mail"
+  | "globe";
 
 export type ToolStatus = "coming-soon" | "available";
 

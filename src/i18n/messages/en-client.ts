@@ -1,0 +1,132 @@
+import type { PluralForms } from "../config.ts";
+
+const plural = (forms: PluralForms): PluralForms => forms;
+
+/** UI strings used by client components. Kept small: it ships with every page. */
+export const enClient = {
+  nav: {
+    home: "Home",
+    allTools: "All Tools",
+    categories: "Categories",
+    guides: "Guides",
+    popularTools: "Popular Tools",
+    about: "About",
+    howItWorks: "How It Works",
+    contact: "Contact",
+    exploreTools: "Explore Tools",
+    mobileNav: "Mobile",
+    openMenu: "Open menu",
+    closeMenu: "Close menu",
+    openSearch: "Open search",
+    closeSearch: "Close search",
+  },
+  theme: {
+    toLight: "Switch to light theme",
+    toDark: "Switch to dark theme",
+  },
+  language: {
+    label: "Language",
+    current: "Language: {name}",
+    englishOnly: "English only",
+  },
+  search: {
+    placeholder: "Search for a tool...",
+    label: "Search for a tool",
+    clear: "Clear search",
+    suggestions: "Search suggestions",
+    noResults: "No tools found",
+  },
+  consent: {
+    title: "Analytics cookies",
+    body: "We use Google Analytics to count visits, but only if you accept. Tools work the same either way. See the {link}.",
+    privacyLink: "privacy policy",
+    accept: "Accept",
+    decline: "Decline",
+    settings: "Cookie settings",
+  },
+  favorites: {
+    add: "Add {name} to favorites",
+    remove: "Remove {name} from favorites",
+  },
+  card: {
+    popular: "Popular",
+    new: "New",
+    openTool: "Open tool",
+  },
+  categoryNames: {
+    calculators: "Calculators",
+    "text-tools": "Text Tools",
+    "developer-tools": "Developer Tools",
+    "image-tools": "Image Tools",
+    "seo-utilities": "SEO & Utilities",
+    "ai-tools": "AI Tools",
+  },
+  home: {
+    filterAria: "Filter tools",
+    filters: {
+      all: "All",
+      pdf: "PDF",
+      images: "Images",
+      "text-tools": "Text",
+      "developer-tools": "Developer",
+      calculators: "Calculators",
+      "seo-utilities": "Utilities",
+      "ai-tools": "AI",
+    },
+    noToolsInGroup: "No tools in this group.",
+  },
+  catalog: {
+    filterAria: "Filter tools",
+    filters: {
+      all: "All",
+      calculators: "Calculators",
+      "image-tools": "Image",
+      pdf: "PDF",
+      "text-tools": "Text",
+      "developer-tools": "Developer",
+      color: "Color",
+      qr: "QR",
+      "seo-utilities": "SEO",
+      "ai-tools": "AI",
+    },
+    favorites: "Favorites",
+    sort: "Sort",
+    sortName: "Name",
+    sortNewest: "Newest",
+    sortCategory: "Category",
+    recentlyUsed: "Recently used",
+    recentEmpty: "Tools you use will appear here.",
+    viewAll: "View all",
+    searchResults: "Search results",
+    allTools: "All tools",
+    tools: "Tools",
+    noFavorites: "You haven't favorited any tools yet.",
+    noToolsFound: "No tools found",
+    noToolsCategory: "No tools in this category yet.",
+    countFavorites: plural({
+      one: "{count} favorite",
+      other: "{count} favorites",
+    }),
+    countResults: plural({
+      one: "{count} result for “{query}”",
+      other: "{count} results for “{query}”",
+    }),
+    countOf: "{count} of {total} tools",
+  },
+  tool: {
+    loading: "Loading tool…",
+    copy: "Copy",
+    copied: "Copied",
+    copyCss: "Copy CSS",
+    copyLink: "Copy link",
+    linkCopied: "Link copied",
+    download: "Download",
+    dropPrompt: "Drag and drop an image here, or choose a file.",
+    selected: "Selected: {name}",
+    copySuccess: "{what} copied to the clipboard.",
+    copyFailed:
+      "Could not copy automatically. The {what} is selected, so press Ctrl+C (or Cmd+C on a Mac) to copy it.",
+  },
+};
+
+export type ClientMessages = typeof enClient;
