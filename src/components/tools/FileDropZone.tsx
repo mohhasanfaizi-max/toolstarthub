@@ -1,6 +1,8 @@
 "use client";
 
 import { useState } from "react";
+import { useI18n } from "@/i18n/client";
+import { formatMessage } from "@/i18n/config";
 import { cn } from "@/lib/cn";
 import { toolControlClass } from "@/components/tools/ToolForm";
 
@@ -24,11 +26,12 @@ export function FileDropZone({
   hint,
   fileName,
   disabled,
-  prompt = "Drag and drop an image here, or choose a file.",
+  prompt,
   multiple = false,
   onFile,
   onFiles,
 }: FileDropZoneProps) {
+  const { messages } = useI18n();
   const [dragging, setDragging] = useState(false);
 
   function takeFiles(list: FileList | null) {
@@ -76,7 +79,9 @@ export function FileDropZone({
           dragging && "border-accent bg-accent-soft",
         )}
       >
-        <p className="text-sm text-foreground">{prompt}</p>
+        <p className="text-sm text-foreground">
+          {prompt ?? messages.tool.dropPrompt}
+        </p>
         <input
           id={id}
           type="file"
@@ -91,7 +96,7 @@ export function FileDropZone({
         />
         {fileName ? (
           <p className="mt-3 break-all text-sm font-medium text-foreground">
-            Selected: {fileName}
+            {formatMessage(messages.tool.selected, { name: fileName })}
           </p>
         ) : null}
       </div>

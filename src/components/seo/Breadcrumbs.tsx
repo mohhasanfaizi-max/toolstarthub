@@ -9,11 +9,12 @@ export type BreadcrumbItem = {
 type BreadcrumbsProps = {
   items: BreadcrumbItem[];
   className?: string;
+  label?: string;
 };
 
-export function Breadcrumbs({ items, className }: BreadcrumbsProps) {
+export function Breadcrumbs({ items, className, label = "Breadcrumb" }: BreadcrumbsProps) {
   return (
-    <nav aria-label="Breadcrumb" className={cn("text-sm", className)}>
+    <nav aria-label={label} className={cn("text-sm", className)}>
       <ol className="flex flex-wrap items-center gap-2 text-muted-foreground">
         {items.map((item, index) => {
           const isLast = index === items.length - 1;

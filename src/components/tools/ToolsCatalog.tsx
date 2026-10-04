@@ -11,16 +11,18 @@ import {
   isDiscoveryFilterId,
   type DiscoveryFilterId,
 } from "@/data/discovery";
-import { getToolBySlug, getToolSlugSet, searchTools, tools } from "@/data/tools";
+import { getToolSlugSet, searchTools } from "@/data/tools";
+import { useI18n } from "@/i18n/client";
+import {
+  formatMessage,
+  formatNumber,
+  formatPlural,
+  localeInfo,
+} from "@/i18n/config";
+import { searchToolsLocalized } from "@/i18n/search";
 import { getLocalStorage } from "@/lib/storage/safe-storage";
-import {
-  FAVORITES_EVENT,
-  readFavoriteSlugs,
-} from "@/lib/storage/favorites";
-import {
-  RECENTS_EVENT,
-  readRecentTools,
-} from "@/lib/storage/recents";
+import { FAVORITES_EVENT, readFavoriteSlugs } from "@/lib/storage/favorites";
+import { RECENTS_EVENT, readRecentTools } from "@/lib/storage/recents";
 import type { Tool } from "@/data/types";
 import { cn } from "@/lib/cn";
 
@@ -52,20 +54,27 @@ function isSortId(value: string): value is SortId {
   return value === "name" || value === "newest" || value === "category";
 }
 
-function sortTools(items: Tool[], sort: SortId): Tool[] {
+function sortTools(items: Tool[], sort: SortId, tag: string): Tool[] {
   const copy = [...items];
+  const byName = (a: Tool, b: Tool) => a.name.localeCompare(b.name, tag);
   if (sort === "name") {
-    return copy.sort((a, b) => a.name.localeCompare(b.name));
+    return copy.sort(byName);
   }
   if (sort === "newest") {
-    return copy.sort((a, b) => Number(b.new) - Number(a.new) || a.name.localeCompare(b.name));
+    return copy.sort((a, b) => Number(b.new) - Number(a.new) || byName(a, b));
   }
   return copy.sort(
-    (a, b) => a.category.localeCompare(b.category) || a.name.localeCompare(b.name),
+    (a, b) => a.category.localeCompare(b.category) || byName(a, b),
   );
 }
 
-export function ToolsCatalog() {
+/** `tools` is the localized tool list passed down from the server page. */
+export function ToolsCatalog({ tools }: { tools: Tool[] }) {
+  const { locale, messages } = useI18n();
+  const t = messages.catalog;
+  const tag = localeInfo[locale].tag;
+  const getToolBySlug = (slug: string) =>
+    tools.find((tool) => tool.slug === slug);
   const router = useRouter();
   const pathname = usePathname();
   const searchParams = useSearchParams();
@@ -94,7 +103,11 @@ export function ToolsCatalog() {
   function updateParams(patch: Record<string, string | null>) {
     const params = new URLSearchParams(searchParams.toString());
     for (const [key, value] of Object.entries(patch)) {
-      if (!value || (key === "filter" && value === "all") || (key === "sort" && value === "name")) {
+      if (
+        !value ||
+        (key === "filter" && value === "all") ||
+        (key === "sort" && value === "name")
+      ) {
         params.delete(key);
       } else {
         params.set(key, value);
@@ -104,11 +117,16 @@ export function ToolsCatalog() {
     router.replace(next ? `${pathname}?${next}` : pathname, { scroll: false });
   }
 
-  const searched = searchTools(query);
+  const searched =
+    locale === "en"
+      ? searchTools(query)
+      : query.trim()
+        ? searchToolsLocalized(tools, query)
+        : tools;
   const filtered = favoritesOnly
     ? searched.filter((tool) => favoriteSlugs.includes(tool.slug))
     : filterToolsByDiscovery(searched, filter);
-  const results = sortTools(filtered, sort);
+  const results = sortTools(filtered, sort, tag);
 
   const recentTools = recents
     .map((entry) => getToolBySlug(entry.slug))
@@ -126,7 +144,11 @@ export function ToolsCatalog() {
         <ToolSearch key={query} variant="page" initialQuery={query} />
       </div>
 
-      <div className="mt-6 flex flex-wrap items-center gap-2" role="toolbar" aria-label="Filter tools">
+      <div
+        className="mt-6 flex flex-wrap items-center gap-2"
+        role="toolbar"
+        aria-label={t.filterAria}
+      >
         {discoveryFilters.map((item) => {
           const selected = !favoritesOnly && filter === item.id;
           return (
@@ -147,7 +169,7 @@ export function ToolsCatalog() {
                 })
               }
             >
-              {item.label}
+              {t.filters[item.id]}
             </button>
           );
         })}
@@ -167,28 +189,31 @@ export function ToolsCatalog() {
             })
           }
         >
-          Favorites
+          {t.favorites}
         </button>
       </div>
 
       <div className="mt-4 flex flex-wrap items-center justify-between gap-3">
         <p className="text-sm text-muted-foreground">
           {favoritesOnly
-            ? `${results.length} favorite${results.length === 1 ? "" : "s"}`
+            ? formatPlural(locale, results.length, t.countFavorites)
             : query
-              ? `${results.length} result${results.length === 1 ? "" : "s"} for “${query}”`
-              : `${results.length} of ${tools.length} tools`}
+              ? formatPlural(locale, results.length, t.countResults, { query })
+              : formatMessage(t.countOf, {
+                  count: formatNumber(locale, results.length),
+                  total: formatNumber(locale, tools.length),
+                })}
         </p>
         <label className="flex items-center gap-2 text-sm text-muted-foreground">
-          Sort
+          {t.sort}
           <select
             className="min-h-10 rounded-xl border border-border bg-card px-3 py-2 text-sm text-foreground"
             value={sort}
             onChange={(event) => updateParams({ sort: event.target.value })}
           >
-            <option value="name">Name</option>
-            <option value="newest">Newest</option>
-            <option value="category">Category</option>
+            <option value="name">{t.sortName}</option>
+            <option value="newest">{t.sortNewest}</option>
+            <option value="category">{t.sortCategory}</option>
           </select>
         </label>
       </div>
@@ -200,11 +225,11 @@ export function ToolsCatalog() {
               id="recent-tools-heading"
               className="text-lg font-semibold tracking-tight text-foreground"
             >
-              Recently used
+              {t.recentlyUsed}
             </h2>
             {recentTools.length === 0 ? (
               <p className="mt-3 rounded-2xl border border-border bg-card p-5 text-sm text-muted-foreground">
-                Tools you use will appear here.
+                {t.recentEmpty}
               </p>
             ) : (
               <ul className="mt-4 grid grid-cols-1 gap-2 sm:grid-cols-2 lg:grid-cols-3">
@@ -229,14 +254,16 @@ export function ToolsCatalog() {
                   id="favorite-tools-heading"
                   className="text-lg font-semibold tracking-tight text-foreground"
                 >
-                  Favorites
+                  {t.favorites}
                 </h2>
                 <button
                   type="button"
                   className="text-sm font-medium text-accent hover:underline"
-                  onClick={() => updateParams({ view: "favorites", filter: null })}
+                  onClick={() =>
+                    updateParams({ view: "favorites", filter: null })
+                  }
                 >
-                  View all
+                  {t.viewAll}
                 </button>
               </div>
               <div className="mt-4 grid grid-cols-1 gap-2 sm:grid-cols-2 lg:grid-cols-3">
@@ -261,20 +288,20 @@ export function ToolsCatalog() {
           className="text-lg font-semibold tracking-tight text-foreground"
         >
           {favoritesOnly
-            ? "Favorites"
+            ? t.favorites
             : query
-              ? "Search results"
+              ? t.searchResults
               : filter === "all"
-                ? "All tools"
-                : discoveryFilters.find((item) => item.id === filter)?.label ?? "Tools"}
+                ? t.allTools
+                : (t.filters[filter] ?? t.tools)}
         </h2>
         {results.length === 0 ? (
           <p className="mt-4 rounded-2xl border border-border bg-card p-6 text-muted-foreground">
             {favoritesOnly
-              ? "You haven't favorited any tools yet."
+              ? t.noFavorites
               : query
-                ? "No tools found"
-                : "No tools in this category yet."}
+                ? t.noToolsFound
+                : t.noToolsCategory}
           </p>
         ) : (
           <div className="mt-4 grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">

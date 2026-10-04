@@ -3,45 +3,48 @@ import { Icon } from "@/components/icons/Icon";
 import { Section } from "@/components/ui/Section";
 import { benefits } from "@/data/benefits";
 import type { IconName } from "@/data/types";
+import { formatMessage, type Locale } from "@/i18n/config";
+import { getMessages } from "@/i18n/server";
 import { siteConfig } from "@/lib/site";
 
-const valueTitles = ["Fast", "Free", "Private", "No Signup"] as const;
+const valueKeys = [
+  { key: "fast", title: "Fast" },
+  { key: "free", title: "Free" },
+  { key: "private", title: "Private" },
+  { key: "noAccount", title: "No Signup" },
+] as const;
 
-const valueNotes: Record<(typeof valueTitles)[number], string> = {
-  Fast: "Most tools run in the browser and return a result on the same page.",
-  Free: "The tools on this site do not require payment.",
-  Private:
-    "Files and pasted text are processed on your device. Page visits are measured separately, as the privacy policy explains.",
-  "No Signup": "Open a tool and use it. An account is not required.",
-};
-
-export function Benefits() {
-  const values = valueTitles.flatMap((title) => {
+export function Benefits({ locale = "en" }: { locale?: Locale }) {
+  const t = getMessages(locale).home;
+  const values = valueKeys.flatMap(({ key, title }) => {
     const benefit = benefits.find((item) => item.title === title);
-    return benefit ? [{ ...benefit, description: valueNotes[title] }] : [];
+    return benefit ? [{ key, icon: benefit.icon, ...t.values[key] }] : [];
   });
 
   return (
-    <Section className="!py-14 sm:!py-16 lg:!py-20" ariaLabelledby="benefits-heading">
+    <Section
+      className="!py-14 sm:!py-16 lg:!py-20"
+      ariaLabelledby="benefits-heading"
+    >
       <HomeHeading
         id="benefits-heading"
-        title={`Why ${siteConfig.name}?`}
-        description="A straightforward set of utilities for work you would otherwise do in a separate app."
+        title={formatMessage(t.whyTitle, { name: siteConfig.name })}
+        description={t.whyDescription}
       />
       <ul className="mt-8 grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4">
-        {values.map((benefit) => (
+        {values.map((value) => (
           <li
-            key={benefit.title}
+            key={value.key}
             className="rounded-xl border border-border bg-card p-5"
           >
             <span className="flex size-10 items-center justify-center rounded-lg bg-accent-soft text-accent">
-              <Icon name={benefit.icon as IconName} className="size-5" />
+              <Icon name={value.icon as IconName} className="size-5" />
             </span>
             <h3 className="mt-4 text-base font-semibold text-foreground">
-              {benefit.title === "No Signup" ? "No account" : benefit.title}
+              {value.title}
             </h3>
             <p className="mt-2 text-sm leading-6 text-muted-foreground">
-              {benefit.description}
+              {value.note}
             </p>
           </li>
         ))}

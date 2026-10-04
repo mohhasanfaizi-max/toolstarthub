@@ -1,7 +1,7 @@
 "use client";
 
 import { usePathname, useSearchParams } from "next/navigation";
-import { useEffect, useRef } from "react";
+import { useEffect } from "react";
 import { hasAnalyticsConsent } from "@/lib/consent";
 
 declare global {
@@ -10,23 +10,28 @@ declare global {
   }
 }
 
+// Module scope so a remount (client navigation between sections renders a new
+// document layout) does not lose track of the last page view.
+let lastTrackedPath: string | null = null;
+
 export function GoogleAnalyticsRouteChange() {
   const pathname = usePathname();
   const searchParams = useSearchParams();
-  const isFirstView = useRef(true);
 
   useEffect(() => {
-    if (isFirstView.current) {
-      isFirstView.current = false;
+    const query = searchParams.toString();
+    const page_path = query ? `${pathname}?${query}` : pathname;
+
+    if (lastTrackedPath === null || lastTrackedPath === page_path) {
+      // The first view is sent by gtag('config') after consent.
+      lastTrackedPath = page_path;
       return;
     }
+    lastTrackedPath = page_path;
 
     if (!hasAnalyticsConsent()) {
       return;
     }
-
-    const query = searchParams.toString();
-    const page_path = query ? `${pathname}?${query}` : pathname;
 
     window.gtag?.("event", "page_view", {
       page_path,

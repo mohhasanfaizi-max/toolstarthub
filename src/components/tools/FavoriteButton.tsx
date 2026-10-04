@@ -3,6 +3,8 @@
 import { useSyncExternalStore } from "react";
 import { Icon } from "@/components/icons/Icon";
 import { getToolSlugSet } from "@/data/tools";
+import { useI18n } from "@/i18n/client";
+import { formatMessage } from "@/i18n/config";
 import { getLocalStorage } from "@/lib/storage/safe-storage";
 import {
   FAVORITES_EVENT,
@@ -38,6 +40,7 @@ export function FavoriteButton({ slug, name, className }: FavoriteButtonProps) {
     getFavoritesSnapshot,
     getEmptyFavoritesSnapshot,
   );
+  const { messages } = useI18n();
   const favorited = snapshot.split(",").filter(Boolean).includes(slug);
 
   return (
@@ -49,17 +52,17 @@ export function FavoriteButton({ slug, name, className }: FavoriteButtonProps) {
         className,
       )}
       aria-pressed={favorited}
-      aria-label={favorited ? `Remove ${name} from favorites` : `Add ${name} to favorites`}
+      aria-label={formatMessage(
+        favorited ? messages.favorites.remove : messages.favorites.add,
+        { name },
+      )}
       onClick={(event) => {
         event.preventDefault();
         event.stopPropagation();
         toggleFavoriteSlug(getLocalStorage(), slug, validSlugs);
       }}
     >
-      <Icon
-        name="star"
-        className={cn("size-5", favorited && "fill-current")}
-      />
+      <Icon name="star" className={cn("size-5", favorited && "fill-current")} />
     </button>
   );
 }

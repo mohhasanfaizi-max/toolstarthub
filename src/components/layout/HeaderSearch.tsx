@@ -3,10 +3,12 @@
 import { useEffect, useId, useState } from "react";
 import { Icon } from "@/components/icons/Icon";
 import { ToolSearch } from "@/components/tools/ToolSearch";
+import { useI18n } from "@/i18n/client";
 
 export function HeaderSearch() {
   const [open, setOpen] = useState(false);
   const panelId = useId();
+  const { messages } = useI18n();
 
   useEffect(() => {
     if (!open) {
@@ -30,7 +32,7 @@ export function HeaderSearch() {
         className="inline-flex size-10 items-center justify-center rounded-lg text-foreground hover:bg-muted"
         aria-expanded={open}
         aria-controls={panelId}
-        aria-label={open ? "Close search" : "Open search"}
+        aria-label={open ? messages.nav.closeSearch : messages.nav.openSearch}
         onClick={() => setOpen((value) => !value)}
       >
         <Icon name={open ? "close" : "search"} className="size-5" />
@@ -38,7 +40,7 @@ export function HeaderSearch() {
       {open ? (
         <div
           id={panelId}
-          className="fixed inset-x-0 top-16 z-40 border-b border-border bg-header px-4 py-3 shadow-sm sm:absolute sm:inset-x-auto sm:right-0 sm:top-full sm:mt-2 sm:w-[22rem] sm:rounded-xl sm:border sm:px-3 sm:py-3"
+          className="fixed inset-x-0 top-16 z-40 border-b border-border bg-header px-4 py-3 shadow-sm sm:absolute sm:inset-x-auto sm:end-0 sm:top-full sm:mt-2 sm:w-[22rem] sm:rounded-xl sm:border sm:px-3 sm:py-3"
         >
           <ToolSearch variant="header" />
         </div>

@@ -3,8 +3,10 @@
 import { useState } from "react";
 import { Button } from "@/components/ui/Button";
 import { Icon } from "@/components/icons/Icon";
+import { useI18n } from "@/i18n/client";
 
 export function ShareLinkButton() {
+  const { messages } = useI18n();
   const [copied, setCopied] = useState(false);
 
   async function copy() {
@@ -24,7 +26,7 @@ export function ShareLinkButton() {
   return (
     <Button type="button" variant="secondary" onClick={copy}>
       <Icon name={copied ? "check" : "link"} className="size-4" />
-      {copied ? "Link copied" : "Copy link"}
+      {copied ? messages.tool.linkCopied : messages.tool.copyLink}
     </Button>
   );
 }

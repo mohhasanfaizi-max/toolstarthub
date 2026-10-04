@@ -1,9 +1,11 @@
+"use client";
+
 import Link from "next/link";
 import { Badge } from "@/components/ui/Badge";
 import { Icon } from "@/components/icons/Icon";
 import { FavoriteButton } from "@/components/tools/FavoriteButton";
-import { getToolCategory } from "@/data/tools";
 import type { Tool } from "@/data/types";
+import { useI18n } from "@/i18n/client";
 import { cn } from "@/lib/cn";
 
 type ToolCardProps = {
@@ -21,7 +23,8 @@ export function ToolCard({
   showFavorite = true,
   showAction = false,
 }: ToolCardProps) {
-  const category = getToolCategory(tool);
+  const { messages } = useI18n();
+  const categoryName = messages.categoryNames[tool.category];
 
   return (
     <article
@@ -33,8 +36,8 @@ export function ToolCard({
       <Link
         href={tool.route}
         className={cn(
-          "flex h-full flex-col pr-14",
-          showAction ? "pt-6 pb-6 pl-6" : "pt-5 pb-5 pl-5",
+          "flex h-full flex-col pe-14",
+          showAction ? "pt-6 pb-6 ps-6" : "pt-5 pb-5 ps-5",
         )}
       >
         <span
@@ -49,24 +52,24 @@ export function ToolCard({
           {tool.name}
         </Heading>
         <div className="mt-2 flex flex-wrap items-center gap-2">
-          {category ? <Badge tone="accent">{category.name}</Badge> : null}
-          {tool.new ? <Badge tone="new">New</Badge> : null}
+          {categoryName ? <Badge tone="accent">{categoryName}</Badge> : null}
+          {tool.new ? <Badge tone="new">{messages.card.new}</Badge> : null}
         </div>
         <p className="mt-3 flex-1 text-sm leading-6 text-muted-foreground">
           {tool.description}
         </p>
         {showAction ? (
           <span className="mt-5 inline-flex items-center gap-1 text-sm font-medium text-accent">
-            Open tool
+            {messages.card.openTool}
             <Icon
               name="arrow-right"
-              className="size-4 transition-transform group-hover:translate-x-0.5"
+              className="size-4 transition-transform group-hover:translate-x-0.5 rtl:-scale-x-100 rtl:group-hover:-translate-x-0.5"
             />
           </span>
         ) : null}
       </Link>
       {showFavorite ? (
-        <div className="absolute right-2 top-2">
+        <div className="absolute end-2 top-2">
           <FavoriteButton slug={tool.slug} name={tool.name} />
         </div>
       ) : null}

@@ -35,7 +35,7 @@ export function HomeHeading({
           className="inline-flex shrink-0 items-center gap-1 text-sm font-medium text-accent hover:underline"
         >
           {linkLabel}
-          <Icon name="arrow-right" className="size-4" />
+          <Icon name="arrow-right" className="size-4 rtl:-scale-x-100" />
         </Link>
       ) : null}
     </div>

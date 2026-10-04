@@ -1,9 +1,11 @@
 import { HomeHeading } from "@/components/home/HomeHeading";
 import { HomeToolBrowser } from "@/components/home/HomeToolBrowser";
 import { Section } from "@/components/ui/Section";
-import { tools } from "@/data/tools";
+import type { Locale } from "@/i18n/config";
+import { getMessages, getTools } from "@/i18n/server";
 
-export function ToolCatalog() {
+export function ToolCatalog({ locale = "en" }: { locale?: Locale }) {
+  const t = getMessages(locale).home;
   return (
     <Section
       id="tools"
@@ -12,11 +14,11 @@ export function ToolCatalog() {
     >
       <HomeHeading
         id="all-tools-heading"
-        title="Everything you need, in one place."
-        description="Filter the tools that are already on this site. Each one opens in the browser."
+        title={t.catalogTitle}
+        description={t.catalogDescription}
       />
       <div className="mt-8">
-        <HomeToolBrowser tools={tools} />
+        <HomeToolBrowser tools={getTools(locale)} />
       </div>
     </Section>
   );

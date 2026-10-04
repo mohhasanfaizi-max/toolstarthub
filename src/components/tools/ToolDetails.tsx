@@ -58,7 +58,7 @@ export function ToolDetails({ slug, toolName }: ToolDetailsProps) {
         >
           How to use
         </h2>
-        <ol className="mt-4 list-decimal space-y-2 pl-5 text-sm leading-6 text-muted-foreground">
+        <ol className="mt-4 list-decimal space-y-2 ps-5 text-sm leading-6 text-muted-foreground">
           {(content?.howTo ?? [
             "Enter your values or choose a file if the tool needs one.",
             "Run the action on this page.",
@@ -106,7 +106,7 @@ export function ToolDetails({ slug, toolName }: ToolDetailsProps) {
           >
             Main features
           </h2>
-          <ul className="mt-4 list-disc space-y-2 pl-5 text-sm leading-6 text-muted-foreground">
+          <ul className="mt-4 list-disc space-y-2 ps-5 text-sm leading-6 text-muted-foreground">
             {content.features.map((feature) => (
               <li key={feature}>{feature}</li>
             ))}
@@ -136,7 +136,7 @@ export function ToolDetails({ slug, toolName }: ToolDetailsProps) {
           >
             Tips
           </h2>
-          <ul className="mt-4 list-disc space-y-2 pl-5 text-sm leading-6 text-muted-foreground">
+          <ul className="mt-4 list-disc space-y-2 ps-5 text-sm leading-6 text-muted-foreground">
             {content.tips.map((tip) => (
               <li key={tip}>{tip}</li>
             ))}

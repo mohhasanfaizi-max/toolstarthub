@@ -2,8 +2,15 @@
 
 import Link from "next/link";
 import Script from "next/script";
-import { useEffect, useId, useRef, useState, useSyncExternalStore } from "react";
+import {
+  useEffect,
+  useId,
+  useRef,
+  useState,
+  useSyncExternalStore,
+} from "react";
 import { Button } from "@/components/ui/Button";
+import { useI18n } from "@/i18n/client";
 import { GA_MEASUREMENT_ID } from "@/lib/analytics";
 import {
   CONSENT_CHANGE_EVENT,
@@ -36,22 +43,32 @@ function getServerSnapshot(): ConsentState {
   return "server";
 }
 
+// Module scope: the document (and this component) can remount on client-side
+// navigation between sections, but gtag config must only run once per load.
+let gaConfigured = false;
+
 function gtag(...args: unknown[]) {
   window.gtag?.(...args);
 }
 
 export function ConsentManager() {
-  const consent = useSyncExternalStore(subscribe, getSnapshot, getServerSnapshot);
+  const consent = useSyncExternalStore(
+    subscribe,
+    getSnapshot,
+    getServerSnapshot,
+  );
   const [reopened, setReopened] = useState(false);
-  const configured = useRef(false);
+  const { messages, href } = useI18n();
+  const t = messages.consent;
+  const [before, after] = t.body.split("{link}");
   const bannerRef = useRef<HTMLElement>(null);
   const titleId = useId();
 
   useEffect(() => {
     if (consent === "granted") {
       gtag("consent", "update", { analytics_storage: "granted" });
-      if (!configured.current) {
-        configured.current = true;
+      if (!gaConfigured) {
+        gaConfigured = true;
         gtag("js", new Date());
         gtag("config", GA_MEASUREMENT_ID);
       }
@@ -68,7 +85,9 @@ export function ConsentManager() {
 
   useEffect(() => {
     if (reopened) {
-      bannerRef.current?.querySelector<HTMLButtonElement>("[data-consent-accept]")?.focus();
+      bannerRef.current
+        ?.querySelector<HTMLButtonElement>("[data-consent-accept]")
+        ?.focus();
     }
   }, [reopened]);
 
@@ -96,24 +115,39 @@ export function ConsentManager() {
         >
           <div className="mx-auto flex max-w-3xl flex-col gap-3 rounded-2xl border border-border bg-card p-4 shadow-lg sm:flex-row sm:items-center sm:gap-5 sm:p-5">
             <div className="flex-1">
-              <h2 id={titleId} className="text-sm font-semibold text-foreground">
-                Analytics cookies
+              <h2
+                id={titleId}
+                className="text-sm font-semibold text-foreground"
+              >
+                {t.title}
               </h2>
               <p className="mt-1 text-sm leading-6 text-muted-foreground">
-                We use Google Analytics to count visits, but only if you accept.
-                Tools work the same either way. See the{" "}
-                <Link href="/privacy" className="font-medium text-accent underline-offset-2 hover:underline">
-                  privacy policy
+                {before}
+                <Link
+                  href={href("/privacy")}
+                  className="font-medium text-accent underline-offset-2 hover:underline"
+                >
+                  {t.privacyLink}
                 </Link>
-                .
+                {after}
               </p>
             </div>
             <div className="flex shrink-0 gap-2">
-              <Button type="button" variant="secondary" size="sm" onClick={() => choose("denied")}>
-                Decline
+              <Button
+                type="button"
+                variant="secondary"
+                size="sm"
+                onClick={() => choose("denied")}
+              >
+                {t.decline}
               </Button>
-              <Button data-consent-accept="" type="button" size="sm" onClick={() => choose("granted")}>
-                Accept
+              <Button
+                data-consent-accept=""
+                type="button"
+                size="sm"
+                onClick={() => choose("granted")}
+              >
+                {t.accept}
               </Button>
             </div>
           </div>

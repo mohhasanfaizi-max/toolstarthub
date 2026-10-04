@@ -1,8 +1,10 @@
 "use client";
 
 import { CopyButton } from "@/components/tools/CopyButton";
+import { useI18n } from "@/i18n/client";
 
 export function CssCodeOutput({ css }: { css: string }) {
+  const { messages } = useI18n();
   return (
     <div className="space-y-3">
       <pre
@@ -13,7 +15,7 @@ export function CssCodeOutput({ css }: { css: string }) {
       >
         {css}
       </pre>
-      <CopyButton value={css} label="Copy CSS" />
+      <CopyButton value={css} label={messages.tool.copyCss} />
     </div>
   );
 }

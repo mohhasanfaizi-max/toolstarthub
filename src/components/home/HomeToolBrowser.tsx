@@ -3,22 +3,23 @@
 import { useState } from "react";
 import { HomeToolCard } from "@/components/home/HomeToolCard";
 import type { Tool } from "@/data/types";
+import { useI18n } from "@/i18n/client";
 
 const filters = [
-  { id: "all", label: "All" },
-  { id: "pdf", label: "PDF" },
-  { id: "images", label: "Images" },
-  { id: "text-tools", label: "Text" },
-  { id: "developer-tools", label: "Developer" },
-  { id: "calculators", label: "Calculators" },
-  { id: "seo-utilities", label: "Utilities" },
-  { id: "ai-tools", label: "AI" },
+  "all",
+  "pdf",
+  "images",
+  "text-tools",
+  "developer-tools",
+  "calculators",
+  "seo-utilities",
+  "ai-tools",
 ] as const;
 
-type FilterId = (typeof filters)[number]["id"];
+type FilterId = (typeof filters)[number];
 
 function isPdfTool(tool: Tool) {
-  return /pdf/i.test(tool.slug) || /pdf/i.test(tool.name);
+  return /pdf/i.test(tool.slug);
 }
 
 function matches(tool: Tool, filter: FilterId) {
@@ -44,6 +45,8 @@ function matches(tool: Tool, filter: FilterId) {
 }
 
 export function HomeToolBrowser({ tools }: { tools: Tool[] }) {
+  const { messages } = useI18n();
+  const t = messages.home;
   const [filter, setFilter] = useState<FilterId>("all");
   const visible = tools.filter((tool) => matches(tool, filter));
 
@@ -52,13 +55,13 @@ export function HomeToolBrowser({ tools }: { tools: Tool[] }) {
       <div
         className="flex min-w-0 gap-2 overflow-x-auto pb-1"
         role="tablist"
-        aria-label="Filter tools"
+        aria-label={t.filterAria}
       >
-        {filters.map((item) => {
-          const selected = filter === item.id;
+        {filters.map((id) => {
+          const selected = filter === id;
           return (
             <button
-              key={item.id}
+              key={id}
               type="button"
               role="tab"
               aria-selected={selected}
@@ -67,9 +70,9 @@ export function HomeToolBrowser({ tools }: { tools: Tool[] }) {
                   ? "shrink-0 rounded-lg bg-accent px-3 py-2 text-sm font-medium text-accent-foreground"
                   : "shrink-0 rounded-lg border border-border bg-card px-3 py-2 text-sm font-medium text-foreground hover:bg-muted"
               }
-              onClick={() => setFilter(item.id)}
+              onClick={() => setFilter(id)}
             >
-              {item.label}
+              {t.filters[id]}
             </button>
           );
         })}
@@ -80,7 +83,7 @@ export function HomeToolBrowser({ tools }: { tools: Tool[] }) {
         ))}
       </div>
       {visible.length === 0 ? (
-        <p className="mt-6 text-sm text-muted-foreground">No tools in this group.</p>
+        <p className="mt-6 text-sm text-muted-foreground">{t.noToolsInGroup}</p>
       ) : null}
     </div>
   );

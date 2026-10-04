@@ -3,6 +3,8 @@
 import { useEffect, useRef, useState } from "react";
 import { Icon } from "@/components/icons/Icon";
 import { Button } from "@/components/ui/Button";
+import { useI18n } from "@/i18n/client";
+import { formatMessage } from "@/i18n/config";
 import { copyTextToClipboard } from "@/lib/tools/clipboard";
 
 type CopyStatus = { kind: "success" | "error"; message: string } | null;
@@ -29,6 +31,7 @@ export function CodeOutputWithCopy({
   what,
   children,
 }: CodeOutputWithCopyProps) {
+  const { messages } = useI18n();
   const [status, setStatus] = useState<CopyStatus>(null);
   const textareaRef = useRef<HTMLTextAreaElement>(null);
   const timer = useRef<number | undefined>(undefined);
@@ -40,7 +43,10 @@ export function CodeOutputWithCopy({
     window.clearTimeout(timer.current);
     const ok = await copyTextToClipboard(value);
     if (ok) {
-      setStatus({ kind: "success", message: `${what} copied to the clipboard.` });
+      setStatus({
+        kind: "success",
+        message: formatMessage(messages.tool.copySuccess, { what }),
+      });
       timer.current = window.setTimeout(() => setStatus(null), 4000);
       return;
     }
@@ -49,7 +55,7 @@ export function CodeOutputWithCopy({
     textarea?.select();
     setStatus({
       kind: "error",
-      message: `Could not copy automatically. The ${what} is selected, so press Ctrl+C (or Cmd+C on a Mac) to copy it.`,
+      message: formatMessage(messages.tool.copyFailed, { what }),
     });
   }
 
@@ -70,8 +76,16 @@ export function CodeOutputWithCopy({
         className="mt-2 block w-full resize-y rounded-2xl border border-border bg-accent-soft p-4 font-mono text-sm leading-6 text-foreground"
       />
       <div className="mt-3 flex flex-wrap items-center gap-3">
-        <Button type="button" variant="secondary" onClick={() => void copy()} disabled={!value}>
-          <Icon name={status?.kind === "success" ? "check" : "copy"} className="size-4" />
+        <Button
+          type="button"
+          variant="secondary"
+          onClick={() => void copy()}
+          disabled={!value}
+        >
+          <Icon
+            name={status?.kind === "success" ? "check" : "copy"}
+            className="size-4"
+          />
           {copyLabel}
         </Button>
         <p

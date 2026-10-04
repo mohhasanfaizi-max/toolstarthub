@@ -4,8 +4,12 @@ import { useEffect, useId, useRef, useState } from "react";
 import { useRouter } from "next/navigation";
 import Link from "next/link";
 import { Icon } from "@/components/icons/Icon";
-import { searchTools } from "@/data/tools";
-import { getCategoryBySlug } from "@/data/categories";
+import { searchTools, tools as baseTools } from "@/data/tools";
+import type { Tool } from "@/data/types";
+import { useI18n } from "@/i18n/client";
+import { localizePath } from "@/i18n/config";
+import { searchToolsLocalized } from "@/i18n/search";
+import { toolTextLoaders } from "@/i18n/tool-loaders";
 import { cn } from "@/lib/cn";
 
 type ToolSearchProps = {
@@ -19,9 +23,13 @@ export function ToolSearch({
   variant = "hero",
   initialQuery = "",
   id,
-  placeholder = "Search for a tool...",
+  placeholder,
 }: ToolSearchProps) {
   const router = useRouter();
+  const { locale, messages, href } = useI18n();
+  const t = messages.search;
+  const [localizedTools, setLocalizedTools] = useState<Tool[] | null>(null);
+  const loadingRef = useRef(false);
   const generatedId = useId();
   const inputId = id ?? `tool-search-${generatedId}`;
   const listId = `${inputId}-results`;
@@ -30,7 +38,41 @@ export function ToolSearch({
   const [open, setOpen] = useState(false);
   const [activeIndex, setActiveIndex] = useState(0);
 
-  const results = query.trim() ? searchTools(query).slice(0, 8) : [];
+  function ensureLocalizedTools() {
+    if (locale === "en" || localizedTools || loadingRef.current) {
+      return;
+    }
+    loadingRef.current = true;
+    void toolTextLoaders[locale]()
+      .then((module) => {
+        const text = module.default;
+        setLocalizedTools(
+          baseTools.map((tool) => ({
+            ...tool,
+            name: text[tool.slug]?.[0] ?? tool.name,
+            description: text[tool.slug]?.[1] ?? tool.description,
+            keywords: [...tool.keywords, tool.name.toLowerCase()],
+            route: localizePath(tool.route, locale),
+          })),
+        );
+      })
+      .catch(() => {
+        loadingRef.current = false;
+      });
+  }
+
+  const results = !query.trim()
+    ? []
+    : locale === "en"
+      ? searchTools(query).slice(0, 8)
+      : searchToolsLocalized(
+          localizedTools ??
+            baseTools.map((tool) => ({
+              ...tool,
+              route: localizePath(tool.route, locale),
+            })),
+          query,
+        ).slice(0, 8);
   const showResults = open && query.trim().length > 0;
 
   useEffect(() => {
@@ -49,11 +91,11 @@ export function ToolSearch({
     setOpen(false);
 
     if (nextQuery) {
-      router.push(`/tools?q=${encodeURIComponent(nextQuery)}`);
+      router.push(href(`/tools?q=${encodeURIComponent(nextQuery)}`));
       return;
     }
 
-    router.push("/tools");
+    router.push(href("/tools"));
   }
 
   function onKeyDown(event: React.KeyboardEvent<HTMLInputElement>) {
@@ -86,17 +128,23 @@ export function ToolSearch({
   const isHero = variant === "hero";
 
   return (
-    <div ref={containerRef} className={cn("relative w-full", isHero && "mx-auto w-full max-w-[44rem]")}>
+    <div
+      ref={containerRef}
+      className={cn(
+        "relative w-full",
+        isHero && "mx-auto w-full max-w-[44rem]",
+      )}
+    >
       <form
         role="search"
-        action="/tools"
+        action={href("/tools")}
         onSubmit={(event) => {
           event.preventDefault();
           submitSearch();
         }}
       >
         <label htmlFor={inputId} className="sr-only">
-          Search for a tool
+          {t.label}
         </label>
         <div
           className={cn(
@@ -113,7 +161,7 @@ export function ToolSearch({
             type="search"
             value={query}
             autoComplete="off"
-            placeholder={placeholder}
+            placeholder={placeholder ?? t.placeholder}
             role="combobox"
             aria-autocomplete="list"
             aria-controls={listId}
@@ -126,9 +174,13 @@ export function ToolSearch({
             onChange={(event) => {
               setQuery(event.target.value);
               setOpen(true);
+              ensureLocalizedTools();
               setActiveIndex(0);
             }}
-            onFocus={() => setOpen(true)}
+            onFocus={() => {
+              setOpen(true);
+              ensureLocalizedTools();
+            }}
             onKeyDown={onKeyDown}
             className={cn(
               "min-w-0 flex-1 bg-transparent text-foreground outline-none placeholder:text-muted-foreground",
@@ -143,7 +195,7 @@ export function ToolSearch({
                 setOpen(false);
               }}
               className="rounded-lg p-1 text-muted-foreground hover:bg-muted hover:text-foreground"
-              aria-label="Clear search"
+              aria-label={t.clear}
             >
               <Icon name="close" className="size-4" />
             </button>
@@ -155,19 +207,23 @@ export function ToolSearch({
         <ul
           id={listId}
           role="listbox"
-          aria-label="Search suggestions"
+          aria-label={t.suggestions}
           className="absolute z-40 mt-2 max-h-80 w-full overflow-auto rounded-2xl border border-border bg-card p-2 shadow-lg"
         >
           {results.length === 0 ? (
             <li className="px-3 py-3 text-sm text-muted-foreground">
-              No tools found
+              {t.noResults}
             </li>
           ) : (
             results.map((tool, index) => {
-              const category = getCategoryBySlug(tool.category);
+              const categoryName = messages.categoryNames[tool.category];
 
               return (
-                <li key={tool.slug} role="option" aria-selected={index === activeIndex}>
+                <li
+                  key={tool.slug}
+                  role="option"
+                  aria-selected={index === activeIndex}
+                >
                   <Link
                     id={`${listId}-${tool.slug}`}
                     href={tool.route}
@@ -186,8 +242,8 @@ export function ToolSearch({
                         {tool.name}
                       </span>
                       <span className="block truncate text-sm text-muted-foreground">
-                        {category?.name}
-                        {category ? " · " : ""}
+                        {categoryName}
+                        {categoryName ? " · " : ""}
                         {tool.description}
                       </span>
                     </span>

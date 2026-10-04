@@ -1,6 +1,9 @@
 import { Section } from "@/components/ui/Section";
+import type { Locale } from "@/i18n/config";
+import { getMessages } from "@/i18n/server";
 
-export function Pricing() {
+export function Pricing({ locale = "en" }: { locale?: Locale }) {
+  const t = getMessages(locale).home;
   return (
     <Section
       id="pricing"
@@ -11,11 +14,10 @@ export function Pricing() {
         id="pricing-heading"
         className="text-2xl font-semibold tracking-tight text-foreground sm:text-3xl"
       >
-        Pricing
+        {t.pricingTitle}
       </h2>
       <p className="mt-3 max-w-2xl text-base leading-7 text-muted-foreground">
-        The tools are free to use. There is no account, no installation, and no
-        paid plan.
+        {t.pricingBody}
       </p>
     </Section>
   );

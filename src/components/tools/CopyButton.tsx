@@ -3,6 +3,7 @@
 import { useState } from "react";
 import { Button } from "@/components/ui/Button";
 import { Icon } from "@/components/icons/Icon";
+import { useI18n } from "@/i18n/client";
 
 type CopyButtonProps = {
   value: string;
@@ -10,11 +11,8 @@ type CopyButtonProps = {
   copiedLabel?: string;
 };
 
-export function CopyButton({
-  value,
-  label = "Copy",
-  copiedLabel = "Copied",
-}: CopyButtonProps) {
+export function CopyButton({ value, label, copiedLabel }: CopyButtonProps) {
+  const { messages } = useI18n();
   const [copied, setCopied] = useState(false);
 
   async function copy() {
@@ -34,7 +32,9 @@ export function CopyButton({
   return (
     <Button type="button" variant="secondary" onClick={copy} disabled={!value}>
       <Icon name={copied ? "check" : "copy"} className="size-4" />
-      {copied ? copiedLabel : label}
+      {copied
+        ? (copiedLabel ?? messages.tool.copied)
+        : (label ?? messages.tool.copy)}
     </Button>
   );
 }

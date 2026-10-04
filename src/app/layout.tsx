@@ -1,12 +1,4 @@
 import type { Metadata, Viewport } from "next";
-import Script from "next/script";
-import { Suspense } from "react";
-import { ConsentManager } from "@/components/analytics/ConsentManager";
-import { GoogleAnalyticsRouteChange } from "@/components/analytics/GoogleAnalyticsRouteChange";
-import { Footer } from "@/components/layout/Footer";
-import { Header } from "@/components/layout/Header";
-import { SkipLink } from "@/components/layout/SkipLink";
-import { consentDefaultsScript } from "@/lib/consent";
 import { getGoogleSiteVerification, siteConfig } from "@/lib/site";
 import "./globals.css";
 
@@ -67,27 +59,12 @@ export const viewport: Viewport = {
   ],
 };
 
+/**
+ * Root layout. It only passes children through: the <html> document (lang,
+ * dir, header, footer, consent) is rendered by SiteDocument from the English
+ * section layouts, the English homepage and app/[locale]/layout.tsx, so each
+ * language gets the right lang/dir attributes in static HTML.
+ */
 export default function RootLayout({ children }: LayoutProps<"/">) {
-  return (
-    <html lang="en" suppressHydrationWarning>
-      <body className="flex min-h-full flex-col antialiased">
-        <Script id="theme-init" strategy="beforeInteractive">
-          {`(function(){try{var t=localStorage.getItem("tsh-theme");var d=t==="dark"||(t!=="light"&&window.matchMedia("(prefers-color-scheme: dark)").matches);document.documentElement.setAttribute("data-theme",d?"dark":"light");}catch(e){}})();`}
-        </Script>
-        <Script id="consent-defaults" strategy="beforeInteractive">
-          {consentDefaultsScript}
-        </Script>
-        <Suspense fallback={null}>
-          <GoogleAnalyticsRouteChange />
-        </Suspense>
-        <SkipLink />
-        <Header />
-        <main id="main-content" className="flex-1">
-          {children}
-        </main>
-        <Footer />
-        <ConsentManager />
-      </body>
-    </html>
-  );
+  return children;
 }

@@ -3,9 +3,13 @@ import type { Tool } from "@/data/types";
 
 type RelatedToolsProps = {
   tools: Tool[];
+  heading?: string;
 };
 
-export function RelatedTools({ tools }: RelatedToolsProps) {
+export function RelatedTools({
+  tools,
+  heading = "Related tools",
+}: RelatedToolsProps) {
   if (tools.length === 0) {
     return null;
   }
@@ -16,7 +20,7 @@ export function RelatedTools({ tools }: RelatedToolsProps) {
         id="related-tools-heading"
         className="text-xl font-semibold tracking-tight text-foreground"
       >
-        Related tools
+        {heading}
       </h2>
       <div className="mt-5 grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
         {tools.map((tool) => (

@@ -4,22 +4,24 @@ import { useEffect, useId, useState } from "react";
 import Link from "next/link";
 import { Icon } from "@/components/icons/Icon";
 import { Button } from "@/components/ui/Button";
-import { categories } from "@/data/categories";
-
-const navLinks = [
-  { href: "/", label: "Home" },
-  { href: "/tools", label: "All Tools" },
-  { href: "/categories", label: "Categories" },
-  { href: "/#popular-tools", label: "Popular Tools" },
-  { href: "/about", label: "About" },
-  { href: "/guides", label: "Guides" },
-  { href: "/#how-it-works", label: "How It Works" },
-  { href: "/contact", label: "Contact" },
-];
+import { categorySlugs } from "@/data/types";
+import { useI18n } from "@/i18n/client";
 
 export function MobileNav() {
   const [open, setOpen] = useState(false);
   const panelId = useId();
+  const { messages, href } = useI18n();
+  const nav = messages.nav;
+  const navLinks = [
+    { href: "/", label: nav.home },
+    { href: "/tools", label: nav.allTools },
+    { href: "/categories", label: nav.categories },
+    { href: "/#popular-tools", label: nav.popularTools },
+    { href: "/about", label: nav.about },
+    { href: "/guides", label: nav.guides },
+    { href: "/#how-it-works", label: nav.howItWorks },
+    { href: "/contact", label: nav.contact },
+  ];
 
   useEffect(() => {
     if (!open) {
@@ -49,7 +51,7 @@ export function MobileNav() {
         className="inline-flex size-10 items-center justify-center rounded-lg text-foreground hover:bg-muted"
         aria-expanded={open}
         aria-controls={panelId}
-        aria-label={open ? "Close menu" : "Open menu"}
+        aria-label={open ? nav.closeMenu : nav.openMenu}
         onClick={() => setOpen((value) => !value)}
       >
         <Icon name={open ? "close" : "menu"} className="size-5" />
@@ -62,16 +64,16 @@ export function MobileNav() {
         >
           <div className="mx-auto max-w-6xl space-y-6 px-4 py-5 sm:px-6">
             <div onClick={() => setOpen(false)}>
-              <Button href="/tools" className="w-full">
-                Explore Tools
+              <Button href={href("/tools")} className="w-full">
+                {nav.exploreTools}
               </Button>
             </div>
-            <nav aria-label="Mobile">
+            <nav aria-label={nav.mobileNav}>
               <ul className="space-y-1">
                 {navLinks.map((link) => (
                   <li key={link.href}>
                     <Link
-                      href={link.href}
+                      href={href(link.href)}
                       className="block rounded-lg px-3 py-3 text-base font-medium text-foreground hover:bg-muted"
                       onClick={() => setOpen(false)}
                     >
@@ -83,17 +85,17 @@ export function MobileNav() {
             </nav>
             <div>
               <p className="px-3 text-xs font-semibold uppercase tracking-wide text-muted-foreground">
-                Categories
+                {nav.categories}
               </p>
               <ul className="mt-2 space-y-1">
-                {categories.map((category) => (
-                  <li key={category.slug}>
+                {categorySlugs.map((slug) => (
+                  <li key={slug}>
                     <Link
-                      href={category.route}
+                      href={href(`/categories/${slug}`)}
                       className="block rounded-lg px-3 py-2.5 text-sm text-foreground hover:bg-muted"
                       onClick={() => setOpen(false)}
                     >
-                      {category.name}
+                      {messages.categoryNames[slug]}
                     </Link>
                   </li>
                 ))}

@@ -4,15 +4,17 @@ import dynamic from "next/dynamic";
 import type { ComponentType } from "react";
 import type { Tool } from "@/data/types";
 import { ToolPlaceholder } from "@/components/tools/ToolPlaceholder";
+import { useI18n } from "@/i18n/client";
 
 function WorkspaceFallback() {
+  const { messages } = useI18n();
   return (
     <div
       className="rounded-2xl border border-border bg-card px-4 py-8 text-sm text-muted-foreground"
       role="status"
       aria-live="polite"
     >
-      Loading tool…
+      {messages.tool.loading}
     </div>
   );
 }

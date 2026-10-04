@@ -1,7 +1,8 @@
 "use client";
 
-import { useSyncExternalStore } from "react";
+import { useLayoutEffect, useSyncExternalStore } from "react";
 import { Icon } from "@/components/icons/Icon";
+import { useI18n } from "@/i18n/client";
 
 type Theme = "light" | "dark";
 
@@ -45,6 +46,17 @@ function getThemeSnapshot(): Theme {
 }
 
 export function ThemeToggle() {
+  const { messages } = useI18n();
+
+  // Client-side navigation between sections remounts <html>, which drops the
+  // data-theme attribute set by the inline script. Restore it before paint.
+  useLayoutEffect(() => {
+    if (!document.documentElement.getAttribute("data-theme")) {
+      applyTheme(getPreferredTheme());
+      window.dispatchEvent(new Event("tsh-theme-change"));
+    }
+  });
+
   const theme = useSyncExternalStore(
     subscribeTheme,
     getThemeSnapshot,
@@ -65,7 +77,7 @@ export function ThemeToggle() {
   }
 
   const label =
-    theme === "dark" ? "Switch to light theme" : "Switch to dark theme";
+    theme === "dark" ? messages.theme.toLight : messages.theme.toDark;
 
   return (
     <button

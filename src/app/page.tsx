@@ -1,40 +1,14 @@
-import { Benefits } from "@/components/home/Benefits";
-import { Categories } from "@/components/home/Categories";
-import { FinalCTA } from "@/components/home/FinalCTA";
-import { HelpfulGuides } from "@/components/home/HelpfulGuides";
-import { Hero } from "@/components/home/Hero";
-import { HowItWorks } from "@/components/home/HowItWorks";
-import { PopularTools } from "@/components/home/PopularTools";
-import { Pricing } from "@/components/home/Pricing";
-import { ToolCatalog } from "@/components/home/ToolCatalog";
-import { JsonLd } from "@/components/seo/JsonLd";
-import {
-  createPageMetadata,
-  organizationJsonLd,
-  websiteJsonLd,
-} from "@/lib/seo";
-import { siteConfig } from "@/lib/site";
+import { SiteDocument } from "@/components/layout/SiteDocument";
+import { HomeView, homeMetadata } from "@/views/HomeView";
 
-export const metadata = createPageMetadata({
-  title: `${siteConfig.name} — ${siteConfig.tagline}`,
-  description: siteConfig.description,
-  path: "/",
-});
+export const metadata = homeMetadata("en");
 
+// The root layout only passes children through (see app/layout.tsx), so the
+// English homepage renders its own document.
 export default function Home() {
   return (
-    <>
-      <JsonLd data={websiteJsonLd()} />
-      <JsonLd data={organizationJsonLd()} />
-      <Hero />
-      <PopularTools />
-      <ToolCatalog />
-      <Categories />
-      <Benefits />
-      <HowItWorks />
-      <HelpfulGuides />
-      <Pricing />
-      <FinalCTA />
-    </>
+    <SiteDocument locale="en">
+      <HomeView locale="en" />
+    </SiteDocument>
   );
 }

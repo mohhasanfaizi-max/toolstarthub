@@ -2,19 +2,24 @@ import Link from "next/link";
 import { Icon } from "@/components/icons/Icon";
 import type { Category } from "@/data/types";
 import { getToolsByCategory } from "@/data/tools";
+import { formatPlural, type Locale } from "@/i18n/config";
+import { getMessages } from "@/i18n/server";
 import { cn } from "@/lib/cn";
 
 type CategoryCardProps = {
   category: Category;
   headingAs?: "h2" | "h3";
   className?: string;
+  locale?: Locale;
 };
 
 export function CategoryCard({
   category,
   headingAs: Heading = "h3",
   className,
+  locale = "en",
 }: CategoryCardProps) {
+  const t = getMessages(locale).category;
   const count = getToolsByCategory(category.slug).length;
 
   return (
@@ -32,16 +37,16 @@ export function CategoryCard({
         {category.name}
       </Heading>
       <p className="mt-1 text-xs font-medium uppercase tracking-wide text-muted-foreground">
-        {`${count} ${count === 1 ? "tool" : "tools"}`}
+        {formatPlural(locale, count, t.cardCount)}
       </p>
       <p className="mt-2 text-sm leading-6 text-muted-foreground">
         {category.description}
       </p>
       <span className="mt-4 inline-flex items-center gap-1 text-sm font-medium text-accent">
-        Browse tools
+        {t.browse}
         <Icon
           name="arrow-right"
-          className="size-4 transition-transform group-hover:translate-x-0.5"
+          className="size-4 transition-transform group-hover:translate-x-0.5 rtl:-scale-x-100 rtl:group-hover:-translate-x-0.5"
         />
       </span>
     </Link>

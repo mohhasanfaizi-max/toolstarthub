@@ -1,7 +1,8 @@
 import { HomeHeading } from "@/components/home/HomeHeading";
 import { HomeToolCard } from "@/components/home/HomeToolCard";
 import { Section } from "@/components/ui/Section";
-import { getToolBySlug } from "@/data/tools";
+import { localizePath, type Locale } from "@/i18n/config";
+import { getMessages, getTool } from "@/i18n/server";
 
 const popularSlugs = [
   "pdf-to-jpg",
@@ -12,9 +13,10 @@ const popularSlugs = [
   "percentage-calculator",
 ] as const;
 
-export function PopularTools() {
+export function PopularTools({ locale = "en" }: { locale?: Locale }) {
+  const t = getMessages(locale).home;
   const tools = popularSlugs.flatMap((slug) => {
-    const tool = getToolBySlug(slug);
+    const tool = getTool(slug, locale);
     return tool ? [tool] : [];
   });
 
@@ -26,10 +28,10 @@ export function PopularTools() {
     >
       <HomeHeading
         id="popular-tools-heading"
-        title="Popular Tools"
-        description="Open a tool people use for files, images, text, and everyday calculations."
-        href="/tools"
-        linkLabel="View all tools"
+        title={t.popularTitle}
+        description={t.popularDescription}
+        href={localizePath("/tools", locale)}
+        linkLabel={t.viewAllTools}
       />
       <div className="mt-8 grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
         {tools.map((tool) => (

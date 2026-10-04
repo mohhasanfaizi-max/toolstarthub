@@ -1,6 +1,7 @@
 "use client";
 
 import { Button } from "@/components/ui/Button";
+import { useI18n } from "@/i18n/client";
 
 type DownloadButtonProps = {
   blob: Blob | null;
@@ -8,11 +9,8 @@ type DownloadButtonProps = {
   label?: string;
 };
 
-export function DownloadButton({
-  blob,
-  fileName,
-  label = "Download",
-}: DownloadButtonProps) {
+export function DownloadButton({ blob, fileName, label }: DownloadButtonProps) {
+  const { messages } = useI18n();
   function download() {
     if (!blob) {
       return;
@@ -30,7 +28,7 @@ export function DownloadButton({
 
   return (
     <Button type="button" onClick={download} disabled={!blob}>
-      {label}
+      {label ?? messages.tool.download}
     </Button>
   );
 }

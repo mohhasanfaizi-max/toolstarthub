@@ -1,4 +1,11 @@
 import type { Metadata } from "next";
+import {
+  defaultLocale,
+  localeInfo,
+  localizePath,
+  locales,
+  type Locale,
+} from "@/i18n/config";
 import { siteConfig } from "@/lib/site";
 
 type PageMetadataInput = {
@@ -12,7 +19,23 @@ type PageMetadataInput = {
    * (tool, category and guide pages). Other pages use the default image.
    */
   shareImage?: { route: string; alt: string };
+  /** Page language. `path` is always the English path; it is localized here. */
+  locale?: Locale;
+  /** Emit hreflang alternates for all locales (page exists in every language). */
+  hreflang?: boolean;
+  /** noindex but keep following links (pages whose content is not translated yet). */
+  noIndexFollow?: boolean;
 };
+
+/** hreflang map for an English path: every locale plus x-default (English). */
+export function languageAlternates(path: string): Record<string, string> {
+  const languages: Record<string, string> = {};
+  for (const locale of locales) {
+    languages[localeInfo[locale].tag] = absoluteUrl(localizePath(path, locale));
+  }
+  languages["x-default"] = absoluteUrl(localizePath(path, defaultLocale));
+  return languages;
+}
 
 export function absoluteUrl(path = "/"): string {
   if (path.startsWith("http")) {
@@ -47,8 +70,11 @@ export function createPageMetadata({
   keywords,
   noIndex,
   shareImage: pageImage,
+  locale = defaultLocale,
+  hreflang = false,
+  noIndexFollow = false,
 }: PageMetadataInput): Metadata {
-  const url = absoluteUrl(path);
+  const url = absoluteUrl(localizePath(path, locale));
   const ogImage = pageImage
     ? shareImage(pageImage.route, pageImage.alt)
     : shareImage();
@@ -62,22 +88,30 @@ export function createPageMetadata({
     keywords,
     alternates: {
       canonical: url,
+      ...(hreflang && !noIndex && !noIndexFollow
+        ? { languages: languageAlternates(path) }
+        : {}),
     },
     robots: noIndex
       ? {
           index: false,
           follow: false,
         }
-      : {
-          index: true,
-          follow: true,
-        },
+      : noIndexFollow
+        ? {
+            index: false,
+            follow: true,
+          }
+        : {
+            index: true,
+            follow: true,
+          },
     openGraph: {
       title,
       description,
       url,
       siteName: siteConfig.name,
-      locale: "en_US",
+      locale: localeInfo[locale].og,
       type: "website",
       images: [ogImage],
     },
@@ -90,18 +124,22 @@ export function createPageMetadata({
   };
 }
 
-export function websiteJsonLd() {
+export function websiteJsonLd(
+  locale: Locale = defaultLocale,
+  description: string = siteConfig.description,
+) {
   return {
     "@context": "https://schema.org",
     "@type": "WebSite",
     name: siteConfig.name,
-    url: siteConfig.url,
-    description: siteConfig.description,
+    url: absoluteUrl(localizePath("/", locale)),
+    description,
+    inLanguage: localeInfo[locale].tag,
     potentialAction: {
       "@type": "SearchAction",
       target: {
         "@type": "EntryPoint",
-        urlTemplate: `${siteConfig.url}/tools?q={search_term_string}`,
+        urlTemplate: `${absoluteUrl(localizePath("/tools", locale))}?q={search_term_string}`,
       },
       "query-input": "required name=search_term_string",
     },
@@ -118,9 +156,7 @@ export function organizationJsonLd() {
   };
 }
 
-export function breadcrumbJsonLd(
-  items: Array<{ name: string; path: string }>,
-) {
+export function breadcrumbJsonLd(items: Array<{ name: string; path: string }>) {
   return {
     "@context": "https://schema.org",
     "@type": "BreadcrumbList",
@@ -137,6 +173,7 @@ export function toolJsonLd(input: {
   name: string;
   description: string;
   path: string;
+  locale?: Locale;
 }) {
   return {
     "@context": "https://schema.org",
@@ -144,6 +181,7 @@ export function toolJsonLd(input: {
     name: input.name,
     description: input.description,
     url: absoluteUrl(input.path),
+    inLanguage: localeInfo[input.locale ?? defaultLocale].tag,
     applicationCategory: "UtilitiesApplication",
     operatingSystem: "Any",
     offers: {
@@ -155,9 +193,7 @@ export function toolJsonLd(input: {
   };
 }
 
-export function faqJsonLd(
-  items: Array<{ question: string; answer: string }>,
-) {
+export function faqJsonLd(items: Array<{ question: string; answer: string }>) {
   return {
     "@context": "https://schema.org",
     "@type": "FAQPage",

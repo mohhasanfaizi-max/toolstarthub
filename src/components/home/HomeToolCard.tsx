@@ -1,7 +1,9 @@
+"use client";
+
 import Link from "next/link";
 import { Icon } from "@/components/icons/Icon";
-import { getToolCategory } from "@/data/tools";
 import type { Tool } from "@/data/types";
+import { useI18n } from "@/i18n/client";
 import { cn } from "@/lib/cn";
 
 type HomeToolCardProps = {
@@ -10,7 +12,8 @@ type HomeToolCardProps = {
 };
 
 export function HomeToolCard({ tool, prominent = false }: HomeToolCardProps) {
-  const category = getToolCategory(tool);
+  const { messages } = useI18n();
+  const categoryName = messages.categoryNames[tool.category];
 
   return (
     <article
@@ -25,11 +28,11 @@ export function HomeToolCard({ tool, prominent = false }: HomeToolCardProps) {
         </span>
         {tool.featured ? (
           <span className="rounded-md bg-accent-soft px-2 py-1 text-xs font-medium text-accent">
-            Popular
+            {messages.card.popular}
           </span>
         ) : tool.new ? (
           <span className="rounded-md bg-muted px-2 py-1 text-xs font-medium text-muted-foreground">
-            New
+            {messages.card.new}
           </span>
         ) : null}
       </div>
@@ -41,19 +44,19 @@ export function HomeToolCard({ tool, prominent = false }: HomeToolCardProps) {
       <p className="mt-2 flex-1 text-sm leading-6 text-muted-foreground">
         {tool.description}
       </p>
-      {category ? (
+      {categoryName ? (
         <p className="mt-3 text-xs font-medium uppercase tracking-wide text-muted-foreground">
-          {category.name}
+          {categoryName}
         </p>
       ) : null}
       <Link
         href={tool.route}
         className="mt-4 inline-flex items-center gap-1 text-sm font-medium text-accent"
       >
-        Open tool
+        {messages.card.openTool}
         <Icon
           name="arrow-right"
-          className="size-4 transition-transform group-hover:translate-x-0.5"
+          className="size-4 transition-transform group-hover:translate-x-0.5 rtl:-scale-x-100 rtl:group-hover:-translate-x-0.5"
         />
       </Link>
     </article>
