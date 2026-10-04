@@ -620,7 +620,7 @@ const publishedGuides: Article[] = [
     title: "How to Write a CSS Gradient",
     slug: "how-to-write-a-css-gradient",
     primaryKeyword: "css gradient",
-    secondaryKeywords: ["linear-gradient", "radial-gradient"],
+    secondaryKeywords: ["linear-gradient", "radial-gradient", "conic-gradient"],
     searchIntent: "informational",
     toolSlug: "css-gradient-generator",
     siblingToolSlugs: ["box-shadow-generator", "color-picker"],
@@ -629,9 +629,9 @@ const publishedGuides: Article[] = [
     status: "PUBLISHED",
     metaTitle: "How to Write a CSS Gradient",
     metaDescription:
-      "Build a linear or radial CSS gradient from at least two color stops and copy the background declaration.",
+      "Build a linear, radial or conic CSS gradient from at least two color stops and copy the background or gradient text CSS.",
     excerpt:
-      "Build a linear or radial CSS gradient from at least two color stops and copy the background declaration.",
+      "Build a linear, radial or conic CSS gradient from at least two color stops and copy the background or gradient text CSS.",
     content: null,
     faq: [],
     relatedTools: ["css-gradient-generator", "color-picker", "hex-to-rgb", "box-shadow-generator"],

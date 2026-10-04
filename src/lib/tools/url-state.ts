@@ -6,8 +6,18 @@ import {
 import {
   createStop,
   defaultGradient,
+  defaultTextStyle,
+  FONT_FAMILIES,
+  FONT_SIZE_MAX,
+  FONT_SIZE_MIN,
+  FONT_WEIGHTS,
+  type FontFamilyKey,
+  type GradientMode,
   type GradientOptions,
   type GradientType,
+  type HtmlFormat,
+  type TextAlign,
+  type TextStyleOptions,
 } from "./gradient.ts";
 
 const HEX_PARAM = /^#?[0-9a-fA-F]{3,8}$/;
@@ -89,9 +99,19 @@ export function parseGradientParams(params: URLSearchParams): Partial<GradientOp
   params = boundedSearchParams(params);
   const next: Partial<GradientOptions> = {};
   const type = readParam(params, "type");
-  if (type === "linear" || type === "radial") {
+  if (type === "linear" || type === "radial" || type === "conic") {
     next.type = type;
   }
+
+  const shape = readParam(params, "shape");
+  if (shape === "circle" || shape === "ellipse") {
+    next.shape = shape;
+  }
+
+  const positionX = clampInt(readParam(params, "x"), 0, 100);
+  const positionY = clampInt(readParam(params, "y"), 0, 100);
+  if (positionX !== undefined) next.positionX = positionX;
+  if (positionY !== undefined) next.positionY = positionY;
 
   const angle = clampInt(readParam(params, "angle"), 0, 360);
   if (angle !== undefined) {
@@ -121,7 +141,60 @@ export function parseGradientParams(params: URLSearchParams): Partial<GradientOp
   return next;
 }
 
-export function serializeGradientParams(options: GradientOptions): URLSearchParams {
+/** Gradient text settings kept in share links. The text itself is not put in the URL. */
+export type GradientDesignState = {
+  mode: GradientMode;
+  htmlFormat: HtmlFormat;
+  textStyle: Omit<TextStyleOptions, "text">;
+};
+
+export function defaultGradientDesign(): GradientDesignState {
+  const style = defaultTextStyle();
+  return {
+    mode: "box",
+    htmlFormat: "class",
+    textStyle: {
+      fontSize: style.fontSize,
+      fontWeight: style.fontWeight,
+      fontFamily: style.fontFamily,
+      align: style.align,
+    },
+  };
+}
+
+export function gradientDesignFromParams(params: URLSearchParams): GradientDesignState {
+  params = boundedSearchParams(params);
+  const fallback = defaultGradientDesign();
+  const mode = readParam(params, "mode");
+  const html = readParam(params, "html");
+  const size = clampInt(readParam(params, "size"), FONT_SIZE_MIN, FONT_SIZE_MAX);
+  const weight = clampInt(readParam(params, "weight"), 100, 900);
+  const font = readParam(params, "font");
+  const align = readParam(params, "align");
+
+  return {
+    mode: mode === "text" ? "text" : "box",
+    htmlFormat: html === "inline" ? "inline" : "class",
+    textStyle: {
+      fontSize: size ?? fallback.textStyle.fontSize,
+      fontWeight:
+        weight !== undefined && (FONT_WEIGHTS as readonly number[]).includes(weight)
+          ? weight
+          : fallback.textStyle.fontWeight,
+      fontFamily:
+        font && font in FONT_FAMILIES ? (font as FontFamilyKey) : fallback.textStyle.fontFamily,
+      align:
+        align === "left" || align === "center" || align === "right"
+          ? (align as TextAlign)
+          : fallback.textStyle.align,
+    },
+  };
+}
+
+export function serializeGradientParams(
+  options: GradientOptions,
+  design?: GradientDesignState,
+): URLSearchParams {
   const params = new URLSearchParams();
   params.set("type", options.type);
   params.set("angle", String(options.angle));
@@ -131,6 +204,29 @@ export function serializeGradientParams(options: GradientOptions): URLSearchPara
       .map((stop) => `${stop.color}@${Math.round(stop.position)}`)
       .join(","),
   );
+  if (options.type === "radial" && options.shape === "ellipse") {
+    params.set("shape", "ellipse");
+  }
+  if (options.type !== "linear") {
+    const x = options.positionX ?? 50;
+    const y = options.positionY ?? 50;
+    if (x !== 50 || y !== 50) {
+      params.set("x", String(Math.round(x)));
+      params.set("y", String(Math.round(y)));
+    }
+  }
+  if (design) {
+    const fallback = defaultGradientDesign();
+    if (design.mode !== fallback.mode) params.set("mode", design.mode);
+    if (design.htmlFormat !== fallback.htmlFormat) params.set("html", design.htmlFormat);
+    if (design.mode === "text") {
+      const style = design.textStyle;
+      if (style.fontSize !== fallback.textStyle.fontSize) params.set("size", String(style.fontSize));
+      if (style.fontWeight !== fallback.textStyle.fontWeight) params.set("weight", String(style.fontWeight));
+      if (style.fontFamily !== fallback.textStyle.fontFamily) params.set("font", style.fontFamily);
+      if (style.align !== fallback.textStyle.align) params.set("align", style.align);
+    }
+  }
   return params;
 }
 
@@ -194,6 +290,9 @@ export function gradientFromParams(params: URLSearchParams): GradientOptions {
     type: (parsed.type as GradientType | undefined) ?? fallback.type,
     angle: parsed.angle ?? fallback.angle,
     stops: parsed.stops ?? fallback.stops,
+    shape: parsed.shape ?? "circle",
+    positionX: parsed.positionX ?? 50,
+    positionY: parsed.positionY ?? 50,
   };
 }
 

@@ -1502,11 +1502,13 @@ export const toolContent: Record<string, ToolContent> = {
   },
   "css-gradient-generator": {
     about:
-      "Build a linear or radial CSS gradient from color stops and copy the background declaration. Use it when a page needs a two-color fill and you want the CSS written for you. You need at least two stops, positions round to whole percents, and conic gradients are not generated.",
+      "Build a linear, radial or conic CSS gradient from color stops, for a background or for text, and copy the CSS or a ready HTML snippet. Use it when a section, button or heading needs a gradient and you want the code written for you. You need two to eight stops, and positions round to whole percents.",
     howTo: [
-      "Choose linear or radial.",
-      "Set colors and positions for each stop. Add or remove stops as needed.",
-      "For linear gradients, set the angle. Copy the generated CSS.",
+      "Choose Background or Text, then linear, radial or conic.",
+      "Set the angle for linear and conic, or the shape and center for radial. Conic also has a center.",
+      "Set colors and positions for each stop, or start from a preset.",
+      "For text, type the words and pick size, weight, font and alignment.",
+      "Copy the CSS or the HTML snippet, with a CSS class or inline styles.",
     ],
     examples: [
       {
@@ -1517,31 +1519,45 @@ export const toolContent: Record<string, ToolContent> = {
         title: "A radial fill",
         body: "background: radial-gradient(circle, #336699 0%, #ffffff 100%);",
       },
+      {
+        title: "A conic color wheel",
+        body: "background: conic-gradient(from 0deg, #ff6b6b 0%, #feca57 25%, #48dbfb 50%, #ff9ff3 75%, #ff6b6b 100%);",
+      },
     ],
     explanation:
-      "Stops are sorted by position and written as valid CSS color stops. Only parsed hex colors are used in the preview, so user text is not executed as HTML or JavaScript.",
+      "Stops are sorted by position and written as valid CSS color stops. Gradient text uses background-clip: text inside an @supports rule, with the first stop as a solid color fallback, so older browsers still show readable text. Text you type is escaped in the HTML snippet and is not added to share links.",
     limitations:
-      "At least two color stops are required. Positions are rounded to whole percents from 0 to 100, and a color the parser cannot read is left out of the CSS. Conic gradients, repeating gradients, and a gradient you paste in are not generated.",
+      "Two to eight color stops are supported. Positions are rounded to whole percents from 0 to 100, and a color the parser cannot read stops the CSS until it is fixed. Radial gradients have no angle in CSS, so they use a shape and center instead. Repeating gradients, layered gradients, and a gradient you paste in are not generated.",
     faqs: [
       {
         question: "Is the CSS Gradient Generator free?",
         answer:
-          "Yes. Building a linear or radial CSS gradient from color stops is free, and no account is required.",
+          "Yes. Building linear, radial or conic gradients and gradient text is free, runs in your browser, and needs no account.",
       },
       {
-        question: "Can I paste arbitrary CSS?",
+        question: "How does the gradient text work?",
         answer:
-          "No. The tool generates a background declaration from the controls. It does not run custom CSS or HTML.",
+          "The CSS paints the gradient as the text background and clips it to the letters with background-clip: text. Browsers that cannot clip show the first stop as a solid text color instead.",
       },
       {
-        question: "What happens to a stop position?",
+        question: "Should I copy the CSS or the HTML?",
         answer:
-          "Each position is rounded to a whole percent and kept between 0 and 100. You need at least two stops before any CSS is copied.",
+          "Copy the CSS to add it to your stylesheet. Copy the HTML for a quick snippet, either with a class and a style block or with inline styles.",
+      },
+      {
+        question: "Why is there no angle for radial gradients?",
+        answer:
+          "CSS radial gradients spread out from a center and have no direction. You set the shape (circle or ellipse) and the center point instead. Linear and conic gradients use an angle.",
+      },
+      {
+        question: "What does the share link keep?",
+        answer:
+          "The link keeps the gradient type, angle, center, stops, mode and text settings. The words you type for gradient text stay on your page and are not put in the link.",
       },
       {
         question: "Will older browsers understand the CSS?",
         answer:
-          "The copy is standard linear-gradient or radial-gradient syntax, without vendor prefixes. A browser that does not support those functions will ignore the declaration.",
+          "The copy is standard CSS without vendor prefixes, except -webkit-background-clip for text, which some browsers still need. Conic gradients need a browser from 2020 or later.",
       },
     ],
   },

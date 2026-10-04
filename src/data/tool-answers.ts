@@ -72,7 +72,7 @@ export const toolQuickAnswers: Record<string, string> = {
   "color-contrast-checker":
     "A color contrast checker measures the WCAG contrast ratio between foreground and background colors.",
   "css-gradient-generator":
-    "A CSS gradient generator builds linear or radial gradients and copies the CSS for your stylesheet.",
+    "A CSS gradient generator builds linear, radial or conic gradients for a background or for text, and copies the CSS or an HTML snippet.",
   "box-shadow-generator":
     "A box shadow generator lets you tune offset, blur, spread and color, then copy a CSS box-shadow value.",
   "qr-code-generator-pro":

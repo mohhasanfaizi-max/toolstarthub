@@ -2321,22 +2321,22 @@ export const guideContent: Record<string, GuideContent> = {
   },
   "how-to-write-a-css-gradient": {
     intro:
-      "A CSS gradient is a background that fades between color stops. This page writes a linear-gradient or a radial-gradient from the stops you set. You need at least two stops. Each position is rounded to a whole percent between 0 and 100. Conic gradients are not generated.",
+      "A CSS gradient is a background that fades between color stops. This page writes a linear-gradient, radial-gradient or conic-gradient from the stops you set, for a background or for text. You need at least two stops. Each position is rounded to a whole percent between 0 and 100.",
     why:
-      "The copied declaration is the background line. The page does not accept pasted CSS, and it does not add vendor prefixes.",
+      "For a background, the copy is one background line. For text, it is a short rule with a solid color fallback, and an HTML snippet is available too. The page does not accept pasted CSS.",
     stepsHeading: "How to build a gradient",
     steps: [
       {
-        title: "Choose linear or radial",
-        body: "Those are the two types this page writes.",
+        title: "Choose linear, radial or conic",
+        body: "Linear fades along a line, radial spreads from a center, and conic sweeps around a center like a color wheel.",
       },
       {
         title: "Set a color and a position for each stop",
         body: "Add or remove stops until you have at least two.",
       },
       {
-        title: "Set the angle for a linear gradient",
-        body: "The default linear fade is 90 degrees from #336699 at 0% to #ffffff at 100%.",
+        title: "Set the angle or the center",
+        body: "Linear and conic gradients use an angle. Radial and conic gradients use a center point. The default linear fade is 90 degrees from #336699 at 0% to #ffffff at 100%.",
       },
       {
         title: "Copy the background declaration",
@@ -2360,7 +2360,7 @@ export const guideContent: Record<string, GuideContent> = {
       },
       {
         question: "Can I make a conic gradient?",
-        answer: "No. The choices are linear and radial.",
+        answer: "Yes. Choose Conic, then set the start angle and the center. Stop positions are a share of the full turn.",
       },
       {
         question: "What happens to 33.4%?",
@@ -2368,11 +2368,11 @@ export const guideContent: Record<string, GuideContent> = {
       },
       {
         question: "Will older browsers get a prefixed copy?",
-        answer: "No. The copy is standard linear-gradient or radial-gradient syntax, without vendor prefixes.",
+        answer: "No. Background gradients are standard syntax without vendor prefixes. Gradient text adds -webkit-background-clip, which some browsers still need.",
       },
     ],
     cta: {
-      before: "To copy a linear or radial background, use the",
+      before: "To copy a linear, radial or conic gradient, or gradient text, use the",
       linkLabel: "CSS Gradient Generator",
       href: "/tools/css-gradient-generator",
       after: ".",

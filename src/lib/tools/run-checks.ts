@@ -102,7 +102,13 @@ import { generateUuids, isUuidV4, UUID_MAX } from "./uuid.ts";
 import { BOX_SHADOW_DEFAULT, buildBoxShadowCss } from "./box-shadow.ts";
 import { analyzePixels, parseColorCount } from "./color-analyze.ts";
 import { evaluateContrast } from "./contrast.ts";
-import { buildGradientCss, defaultGradient } from "./gradient.ts";
+import {
+  buildGradientCss,
+  buildGradientHtml,
+  buildGradientTextCss,
+  defaultGradient,
+  defaultTextStyle,
+} from "./gradient.ts";
 import { validateImagePdfList } from "./image-to-pdf.ts";
 import { moveItem } from "./list.ts";
 import { countPdfPages, mergePdfs, splitPdf } from "./pdf-edit.ts";
@@ -153,6 +159,8 @@ import {
   parseBoxShadowParams,
   parseContrastParams,
   parseGradientParams,
+  gradientDesignFromParams,
+  serializeGradientParams,
   SENSITIVE_PARAM_KEYS,
 } from "./url-state.ts";
 import { serializeJsonLd } from "../serialize-json-ld.ts";
@@ -1038,6 +1046,59 @@ assert(
   radial.ok && radial.css === "background: radial-gradient(circle, #336699 0%, #000000 50%, #ffffff 100%);",
   "Radial gradient with three stops",
 );
+const radialAt = buildGradientCss({
+  ...defaultGradient(),
+  type: "radial",
+  shape: "ellipse",
+  positionX: 25,
+  positionY: 0,
+});
+assert(
+  radialAt.ok &&
+    radialAt.css === "background: radial-gradient(ellipse at 25% 0%, #336699 0%, #ffffff 100%);",
+  "Radial ellipse with center",
+);
+const conic = buildGradientCss({ ...defaultGradient(), type: "conic", angle: 45 });
+assert(
+  conic.ok && conic.css === "background: conic-gradient(from 45deg, #336699 0%, #ffffff 100%);",
+  "Conic gradient with start angle",
+);
+const conicAt = buildGradientCss({
+  ...defaultGradient(),
+  type: "conic",
+  angle: 0,
+  positionX: 30,
+  positionY: 70,
+});
+assert(
+  conicAt.ok &&
+    conicAt.gradient === "conic-gradient(from 0deg at 30% 70%, #336699 0%, #ffffff 100%)",
+  "Conic gradient with center",
+);
+if (linear.ok) {
+  const textCss = buildGradientTextCss(linear, defaultTextStyle());
+  assert(
+    textCss.includes("color: #336699;") &&
+      textCss.includes("@supports") &&
+      textCss.includes("background-clip: text;") &&
+      textCss.includes("-webkit-text-fill-color: transparent;"),
+    "Gradient text CSS has clip and fallback",
+  );
+  const textHtml = buildGradientHtml(linear, "text", "inline", {
+    ...defaultTextStyle(),
+    text: '<b>"Hi" & bye</b>',
+  });
+  assert(
+    textHtml.includes("&lt;b&gt;&quot;Hi&quot; &amp; bye&lt;/b&gt;") && !textHtml.includes("<b>"),
+    "Gradient text HTML escapes user text",
+  );
+  const boxHtml = buildGradientHtml(linear, "box", "class", defaultTextStyle());
+  assert(
+    boxHtml.includes('<div class="gradient-box"></div>') &&
+      boxHtml.includes("background-image: linear-gradient(90deg, #336699 0%, #ffffff 100%);"),
+    "Gradient box HTML with class",
+  );
+}
 
 const shadow = buildBoxShadowCss(BOX_SHADOW_DEFAULT);
 assert(
@@ -2238,6 +2299,46 @@ assert(
     gradientParsed.stops?.length === 2,
   "Gradient URL params parse",
 );
+const gradientConicParsed = parseGradientParams(
+  new URLSearchParams("type=conic&angle=30&x=20&y=80&shape=ellipse&stops=%23ff0000@0,%230000ff@100"),
+);
+assert(
+  gradientConicParsed.type === "conic" &&
+    gradientConicParsed.positionX === 20 &&
+    gradientConicParsed.positionY === 80,
+  "Conic gradient URL params parse",
+);
+const designParsed = gradientDesignFromParams(
+  new URLSearchParams("mode=text&size=96&weight=700&font=serif&align=left&html=inline"),
+);
+assert(
+  designParsed.mode === "text" &&
+    designParsed.textStyle.fontSize === 96 &&
+    designParsed.textStyle.fontWeight === 700 &&
+    designParsed.textStyle.fontFamily === "serif" &&
+    designParsed.textStyle.align === "left" &&
+    designParsed.htmlFormat === "inline",
+  "Gradient text settings URL params parse",
+);
+const designInvalid = gradientDesignFromParams(new URLSearchParams("mode=x&weight=450&font=comic&size=999"));
+assert(
+  designInvalid.mode === "box" &&
+    designInvalid.textStyle.fontWeight === 800 &&
+    designInvalid.textStyle.fontFamily === "sans" &&
+    designInvalid.textStyle.fontSize === 160,
+  "Invalid gradient text settings fall back or clamp",
+);
+const roundTrip = serializeGradientParams(
+  { ...defaultGradient(), type: "conic", positionX: 10, positionY: 90 },
+  designParsed,
+);
+assert(
+  !roundTrip.has("text") &&
+    roundTrip.get("mode") === "text" &&
+    roundTrip.get("x") === "10" &&
+    roundTrip.get("font") === "serif",
+  "Gradient share params round-trip without text",
+);
 const shadowParsed = parseBoxShadowParams(
   new URLSearchParams("x=4&y=8&blur=12&spread=1&color=%230f2744&opacity=0.4&inset=1"),
 );
@@ -2251,7 +2352,7 @@ const shadowInvalid = parseBoxShadowParams(new URLSearchParams("x=nope&blur=999"
 assert(shadowInvalid.offsetX === undefined && shadowInvalid.blur === 80, "Invalid shadow x ignored, blur clamped");
 assert(
   !SENSITIVE_PARAM_KEYS.some((key) =>
-    ["fg", "bg", "type", "angle", "stops", "x", "y", "blur", "spread", "color", "opacity", "inset"].includes(
+    ["fg", "bg", "type", "angle", "stops", "x", "y", "blur", "spread", "color", "opacity", "inset", "shape", "mode", "size", "weight", "font", "align", "html"].includes(
       key,
     ),
   ),
