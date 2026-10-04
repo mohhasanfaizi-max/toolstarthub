@@ -9,9 +9,29 @@ type GuideArticleProps = {
   title: string;
   category?: Category;
   content: GuideContent;
+  /** ISO dates for the byline (published, last updated). */
+  published?: string;
+  modified?: string;
 };
 
-export function GuideArticle({ title, category, content }: GuideArticleProps) {
+function formatGuideDate(iso: string) {
+  return new Intl.DateTimeFormat("en-US", {
+    year: "numeric",
+    month: "long",
+    day: "numeric",
+    timeZone: "UTC",
+  }).format(new Date(iso));
+}
+
+export function GuideArticle({
+  title,
+  category,
+  content,
+  published,
+  modified,
+}: GuideArticleProps) {
+  const showUpdated =
+    modified && published && formatGuideDate(modified) !== formatGuideDate(published);
   return (
     <article className="mt-6 max-w-3xl">
       {category ? (
@@ -26,6 +46,22 @@ export function GuideArticle({ title, category, content }: GuideArticleProps) {
       <h1 className="mt-2 text-3xl font-semibold tracking-tight text-foreground sm:text-4xl">
         {title}
       </h1>
+      <p className="mt-3 text-sm text-muted-foreground">
+        By{" "}
+        <Link href="/about#editorial-team" className="font-medium text-foreground hover:underline">
+          Tools Star Hub Editorial Team
+        </Link>
+        {published ? (
+          <>
+            {" · "}Published <time dateTime={published}>{formatGuideDate(published)}</time>
+          </>
+        ) : null}
+        {showUpdated ? (
+          <>
+            {" · "}Updated <time dateTime={modified}>{formatGuideDate(modified)}</time>
+          </>
+        ) : null}
+      </p>
       <p className="mt-4 text-lg leading-7 text-muted-foreground">{content.intro}</p>
       {content.why ? (
         <p className="mt-4 text-base leading-7 text-muted-foreground">{content.why}</p>
@@ -42,7 +78,11 @@ export function GuideArticle({ title, category, content }: GuideArticleProps) {
         </h2>
         <ol className="mt-4 list-decimal space-y-4 pl-5">
           {content.steps.map((step, index) => (
-            <li key={`${step.title}-${index}`} className="text-sm leading-6 text-muted-foreground">
+            <li
+              key={`${step.title}-${index}`}
+              id={`step-${index + 1}`}
+              className="text-sm leading-6 text-muted-foreground"
+            >
               <span className="font-medium text-foreground">{step.title}. </span>
               {step.body}
             </li>

@@ -9,6 +9,8 @@ import type { Tool } from "@/data/types";
 import { localizePath, type Locale } from "@/i18n/config";
 import { getMessages, getTools } from "@/i18n/server";
 import { breadcrumbJsonLd, createPageMetadata } from "@/lib/seo";
+import { collectionPageJsonLd } from "@/lib/structured-data";
+import { toolsIndexMetaDescription } from "@/data/page-meta";
 
 type SearchParams = Record<string, string | string[] | undefined>;
 
@@ -22,7 +24,7 @@ export function toolsMetadata(locale: Locale, params: SearchParams) {
   );
   return createPageMetadata({
     title: t.toolsTitle,
-    description: t.toolsDescription,
+    description: locale === "en" ? toolsIndexMetaDescription : t.toolsDescription,
     path: "/tools",
     noIndex: hasDiscoveryQuery,
     locale,
@@ -53,6 +55,15 @@ export function ToolsView({ locale }: { locale: Locale }) {
           { name: b.home, path: home },
           { name: b.tools, path: toolsPath },
         ])}
+      />
+      <JsonLd
+        data={collectionPageJsonLd({
+          name: messages.toolsPage.title,
+          description: messages.meta.toolsDescription,
+          path: toolsPath,
+          locale,
+          items: tools.map((tool) => ({ name: tool.name, path: tool.route })),
+        })}
       />
       <Breadcrumbs
         label={b.label}

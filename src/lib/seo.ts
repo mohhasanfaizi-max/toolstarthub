@@ -175,28 +175,48 @@ export function toolJsonLd(input: {
   path: string;
   locale?: Locale;
 }) {
+  const url = absoluteUrl(input.path);
+  // Share images are generated once per tool, on the English route.
+  const slug = input.path.split("/").filter(Boolean).pop() ?? "";
   return {
     "@context": "https://schema.org",
     "@type": "WebApplication",
+    "@id": `${url}#webapp`,
     name: input.name,
     description: input.description,
-    url: absoluteUrl(input.path),
+    url,
+    mainEntityOfPage: url,
+    image: absoluteUrl(`/tools/${slug}/opengraph-image`),
     inLanguage: localeInfo[input.locale ?? defaultLocale].tag,
     applicationCategory: "UtilitiesApplication",
     operatingSystem: "Any",
+    browserRequirements: "Requires JavaScript and a modern web browser.",
     offers: {
       "@type": "Offer",
       price: "0",
       priceCurrency: "USD",
     },
     isAccessibleForFree: true,
+    publisher: {
+      "@type": "Organization",
+      "@id": `${siteConfig.url}/#organization`,
+      name: siteConfig.name,
+      url: siteConfig.url,
+    },
+    isPartOf: {
+      "@id": `${absoluteUrl(localizePath("/", input.locale ?? defaultLocale))}#website`,
+    },
   };
 }
 
-export function faqJsonLd(items: Array<{ question: string; answer: string }>) {
+export function faqJsonLd(
+  items: Array<{ question: string; answer: string }>,
+  locale: Locale = "en",
+) {
   return {
     "@context": "https://schema.org",
     "@type": "FAQPage",
+    inLanguage: localeInfo[locale].tag,
     mainEntity: items.map((item) => ({
       "@type": "Question",
       name: item.question,

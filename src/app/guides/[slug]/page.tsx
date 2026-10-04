@@ -8,16 +8,19 @@ import { RelatedTools } from "@/components/tools/RelatedTools";
 import { getCategoryBySlug } from "@/data/categories";
 import { getArticleBySlug } from "@/data/articles";
 import { getGuideContent } from "@/data/guide-content";
+import { getGuideDates } from "@/data/guide-dates";
+import { guideMetaDescriptions } from "@/data/guide-meta";
 import { getPublicGuideBySlug, getRelatedPublicArticles, toGuide } from "@/data/guides";
 import { isPubliclyVisible } from "@/lib/content/publication";
 import { getToolBySlug } from "@/data/tools";
 import type { Tool } from "@/data/types";
+import { collectText } from "@/lib/content-style";
+import { absoluteUrl, breadcrumbJsonLd, createPageMetadata, faqJsonLd } from "@/lib/seo";
 import {
-  articleJsonLd,
-  breadcrumbJsonLd,
-  createPageMetadata,
-  faqJsonLd,
-} from "@/lib/seo";
+  EDITORIAL_TEAM_NAME,
+  guideArticleJsonLd,
+  howToJsonLd,
+} from "@/lib/structured-data";
 
 export const dynamic = "force-dynamic";
 
@@ -32,12 +35,31 @@ export async function generateMetadata({
     return {};
   }
 
-  return createPageMetadata({
+  const article = getArticleBySlug(slug);
+  const dates = getGuideDates(slug, article?.publishedAt ?? article?.publishAt);
+  const description = guideMetaDescriptions[slug] ?? guide.description;
+  const base = createPageMetadata({
     title: guide.title,
-    description: guide.description,
+    description,
     path: guide.route,
+    keywords: article
+      ? [article.primaryKeyword, ...article.secondaryKeywords]
+      : undefined,
     shareImage: { route: guide.route, alt: guide.title },
   });
+  const category = getCategoryBySlug(guide.category);
+  return {
+    ...base,
+    authors: [{ name: EDITORIAL_TEAM_NAME, url: absoluteUrl("/about#editorial-team") }],
+    openGraph: {
+      ...base.openGraph,
+      type: "article",
+      ...(dates.published ? { publishedTime: dates.published } : {}),
+      ...(dates.modified ? { modifiedTime: dates.modified } : {}),
+      authors: [absoluteUrl("/about#editorial-team")],
+      ...(category ? { section: category.name } : {}),
+    },
+  };
 }
 
 export default async function GuidePage({
@@ -57,7 +79,7 @@ export default async function GuidePage({
     .map((toolSlug) => getToolBySlug(toolSlug))
     .filter((tool): tool is Tool => tool !== undefined);
   const relatedGuides = getRelatedPublicArticles(article, now).map(toGuide);
-  const publishedDate = article.publishedAt ?? article.publishAt;
+  const dates = getGuideDates(guide.slug, article.publishedAt ?? article.publishAt);
 
   return (
     <Container className="py-10 sm:py-14">
@@ -69,13 +91,32 @@ export default async function GuidePage({
         ])}
       />
       <JsonLd
-        data={articleJsonLd({
+        data={guideArticleJsonLd({
           title: guide.title,
-          description: guide.description,
+          description: guideMetaDescriptions[guide.slug] ?? guide.description,
           path: guide.route,
-          datePublished: publishedDate,
+          datePublished: dates.published,
+          dateModified: dates.modified,
+          keywords: [article.primaryKeyword, ...article.secondaryKeywords],
+          section: category?.name,
+          tools: relatedTools.map((tool) => ({ name: tool.name, path: tool.route })),
+          wordCount: content
+            ? collectText(content).join(" ").split(/\s+/).filter(Boolean).length
+            : undefined,
         })}
       />
+      {content?.steps.length ? (
+        <JsonLd
+          data={howToJsonLd({
+            name: content.stepsHeading,
+            description: guide.description,
+            path: guide.route,
+            steps: content.steps.map((step) => ({ name: step.title, text: step.body })),
+            toolName: relatedTools[0]?.name,
+            stepAnchors: true,
+          })}
+        />
+      ) : null}
       {content?.faqs.length ? <JsonLd data={faqJsonLd(content.faqs)} /> : null}
       <Breadcrumbs
         items={[
@@ -89,6 +130,8 @@ export default async function GuidePage({
           title={guide.title}
           category={category}
           content={content}
+          published={dates.published}
+          modified={dates.modified}
         />
       ) : (
         <article className="mt-6 max-w-3xl">

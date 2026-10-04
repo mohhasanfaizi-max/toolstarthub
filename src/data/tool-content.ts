@@ -2,6 +2,7 @@ import { aiToolContent } from "./ai-tool-content.ts";
 import { extraToolContent } from "./extra-tool-content.ts";
 import { financeToolContent } from "./finance-tool-content.ts";
 import { nextToolContent } from "./next-tool-content.ts";
+import { extraToolFaqs } from "./tool-faq-extra.ts";
 
 export type ToolExample = {
   title: string;
@@ -2101,5 +2102,8 @@ export const toolContent: Record<string, ToolContent> = {
 };
 
 export function getToolContent(slug: string): ToolContent | undefined {
-  return toolContent[slug] ?? aiToolContent[slug] ?? nextToolContent[slug] ?? financeToolContent[slug] ?? extraToolContent[slug];
+  const content = toolContent[slug] ?? aiToolContent[slug] ?? nextToolContent[slug] ?? financeToolContent[slug] ?? extraToolContent[slug];
+  // Extra English FAQs (tool-faq-extra.ts) are appended after the tool's own.
+  const extraFaqs = extraToolFaqs[slug];
+  return content && extraFaqs ? { ...content, faqs: [...content.faqs, ...extraFaqs] } : content;
 }

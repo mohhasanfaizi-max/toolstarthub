@@ -7,7 +7,7 @@ import { siteConfig } from "@/lib/site";
 
 export const metadata = createPageMetadata({
   title: "Disclaimer",
-  description: `Disclaimer for ${siteConfig.name} tools and guides.`,
+  description: `How to use ${siteConfig.name} results: calculators and converters are general information and estimates, not financial, legal, tax, or medical advice.`,
   path: "/disclaimer",
 });
 
@@ -35,8 +35,10 @@ export default function DisclaimerPage() {
           financial, medical, engineering or tax advice.
         </p>
         <p>
-          Calculators perform the arithmetic described on each tool page. They
-          do not calculate tax, loans, medical doses, or engineering loads.
+          Calculators perform the arithmetic described on each tool page.
+          Loan, mortgage, paycheck, and sales tax results are estimates from
+          the numbers you enter; they do not look up rates, tax rules, or
+          lender terms. No tool calculates medical doses or engineering loads.
           PDF text extraction can miss text on a scanned page. Image and PDF
           compression or conversion can reduce quality. A QR code contains the
           text you enter, and a scanned link should be read before you open it.

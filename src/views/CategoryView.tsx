@@ -28,6 +28,7 @@ import {
   createPageMetadata,
   itemListJsonLd,
 } from "@/lib/seo";
+import { categoryMetaDescriptions } from "@/data/page-meta";
 
 export function categoryStaticParams() {
   return categories.map((category) => ({ slug: category.slug }));
@@ -42,7 +43,10 @@ export function categoryMetadata(locale: Locale, slug: string) {
   const englishRoute = `/categories/${category.slug}`;
   return createPageMetadata({
     title: formatMessage(t.categoryTitle, { name: category.name }),
-    description: category.shortDescription,
+    description:
+      locale === "en"
+        ? categoryMetaDescriptions[category.slug]
+        : category.shortDescription,
     path: englishRoute,
     locale,
     hreflang: true,

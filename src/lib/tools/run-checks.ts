@@ -2,6 +2,7 @@ import { runAiChecks } from "../ai/ai-checks.ts";
 import { runOgChecks } from "../og/og-checks.ts";
 import { runPublicationChecks } from "../content/publication-checks.ts";
 import { runCpsTestChecks } from "./cps-test-checks.ts";
+import { runSeoContentChecks } from "../content/seo-checks.ts";
 import { roundTo } from "./numbers.ts";
 import { calculateCompoundInterest } from "./compound-interest.ts";
 import { calculateLoan, monthlyInstallment } from "./loan.ts";
@@ -2501,6 +2502,7 @@ assert(
 );
 
 runCpsTestChecks(assert);
+runSeoContentChecks(assert);
 
 await runAiChecks(assert);
 await runOgChecks(assert);

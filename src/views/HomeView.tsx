@@ -2,6 +2,7 @@ import { Benefits } from "@/components/home/Benefits";
 import { Categories } from "@/components/home/Categories";
 import { FinalCTA } from "@/components/home/FinalCTA";
 import { HelpfulGuides } from "@/components/home/HelpfulGuides";
+import { HomeFaq } from "@/components/home/HomeFaq";
 import { Hero } from "@/components/home/Hero";
 import { HowItWorks } from "@/components/home/HowItWorks";
 import { PopularTools } from "@/components/home/PopularTools";
@@ -10,11 +11,8 @@ import { ToolCatalog } from "@/components/home/ToolCatalog";
 import { JsonLd } from "@/components/seo/JsonLd";
 import type { Locale } from "@/i18n/config";
 import { getMessages } from "@/i18n/server";
-import {
-  createPageMetadata,
-  organizationJsonLd,
-  websiteJsonLd,
-} from "@/lib/seo";
+import { createPageMetadata } from "@/lib/seo";
+import { organizationNode, websiteNode } from "@/lib/structured-data";
 import { siteConfig } from "@/lib/site";
 
 export function homeMetadata(locale: Locale) {
@@ -32,9 +30,9 @@ export function HomeView({ locale }: { locale: Locale }) {
   return (
     <>
       <JsonLd
-        data={websiteJsonLd(locale, getMessages(locale).meta.description)}
+        data={websiteNode(locale, getMessages(locale).meta.description)}
       />
-      <JsonLd data={organizationJsonLd()} />
+      <JsonLd data={organizationNode()} />
       <Hero locale={locale} />
       <PopularTools locale={locale} />
       <ToolCatalog locale={locale} />
@@ -44,6 +42,8 @@ export function HomeView({ locale }: { locale: Locale }) {
       {/* Guides are English-only for now (Part 2). */}
       {locale === "en" ? <HelpfulGuides /> : null}
       <Pricing locale={locale} />
+      {/* Site FAQ (FAQPage) is English-only, like the guides. */}
+      {locale === "en" ? <HomeFaq /> : null}
       <FinalCTA locale={locale} />
     </>
   );
