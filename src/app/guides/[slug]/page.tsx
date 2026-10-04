@@ -36,6 +36,7 @@ export async function generateMetadata({
     title: guide.title,
     description: guide.description,
     path: guide.route,
+    shareImage: { route: guide.route, alt: guide.title },
   });
 }
 

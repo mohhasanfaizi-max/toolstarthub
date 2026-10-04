@@ -9,7 +9,7 @@ import { breadcrumbJsonLd, createPageMetadata } from "@/lib/seo";
 export const metadata = createPageMetadata({
   title: "Categories",
   description:
-    "Explore Tools Star Hub by category: calculators, text tools, developer tools, image tools, and SEO utilities.",
+    "Explore Tools Star Hub by category: calculators, text tools, developer tools, image and PDF tools, SEO utilities, and AI tools.",
   path: "/categories",
 });
 
@@ -35,7 +35,9 @@ export default function CategoriesPage() {
         Developer tools format, encode, and minify. Image tools also include PDF
         tasks such as merging, splitting, and extracting text. SEO and utilities
         cover campaign links, slugs, QR codes, and passwords. AI tools build
-        prompts and shorten drafts in the browser. They do not call an AI model.
+        prompts and shorten drafts in the browser, and their AI buttons send the
+        text you enter to Google&apos;s Gemini model to generate a result. Every
+        other tool runs in your browser.
       </p>
       <div className="mt-8 grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
         {categories.map((category) => (

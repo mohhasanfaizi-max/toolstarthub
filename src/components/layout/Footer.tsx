@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { CookieSettingsButton } from "@/components/analytics/CookieSettingsButton";
 import { Container } from "@/components/ui/Container";
 import { Logo } from "@/components/ui/Logo";
 import { categories } from "@/data/categories";
@@ -82,6 +83,9 @@ export function Footer() {
                   </Link>
                 </li>
               ))}
+              <li>
+                <CookieSettingsButton className="text-left text-sm text-white/70 hover:text-white" />
+              </li>
             </ul>
           </div>
         </div>

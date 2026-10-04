@@ -99,15 +99,15 @@ export const categories: Category[] = [
   {
     slug: "ai-tools",
     name: "AI Tools",
-    description: "Browser tools for writing prompts and tightening drafts",
+    description: "Prompt builders and writing tools, with optional Gemini AI",
     shortDescription:
-      "Build prompts, study writing patterns, and shorten a draft in the browser.",
+      "Build prompts, study writing patterns, and shorten a draft, in the browser or with Gemini AI.",
     icon: "bolt",
     route: "/categories/ai-tools",
     intro:
-      "These tools help you write a prompt, describe an image or video scene, look at writing patterns, or shorten a long draft. They run in the browser.",
+      "These tools help you write a prompt, describe an image or video scene, look at writing patterns, or shorten a long draft. The main button on each tool runs in your browser. The AI buttons (Generate, Analyze, Compress, or Humanize with AI) send the text you enter to Google's Gemini model to generate the result.",
     audience:
-      "None of them call an AI model. A prompt builder assembles instructions you can paste into a model you already use. The writing tools describe or shorten text you paste. They do not decide authorship, and they do not promise that a shorter draft will pass a detector.",
+      "Use the browser button when you do not want your text to leave this device. Use an AI button when you want Gemini to rewrite or expand it. Text sent to Gemini is not saved on this site. The prompt tools return text, not images or videos. The writing tools do not decide authorship, and they do not promise that a shorter draft will pass a detector.",
     startingSlugs: [
       "ai-prompt-generator",
       "prompt-to-image",

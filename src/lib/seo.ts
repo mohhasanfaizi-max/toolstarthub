@@ -7,6 +7,11 @@ type PageMetadataInput = {
   path: string;
   keywords?: string[];
   noIndex?: boolean;
+  /**
+   * Route that has its own opengraph-image and twitter-image files
+   * (tool, category and guide pages). Other pages use the default image.
+   */
+  shareImage?: { route: string; alt: string };
 };
 
 export function absoluteUrl(path = "/"): string {
@@ -18,14 +23,38 @@ export function absoluteUrl(path = "/"): string {
   return `${siteConfig.url}${normalized === "/" ? "" : normalized}`;
 }
 
+/**
+ * Share image generated at build time. Defaults to the branded image from
+ * src/app/opengraph-image.tsx; pass a route to use that page's own image.
+ */
+export function shareImage(
+  route = "",
+  alt = `${siteConfig.name} — ${siteConfig.tagline}`,
+  kind: "opengraph-image" | "twitter-image" = "opengraph-image",
+) {
+  return {
+    url: absoluteUrl(`${route}/${kind}`),
+    width: 1200,
+    height: 630,
+    alt,
+  };
+}
+
 export function createPageMetadata({
   title,
   description,
   path,
   keywords,
   noIndex,
+  shareImage: pageImage,
 }: PageMetadataInput): Metadata {
   const url = absoluteUrl(path);
+  const ogImage = pageImage
+    ? shareImage(pageImage.route, pageImage.alt)
+    : shareImage();
+  const twitterImage = pageImage
+    ? shareImage(pageImage.route, pageImage.alt, "twitter-image")
+    : shareImage();
 
   return {
     title: path === "/" ? { absolute: title } : title,
@@ -50,11 +79,13 @@ export function createPageMetadata({
       siteName: siteConfig.name,
       locale: "en_US",
       type: "website",
+      images: [ogImage],
     },
     twitter: {
       card: "summary_large_image",
       title,
       description,
+      images: [twitterImage],
     },
   };
 }

@@ -48,6 +48,7 @@ export async function generateMetadata({
     description: tool.description,
     path: tool.route,
     keywords: tool.keywords,
+    shareImage: { route: tool.route, alt: `${tool.name} – free online tool` },
   });
 }
 

@@ -2,6 +2,7 @@
 
 import { usePathname, useSearchParams } from "next/navigation";
 import { useEffect, useRef } from "react";
+import { hasAnalyticsConsent } from "@/lib/consent";
 
 declare global {
   interface Window {
@@ -17,6 +18,10 @@ export function GoogleAnalyticsRouteChange() {
   useEffect(() => {
     if (isFirstView.current) {
       isFirstView.current = false;
+      return;
+    }
+
+    if (!hasAnalyticsConsent()) {
       return;
     }
 
