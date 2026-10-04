@@ -13,6 +13,7 @@ import type { Category, Tool } from "@/data/types";
 import { notFound } from "next/navigation";
 import { defaultLocale, isLocale, localizePath, type Locale } from "./config";
 import type { ToolTranslations } from "./types";
+import { extraToolText } from "./extra-tool-text";
 import { en, type Messages } from "./messages/en";
 import ar from "./messages/ar";
 import de from "./messages/de";
@@ -86,7 +87,9 @@ function localizeTool(tool: Tool, locale: Locale): Tool {
   if (locale === "en") {
     return tool;
   }
-  const text = toolText[locale]?.[tool.slug];
+  const text =
+    toolText[locale]?.[tool.slug] ??
+    extraToolText[locale as keyof typeof extraToolText]?.[tool.slug];
   return {
     ...tool,
     name: text?.[0] ?? tool.name,

@@ -1,4 +1,5 @@
 import { aiToolContent } from "./ai-tool-content.ts";
+import { extraToolContent } from "./extra-tool-content.ts";
 import { financeToolContent } from "./finance-tool-content.ts";
 import { nextToolContent } from "./next-tool-content.ts";
 
@@ -2100,5 +2101,5 @@ export const toolContent: Record<string, ToolContent> = {
 };
 
 export function getToolContent(slug: string): ToolContent | undefined {
-  return toolContent[slug] ?? aiToolContent[slug] ?? nextToolContent[slug] ?? financeToolContent[slug];
+  return toolContent[slug] ?? aiToolContent[slug] ?? nextToolContent[slug] ?? financeToolContent[slug] ?? extraToolContent[slug];
 }

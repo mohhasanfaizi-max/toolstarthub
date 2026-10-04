@@ -67,7 +67,7 @@ export function runPublicationChecks(assert: (condition: unknown, message: strin
     publicRoutes.every((url) => url.startsWith("https://www.toolstarhub.com/guides/")),
     "Public guide canonicals use the www host",
   );
-  assert(publicRoutes.length === 75, "Seventy-five written guides are public");
+  assert(publicRoutes.length === 76, "Seventy-six written guides are public");
   assert(
     getRelatedPublicArticles({ ...published!, relatedArticles: [draft.slug] }, now).length === 0,
     "Unpublished articles are not related links",

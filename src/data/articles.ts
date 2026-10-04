@@ -2,6 +2,7 @@ import type { CategorySlug } from "./types.ts";
 import { getGuideContent } from "./guide-content.ts";
 import { flattenGuideContent } from "./finance-guide-content.ts";
 import type { ArticleStatus } from "../lib/content/publication.ts";
+import { extraArticles } from "./extra-articles.ts";
 
 export type ArticleIntent =
   | "tool-use"
@@ -1648,7 +1649,7 @@ const queuedArticles: Article[] = queue.map((item, queueIndex) => {
   };
 });
 
-export const articles: Article[] = [...publishedGuides, ...queuedArticles];
+export const articles: Article[] = [...publishedGuides, ...queuedArticles, ...extraArticles];
 
 export function getArticleBySlug(slug: string): Article | undefined {
   return articles.find((article) => article.slug === slug);

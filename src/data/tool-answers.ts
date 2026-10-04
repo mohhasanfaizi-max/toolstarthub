@@ -1,3 +1,5 @@
+import { extraToolQuickAnswers } from "./extra-tool-content.ts";
+
 export const toolQuickAnswers: Record<string, string> = {
   "percentage-calculator":
     "A percentage calculator helps you find percentages, percentage changes, and related values without doing the arithmetic by hand.",
@@ -199,6 +201,7 @@ export const toolQuickAnswers: Record<string, string> = {
     "A meta tag generator writes HTML title, description, robots, canonical, Open Graph, and Twitter tags. It does not fetch a page.",
   "open-graph-preview":
     "An Open Graph preview sends a page URL to this site, reads the public title and share tags, and does not save the page. Private and non-http addresses are rejected.",
+  ...extraToolQuickAnswers,
 };
 
 export function getToolQuickAnswer(

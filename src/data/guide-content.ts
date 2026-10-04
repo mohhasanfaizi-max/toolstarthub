@@ -1,4 +1,5 @@
 import { financeGuideContent } from "./finance-guide-content.ts";
+import { extraGuideContent, type GuideSection } from "./extra-guide-content.ts";
 
 export type GuideFaq = {
   question: string;
@@ -13,6 +14,8 @@ export type GuideContent = {
   examples: Array<{ title: string; body: string }>;
   notesHeading?: string;
   notes?: Array<{ heading: string; body: string }>;
+  /** Optional question-style sections (with tables) shown after the intro. */
+  sections?: GuideSection[];
   faqs: GuideFaq[];
   cta: {
     before: string;
@@ -4413,5 +4416,5 @@ export const guideContent: Record<string, GuideContent> = {
 };
 
 export function getGuideContent(slug: string): GuideContent | undefined {
-  return guideContent[slug] ?? financeGuideContent[slug];
+  return guideContent[slug] ?? financeGuideContent[slug] ?? extraGuideContent[slug];
 }

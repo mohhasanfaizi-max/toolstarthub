@@ -126,6 +126,7 @@ const workspaces: Record<string, ComponentType> = {
   "favicon-generator": lazyTool(async () => (await import("./workspace/FaviconGeneratorTool")).FaviconGeneratorTool),
   "meta-tag-generator": lazyTool(async () => (await import("./workspace/MetaTagGeneratorTool")).MetaTagGeneratorTool),
   "open-graph-preview": lazyTool(async () => (await import("./workspace/OpenGraphPreviewTool")).OpenGraphPreviewTool),
+  "cps-test": lazyTool(async () => (await import("./workspace/CpsTestTool")).CpsTestTool),
 };
 
 type ToolWorkspaceProps = {

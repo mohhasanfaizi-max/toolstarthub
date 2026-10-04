@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { FaqList } from "@/components/content/FaqList";
 import { AdSlot } from "@/components/ads/AdSlot";
+import { GuideSections } from "@/components/guides/GuideSections";
 import type { GuideContent } from "@/data/guide-content";
 import type { Category } from "@/data/types";
 
@@ -30,6 +31,7 @@ export function GuideArticle({ title, category, content }: GuideArticleProps) {
         <p className="mt-4 text-base leading-7 text-muted-foreground">{content.why}</p>
       ) : null}
       <AdSlot placement="guide" />
+      {content.sections?.length ? <GuideSections sections={content.sections} /> : null}
 
       <section className="mt-10" aria-labelledby="guide-steps-heading">
         <h2

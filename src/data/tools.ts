@@ -1,5 +1,6 @@
 import { rankTools } from "../lib/tools/search.ts";
 import { categories } from "./categories.ts";
+import { extraTools } from "./extra-tools.ts";
 import type { Category, CategorySlug, Tool } from "./types.ts";
 
 export const tools: Tool[] = [
@@ -1587,6 +1588,7 @@ export const tools: Tool[] = [
     metaTitle: "Open Graph Preview — Check a Page's Share Tags",
     relatedSlugs: ["meta-tag-generator", "url-parser", "html-encoder"],
   },
+  ...extraTools,
 ];
 
 export function getToolBySlug(slug: string): Tool | undefined {
@@ -1598,7 +1600,8 @@ export function getFeaturedTools(): Tool[] {
 }
 
 export function getNewTools(): Tool[] {
-  return tools.filter((tool) => tool.new);
+  // The four most recently added tools (later entries are newer).
+  return tools.filter((tool) => tool.new).slice(-4);
 }
 
 export function getToolsByCategory(category: CategorySlug): Tool[] {

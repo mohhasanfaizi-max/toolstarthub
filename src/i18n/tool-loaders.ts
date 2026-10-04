@@ -7,7 +7,7 @@ type Loader = () => Promise<{ default: ToolTranslations }>;
  * Per-locale chunks with tool names and descriptions, loaded by the search box
  * only when someone searches on a localized page.
  */
-export const toolTextLoaders: Record<PrefixedLocale, Loader> = {
+const baseLoaders: Record<PrefixedLocale, Loader> = {
   "pt-br": () => import("./tools/pt-br"),
   nl: () => import("./tools/nl"),
   ar: () => import("./tools/ar"),
@@ -23,3 +23,20 @@ export const toolTextLoaders: Record<PrefixedLocale, Loader> = {
   ja: () => import("./tools/ja"),
   ko: () => import("./tools/ko"),
 };
+
+/**
+ * Same chunks plus names of tools registered in extra-tool-text.ts (loaded
+ * lazily too, so nothing is added to the initial page bundle).
+ */
+export const toolTextLoaders = Object.fromEntries(
+  (Object.keys(baseLoaders) as PrefixedLocale[]).map((locale) => [
+    locale,
+    async () => {
+      const [base, extra] = await Promise.all([
+        baseLoaders[locale](),
+        import("./extra-tool-text"),
+      ]);
+      return { default: { ...extra.extraToolText[locale], ...base.default } };
+    },
+  ]),
+) as Record<PrefixedLocale, Loader>;

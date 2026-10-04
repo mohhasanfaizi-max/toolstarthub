@@ -10,6 +10,7 @@ import { RelatedTools } from "@/components/tools/RelatedTools";
 import { FavoriteButton } from "@/components/tools/FavoriteButton";
 import { RecentTracker } from "@/components/tools/RecentTracker";
 import { ToolDetails, getFaqsForTool } from "@/components/tools/ToolDetails";
+import { LocalizedToolDetails } from "@/components/tools/LocalizedToolDetails";
 import { ToolPrivacyNote } from "@/components/tools/ToolPrivacyNote";
 import { ToolWorkspace } from "@/components/tools/ToolWorkspace";
 import { getGuidesForTool } from "@/data/guides";
@@ -28,6 +29,7 @@ import {
   getRelatedToolsFor,
   getTool,
 } from "@/i18n/server";
+import { getLocalizedToolPage } from "@/i18n/localized-tool-content";
 import {
   breadcrumbJsonLd,
   createPageMetadata,
@@ -46,8 +48,9 @@ export function toolMetadata(locale: Locale, slug: string) {
   }
   const englishRoute = getToolBySlug(slug)?.route ?? `/tools/${slug}`;
   const indexable = isToolPageIndexable(locale);
+  const localizedPage = getLocalizedToolPage(slug, locale);
   return createPageMetadata({
-    title: tool.metaTitle ?? tool.name,
+    title: localizedPage?.metaTitle ?? tool.metaTitle ?? tool.name,
     description: tool.description,
     path: englishRoute,
     keywords: tool.keywords,
@@ -82,9 +85,13 @@ export function ToolView({ locale, slug }: { locale: Locale; slug: string }) {
   const relatedGuides = english ? getGuidesForTool(tool.slug) : [];
   const englishTool = getToolBySlug(slug) ?? tool;
   const faqs = getFaqsForTool(tool.slug, englishTool.name);
-  const quickAnswer = fullContent
-    ? getToolQuickAnswer(tool.slug, tool.name, tool.description)
-    : null;
+  // Tools that ship their own translations (e.g. CPS Test) show them here.
+  const localizedPage = getLocalizedToolPage(tool.slug, locale);
+  const quickAnswer =
+    localizedPage?.quickAnswer ??
+    (fullContent
+      ? getToolQuickAnswer(tool.slug, tool.name, tool.description)
+      : null);
 
   return (
     <Container className="py-10 sm:py-14">
@@ -105,7 +112,9 @@ export function ToolView({ locale, slug }: { locale: Locale; slug: string }) {
           locale,
         })}
       />
-      {fullContent ? <JsonLd data={faqJsonLd(faqs)} /> : null}
+      {fullContent ? (
+        <JsonLd data={faqJsonLd(localizedPage?.content.faqs ?? faqs)} />
+      ) : null}
       <Breadcrumbs
         label={b.label}
         items={[
@@ -162,7 +171,9 @@ export function ToolView({ locale, slug }: { locale: Locale; slug: string }) {
       <AdSlot placement="tool-intro" />
 
       <ToolPrivacyNote slug={tool.slug} locale={locale} />
-      {fullContent ? (
+      {localizedPage ? (
+        <LocalizedToolDetails page={localizedPage} />
+      ) : fullContent ? (
         <ToolDetails slug={tool.slug} toolName={tool.name} />
       ) : (
         <>
