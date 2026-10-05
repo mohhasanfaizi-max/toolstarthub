@@ -19,7 +19,11 @@ const messages: Messages = {
       closeSearch: "Aramayı kapat",
     },
     theme: { toLight: "Açık temaya geç", toDark: "Koyu temaya geç" },
-    language: { label: "Dil", current: "Dil: {name}", englishOnly: "Yalnızca İngilizce" },
+    language: {
+      label: "Dil",
+      current: "Dil: {name}",
+      englishOnly: "Yalnızca İngilizce",
+    },
     search: {
       placeholder: "Araç ara...",
       label: "Araç ara",
@@ -35,7 +39,10 @@ const messages: Messages = {
       decline: "Reddet",
       settings: "Çerez ayarları",
     },
-    favorites: { add: "{name} aracını favorilere ekle", remove: "{name} aracını favorilerden çıkar" },
+    favorites: {
+      add: "{name} aracını favorilere ekle",
+      remove: "{name} aracını favorilerden çıkar",
+    },
     card: { popular: "Popüler", new: "Yeni", openTool: "Aracı aç" },
     categoryNames: {
       calculators: "Hesap Makineleri",
@@ -88,7 +95,10 @@ const messages: Messages = {
       noToolsFound: "Araç bulunamadı",
       noToolsCategory: "Bu kategoride henüz araç yok.",
       countFavorites: { one: "{count} favori", other: "{count} favori" },
-      countResults: { one: "“{query}” için {count} sonuç", other: "“{query}” için {count} sonuç" },
+      countResults: {
+        one: "“{query}” için {count} sonuç",
+        other: "“{query}” için {count} sonuç",
+      },
       countOf: "{total} araçtan {count} tanesi",
     },
     tool: {
@@ -120,10 +130,20 @@ const messages: Messages = {
     categoryShareAlt: "{name} – ücretsiz çevrimiçi araçlar",
     toolShareAlt: "{name} – ücretsiz çevrimiçi araç",
   },
-  header: { primaryNav: "Ana menü", logoHome: "{name} ana sayfa", skip: "Ana içeriğe geç" },
-  breadcrumbs: { label: "İçerik yolu", home: "Ana sayfa", tools: "Araçlar", categories: "Kategoriler" },
+  header: {
+    primaryNav: "Ana menü",
+    logoHome: "{name} ana sayfa",
+    skip: "Ana içeriğe geç",
+  },
+  breadcrumbs: {
+    label: "İçerik yolu",
+    home: "Ana sayfa",
+    tools: "Araçlar",
+    categories: "Kategoriler",
+  },
   footer: {
-    blurb: "Hesaplamalar, metin, geliştiriciler, görseller, SEO ve günlük işler için hızlı ve basit çevrimiçi araçlar.",
+    blurb:
+      "Hesaplamalar, metin, geliştiriciler, görseller, SEO ve günlük işler için hızlı ve basit çevrimiçi araçlar.",
     tagline: "Hızlı • Ücretsiz • Tarayıcıda • Kayıtsız",
     explore: "Keşfet",
     categories: "Kategoriler",
@@ -140,38 +160,68 @@ const messages: Messages = {
     intro:
       "Bir araç bulun, kullanın ve sonucu alın. {name}; PDF’ler, görseller, hesaplamalar ve metinler için hesap gerektirmeyen basit bir yerdir.",
     popularLabel: "Popüler:",
-    trust: ["Ücretsiz", "Kayıt gerekmez", "Hızlı ve kolay", "Dosyalar tarayıcınızda kalır"],
+    trust: [
+      "Ücretsiz",
+      "Kayıt gerekmez",
+      "Hızlı ve kolay",
+      "Dosyalar tarayıcınızda kalır",
+    ],
     popularTitle: "Popüler Araçlar",
-    popularDescription: "Dosyalar, görseller, metinler ve günlük hesaplamalar için sık kullanılan araçlar.",
+    popularDescription:
+      "Dosyalar, görseller, metinler ve günlük hesaplamalar için sık kullanılan araçlar.",
     viewAllTools: "Tüm araçları gör",
     catalogTitle: "İhtiyacınız olan her şey tek bir yerde.",
-    catalogDescription: "Bu sitedeki araçları filtreleyin. Her biri tarayıcıda açılır.",
+    catalogDescription:
+      "Bu sitedeki araçları filtreleyin. Her biri tarayıcıda açılır.",
     categoriesTitle: "Kategoriye göz atın",
-    categoriesDescription: "Hesap makineleri, metin, geliştirici yardımcıları, görseller ve PDF’ler, web sitesi araçları.",
+    categoriesDescription:
+      "Hesap makineleri, metin, geliştirici yardımcıları, görseller ve PDF’ler, web sitesi araçları.",
     allCategories: "Tüm kategoriler",
     whyTitle: "Neden {name}?",
-    whyDescription: "Normalde ayrı bir uygulama gerektirecek işler için sade bir araç seti.",
+    whyDescription:
+      "Normalde ayrı bir uygulama gerektirecek işler için sade bir araç seti.",
     values: {
-      fast: { title: "Hızlı", note: "Araçların çoğu tarayıcıda çalışır ve sonucu aynı sayfada gösterir." },
-      free: { title: "Ücretsiz", note: "Bu sitedeki araçlar ücret gerektirmez." },
+      fast: {
+        title: "Hızlı",
+        note: "Araçların çoğu tarayıcıda çalışır ve sonucu aynı sayfada gösterir.",
+      },
+      free: {
+        title: "Ücretsiz",
+        note: "Bu sitedeki araçlar ücret gerektirmez.",
+      },
       private: {
         title: "Gizli",
         note: "Dosyalar ve yapıştırılan metinler cihazınızda işlenir. Sayfa ziyaretleri, gizlilik politikasında açıklandığı gibi ayrıca ölçülür.",
       },
-      noAccount: { title: "Hesap yok", note: "Bir aracı açın ve kullanın. Hesap gerekmez." },
+      noAccount: {
+        title: "Hesap yok",
+        note: "Bir aracı açın ve kullanın. Hesap gerekmez.",
+      },
     },
     howTitle: "Nasıl çalışır",
     howDescription: "Üç adım. Kurulum yok.",
     steps: [
-      { title: "Bir araç seçin", description: "Bir hesap makinesi, dosya aracı veya geliştirici aracı arayın ya da seçin." },
-      { title: "İçeriğinizi yükleyin veya girin", description: "Aracın istediği dosyayı, sayıları veya metni ekleyin." },
-      { title: "Sonucu alın", description: "Sonucu aynı sayfada kopyalayın, indirin veya okuyun." },
+      {
+        title: "Bir araç seçin",
+        description:
+          "Bir hesap makinesi, dosya aracı veya geliştirici aracı arayın ya da seçin.",
+      },
+      {
+        title: "İçeriğinizi yükleyin veya girin",
+        description: "Aracın istediği dosyayı, sayıları veya metni ekleyin.",
+      },
+      {
+        title: "Sonucu alın",
+        description: "Sonucu aynı sayfada kopyalayın, indirin veya okuyun.",
+      },
     ],
     guidesTitle: "Faydalı Rehberler",
-    guidesDescription: "Bu sitedeki araçların zaten yaptığı işler hakkında kısa açıklamalar.",
+    guidesDescription:
+      "Bu sitedeki araçların zaten yaptığı işler hakkında kısa açıklamalar.",
     allGuides: "Tüm rehberler",
     pricingTitle: "Fiyatlandırma",
-    pricingBody: "Araçlar ücretsizdir. Hesap, kurulum veya ücretli plan yoktur.",
+    pricingBody:
+      "Araçlar ücretsizdir. Hesap, kurulum veya ücretli plan yoktur.",
     ctaTitle: "İşlerinizi daha hızlı halletmeye hazır mısınız?",
     ctaBody: "{name} koleksiyonundaki basit çevrimiçi araçları keşfedin.",
     ctaPrimary: "Tüm Araçları Keşfet",
@@ -189,7 +239,10 @@ const messages: Messages = {
   },
   category: {
     cardCount: { one: "{count} araç", other: "{count} araç" },
-    pageCount: { one: "Bu kategoride {count} araç var.", other: "Bu kategoride {count} araç var." },
+    pageCount: {
+      one: "Bu kategoride {count} araç var.",
+      other: "Bu kategoride {count} araç var.",
+    },
     browse: "Araçlara göz at",
     starting: "Başlamak için iyi seçenekler",
     related: "İlgili kategoriler",
@@ -202,6 +255,32 @@ const messages: Messages = {
     helpfulGuides: "Faydalı rehberler",
     englishContent:
       "Bu aracın ayrıntılı rehberi (kullanım, örnekler ve SSS) şimdilik yalnızca İngilizce.",
+    details: {
+      about: "Bu araç ne yapar",
+      howTo: "Nasıl kullanılır",
+      examples: "Örnekler",
+      examplesFallback:
+        "Burada örnek yoksa yukarıdaki çalışma alanını açıklamadaki basit bir örnekle deneyin.",
+      features: "Temel özellikler",
+      howItWorks: "Nasıl çalışır",
+      tips: "İpuçları",
+      limitations: "Sınırlamalar",
+      limitationsFallback:
+        "Sonuca güvenmeden önce kontrol edin. Cihazın belleği azsa büyük dosyalar yavaşlayabilir veya başarısız olabilir.",
+      disclaimer:
+        "Bu araçların neleri kapsamadığı için {link} sayfasına bakın.",
+      disclaimerLink: "sorumluluk reddi",
+      faq: "Sık sorulan sorular",
+      defaultHowTo: [
+        "Değerlerinizi girin veya araç gerektiriyorsa bir dosya seçin.",
+        "Bu sayfadaki işlemi çalıştırın.",
+        "Sonucu inceleyin, ardından gerektiği gibi kopyalayın, indirin veya sıfırlayın.",
+      ],
+      mobileQuestion: "Mobilde çalışır mı?",
+      mobileAnswer:
+        "Evet. Bu sayfayı telefon veya tablette açabilirsiniz. Dosya seçimi ve indirmeler cihazınızın tarayıcısını kullanır. Büyük dosyalar küçük bir telefonda bilgisayara göre daha yavaş olabilir.",
+      workspaceNote: "Not",
+    },
     privacy: {
       browser:
         "Bu araç tarayıcınızda çalışır. Girdiler, dosyalar ve üretilen değerler bu cihazda kalır. Favoriler ve son kullanılan araçlar, kullanırsanız, yerel depolamada yalnızca araç adlarını saklar; asla şifre, belge veya QR içeriği saklamaz.",
@@ -228,7 +307,8 @@ const messages: Messages = {
     "text-tools": {
       name: "Metin Araçları",
       description: "Yazma ve metin işleme araçları",
-      shortDescription: "Tarayıcıda metin sayın, temizleyin, dönüştürün ve biçimlendirin.",
+      shortDescription:
+        "Tarayıcıda metin sayın, temizleyin, dönüştürün ve biçimlendirin.",
       intro:
         "Metin araçları kelime ve karakter sayar, büyük/küçük harfi değiştirir, bulup değiştirir, satır sonlarını kaldırır, satırları numaralandırır, yinelenen satırları veya fazla boşlukları siler, satırları sıralar, iki taslağı karşılaştırır ve bir tasarım için yer tutucu metin üretir.",
       audience:
@@ -236,8 +316,10 @@ const messages: Messages = {
     },
     "developer-tools": {
       name: "Geliştirici Araçları",
-      description: "Verileri tarayıcıda biçimlendirin, kodlayın, küçültün ve dönüştürün",
-      shortDescription: "JSON’u biçimlendirin, veri kodlayın, kodu küçültün ve Markdown ya da HTML’i yerelde dönüştürün.",
+      description:
+        "Verileri tarayıcıda biçimlendirin, kodlayın, küçültün ve dönüştürün",
+      shortDescription:
+        "JSON’u biçimlendirin, veri kodlayın, kodu küçültün ve Markdown ya da HTML’i yerelde dönüştürün.",
       intro:
         "Geliştirici araçları JSON’u biçimlendirir, JSON ile CSV arasında dönüştürür, düzenli ifadeleri test eder, metnin SHA-256 veya SHA-512 özetini alır, Base64, URL ve HTML kodlar ve çözer, HTML, CSS veya JavaScript’i küçültür, Markdown’ı dönüştürür ve UUID ya da Unix zaman damgası üretir. Buradaki renk araçları hex değerlerini RGB’ye çevirir, kontrastı kontrol eder ve CSS gradyanları ile gölgeleri oluşturur.",
       audience:
@@ -246,7 +328,8 @@ const messages: Messages = {
     "image-tools": {
       name: "Görsel Araçları",
       description: "Tarayıcı tabanlı görsel ve PDF araçları",
-      shortDescription: "Görselleri ve PDF’leri yüklemeden sıkıştırın, dönüştürün ve inceleyin.",
+      shortDescription:
+        "Görselleri ve PDF’leri yüklemeden sıkıştırın, dönüştürün ve inceleyin.",
       intro:
         "Görsel araçları bir resmi sıkıştırır, yeniden boyutlandırır, kırpar, dönüştürür ve renk örnekler. Bu kategorideki PDF araçları birleştirir, böler, sıkıştırır, sayfa sayar, meta verileri okur veya kaldırır, metin çıkarır, sayfaları JPG görsellere dönüştürür ve görsellerden ya da metinden PDF oluşturur.",
       audience:
@@ -255,7 +338,8 @@ const messages: Messages = {
     "seo-utilities": {
       name: "SEO ve Yardımcı Araçlar",
       description: "Bağlantılar, slug’lar, QR kodları ve şifreler",
-      shortDescription: "UTM bağlantıları ve slug’lar oluşturun, QR kodu oluşturun veya tarayın ve şifre üretin.",
+      shortDescription:
+        "UTM bağlantıları ve slug’lar oluşturun, QR kodu oluşturun veya tarayın ve şifre üretin.",
       intro:
         "Bu yardımcı araçlar bir kampanya URL’si oluşturur, bir başlığı URL slug’ına çevirir, metinden veya yapılandırılmış veriden QR kodu üretir, kamerayla ya da bir görselden QR kodu tarar ve yerelde şifre üretir.",
       audience:
@@ -263,8 +347,10 @@ const messages: Messages = {
     },
     "ai-tools": {
       name: "Yapay Zekâ Araçları",
-      description: "Prompt oluşturucular ve yazma araçları, isteğe bağlı Gemini yapay zekâsıyla",
-      shortDescription: "Tarayıcıda veya Gemini yapay zekâsıyla prompt oluşturun, yazı kalıplarını inceleyin ve taslağı kısaltın.",
+      description:
+        "Prompt oluşturucular ve yazma araçları, isteğe bağlı Gemini yapay zekâsıyla",
+      shortDescription:
+        "Tarayıcıda veya Gemini yapay zekâsıyla prompt oluşturun, yazı kalıplarını inceleyin ve taslağı kısaltın.",
       intro:
         "Bu araçlar bir prompt yazmanıza, bir görsel ya da video sahnesini tarif etmenize, yazı kalıplarını incelemenize veya uzun bir taslağı kısaltmanıza yardımcı olur. Her aracın ana düğmesi tarayıcınızda çalışır. Yapay zekâ düğmeleri (Generate, Analyze, Compress veya Humanize with AI) girdiğiniz metni sonucu üretmesi için Google’ın Gemini modeline gönderir.",
       audience:

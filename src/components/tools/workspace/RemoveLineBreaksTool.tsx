@@ -12,8 +12,10 @@ import {
   toolControlClass,
 } from "@/components/tools/ToolForm";
 import { removeLineBreaks, type LineBreakMode } from "@/lib/tools/line-breaks";
+import { useTx } from "@/i18n/tool-text";
 
 export function RemoveLineBreaksTool() {
+  const tx = useTx();
   const [source, setSource] = useState("");
   const [mode, setMode] = useState<LineBreakMode>("spaces");
   const [error, setError] = useState("");
@@ -39,12 +41,12 @@ export function RemoveLineBreaksTool() {
 
   return (
     <ToolPanel>
-      <ToolField id="breaks-source" label="Original text">
+      <ToolField id="breaks-source" label={tx("Original text")}>
         <textarea id="breaks-source" value={source} onChange={(event) => setSource(event.target.value)} rows={8} spellCheck={false} className={`${toolControlClass} min-h-36 resize-y font-mono text-sm`} />
       </ToolField>
       <div className="mt-4">
         <ToolChoiceGroup
-          legend="Line breaks"
+          legend={tx("Line breaks")}
           name="break-mode"
           value={mode}
           onChange={setMode}
@@ -56,16 +58,16 @@ export function RemoveLineBreaksTool() {
           ]}
         />
       </div>
-      {error ? <div className="mt-4"><ToolError>{error}</ToolError></div> : null}
+      {error ? <div className="mt-4"><ToolError>{tx(error)}</ToolError></div> : null}
       <div className="mt-4">
         <ToolActions>
-          <Button type="button" onClick={run}>Clean text</Button>
-          <CopyButton value={output} label="Copy" />
-          <Button type="button" variant="ghost" onClick={reset}>Clear</Button>
+          <Button type="button" onClick={run}>{tx("Clean text")}</Button>
+          <CopyButton value={output} label={tx("Copy")} />
+          <Button type="button" variant="ghost" onClick={reset}>{tx("Clear")}</Button>
         </ToolActions>
       </div>
       <div className="mt-6">
-        <ToolField id="breaks-output" label="Cleaned text">
+        <ToolField id="breaks-output" label={tx("Cleaned text")}>
           <textarea id="breaks-output" value={output} readOnly rows={8} spellCheck={false} className={`${toolControlClass} min-h-36 resize-y font-mono text-sm`} />
         </ToolField>
       </div>

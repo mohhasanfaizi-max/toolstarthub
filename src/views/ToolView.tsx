@@ -16,13 +16,14 @@ import { ToolWorkspace } from "@/components/tools/ToolWorkspace";
 import { getGuidesForTool } from "@/data/guides";
 import { getToolQuickAnswer } from "@/data/tool-answers";
 import { getToolBySlug, tools } from "@/data/tools";
+import { formatMessage, localeInfo, localizePath, type Locale } from "@/i18n/config";
+import { ToolTextProvider } from "@/i18n/tool-text";
 import {
-  formatMessage,
+  getToolPageTranslation,
+  getToolText,
   isToolPageIndexable,
-  localizePath,
-  toolContentLocales,
-  type Locale,
-} from "@/i18n/config";
+  isToolTranslatedEverywhere,
+} from "@/i18n/tool-pages/server";
 import {
   getCategory,
   getMessages,
@@ -47,7 +48,7 @@ export function toolMetadata(locale: Locale, slug: string) {
     return {};
   }
   const englishRoute = getToolBySlug(slug)?.route ?? `/tools/${slug}`;
-  const indexable = isToolPageIndexable(locale);
+  const indexable = isToolPageIndexable(locale, slug);
   const localizedPage = getLocalizedToolPage(slug, locale);
   return createPageMetadata({
     title: localizedPage?.metaTitle ?? tool.metaTitle ?? tool.name,
@@ -55,8 +56,8 @@ export function toolMetadata(locale: Locale, slug: string) {
     path: englishRoute,
     keywords: tool.keywords,
     locale,
-    // Alternates only once at least one other language has full tool content.
-    hreflang: indexable && toolContentLocales.length > 1,
+    // Alternates only once every language has the full tool page.
+    hreflang: indexable && isToolTranslatedEverywhere(slug),
     noIndexFollow: !indexable,
     shareImage: {
       route: englishRoute,
@@ -76,7 +77,9 @@ export function ToolView({ locale, slug }: { locale: Locale; slug: string }) {
   const b = messages.breadcrumbs;
   const t = messages.toolPage;
   const english = locale === "en";
-  const fullContent = isToolPageIndexable(locale);
+  const fullContent = isToolPageIndexable(locale, slug);
+  const translation = getToolPageTranslation(slug, locale);
+  const details = messages.toolPage.details;
   const home = localizePath("/", locale);
   const toolsPath = localizePath("/tools", locale);
 
@@ -84,14 +87,18 @@ export function ToolView({ locale, slug }: { locale: Locale; slug: string }) {
   const relatedTools = getRelatedToolsFor(tool, locale);
   const relatedGuides = english ? getGuidesForTool(tool.slug) : [];
   const englishTool = getToolBySlug(slug) ?? tool;
-  const faqs = getFaqsForTool(tool.slug, englishTool.name);
+  const faqs = translation
+    ? getFaqsForTool(tool.slug, tool.name, translation.content, details)
+    : getFaqsForTool(tool.slug, englishTool.name);
   // Tools that ship their own translations (e.g. CPS Test) show them here.
   const localizedPage = getLocalizedToolPage(tool.slug, locale);
   const quickAnswer =
     localizedPage?.quickAnswer ??
-    (fullContent
-      ? getToolQuickAnswer(tool.slug, tool.name, tool.description)
-      : null);
+    (translation
+      ? translation.answer
+      : english
+        ? getToolQuickAnswer(tool.slug, tool.name, tool.description)
+        : null);
 
   return (
     <Container className="py-10 sm:py-14">
@@ -113,7 +120,7 @@ export function ToolView({ locale, slug }: { locale: Locale; slug: string }) {
         })}
       />
       {fullContent ? (
-        <JsonLd data={faqJsonLd(localizedPage?.content.faqs ?? faqs)} />
+        <JsonLd data={faqJsonLd(localizedPage?.content.faqs ?? faqs, locale)} />
       ) : null}
       <Breadcrumbs
         label={b.label}
@@ -137,7 +144,7 @@ export function ToolView({ locale, slug }: { locale: Locale; slug: string }) {
           ) : null}
         </div>
         <div className="mt-3 flex items-start justify-between gap-3">
-          <h1 className="text-3xl font-semibold tracking-tight text-foreground sm:text-4xl">
+          <h1 className="min-w-0 break-words hyphens-auto text-3xl font-semibold tracking-tight text-foreground sm:text-4xl">
             {tool.name}
           </h1>
           <FavoriteButton slug={tool.slug} name={tool.name} />
@@ -160,13 +167,23 @@ export function ToolView({ locale, slug }: { locale: Locale; slug: string }) {
         ) : null}
       </header>
 
-      {/* Workspace labels are still English (PART 1B), so mark them as such. */}
+      {translation?.note ? (
+        <p className="mt-6 max-w-3xl rounded-2xl border border-border bg-muted px-4 py-3 text-sm leading-6 text-muted-foreground">
+          <span className="font-medium text-foreground">
+            {details.workspaceNote}:
+          </span>{" "}
+          {translation.note}
+        </p>
+      ) : null}
+      {/* Untranslated workspaces keep English labels, so mark them as English. */}
       <div
         className="mt-8"
-        lang={fullContent ? undefined : "en"}
-        dir={fullContent ? undefined : "ltr"}
+        lang={fullContent ? localeInfo[locale].tag : "en"}
+        dir={fullContent ? localeInfo[locale].dir : "ltr"}
       >
-        <ToolWorkspace tool={tool} />
+        <ToolTextProvider dict={getToolText(slug, locale)}>
+          <ToolWorkspace tool={tool} />
+        </ToolTextProvider>
       </div>
       <AdSlot placement="tool-intro" />
 
@@ -174,7 +191,12 @@ export function ToolView({ locale, slug }: { locale: Locale; slug: string }) {
       {localizedPage ? (
         <LocalizedToolDetails page={localizedPage} />
       ) : fullContent ? (
-        <ToolDetails slug={tool.slug} toolName={tool.name} />
+        <ToolDetails
+          slug={tool.slug}
+          toolName={tool.name}
+          content={translation?.content}
+          labels={details}
+        />
       ) : (
         <>
           <p className="mt-10 max-w-3xl rounded-2xl border border-border bg-muted px-4 py-3 text-sm leading-6 text-muted-foreground">

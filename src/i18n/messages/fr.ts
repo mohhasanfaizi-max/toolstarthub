@@ -18,8 +18,15 @@ const messages: Messages = {
       openSearch: "Ouvrir la recherche",
       closeSearch: "Fermer la recherche",
     },
-    theme: { toLight: "Passer au thème clair", toDark: "Passer au thème sombre" },
-    language: { label: "Langue", current: "Langue : {name}", englishOnly: "En anglais uniquement" },
+    theme: {
+      toLight: "Passer au thème clair",
+      toDark: "Passer au thème sombre",
+    },
+    language: {
+      label: "Langue",
+      current: "Langue : {name}",
+      englishOnly: "En anglais uniquement",
+    },
     search: {
       placeholder: "Rechercher un outil…",
       label: "Rechercher un outil",
@@ -35,7 +42,10 @@ const messages: Messages = {
       decline: "Refuser",
       settings: "Paramètres des cookies",
     },
-    favorites: { add: "Ajouter {name} aux favoris", remove: "Retirer {name} des favoris" },
+    favorites: {
+      add: "Ajouter {name} aux favoris",
+      remove: "Retirer {name} des favoris",
+    },
     card: { popular: "Populaire", new: "Nouveau", openTool: "Ouvrir l’outil" },
     categoryNames: {
       calculators: "Calculatrices",
@@ -88,7 +98,10 @@ const messages: Messages = {
       noToolsFound: "Aucun outil trouvé",
       noToolsCategory: "Aucun outil dans cette catégorie pour le moment.",
       countFavorites: { one: "{count} favori", other: "{count} favoris" },
-      countResults: { one: "{count} résultat pour « {query} »", other: "{count} résultats pour « {query} »" },
+      countResults: {
+        one: "{count} résultat pour « {query} »",
+        other: "{count} résultats pour « {query} »",
+      },
       countOf: "{count} outils sur {total}",
     },
     tool: {
@@ -120,10 +133,20 @@ const messages: Messages = {
     categoryShareAlt: "{name} – outils en ligne gratuits",
     toolShareAlt: "{name} – outil en ligne gratuit",
   },
-  header: { primaryNav: "Navigation principale", logoHome: "Accueil {name}", skip: "Aller au contenu principal" },
-  breadcrumbs: { label: "Fil d’Ariane", home: "Accueil", tools: "Outils", categories: "Catégories" },
+  header: {
+    primaryNav: "Navigation principale",
+    logoHome: "Accueil {name}",
+    skip: "Aller au contenu principal",
+  },
+  breadcrumbs: {
+    label: "Fil d’Ariane",
+    home: "Accueil",
+    tools: "Outils",
+    categories: "Catégories",
+  },
   footer: {
-    blurb: "Des outils en ligne rapides et simples pour les calculs, le texte, le développement, les images, le SEO et le quotidien.",
+    blurb:
+      "Des outils en ligne rapides et simples pour les calculs, le texte, le développement, les images, le SEO et le quotidien.",
     tagline: "Rapide • Gratuit • Dans le navigateur • Sans inscription",
     explore: "Explorer",
     categories: "Catégories",
@@ -140,38 +163,70 @@ const messages: Messages = {
     intro:
       "Trouvez un outil, utilisez-le, obtenez un résultat. {name} est un endroit simple pour les PDF, les images, les calculs et le texte, sans compte.",
     popularLabel: "Populaires :",
-    trust: ["Gratuit", "Sans inscription", "Rapide et simple", "Vos fichiers restent dans votre navigateur"],
+    trust: [
+      "Gratuit",
+      "Sans inscription",
+      "Rapide et simple",
+      "Vos fichiers restent dans votre navigateur",
+    ],
     popularTitle: "Outils populaires",
-    popularDescription: "Les outils les plus utilisés pour les fichiers, les images, le texte et les calculs du quotidien.",
+    popularDescription:
+      "Les outils les plus utilisés pour les fichiers, les images, le texte et les calculs du quotidien.",
     viewAllTools: "Voir tous les outils",
     catalogTitle: "Tout ce qu’il vous faut, au même endroit.",
-    catalogDescription: "Filtrez les outils disponibles sur ce site. Chacun s’ouvre directement dans le navigateur.",
+    catalogDescription:
+      "Filtrez les outils disponibles sur ce site. Chacun s’ouvre directement dans le navigateur.",
     categoriesTitle: "Parcourir par catégorie",
-    categoriesDescription: "Calculatrices, texte, utilitaires pour développeurs, images et PDF, et outils pour sites web.",
+    categoriesDescription:
+      "Calculatrices, texte, utilitaires pour développeurs, images et PDF, et outils pour sites web.",
     allCategories: "Toutes les catégories",
     whyTitle: "Pourquoi {name} ?",
-    whyDescription: "Un ensemble d’utilitaires simples pour des tâches qui demanderaient sinon une application à part.",
+    whyDescription:
+      "Un ensemble d’utilitaires simples pour des tâches qui demanderaient sinon une application à part.",
     values: {
-      fast: { title: "Rapide", note: "La plupart des outils fonctionnent dans le navigateur et affichent le résultat sur la même page." },
-      free: { title: "Gratuit", note: "Les outils de ce site ne sont pas payants." },
+      fast: {
+        title: "Rapide",
+        note: "La plupart des outils fonctionnent dans le navigateur et affichent le résultat sur la même page.",
+      },
+      free: {
+        title: "Gratuit",
+        note: "Les outils de ce site ne sont pas payants.",
+      },
       private: {
         title: "Confidentiel",
         note: "Les fichiers et le texte collé sont traités sur votre appareil. Les visites sont mesurées séparément, comme l’explique la politique de confidentialité.",
       },
-      noAccount: { title: "Sans compte", note: "Ouvrez un outil et utilisez-le. Aucun compte n’est nécessaire." },
+      noAccount: {
+        title: "Sans compte",
+        note: "Ouvrez un outil et utilisez-le. Aucun compte n’est nécessaire.",
+      },
     },
     howTitle: "Comment ça marche",
     howDescription: "Trois étapes. Rien à installer.",
     steps: [
-      { title: "Choisissez un outil", description: "Recherchez ou choisissez une calculatrice, un outil de fichiers ou un utilitaire pour développeurs." },
-      { title: "Importez ou saisissez votre contenu", description: "Ajoutez le fichier, les nombres ou le texte demandés par l’outil." },
-      { title: "Obtenez le résultat", description: "Copiez, téléchargez ou lisez le résultat sur la même page." },
+      {
+        title: "Choisissez un outil",
+        description:
+          "Recherchez ou choisissez une calculatrice, un outil de fichiers ou un utilitaire pour développeurs.",
+      },
+      {
+        title: "Importez ou saisissez votre contenu",
+        description:
+          "Ajoutez le fichier, les nombres ou le texte demandés par l’outil.",
+      },
+      {
+        title: "Obtenez le résultat",
+        description:
+          "Copiez, téléchargez ou lisez le résultat sur la même page.",
+      },
     ],
     guidesTitle: "Guides pratiques",
-    guidesDescription: "De courtes explications sur les tâches que les outils de ce site prennent en charge.",
+    guidesDescription:
+      "De courtes explications sur les tâches que les outils de ce site prennent en charge.",
     allGuides: "Tous les guides",
     pricingTitle: "Tarifs",
-    pricingBody: "Les outils sont gratuits. Pas de compte, pas d’installation, pas d’abonnement payant.",
+    pricingBody:
+      "Les outils sont gratuits. Pas de compte, pas d’installation, pas d’abonnement payant.",
     ctaTitle: "Prêt à gagner du temps ?",
     ctaBody: "Découvrez la collection d’outils en ligne simples de {name}.",
     ctaPrimary: "Explorer tous les outils",
@@ -184,12 +239,16 @@ const messages: Messages = {
   },
   categoriesPage: {
     title: "Catégories",
-    description: "Choisissez une catégorie pour trouver plus vite le bon outil.",
+    description:
+      "Choisissez une catégorie pour trouver plus vite le bon outil.",
     body: "Les calculatrices traitent les calculs du quotidien. Les outils de texte comptent et nettoient vos écrits. Les outils pour développeurs formatent, encodent et minifient. Les outils d’image couvrent aussi les tâches PDF comme la fusion, le découpage et l’extraction de texte. SEO et utilitaires regroupent liens de campagne, slugs, codes QR et mots de passe. Les outils d’IA créent des prompts et raccourcissent des brouillons dans le navigateur ; leurs boutons IA envoient le texte saisi au modèle Gemini de Google pour générer un résultat. Tous les autres outils fonctionnent dans votre navigateur.",
   },
   category: {
     cardCount: { one: "{count} outil", other: "{count} outils" },
-    pageCount: { one: "{count} outil dans cette catégorie.", other: "{count} outils dans cette catégorie." },
+    pageCount: {
+      one: "{count} outil dans cette catégorie.",
+      other: "{count} outils dans cette catégorie.",
+    },
     browse: "Voir les outils",
     starting: "Pour bien commencer",
     related: "Catégories associées",
@@ -202,6 +261,32 @@ const messages: Messages = {
     helpfulGuides: "Guides pratiques",
     englishContent:
       "Le guide détaillé de cet outil (mode d’emploi, exemples et FAQ) est pour l’instant disponible en anglais.",
+    details: {
+      about: "Ce que fait cet outil",
+      howTo: "Mode d’emploi",
+      examples: "Exemples",
+      examplesFallback:
+        "Si aucun exemple n’est listé ici, essayez l’espace de travail ci-dessus avec un exemple simple tiré de la description.",
+      features: "Fonctionnalités principales",
+      howItWorks: "Comment ça marche",
+      tips: "Conseils",
+      limitations: "Limites",
+      limitationsFallback:
+        "Vérifiez le résultat avant de vous y fier. Les fichiers volumineux peuvent être plus lents ou échouer si l’appareil manque de mémoire.",
+      disclaimer:
+        "Consultez l’{link} pour savoir ce que ces outils ne couvrent pas.",
+      disclaimerLink: "avertissement",
+      faq: "FAQ",
+      defaultHowTo: [
+        "Saisissez vos valeurs ou choisissez un fichier si l’outil en a besoin.",
+        "Lancez l’action sur cette page.",
+        "Vérifiez le résultat, puis copiez, téléchargez ou réinitialisez selon vos besoins.",
+      ],
+      mobileQuestion: "Est-ce que ça marche sur mobile ?",
+      mobileAnswer:
+        "Oui. Vous pouvez ouvrir cette page sur un téléphone ou une tablette. Le choix des fichiers et les téléchargements passent par le navigateur de votre appareil. Les gros fichiers peuvent être plus lents sur un petit téléphone que sur un ordinateur.",
+      workspaceNote: "Remarque",
+    },
     privacy: {
       browser:
         "Cet outil fonctionne dans votre navigateur. Les saisies, fichiers et valeurs générées restent sur cet appareil. Les favoris et outils récents, si vous les utilisez, n’enregistrent que des noms d’outils dans le stockage local — jamais de mots de passe, de documents ni de contenus QR.",
@@ -219,7 +304,8 @@ const messages: Messages = {
     calculators: {
       name: "Calculatrices",
       description: "Outils de calcul du quotidien",
-      shortDescription: "Pourcentages, âge, unités et autres calculs du quotidien.",
+      shortDescription:
+        "Pourcentages, âge, unités et autres calculs du quotidien.",
       intro:
         "Ces calculatrices répondent à une question chiffrée précise : un pourcentage, une variation en pourcentage, un prix soldé, un pourboire, une taxe de vente, un âge, les jours ou jours ouvrés entre deux dates, une conversion d’unités, une estimation de prêt ou de crédit immobilier, un salaire, une surface, une moyenne GPA ou un nombre aléatoire dans un intervalle.",
       audience:
@@ -228,7 +314,8 @@ const messages: Messages = {
     "text-tools": {
       name: "Outils de texte",
       description: "Outils d’écriture et de traitement de texte",
-      shortDescription: "Comptez, nettoyez, convertissez et formatez du texte dans le navigateur.",
+      shortDescription:
+        "Comptez, nettoyez, convertissez et formatez du texte dans le navigateur.",
       intro:
         "Les outils de texte comptent les mots et les caractères, changent la casse, recherchent et remplacent, suppriment les sauts de ligne, numérotent les lignes, retirent les lignes en double ou les espaces superflus, trient les lignes, comparent deux versions et génèrent du faux texte pour une mise en page.",
       audience:
@@ -236,8 +323,10 @@ const messages: Messages = {
     },
     "developer-tools": {
       name: "Outils pour développeurs",
-      description: "Formatez, encodez, minifiez et convertissez des données dans le navigateur",
-      shortDescription: "Formatez du JSON, encodez des données, minifiez du code et convertissez du Markdown ou du HTML en local.",
+      description:
+        "Formatez, encodez, minifiez et convertissez des données dans le navigateur",
+      shortDescription:
+        "Formatez du JSON, encodez des données, minifiez du code et convertissez du Markdown ou du HTML en local.",
       intro:
         "Les outils pour développeurs formatent le JSON, convertissent entre JSON et CSV, testent une expression régulière, hachent du texte en SHA-256 ou SHA-512, encodent et décodent Base64, URL et HTML, minifient HTML, CSS ou JavaScript, convertissent le Markdown et génèrent des UUID ou des horodatages Unix. Les outils de couleur convertissent l’hexadécimal en RGB, vérifient le contraste et créent des dégradés et des ombres CSS.",
       audience:
@@ -246,7 +335,8 @@ const messages: Messages = {
     "image-tools": {
       name: "Outils d’image",
       description: "Outils d’image et de PDF dans le navigateur",
-      shortDescription: "Compressez, convertissez et inspectez des images et des PDF sans les envoyer en ligne.",
+      shortDescription:
+        "Compressez, convertissez et inspectez des images et des PDF sans les envoyer en ligne.",
       intro:
         "Les outils d’image compressent, redimensionnent, recadrent, convertissent et prélèvent les couleurs d’une image. Les outils PDF de cette catégorie fusionnent, divisent, compressent, comptent les pages, lisent ou suppriment les métadonnées, extraient le texte, transforment des pages en images JPG et créent un PDF à partir d’images ou de texte.",
       audience:
@@ -255,7 +345,8 @@ const messages: Messages = {
     "seo-utilities": {
       name: "SEO et utilitaires",
       description: "Liens, slugs, codes QR et mots de passe",
-      shortDescription: "Créez des liens UTM et des slugs, générez ou scannez des codes QR et créez des mots de passe.",
+      shortDescription:
+        "Créez des liens UTM et des slugs, générez ou scannez des codes QR et créez des mots de passe.",
       intro:
         "Ces utilitaires créent une URL de campagne, transforment un titre en slug d’URL, génèrent un code QR à partir d’un texte ou de données structurées, scannent un code QR avec la caméra ou une image et génèrent un mot de passe en local.",
       audience:
@@ -263,8 +354,10 @@ const messages: Messages = {
     },
     "ai-tools": {
       name: "Outils d’IA",
-      description: "Générateurs de prompts et outils d’écriture, avec l’IA Gemini en option",
-      shortDescription: "Créez des prompts, étudiez le style d’un texte et raccourcissez un brouillon, dans le navigateur ou avec l’IA Gemini.",
+      description:
+        "Générateurs de prompts et outils d’écriture, avec l’IA Gemini en option",
+      shortDescription:
+        "Créez des prompts, étudiez le style d’un texte et raccourcissez un brouillon, dans le navigateur ou avec l’IA Gemini.",
       intro:
         "Ces outils vous aident à rédiger un prompt, décrire une scène d’image ou de vidéo, analyser le style d’un texte ou raccourcir un long brouillon. Le bouton principal de chaque outil fonctionne dans votre navigateur. Les boutons IA (Generate, Analyze, Compress ou Humanize with AI) envoient le texte saisi au modèle Gemini de Google pour produire le résultat.",
       audience:

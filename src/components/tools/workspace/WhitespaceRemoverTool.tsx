@@ -18,8 +18,10 @@ import {
   cleanWhitespace,
   type WhitespaceOptions,
 } from "@/lib/tools/whitespace";
+import { useTx } from "@/i18n/tool-text";
 
 export function WhitespaceRemoverTool() {
+  const tx = useTx();
   const [input, setInput] = useState("");
   const [output, setOutput] = useState("");
   const [options, setOptions] = useState<WhitespaceOptions>(DEFAULT_WHITESPACE_OPTIONS);
@@ -57,7 +59,7 @@ export function WhitespaceRemoverTool() {
 
   return (
     <ToolPanel>
-      <ToolField id="ws-input" label="Text">
+      <ToolField id="ws-input" label={tx("Text")}>
         <textarea
           id="ws-input"
           value={input}
@@ -69,70 +71,68 @@ export function WhitespaceRemoverTool() {
       </ToolField>
 
       <fieldset className="mt-4">
-        <legend className="text-sm font-medium text-foreground">Cleanup options</legend>
+        <legend className="text-sm font-medium text-foreground">{tx("Cleanup options")}</legend>
         <div className="mt-2 grid gap-2 sm:grid-cols-2">
           <CheckOption
             id="ws-trim-lines"
-            label="Trim each line"
+            label={tx("Trim each line")}
             checked={options.trimLines}
             onChange={(value) => update("trimLines", value)}
           />
           <CheckOption
             id="ws-leading"
-            label="Remove leading whitespace"
+            label={tx("Remove leading whitespace")}
             checked={options.trimLeading}
             onChange={(value) => update("trimLeading", value)}
           />
           <CheckOption
             id="ws-trailing"
-            label="Remove trailing whitespace"
+            label={tx("Remove trailing whitespace")}
             checked={options.trimTrailing}
             onChange={(value) => update("trimTrailing", value)}
           />
           <CheckOption
             id="ws-collapse"
-            label="Collapse repeated spaces"
+            label={tx("Collapse repeated spaces")}
             checked={options.collapseSpaces}
             onChange={(value) => update("collapseSpaces", value)}
           />
           <CheckOption
             id="ws-tabs"
-            label="Convert tabs to spaces"
+            label={tx("Convert tabs to spaces")}
             checked={options.tabsToSpaces}
             onChange={(value) => update("tabsToSpaces", value)}
           />
           <CheckOption
             id="ws-blank"
-            label="Remove blank lines"
+            label={tx("Remove blank lines")}
             checked={options.removeBlankLines}
             onChange={(value) => update("removeBlankLines", value)}
           />
           <CheckOption
             id="ws-collapse-blank"
-            label="Collapse multiple blank lines"
+            label={tx("Collapse multiple blank lines")}
             checked={options.collapseBlankLines}
             onChange={(value) => update("collapseBlankLines", value)}
           />
           <CheckOption
             id="ws-doc"
-            label="Trim entire document"
+            label={tx("Trim entire document")}
             checked={options.trimDocument}
             onChange={(value) => update("trimDocument", value)}
           />
         </div>
         {options.tabsToSpaces ? (
           <div className="mt-3">
-            <label htmlFor="ws-tab-width" className="text-sm font-medium text-foreground">
-              Tab width
-            </label>
+            <label htmlFor="ws-tab-width" className="text-sm font-medium text-foreground">{tx("Tab width")}</label>
             <select
               id="ws-tab-width"
               value={options.tabWidth}
               onChange={(event) => update("tabWidth", Number(event.target.value) === 4 ? 4 : 2)}
               className={toolControlClass}
             >
-              <option value={2}>2 spaces</option>
-              <option value={4}>4 spaces</option>
+              <option value={2}>{tx("2 spaces")}</option>
+              <option value={4}>{tx("4 spaces")}</option>
             </select>
           </div>
         ) : null}
@@ -140,11 +140,9 @@ export function WhitespaceRemoverTool() {
 
       <div className="mt-6">
         <ToolActions>
-          <Button type="button" onClick={run}>
-            Clean text
-          </Button>
+          <Button type="button" onClick={run}>{tx("Clean text")}</Button>
           <CopyButton value={output} />
-          <DownloadButton blob={blob} fileName="cleaned.txt" label="Download .txt" />
+          <DownloadButton blob={blob} fileName="cleaned.txt" label={tx("Download .txt")} />
           <Button
             type="button"
             variant="ghost"
@@ -155,14 +153,12 @@ export function WhitespaceRemoverTool() {
               setError("");
               setOptions(DEFAULT_WHITESPACE_OPTIONS);
             }}
-          >
-            Clear
-          </Button>
+          >{tx("Clear")}</Button>
         </ToolActions>
       </div>
 
       <div className="mt-4 space-y-4">
-        {error ? <ToolError>{error}</ToolError> : null}
+        {error ? <ToolError>{tx(error)}</ToolError> : null}
         {stats ? (
           <ToolStatGrid
             items={[
@@ -173,7 +169,7 @@ export function WhitespaceRemoverTool() {
             ]}
           />
         ) : null}
-        <ToolField id="ws-output" label="Result">
+        <ToolField id="ws-output" label={tx("Result")}>
           <textarea
             id="ws-output"
             value={output}
@@ -185,9 +181,7 @@ export function WhitespaceRemoverTool() {
         </ToolField>
       </div>
 
-      <ToolPrivacyNote>
-        Spaces, tabs, and blank lines are cleaned in this tab. The text is not posted to a server.
-      </ToolPrivacyNote>
+      <ToolPrivacyNote>{tx("Spaces, tabs, and blank lines are cleaned in this tab. The text is not posted to a server.")}</ToolPrivacyNote>
     </ToolPanel>
   );
 }
@@ -203,6 +197,7 @@ function CheckOption({
   checked: boolean;
   onChange: (value: boolean) => void;
 }) {
+  const tx = useTx();
   return (
     <label htmlFor={id} className="flex min-h-11 items-center gap-2 text-sm text-foreground">
       <input
@@ -211,7 +206,7 @@ function CheckOption({
         checked={checked}
         onChange={(event) => onChange(event.target.checked)}
       />
-      {label}
+      {tx(label)}
     </label>
   );
 }

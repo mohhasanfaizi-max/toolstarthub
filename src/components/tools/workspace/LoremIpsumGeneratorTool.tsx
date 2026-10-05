@@ -16,8 +16,10 @@ import {
   LOREM_LIMITS,
   type LoremMode,
 } from "@/lib/tools/lorem";
+import { useTx } from "@/i18n/tool-text";
 
 export function LoremIpsumGeneratorTool() {
+  const tx = useTx();
   const [mode, setMode] = useState<LoremMode>("paragraphs");
   const [quantity, setQuantity] = useState(String(LOREM_LIMITS.paragraphs.defaultValue));
   const [output, setOutput] = useState("");
@@ -45,7 +47,7 @@ export function LoremIpsumGeneratorTool() {
   return (
     <ToolPanel>
       <ToolChoiceGroup
-        legend="Generate"
+        legend={tx("Generate")}
         name="lorem-mode"
         value={mode}
         onChange={(next) => {
@@ -63,8 +65,8 @@ export function LoremIpsumGeneratorTool() {
       <div className="mt-4">
         <ToolField
           id="lorem-quantity"
-          label="Quantity"
-          hint={`Enter a whole number from ${limits.min} to ${limits.max}.`}
+          label={tx("Quantity")}
+          hint={tx(`Enter a whole number from ${limits.min} to ${limits.max}.`)}
         >
           <input
             id="lorem-quantity"
@@ -78,22 +80,16 @@ export function LoremIpsumGeneratorTool() {
 
       <div className="mt-6">
         <ToolActions>
-          <Button type="button" onClick={generate}>
-            Generate
-          </Button>
+          <Button type="button" onClick={generate}>{tx("Generate")}</Button>
           <CopyButton value={output} />
-          <Button type="button" variant="secondary" onClick={() => setOutput("")}>
-            Clear
-          </Button>
-          <Button type="button" variant="ghost" onClick={reset}>
-            Reset
-          </Button>
+          <Button type="button" variant="secondary" onClick={() => setOutput("")}>{tx("Clear")}</Button>
+          <Button type="button" variant="ghost" onClick={reset}>{tx("Reset")}</Button>
         </ToolActions>
       </div>
 
       <div className="mt-4">
-        {error ? <ToolError>{error}</ToolError> : null}
-        <ToolField id="lorem-output" label="Output">
+        {error ? <ToolError>{tx(error)}</ToolError> : null}
+        <ToolField id="lorem-output" label={tx("Output")}>
           <textarea
             id="lorem-output"
             value={output}

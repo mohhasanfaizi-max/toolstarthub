@@ -19,7 +19,11 @@ const messages: Messages = {
       closeSearch: "검색 닫기",
     },
     theme: { toLight: "라이트 테마로 전환", toDark: "다크 테마로 전환" },
-    language: { label: "언어", current: "언어: {name}", englishOnly: "영어로만 제공" },
+    language: {
+      label: "언어",
+      current: "언어: {name}",
+      englishOnly: "영어로만 제공",
+    },
     search: {
       placeholder: "도구 검색...",
       label: "도구 검색",
@@ -35,7 +39,10 @@ const messages: Messages = {
       decline: "거부",
       settings: "쿠키 설정",
     },
-    favorites: { add: "{name}을(를) 즐겨찾기에 추가", remove: "{name}을(를) 즐겨찾기에서 제거" },
+    favorites: {
+      add: "{name}을(를) 즐겨찾기에 추가",
+      remove: "{name}을(를) 즐겨찾기에서 제거",
+    },
     card: { popular: "인기", new: "신규", openTool: "도구 열기" },
     categoryNames: {
       calculators: "계산기",
@@ -120,10 +127,20 @@ const messages: Messages = {
     categoryShareAlt: "{name} – 무료 온라인 도구",
     toolShareAlt: "{name} – 무료 온라인 도구",
   },
-  header: { primaryNav: "주 메뉴", logoHome: "{name} 홈", skip: "본문으로 건너뛰기" },
-  breadcrumbs: { label: "이동 경로", home: "홈", tools: "도구", categories: "카테고리" },
+  header: {
+    primaryNav: "주 메뉴",
+    logoHome: "{name} 홈",
+    skip: "본문으로 건너뛰기",
+  },
+  breadcrumbs: {
+    label: "이동 경로",
+    home: "홈",
+    tools: "도구",
+    categories: "카테고리",
+  },
   footer: {
-    blurb: "계산, 텍스트, 개발, 이미지, SEO, 일상 작업을 위한 빠르고 간단한 온라인 도구.",
+    blurb:
+      "계산, 텍스트, 개발, 이미지, SEO, 일상 작업을 위한 빠르고 간단한 온라인 도구.",
     tagline: "빠름 • 무료 • 브라우저에서 실행 • 가입 불필요",
     explore: "둘러보기",
     categories: "카테고리",
@@ -140,38 +157,66 @@ const messages: Messages = {
     intro:
       "도구를 찾아 사용하고 결과를 받으세요. {name}은(는) 계정 없이 PDF, 이미지, 계산, 텍스트를 처리할 수 있는 간단한 공간입니다.",
     popularLabel: "인기:",
-    trust: ["무료 사용", "가입 불필요", "빠르고 간편함", "파일은 브라우저에만 남음"],
+    trust: [
+      "무료 사용",
+      "가입 불필요",
+      "빠르고 간편함",
+      "파일은 브라우저에만 남음",
+    ],
     popularTitle: "인기 도구",
-    popularDescription: "파일, 이미지, 텍스트, 일상 계산에 많이 쓰는 도구입니다.",
+    popularDescription:
+      "파일, 이미지, 텍스트, 일상 계산에 많이 쓰는 도구입니다.",
     viewAllTools: "전체 도구 보기",
     catalogTitle: "필요한 모든 것을 한곳에.",
-    catalogDescription: "이 사이트의 도구를 필터링해 보세요. 모든 도구는 브라우저에서 바로 열립니다.",
+    catalogDescription:
+      "이 사이트의 도구를 필터링해 보세요. 모든 도구는 브라우저에서 바로 열립니다.",
     categoriesTitle: "카테고리별로 찾기",
-    categoriesDescription: "계산기, 텍스트, 개발자 유틸리티, 이미지와 PDF, 웹사이트 도구.",
+    categoriesDescription:
+      "계산기, 텍스트, 개발자 유틸리티, 이미지와 PDF, 웹사이트 도구.",
     allCategories: "전체 카테고리",
     whyTitle: "왜 {name}인가요?",
-    whyDescription: "별도의 앱이 필요했던 작업을 위한 간단하고 명확한 유틸리티 모음입니다.",
+    whyDescription:
+      "별도의 앱이 필요했던 작업을 위한 간단하고 명확한 유틸리티 모음입니다.",
     values: {
-      fast: { title: "빠름", note: "대부분의 도구가 브라우저에서 실행되며 같은 페이지에서 결과를 보여 줍니다." },
+      fast: {
+        title: "빠름",
+        note: "대부분의 도구가 브라우저에서 실행되며 같은 페이지에서 결과를 보여 줍니다.",
+      },
       free: { title: "무료", note: "이 사이트의 도구는 비용이 들지 않습니다." },
       private: {
         title: "개인정보 보호",
         note: "파일과 붙여 넣은 텍스트는 사용자의 기기에서 처리됩니다. 페이지 방문은 개인정보처리방침에 설명된 대로 별도로 측정됩니다.",
       },
-      noAccount: { title: "계정 불필요", note: "도구를 열고 바로 사용하세요. 계정이 필요 없습니다." },
+      noAccount: {
+        title: "계정 불필요",
+        note: "도구를 열고 바로 사용하세요. 계정이 필요 없습니다.",
+      },
     },
     howTitle: "이용 방법",
     howDescription: "세 단계면 끝. 설치가 필요 없습니다.",
     steps: [
-      { title: "도구 선택", description: "계산기, 파일 도구, 개발자 유틸리티를 검색하거나 선택하세요." },
-      { title: "내용 업로드 또는 입력", description: "도구가 요구하는 파일, 숫자, 텍스트를 추가하세요." },
-      { title: "결과 받기", description: "같은 페이지에서 결과를 복사하거나 다운로드하거나 확인하세요." },
+      {
+        title: "도구 선택",
+        description:
+          "계산기, 파일 도구, 개발자 유틸리티를 검색하거나 선택하세요.",
+      },
+      {
+        title: "내용 업로드 또는 입력",
+        description: "도구가 요구하는 파일, 숫자, 텍스트를 추가하세요.",
+      },
+      {
+        title: "결과 받기",
+        description:
+          "같은 페이지에서 결과를 복사하거나 다운로드하거나 확인하세요.",
+      },
     ],
     guidesTitle: "유용한 가이드",
-    guidesDescription: "이 사이트의 도구로 할 수 있는 작업에 대한 짧은 설명입니다.",
+    guidesDescription:
+      "이 사이트의 도구로 할 수 있는 작업에 대한 짧은 설명입니다.",
     allGuides: "전체 가이드",
     pricingTitle: "요금",
-    pricingBody: "도구는 무료로 사용할 수 있습니다. 계정, 설치, 유료 요금제가 없습니다.",
+    pricingBody:
+      "도구는 무료로 사용할 수 있습니다. 계정, 설치, 유료 요금제가 없습니다.",
     ctaTitle: "더 빠르게 일을 끝낼 준비가 되셨나요?",
     ctaBody: "{name}의 간단한 온라인 도구 모음을 둘러보세요.",
     ctaPrimary: "전체 도구 둘러보기",
@@ -202,6 +247,31 @@ const messages: Messages = {
     helpfulGuides: "유용한 가이드",
     englishContent:
       "이 도구의 자세한 안내(사용법, 예시, 자주 묻는 질문)는 현재 영어로만 제공됩니다.",
+    details: {
+      about: "이 도구가 하는 일",
+      howTo: "사용 방법",
+      examples: "예시",
+      examplesFallback:
+        "여기에 예시가 없다면 설명에 나온 간단한 예로 위의 작업 영역을 사용해 보세요.",
+      features: "주요 기능",
+      howItWorks: "작동 방식",
+      tips: "팁",
+      limitations: "제한 사항",
+      limitationsFallback:
+        "결과를 사용하기 전에 확인하세요. 기기 메모리가 부족하면 큰 파일은 느려지거나 실패할 수 있습니다.",
+      disclaimer: "이 도구가 다루지 않는 내용은 {link}을(를) 참고하세요.",
+      disclaimerLink: "면책 조항",
+      faq: "자주 묻는 질문",
+      defaultHowTo: [
+        "값을 입력하거나 도구에 필요하면 파일을 선택하세요.",
+        "이 페이지에서 작업을 실행하세요.",
+        "결과를 확인한 뒤 필요에 따라 복사, 다운로드 또는 초기화하세요.",
+      ],
+      mobileQuestion: "모바일에서도 작동하나요?",
+      mobileAnswer:
+        "네. 이 페이지는 휴대폰이나 태블릿에서도 열 수 있습니다. 파일 선택과 다운로드는 기기의 브라우저를 사용합니다. 큰 파일은 작은 휴대폰에서 컴퓨터보다 느릴 수 있습니다.",
+      workspaceNote: "참고",
+    },
     privacy: {
       browser:
         "이 도구는 브라우저에서 실행됩니다. 입력값, 파일, 생성된 값은 이 기기에 남습니다. 즐겨찾기와 최근 사용한 도구를 이용하더라도 로컬 저장소에는 도구 이름만 저장되며, 비밀번호나 문서, QR 내용은 절대 저장되지 않습니다.",
@@ -228,7 +298,8 @@ const messages: Messages = {
     "text-tools": {
       name: "텍스트 도구",
       description: "글쓰기와 텍스트 처리를 위한 도구",
-      shortDescription: "브라우저에서 텍스트를 세고, 정리하고, 변환하고, 서식을 맞추세요.",
+      shortDescription:
+        "브라우저에서 텍스트를 세고, 정리하고, 변환하고, 서식을 맞추세요.",
       intro:
         "텍스트 도구는 단어와 글자 수 세기, 대소문자 변환, 찾아 바꾸기, 줄바꿈 제거, 줄 번호 매기기, 중복 줄이나 불필요한 공백 제거, 줄 정렬, 두 초안 비교, 레이아웃용 더미 텍스트 생성을 지원합니다.",
       audience:
@@ -237,7 +308,8 @@ const messages: Messages = {
     "developer-tools": {
       name: "개발자 도구",
       description: "브라우저에서 데이터 포맷, 인코딩, 압축, 변환",
-      shortDescription: "JSON 포맷, 데이터 인코딩, 코드 압축, Markdown·HTML 변환을 로컬에서.",
+      shortDescription:
+        "JSON 포맷, 데이터 인코딩, 코드 압축, Markdown·HTML 변환을 로컬에서.",
       intro:
         "개발자 도구는 JSON 포맷, JSON과 CSV 변환, 정규식 테스트, SHA-256 또는 SHA-512 해시, Base64·URL·HTML 인코딩과 디코딩, HTML·CSS·JavaScript 압축, Markdown 변환, UUID나 Unix 타임스탬프 생성을 지원합니다. 색상 도구로는 hex 값을 RGB로 바꾸고, 명암비를 확인하고, CSS 그라데이션과 그림자를 만들 수 있습니다.",
       audience:
@@ -255,7 +327,8 @@ const messages: Messages = {
     "seo-utilities": {
       name: "SEO 및 유틸리티",
       description: "링크, 슬러그, QR 코드, 비밀번호",
-      shortDescription: "UTM 링크와 슬러그를 만들고, QR 코드를 생성·스캔하고, 비밀번호를 생성하세요.",
+      shortDescription:
+        "UTM 링크와 슬러그를 만들고, QR 코드를 생성·스캔하고, 비밀번호를 생성하세요.",
       intro:
         "이 유틸리티는 캠페인 URL을 만들고, 제목을 URL 슬러그로 바꾸고, 텍스트나 구조화된 데이터로 QR 코드를 만들고, 카메라나 이미지로 QR 코드를 스캔하고, 기기에서 비밀번호를 생성합니다.",
       audience:
@@ -264,7 +337,8 @@ const messages: Messages = {
     "ai-tools": {
       name: "AI 도구",
       description: "프롬프트 작성 및 글쓰기 도구(Gemini AI 선택 사용)",
-      shortDescription: "브라우저나 Gemini AI로 프롬프트를 만들고, 글의 패턴을 살펴보고, 초안을 줄이세요.",
+      shortDescription:
+        "브라우저나 Gemini AI로 프롬프트를 만들고, 글의 패턴을 살펴보고, 초안을 줄이세요.",
       intro:
         "이 도구들은 프롬프트 작성, 이미지나 영상 장면 묘사, 글의 패턴 분석, 긴 초안 줄이기를 돕습니다. 각 도구의 기본 버튼은 브라우저에서 실행됩니다. AI 버튼(Generate, Analyze, Compress, Humanize with AI)은 입력한 텍스트를 Google의 Gemini 모델로 보내 결과를 생성합니다.",
       audience:

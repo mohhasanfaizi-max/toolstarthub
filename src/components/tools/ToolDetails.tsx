@@ -1,6 +1,8 @@
 import Link from "next/link";
-import { getToolContent } from "@/data/tool-content";
+import { getToolContent, type ToolContent } from "@/data/tool-content";
 import { FaqList, getDefaultToolFaqs } from "@/components/content/FaqList";
+import { getMessages } from "@/i18n/server";
+import type { Messages } from "@/i18n/messages/en";
 
 const mobileFaqSlugs = new Set([
   "image-compressor",
@@ -20,20 +22,38 @@ const mobileFaqSlugs = new Set([
   "color-picker",
 ]);
 
-const mobileFaq = {
-  question: "Does it work on mobile?",
-  answer:
-    "Yes. You can open this page on a phone or tablet. File pickers and downloads use the browser on your device. Large files may be slower on a small phone than on a desktop.",
-};
+type DetailLabels = Messages["toolPage"]["details"];
 
 type ToolDetailsProps = {
   slug: string;
   toolName: string;
+  /** Translated content; defaults to the English content for the slug. */
+  content?: ToolContent;
+  labels?: DetailLabels;
 };
 
-export function ToolDetails({ slug, toolName }: ToolDetailsProps) {
-  const content = getToolContent(slug);
-  const faqs = getFaqsForTool(slug, toolName);
+const englishLabels = getMessages("en").toolPage.details;
+
+function DisclaimerSentence({ labels }: { labels: DetailLabels }) {
+  const [before, after = ""] = labels.disclaimer.split("{link}");
+  return (
+    <>
+      {before}
+      <Link href="/disclaimer" className="font-medium text-accent hover:underline">
+        {labels.disclaimerLink}
+      </Link>
+      {after}
+    </>
+  );
+}
+
+export function ToolDetails({
+  slug,
+  toolName,
+  content = getToolContent(slug),
+  labels = englishLabels,
+}: ToolDetailsProps) {
+  const faqs = getFaqsForTool(slug, toolName, content, labels);
 
   return (
     <>
@@ -43,7 +63,7 @@ export function ToolDetails({ slug, toolName }: ToolDetailsProps) {
             id="about-tool-heading"
             className="text-xl font-semibold tracking-tight text-foreground"
           >
-            What this tool does
+            {labels.about}
           </h2>
           <p className="mt-3 max-w-3xl text-sm leading-7 text-muted-foreground">
             {content.about}
@@ -56,14 +76,10 @@ export function ToolDetails({ slug, toolName }: ToolDetailsProps) {
           id="how-to-use-heading"
           className="text-xl font-semibold tracking-tight text-foreground"
         >
-          How to use
+          {labels.howTo}
         </h2>
         <ol className="mt-4 list-decimal space-y-2 ps-5 text-sm leading-6 text-muted-foreground">
-          {(content?.howTo ?? [
-            "Enter your values or choose a file if the tool needs one.",
-            "Run the action on this page.",
-            "Review the result, then copy, download or reset as needed.",
-          ]).map((step) => (
+          {(content?.howTo ?? labels.defaultHowTo).map((step) => (
             <li key={step}>{step}</li>
           ))}
         </ol>
@@ -74,7 +90,7 @@ export function ToolDetails({ slug, toolName }: ToolDetailsProps) {
           id="examples-heading"
           className="text-xl font-semibold tracking-tight text-foreground"
         >
-          Examples
+          {labels.examples}
         </h2>
         {content?.examples ? (
           <ul className="mt-4 space-y-4">
@@ -92,8 +108,7 @@ export function ToolDetails({ slug, toolName }: ToolDetailsProps) {
           </ul>
         ) : (
           <p className="mt-3 max-w-2xl text-sm leading-6 text-muted-foreground">
-            Use the workspace above with a simple example from the tool
-            description if no worked examples are listed here.
+            {labels.examplesFallback}
           </p>
         )}
       </section>
@@ -104,7 +119,7 @@ export function ToolDetails({ slug, toolName }: ToolDetailsProps) {
             id="features-heading"
             className="text-xl font-semibold tracking-tight text-foreground"
           >
-            Main features
+            {labels.features}
           </h2>
           <ul className="mt-4 list-disc space-y-2 ps-5 text-sm leading-6 text-muted-foreground">
             {content.features.map((feature) => (
@@ -120,7 +135,7 @@ export function ToolDetails({ slug, toolName }: ToolDetailsProps) {
             id="explanation-heading"
             className="text-xl font-semibold tracking-tight text-foreground"
           >
-            How it works
+            {labels.howItWorks}
           </h2>
           <p className="mt-3 max-w-3xl text-sm leading-7 text-muted-foreground">
             {content.explanation}
@@ -134,7 +149,7 @@ export function ToolDetails({ slug, toolName }: ToolDetailsProps) {
             id="tips-heading"
             className="text-xl font-semibold tracking-tight text-foreground"
           >
-            Tips
+            {labels.tips}
           </h2>
           <ul className="mt-4 list-disc space-y-2 ps-5 text-sm leading-6 text-muted-foreground">
             {content.tips.map((tip) => (
@@ -149,45 +164,39 @@ export function ToolDetails({ slug, toolName }: ToolDetailsProps) {
           id="limitations-heading"
           className="text-xl font-semibold tracking-tight text-foreground"
         >
-          Limitations
+          {labels.limitations}
         </h2>
-        {content?.limitations ? (
-          <p className="mt-3 max-w-3xl text-sm leading-7 text-muted-foreground">
-            {content.limitations}
-          </p>
-        ) : null}
-        {content?.limitations ? (
-          <p className="mt-3 max-w-3xl text-sm leading-7 text-muted-foreground">
-            See the{" "}
-            <Link href="/disclaimer" className="font-medium text-accent hover:underline">
-              disclaimer
-            </Link>{" "}
-            for what these tools do not cover.
-          </p>
-        ) : (
-          <p className="mt-3 max-w-3xl text-sm leading-7 text-muted-foreground">
-            Check the result before you rely on it. Large files can be slower or
-            fail if the device is low on memory. See the{" "}
-            <Link href="/disclaimer" className="font-medium text-accent hover:underline">
-              disclaimer
-            </Link>{" "}
-            for what these tools do not cover.
-          </p>
-        )}
+        <p className="mt-3 max-w-3xl text-sm leading-7 text-muted-foreground">
+          {content?.limitations ?? labels.limitationsFallback}
+        </p>
+        <p className="mt-3 max-w-3xl text-sm leading-7 text-muted-foreground">
+          <DisclaimerSentence labels={labels} />
+        </p>
       </section>
 
-      <FaqList items={faqs} />
+      <FaqList items={faqs} heading={labels.faq} />
     </>
   );
 }
 
-export function getFaqsForTool(slug: string, toolName: string) {
-  const faqs = getToolContent(slug)?.faqs ?? getDefaultToolFaqs(toolName);
+export function getFaqsForTool(
+  slug: string,
+  toolName: string,
+  content: ToolContent | undefined = getToolContent(slug),
+  labels: DetailLabels = englishLabels,
+) {
+  const faqs = content?.faqs ?? getDefaultToolFaqs(toolName);
   if (
     mobileFaqSlugs.has(slug) &&
-    !faqs.some((item) => item.question.toLowerCase().includes("mobile"))
+    // Translated FAQs mirror the English ones, so check the English list.
+    !(getToolContent(slug)?.faqs ?? faqs).some((item) =>
+      item.question.toLowerCase().includes("mobile"),
+    )
   ) {
-    return [...faqs, mobileFaq];
+    return [
+      ...faqs,
+      { question: labels.mobileQuestion, answer: labels.mobileAnswer },
+    ];
   }
   return faqs;
 }

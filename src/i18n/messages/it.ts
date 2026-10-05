@@ -19,7 +19,11 @@ const messages: Messages = {
       closeSearch: "Chiudi la ricerca",
     },
     theme: { toLight: "Passa al tema chiaro", toDark: "Passa al tema scuro" },
-    language: { label: "Lingua", current: "Lingua: {name}", englishOnly: "Solo in inglese" },
+    language: {
+      label: "Lingua",
+      current: "Lingua: {name}",
+      englishOnly: "Solo in inglese",
+    },
     search: {
       placeholder: "Cerca uno strumento...",
       label: "Cerca uno strumento",
@@ -35,7 +39,10 @@ const messages: Messages = {
       decline: "Rifiuta",
       settings: "Impostazioni dei cookie",
     },
-    favorites: { add: "Aggiungi {name} ai preferiti", remove: "Rimuovi {name} dai preferiti" },
+    favorites: {
+      add: "Aggiungi {name} ai preferiti",
+      remove: "Rimuovi {name} dai preferiti",
+    },
     card: { popular: "Popolare", new: "Nuovo", openTool: "Apri lo strumento" },
     categoryNames: {
       calculators: "Calcolatrici",
@@ -88,7 +95,10 @@ const messages: Messages = {
       noToolsFound: "Nessuno strumento trovato",
       noToolsCategory: "Non ci sono ancora strumenti in questa categoria.",
       countFavorites: { one: "{count} preferito", other: "{count} preferiti" },
-      countResults: { one: "{count} risultato per «{query}»", other: "{count} risultati per «{query}»" },
+      countResults: {
+        one: "{count} risultato per «{query}»",
+        other: "{count} risultati per «{query}»",
+      },
       countOf: "{count} di {total} strumenti",
     },
     tool: {
@@ -120,10 +130,20 @@ const messages: Messages = {
     categoryShareAlt: "{name} – strumenti online gratuiti",
     toolShareAlt: "{name} – strumento online gratuito",
   },
-  header: { primaryNav: "Navigazione principale", logoHome: "Home di {name}", skip: "Vai al contenuto principale" },
-  breadcrumbs: { label: "Percorso di navigazione", home: "Home", tools: "Strumenti", categories: "Categorie" },
+  header: {
+    primaryNav: "Navigazione principale",
+    logoHome: "Home di {name}",
+    skip: "Vai al contenuto principale",
+  },
+  breadcrumbs: {
+    label: "Percorso di navigazione",
+    home: "Home",
+    tools: "Strumenti",
+    categories: "Categorie",
+  },
   footer: {
-    blurb: "Strumenti online veloci e semplici per calcoli, testo, sviluppo, immagini, SEO e attività quotidiane.",
+    blurb:
+      "Strumenti online veloci e semplici per calcoli, testo, sviluppo, immagini, SEO e attività quotidiane.",
     tagline: "Veloce • Gratuito • Nel browser • Senza registrazione",
     explore: "Esplora",
     categories: "Categorie",
@@ -140,38 +160,69 @@ const messages: Messages = {
     intro:
       "Trova uno strumento, usalo e ottieni il risultato. {name} è un posto semplice per PDF, immagini, calcoli e testo, senza account.",
     popularLabel: "Più usati:",
-    trust: ["Gratuito", "Nessuna registrazione", "Veloce e semplice", "I file restano nel tuo browser"],
+    trust: [
+      "Gratuito",
+      "Nessuna registrazione",
+      "Veloce e semplice",
+      "I file restano nel tuo browser",
+    ],
     popularTitle: "Strumenti più usati",
-    popularDescription: "Gli strumenti più usati per file, immagini, testo e calcoli di tutti i giorni.",
+    popularDescription:
+      "Gli strumenti più usati per file, immagini, testo e calcoli di tutti i giorni.",
     viewAllTools: "Vedi tutti gli strumenti",
     catalogTitle: "Tutto ciò che ti serve, in un unico posto.",
-    catalogDescription: "Filtra gli strumenti disponibili su questo sito. Ognuno si apre nel browser.",
+    catalogDescription:
+      "Filtra gli strumenti disponibili su questo sito. Ognuno si apre nel browser.",
     categoriesTitle: "Sfoglia per categoria",
-    categoriesDescription: "Calcolatrici, testo, utilità per sviluppatori, immagini e PDF, e strumenti per siti web.",
+    categoriesDescription:
+      "Calcolatrici, testo, utilità per sviluppatori, immagini e PDF, e strumenti per siti web.",
     allCategories: "Tutte le categorie",
     whyTitle: "Perché {name}?",
-    whyDescription: "Una raccolta semplice di utilità per lavori che altrimenti richiederebbero un’app separata.",
+    whyDescription:
+      "Una raccolta semplice di utilità per lavori che altrimenti richiederebbero un’app separata.",
     values: {
-      fast: { title: "Veloce", note: "La maggior parte degli strumenti funziona nel browser e mostra il risultato nella stessa pagina." },
-      free: { title: "Gratuito", note: "Gli strumenti di questo sito non sono a pagamento." },
+      fast: {
+        title: "Veloce",
+        note: "La maggior parte degli strumenti funziona nel browser e mostra il risultato nella stessa pagina.",
+      },
+      free: {
+        title: "Gratuito",
+        note: "Gli strumenti di questo sito non sono a pagamento.",
+      },
       private: {
         title: "Privato",
         note: "I file e il testo incollato vengono elaborati sul tuo dispositivo. Le visite sono misurate a parte, come spiega l’informativa sulla privacy.",
       },
-      noAccount: { title: "Senza account", note: "Apri uno strumento e usalo. Non serve alcun account." },
+      noAccount: {
+        title: "Senza account",
+        note: "Apri uno strumento e usalo. Non serve alcun account.",
+      },
     },
     howTitle: "Come funziona",
     howDescription: "Tre passaggi. Niente da installare.",
     steps: [
-      { title: "Scegli uno strumento", description: "Cerca o scegli una calcolatrice, uno strumento per file o un’utilità per sviluppatori." },
-      { title: "Carica o inserisci il contenuto", description: "Aggiungi il file, i numeri o il testo richiesti dallo strumento." },
-      { title: "Ottieni il risultato", description: "Copia, scarica o leggi il risultato nella stessa pagina." },
+      {
+        title: "Scegli uno strumento",
+        description:
+          "Cerca o scegli una calcolatrice, uno strumento per file o un’utilità per sviluppatori.",
+      },
+      {
+        title: "Carica o inserisci il contenuto",
+        description:
+          "Aggiungi il file, i numeri o il testo richiesti dallo strumento.",
+      },
+      {
+        title: "Ottieni il risultato",
+        description: "Copia, scarica o leggi il risultato nella stessa pagina.",
+      },
     ],
     guidesTitle: "Guide utili",
-    guidesDescription: "Brevi spiegazioni sulle attività che gli strumenti di questo sito già gestiscono.",
+    guidesDescription:
+      "Brevi spiegazioni sulle attività che gli strumenti di questo sito già gestiscono.",
     allGuides: "Tutte le guide",
     pricingTitle: "Prezzi",
-    pricingBody: "Gli strumenti sono gratuiti. Niente account, niente installazione e nessun piano a pagamento.",
+    pricingBody:
+      "Gli strumenti sono gratuiti. Niente account, niente installazione e nessun piano a pagamento.",
     ctaTitle: "Pronto a fare prima?",
     ctaBody: "Esplora la raccolta di semplici strumenti online di {name}.",
     ctaPrimary: "Esplora tutti gli strumenti",
@@ -189,7 +240,10 @@ const messages: Messages = {
   },
   category: {
     cardCount: { one: "{count} strumento", other: "{count} strumenti" },
-    pageCount: { one: "{count} strumento in questa categoria.", other: "{count} strumenti in questa categoria." },
+    pageCount: {
+      one: "{count} strumento in questa categoria.",
+      other: "{count} strumenti in questa categoria.",
+    },
     browse: "Sfoglia gli strumenti",
     starting: "Da dove iniziare",
     related: "Categorie correlate",
@@ -202,6 +256,32 @@ const messages: Messages = {
     helpfulGuides: "Guide utili",
     englishContent:
       "Per ora la guida dettagliata di questo strumento (come si usa, esempi e domande frequenti) è disponibile in inglese.",
+    details: {
+      about: "Cosa fa questo strumento",
+      howTo: "Come si usa",
+      examples: "Esempi",
+      examplesFallback:
+        "Se qui non ci sono esempi, prova l’area di lavoro qui sopra con un esempio semplice tratto dalla descrizione.",
+      features: "Funzioni principali",
+      howItWorks: "Come funziona",
+      tips: "Suggerimenti",
+      limitations: "Limiti",
+      limitationsFallback:
+        "Controlla il risultato prima di farci affidamento. I file grandi possono essere più lenti o non riuscire se il dispositivo ha poca memoria.",
+      disclaimer:
+        "Consulta il {link} per sapere cosa non coprono questi strumenti.",
+      disclaimerLink: "disclaimer",
+      faq: "Domande frequenti",
+      defaultHowTo: [
+        "Inserisci i valori o scegli un file, se lo strumento ne ha bisogno.",
+        "Avvia l’azione in questa pagina.",
+        "Controlla il risultato, poi copialo, scaricalo o reimposta secondo necessità.",
+      ],
+      mobileQuestion: "Funziona su smartphone?",
+      mobileAnswer:
+        "Sì. Puoi aprire questa pagina su telefono o tablet. La scelta dei file e i download usano il browser del dispositivo. I file grandi possono essere più lenti su un telefono piccolo che su un computer.",
+      workspaceNote: "Nota",
+    },
     privacy: {
       browser:
         "Questo strumento funziona nel tuo browser. Dati inseriti, file e valori generati restano su questo dispositivo. Preferiti e strumenti recenti, se li usi, salvano solo i nomi degli strumenti nella memoria locale: mai password, documenti o contenuti dei codici QR.",
@@ -219,7 +299,8 @@ const messages: Messages = {
     calculators: {
       name: "Calcolatrici",
       description: "Strumenti di calcolo per tutti i giorni",
-      shortDescription: "Percentuali, età, unità di misura e altri calcoli quotidiani.",
+      shortDescription:
+        "Percentuali, età, unità di misura e altri calcoli quotidiani.",
       intro:
         "Queste calcolatrici rispondono a una domanda numerica precisa: una percentuale, una variazione percentuale, un prezzo scontato, una mancia, l’imposta sulle vendite, un’età, i giorni o i giorni lavorativi tra due date, una conversione di unità, una stima di prestito o mutuo, uno stipendio, la superficie di una stanza, il GPA o un numero casuale in un intervallo.",
       audience:
@@ -228,7 +309,8 @@ const messages: Messages = {
     "text-tools": {
       name: "Strumenti per il testo",
       description: "Strumenti per scrivere ed elaborare testi",
-      shortDescription: "Conta, ripulisci, converti e formatta il testo nel browser.",
+      shortDescription:
+        "Conta, ripulisci, converti e formatta il testo nel browser.",
       intro:
         "Gli strumenti per il testo contano parole e caratteri, cambiano maiuscole e minuscole, trovano e sostituiscono, rimuovono le interruzioni di riga, numerano le righe, eliminano righe duplicate o spazi in eccesso, ordinano le righe, confrontano due bozze e generano testo segnaposto per un layout.",
       audience:
@@ -237,7 +319,8 @@ const messages: Messages = {
     "developer-tools": {
       name: "Strumenti per sviluppatori",
       description: "Formatta, codifica, minifica e converti dati nel browser",
-      shortDescription: "Formatta JSON, codifica dati, minifica codice e converti Markdown o HTML in locale.",
+      shortDescription:
+        "Formatta JSON, codifica dati, minifica codice e converti Markdown o HTML in locale.",
       intro:
         "Gli strumenti per sviluppatori formattano JSON, convertono tra JSON e CSV, testano espressioni regolari, calcolano hash SHA-256 o SHA-512, codificano e decodificano Base64, URL e HTML, minificano HTML, CSS o JavaScript, convertono Markdown e generano UUID o timestamp Unix. Gli strumenti per i colori convertono i valori esadecimali in RGB, verificano il contrasto e creano gradienti e ombre CSS.",
       audience:
@@ -246,7 +329,8 @@ const messages: Messages = {
     "image-tools": {
       name: "Strumenti per immagini",
       description: "Strumenti per immagini e PDF nel browser",
-      shortDescription: "Comprimi, converti e analizza immagini e PDF senza caricarli online.",
+      shortDescription:
+        "Comprimi, converti e analizza immagini e PDF senza caricarli online.",
       intro:
         "Gli strumenti per immagini comprimono, ridimensionano, ritagliano, convertono e campionano i colori di un’immagine. Gli strumenti PDF di questa categoria uniscono, dividono, comprimono, contano le pagine, leggono o rimuovono i metadati, estraggono il testo, trasformano le pagine in immagini JPG e creano un PDF da immagini o testo.",
       audience:
@@ -255,7 +339,8 @@ const messages: Messages = {
     "seo-utilities": {
       name: "SEO e utilità",
       description: "Link, slug, codici QR e password",
-      shortDescription: "Crea link UTM e slug, genera o scansiona codici QR e genera password.",
+      shortDescription:
+        "Crea link UTM e slug, genera o scansiona codici QR e genera password.",
       intro:
         "Queste utilità creano un URL di campagna, trasformano un titolo in uno slug, generano un codice QR da testo o dati strutturati, scansionano un codice QR con la fotocamera o da un’immagine e generano una password in locale.",
       audience:
@@ -263,8 +348,10 @@ const messages: Messages = {
     },
     "ai-tools": {
       name: "Strumenti IA",
-      description: "Generatori di prompt e strumenti di scrittura, con IA Gemini opzionale",
-      shortDescription: "Crea prompt, studia lo stile di scrittura e accorcia una bozza, nel browser o con l’IA Gemini.",
+      description:
+        "Generatori di prompt e strumenti di scrittura, con IA Gemini opzionale",
+      shortDescription:
+        "Crea prompt, studia lo stile di scrittura e accorcia una bozza, nel browser o con l’IA Gemini.",
       intro:
         "Questi strumenti ti aiutano a scrivere un prompt, descrivere una scena per un’immagine o un video, analizzare lo stile di scrittura o accorciare una bozza lunga. Il pulsante principale di ogni strumento funziona nel tuo browser. I pulsanti IA (Generate, Analyze, Compress o Humanize with AI) inviano il testo inserito al modello Gemini di Google per generare il risultato.",
       audience:

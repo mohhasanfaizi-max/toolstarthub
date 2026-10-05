@@ -14,8 +14,10 @@ import {
   toolControlClass,
 } from "@/components/tools/ToolForm";
 import { removeDuplicateLines } from "@/lib/tools/duplicate-lines";
+import { useTx } from "@/i18n/tool-text";
 
 export function DuplicateLineRemoverTool() {
+  const tx = useTx();
   const [input, setInput] = useState("");
   const [output, setOutput] = useState("");
   const [caseInsensitive, setCaseInsensitive] = useState(false);
@@ -51,7 +53,7 @@ export function DuplicateLineRemoverTool() {
 
   return (
     <ToolPanel>
-      <ToolField id="dup-input" label="Text">
+      <ToolField id="dup-input" label={tx("Text")}>
         <textarea
           id="dup-input"
           value={input}
@@ -59,44 +61,40 @@ export function DuplicateLineRemoverTool() {
           rows={10}
           spellCheck={false}
           className={`${toolControlClass} min-h-40 resize-y font-mono text-sm`}
-          placeholder="One line per row"
+          placeholder={tx("One line per row")}
         />
       </ToolField>
 
       <fieldset className="mt-4">
-        <legend className="text-sm font-medium text-foreground">Options</legend>
+        <legend className="text-sm font-medium text-foreground">{tx("Options")}</legend>
         <div className="mt-2 grid gap-2 sm:grid-cols-2">
           <CheckOption
             id="dup-case"
-            label="Case-insensitive match"
+            label={tx("Case-insensitive match")}
             checked={caseInsensitive}
             onChange={setCaseInsensitive}
           />
           <CheckOption
             id="dup-trim"
-            label="Trim spaces before comparing"
+            label={tx("Trim spaces before comparing")}
             checked={trim}
             onChange={setTrim}
           />
           <CheckOption
             id="dup-empty"
-            label="Remove empty lines"
+            label={tx("Remove empty lines")}
             checked={dropEmpty}
             onChange={setDropEmpty}
           />
         </div>
-        <p className="mt-2 text-sm text-muted-foreground">
-          First occurrence of each line is kept, in the original order.
-        </p>
+        <p className="mt-2 text-sm text-muted-foreground">{tx("First occurrence of each line is kept, in the original order.")}</p>
       </fieldset>
 
       <div className="mt-6">
         <ToolActions>
-          <Button type="button" onClick={run}>
-            Remove duplicates
-          </Button>
+          <Button type="button" onClick={run}>{tx("Remove duplicates")}</Button>
           <CopyButton value={output} />
-          <DownloadButton blob={blob} fileName="unique-lines.txt" label="Download .txt" />
+          <DownloadButton blob={blob} fileName="unique-lines.txt" label={tx("Download .txt")} />
           <Button
             type="button"
             variant="ghost"
@@ -106,14 +104,12 @@ export function DuplicateLineRemoverTool() {
               setStats(null);
               setError("");
             }}
-          >
-            Clear
-          </Button>
+          >{tx("Clear")}</Button>
         </ToolActions>
       </div>
 
       <div className="mt-4 space-y-4">
-        {error ? <ToolError>{error}</ToolError> : null}
+        {error ? <ToolError>{tx(error)}</ToolError> : null}
         {stats ? (
           <ToolStatGrid
             items={[
@@ -123,7 +119,7 @@ export function DuplicateLineRemoverTool() {
             ]}
           />
         ) : null}
-        <ToolField id="dup-output" label="Result">
+        <ToolField id="dup-output" label={tx("Result")}>
           <textarea
             id="dup-output"
             value={output}
@@ -135,9 +131,7 @@ export function DuplicateLineRemoverTool() {
         </ToolField>
       </div>
 
-      <ToolPrivacyNote>
-        Repeated lines are dropped in this tab. The list is not uploaded.
-      </ToolPrivacyNote>
+      <ToolPrivacyNote>{tx("Repeated lines are dropped in this tab. The list is not uploaded.")}</ToolPrivacyNote>
     </ToolPanel>
   );
 }
@@ -153,6 +147,7 @@ function CheckOption({
   checked: boolean;
   onChange: (value: boolean) => void;
 }) {
+  const tx = useTx();
   return (
     <label htmlFor={id} className="flex min-h-11 items-center gap-2 text-sm text-foreground">
       <input
@@ -161,7 +156,7 @@ function CheckOption({
         checked={checked}
         onChange={(event) => onChange(event.target.checked)}
       />
-      {label}
+      {tx(label)}
     </label>
   );
 }

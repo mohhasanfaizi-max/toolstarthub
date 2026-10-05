@@ -18,8 +18,15 @@ const messages: Messages = {
       openSearch: "検索を開く",
       closeSearch: "検索を閉じる",
     },
-    theme: { toLight: "ライトテーマに切り替え", toDark: "ダークテーマに切り替え" },
-    language: { label: "言語", current: "言語: {name}", englishOnly: "英語のみ" },
+    theme: {
+      toLight: "ライトテーマに切り替え",
+      toDark: "ダークテーマに切り替え",
+    },
+    language: {
+      label: "言語",
+      current: "言語: {name}",
+      englishOnly: "英語のみ",
+    },
     search: {
       placeholder: "ツールを検索…",
       label: "ツールを検索",
@@ -35,7 +42,10 @@ const messages: Messages = {
       decline: "拒否する",
       settings: "Cookie 設定",
     },
-    favorites: { add: "{name}をお気に入りに追加", remove: "{name}をお気に入りから削除" },
+    favorites: {
+      add: "{name}をお気に入りに追加",
+      remove: "{name}をお気に入りから削除",
+    },
     card: { popular: "人気", new: "新着", openTool: "ツールを開く" },
     categoryNames: {
       calculators: "計算ツール",
@@ -99,7 +109,8 @@ const messages: Messages = {
       copyLink: "リンクをコピー",
       linkCopied: "リンクをコピーしました",
       download: "ダウンロード",
-      dropPrompt: "ここに画像をドラッグ＆ドロップするか、ファイルを選択してください。",
+      dropPrompt:
+        "ここに画像をドラッグ＆ドロップするか、ファイルを選択してください。",
       selected: "選択中: {name}",
       copySuccess: "{what}をクリップボードにコピーしました。",
       copyFailed:
@@ -120,10 +131,20 @@ const messages: Messages = {
     categoryShareAlt: "{name} – 無料オンラインツール",
     toolShareAlt: "{name} – 無料オンラインツール",
   },
-  header: { primaryNav: "メインナビゲーション", logoHome: "{name} ホーム", skip: "メインコンテンツへスキップ" },
-  breadcrumbs: { label: "パンくずリスト", home: "ホーム", tools: "ツール", categories: "カテゴリ" },
+  header: {
+    primaryNav: "メインナビゲーション",
+    logoHome: "{name} ホーム",
+    skip: "メインコンテンツへスキップ",
+  },
+  breadcrumbs: {
+    label: "パンくずリスト",
+    home: "ホーム",
+    tools: "ツール",
+    categories: "カテゴリ",
+  },
   footer: {
-    blurb: "計算、テキスト、開発、画像、SEO、日常の作業のための、速くてシンプルなオンラインツール。",
+    blurb:
+      "計算、テキスト、開発、画像、SEO、日常の作業のための、速くてシンプルなオンラインツール。",
     tagline: "高速 • 無料 • ブラウザで動作 • 登録不要",
     explore: "探す",
     categories: "カテゴリ",
@@ -140,38 +161,65 @@ const messages: Messages = {
     intro:
       "ツールを見つけて、使って、結果を受け取るだけ。{name} は、PDF・画像・計算・テキストをアカウントなしで扱えるシンプルなサイトです。",
     popularLabel: "人気:",
-    trust: ["無料で使える", "登録不要", "速くて簡単", "ファイルはブラウザ内で処理"],
+    trust: [
+      "無料で使える",
+      "登録不要",
+      "速くて簡単",
+      "ファイルはブラウザ内で処理",
+    ],
     popularTitle: "人気のツール",
-    popularDescription: "ファイル、画像、テキスト、日常の計算によく使われるツールです。",
+    popularDescription:
+      "ファイル、画像、テキスト、日常の計算によく使われるツールです。",
     viewAllTools: "すべてのツールを見る",
     catalogTitle: "必要なものが、ひとつの場所に。",
-    catalogDescription: "このサイトのツールを絞り込めます。どれもブラウザですぐに開けます。",
+    catalogDescription:
+      "このサイトのツールを絞り込めます。どれもブラウザですぐに開けます。",
     categoriesTitle: "カテゴリから探す",
-    categoriesDescription: "計算、テキスト、開発者向けユーティリティ、画像と PDF、ウェブサイト向けツール。",
+    categoriesDescription:
+      "計算、テキスト、開発者向けユーティリティ、画像と PDF、ウェブサイト向けツール。",
     allCategories: "すべてのカテゴリ",
     whyTitle: "{name} が選ばれる理由",
-    whyDescription: "本来なら別のアプリが必要な作業を、わかりやすいユーティリティでまとめました。",
+    whyDescription:
+      "本来なら別のアプリが必要な作業を、わかりやすいユーティリティでまとめました。",
     values: {
-      fast: { title: "高速", note: "ほとんどのツールはブラウザで動作し、同じページに結果を表示します。" },
+      fast: {
+        title: "高速",
+        note: "ほとんどのツールはブラウザで動作し、同じページに結果を表示します。",
+      },
       free: { title: "無料", note: "このサイトのツールは料金がかかりません。" },
       private: {
         title: "プライベート",
         note: "ファイルや貼り付けたテキストはお使いの端末で処理されます。ページの閲覧数は、プライバシーポリシーで説明しているとおり別途計測します。",
       },
-      noAccount: { title: "アカウント不要", note: "ツールを開いてそのまま使えます。アカウントは必要ありません。" },
+      noAccount: {
+        title: "アカウント不要",
+        note: "ツールを開いてそのまま使えます。アカウントは必要ありません。",
+      },
     },
     howTitle: "使い方",
     howDescription: "3 ステップ。インストールは不要です。",
     steps: [
-      { title: "ツールを選ぶ", description: "計算ツール、ファイルツール、開発者向けユーティリティを検索または選択します。" },
-      { title: "アップロードまたは入力", description: "ツールが必要とするファイル、数値、テキストを追加します。" },
-      { title: "結果を受け取る", description: "同じページで結果をコピー、ダウンロード、または確認できます。" },
+      {
+        title: "ツールを選ぶ",
+        description:
+          "計算ツール、ファイルツール、開発者向けユーティリティを検索または選択します。",
+      },
+      {
+        title: "アップロードまたは入力",
+        description: "ツールが必要とするファイル、数値、テキストを追加します。",
+      },
+      {
+        title: "結果を受け取る",
+        description:
+          "同じページで結果をコピー、ダウンロード、または確認できます。",
+      },
     ],
     guidesTitle: "お役立ちガイド",
     guidesDescription: "このサイトのツールでできる作業を短く解説しています。",
     allGuides: "すべてのガイド",
     pricingTitle: "料金",
-    pricingBody: "ツールは無料でお使いいただけます。アカウント、インストール、有料プランはありません。",
+    pricingBody:
+      "ツールは無料でお使いいただけます。アカウント、インストール、有料プランはありません。",
     ctaTitle: "作業をもっと速く片付けませんか？",
     ctaBody: "{name} のシンプルなオンラインツールをご覧ください。",
     ctaPrimary: "すべてのツールを見る",
@@ -202,6 +250,31 @@ const messages: Messages = {
     helpfulGuides: "お役立ちガイド",
     englishContent:
       "このツールの詳しい解説（使い方、例、よくある質問）は、現在英語のみでご用意しています。",
+    details: {
+      about: "このツールでできること",
+      howTo: "使い方",
+      examples: "例",
+      examplesFallback:
+        "ここに例がない場合は、説明にある簡単な例で上の作業エリアを試してください。",
+      features: "主な機能",
+      howItWorks: "仕組み",
+      tips: "ヒント",
+      limitations: "制限事項",
+      limitationsFallback:
+        "結果を利用する前に確認してください。端末のメモリが少ないと、大きなファイルは処理が遅くなったり失敗したりすることがあります。",
+      disclaimer: "これらのツールの対象外については{link}をご覧ください。",
+      disclaimerLink: "免責事項",
+      faq: "よくある質問",
+      defaultHowTo: [
+        "値を入力するか、必要に応じてファイルを選びます。",
+        "このページで処理を実行します。",
+        "結果を確認し、必要に応じてコピー、ダウンロード、リセットします。",
+      ],
+      mobileQuestion: "スマートフォンでも使えますか？",
+      mobileAnswer:
+        "はい。このページはスマートフォンやタブレットでも開けます。ファイルの選択とダウンロードは端末のブラウザで行います。大きなファイルは、小型のスマートフォンではパソコンより時間がかかることがあります。",
+      workspaceNote: "注意",
+    },
     privacy: {
       browser:
         "このツールはブラウザ内で動作します。入力内容、ファイル、生成した値はこの端末に残ります。お気に入りと最近使ったツールを利用する場合も、ローカルストレージに保存されるのはツール名だけで、パスワード、文書、QR コードの内容は保存されません。",
@@ -228,7 +301,8 @@ const messages: Messages = {
     "text-tools": {
       name: "テキストツール",
       description: "文章作成とテキスト処理のためのツール",
-      shortDescription: "ブラウザでテキストを数える、整える、変換する、整形する。",
+      shortDescription:
+        "ブラウザでテキストを数える、整える、変換する、整形する。",
       intro:
         "テキストツールでは、単語数や文字数のカウント、大文字・小文字の変換、検索と置換、改行の削除、行番号の付与、重複行や余分なスペースの削除、行の並べ替え、2 つの原稿の比較、レイアウト用のダミーテキスト生成ができます。",
       audience:
@@ -237,7 +311,8 @@ const messages: Messages = {
     "developer-tools": {
       name: "開発者向けツール",
       description: "ブラウザでデータを整形・エンコード・圧縮・変換",
-      shortDescription: "JSON の整形、データのエンコード、コードの圧縮、Markdown や HTML の変換をローカルで。",
+      shortDescription:
+        "JSON の整形、データのエンコード、コードの圧縮、Markdown や HTML の変換をローカルで。",
       intro:
         "開発者向けツールでは、JSON の整形、JSON と CSV の相互変換、正規表現のテスト、SHA-256 や SHA-512 でのハッシュ化、Base64・URL・HTML のエンコードとデコード、HTML・CSS・JavaScript の圧縮、Markdown の変換、UUID や Unix タイムスタンプの生成ができます。カラーツールでは、16 進カラーの RGB 変換、コントラストのチェック、CSS グラデーションやボックスシャドウの作成ができます。",
       audience:
@@ -246,7 +321,8 @@ const messages: Messages = {
     "image-tools": {
       name: "画像ツール",
       description: "ブラウザで使える画像・PDF ツール",
-      shortDescription: "画像や PDF をアップロードせずに圧縮・変換・確認できます。",
+      shortDescription:
+        "画像や PDF をアップロードせずに圧縮・変換・確認できます。",
       intro:
         "画像ツールでは、画像の圧縮、リサイズ、トリミング、形式変換、色の抽出ができます。このカテゴリの PDF ツールでは、結合、分割、圧縮、ページ数のカウント、メタデータの確認や削除、テキスト抽出、ページの JPG 画像化、画像やテキストからの PDF 作成ができます。",
       audience:
@@ -255,7 +331,8 @@ const messages: Messages = {
     "seo-utilities": {
       name: "SEO・ユーティリティ",
       description: "リンク、スラッグ、QR コード、パスワード",
-      shortDescription: "UTM リンクやスラッグの作成、QR コードの作成・読み取り、パスワード生成。",
+      shortDescription:
+        "UTM リンクやスラッグの作成、QR コードの作成・読み取り、パスワード生成。",
       intro:
         "これらのユーティリティでは、キャンペーン用 URL の作成、タイトルから URL スラッグへの変換、テキストや構造化データからの QR コード作成、カメラや画像からの QR コード読み取り、ローカルでのパスワード生成ができます。",
       audience:
@@ -264,7 +341,8 @@ const messages: Messages = {
     "ai-tools": {
       name: "AI ツール",
       description: "プロンプト作成と文章ツール（Gemini AI はオプション）",
-      shortDescription: "プロンプトの作成、文章の傾向分析、下書きの短縮を、ブラウザ内または Gemini AI で。",
+      shortDescription:
+        "プロンプトの作成、文章の傾向分析、下書きの短縮を、ブラウザ内または Gemini AI で。",
       intro:
         "これらのツールは、プロンプトの作成、画像や動画のシーンの描写、文章の傾向の確認、長い下書きの短縮に役立ちます。各ツールのメインボタンはブラウザ内で動作します。AI ボタン（Generate、Analyze、Compress、Humanize with AI）は、入力したテキストを Google の Gemini モデルに送信して結果を生成します。",
       audience:

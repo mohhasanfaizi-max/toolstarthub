@@ -63,19 +63,8 @@ export const localeInfo: Record<Locale, LocaleInfo> = {
   ko: { name: "한국어", tag: "ko", og: "ko_KR", dir: "ltr" },
 };
 
-/**
- * Locales whose long-form tool content (about, how-to, examples, FAQ) is
- * translated. Localized tool pages for other locales are generated and usable
- * but kept out of the index, sitemap and hreflang until their content is done.
- */
-export const toolContentLocales: readonly Locale[] = ["en"];
-
 export function isLocale(value: string | undefined | null): value is Locale {
   return !!value && (locales as readonly string[]).includes(value);
-}
-
-export function isToolPageIndexable(locale: Locale): boolean {
-  return toolContentLocales.includes(locale);
 }
 
 /** Paths that exist in every locale. Everything else is English-only for now. */

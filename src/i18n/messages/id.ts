@@ -18,8 +18,15 @@ const messages: Messages = {
       openSearch: "Buka pencarian",
       closeSearch: "Tutup pencarian",
     },
-    theme: { toLight: "Beralih ke tema terang", toDark: "Beralih ke tema gelap" },
-    language: { label: "Bahasa", current: "Bahasa: {name}", englishOnly: "Hanya bahasa Inggris" },
+    theme: {
+      toLight: "Beralih ke tema terang",
+      toDark: "Beralih ke tema gelap",
+    },
+    language: {
+      label: "Bahasa",
+      current: "Bahasa: {name}",
+      englishOnly: "Hanya bahasa Inggris",
+    },
     search: {
       placeholder: "Cari alat...",
       label: "Cari alat",
@@ -35,7 +42,10 @@ const messages: Messages = {
       decline: "Tolak",
       settings: "Pengaturan cookie",
     },
-    favorites: { add: "Tambahkan {name} ke favorit", remove: "Hapus {name} dari favorit" },
+    favorites: {
+      add: "Tambahkan {name} ke favorit",
+      remove: "Hapus {name} dari favorit",
+    },
     card: { popular: "Populer", new: "Baru", openTool: "Buka alat" },
     categoryNames: {
       calculators: "Kalkulator",
@@ -120,10 +130,20 @@ const messages: Messages = {
     categoryShareAlt: "{name} – alat online gratis",
     toolShareAlt: "{name} – alat online gratis",
   },
-  header: { primaryNav: "Navigasi utama", logoHome: "Beranda {name}", skip: "Langsung ke konten utama" },
-  breadcrumbs: { label: "Breadcrumb", home: "Beranda", tools: "Alat", categories: "Kategori" },
+  header: {
+    primaryNav: "Navigasi utama",
+    logoHome: "Beranda {name}",
+    skip: "Langsung ke konten utama",
+  },
+  breadcrumbs: {
+    label: "Breadcrumb",
+    home: "Beranda",
+    tools: "Alat",
+    categories: "Kategori",
+  },
   footer: {
-    blurb: "Alat online yang cepat dan sederhana untuk perhitungan, teks, developer, gambar, SEO, dan tugas sehari-hari.",
+    blurb:
+      "Alat online yang cepat dan sederhana untuk perhitungan, teks, developer, gambar, SEO, dan tugas sehari-hari.",
     tagline: "Cepat • Gratis • Di browser • Tanpa daftar",
     explore: "Jelajahi",
     categories: "Kategori",
@@ -140,38 +160,68 @@ const messages: Messages = {
     intro:
       "Cari alat, gunakan, dan dapatkan hasilnya. {name} adalah tempat sederhana untuk PDF, gambar, perhitungan, dan teks, tanpa akun.",
     popularLabel: "Populer:",
-    trust: ["Gratis digunakan", "Tanpa perlu daftar", "Cepat dan mudah", "File tetap di browser Anda"],
+    trust: [
+      "Gratis digunakan",
+      "Tanpa perlu daftar",
+      "Cepat dan mudah",
+      "File tetap di browser Anda",
+    ],
     popularTitle: "Alat Populer",
-    popularDescription: "Alat yang sering dipakai untuk file, gambar, teks, dan perhitungan sehari-hari.",
+    popularDescription:
+      "Alat yang sering dipakai untuk file, gambar, teks, dan perhitungan sehari-hari.",
     viewAllTools: "Lihat semua alat",
     catalogTitle: "Semua yang Anda butuhkan, di satu tempat.",
-    catalogDescription: "Filter alat yang tersedia di situs ini. Setiap alat terbuka di browser.",
+    catalogDescription:
+      "Filter alat yang tersedia di situs ini. Setiap alat terbuka di browser.",
     categoriesTitle: "Telusuri per kategori",
-    categoriesDescription: "Kalkulator, teks, utilitas developer, gambar dan PDF, serta alat situs web.",
+    categoriesDescription:
+      "Kalkulator, teks, utilitas developer, gambar dan PDF, serta alat situs web.",
     allCategories: "Semua kategori",
     whyTitle: "Mengapa {name}?",
-    whyDescription: "Kumpulan utilitas yang lugas untuk pekerjaan yang biasanya membutuhkan aplikasi terpisah.",
+    whyDescription:
+      "Kumpulan utilitas yang lugas untuk pekerjaan yang biasanya membutuhkan aplikasi terpisah.",
     values: {
-      fast: { title: "Cepat", note: "Sebagian besar alat berjalan di browser dan menampilkan hasil di halaman yang sama." },
-      free: { title: "Gratis", note: "Alat di situs ini tidak memerlukan pembayaran." },
+      fast: {
+        title: "Cepat",
+        note: "Sebagian besar alat berjalan di browser dan menampilkan hasil di halaman yang sama.",
+      },
+      free: {
+        title: "Gratis",
+        note: "Alat di situs ini tidak memerlukan pembayaran.",
+      },
       private: {
         title: "Privat",
         note: "File dan teks yang ditempel diproses di perangkat Anda. Kunjungan halaman diukur secara terpisah, seperti dijelaskan dalam kebijakan privasi.",
       },
-      noAccount: { title: "Tanpa akun", note: "Buka alat dan langsung gunakan. Akun tidak diperlukan." },
+      noAccount: {
+        title: "Tanpa akun",
+        note: "Buka alat dan langsung gunakan. Akun tidak diperlukan.",
+      },
     },
     howTitle: "Cara kerja",
     howDescription: "Tiga langkah. Tanpa instalasi.",
     steps: [
-      { title: "Pilih alat", description: "Cari atau pilih kalkulator, alat file, atau utilitas developer." },
-      { title: "Unggah atau masukkan konten", description: "Tambahkan file, angka, atau teks yang diminta alat." },
-      { title: "Dapatkan hasilnya", description: "Salin, unduh, atau baca hasilnya di halaman yang sama." },
+      {
+        title: "Pilih alat",
+        description:
+          "Cari atau pilih kalkulator, alat file, atau utilitas developer.",
+      },
+      {
+        title: "Unggah atau masukkan konten",
+        description: "Tambahkan file, angka, atau teks yang diminta alat.",
+      },
+      {
+        title: "Dapatkan hasilnya",
+        description: "Salin, unduh, atau baca hasilnya di halaman yang sama.",
+      },
     ],
     guidesTitle: "Panduan Bermanfaat",
-    guidesDescription: "Penjelasan singkat tentang tugas yang sudah bisa ditangani alat di situs ini.",
+    guidesDescription:
+      "Penjelasan singkat tentang tugas yang sudah bisa ditangani alat di situs ini.",
     allGuides: "Semua panduan",
     pricingTitle: "Harga",
-    pricingBody: "Alat ini gratis digunakan. Tanpa akun, tanpa instalasi, dan tanpa paket berbayar.",
+    pricingBody:
+      "Alat ini gratis digunakan. Tanpa akun, tanpa instalasi, dan tanpa paket berbayar.",
     ctaTitle: "Siap menyelesaikan pekerjaan lebih cepat?",
     ctaBody: "Jelajahi koleksi alat online sederhana dari {name}.",
     ctaPrimary: "Jelajahi Semua Alat",
@@ -202,6 +252,31 @@ const messages: Messages = {
     helpfulGuides: "Panduan bermanfaat",
     englishContent:
       "Untuk saat ini, panduan lengkap alat ini (cara pakai, contoh, dan FAQ) masih dalam bahasa Inggris.",
+    details: {
+      about: "Fungsi alat ini",
+      howTo: "Cara menggunakan",
+      examples: "Contoh",
+      examplesFallback:
+        "Jika belum ada contoh di sini, coba area kerja di atas dengan contoh sederhana dari deskripsi alat.",
+      features: "Fitur utama",
+      howItWorks: "Cara kerjanya",
+      tips: "Tips",
+      limitations: "Batasan",
+      limitationsFallback:
+        "Periksa hasilnya sebelum mengandalkannya. File besar bisa lebih lambat atau gagal jika memori perangkat hampir penuh.",
+      disclaimer: "Lihat {link} untuk hal-hal yang tidak dicakup alat ini.",
+      disclaimerLink: "penafian",
+      faq: "Tanya jawab",
+      defaultHowTo: [
+        "Masukkan nilai Anda atau pilih file jika alat memerlukannya.",
+        "Jalankan aksi di halaman ini.",
+        "Periksa hasilnya, lalu salin, unduh, atau atur ulang sesuai kebutuhan.",
+      ],
+      mobileQuestion: "Apakah bisa dipakai di ponsel?",
+      mobileAnswer:
+        "Ya. Anda bisa membuka halaman ini di ponsel atau tablet. Pemilihan file dan unduhan memakai browser di perangkat Anda. File besar bisa lebih lambat di ponsel kecil dibandingkan di komputer.",
+      workspaceNote: "Catatan",
+    },
     privacy: {
       browser:
         "Alat ini berjalan di browser Anda. Input, file, dan nilai yang dihasilkan tetap di perangkat ini. Favorit dan alat yang baru dipakai, jika Anda menggunakannya, hanya menyimpan nama alat di penyimpanan lokal — tidak pernah kata sandi, dokumen, atau isi kode QR.",
@@ -219,7 +294,8 @@ const messages: Messages = {
     calculators: {
       name: "Kalkulator",
       description: "Alat hitung untuk sehari-hari",
-      shortDescription: "Persentase, usia, satuan, dan perhitungan sehari-hari lainnya.",
+      shortDescription:
+        "Persentase, usia, satuan, dan perhitungan sehari-hari lainnya.",
       intro:
         "Kalkulator ini menjawab pertanyaan angka tertentu: persentase, perubahan persentase, harga diskon, tip, pajak penjualan, usia, jumlah hari atau hari kerja di antara dua tanggal, konversi satuan, perkiraan pinjaman atau KPR, upah, luas ruangan, IPK (GPA), atau angka acak dalam rentang tertentu.",
       audience:
@@ -237,7 +313,8 @@ const messages: Messages = {
     "developer-tools": {
       name: "Alat Developer",
       description: "Format, kodekan, minifikasi, dan konversi data di browser",
-      shortDescription: "Format JSON, kodekan data, minifikasi kode, dan konversi Markdown atau HTML secara lokal.",
+      shortDescription:
+        "Format JSON, kodekan data, minifikasi kode, dan konversi Markdown atau HTML secara lokal.",
       intro:
         "Alat developer memformat JSON, mengonversi JSON dan CSV, menguji ekspresi reguler, membuat hash teks dengan SHA-256 atau SHA-512, mengodekan dan mendekodekan Base64, URL, dan HTML, meminifikasi HTML, CSS, atau JavaScript, mengonversi Markdown, serta membuat UUID atau timestamp Unix. Alat warna di sini mengubah nilai hex menjadi RGB, memeriksa kontras, dan membuat gradien serta bayangan CSS.",
       audience:
@@ -246,7 +323,8 @@ const messages: Messages = {
     "image-tools": {
       name: "Alat Gambar",
       description: "Alat gambar dan PDF berbasis browser",
-      shortDescription: "Kompres, konversi, dan periksa gambar serta PDF tanpa mengunggah.",
+      shortDescription:
+        "Kompres, konversi, dan periksa gambar serta PDF tanpa mengunggah.",
       intro:
         "Alat gambar mengompres, mengubah ukuran, memotong, mengonversi, dan mengambil sampel warna dari gambar. Alat PDF di kategori ini menggabungkan, memisahkan, mengompres, menghitung halaman, membaca atau menghapus metadata, mengekstrak teks, mengubah halaman menjadi gambar JPG, dan membuat PDF dari gambar atau teks.",
       audience:
@@ -255,7 +333,8 @@ const messages: Messages = {
     "seo-utilities": {
       name: "SEO & Utilitas",
       description: "Tautan, slug, kode QR, dan kata sandi",
-      shortDescription: "Buat tautan UTM dan slug, buat atau pindai kode QR, dan buat kata sandi.",
+      shortDescription:
+        "Buat tautan UTM dan slug, buat atau pindai kode QR, dan buat kata sandi.",
       intro:
         "Utilitas ini membuat URL kampanye, mengubah judul menjadi slug URL, membuat kode QR dari teks atau data terstruktur, memindai kode QR dari kamera atau gambar, dan membuat kata sandi secara lokal.",
       audience:
@@ -264,7 +343,8 @@ const messages: Messages = {
     "ai-tools": {
       name: "Alat AI",
       description: "Pembuat prompt dan alat menulis, dengan AI Gemini opsional",
-      shortDescription: "Buat prompt, pelajari pola tulisan, dan ringkas draf, di browser atau dengan AI Gemini.",
+      shortDescription:
+        "Buat prompt, pelajari pola tulisan, dan ringkas draf, di browser atau dengan AI Gemini.",
       intro:
         "Alat ini membantu Anda menulis prompt, mendeskripsikan adegan gambar atau video, melihat pola tulisan, atau meringkas draf yang panjang. Tombol utama setiap alat berjalan di browser Anda. Tombol AI (Generate, Analyze, Compress, atau Humanize with AI) mengirim teks yang Anda masukkan ke model Gemini milik Google untuk menghasilkan hasilnya.",
       audience:

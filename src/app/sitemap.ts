@@ -2,12 +2,8 @@ import type { MetadataRoute } from "next";
 import { categories } from "@/data/categories";
 import { getPublicGuides } from "@/data/guides";
 import { tools } from "@/data/tools";
-import {
-  isToolPageIndexable,
-  localizePath,
-  locales,
-  toolContentLocales,
-} from "@/i18n/config";
+import { localizePath, locales } from "@/i18n/config";
+import { isToolTranslatedEverywhere } from "@/i18n/tool-pages/server";
 import { absoluteUrl, languageAlternates } from "@/lib/seo";
 import { siteConfig } from "@/lib/site";
 
@@ -56,17 +52,15 @@ export default function sitemap(): MetadataRoute.Sitemap {
       : [{ url: `${siteConfig.url}${path}`, ...base }];
   });
 
-  // Tool pages are listed only in languages whose full tool content is
-  // translated (English for now; see toolContentLocales).
+  // Tool pages are listed in every language once the whole tool page is
+  // translated; until then only the English page is listed.
   const toolPages: MetadataRoute.Sitemap = tools.flatMap((tool) => {
     const base = {
       changeFrequency: "monthly" as const,
       priority: tool.featured ? 0.8 : 0.6,
     };
-    if (toolContentLocales.length > 1) {
-      return localizedEntries(tool.route, base).filter((_, index) =>
-        isToolPageIndexable(locales[index]),
-      );
+    if (isToolTranslatedEverywhere(tool.slug)) {
+      return localizedEntries(tool.route, base);
     }
     return [{ url: `${siteConfig.url}${tool.route}`, ...base }];
   });

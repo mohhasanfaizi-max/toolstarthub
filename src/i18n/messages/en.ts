@@ -167,6 +167,31 @@ export const en = {
     helpfulGuides: "Helpful guides",
     englishContent:
       "The detailed guide for this tool (how to use it, examples and FAQ) is in English for now.",
+    details: {
+      about: "What this tool does",
+      howTo: "How to use",
+      examples: "Examples",
+      examplesFallback:
+        "Use the workspace above with a simple example from the tool description if no worked examples are listed here.",
+      features: "Main features",
+      howItWorks: "How it works",
+      tips: "Tips",
+      limitations: "Limitations",
+      limitationsFallback:
+        "Check the result before you rely on it. Large files can be slower or fail if the device is low on memory.",
+      disclaimer: "See the {link} for what these tools do not cover.",
+      disclaimerLink: "disclaimer",
+      faq: "FAQ",
+      defaultHowTo: [
+        "Enter your values or choose a file if the tool needs one.",
+        "Run the action on this page.",
+        "Review the result, then copy, download or reset as needed.",
+      ],
+      mobileQuestion: "Does it work on mobile?",
+      mobileAnswer:
+        "Yes. You can open this page on a phone or tablet. File pickers and downloads use the browser on your device. Large files may be slower on a small phone than on a desktop.",
+      workspaceNote: "Note",
+    },
     privacy: {
       browser:
         "This tool runs in your browser. Inputs, files and generated values stay on this device. Favorites and recently used tools, if you use them, store only tool names in local storage — never passwords, documents or QR contents.",

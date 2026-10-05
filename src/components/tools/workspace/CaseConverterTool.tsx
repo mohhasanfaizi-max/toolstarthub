@@ -13,8 +13,10 @@ import {
 } from "@/components/tools/ToolForm";
 import { CASE_MODE_LABELS, CASE_MODES, convertCase, type CaseMode } from "@/lib/tools/case-convert";
 import { getTextStats } from "@/lib/tools/text-stats";
+import { useTx } from "@/i18n/tool-text";
 
 export function CaseConverterTool() {
+  const tx = useTx();
   const [input, setInput] = useState("");
   const [mode, setMode] = useState<CaseMode>("title");
   const output = convertCase(input, mode);
@@ -22,19 +24,19 @@ export function CaseConverterTool() {
 
   return (
     <ToolPanel>
-      <ToolField id="case-input" label="Text">
+      <ToolField id="case-input" label={tx("Text")}>
         <textarea
           id="case-input"
           value={input}
           onChange={(event) => setInput(event.target.value)}
           rows={8}
           className={`${toolControlClass} min-h-40 resize-y`}
-          placeholder="Paste text to convert"
+          placeholder={tx("Paste text to convert")}
         />
       </ToolField>
 
       <fieldset className="mt-4">
-        <legend className="text-sm font-medium text-foreground">Case</legend>
+        <legend className="text-sm font-medium text-foreground">{tx("Case")}</legend>
         <div className="mt-2 grid grid-cols-2 gap-2 sm:grid-cols-4">
           {CASE_MODES.map((item) => (
             <button
@@ -47,7 +49,7 @@ export function CaseConverterTool() {
                   : "border-border bg-background text-foreground"
               }`}
             >
-              {CASE_MODE_LABELS[item]}
+              {tx(CASE_MODE_LABELS[item])}
             </button>
           ))}
         </div>
@@ -65,14 +67,12 @@ export function CaseConverterTool() {
       <div className="mt-4">
         <ToolActions>
           <CopyButton value={output} />
-          <Button type="button" variant="ghost" onClick={() => setInput("")}>
-            Clear
-          </Button>
+          <Button type="button" variant="ghost" onClick={() => setInput("")}>{tx("Clear")}</Button>
         </ToolActions>
       </div>
 
       <div className="mt-6">
-        <ToolOutput label={`Result (${CASE_MODE_LABELS[mode]})`}>
+        <ToolOutput label={tx(`Result (${CASE_MODE_LABELS[mode]})`)}>
           <p className="whitespace-pre-wrap break-words text-base leading-7">
             {output || "—"}
           </p>

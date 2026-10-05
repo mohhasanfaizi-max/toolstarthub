@@ -1,3 +1,4 @@
+import { useTx } from "@/i18n/tool-text";
 import { cn } from "@/lib/cn";
 
 export const toolControlClass =
@@ -30,20 +31,21 @@ type ToolFieldProps = {
 };
 
 export function ToolField({ id, label, hint, error, children }: ToolFieldProps) {
+  const tx = useTx();
   return (
     <div>
       <label htmlFor={id} className="block text-sm font-medium text-foreground">
-        {label}
+        {tx(label)}
       </label>
       {children}
       {error ? (
         <p id={`${id}-error`} role="alert" className="mt-1.5 text-sm text-red-700 dark:text-red-400">
-          {error}
+          {tx(error)}
         </p>
       ) : null}
       {hint && !error ? (
         <p id={`${id}-hint`} className="mt-1.5 text-sm text-muted-foreground">
-          {hint}
+          {tx(hint)}
         </p>
       ) : null}
     </div>
@@ -63,12 +65,13 @@ type ToolErrorProps = {
 };
 
 export function ToolError({ children }: ToolErrorProps) {
+  const tx = useTx();
   return (
     <p
       role="alert"
       className="rounded-2xl border border-red-200 bg-red-50 px-4 py-3 text-sm text-red-800 dark:border-red-900 dark:bg-red-950/40 dark:text-red-300"
     >
-      {children}
+      {tx(children)}
     </p>
   );
 }
@@ -79,9 +82,10 @@ type ToolOutputProps = {
 };
 
 export function ToolOutput({ label = "Result", children }: ToolOutputProps) {
+  const tx = useTx();
   return (
     <div className="rounded-2xl bg-accent-soft px-4 py-5 sm:px-5">
-      <p className="text-sm font-medium text-accent">{label}</p>
+      <p className="text-sm font-medium text-accent">{tx(label)}</p>
       <div className="mt-2 text-foreground">{children}</div>
     </div>
   );
@@ -126,9 +130,10 @@ export function ToolChoiceGroup<T extends string>({
   onChange,
   columns = "grid gap-2 sm:grid-cols-2",
 }: ToolChoiceGroupProps<T>) {
+  const tx = useTx();
   return (
     <fieldset>
-      <legend className="text-sm font-medium text-foreground">{legend}</legend>
+      <legend className="text-sm font-medium text-foreground">{tx(legend)}</legend>
       <div className={`mt-2 ${columns}`}>
         {options.map((option) => (
           <label
@@ -141,7 +146,7 @@ export function ToolChoiceGroup<T extends string>({
               checked={value === option.id}
               onChange={() => onChange(option.id)}
             />
-            {option.label}
+            {tx(option.label)}
           </label>
         ))}
       </div>
@@ -150,6 +155,7 @@ export function ToolChoiceGroup<T extends string>({
 }
 
 export function ToolStatGrid({ items }: ToolStatGridProps) {
+  const tx = useTx();
   return (
     <dl className="grid grid-cols-2 gap-3 sm:grid-cols-3">
       {items.map((item) => (
@@ -157,9 +163,12 @@ export function ToolStatGrid({ items }: ToolStatGridProps) {
           key={item.label}
           className="rounded-2xl bg-accent-soft px-4 py-4"
         >
-          <dt className="text-sm text-muted-foreground">{item.label}</dt>
+          <dt className="text-sm text-muted-foreground">{tx(item.label)}</dt>
           <dd className="mt-1 break-all text-2xl font-semibold tabular-nums text-foreground">
-            {item.value}
+            {/* Only translate built values such as "3 min", never user text. */}
+            {typeof item.value === "string" && /\d/.test(item.value)
+              ? tx(item.value)
+              : item.value}
           </dd>
         </div>
       ))}
@@ -173,17 +182,18 @@ type ProgressBarProps = {
 };
 
 export function ProgressBar({ value, label }: ProgressBarProps) {
+  const tx = useTx();
   const clamped = Math.max(0, Math.min(100, value));
   return (
     <div>
-      <p className="text-sm text-foreground">{label}</p>
+      <p className="text-sm text-foreground">{tx(label)}</p>
       <div
         className="mt-2 h-2 overflow-hidden rounded-full bg-muted"
         role="progressbar"
         aria-valuemin={0}
         aria-valuemax={100}
         aria-valuenow={Math.round(clamped)}
-        aria-label={label}
+        aria-label={tx(label)}
       >
         <div
           className="h-full rounded-full bg-accent"

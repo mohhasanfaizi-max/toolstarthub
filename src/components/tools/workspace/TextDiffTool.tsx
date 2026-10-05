@@ -14,8 +14,10 @@ import {
   toolControlClass,
 } from "@/components/tools/ToolForm";
 import { diffText, formatDiffPlain, type DiffHunk, type DiffMode } from "@/lib/tools/text-diff";
+import { useTx } from "@/i18n/tool-text";
 
 export function TextDiffTool() {
+  const tx = useTx();
   const [original, setOriginal] = useState("");
   const [modified, setModified] = useState("");
   const [mode, setMode] = useState<DiffMode>("lines");
@@ -48,7 +50,7 @@ export function TextDiffTool() {
   return (
     <ToolPanel>
       <div className="grid gap-4 lg:grid-cols-2">
-        <ToolField id="diff-original" label="Original">
+        <ToolField id="diff-original" label={tx("Original")}>
           <textarea
             id="diff-original"
             value={original}
@@ -58,7 +60,7 @@ export function TextDiffTool() {
             className={`${toolControlClass} min-h-48 resize-y font-mono text-sm`}
           />
         </ToolField>
-        <ToolField id="diff-modified" label="Modified">
+        <ToolField id="diff-modified" label={tx("Modified")}>
           <textarea
             id="diff-modified"
             value={modified}
@@ -72,7 +74,7 @@ export function TextDiffTool() {
 
       <div className="mt-6">
         <ToolChoiceGroup
-          legend="Compare"
+          legend={tx("Compare")}
           name="diff-mode"
           value={mode}
           onChange={setMode}
@@ -85,10 +87,8 @@ export function TextDiffTool() {
 
       <div className="mt-6">
         <ToolActions>
-          <Button type="button" onClick={compare}>
-            Compare
-          </Button>
-          <CopyButton value={plain} label="Copy diff" />
+          <Button type="button" onClick={compare}>{tx("Compare")}</Button>
+          <CopyButton value={plain} label={tx("Copy diff")} />
           <Button
             type="button"
             variant="ghost"
@@ -102,14 +102,12 @@ export function TextDiffTool() {
               setError("");
               setRan(false);
             }}
-          >
-            Clear
-          </Button>
+          >{tx("Clear")}</Button>
         </ToolActions>
       </div>
 
       <div className="mt-4 space-y-4">
-        {error ? <ToolError>{error}</ToolError> : null}
+        {error ? <ToolError>{tx(error)}</ToolError> : null}
         {ran ? (
           <>
             <ToolStatGrid
@@ -120,10 +118,10 @@ export function TextDiffTool() {
               ]}
             />
             <div>
-              <p className="text-sm font-medium text-foreground">Result</p>
+              <p className="text-sm font-medium text-foreground">{tx("Result")}</p>
               {emptyBoth || hunks.length === 0 ? (
                 <p className="mt-2 text-sm text-muted-foreground">
-                  {emptyBoth ? "Both sides are empty." : "The two texts are the same."}
+                  {tx(emptyBoth ? "Both sides are empty." : "The two texts are the same.")}
                 </p>
               ) : (
                 <ol className="mt-2 space-y-2">
@@ -133,7 +131,7 @@ export function TextDiffTool() {
                       className={`rounded-xl border px-3 py-2 font-mono text-sm whitespace-pre-wrap break-words ${hunkClass(hunk.kind)}`}
                     >
                       <span className="mr-2 font-sans text-xs font-semibold uppercase tracking-wide">
-                        {hunk.kind === "add" ? "Added" : hunk.kind === "remove" ? "Removed" : "Unchanged"}
+                        {tx(hunk.kind === "add" ? "Added" : hunk.kind === "remove" ? "Removed" : "Unchanged")}
                       </span>
                       {hunk.text}
                     </li>
@@ -145,14 +143,9 @@ export function TextDiffTool() {
         ) : null}
       </div>
 
-      <p className="mt-4 text-sm leading-6 text-muted-foreground">
-        Compared text is rendered as plain text, not HTML. Color is a hint; each block is also labeled
-        Added, Removed, or Unchanged.
-      </p>
+      <p className="mt-4 text-sm leading-6 text-muted-foreground">{tx("Compared text is rendered as plain text, not HTML. Color is a hint; each block is also labeled Added, Removed, or Unchanged.")}</p>
 
-      <ToolPrivacyNote>
-        Both drafts are compared in this tab. The text is not sent to a server.
-      </ToolPrivacyNote>
+      <ToolPrivacyNote>{tx("Both drafts are compared in this tab. The text is not sent to a server.")}</ToolPrivacyNote>
     </ToolPanel>
   );
 }

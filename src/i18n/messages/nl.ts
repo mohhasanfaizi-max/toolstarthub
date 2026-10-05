@@ -18,8 +18,15 @@ const messages: Messages = {
       openSearch: "Zoeken openen",
       closeSearch: "Zoeken sluiten",
     },
-    theme: { toLight: "Overschakelen naar licht thema", toDark: "Overschakelen naar donker thema" },
-    language: { label: "Taal", current: "Taal: {name}", englishOnly: "Alleen in het Engels" },
+    theme: {
+      toLight: "Overschakelen naar licht thema",
+      toDark: "Overschakelen naar donker thema",
+    },
+    language: {
+      label: "Taal",
+      current: "Taal: {name}",
+      englishOnly: "Alleen in het Engels",
+    },
     search: {
       placeholder: "Zoek een tool...",
       label: "Zoek een tool",
@@ -35,7 +42,10 @@ const messages: Messages = {
       decline: "Weigeren",
       settings: "Cookie-instellingen",
     },
-    favorites: { add: "{name} toevoegen aan favorieten", remove: "{name} verwijderen uit favorieten" },
+    favorites: {
+      add: "{name} toevoegen aan favorieten",
+      remove: "{name} verwijderen uit favorieten",
+    },
     card: { popular: "Populair", new: "Nieuw", openTool: "Tool openen" },
     categoryNames: {
       calculators: "Rekenmachines",
@@ -88,7 +98,10 @@ const messages: Messages = {
       noToolsFound: "Geen tools gevonden",
       noToolsCategory: "Nog geen tools in deze categorie.",
       countFavorites: { one: "{count} favoriet", other: "{count} favorieten" },
-      countResults: { one: "{count} resultaat voor ‘{query}’", other: "{count} resultaten voor ‘{query}’" },
+      countResults: {
+        one: "{count} resultaat voor ‘{query}’",
+        other: "{count} resultaten voor ‘{query}’",
+      },
       countOf: "{count} van {total} tools",
     },
     tool: {
@@ -120,10 +133,20 @@ const messages: Messages = {
     categoryShareAlt: "{name} – gratis online tools",
     toolShareAlt: "{name} – gratis online tool",
   },
-  header: { primaryNav: "Hoofdnavigatie", logoHome: "{name} home", skip: "Naar de hoofdinhoud" },
-  breadcrumbs: { label: "Kruimelpad", home: "Home", tools: "Tools", categories: "Categorieën" },
+  header: {
+    primaryNav: "Hoofdnavigatie",
+    logoHome: "{name} home",
+    skip: "Naar de hoofdinhoud",
+  },
+  breadcrumbs: {
+    label: "Kruimelpad",
+    home: "Home",
+    tools: "Tools",
+    categories: "Categorieën",
+  },
   footer: {
-    blurb: "Snelle, eenvoudige online tools voor berekeningen, tekst, ontwikkelaars, afbeeldingen, SEO en dagelijkse taken.",
+    blurb:
+      "Snelle, eenvoudige online tools voor berekeningen, tekst, ontwikkelaars, afbeeldingen, SEO en dagelijkse taken.",
     tagline: "Snel • Gratis • In je browser • Geen account",
     explore: "Ontdekken",
     categories: "Categorieën",
@@ -140,38 +163,67 @@ const messages: Messages = {
     intro:
       "Vind een tool, gebruik hem en krijg een resultaat. {name} is een eenvoudige plek voor PDF’s, afbeeldingen, berekeningen en tekst, zonder account.",
     popularLabel: "Populair:",
-    trust: ["Gratis te gebruiken", "Geen registratie nodig", "Snel en eenvoudig", "Bestanden blijven in je browser"],
+    trust: [
+      "Gratis te gebruiken",
+      "Geen registratie nodig",
+      "Snel en eenvoudig",
+      "Bestanden blijven in je browser",
+    ],
     popularTitle: "Populaire tools",
-    popularDescription: "Veelgebruikte tools voor bestanden, afbeeldingen, tekst en alledaagse berekeningen.",
+    popularDescription:
+      "Veelgebruikte tools voor bestanden, afbeeldingen, tekst en alledaagse berekeningen.",
     viewAllTools: "Alle tools bekijken",
     catalogTitle: "Alles wat je nodig hebt, op één plek.",
-    catalogDescription: "Filter de tools op deze site. Elke tool opent in je browser.",
+    catalogDescription:
+      "Filter de tools op deze site. Elke tool opent in je browser.",
     categoriesTitle: "Bladeren per categorie",
-    categoriesDescription: "Rekenmachines, tekst, hulpmiddelen voor ontwikkelaars, afbeeldingen en PDF’s, en websitetools.",
+    categoriesDescription:
+      "Rekenmachines, tekst, hulpmiddelen voor ontwikkelaars, afbeeldingen en PDF’s, en websitetools.",
     allCategories: "Alle categorieën",
     whyTitle: "Waarom {name}?",
-    whyDescription: "Een overzichtelijke set hulpmiddelen voor klussen waarvoor je anders een aparte app nodig hebt.",
+    whyDescription:
+      "Een overzichtelijke set hulpmiddelen voor klussen waarvoor je anders een aparte app nodig hebt.",
     values: {
-      fast: { title: "Snel", note: "De meeste tools werken in de browser en tonen het resultaat op dezelfde pagina." },
+      fast: {
+        title: "Snel",
+        note: "De meeste tools werken in de browser en tonen het resultaat op dezelfde pagina.",
+      },
       free: { title: "Gratis", note: "De tools op deze site zijn gratis." },
       private: {
         title: "Privé",
         note: "Bestanden en geplakte tekst worden op je apparaat verwerkt. Paginabezoeken worden apart gemeten, zoals het privacybeleid uitlegt.",
       },
-      noAccount: { title: "Geen account", note: "Open een tool en gebruik hem. Een account is niet nodig." },
+      noAccount: {
+        title: "Geen account",
+        note: "Open een tool en gebruik hem. Een account is niet nodig.",
+      },
     },
     howTitle: "Hoe het werkt",
     howDescription: "Drie stappen. Niets installeren.",
     steps: [
-      { title: "Kies een tool", description: "Zoek of kies een rekenmachine, bestandstool of hulpmiddel voor ontwikkelaars." },
-      { title: "Upload of voer je inhoud in", description: "Voeg het bestand, de getallen of de tekst toe waar de tool om vraagt." },
-      { title: "Bekijk het resultaat", description: "Kopieer, download of lees het resultaat op dezelfde pagina." },
+      {
+        title: "Kies een tool",
+        description:
+          "Zoek of kies een rekenmachine, bestandstool of hulpmiddel voor ontwikkelaars.",
+      },
+      {
+        title: "Upload of voer je inhoud in",
+        description:
+          "Voeg het bestand, de getallen of de tekst toe waar de tool om vraagt.",
+      },
+      {
+        title: "Bekijk het resultaat",
+        description:
+          "Kopieer, download of lees het resultaat op dezelfde pagina.",
+      },
     ],
     guidesTitle: "Handige handleidingen",
-    guidesDescription: "Korte uitleg over taken die de tools op deze site al afhandelen.",
+    guidesDescription:
+      "Korte uitleg over taken die de tools op deze site al afhandelen.",
     allGuides: "Alle handleidingen",
     pricingTitle: "Prijzen",
-    pricingBody: "De tools zijn gratis. Geen account, geen installatie en geen betaald abonnement.",
+    pricingBody:
+      "De tools zijn gratis. Geen account, geen installatie en geen betaald abonnement.",
     ctaTitle: "Klaar om sneller klaar te zijn?",
     ctaBody: "Ontdek de verzameling eenvoudige online tools van {name}.",
     ctaPrimary: "Alle tools ontdekken",
@@ -189,7 +241,10 @@ const messages: Messages = {
   },
   category: {
     cardCount: { one: "{count} tool", other: "{count} tools" },
-    pageCount: { one: "{count} tool in deze categorie.", other: "{count} tools in deze categorie." },
+    pageCount: {
+      one: "{count} tool in deze categorie.",
+      other: "{count} tools in deze categorie.",
+    },
     browse: "Tools bekijken",
     starting: "Handige startpunten",
     related: "Gerelateerde categorieën",
@@ -202,6 +257,31 @@ const messages: Messages = {
     helpfulGuides: "Handige handleidingen",
     englishContent:
       "De uitgebreide handleiding voor deze tool (gebruik, voorbeelden en veelgestelde vragen) is voorlopig in het Engels.",
+    details: {
+      about: "Wat deze tool doet",
+      howTo: "Zo gebruik je het",
+      examples: "Voorbeelden",
+      examplesFallback:
+        "Staan hier geen voorbeelden? Probeer de werkruimte hierboven met een eenvoudig voorbeeld uit de beschrijving.",
+      features: "Belangrijkste functies",
+      howItWorks: "Hoe het werkt",
+      tips: "Tips",
+      limitations: "Beperkingen",
+      limitationsFallback:
+        "Controleer het resultaat voordat je erop vertrouwt. Grote bestanden kunnen trager zijn of mislukken als het apparaat weinig geheugen heeft.",
+      disclaimer: "Zie de {link} voor wat deze tools niet dekken.",
+      disclaimerLink: "disclaimer",
+      faq: "Veelgestelde vragen",
+      defaultHowTo: [
+        "Vul je waarden in of kies een bestand als de tool er een nodig heeft.",
+        "Voer de actie op deze pagina uit.",
+        "Bekijk het resultaat en kopieer, download of reset waar nodig.",
+      ],
+      mobileQuestion: "Werkt het op mobiel?",
+      mobileAnswer:
+        "Ja. Je kunt deze pagina op een telefoon of tablet openen. Bestandskeuze en downloads lopen via de browser van je apparaat. Grote bestanden kunnen op een kleine telefoon trager zijn dan op een computer.",
+      workspaceNote: "Let op",
+    },
     privacy: {
       browser:
         "Deze tool werkt in je browser. Invoer, bestanden en gegenereerde waarden blijven op dit apparaat. Favorieten en recent gebruikte tools bewaren, als je ze gebruikt, alleen toolnamen in de lokale opslag — nooit wachtwoorden, documenten of QR-inhoud.",
@@ -219,7 +299,8 @@ const messages: Messages = {
     calculators: {
       name: "Rekenmachines",
       description: "Rekentools voor elke dag",
-      shortDescription: "Percentages, leeftijd, eenheden en andere alledaagse berekeningen.",
+      shortDescription:
+        "Percentages, leeftijd, eenheden en andere alledaagse berekeningen.",
       intro:
         "Deze rekenmachines beantwoorden een concrete rekenvraag: een percentage, een procentuele verandering, een kortingsprijs, een fooi, omzetbelasting, een leeftijd, de dagen of werkdagen tussen twee datums, een eenheidsomrekening, een schatting van een lening of hypotheek, loon, de oppervlakte van een kamer, een GPA of een willekeurig getal binnen een bereik.",
       audience:
@@ -228,7 +309,8 @@ const messages: Messages = {
     "text-tools": {
       name: "Teksttools",
       description: "Tools om te schrijven en tekst te bewerken",
-      shortDescription: "Tel, schoon op, zet om en formatteer tekst in je browser.",
+      shortDescription:
+        "Tel, schoon op, zet om en formatteer tekst in je browser.",
       intro:
         "Teksttools tellen woorden en tekens, wijzigen hoofdletters, zoeken en vervangen, verwijderen regeleinden, nummeren regels, halen dubbele regels of extra spaties weg, sorteren regels, vergelijken twee versies en genereren opvultekst voor een ontwerp.",
       audience:
@@ -236,8 +318,10 @@ const messages: Messages = {
     },
     "developer-tools": {
       name: "Ontwikkelaarstools",
-      description: "Data formatteren, coderen, verkleinen en omzetten in de browser",
-      shortDescription: "JSON formatteren, data coderen, code verkleinen en Markdown of HTML lokaal omzetten.",
+      description:
+        "Data formatteren, coderen, verkleinen en omzetten in de browser",
+      shortDescription:
+        "JSON formatteren, data coderen, code verkleinen en Markdown of HTML lokaal omzetten.",
       intro:
         "Ontwikkelaarstools formatteren JSON, zetten JSON en CSV om, testen reguliere expressies, hashen tekst met SHA-256 of SHA-512, coderen en decoderen Base64, URL’s en HTML, verkleinen HTML, CSS of JavaScript, zetten Markdown om en genereren UUID’s of Unix-tijdstempels. De kleurtools hier zetten hexwaarden om naar RGB, controleren contrast en bouwen CSS-verlopen en schaduwen.",
       audience:
@@ -246,7 +330,8 @@ const messages: Messages = {
     "image-tools": {
       name: "Afbeeldingstools",
       description: "Afbeeldings- en PDF-tools in de browser",
-      shortDescription: "Afbeeldingen en PDF’s comprimeren, omzetten en inspecteren zonder te uploaden.",
+      shortDescription:
+        "Afbeeldingen en PDF’s comprimeren, omzetten en inspecteren zonder te uploaden.",
       intro:
         "Afbeeldingstools comprimeren, schalen, bijsnijden en converteren afbeeldingen en nemen er kleuren uit over. De PDF-tools in deze categorie voegen samen, splitsen, comprimeren, tellen pagina’s, lezen of verwijderen metadata, halen tekst eruit, zetten pagina’s om naar JPG-afbeeldingen en maken een PDF van afbeeldingen of tekst.",
       audience:
@@ -255,7 +340,8 @@ const messages: Messages = {
     "seo-utilities": {
       name: "SEO & hulpmiddelen",
       description: "Links, slugs, QR-codes en wachtwoorden",
-      shortDescription: "UTM-links en slugs maken, QR-codes genereren of scannen en wachtwoorden aanmaken.",
+      shortDescription:
+        "UTM-links en slugs maken, QR-codes genereren of scannen en wachtwoorden aanmaken.",
       intro:
         "Deze hulpmiddelen bouwen een campagne-URL, maken van een titel een URL-slug, genereren een QR-code uit tekst of gestructureerde gegevens, scannen een QR-code met de camera of uit een afbeelding en genereren lokaal een wachtwoord.",
       audience:
@@ -264,7 +350,8 @@ const messages: Messages = {
     "ai-tools": {
       name: "AI-tools",
       description: "Promptbouwers en schrijftools, met optionele Gemini-AI",
-      shortDescription: "Bouw prompts, bestudeer schrijfpatronen en kort een concept in, in de browser of met Gemini-AI.",
+      shortDescription:
+        "Bouw prompts, bestudeer schrijfpatronen en kort een concept in, in de browser of met Gemini-AI.",
       intro:
         "Deze tools helpen je een prompt te schrijven, een beeld- of videoscène te beschrijven, schrijfpatronen te bekijken of een lang concept in te korten. De hoofdknop van elke tool werkt in je browser. De AI-knoppen (Generate, Analyze, Compress of Humanize with AI) sturen de ingevoerde tekst naar het Gemini-model van Google om het resultaat te maken.",
       audience:

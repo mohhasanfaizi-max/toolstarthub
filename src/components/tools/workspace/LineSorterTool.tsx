@@ -15,8 +15,10 @@ import {
   toolControlClass,
 } from "@/components/tools/ToolForm";
 import { sortLines, type LineSortMode } from "@/lib/tools/line-sort";
+import { useTx } from "@/i18n/tool-text";
 
 export function LineSorterTool() {
+  const tx = useTx();
   const [input, setInput] = useState("");
   const [output, setOutput] = useState("");
   const [mode, setMode] = useState<LineSortMode>("az");
@@ -50,7 +52,7 @@ export function LineSorterTool() {
 
   return (
     <ToolPanel>
-      <ToolField id="sort-input" label="Text">
+      <ToolField id="sort-input" label={tx("Text")}>
         <textarea
           id="sort-input"
           value={input}
@@ -58,13 +60,13 @@ export function LineSorterTool() {
           rows={10}
           spellCheck={false}
           className={`${toolControlClass} min-h-40 resize-y font-mono text-sm`}
-          placeholder="One item per line"
+          placeholder={tx("One item per line")}
         />
       </ToolField>
 
       <div className="mt-6">
         <ToolChoiceGroup
-          legend="Sort"
+          legend={tx("Sort")}
           name="sort-mode"
           value={mode}
           onChange={setMode}
@@ -81,24 +83,24 @@ export function LineSorterTool() {
       </div>
 
       <fieldset className="mt-4">
-        <legend className="text-sm font-medium text-foreground">Options</legend>
+        <legend className="text-sm font-medium text-foreground">{tx("Options")}</legend>
         <div className="mt-2 grid gap-2 sm:grid-cols-2">
           <CheckOption
             id="sort-case"
-            label="Case-insensitive"
+            label={tx("Case-insensitive")}
             checked={caseInsensitive}
             onChange={setCaseInsensitive}
           />
-          <CheckOption id="sort-trim" label="Trim before comparing" checked={trim} onChange={setTrim} />
+          <CheckOption id="sort-trim" label={tx("Trim before comparing")} checked={trim} onChange={setTrim} />
           <CheckOption
             id="sort-empty"
-            label="Ignore empty lines"
+            label={tx("Ignore empty lines")}
             checked={ignoreEmpty}
             onChange={setIgnoreEmpty}
           />
           <CheckOption
             id="sort-dup"
-            label="Remove duplicates"
+            label={tx("Remove duplicates")}
             checked={removeDuplicates}
             onChange={setRemoveDuplicates}
           />
@@ -107,11 +109,9 @@ export function LineSorterTool() {
 
       <div className="mt-6">
         <ToolActions>
-          <Button type="button" onClick={run}>
-            Sort lines
-          </Button>
+          <Button type="button" onClick={run}>{tx("Sort lines")}</Button>
           <CopyButton value={output} />
-          <DownloadButton blob={blob} fileName="sorted.txt" label="Download .txt" />
+          <DownloadButton blob={blob} fileName="sorted.txt" label={tx("Download .txt")} />
           <Button
             type="button"
             variant="ghost"
@@ -121,14 +121,12 @@ export function LineSorterTool() {
               setStats(null);
               setError("");
             }}
-          >
-            Clear
-          </Button>
+          >{tx("Clear")}</Button>
         </ToolActions>
       </div>
 
       <div className="mt-4 space-y-4">
-        {error ? <ToolError>{error}</ToolError> : null}
+        {error ? <ToolError>{tx(error)}</ToolError> : null}
         {stats ? (
           <ToolStatGrid
             items={[
@@ -137,7 +135,7 @@ export function LineSorterTool() {
             ]}
           />
         ) : null}
-        <ToolField id="sort-output" label="Result">
+        <ToolField id="sort-output" label={tx("Result")}>
           <textarea
             id="sort-output"
             value={output}
@@ -149,9 +147,7 @@ export function LineSorterTool() {
         </ToolField>
       </div>
 
-      <ToolPrivacyNote>
-        The lines are sorted in this tab. The list is not sent to Tools Star Hub.
-      </ToolPrivacyNote>
+      <ToolPrivacyNote>{tx("The lines are sorted in this tab. The list is not sent to Tools Star Hub.")}</ToolPrivacyNote>
     </ToolPanel>
   );
 }
@@ -167,6 +163,7 @@ function CheckOption({
   checked: boolean;
   onChange: (value: boolean) => void;
 }) {
+  const tx = useTx();
   return (
     <label htmlFor={id} className="flex min-h-11 items-center gap-2 text-sm text-foreground">
       <input
@@ -175,7 +172,7 @@ function CheckOption({
         checked={checked}
         onChange={(event) => onChange(event.target.checked)}
       />
-      {label}
+      {tx(label)}
     </label>
   );
 }

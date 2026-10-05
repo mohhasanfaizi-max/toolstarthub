@@ -11,11 +11,13 @@ import {
 } from "@/components/tools/ToolForm";
 import { CopyButton } from "@/components/tools/CopyButton";
 import { getTextStats } from "@/lib/tools/text-stats";
+import { useTx } from "@/i18n/tool-text";
 
 const SAMPLE =
   "Tools Star Hub counts words in your browser.\n\nPaste a paragraph, a list, or a full draft. Multiple spaces and blank lines are handled cleanly.";
 
 export function WordCounterTool() {
+  const tx = useTx();
   const [text, setText] = useState("");
   const stats = getTextStats(text);
 
@@ -23,8 +25,8 @@ export function WordCounterTool() {
     <ToolPanel>
       <ToolField
         id="word-counter-text"
-        label="Text"
-        hint="Counting happens in your browser. Nothing is sent to a server."
+        label={tx("Text")}
+        hint={tx("Counting happens in your browser. Nothing is sent to a server.")}
       >
         <textarea
           id="word-counter-text"
@@ -32,19 +34,15 @@ export function WordCounterTool() {
           onChange={(event) => setText(event.target.value)}
           rows={10}
           className={`${toolControlClass} min-h-40 resize-y`}
-          placeholder="Paste or type text here..."
+          placeholder={tx("Paste or type text here...")}
         />
       </ToolField>
 
       <div className="mt-4">
         <ToolActions>
-          <Button type="button" variant="secondary" onClick={() => setText(SAMPLE)}>
-            Sample text
-          </Button>
-          <Button type="button" variant="secondary" onClick={() => setText("")}>
-            Clear
-          </Button>
-          <CopyButton value={text} label="Copy text" />
+          <Button type="button" variant="secondary" onClick={() => setText(SAMPLE)}>{tx("Sample text")}</Button>
+          <Button type="button" variant="secondary" onClick={() => setText("")}>{tx("Clear")}</Button>
+          <CopyButton value={text} label={tx("Copy text")} />
         </ToolActions>
       </div>
 
