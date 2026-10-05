@@ -13,8 +13,10 @@ import {
   toolControlClass,
 } from "@/components/tools/ToolForm";
 import { validateQrText } from "@/lib/tools/qr";
+import { useTx } from "@/i18n/tool-text";
 
 export function QrCodeGeneratorTool() {
+  const tx = useTx();
   const [input, setInput] = useState("");
   const [dataUrl, setDataUrl] = useState("");
   const [blob, setBlob] = useState<Blob | null>(null);
@@ -55,8 +57,8 @@ export function QrCodeGeneratorTool() {
     <ToolPanel>
       <ToolField
         id="qr-text"
-        label="Text or URL"
-        hint="The QR code is created in your browser. Keep content reasonably short."
+        label={tx("Text or URL")}
+        hint={tx("The QR code is created in your browser. Keep content reasonably short.")}
       >
         <textarea
           id="qr-text"
@@ -64,16 +66,16 @@ export function QrCodeGeneratorTool() {
           onChange={(event) => setInput(event.target.value)}
           rows={5}
           className={`${toolControlClass} min-h-28 resize-y`}
-          placeholder="https://example.com"
+          placeholder={tx("https://example.com")}
         />
       </ToolField>
 
       <div className="mt-4">
         <ToolActions>
           <Button type="button" onClick={() => void generate()} disabled={busy}>
-            {busy ? "Generating…" : "Generate"}
+            {tx(busy ? "Generating…" : "Generate")}
           </Button>
-          <DownloadButton blob={blob} fileName="qr-code.png" label="Download PNG" />
+          <DownloadButton blob={blob} fileName="qr-code.png" label={tx("Download PNG")} />
           <Button
             type="button"
             variant="ghost"
@@ -83,33 +85,28 @@ export function QrCodeGeneratorTool() {
               setBlob(null);
               setError("");
             }}
-          >
-            Reset
-          </Button>
+          >{tx("Reset")}</Button>
         </ToolActions>
       </div>
 
       <div className="mt-4">
-        {error ? <ToolError>{error}</ToolError> : null}
+        {error ? <ToolError>{tx(error)}</ToolError> : null}
         {dataUrl ? (
           <figure className="mt-4 overflow-hidden rounded-2xl border border-border bg-muted p-4">
             {/* Local data URL preview; next/image is not suitable here. */}
             {/* eslint-disable-next-line @next/next/no-img-element */}
             <img
               src={dataUrl}
-              alt={`QR code for ${input.trim()}`}
+              alt={tx(`QR code for ${input.trim()}`)}
               className="mx-auto max-h-80 w-auto max-w-full"
             />
-            <figcaption className="mt-3 break-all text-center text-sm text-muted-foreground">
-              QR code for: {input.trim()}
+            <figcaption className="mt-3 break-all text-center text-sm text-muted-foreground">{tx("QR code for: ")}{input.trim()}
             </figcaption>
           </figure>
         ) : null}
       </div>
 
-      <ToolPrivacyNote>
-        The QR code is generated in your browser. The text is not sent to a server.
-      </ToolPrivacyNote>
+      <ToolPrivacyNote>{tx("The QR code is generated in your browser. The text is not sent to a server.")}</ToolPrivacyNote>
     </ToolPanel>
   );
 }

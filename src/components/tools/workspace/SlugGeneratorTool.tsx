@@ -11,10 +11,12 @@ import {
   toolControlClass,
 } from "@/components/tools/ToolForm";
 import { slugify } from "@/lib/tools/slug";
+import { useTx } from "@/i18n/tool-text";
 
 const SAMPLE = "How to Compress an Image Without Losing Quality";
 
 export function SlugGeneratorTool() {
+  const tx = useTx();
   const [input, setInput] = useState("");
   const slug = slugify(input);
 
@@ -22,8 +24,8 @@ export function SlugGeneratorTool() {
     <ToolPanel>
       <ToolField
         id="slug-input"
-        label="Title or text"
-        hint="Accents are stripped from Latin letters. Other letters, such as Chinese, are kept."
+        label={tx("Title or text")}
+        hint={tx("Accents are stripped from Latin letters. Other letters, such as Chinese, are kept.")}
       >
         <textarea
           id="slug-input"
@@ -31,24 +33,20 @@ export function SlugGeneratorTool() {
           onChange={(event) => setInput(event.target.value)}
           rows={5}
           className={`${toolControlClass} min-h-28 resize-y`}
-          placeholder={SAMPLE}
+          placeholder={tx(SAMPLE)}
         />
       </ToolField>
 
       <div className="mt-4">
         <ToolActions>
-          <Button type="button" variant="secondary" onClick={() => setInput(SAMPLE)}>
-            Example
-          </Button>
-          <CopyButton value={slug} label="Copy slug" />
-          <Button type="button" variant="ghost" onClick={() => setInput("")}>
-            Clear
-          </Button>
+          <Button type="button" variant="secondary" onClick={() => setInput(tx(SAMPLE))}>{tx("Example")}</Button>
+          <CopyButton value={slug} label={tx("Copy slug")} />
+          <Button type="button" variant="ghost" onClick={() => setInput("")}>{tx("Clear")}</Button>
         </ToolActions>
       </div>
 
       <div className="mt-6">
-        <ToolOutput label="Generated slug">
+        <ToolOutput label={tx("Generated slug")}>
           <p className="break-all font-mono text-lg font-semibold">
             {slug || "—"}
           </p>

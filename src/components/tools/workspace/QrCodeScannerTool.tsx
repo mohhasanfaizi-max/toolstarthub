@@ -13,8 +13,10 @@ import {
   ToolPrivacyNote,
 } from "@/components/tools/ToolForm";
 import { looksLikeUrl } from "@/lib/tools/qr";
+import { useTx } from "@/i18n/tool-text";
 
 export function QrCodeScannerTool() {
+  const tx = useTx();
   const videoRef = useRef<HTMLVideoElement>(null);
   const streamRef = useRef<MediaStream | null>(null);
   const frameRef = useRef<number>(0);
@@ -138,18 +140,12 @@ export function QrCodeScannerTool() {
 
   return (
     <ToolPanel>
-      <p className="text-sm leading-6 text-muted-foreground">
-        Camera access is requested only when you choose to scan with your camera.
-      </p>
+      <p className="text-sm leading-6 text-muted-foreground">{tx("Camera access is requested only when you choose to scan with your camera.")}</p>
 
       <div className="mt-4">
         <ToolActions>
-          <Button type="button" onClick={() => void startCamera()} disabled={scanning}>
-            Start camera
-          </Button>
-          <Button type="button" variant="secondary" onClick={stopCamera} disabled={!scanning}>
-            Stop camera
-          </Button>
+          <Button type="button" onClick={() => void startCamera()} disabled={scanning}>{tx("Start camera")}</Button>
+          <Button type="button" variant="secondary" onClick={stopCamera} disabled={!scanning}>{tx("Stop camera")}</Button>
           <Button
             type="button"
             variant="ghost"
@@ -159,9 +155,7 @@ export function QrCodeScannerTool() {
               setError("");
               setFileName("");
             }}
-          >
-            Reset
-          </Button>
+          >{tx("Reset")}</Button>
         </ToolActions>
       </div>
 
@@ -176,19 +170,19 @@ export function QrCodeScannerTool() {
       <div className="mt-6">
         <FileDropZone
           id="qr-image"
-          label="Or upload a QR image"
+          label={tx("Or upload a QR image")}
           accept="image/jpeg,image/png,image/webp,.jpg,.jpeg,.png,.webp"
-          prompt="Drag and drop a QR image here, or choose a file."
+          prompt={tx("Drag and drop a QR image here, or choose a file.")}
           fileName={fileName}
-          hint="Image upload works even if the camera is blocked."
+          hint={tx("Image upload works even if the camera is blocked.")}
           onFile={(file) => void scanFile(file)}
         />
       </div>
 
       <div className="mt-4">
-        {error ? <ToolError>{error}</ToolError> : null}
+        {error ? <ToolError>{tx(error)}</ToolError> : null}
         {result ? (
-          <ToolOutput label="Scan result">
+          <ToolOutput label={tx("Scan result")}>
             <p className="break-all font-mono text-sm">{result}</p>
             <div className="mt-4">
               <ToolActions>
@@ -199,9 +193,7 @@ export function QrCodeScannerTool() {
                     target="_blank"
                     rel="noopener noreferrer"
                     className="inline-flex h-11 items-center justify-center gap-2 rounded-xl border border-border bg-card px-4 text-sm font-medium text-foreground hover:bg-muted"
-                  >
-                    Open link
-                  </a>
+                  >{tx("Open link")}</a>
                 ) : null}
               </ToolActions>
             </div>
@@ -209,9 +201,7 @@ export function QrCodeScannerTool() {
         ) : null}
       </div>
 
-      <ToolPrivacyNote>
-        Frames after Start camera, and a PNG or JPG you choose, are decoded in this tab. Neither is sent to Tools Star Hub.
-      </ToolPrivacyNote>
+      <ToolPrivacyNote>{tx("Frames after Start camera, and a PNG or JPG you choose, are decoded in this tab. Neither is sent to Tools Star Hub.")}</ToolPrivacyNote>
     </ToolPanel>
   );
 }

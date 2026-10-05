@@ -19,8 +19,10 @@ import {
   PASSWORD_MAX,
   PASSWORD_MIN,
 } from "@/lib/tools/password";
+import { useTx } from "@/i18n/tool-text";
 
 export function PasswordGeneratorTool() {
+  const tx = useTx();
   const [length, setLength] = useState(String(PASSWORD_DEFAULT));
   const [uppercase, setUppercase] = useState(true);
   const [lowercase, setLowercase] = useState(true);
@@ -66,8 +68,8 @@ export function PasswordGeneratorTool() {
     <ToolPanel>
       <ToolField
         id="password-length"
-        label="Length"
-        hint={`From ${PASSWORD_MIN} to ${PASSWORD_MAX} characters.`}
+        label={tx("Length")}
+        hint={tx(`From ${PASSWORD_MIN} to ${PASSWORD_MAX} characters.`)}
       >
         <input
           id="password-length"
@@ -79,25 +81,23 @@ export function PasswordGeneratorTool() {
       </ToolField>
 
       <fieldset className="mt-4">
-        <legend className="text-sm font-medium text-foreground">Character types</legend>
+        <legend className="text-sm font-medium text-foreground">{tx("Character types")}</legend>
         <div className="mt-2 grid gap-2 sm:grid-cols-2">
-          <Option checked={uppercase} onChange={setUppercase} label="Uppercase letters" />
-          <Option checked={lowercase} onChange={setLowercase} label="Lowercase letters" />
-          <Option checked={numbers} onChange={setNumbers} label="Numbers" />
-          <Option checked={symbols} onChange={setSymbols} label="Symbols" />
+          <Option checked={uppercase} onChange={setUppercase} label={tx("Uppercase letters")} />
+          <Option checked={lowercase} onChange={setLowercase} label={tx("Lowercase letters")} />
+          <Option checked={numbers} onChange={setNumbers} label={tx("Numbers")} />
+          <Option checked={symbols} onChange={setSymbols} label={tx("Symbols")} />
           <Option
             checked={excludeAmbiguous}
             onChange={setExcludeAmbiguous}
-            label="Exclude ambiguous characters (O, 0, I, l, 1)"
+            label={tx("Exclude ambiguous characters (O, 0, I, l, 1)")}
           />
         </div>
       </fieldset>
 
       <div className="mt-6">
         <ToolActions>
-          <Button type="button" onClick={generate}>
-            Generate
-          </Button>
+          <Button type="button" onClick={generate}>{tx("Generate")}</Button>
           <CopyButton value={password} />
           <Button
             type="button"
@@ -107,38 +107,28 @@ export function PasswordGeneratorTool() {
               setMeta(undefined);
               setError("");
             }}
-          >
-            Clear
-          </Button>
+          >{tx("Clear")}</Button>
         </ToolActions>
       </div>
 
       <div className="mt-4">
-        {error ? <ToolError>{error}</ToolError> : null}
+        {error ? <ToolError>{tx(error)}</ToolError> : null}
         {password ? (
-          <ToolOutput label="Generated password">
+          <ToolOutput label={tx("Generated password")}>
             <p className="break-all font-mono text-lg font-semibold">{password}</p>
             {meta ? (
               <div className="mt-3 space-y-1 text-sm text-muted-foreground">
-                <p>Length: {password.length}</p>
-                <p>Character set size: {meta.charsetSize}</p>
-                <p>
-                  Estimated entropy: {meta.bits.toFixed(0)} bits ({meta.strengthLabel})
-                </p>
-                <p>
-                  This meter is an estimate from length and character set size. It is not a
-                  guarantee of security.
-                </p>
+                <p>{tx(`Length: ${password.length}`)}</p>
+                <p>{tx(`Character set size: ${meta.charsetSize}`)}</p>
+                <p>{tx(`Estimated entropy: ${meta.bits.toFixed(0)} bits (${meta.strengthLabel})`)}</p>
+                <p>{tx("This meter is an estimate from length and character set size. It is not a guarantee of security.")}</p>
               </div>
             ) : null}
           </ToolOutput>
         ) : null}
       </div>
 
-      <ToolPrivacyNote>
-        Passwords are created with crypto.getRandomValues in your browser. They are not stored,
-        logged, or sent to a server.
-      </ToolPrivacyNote>
+      <ToolPrivacyNote>{tx("Passwords are created with crypto.getRandomValues in your browser. They are not stored, logged, or sent to a server.")}</ToolPrivacyNote>
     </ToolPanel>
   );
 }
@@ -152,6 +142,7 @@ function Option({
   onChange: (value: boolean) => void;
   label: string;
 }) {
+  const tx = useTx();
   return (
     <label className="flex min-h-11 items-center gap-2 rounded-xl border border-border px-3 py-2 text-sm">
       <input
@@ -159,7 +150,7 @@ function Option({
         checked={checked}
         onChange={(event) => onChange(event.target.checked)}
       />
-      {label}
+      {tx(label)}
     </label>
   );
 }

@@ -4,6 +4,7 @@ import { useState } from "react";
 import { Button } from "@/components/ui/Button";
 import { ToolActions, ToolError, ToolField, ToolPanel, toolControlClass } from "@/components/tools/ToolForm";
 import type { OpenGraphPreview } from "@/lib/og/extract-preview";
+import { useTx } from "@/i18n/tool-text";
 
 type PreviewStatus = "idle" | "loading" | "success" | "error";
 
@@ -15,11 +16,9 @@ function isPreview(value: unknown): value is OpenGraphPreview {
   return typeof preview.title === "string" && typeof preview.openGraph?.title === "string" && typeof preview.twitter?.card === "string";
 }
 
-function shown(value: string): string {
-  return value.trim() === "" ? "Not found" : value;
-}
-
 export function OpenGraphPreviewTool() {
+  const tx = useTx();
+  const show = (value: string) => (value.trim() === "" ? tx("Not found") : value);
   const [url, setUrl] = useState("https://example.com/");
   const [status, setStatus] = useState<PreviewStatus>("idle");
   const [error, setError] = useState("");
@@ -64,24 +63,22 @@ export function OpenGraphPreviewTool() {
 
   return (
     <ToolPanel>
-      <p className="text-sm leading-6 text-muted-foreground">
-        Check preview sends the URL to this site. The site reads that public page&apos;s title and share tags and does not save the page. A private address or a non-http URL is rejected.
-      </p>
+      <p className="text-sm leading-6 text-muted-foreground">{tx("Check preview sends the URL to this site. The site reads that public page's title and share tags and does not save the page. A private address or a non-http URL is rejected.")}</p>
       <div className="mt-4">
-        <ToolField id="og-url" label="Page URL">
+        <ToolField id="og-url" label={tx("Page URL")}>
           <input id="og-url" inputMode="url" value={url} onChange={(event) => setUrl(event.target.value)} spellCheck={false} className={toolControlClass} />
         </ToolField>
       </div>
-      {error ? <div className="mt-4"><ToolError>{error}</ToolError></div> : null}
+      {error ? <div className="mt-4"><ToolError>{tx(error)}</ToolError></div> : null}
       <div className="mt-4">
         <ToolActions>
           <Button type="button" onClick={() => void check()} disabled={status === "loading"}>
-            {status === "loading" ? "Checking…" : "Check preview"}
+            {tx(status === "loading" ? "Checking…" : "Check preview")}
           </Button>
-          <Button type="button" variant="ghost" onClick={() => { setUrl("https://example.com/"); setStatus("idle"); setError(""); setPreview(undefined); setImageFailed(false); }}>Reset</Button>
+          <Button type="button" variant="ghost" onClick={() => { setUrl("https://example.com/"); setStatus("idle"); setError(""); setPreview(undefined); setImageFailed(false); }}>{tx("Reset")}</Button>
         </ToolActions>
       </div>
-      {status === "loading" ? <p className="mt-6 text-sm text-muted-foreground">Checking the page…</p> : null}
+      {status === "loading" ? <p className="mt-6 text-sm text-muted-foreground">{tx("Checking the page…")}</p> : null}
       {status === "success" && preview ? (
         <article className="mt-6 overflow-hidden rounded-2xl border border-border bg-background">
           {image !== "" && !imageFailed ? (
@@ -89,30 +86,30 @@ export function OpenGraphPreviewTool() {
           ) : null}
           <div className="space-y-4 p-4 sm:p-5">
             <div>
-              <h2 className="text-lg font-semibold text-foreground">{shown(title)}</h2>
+              <h2 className="text-lg font-semibold text-foreground">{show(title)}</h2>
               <p className="mt-1 break-all text-sm text-muted-foreground">{preview.finalUrl}</p>
             </div>
-            <p className="text-sm leading-6 text-foreground">{shown(description)}</p>
+            <p className="text-sm leading-6 text-foreground">{show(description)}</p>
             <dl className="grid gap-3 text-sm sm:grid-cols-2">
               <div>
-                <dt className="font-medium text-foreground">Image</dt>
-                <dd className="mt-1 break-all text-muted-foreground">{imageFailed ? "The image address was found, but it did not load." : shown(image)}</dd>
+                <dt className="font-medium text-foreground">{tx("Image")}</dt>
+                <dd className="mt-1 break-all text-muted-foreground">{imageFailed ? tx("The image address was found, but it did not load.") : show(image)}</dd>
               </div>
               <div>
-                <dt className="font-medium text-foreground">Twitter card</dt>
-                <dd className="mt-1 text-muted-foreground">{shown(preview.twitter.card)}</dd>
+                <dt className="font-medium text-foreground">{tx("Twitter card")}</dt>
+                <dd className="mt-1 text-muted-foreground">{show(preview.twitter.card)}</dd>
               </div>
               <div>
-                <dt className="font-medium text-foreground">Twitter title</dt>
-                <dd className="mt-1 text-muted-foreground">{shown(preview.twitter.title)}</dd>
+                <dt className="font-medium text-foreground">{tx("Twitter title")}</dt>
+                <dd className="mt-1 text-muted-foreground">{show(preview.twitter.title)}</dd>
               </div>
               <div>
-                <dt className="font-medium text-foreground">Twitter description</dt>
-                <dd className="mt-1 text-muted-foreground">{shown(preview.twitter.description)}</dd>
+                <dt className="font-medium text-foreground">{tx("Twitter description")}</dt>
+                <dd className="mt-1 text-muted-foreground">{show(preview.twitter.description)}</dd>
               </div>
               <div className="sm:col-span-2">
-                <dt className="font-medium text-foreground">Twitter image</dt>
-                <dd className="mt-1 break-all text-muted-foreground">{shown(preview.twitter.image)}</dd>
+                <dt className="font-medium text-foreground">{tx("Twitter image")}</dt>
+                <dd className="mt-1 break-all text-muted-foreground">{show(preview.twitter.image)}</dd>
               </div>
             </dl>
           </div>

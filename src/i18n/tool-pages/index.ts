@@ -30,6 +30,20 @@ import texttools_hi from "./text-tools/hi";
 import texttools_ur from "./text-tools/ur";
 import texttools_ja from "./text-tools/ja";
 import texttools_ko from "./text-tools/ko";
+import seoutilities_ptbr from "./seo-utilities/pt-br";
+import seoutilities_nl from "./seo-utilities/nl";
+import seoutilities_ar from "./seo-utilities/ar";
+import seoutilities_es from "./seo-utilities/es";
+import seoutilities_fr from "./seo-utilities/fr";
+import seoutilities_id from "./seo-utilities/id";
+import seoutilities_de from "./seo-utilities/de";
+import seoutilities_it from "./seo-utilities/it";
+import seoutilities_tr from "./seo-utilities/tr";
+import seoutilities_ru from "./seo-utilities/ru";
+import seoutilities_hi from "./seo-utilities/hi";
+import seoutilities_ur from "./seo-utilities/ur";
+import seoutilities_ja from "./seo-utilities/ja";
+import seoutilities_ko from "./seo-utilities/ko";
 import aitools_ptbr from "./ai-tools/pt-br";
 import aitools_nl from "./ai-tools/nl";
 import aitools_ar from "./ai-tools/ar";
@@ -63,21 +77,21 @@ export const commonToolText: Partial<Record<Locale, ToolTextDictionary>> = {
 };
 
 export const toolPageTranslations: Partial<Record<Locale, ToolPageTranslations>> = {
-  "pt-br": { ...texttools_ptbr, ...aitools_ptbr },
-  "nl": { ...texttools_nl, ...aitools_nl },
-  "ar": { ...texttools_ar, ...aitools_ar },
-  "es": { ...texttools_es, ...aitools_es },
-  "fr": { ...texttools_fr, ...aitools_fr },
-  "id": { ...texttools_id, ...aitools_id },
-  "de": { ...texttools_de, ...aitools_de },
-  "it": { ...texttools_it, ...aitools_it },
-  "tr": { ...texttools_tr, ...aitools_tr },
-  "ru": { ...texttools_ru, ...aitools_ru },
-  "hi": { ...texttools_hi, ...aitools_hi },
-  "ur": { ...texttools_ur, ...aitools_ur },
-  "ja": { ...texttools_ja, ...aitools_ja },
-  "ko": { ...texttools_ko, ...aitools_ko },
+  "pt-br": { ...texttools_ptbr, ...seoutilities_ptbr, ...aitools_ptbr },
+  "nl": { ...texttools_nl, ...seoutilities_nl, ...aitools_nl },
+  "ar": { ...texttools_ar, ...seoutilities_ar, ...aitools_ar },
+  "es": { ...texttools_es, ...seoutilities_es, ...aitools_es },
+  "fr": { ...texttools_fr, ...seoutilities_fr, ...aitools_fr },
+  "id": { ...texttools_id, ...seoutilities_id, ...aitools_id },
+  "de": { ...texttools_de, ...seoutilities_de, ...aitools_de },
+  "it": { ...texttools_it, ...seoutilities_it, ...aitools_it },
+  "tr": { ...texttools_tr, ...seoutilities_tr, ...aitools_tr },
+  "ru": { ...texttools_ru, ...seoutilities_ru, ...aitools_ru },
+  "hi": { ...texttools_hi, ...seoutilities_hi, ...aitools_hi },
+  "ur": { ...texttools_ur, ...seoutilities_ur, ...aitools_ur },
+  "ja": { ...texttools_ja, ...seoutilities_ja, ...aitools_ja },
+  "ko": { ...texttools_ko, ...seoutilities_ko, ...aitools_ko },
 };
 
 /** Categories whose tool pages are translated in every language. */
-export const translatedToolCategories: readonly string[] = ["text-tools", "ai-tools"];
+export const translatedToolCategories: readonly string[] = ["text-tools", "seo-utilities", "ai-tools"];

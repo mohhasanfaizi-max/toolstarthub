@@ -17,10 +17,12 @@ import {
 } from "@/components/tools/ToolForm";
 import { parseCssColor } from "@/lib/tools/color";
 import { encodeQrPayload, type QrKind } from "@/lib/tools/qr-payload";
+import { useTx } from "@/i18n/tool-text";
 
 type Ecc = "L" | "M" | "Q" | "H";
 
 export function QrCodeGeneratorProTool() {
+  const tx = useTx();
   const [kind, setKind] = useState<QrKind>("text");
   const [text, setText] = useState("");
   const [ssid, setSsid] = useState("");
@@ -127,7 +129,7 @@ export function QrCodeGeneratorProTool() {
   return (
     <ToolPanel>
       <ToolChoiceGroup
-        legend="QR type"
+        legend={tx("QR type")}
         name="qr-kind"
         value={kind}
         onChange={setKind}
@@ -144,25 +146,25 @@ export function QrCodeGeneratorProTool() {
 
       <div className="mt-6 space-y-4">
         {kind === "text" ? (
-          <ToolField id="qr-pro-text" label="Text or URL">
+          <ToolField id="qr-pro-text" label={tx("Text or URL")}>
             <textarea
               id="qr-pro-text"
               value={text}
               onChange={(event) => setText(event.target.value)}
               rows={4}
               className={`${toolControlClass} min-h-24 resize-y`}
-              placeholder="https://example.com"
+              placeholder={tx("https://example.com")}
             />
           </ToolField>
         ) : null}
 
         {kind === "wifi" ? (
           <>
-            <ToolField id="wifi-ssid" label="Network name (SSID)">
+            <ToolField id="wifi-ssid" label={tx("Network name (SSID)")}>
               <input id="wifi-ssid" value={ssid} onChange={(event) => setSsid(event.target.value)} className={toolControlClass} autoComplete="off" />
             </ToolField>
             <ToolChoiceGroup
-              legend="Security"
+              legend={tx("Security")}
               name="wifi-security"
               value={security}
               onChange={setSecurity}
@@ -174,7 +176,7 @@ export function QrCodeGeneratorProTool() {
               columns="grid gap-2 sm:grid-cols-3"
             />
             {security !== "nopass" ? (
-              <ToolField id="wifi-password" label="Password">
+              <ToolField id="wifi-password" label={tx("Password")}>
                 <input
                   id="wifi-password"
                   value={password}
@@ -185,38 +187,36 @@ export function QrCodeGeneratorProTool() {
               </ToolField>
             ) : null}
             <label className="flex min-h-11 items-center gap-2 text-sm">
-              <input type="checkbox" checked={hidden} onChange={(event) => setHidden(event.target.checked)} />
-              Hidden network
-            </label>
+              <input type="checkbox" checked={hidden} onChange={(event) => setHidden(event.target.checked)} />{tx("Hidden network")}</label>
           </>
         ) : null}
 
         {kind === "email" ? (
           <>
-            <ToolField id="qr-email" label="Email">
+            <ToolField id="qr-email" label={tx("Email")}>
               <input id="qr-email" value={email} onChange={(event) => setEmail(event.target.value)} className={toolControlClass} autoComplete="off" />
             </ToolField>
-            <ToolField id="qr-subject" label="Subject (optional)">
+            <ToolField id="qr-subject" label={tx("Subject (optional)")}>
               <input id="qr-subject" value={subject} onChange={(event) => setSubject(event.target.value)} className={toolControlClass} />
             </ToolField>
-            <ToolField id="qr-body" label="Body (optional)">
+            <ToolField id="qr-body" label={tx("Body (optional)")}>
               <textarea id="qr-body" value={body} onChange={(event) => setBody(event.target.value)} rows={3} className={`${toolControlClass} resize-y`} />
             </ToolField>
           </>
         ) : null}
 
         {kind === "phone" ? (
-          <ToolField id="qr-phone" label="Phone number">
+          <ToolField id="qr-phone" label={tx("Phone number")}>
             <input id="qr-phone" value={phone} onChange={(event) => setPhone(event.target.value)} className={toolControlClass} autoComplete="off" />
           </ToolField>
         ) : null}
 
         {kind === "sms" ? (
           <>
-            <ToolField id="qr-sms-phone" label="Phone number">
+            <ToolField id="qr-sms-phone" label={tx("Phone number")}>
               <input id="qr-sms-phone" value={phone} onChange={(event) => setPhone(event.target.value)} className={toolControlClass} autoComplete="off" />
             </ToolField>
-            <ToolField id="qr-sms-body" label="Message (optional)">
+            <ToolField id="qr-sms-body" label={tx("Message (optional)")}>
               <textarea id="qr-sms-body" value={body} onChange={(event) => setBody(event.target.value)} rows={3} className={`${toolControlClass} resize-y`} />
             </ToolField>
           </>
@@ -224,16 +224,16 @@ export function QrCodeGeneratorProTool() {
 
         {kind === "vcard" ? (
           <>
-            <ToolField id="qr-first" label="First name">
+            <ToolField id="qr-first" label={tx("First name")}>
               <input id="qr-first" value={firstName} onChange={(event) => setFirstName(event.target.value)} className={toolControlClass} autoComplete="off" />
             </ToolField>
-            <ToolField id="qr-last" label="Last name">
+            <ToolField id="qr-last" label={tx("Last name")}>
               <input id="qr-last" value={lastName} onChange={(event) => setLastName(event.target.value)} className={toolControlClass} autoComplete="off" />
             </ToolField>
-            <ToolField id="qr-vcard-phone" label="Phone (optional)">
+            <ToolField id="qr-vcard-phone" label={tx("Phone (optional)")}>
               <input id="qr-vcard-phone" value={phone} onChange={(event) => setPhone(event.target.value)} className={toolControlClass} autoComplete="off" />
             </ToolField>
-            <ToolField id="qr-vcard-email" label="Email (optional)">
+            <ToolField id="qr-vcard-email" label={tx("Email (optional)")}>
               <input id="qr-vcard-email" value={email} onChange={(event) => setEmail(event.target.value)} className={toolControlClass} autoComplete="off" />
             </ToolField>
           </>
@@ -241,15 +241,15 @@ export function QrCodeGeneratorProTool() {
       </div>
 
       <div className="mt-6 grid gap-4 sm:grid-cols-2">
-        <ColorInput id="qr-fg" label="Foreground" value={dark} onChange={setDark} />
-        <ColorInput id="qr-bg" label="Background" value={light} onChange={setLight} />
-        <RangeField id="qr-size" label="Size" min={128} max={640} step={8} value={size} suffix="px" onChange={setSize} />
-        <RangeField id="qr-margin" label="Quiet zone" min={0} max={8} value={margin} onChange={setMargin} />
+        <ColorInput id="qr-fg" label={tx("Foreground")} value={dark} onChange={setDark} />
+        <ColorInput id="qr-bg" label={tx("Background")} value={light} onChange={setLight} />
+        <RangeField id="qr-size" label={tx("Size")} min={128} max={640} step={8} value={size} suffix="px" onChange={setSize} />
+        <RangeField id="qr-margin" label={tx("Quiet zone")} min={0} max={8} value={margin} onChange={setMargin} />
       </div>
 
       <div className="mt-4">
         <ToolChoiceGroup
-          legend="Error correction"
+          legend={tx("Error correction")}
           name="qr-ecc"
           value={ecc}
           onChange={setEcc}
@@ -266,29 +266,25 @@ export function QrCodeGeneratorProTool() {
       <div className="mt-6">
         <ToolActions>
           <Button type="button" onClick={() => void generate()} disabled={busy}>
-            {busy ? "Generating…" : "Generate"}
+            {tx(busy ? "Generating…" : "Generate")}
           </Button>
-          <DownloadButton blob={blob} fileName="qr-code.png" label="Download PNG" />
-          <Button type="button" variant="ghost" onClick={reset}>
-            Reset
-          </Button>
+          <DownloadButton blob={blob} fileName="qr-code.png" label={tx("Download PNG")} />
+          <Button type="button" variant="ghost" onClick={reset}>{tx("Reset")}</Button>
         </ToolActions>
       </div>
 
       <div className="mt-4">
-        {error ? <ToolError>{error}</ToolError> : null}
+        {error ? <ToolError>{tx(error)}</ToolError> : null}
         {dataUrl ? (
           <figure className="mt-4 overflow-hidden rounded-2xl border border-border bg-muted p-4">
             {/* Local data URL preview; next/image is not suitable here. */}
             {/* eslint-disable-next-line @next/next/no-img-element */}
-            <img src={dataUrl} alt="Generated QR code" className="mx-auto max-h-80 w-auto max-w-full" />
+            <img src={dataUrl} alt={tx("Generated QR code")} className="mx-auto max-h-80 w-auto max-w-full" />
           </figure>
         ) : null}
       </div>
 
-      <ToolPrivacyNote>
-        The QR code is generated in your browser. Wi-Fi passwords and other fields are not stored or sent to a server.
-      </ToolPrivacyNote>
+      <ToolPrivacyNote>{tx("The QR code is generated in your browser. Wi-Fi passwords and other fields are not stored or sent to a server.")}</ToolPrivacyNote>
     </ToolPanel>
   );
 }
