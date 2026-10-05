@@ -34,6 +34,14 @@ const data: ToolPageTranslations = {
         {
           "question": "Hoe worden extra spaties geteld?",
           "answer": "Meerdere spaties achter elkaar leveren geen extra woorden op. Ze tellen wel als tekens."
+        },
+        {
+          "question": "Hoeveel woorden heeft een toespraak van 5 minuten?",
+          "answer": "Het spreektempo verschilt, maar 130 tot 150 woorden per minuut is een gangbare vuistregel. Een toespraak van 5 minuten heeft dus vaak zo’n 650 tot 750 woorden."
+        },
+        {
+          "question": "Hoe wordt de leestijd geschat?",
+          "answer": "Het aantal woorden wordt gedeeld door ongeveer 225 woorden per minuut. Het is een schatting voor een gemiddelde lezer, geen gemeten leessnelheid."
         }
       ]
     },
@@ -79,6 +87,14 @@ const data: ToolPageTranslations = {
         {
           "question": "Wordt mijn invoer naar een server gestuurd?",
           "answer": "Nee. De tellingen ontstaan in dit tabblad. Als u het vak leegmaakt, verdwijnt de tekst van de pagina, en hij wordt niet in lokale opslag bewaard."
+        },
+        {
+          "question": "Tellen spaties als tekens?",
+          "answer": "Ja, in het hoofdtotaal. De teller toont ook een tweede totaal zonder spaties, waar sommige formulieren en opdrachten om vragen."
+        },
+        {
+          "question": "Hoeveel tekens is een emoji?",
+          "answer": "Op deze pagina telt één emoji als één Unicode-teken. Sommige apps tellen bepaalde emoji als twee of meer, dus hun limiet kan iets afwijken."
         }
       ]
     },
@@ -121,6 +137,14 @@ const data: ToolPageTranslations = {
         {
           "question": "Wordt mijn invoer naar een server gestuurd?",
           "answer": "Nee. De geplakte tekst wordt in dit tabblad omgezet. Hij wordt niet geüpload en niet in lokale opslag bewaard."
+        },
+        {
+          "question": "Wat is het verschil tussen titelnotatie en zinsnotatie?",
+          "answer": "Titelnotatie geeft elk woord een hoofdletter, zoals in een Engelse kop. Zinsnotatie geeft alleen de eerste letter van elke zin een hoofdletter, zoals in gewone tekst."
+        },
+        {
+          "question": "Wat zijn camelCase, snake_case en kebab-case?",
+          "answer": "Dat zijn naamgevingsstijlen uit programmeercode. camelCase verbindt woorden met hoofdletters (myVariableName), snake_case met underscores (my_variable_name) en kebab-case met koppeltekens (my-variable-name)."
         }
       ]
     },
@@ -167,6 +191,14 @@ const data: ToolPageTranslations = {
         {
           "question": "Waarom is er een maximum?",
           "answer": "Heel grote blokken kunnen een tabblad laten vastlopen. Alinea’s stoppen bij 20, zinnen bij 50 en woorden bij 500."
+        },
+        {
+          "question": "Wat betekent lorem ipsum?",
+          "answer": "Lorem ipsum is door elkaar gehaald Latijn dat als opvultekst dient. Het lijkt op echte tekst, zodat je een lay-out kunt beoordelen zonder dat lezers op de woorden letten."
+        },
+        {
+          "question": "Wanneer gebruik ik opvultekst?",
+          "answer": "Voor mock-ups, sjablonen en lettertypetests. Vervang het door echte tekst voordat een pagina live gaat, want opvultekst zegt bezoekers niets."
         }
       ]
     },
@@ -215,6 +247,14 @@ const data: ToolPageTranslations = {
         {
           "question": "Wordt mijn invoer naar een server gestuurd?",
           "answer": "Nee. Beide panelen worden in dit tabblad vergeleken. De tekst wordt niet naar een server gestuurd en niet in lokale opslag bewaard."
+        },
+        {
+          "question": "Wat is een diff?",
+          "answer": "Een diff is een lijst van de verschillen tussen twee versies van een tekst: wat is toegevoegd, wat is verwijderd en wat hetzelfde bleef."
+        },
+        {
+          "question": "Gebruik ik de regel- of de woordmodus?",
+          "answer": "De regelmodus voor code, lijsten en bestanden waarin hele regels veranderen. De woordmodus als een zin ter plekke is bewerkt."
         }
       ]
     },
@@ -267,6 +307,14 @@ const data: ToolPageTranslations = {
         {
           "question": "Verandert het oorspronkelijke vak?",
           "answer": "Nee. De invoer blijft zoals u hem plakte. De unieke lijst verschijnt in het resultaatvak nadat u de bewerking hebt uitgevoerd."
+        },
+        {
+          "question": "Hoe verwijder ik dubbele items uit een lijst?",
+          "answer": "Plak de lijst met één item per regel en start de tool. De eerste kopie van elke regel blijft in de oorspronkelijke volgorde staan en latere herhalingen vallen weg."
+        },
+        {
+          "question": "Kan het verschillen in hoofdletters of spaties negeren?",
+          "answer": "Ja. Zet de opties voor hoofdletters en spaties aan, zodat regels als Apple en apple, of regels met extra spaties, als gelijk tellen."
         }
       ]
     },
@@ -315,6 +363,14 @@ const data: ToolPageTranslations = {
         {
           "question": "Gaat mijn inspringing verloren?",
           "answer": "Alleen als u trimmen, verwijderen aan het regelbegin of tab-omzetting aanzet. Laat die uit om de inspringing te houden."
+        },
+        {
+          "question": "Hoe verwijder ik dubbele spaties uit tekst?",
+          "answer": "Zet de optie aan die herhaalde spaties samenvoegt. Reeksen spaties binnen elke regel worden dan één spatie."
+        },
+        {
+          "question": "Hoe verwijder ik lege regels?",
+          "answer": "Gebruik ‘lege regels verwijderen’ om alle lege regels weg te halen, of ‘lege regels samenvoegen’ om één lege regel tussen alinea’s te houden."
         }
       ]
     },
@@ -372,6 +428,14 @@ const data: ToolPageTranslations = {
         {
           "question": "Blijven lege regels behouden?",
           "answer": "Ja, tenzij u ‘Lege regels negeren’ kiest. In de lettermodi worden ze als lege tekenreeksen gesorteerd."
+        },
+        {
+          "question": "Hoe sorteer ik een lijst alfabetisch?",
+          "answer": "Plak één item per regel en kies A tot Z, of Z tot A voor omgekeerde volgorde. Gelijke regels houden hun oorspronkelijke volgorde."
+        },
+        {
+          "question": "Hoe sorteer ik regels op getal?",
+          "answer": "Kies numeriek oplopend of aflopend. Elke regel wordt gesorteerd op het getal aan het begin, dus 2 komt vóór 10."
         }
       ]
     },
@@ -432,6 +496,14 @@ const data: ToolPageTranslations = {
         {
           "question": "Wordt mijn invoer naar een server gestuurd?",
           "answer": "Nee. De tekst en de zoekterm blijven in dit tabblad. Ze worden niet naar een server gestuurd."
+        },
+        {
+          "question": "Hoe vervang ik een woord overal in een tekst?",
+          "answer": "Vul het te zoeken woord en de vervanging in, kies ‘Alles vervangen’ en kopieer het resultaat. Zet hoofdlettergevoelig zoeken aan als hoofdletters ertoe doen."
+        },
+        {
+          "question": "Ondersteunt zoeken en vervangen reguliere expressies?",
+          "answer": "Nee. Het zoekt precies de tekst die je typt. Test een patroon eerst in de regex-tester als je op patronen wilt zoeken."
         }
       ]
     },
@@ -490,6 +562,14 @@ const data: ToolPageTranslations = {
         {
           "question": "Wordt mijn invoer naar een server gestuurd?",
           "answer": "Nee. De geplakte tekst wordt in dit tabblad herschreven. Hij wordt niet geüpload."
+        },
+        {
+          "question": "Hoe verwijder ik regeleinden uit tekst die uit een pdf is gekopieerd?",
+          "answer": "Plak de tekst en kies de optie die alinea’s bewaart. Enkele regeleinden binnen een alinea worden spaties, en lege regels tussen alinea’s blijven staan."
+        },
+        {
+          "question": "Wat is het verschil tussen regeleinden vervangen en verwijderen?",
+          "answer": "Vervangen maakt van elk regeleinde een spatie, zodat woorden gescheiden blijven. Verwijderen haalt het regeleinde weg, waardoor het eind van een regel aan het begin van de volgende plakt."
         }
       ]
     },
@@ -545,6 +625,14 @@ const data: ToolPageTranslations = {
         {
           "question": "Wordt mijn invoer naar een server gestuurd?",
           "answer": "Nee. De regels en het startnummer blijven in dit tabblad. Ze worden niet naar een server gestuurd."
+        },
+        {
+          "question": "Hoe nummer ik regels in een tekst?",
+          "answer": "Plak de tekst, stel het startnummer en het scheidingsteken in, bijvoorbeeld een punt en een spatie, voeg de nummers toe en kopieer het resultaat."
+        },
+        {
+          "question": "Worden lege regels genummerd?",
+          "answer": "Ja. Elk echt regeleinde begint een nieuwe genummerde regel, ook lege regels en een lege laatste regel."
         }
       ]
     },

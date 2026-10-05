@@ -34,6 +34,14 @@ const data: ToolPageTranslations = {
         {
           "question": "Wie werden zusätzliche Leerzeichen gezählt?",
           "answer": "Mehrere Leerzeichen hintereinander erzeugen keine zusätzlichen Wörter. Als Zeichen werden sie aber mitgezählt."
+        },
+        {
+          "question": "Wie viele Wörter hat eine 5-minütige Rede?",
+          "answer": "Das Sprechtempo schwankt, aber 130 bis 150 Wörter pro Minute sind eine gängige Faustregel. Eine 5-minütige Rede hat daher oft etwa 650 bis 750 Wörter."
+        },
+        {
+          "question": "Wie wird die Lesezeit geschätzt?",
+          "answer": "Die Wortzahl wird durch etwa 225 Wörter pro Minute geteilt. Das ist eine Schätzung für durchschnittliche Leser, keine gemessene Lesegeschwindigkeit."
         }
       ]
     },
@@ -79,6 +87,14 @@ const data: ToolPageTranslations = {
         {
           "question": "Wird meine Eingabe an einen Server gesendet?",
           "answer": "Nein. Die Zählung entsteht in diesem Tab. Wenn Sie das Feld leeren, ist der Text von der Seite entfernt; im lokalen Speicher wird er nicht abgelegt."
+        },
+        {
+          "question": "Zählen Leerzeichen als Zeichen?",
+          "answer": "Ja, in der Hauptsumme. Der Zähler zeigt außerdem eine zweite Summe ohne Leerzeichen, die manche Formulare und Aufgaben verlangen."
+        },
+        {
+          "question": "Wie viele Zeichen hat ein Emoji?",
+          "answer": "Auf dieser Seite zählt ein einzelnes Emoji als ein Unicode-Zeichen. Manche Apps zählen bestimmte Emojis als zwei oder mehr, daher können deren Grenzen leicht abweichen."
         }
       ]
     },
@@ -121,6 +137,14 @@ const data: ToolPageTranslations = {
         {
           "question": "Wird meine Eingabe an einen Server gesendet?",
           "answer": "Nein. Der eingefügte Text wird in diesem Tab umgewandelt. Er wird weder hochgeladen noch im lokalen Speicher abgelegt."
+        },
+        {
+          "question": "Was ist der Unterschied zwischen Titelschreibung und Satzschreibung?",
+          "answer": "Die Titelschreibung schreibt den ersten Buchstaben jedes Wortes groß, wie in einer englischen Überschrift. Die Satzschreibung schreibt nur den ersten Buchstaben jedes Satzes groß, wie im normalen Text."
+        },
+        {
+          "question": "Was sind camelCase, snake_case und kebab-case?",
+          "answer": "Das sind Benennungsstile aus dem Programmieren. camelCase verbindet Wörter mit Großbuchstaben (myVariableName), snake_case nutzt Unterstriche (my_variable_name) und kebab-case Bindestriche (my-variable-name)."
         }
       ]
     },
@@ -167,6 +191,14 @@ const data: ToolPageTranslations = {
         {
           "question": "Warum gibt es eine Obergrenze?",
           "answer": "Sehr große Blöcke können einen Tab einfrieren. Absätze enden bei 20, Sätze bei 50 und Wörter bei 500."
+        },
+        {
+          "question": "Was bedeutet Lorem ipsum?",
+          "answer": "Lorem ipsum ist durcheinandergewürfeltes Latein, das als Platzhaltertext dient. Es sieht aus wie echter Text, sodass man ein Layout beurteilen kann, ohne dass die Wörter ablenken."
+        },
+        {
+          "question": "Wann sollte ich Platzhaltertext verwenden?",
+          "answer": "Für Mockups, Vorlagen und Schrifttests. Ersetzen Sie ihn vor dem Livegang durch echten Text, denn Platzhalter sagen Besuchern nichts."
         }
       ]
     },
@@ -215,6 +247,14 @@ const data: ToolPageTranslations = {
         {
           "question": "Wird meine Eingabe an einen Server gesendet?",
           "answer": "Nein. Beide Felder werden in diesem Tab verglichen. Der Text wird weder an einen Server gesendet noch im lokalen Speicher gespeichert."
+        },
+        {
+          "question": "Was ist ein Diff?",
+          "answer": "Ein Diff ist eine Liste der Unterschiede zwischen zwei Fassungen eines Textes: was hinzugefügt, was entfernt wurde und was gleich geblieben ist."
+        },
+        {
+          "question": "Soll ich den Zeilen- oder den Wortmodus nutzen?",
+          "answer": "Den Zeilenmodus für Code, Listen und Dateien, in denen sich ganze Zeilen ändern. Den Wortmodus, wenn ein Satz an Ort und Stelle bearbeitet wurde."
         }
       ]
     },
@@ -267,6 +307,14 @@ const data: ToolPageTranslations = {
         {
           "question": "Ändert es das ursprüngliche Feld?",
           "answer": "Nein. Die Eingabe bleibt so, wie Sie sie eingefügt haben. Die eindeutige Liste erscheint im Ergebnisfeld, nachdem Sie das Tool ausgeführt haben."
+        },
+        {
+          "question": "Wie entferne ich Duplikate aus einer Liste?",
+          "answer": "Fügen Sie die Liste mit einem Eintrag pro Zeile ein und starten Sie das Tool. Die erste Kopie jeder Zeile bleibt in der ursprünglichen Reihenfolge, spätere Wiederholungen fallen weg."
+        },
+        {
+          "question": "Kann es Unterschiede bei Groß-/Kleinschreibung oder Leerzeichen ignorieren?",
+          "answer": "Ja. Schalten Sie die Optionen für Groß-/Kleinschreibung und Leerzeichen ein, damit Zeilen wie Apple und apple oder Zeilen mit zusätzlichen Leerzeichen als gleich gelten."
         }
       ]
     },
@@ -315,6 +363,14 @@ const data: ToolPageTranslations = {
         {
           "question": "Zerstört das meine Einrückung?",
           "answer": "Nur wenn Sie Trimmen, das Entfernen am Zeilenanfang oder die Tab-Umwandlung aktivieren. Lassen Sie diese aus, bleibt die Einrückung erhalten."
+        },
+        {
+          "question": "Wie entferne ich doppelte Leerzeichen aus einem Text?",
+          "answer": "Schalten Sie die Option ein, die wiederholte Leerzeichen zusammenfasst. Mehrere Leerzeichen innerhalb einer Zeile werden dann zu einem."
+        },
+        {
+          "question": "Wie lösche ich leere Zeilen?",
+          "answer": "Mit „Leerzeilen entfernen“ fallen alle leeren Zeilen weg. Mit dem Zusammenfassen von Leerzeilen bleibt eine leere Zeile zwischen Absätzen stehen."
         }
       ]
     },
@@ -372,6 +428,14 @@ const data: ToolPageTranslations = {
         {
           "question": "Bleiben leere Zeilen erhalten?",
           "answer": "Ja, außer Sie wählen „Leere Zeilen ignorieren“. In den Buchstabenmodi werden sie als leere Zeichenfolgen sortiert."
+        },
+        {
+          "question": "Wie sortiere ich eine Liste alphabetisch?",
+          "answer": "Fügen Sie einen Eintrag pro Zeile ein und wählen Sie A bis Z oder Z bis A für die umgekehrte Reihenfolge. Gleiche Zeilen behalten ihre ursprüngliche Reihenfolge."
+        },
+        {
+          "question": "Wie sortiere ich Zeilen nach Zahlen?",
+          "answer": "Wählen Sie numerisch aufsteigend oder absteigend. Jede Zeile wird nach der Zahl an ihrem Anfang sortiert, sodass 2 vor 10 kommt."
         }
       ]
     },
@@ -432,6 +496,14 @@ const data: ToolPageTranslations = {
         {
           "question": "Wird meine Eingabe an einen Server gesendet?",
           "answer": "Nein. Der Text und der Suchbegriff bleiben in diesem Tab. Sie werden an keinen Server gesendet."
+        },
+        {
+          "question": "Wie ersetze ich ein Wort überall in einem Text?",
+          "answer": "Geben Sie das gesuchte Wort und den Ersatz ein, wählen Sie „Alle ersetzen“ und kopieren Sie das Ergebnis. Schalten Sie die Groß-/Kleinschreibung ein, wenn sie eine Rolle spielt."
+        },
+        {
+          "question": "Unterstützt Suchen und Ersetzen reguläre Ausdrücke?",
+          "answer": "Nein. Es sucht genau den Text, den Sie eingeben. Für Mustersuchen testen Sie das Muster zuerst im Regex-Tester."
         }
       ]
     },
@@ -490,6 +562,14 @@ const data: ToolPageTranslations = {
         {
           "question": "Wird meine Eingabe an einen Server gesendet?",
           "answer": "Nein. Der eingefügte Text wird in diesem Tab umgeschrieben. Er wird nicht hochgeladen."
+        },
+        {
+          "question": "Wie entferne ich Zeilenumbrüche aus Text, der aus einem PDF kopiert wurde?",
+          "answer": "Fügen Sie den Text ein und wählen Sie die Option, die Absätze erhält. Einfache Zeilenumbrüche innerhalb eines Absatzes werden zu Leerzeichen, Leerzeilen zwischen Absätzen bleiben."
+        },
+        {
+          "question": "Was ist der Unterschied zwischen Ersetzen und Entfernen von Zeilenumbrüchen?",
+          "answer": "Beim Ersetzen wird jeder Umbruch zu einem Leerzeichen, sodass die Wörter getrennt bleiben. Beim Entfernen verschwindet der Umbruch, und das Ende einer Zeile hängt direkt am Anfang der nächsten."
         }
       ]
     },
@@ -545,6 +625,14 @@ const data: ToolPageTranslations = {
         {
           "question": "Wird meine Eingabe an einen Server gesendet?",
           "answer": "Nein. Die Zeilen und die Startnummer bleiben in diesem Tab. Sie werden an keinen Server gesendet."
+        },
+        {
+          "question": "Wie nummeriere ich Zeilen in einem Text?",
+          "answer": "Fügen Sie den Text ein, legen Sie Startnummer und Trennzeichen fest, etwa einen Punkt und ein Leerzeichen, fügen Sie dann die Nummern hinzu und kopieren Sie das Ergebnis."
+        },
+        {
+          "question": "Werden leere Zeilen nummeriert?",
+          "answer": "Ja. Jeder echte Zeilenumbruch beginnt eine neue nummerierte Zeile, auch leere Zeilen und eine leere letzte Zeile."
         }
       ]
     },

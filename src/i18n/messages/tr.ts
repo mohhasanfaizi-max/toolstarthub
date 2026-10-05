@@ -271,6 +271,7 @@ const messages: Messages = {
         "Bu araçların neleri kapsamadığı için {link} sayfasına bakın.",
       disclaimerLink: "sorumluluk reddi",
       faq: "Sık sorulan sorular",
+      howToName: "{name} nasıl kullanılır",
       defaultHowTo: [
         "Değerlerinizi girin veya araç gerektiriyorsa bir dosya seçin.",
         "Bu sayfadaki işlemi çalıştırın.",

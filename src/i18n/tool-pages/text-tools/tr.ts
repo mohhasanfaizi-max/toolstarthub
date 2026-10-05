@@ -34,6 +34,14 @@ const data: ToolPageTranslations = {
         {
           "question": "Fazladan boşluklar nasıl sayılır?",
           "answer": "Art arda gelen boşluklar fazladan kelime oluşturmaz, ancak karakter olarak sayılır."
+        },
+        {
+          "question": "5 dakikalık bir konuşma kaç kelimedir?",
+          "answer": "Konuşma hızı değişir, ancak dakikada 130 ila 150 kelime yaygın bir ölçüdür. Bu yüzden 5 dakikalık bir konuşma çoğunlukla yaklaşık 650 ila 750 kelimedir."
+        },
+        {
+          "question": "Okuma süresi nasıl tahmin edilir?",
+          "answer": "Kelime sayısı dakikada yaklaşık 225 kelimeye bölünür. Bu, ortalama bir okuyucu için yapılmış bir tahmindir, ölçülmüş bir okuma hızı değildir."
         }
       ]
     },
@@ -79,6 +87,14 @@ const data: ToolPageTranslations = {
         {
           "question": "Girdim bir sunucuya gönderiliyor mu?",
           "answer": "Hayır. Sayımlar bu sekmede oluşturulur. Kutuyu temizlemek metni sayfadan kaldırır ve metin yerel depolamaya yazılmaz."
+        },
+        {
+          "question": "Boşluklar karakter sayılır mı?",
+          "answer": "Evet, ana toplamda sayılır. Sayaç ayrıca bazı formların ve ödevlerin istediği boşluksuz ikinci bir toplam da gösterir."
+        },
+        {
+          "question": "Bir emoji kaç karakterdir?",
+          "answer": "Bu sayfada tek bir emoji bir Unicode karakteri sayılır. Bazı uygulamalar belirli emojileri iki veya daha fazla sayar, bu yüzden onların sınırı biraz farklı olabilir."
         }
       ]
     },
@@ -121,6 +137,14 @@ const data: ToolPageTranslations = {
         {
           "question": "Girdim bir sunucuya gönderiliyor mu?",
           "answer": "Hayır. Yapıştırdığınız metin bu sekmede dönüştürülür. Yüklenmez ve yerel depolamaya yazılmaz."
+        },
+        {
+          "question": "Başlık düzeni ile cümle düzeni arasındaki fark nedir?",
+          "answer": "Başlık düzeni, İngilizce manşetlerde olduğu gibi her kelimenin ilk harfini büyük yapar. Cümle düzeni ise normal yazıda olduğu gibi yalnızca her cümlenin ilk harfini büyük yapar."
+        },
+        {
+          "question": "camelCase, snake_case ve kebab-case nedir?",
+          "answer": "Bunlar kodda kullanılan adlandırma stilleridir. camelCase kelimeleri büyük harflerle birleştirir (myVariableName), snake_case alt çizgi kullanır (my_variable_name), kebab-case ise kısa çizgi kullanır (my-variable-name)."
         }
       ]
     },
@@ -167,6 +191,14 @@ const data: ToolPageTranslations = {
         {
           "question": "Neden bir üst sınır var?",
           "answer": "Çok büyük bloklar bir sekmeyi dondurabilir. Paragraflar 20’de, cümleler 50’de, kelimeler 500’de durur."
+        },
+        {
+          "question": "Lorem ipsum ne demektir?",
+          "answer": "Lorem ipsum, yer tutucu metin olarak kullanılan karıştırılmış Latincedir. Gerçek bir metne benzediği için, okuyucular kelimelere odaklanmadan bir sayfa düzeni değerlendirilebilir."
+        },
+        {
+          "question": "Yer tutucu metni ne zaman kullanmalıyım?",
+          "answer": "Taslak tasarımlarda, şablonlarda ve yazı tipi denemelerinde. Sayfa yayına girmeden önce gerçek metinle değiştirin, çünkü yer tutucu metin ziyaretçilere hiçbir şey anlatmaz."
         }
       ]
     },
@@ -215,6 +247,14 @@ const data: ToolPageTranslations = {
         {
           "question": "Girdim bir sunucuya gönderiliyor mu?",
           "answer": "Hayır. İki panel bu sekmede karşılaştırılır. Metin bir sunucuya gönderilmez ve yerel depolamaya kaydedilmez."
+        },
+        {
+          "question": "Diff nedir?",
+          "answer": "Diff, bir metnin iki sürümü arasındaki farkların listesidir: neyin eklendiği, neyin çıkarıldığı ve neyin aynı kaldığı."
+        },
+        {
+          "question": "Satır modunu mu, kelime modunu mu kullanmalıyım?",
+          "answer": "Satırların tamamen değiştiği kod, liste ve dosyalar için satır modunu kullanın. Bir cümle yerinde düzenlendiyse kelime modunu kullanın."
         }
       ]
     },
@@ -267,6 +307,14 @@ const data: ToolPageTranslations = {
         {
           "question": "Orijinal kutu değişiyor mu?",
           "answer": "Hayır. Girdi yapıştırdığınız gibi kalır. Benzersiz liste, işlemi çalıştırdıktan sonra sonuç kutusunda görünür."
+        },
+        {
+          "question": "Bir listeden yinelenenleri nasıl kaldırırım?",
+          "answer": "Listeyi her satıra bir öğe gelecek şekilde yapıştırın ve aracı çalıştırın. Her satırın ilk kopyası özgün sırasıyla korunur, sonraki tekrarlar çıkarılır."
+        },
+        {
+          "question": "Büyük/küçük harf veya boşluk farklarını yok sayabilir mi?",
+          "answer": "Evet. Büyük/küçük harf ve kırpma seçeneklerini açın; böylece Apple ve apple gibi satırlar ya da fazladan boşluk içeren satırlar aynı sayılır."
         }
       ]
     },
@@ -315,6 +363,14 @@ const data: ToolPageTranslations = {
         {
           "question": "Girintim bozulur mu?",
           "answer": "Yalnızca kırpmayı, baştaki boşluk kaldırmayı veya sekme dönüştürmeyi açarsanız. Girintiyi korumak için bunları kapalı bırakın."
+        },
+        {
+          "question": "Metindeki çift boşlukları nasıl kaldırırım?",
+          "answer": "Tekrarlanan boşlukları birleştiren seçeneği açın. Her satırdaki ardışık boşluklar tek boşluğa dönüşür."
+        },
+        {
+          "question": "Boş satırları nasıl silerim?",
+          "answer": "Tüm boş satırları atmak için boş satırları kaldır seçeneğini, paragraflar arasında tek bir boş satır bırakmak için boş satırları birleştir seçeneğini kullanın."
         }
       ]
     },
@@ -372,6 +428,14 @@ const data: ToolPageTranslations = {
         {
           "question": "Boş satırlar korunuyor mu?",
           "answer": "Evet, “Boş satırları yok say”ı seçmediğiniz sürece. Harf modlarında boş metin olarak sıralanırlar."
+        },
+        {
+          "question": "Bir listeyi alfabetik olarak nasıl sıralarım?",
+          "answer": "Her satıra bir öğe yapıştırın ve A'dan Z'ye ya da ters sıra için Z'den A'ya seçin. Eşit satırlar özgün sıralarını korur."
+        },
+        {
+          "question": "Satırları sayıya göre nasıl sıralarım?",
+          "answer": "Sayısal artan veya azalan seçin. Her satır başındaki sayıya göre sıralanır, böylece 2, 10'dan önce gelir."
         }
       ]
     },
@@ -432,6 +496,14 @@ const data: ToolPageTranslations = {
         {
           "question": "Girdim bir sunucuya gönderiliyor mu?",
           "answer": "Hayır. Metin ve arama ifadesi bu sekmede kalır. Bir sunucuya gönderilmez."
+        },
+        {
+          "question": "Bir kelimeyi metnin her yerinde nasıl değiştiririm?",
+          "answer": "Aranacak kelimeyi ve yerine geçecek kelimeyi girin, Tümünü değiştir'i seçin ve sonucu kopyalayın. Büyük harfler önemliyse büyük/küçük harf duyarlı aramayı açın."
+        },
+        {
+          "question": "Bul ve değiştir düzenli ifadeleri destekliyor mu?",
+          "answer": "Hayır. Yazdığınız metnin tam olarak aynısını arar. Kalıp eşleştirme için kalıbı önce Regex Test Aracı'nda deneyin."
         }
       ]
     },
@@ -490,6 +562,14 @@ const data: ToolPageTranslations = {
         {
           "question": "Girdim bir sunucuya gönderiliyor mu?",
           "answer": "Hayır. Yapıştırılan metin bu sekmede yeniden yazılır. Yüklenmez."
+        },
+        {
+          "question": "PDF'den kopyalanan metindeki satır sonlarını nasıl kaldırırım?",
+          "answer": "Metni yapıştırın ve paragraf sonlarını koruyan seçeneği seçin. Paragraf içindeki tek satır sonları boşluğa dönüşür, paragraflar arasındaki boş satırlar kalır."
+        },
+        {
+          "question": "Satır sonlarını değiştirmek ile kaldırmak arasındaki fark nedir?",
+          "answer": "Değiştirmek her satır sonunu boşluğa çevirir, böylece kelimeler ayrı kalır. Kaldırmak satır sonunu siler ve bir satırın sonunu sonraki satırın başına birleştirir."
         }
       ]
     },
@@ -545,6 +625,14 @@ const data: ToolPageTranslations = {
         {
           "question": "Girdim bir sunucuya gönderiliyor mu?",
           "answer": "Hayır. Satırlar ve başlangıç numarası bu sekmede kalır. Bir sunucuya gönderilmez."
+        },
+        {
+          "question": "Metindeki satırları nasıl numaralandırırım?",
+          "answer": "Metni yapıştırın, başlangıç numarasını ve nokta ile boşluk gibi bir ayırıcıyı belirleyin, ardından numaraları ekleyip sonucu kopyalayın."
+        },
+        {
+          "question": "Boş satırlar numaralandırılır mı?",
+          "answer": "Evet. Her gerçek satır sonu, boş satırlar ve sondaki boş satır dahil yeni bir numaralı satır başlatır."
         }
       ]
     },

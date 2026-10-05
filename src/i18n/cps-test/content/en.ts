@@ -6,7 +6,7 @@ export const cpsTestDescription =
   "Free CPS test (click speed test): click for 1 to 60 seconds, including the 10-second click test, and see your clicks per second, rating, and best score.";
 
 const page: LocalizedToolPage = {
-  metaTitle: "CPS Test — Click Speed Test, Clicks Per Second",
+  metaTitle: "CPS Test: Click Speed Test & Clicks Per Second",
   quickAnswer:
     "A CPS test counts how many times you click in a set time and divides by the seconds to give clicks per second. Normal one-finger clicking often lands around 6 to 7 CPS, the figure most often quoted as the average CPS. Jitter and butterfly clicking can go higher.",
   headings: {

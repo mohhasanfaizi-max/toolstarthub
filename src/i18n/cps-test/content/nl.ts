@@ -1,7 +1,7 @@
 import type { LocalizedToolPage } from "../types.ts";
 
 const page: LocalizedToolPage = {
-  metaTitle: "CPS-test — Kliksnelheidstest, klikken per seconde",
+  metaTitle: "CPS-test: kliksnelheid en klikken per seconde",
   quickAnswer:
     "Een CPS-test telt hoe vaak je klikt in een vaste tijd en deelt dat door het aantal seconden: je klikken per seconde. Gewoon klikken met één vinger komt vaak uit rond 6 à 7 CPS, het getal dat het vaakst als gemiddelde wordt genoemd. Met jitter- en butterfly-klikken kan het hoger.",
   headings: {

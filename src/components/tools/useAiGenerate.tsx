@@ -3,6 +3,7 @@
 import { useState } from "react";
 import { CopyButton } from "@/components/tools/CopyButton";
 import { ToolError, ToolOutput } from "@/components/tools/ToolForm";
+import { useTx } from "@/i18n/tool-text";
 
 export type AiStatus = "idle" | "loading" | "success" | "error" | "limited";
 
@@ -58,17 +59,18 @@ export function AiResult({
   label: string;
   copyLabel?: string;
 }) {
+  const tx = useTx();
   if (status === "idle") return null;
   return (
     <div className="mt-6 space-y-3">
-      {status === "loading" ? <p className="text-sm text-muted-foreground">Working on the AI request…</p> : null}
-      {error ? <ToolError>{error}</ToolError> : null}
+      {status === "loading" ? <p className="text-sm text-muted-foreground">{tx("Working on the AI request…")}</p> : null}
+      {error ? <ToolError>{tx(error)}</ToolError> : null}
       {status === "success" ? (
-        <ToolOutput label={label}>
+        <ToolOutput label={tx(label)}>
           <p className="whitespace-pre-wrap break-words text-sm leading-6">{text}</p>
           {copyLabel ? (
             <div className="mt-3">
-              <CopyButton value={text} label={copyLabel} />
+              <CopyButton value={text} label={tx(copyLabel)} />
             </div>
           ) : null}
         </ToolOutput>

@@ -1,7 +1,7 @@
 import type { LocalizedToolPage } from "../types.ts";
 
 const page: LocalizedToolPage = {
-  metaTitle: "CPSテスト — クリック速度テスト・1秒あたりのクリック数",
+  metaTitle: "CPSテスト：クリック速度と1秒あたりのクリック数",
   quickAnswer:
     "CPSテストは、決まった時間内に何回クリックしたかを数え、秒数で割って1秒あたりのクリック数を出します。指1本の通常のクリックはおよそ6〜7 CPSになることが多く、平均としてよく挙げられるのもこの数字です。ジッタークリックやバタフライクリックでは、さらに高くなることがあります。",
   headings: {

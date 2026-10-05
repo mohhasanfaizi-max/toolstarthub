@@ -267,6 +267,7 @@ const messages: Messages = {
       disclaimer: "Lihat {link} untuk hal-hal yang tidak dicakup alat ini.",
       disclaimerLink: "penafian",
       faq: "Tanya jawab",
+      howToName: "Cara menggunakan {name}",
       defaultHowTo: [
         "Masukkan nilai Anda atau pilih file jika alat memerlukannya.",
         "Jalankan aksi di halaman ini.",

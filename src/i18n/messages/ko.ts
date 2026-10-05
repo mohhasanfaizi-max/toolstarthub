@@ -262,6 +262,7 @@ const messages: Messages = {
       disclaimer: "이 도구가 다루지 않는 내용은 {link}을(를) 참고하세요.",
       disclaimerLink: "면책 조항",
       faq: "자주 묻는 질문",
+      howToName: "{name} 사용 방법",
       defaultHowTo: [
         "값을 입력하거나 도구에 필요하면 파일을 선택하세요.",
         "이 페이지에서 작업을 실행하세요.",

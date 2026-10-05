@@ -1,7 +1,7 @@
 import type { LocalizedToolPage } from "../types.ts";
 
 const page: LocalizedToolPage = {
-  metaTitle: "CPS-Test — Klickgeschwindigkeitstest, Klicks pro Sekunde",
+  metaTitle: "CPS-Test: Klickgeschwindigkeit & Klicks pro Sekunde",
   quickAnswer:
     "Ein CPS-Test zählt, wie oft du in einer festen Zeit klickst, und teilt das durch die Sekunden: Das ergibt deine Klicks pro Sekunde. Normales Klicken mit einem Finger liegt oft bei etwa 6 bis 7 CPS, dem Wert, der am häufigsten als Durchschnitt genannt wird. Mit Jitter- und Butterfly-Klicken geht es höher.",
   headings: {

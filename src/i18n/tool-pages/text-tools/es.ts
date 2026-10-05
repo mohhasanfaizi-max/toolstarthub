@@ -34,6 +34,14 @@ const data: ToolPageTranslations = {
         {
           "question": "¿Cómo se cuentan los espacios de más?",
           "answer": "Varios espacios seguidos no crean palabras adicionales, pero sí cuentan como caracteres."
+        },
+        {
+          "question": "¿Cuántas palabras tiene un discurso de 5 minutos?",
+          "answer": "El ritmo al hablar varía, pero de 130 a 150 palabras por minuto es una referencia habitual, así que un discurso de 5 minutos suele tener entre 650 y 750 palabras."
+        },
+        {
+          "question": "¿Cómo se calcula el tiempo de lectura?",
+          "answer": "El número de palabras se divide entre unas 225 palabras por minuto. Es una estimación para un lector medio, no una velocidad de lectura medida."
         }
       ]
     },
@@ -79,6 +87,14 @@ const data: ToolPageTranslations = {
         {
           "question": "¿Se envía lo que escribo a un servidor?",
           "answer": "No. Los recuentos se generan en esta pestaña. Al vaciar el cuadro, el texto desaparece de la página y no se guarda en el almacenamiento local."
+        },
+        {
+          "question": "¿Los espacios cuentan como caracteres?",
+          "answer": "Sí, en el total principal. El contador también muestra un segundo total sin espacios, que piden algunos formularios y trabajos."
+        },
+        {
+          "question": "¿Cuántos caracteres tiene un emoji?",
+          "answer": "En esta página, un emoji suelto cuenta como un carácter Unicode. Algunas aplicaciones cuentan ciertos emojis como dos o más, así que su límite puede variar un poco."
         }
       ]
     },
@@ -121,6 +137,14 @@ const data: ToolPageTranslations = {
         {
           "question": "¿Se envía lo que escribo a un servidor?",
           "answer": "No. El texto que pegas se convierte en esta pestaña. No se sube ni se guarda en el almacenamiento local."
+        },
+        {
+          "question": "¿Qué diferencia hay entre tipo título y tipo oración?",
+          "answer": "El tipo título pone en mayúscula la primera letra de cada palabra, como en un titular en inglés. El tipo oración solo pone en mayúscula la primera letra de cada oración, como en un texto normal."
+        },
+        {
+          "question": "¿Qué son camelCase, snake_case y kebab-case?",
+          "answer": "Son estilos de nombres usados en programación. camelCase une palabras con mayúsculas (myVariableName), snake_case usa guiones bajos (my_variable_name) y kebab-case usa guiones (my-variable-name)."
         }
       ]
     },
@@ -167,6 +191,14 @@ const data: ToolPageTranslations = {
         {
           "question": "¿Por qué hay un máximo?",
           "answer": "Los bloques muy grandes pueden congelar una pestaña. Los párrafos se limitan a 20, las oraciones a 50 y las palabras a 500."
+        },
+        {
+          "question": "¿Qué significa lorem ipsum?",
+          "answer": "Lorem ipsum es latín desordenado que se usa como texto de relleno. Parece un texto real, así que permite valorar un diseño sin que los lectores se fijen en las palabras."
+        },
+        {
+          "question": "¿Cuándo debo usar texto de relleno?",
+          "answer": "En maquetas, plantillas y pruebas de fuentes. Sustitúyelo por el texto real antes de publicar la página, porque el relleno no dice nada a los visitantes."
         }
       ]
     },
@@ -215,6 +247,14 @@ const data: ToolPageTranslations = {
         {
           "question": "¿Se envía lo que escribo a un servidor?",
           "answer": "No. Los dos paneles se comparan en esta pestaña. El texto no se envía a ningún servidor ni se guarda en el almacenamiento local."
+        },
+        {
+          "question": "¿Qué es un diff?",
+          "answer": "Un diff es una lista de las diferencias entre dos versiones de un texto: lo que se añadió, lo que se quitó y lo que se mantuvo igual."
+        },
+        {
+          "question": "¿Uso el modo por líneas o por palabras?",
+          "answer": "Usa el modo por líneas para código, listas y archivos donde cambian líneas enteras. Usa el modo por palabras cuando se editó una frase sin moverla."
         }
       ]
     },
@@ -267,6 +307,14 @@ const data: ToolPageTranslations = {
         {
           "question": "¿Cambia el cuadro original?",
           "answer": "No. La entrada queda tal como la pegaste. La lista única aparece en el cuadro de resultado después de ejecutar la operación."
+        },
+        {
+          "question": "¿Cómo quito los duplicados de una lista?",
+          "answer": "Pega la lista con un elemento por línea y ejecuta la herramienta. Se conserva la primera aparición de cada línea en su orden original y se eliminan las repeticiones posteriores."
+        },
+        {
+          "question": "¿Puede ignorar diferencias de mayúsculas o espacios?",
+          "answer": "Sí. Activa las opciones de mayúsculas y de recorte para que líneas como Apple y apple, o líneas con espacios de más, cuenten como iguales."
         }
       ]
     },
@@ -315,6 +363,14 @@ const data: ToolPageTranslations = {
         {
           "question": "¿Destruirá mi sangría?",
           "answer": "Solo si activas el recorte, la eliminación de espacios iniciales o la conversión de tabulaciones. Déjalas desactivadas para conservarla."
+        },
+        {
+          "question": "¿Cómo quito los espacios dobles de un texto?",
+          "answer": "Activa la opción que une los espacios repetidos. Las series de espacios dentro de cada línea se convierten en un solo espacio."
+        },
+        {
+          "question": "¿Cómo borro las líneas vacías?",
+          "answer": "Usa «eliminar líneas en blanco» para quitar todas las líneas vacías, o «unir líneas en blanco» para dejar una sola línea vacía entre párrafos."
         }
       ]
     },
@@ -372,6 +428,14 @@ const data: ToolPageTranslations = {
         {
           "question": "¿Se conservan las líneas vacías?",
           "answer": "Sí, salvo que elijas «Ignorar líneas vacías». En los modos alfabéticos se ordenan como cadenas vacías."
+        },
+        {
+          "question": "¿Cómo ordeno una lista alfabéticamente?",
+          "answer": "Pega un elemento por línea y elige de la A a la Z, o de la Z a la A para el orden inverso. Las líneas iguales mantienen su orden original."
+        },
+        {
+          "question": "¿Cómo ordeno líneas por número?",
+          "answer": "Elige numérico ascendente o descendente. Cada línea se ordena por el número del principio, así que 2 va antes que 10."
         }
       ]
     },
@@ -432,6 +496,14 @@ const data: ToolPageTranslations = {
         {
           "question": "¿Se envía lo que escribo a un servidor?",
           "answer": "No. El texto y la búsqueda se quedan en esta pestaña. No se envían a ningún servidor."
+        },
+        {
+          "question": "¿Cómo reemplazo una palabra en todo un texto?",
+          "answer": "Escribe la palabra que buscas y su reemplazo, elige «Reemplazar todo» y copia el resultado. Activa la distinción de mayúsculas si importan."
+        },
+        {
+          "question": "¿Buscar y reemplazar admite expresiones regulares?",
+          "answer": "No. Busca exactamente el texto que escribes. Para buscar patrones, prueba antes el patrón en el probador de regex."
         }
       ]
     },
@@ -490,6 +562,14 @@ const data: ToolPageTranslations = {
         {
           "question": "¿Se envía lo que escribo a un servidor?",
           "answer": "No. El texto pegado se reescribe en esta pestaña. No se sube."
+        },
+        {
+          "question": "¿Cómo quito los saltos de línea de un texto copiado de un PDF?",
+          "answer": "Pega el texto y elige la opción que conserva los párrafos. Los saltos simples dentro de un párrafo se convierten en espacios y las líneas en blanco entre párrafos se mantienen."
+        },
+        {
+          "question": "¿Qué diferencia hay entre reemplazar y quitar saltos de línea?",
+          "answer": "Reemplazar convierte cada salto en un espacio, así que las palabras quedan separadas. Quitar elimina el salto, lo que une el final de una línea con el inicio de la siguiente."
         }
       ]
     },
@@ -545,6 +625,14 @@ const data: ToolPageTranslations = {
         {
           "question": "¿Se envía lo que escribo a un servidor?",
           "answer": "No. Las líneas y el número inicial se quedan en esta pestaña. No se envían a ningún servidor."
+        },
+        {
+          "question": "¿Cómo numero las líneas de un texto?",
+          "answer": "Pega el texto, define el número inicial y el separador, como un punto y un espacio, añade los números y copia el resultado."
+        },
+        {
+          "question": "¿Se numeran las líneas vacías?",
+          "answer": "Sí. Cada salto de línea real empieza una nueva línea numerada, incluidas las líneas vacías y una línea vacía al final."
         }
       ]
     },

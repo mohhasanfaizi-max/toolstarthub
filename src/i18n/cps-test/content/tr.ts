@@ -1,7 +1,7 @@
 import type { LocalizedToolPage } from "../types.ts";
 
 const page: LocalizedToolPage = {
-  metaTitle: "CPS Testi — Tıklama hızı testi, saniyede tıklama",
+  metaTitle: "CPS Testi: Tıklama Hızı ve Saniyede Tıklama",
   quickAnswer:
     "CPS testi, belirli bir sürede kaç kez tıkladığınızı sayar ve bunu saniyeye bölerek saniyedeki tıklama sayınızı verir. Tek parmakla normal tıklama çoğu zaman 6 ile 7 CPS civarındadır; ortalama olarak en sık söylenen değer budur. Jitter ve butterfly tıklama daha yüksek sonuç verebilir.",
   headings: {

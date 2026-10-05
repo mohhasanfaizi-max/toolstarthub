@@ -276,6 +276,7 @@ const messages: Messages = {
         "Consulta el {link} para saber qué no cubren estas herramientas.",
       disclaimerLink: "aviso legal",
       faq: "Preguntas frecuentes",
+      howToName: "Cómo usar: {name}",
       defaultHowTo: [
         "Introduce tus valores o elige un archivo si la herramienta lo necesita.",
         "Ejecuta la acción en esta página.",

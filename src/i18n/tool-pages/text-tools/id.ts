@@ -34,6 +34,14 @@ const data: ToolPageTranslations = {
         {
           "question": "Bagaimana spasi berlebih dihitung?",
           "answer": "Spasi berturut-turut tidak menambah jumlah kata, tetapi tetap dihitung sebagai karakter."
+        },
+        {
+          "question": "Berapa kata dalam pidato 5 menit?",
+          "answer": "Kecepatan bicara berbeda-beda, tetapi 130 sampai 150 kata per menit adalah patokan umum, jadi pidato 5 menit biasanya sekitar 650 sampai 750 kata."
+        },
+        {
+          "question": "Bagaimana waktu baca diperkirakan?",
+          "answer": "Jumlah kata dibagi sekitar 225 kata per menit. Ini perkiraan untuk pembaca rata-rata, bukan kecepatan baca yang diukur."
         }
       ]
     },
@@ -79,6 +87,14 @@ const data: ToolPageTranslations = {
         {
           "question": "Apakah input saya dikirim ke server?",
           "answer": "Tidak. Hitungan dibuat di tab ini. Mengosongkan kotak menghapus teks dari halaman, dan teks tidak ditulis ke penyimpanan lokal."
+        },
+        {
+          "question": "Apakah spasi dihitung sebagai karakter?",
+          "answer": "Ya, dalam total utama. Penghitung juga menampilkan total kedua tanpa spasi, yang diminta oleh sebagian formulir dan tugas."
+        },
+        {
+          "question": "Berapa karakter sebuah emoji?",
+          "answer": "Di halaman ini, satu emoji dihitung sebagai satu karakter Unicode. Beberapa aplikasi menghitung emoji tertentu sebagai dua atau lebih, jadi batasnya bisa sedikit berbeda."
         }
       ]
     },
@@ -121,6 +137,14 @@ const data: ToolPageTranslations = {
         {
           "question": "Apakah input saya dikirim ke server?",
           "answer": "Tidak. Teks yang Anda tempel diubah di tab ini. Teks tidak diunggah dan tidak ditulis ke penyimpanan lokal."
+        },
+        {
+          "question": "Apa bedanya huruf judul dan huruf kalimat?",
+          "answer": "Huruf judul membuat huruf pertama setiap kata menjadi kapital, seperti judul berita berbahasa Inggris. Huruf kalimat hanya membuat huruf pertama setiap kalimat menjadi kapital, seperti tulisan biasa."
+        },
+        {
+          "question": "Apa itu camelCase, snake_case, dan kebab-case?",
+          "answer": "Itu gaya penamaan yang dipakai dalam kode. camelCase menyambung kata dengan huruf kapital (myVariableName), snake_case memakai garis bawah (my_variable_name), dan kebab-case memakai tanda hubung (my-variable-name)."
         }
       ]
     },
@@ -167,6 +191,14 @@ const data: ToolPageTranslations = {
         {
           "question": "Mengapa ada batas maksimum?",
           "answer": "Blok yang sangat besar bisa membuat tab macet. Paragraf dibatasi 20, kalimat 50, dan kata 500."
+        },
+        {
+          "question": "Apa arti lorem ipsum?",
+          "answer": "Lorem ipsum adalah bahasa Latin acak yang dipakai sebagai teks pengisi. Teks ini mirip tulisan asli, sehingga tata letak bisa dinilai tanpa pembaca terpaku pada kata-katanya."
+        },
+        {
+          "question": "Kapan sebaiknya memakai teks pengisi?",
+          "answer": "Untuk mockup, templat, dan uji font. Ganti dengan teks asli sebelum halaman ditayangkan, karena teks pengisi tidak memberi informasi apa pun kepada pengunjung."
         }
       ]
     },
@@ -215,6 +247,14 @@ const data: ToolPageTranslations = {
         {
           "question": "Apakah input saya dikirim ke server?",
           "answer": "Tidak. Kedua panel dibandingkan di tab ini. Teks tidak dikirim ke server dan tidak disimpan di penyimpanan lokal."
+        },
+        {
+          "question": "Apa itu diff?",
+          "answer": "Diff adalah daftar perbedaan antara dua versi teks: apa yang ditambahkan, apa yang dihapus, dan apa yang tetap sama."
+        },
+        {
+          "question": "Sebaiknya pakai mode baris atau mode kata?",
+          "answer": "Gunakan mode baris untuk kode, daftar, dan file yang berubah per baris utuh. Gunakan mode kata jika sebuah kalimat disunting di tempat."
         }
       ]
     },
@@ -267,6 +307,14 @@ const data: ToolPageTranslations = {
         {
           "question": "Apakah kotak aslinya berubah?",
           "answer": "Tidak. Input tetap seperti yang Anda tempel. Daftar unik muncul di kotak hasil setelah Anda menjalankan proses."
+        },
+        {
+          "question": "Bagaimana cara menghapus duplikat dari daftar?",
+          "answer": "Tempel daftar dengan satu item per baris, lalu jalankan alat. Salinan pertama setiap baris dipertahankan sesuai urutan aslinya dan pengulangan berikutnya dibuang."
+        },
+        {
+          "question": "Bisakah alat ini mengabaikan perbedaan huruf besar-kecil atau spasi?",
+          "answer": "Bisa. Aktifkan opsi huruf besar-kecil dan pemangkasan spasi agar baris seperti Apple dan apple, atau baris dengan spasi berlebih, dianggap sama."
         }
       ]
     },
@@ -315,6 +363,14 @@ const data: ToolPageTranslations = {
         {
           "question": "Apakah indentasi saya akan rusak?",
           "answer": "Hanya jika Anda mengaktifkan pemangkasan, penghapusan spasi awal, atau konversi tab. Matikan opsi itu untuk mempertahankan indentasi."
+        },
+        {
+          "question": "Bagaimana cara menghapus spasi ganda dari teks?",
+          "answer": "Aktifkan opsi yang menggabungkan spasi berulang. Deretan spasi di dalam setiap baris menjadi satu spasi."
+        },
+        {
+          "question": "Bagaimana cara menghapus baris kosong?",
+          "answer": "Gunakan hapus baris kosong untuk membuang semua baris kosong, atau gabungkan baris kosong untuk menyisakan satu baris kosong di antara paragraf."
         }
       ]
     },
@@ -372,6 +428,14 @@ const data: ToolPageTranslations = {
         {
           "question": "Apakah baris kosong dipertahankan?",
           "answer": "Ya, kecuali Anda memilih “Abaikan baris kosong”. Dalam mode abjad, baris kosong diurutkan sebagai teks kosong."
+        },
+        {
+          "question": "Bagaimana cara mengurutkan daftar secara alfabetis?",
+          "answer": "Tempel satu item per baris dan pilih A ke Z, atau Z ke A untuk urutan terbalik. Baris yang sama tetap pada urutan aslinya."
+        },
+        {
+          "question": "Bagaimana cara mengurutkan baris berdasarkan angka?",
+          "answer": "Pilih numerik naik atau turun. Setiap baris diurutkan menurut angka di awalnya, jadi 2 muncul sebelum 10."
         }
       ]
     },
@@ -432,6 +496,14 @@ const data: ToolPageTranslations = {
         {
           "question": "Apakah input saya dikirim ke server?",
           "answer": "Tidak. Teks dan kata kunci pencarian tetap di tab ini. Keduanya tidak dikirim ke server."
+        },
+        {
+          "question": "Bagaimana cara mengganti satu kata di seluruh teks?",
+          "answer": "Masukkan kata yang dicari dan penggantinya, pilih Ganti semua, lalu salin hasilnya. Aktifkan pencarian peka huruf besar-kecil jika huruf kapital penting."
+        },
+        {
+          "question": "Apakah cari dan ganti mendukung ekspresi reguler?",
+          "answer": "Tidak. Alat ini mencari teks persis seperti yang Anda ketik. Untuk pencocokan pola, uji polanya terlebih dahulu di Regex Tester."
         }
       ]
     },
@@ -490,6 +562,14 @@ const data: ToolPageTranslations = {
         {
           "question": "Apakah input saya dikirim ke server?",
           "answer": "Tidak. Teks yang ditempel ditulis ulang di tab ini. Teks tidak diunggah."
+        },
+        {
+          "question": "Bagaimana cara menghapus jeda baris dari teks yang disalin dari PDF?",
+          "answer": "Tempel teks dan pilih opsi yang mempertahankan paragraf. Jeda baris tunggal di dalam paragraf menjadi spasi, sedangkan baris kosong di antara paragraf tetap ada."
+        },
+        {
+          "question": "Apa bedanya mengganti dan menghapus jeda baris?",
+          "answer": "Mengganti mengubah setiap jeda menjadi spasi sehingga kata tetap terpisah. Menghapus membuang jeda, sehingga akhir satu baris menyambung ke awal baris berikutnya."
         }
       ]
     },
@@ -545,6 +625,14 @@ const data: ToolPageTranslations = {
         {
           "question": "Apakah input saya dikirim ke server?",
           "answer": "Tidak. Baris dan nomor awal tetap di tab ini. Keduanya tidak dikirim ke server."
+        },
+        {
+          "question": "Bagaimana cara memberi nomor baris pada teks?",
+          "answer": "Tempel teks, atur nomor awal dan pemisahnya, misalnya titik dan spasi, lalu tambahkan nomor dan salin hasilnya."
+        },
+        {
+          "question": "Apakah baris kosong diberi nomor?",
+          "answer": "Ya. Setiap jeda baris yang sebenarnya memulai baris bernomor baru, termasuk baris kosong dan baris kosong di bagian akhir."
         }
       ]
     },

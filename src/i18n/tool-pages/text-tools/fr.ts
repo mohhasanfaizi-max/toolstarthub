@@ -34,6 +34,14 @@ const data: ToolPageTranslations = {
         {
           "question": "Comment les espaces en trop sont-ils comptés ?",
           "answer": "Plusieurs espaces à la suite ne créent pas de mots supplémentaires. En revanche, ils comptent comme caractères."
+        },
+        {
+          "question": "Combien de mots compte un discours de 5 minutes ?",
+          "answer": "Le débit varie, mais 130 à 150 mots par minute est un repère courant. Un discours de 5 minutes compte donc souvent 650 à 750 mots environ."
+        },
+        {
+          "question": "Comment le temps de lecture est-il estimé ?",
+          "answer": "Le nombre de mots est divisé par environ 225 mots par minute. C’est une estimation pour un lecteur moyen, pas une vitesse de lecture mesurée."
         }
       ]
     },
@@ -79,6 +87,14 @@ const data: ToolPageTranslations = {
         {
           "question": "Ma saisie est-elle envoyée à un serveur ?",
           "answer": "Non. Les totaux sont calculés dans cet onglet. Vider la zone retire le texte de la page, et il n’est pas écrit dans le stockage local."
+        },
+        {
+          "question": "Les espaces comptent-ils comme des caractères ?",
+          "answer": "Oui, dans le total principal. Le compteur affiche aussi un second total sans espaces, que demandent certains formulaires et devoirs."
+        },
+        {
+          "question": "Combien de caractères compte un emoji ?",
+          "answer": "Sur cette page, un emoji seul compte pour un caractère Unicode. Certaines applications comptent certains emojis pour deux ou plus, leur limite peut donc différer légèrement."
         }
       ]
     },
@@ -121,6 +137,14 @@ const data: ToolPageTranslations = {
         {
           "question": "Ma saisie est-elle envoyée à un serveur ?",
           "answer": "Non. Le texte collé est converti dans cet onglet. Il n’est ni envoyé ni écrit dans le stockage local."
+        },
+        {
+          "question": "Quelle est la différence entre la casse titre et la casse phrase ?",
+          "answer": "La casse titre met une majuscule à la première lettre de chaque mot, comme dans un titre anglais. La casse phrase ne met une majuscule qu’à la première lettre de chaque phrase, comme dans un texte normal."
+        },
+        {
+          "question": "Que sont camelCase, snake_case et kebab-case ?",
+          "answer": "Ce sont des conventions de nommage utilisées en programmation. camelCase relie les mots avec des majuscules (myVariableName), snake_case avec des tirets bas (my_variable_name) et kebab-case avec des traits d’union (my-variable-name)."
         }
       ]
     },
@@ -167,6 +191,14 @@ const data: ToolPageTranslations = {
         {
           "question": "Pourquoi y a-t-il un maximum ?",
           "answer": "De très gros blocs peuvent figer un onglet. Les paragraphes s’arrêtent à 20, les phrases à 50 et les mots à 500."
+        },
+        {
+          "question": "Que signifie lorem ipsum ?",
+          "answer": "Le lorem ipsum est du latin brouillé utilisé comme texte de remplissage. Il ressemble à un vrai texte, ce qui permet de juger une mise en page sans que les lecteurs s’attardent sur les mots."
+        },
+        {
+          "question": "Quand utiliser un texte de remplissage ?",
+          "answer": "Pour les maquettes, les modèles et les tests de polices. Remplacez-le par le vrai texte avant la mise en ligne, car un texte de remplissage n’apprend rien aux visiteurs."
         }
       ]
     },
@@ -215,6 +247,14 @@ const data: ToolPageTranslations = {
         {
           "question": "Ma saisie est-elle envoyée à un serveur ?",
           "answer": "Non. Les deux panneaux sont comparés dans cet onglet. Le texte n’est ni envoyé à un serveur ni enregistré dans le stockage local."
+        },
+        {
+          "question": "Qu’est-ce qu’un diff ?",
+          "answer": "Un diff est la liste des différences entre deux versions d’un texte : ce qui a été ajouté, ce qui a été supprimé et ce qui n’a pas changé."
+        },
+        {
+          "question": "Faut-il utiliser le mode ligne ou le mode mot ?",
+          "answer": "Le mode ligne convient au code, aux listes et aux fichiers où des lignes entières changent. Le mode mot convient quand une phrase a été modifiée sur place."
         }
       ]
     },
@@ -267,6 +307,14 @@ const data: ToolPageTranslations = {
         {
           "question": "La zone d’origine est-elle modifiée ?",
           "answer": "Non. La saisie reste telle que vous l’avez collée. La liste unique apparaît dans la zone de résultat après l’opération."
+        },
+        {
+          "question": "Comment supprimer les doublons d’une liste ?",
+          "answer": "Collez la liste avec un élément par ligne et lancez l’outil. La première occurrence de chaque ligne est gardée dans l’ordre d’origine et les répétitions suivantes sont supprimées."
+        },
+        {
+          "question": "Peut-il ignorer les différences de casse ou d’espaces ?",
+          "answer": "Oui. Activez les options de casse et de suppression des espaces pour que des lignes comme Apple et apple, ou des lignes avec des espaces en trop, soient considérées comme identiques."
         }
       ]
     },
@@ -315,6 +363,14 @@ const data: ToolPageTranslations = {
         {
           "question": "Mon indentation va-t-elle disparaître ?",
           "answer": "Seulement si vous activez le rognage, la suppression en début de ligne ou la conversion des tabulations. Laissez-les désactivés pour la garder."
+        },
+        {
+          "question": "Comment supprimer les doubles espaces d’un texte ?",
+          "answer": "Activez l’option qui fusionne les espaces répétés. Les suites d’espaces dans chaque ligne deviennent une seule espace."
+        },
+        {
+          "question": "Comment supprimer les lignes vides ?",
+          "answer": "Utilisez la suppression des lignes vides pour retirer toutes les lignes vides, ou la fusion des lignes vides pour garder une seule ligne vide entre les paragraphes."
         }
       ]
     },
@@ -372,6 +428,14 @@ const data: ToolPageTranslations = {
         {
           "question": "Les lignes vides sont-elles conservées ?",
           "answer": "Oui, sauf si vous choisissez « Ignorer les lignes vides ». Dans les modes alphabétiques, elles sont triées comme des chaînes vides."
+        },
+        {
+          "question": "Comment trier une liste par ordre alphabétique ?",
+          "answer": "Collez un élément par ligne et choisissez A à Z, ou Z à A pour l’ordre inverse. Les lignes identiques gardent leur ordre d’origine."
+        },
+        {
+          "question": "Comment trier des lignes par nombre ?",
+          "answer": "Choisissez le tri numérique croissant ou décroissant. Chaque ligne est triée selon le nombre placé à son début, donc 2 vient avant 10."
         }
       ]
     },
@@ -432,6 +496,14 @@ const data: ToolPageTranslations = {
         {
           "question": "Ma saisie est-elle envoyée à un serveur ?",
           "answer": "Non. Le texte et la recherche restent dans cet onglet. Ils ne sont envoyés à aucun serveur."
+        },
+        {
+          "question": "Comment remplacer un mot partout dans un texte ?",
+          "answer": "Saisissez le mot à chercher et son remplacement, choisissez « Tout remplacer », puis copiez le résultat. Activez le respect de la casse si les majuscules comptent."
+        },
+        {
+          "question": "Rechercher et remplacer prend-il en charge les expressions régulières ?",
+          "answer": "Non. L’outil cherche exactement le texte saisi. Pour des motifs, testez d’abord le motif dans le testeur de regex."
         }
       ]
     },
@@ -490,6 +562,14 @@ const data: ToolPageTranslations = {
         {
           "question": "Ma saisie est-elle envoyée à un serveur ?",
           "answer": "Non. Le texte collé est réécrit dans cet onglet. Il n’est pas envoyé."
+        },
+        {
+          "question": "Comment supprimer les sauts de ligne d’un texte copié depuis un PDF ?",
+          "answer": "Collez le texte et choisissez l’option qui conserve les paragraphes. Les sauts de ligne simples à l’intérieur d’un paragraphe deviennent des espaces, et les lignes vides entre paragraphes restent."
+        },
+        {
+          "question": "Quelle différence entre remplacer et supprimer les sauts de ligne ?",
+          "answer": "Remplacer transforme chaque saut en espace, les mots restent donc séparés. Supprimer efface le saut, ce qui colle la fin d’une ligne au début de la suivante."
         }
       ]
     },
@@ -545,6 +625,14 @@ const data: ToolPageTranslations = {
         {
           "question": "Ma saisie est-elle envoyée à un serveur ?",
           "answer": "Non. Les lignes et le numéro de départ restent dans cet onglet. Ils ne sont envoyés à aucun serveur."
+        },
+        {
+          "question": "Comment numéroter les lignes d’un texte ?",
+          "answer": "Collez le texte, réglez le numéro de départ et le séparateur, par exemple un point et une espace, puis ajoutez les numéros et copiez le résultat."
+        },
+        {
+          "question": "Les lignes vides sont-elles numérotées ?",
+          "answer": "Oui. Chaque vrai saut de ligne commence une nouvelle ligne numérotée, y compris les lignes vides et une ligne vide finale."
         }
       ]
     },

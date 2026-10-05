@@ -30,6 +30,20 @@ import texttools_hi from "./text-tools/hi";
 import texttools_ur from "./text-tools/ur";
 import texttools_ja from "./text-tools/ja";
 import texttools_ko from "./text-tools/ko";
+import aitools_ptbr from "./ai-tools/pt-br";
+import aitools_nl from "./ai-tools/nl";
+import aitools_ar from "./ai-tools/ar";
+import aitools_es from "./ai-tools/es";
+import aitools_fr from "./ai-tools/fr";
+import aitools_id from "./ai-tools/id";
+import aitools_de from "./ai-tools/de";
+import aitools_it from "./ai-tools/it";
+import aitools_tr from "./ai-tools/tr";
+import aitools_ru from "./ai-tools/ru";
+import aitools_hi from "./ai-tools/hi";
+import aitools_ur from "./ai-tools/ur";
+import aitools_ja from "./ai-tools/ja";
+import aitools_ko from "./ai-tools/ko";
 
 export const commonToolText: Partial<Record<Locale, ToolTextDictionary>> = {
   "pt-br": common_ptbr,
@@ -49,21 +63,21 @@ export const commonToolText: Partial<Record<Locale, ToolTextDictionary>> = {
 };
 
 export const toolPageTranslations: Partial<Record<Locale, ToolPageTranslations>> = {
-  "pt-br": { ...texttools_ptbr },
-  "nl": { ...texttools_nl },
-  "ar": { ...texttools_ar },
-  "es": { ...texttools_es },
-  "fr": { ...texttools_fr },
-  "id": { ...texttools_id },
-  "de": { ...texttools_de },
-  "it": { ...texttools_it },
-  "tr": { ...texttools_tr },
-  "ru": { ...texttools_ru },
-  "hi": { ...texttools_hi },
-  "ur": { ...texttools_ur },
-  "ja": { ...texttools_ja },
-  "ko": { ...texttools_ko },
+  "pt-br": { ...texttools_ptbr, ...aitools_ptbr },
+  "nl": { ...texttools_nl, ...aitools_nl },
+  "ar": { ...texttools_ar, ...aitools_ar },
+  "es": { ...texttools_es, ...aitools_es },
+  "fr": { ...texttools_fr, ...aitools_fr },
+  "id": { ...texttools_id, ...aitools_id },
+  "de": { ...texttools_de, ...aitools_de },
+  "it": { ...texttools_it, ...aitools_it },
+  "tr": { ...texttools_tr, ...aitools_tr },
+  "ru": { ...texttools_ru, ...aitools_ru },
+  "hi": { ...texttools_hi, ...aitools_hi },
+  "ur": { ...texttools_ur, ...aitools_ur },
+  "ja": { ...texttools_ja, ...aitools_ja },
+  "ko": { ...texttools_ko, ...aitools_ko },
 };
 
 /** Categories whose tool pages are translated in every language. */
-export const translatedToolCategories: readonly string[] = ["text-tools"];
+export const translatedToolCategories: readonly string[] = ["text-tools", "ai-tools"];

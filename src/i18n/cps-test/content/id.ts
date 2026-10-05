@@ -1,7 +1,7 @@
 import type { LocalizedToolPage } from "../types.ts";
 
 const page: LocalizedToolPage = {
-  metaTitle: "Tes CPS — Tes kecepatan klik, klik per detik",
+  metaTitle: "Tes CPS: Kecepatan Klik & Klik per Detik",
   quickAnswer:
     "Tes CPS menghitung berapa kali Anda mengklik dalam waktu tertentu, lalu membaginya dengan jumlah detik untuk mendapatkan klik per detik. Klik biasa dengan satu jari sering berada di kisaran 6 sampai 7 CPS, angka yang paling sering disebut sebagai rata-rata. Jitter click dan butterfly click bisa lebih tinggi.",
   headings: {

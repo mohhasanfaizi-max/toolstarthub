@@ -34,6 +34,14 @@ const data: ToolPageTranslations = {
         {
           "question": "Come vengono contati gli spazi in più?",
           "answer": "Più spazi di fila non creano parole in più, ma contano come caratteri."
+        },
+        {
+          "question": "Quante parole ha un discorso di 5 minuti?",
+          "answer": "Il ritmo varia, ma 130–150 parole al minuto è un riferimento comune, quindi un discorso di 5 minuti ha spesso circa 650–750 parole."
+        },
+        {
+          "question": "Come viene stimato il tempo di lettura?",
+          "answer": "Il numero di parole viene diviso per circa 225 parole al minuto. È una stima per un lettore medio, non una velocità di lettura misurata."
         }
       ]
     },
@@ -79,6 +87,14 @@ const data: ToolPageTranslations = {
         {
           "question": "Quello che scrivo viene inviato a un server?",
           "answer": "No. I conteggi vengono calcolati in questa scheda. Svuotando la casella il testo sparisce dalla pagina, e non viene salvato nella memoria locale."
+        },
+        {
+          "question": "Gli spazi contano come caratteri?",
+          "answer": "Sì, nel totale principale. Il contatore mostra anche un secondo totale senza spazi, richiesto da alcuni moduli e compiti."
+        },
+        {
+          "question": "Quanti caratteri vale un’emoji?",
+          "answer": "In questa pagina una singola emoji conta come un carattere Unicode. Alcune app contano certe emoji come due o più, quindi il loro limite può variare leggermente."
         }
       ]
     },
@@ -121,6 +137,14 @@ const data: ToolPageTranslations = {
         {
           "question": "Quello che scrivo viene inviato a un server?",
           "answer": "No. Il testo incollato viene convertito in questa scheda. Non viene caricato né salvato nella memoria locale."
+        },
+        {
+          "question": "Che differenza c’è tra maiuscole da titolo e da frase?",
+          "answer": "Il formato titolo mette la maiuscola alla prima lettera di ogni parola, come nei titoli inglesi. Il formato frase la mette solo alla prima lettera di ogni frase, come nella scrittura normale."
+        },
+        {
+          "question": "Cosa sono camelCase, snake_case e kebab-case?",
+          "answer": "Sono stili di denominazione usati nel codice. camelCase unisce le parole con le maiuscole (myVariableName), snake_case usa i trattini bassi (my_variable_name) e kebab-case i trattini (my-variable-name)."
         }
       ]
     },
@@ -167,6 +191,14 @@ const data: ToolPageTranslations = {
         {
           "question": "Perché c’è un limite massimo?",
           "answer": "Blocchi molto grandi possono bloccare una scheda. I paragrafi si fermano a 20, le frasi a 50 e le parole a 500."
+        },
+        {
+          "question": "Cosa significa lorem ipsum?",
+          "answer": "Il lorem ipsum è latino rimescolato usato come testo segnaposto. Sembra un testo vero, quindi permette di valutare un layout senza che i lettori si concentrino sulle parole."
+        },
+        {
+          "question": "Quando usare un testo segnaposto?",
+          "answer": "Per mockup, modelli e prove di caratteri. Sostituiscilo con il testo vero prima di pubblicare la pagina, perché il segnaposto non dice nulla ai visitatori."
         }
       ]
     },
@@ -215,6 +247,14 @@ const data: ToolPageTranslations = {
         {
           "question": "Quello che scrivo viene inviato a un server?",
           "answer": "No. I due pannelli vengono confrontati in questa scheda. Il testo non viene inviato a nessun server né salvato nella memoria locale."
+        },
+        {
+          "question": "Che cos’è un diff?",
+          "answer": "Un diff è un elenco delle differenze tra due versioni di un testo: cosa è stato aggiunto, cosa è stato rimosso e cosa è rimasto uguale."
+        },
+        {
+          "question": "Meglio la modalità per righe o per parole?",
+          "answer": "Usa la modalità per righe per codice, elenchi e file in cui cambiano righe intere. Usa quella per parole quando una frase è stata modificata sul posto."
         }
       ]
     },
@@ -267,6 +307,14 @@ const data: ToolPageTranslations = {
         {
           "question": "La casella originale viene modificata?",
           "answer": "No. L’input resta come l’hai incollato. L’elenco univoco compare nella casella del risultato dopo l’operazione."
+        },
+        {
+          "question": "Come rimuovo i duplicati da un elenco?",
+          "answer": "Incolla l’elenco con un elemento per riga ed esegui lo strumento. La prima copia di ogni riga resta nell’ordine originale e le ripetizioni successive vengono eliminate."
+        },
+        {
+          "question": "Può ignorare differenze di maiuscole o spazi?",
+          "answer": "Sì. Attiva le opzioni per maiuscole e spazi, così righe come Apple e apple, o righe con spazi in più, contano come uguali."
         }
       ]
     },
@@ -315,6 +363,14 @@ const data: ToolPageTranslations = {
         {
           "question": "Il mio rientro verrà distrutto?",
           "answer": "Solo se attivi il taglio, la rimozione degli spazi iniziali o la conversione delle tabulazioni. Lasciale spente per mantenerlo."
+        },
+        {
+          "question": "Come rimuovo gli spazi doppi da un testo?",
+          "answer": "Attiva l’opzione che unisce gli spazi ripetuti. Le sequenze di spazi in ogni riga diventano un solo spazio."
+        },
+        {
+          "question": "Come elimino le righe vuote?",
+          "answer": "Usa la rimozione delle righe vuote per eliminarle tutte, oppure l’unione delle righe vuote per lasciarne una sola tra i paragrafi."
         }
       ]
     },
@@ -372,6 +428,14 @@ const data: ToolPageTranslations = {
         {
           "question": "Le righe vuote vengono mantenute?",
           "answer": "Sì, a meno che tu scelga «Ignora righe vuote». Nelle modalità alfabetiche vengono ordinate come stringhe vuote."
+        },
+        {
+          "question": "Come ordino un elenco alfabeticamente?",
+          "answer": "Incolla un elemento per riga e scegli dalla A alla Z, oppure dalla Z alla A per l’ordine inverso. Le righe uguali mantengono l’ordine originale."
+        },
+        {
+          "question": "Come ordino le righe per numero?",
+          "answer": "Scegli numerico crescente o decrescente. Ogni riga viene ordinata in base al numero iniziale, quindi 2 viene prima di 10."
         }
       ]
     },
@@ -432,6 +496,14 @@ const data: ToolPageTranslations = {
         {
           "question": "Quello che scrivo viene inviato a un server?",
           "answer": "No. Il testo e la ricerca restano in questa scheda. Non vengono inviati a nessun server."
+        },
+        {
+          "question": "Come sostituisco una parola in tutto il testo?",
+          "answer": "Inserisci la parola da cercare e quella sostitutiva, scegli “Sostituisci tutto” e copia il risultato. Attiva la distinzione tra maiuscole e minuscole se conta."
+        },
+        {
+          "question": "Trova e sostituisci supporta le espressioni regolari?",
+          "answer": "No. Cerca esattamente il testo che scrivi. Per i pattern, prova prima il pattern nel tester di regex."
         }
       ]
     },
@@ -490,6 +562,14 @@ const data: ToolPageTranslations = {
         {
           "question": "Quello che scrivo viene inviato a un server?",
           "answer": "No. Il testo incollato viene riscritto in questa scheda. Non viene caricato."
+        },
+        {
+          "question": "Come rimuovo gli a capo da un testo copiato da un PDF?",
+          "answer": "Incolla il testo e scegli l’opzione che mantiene i paragrafi. Gli a capo singoli dentro un paragrafo diventano spazi e le righe vuote tra i paragrafi restano."
+        },
+        {
+          "question": "Che differenza c’è tra sostituire e rimuovere gli a capo?",
+          "answer": "Sostituire trasforma ogni a capo in uno spazio, quindi le parole restano separate. Rimuovere elimina l’a capo e unisce la fine di una riga all’inizio della successiva."
         }
       ]
     },
@@ -545,6 +625,14 @@ const data: ToolPageTranslations = {
         {
           "question": "Quello che scrivo viene inviato a un server?",
           "answer": "No. Le righe e il numero iniziale restano in questa scheda. Non vengono inviati a nessun server."
+        },
+        {
+          "question": "Come numero le righe di un testo?",
+          "answer": "Incolla il testo, imposta il numero iniziale e il separatore, ad esempio un punto e uno spazio, poi aggiungi i numeri e copia il risultato."
+        },
+        {
+          "question": "Le righe vuote vengono numerate?",
+          "answer": "Sì. Ogni vero a capo inizia una nuova riga numerata, comprese le righe vuote e una riga vuota finale."
         }
       ]
     },

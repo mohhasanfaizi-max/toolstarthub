@@ -31,6 +31,7 @@ import {
   getTool,
 } from "@/i18n/server";
 import { getLocalizedToolPage } from "@/i18n/localized-tool-content";
+import { howToJsonLd } from "@/lib/structured-data";
 import {
   breadcrumbJsonLd,
   createPageMetadata,
@@ -92,6 +93,8 @@ export function ToolView({ locale, slug }: { locale: Locale; slug: string }) {
     : getFaqsForTool(tool.slug, englishTool.name);
   // Tools that ship their own translations (e.g. CPS Test) show them here.
   const localizedPage = getLocalizedToolPage(tool.slug, locale);
+  const localizedHowTo =
+    localizedPage?.content.howTo ?? translation?.content.howTo ?? [];
   const quickAnswer =
     localizedPage?.quickAnswer ??
     (translation
@@ -121,6 +124,21 @@ export function ToolView({ locale, slug }: { locale: Locale; slug: string }) {
       />
       {fullContent ? (
         <JsonLd data={faqJsonLd(localizedPage?.content.faqs ?? faqs, locale)} />
+      ) : null}
+      {/* English pages get HowTo data from the /tools/[slug] route. */}
+      {!english && localizedHowTo.length >= 2 ? (
+        <JsonLd
+          data={{
+            ...howToJsonLd({
+              name: formatMessage(details.howToName, { name: tool.name }),
+              description: tool.description,
+              path: tool.route,
+              steps: localizedHowTo.map((text) => ({ text })),
+              toolName: tool.name,
+            }),
+            inLanguage: localeInfo[locale].tag,
+          }}
+        />
       ) : null}
       <Breadcrumbs
         label={b.label}

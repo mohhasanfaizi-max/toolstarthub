@@ -182,6 +182,7 @@ export const en = {
       disclaimer: "See the {link} for what these tools do not cover.",
       disclaimerLink: "disclaimer",
       faq: "FAQ",
+      howToName: "How to use {name}",
       defaultHowTo: [
         "Enter your values or choose a file if the tool needs one.",
         "Run the action on this page.",

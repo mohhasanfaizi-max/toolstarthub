@@ -272,6 +272,7 @@ const messages: Messages = {
       disclaimer: "Zie de {link} voor wat deze tools niet dekken.",
       disclaimerLink: "disclaimer",
       faq: "Veelgestelde vragen",
+      howToName: "Handleiding: {name}",
       defaultHowTo: [
         "Vul je waarden in of kies een bestand als de tool er een nodig heeft.",
         "Voer de actie op deze pagina uit.",

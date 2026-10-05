@@ -275,6 +275,7 @@ const messages: Messages = {
       disclaimer: "Was diese Tools nicht abdecken, steht im {link}.",
       disclaimerLink: "Haftungsausschluss",
       faq: "Häufige Fragen",
+      howToName: "Anleitung: {name}",
       defaultHowTo: [
         "Geben Sie Ihre Werte ein oder wählen Sie eine Datei, falls das Tool eine braucht.",
         "Starten Sie die Aktion auf dieser Seite.",

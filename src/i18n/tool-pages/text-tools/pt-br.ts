@@ -34,6 +34,14 @@ const data: ToolPageTranslations = {
         {
           "question": "Como os espaços extras são contados?",
           "answer": "Vários espaços seguidos não criam palavras extras, mas contam como caracteres."
+        },
+        {
+          "question": "Quantas palavras tem um discurso de 5 minutos?",
+          "answer": "O ritmo da fala varia, mas 130 a 150 palavras por minuto é uma referência comum, então um discurso de 5 minutos costuma ter cerca de 650 a 750 palavras."
+        },
+        {
+          "question": "Como o tempo de leitura é estimado?",
+          "answer": "A contagem de palavras é dividida por cerca de 225 palavras por minuto. É uma estimativa para um leitor médio, não uma velocidade de leitura medida."
         }
       ]
     },
@@ -79,6 +87,14 @@ const data: ToolPageTranslations = {
         {
           "question": "O que eu digito é enviado a um servidor?",
           "answer": "Não. As contagens são geradas nesta aba. Ao limpar a caixa, o texto sai da página, e ele não é gravado no armazenamento local."
+        },
+        {
+          "question": "Espaços contam como caracteres?",
+          "answer": "Sim, no total principal. O contador também mostra um segundo total sem espaços, que alguns formulários e trabalhos pedem."
+        },
+        {
+          "question": "Quantos caracteres tem um emoji?",
+          "answer": "Nesta página, um emoji sozinho conta como um caractere Unicode. Alguns apps contam certos emojis como dois ou mais, então o limite deles pode ser um pouco diferente."
         }
       ]
     },
@@ -121,6 +137,14 @@ const data: ToolPageTranslations = {
         {
           "question": "O que eu digito é enviado a um servidor?",
           "answer": "Não. O texto colado é convertido nesta aba. Ele não é enviado nem gravado no armazenamento local."
+        },
+        {
+          "question": "Qual é a diferença entre título e frase?",
+          "answer": "O modo título coloca em maiúscula a primeira letra de cada palavra, como em uma manchete em inglês. O modo frase coloca em maiúscula só a primeira letra de cada frase, como em um texto normal."
+        },
+        {
+          "question": "O que são camelCase, snake_case e kebab-case?",
+          "answer": "São estilos de nomes usados em programação. camelCase junta palavras com maiúsculas (myVariableName), snake_case usa sublinhados (my_variable_name) e kebab-case usa hifens (my-variable-name)."
         }
       ]
     },
@@ -167,6 +191,14 @@ const data: ToolPageTranslations = {
         {
           "question": "Por que existe um máximo?",
           "answer": "Blocos muito grandes podem travar uma aba. Os parágrafos vão até 20, as frases até 50 e as palavras até 500."
+        },
+        {
+          "question": "O que significa lorem ipsum?",
+          "answer": "Lorem ipsum é um latim embaralhado usado como texto de preenchimento. Ele parece texto real, então dá para avaliar um layout sem que os leitores prestem atenção nas palavras."
+        },
+        {
+          "question": "Quando devo usar texto de preenchimento?",
+          "answer": "Em protótipos, modelos e testes de fontes. Troque pelo texto real antes de a página ir ao ar, porque o preenchimento não diz nada aos visitantes."
         }
       ]
     },
@@ -215,6 +247,14 @@ const data: ToolPageTranslations = {
         {
           "question": "O que eu digito é enviado a um servidor?",
           "answer": "Não. Os dois painéis são comparados nesta aba. O texto não é enviado a nenhum servidor nem salvo no armazenamento local."
+        },
+        {
+          "question": "O que é um diff?",
+          "answer": "Um diff é uma lista das diferenças entre duas versões de um texto: o que foi adicionado, o que foi removido e o que ficou igual."
+        },
+        {
+          "question": "Uso o modo por linha ou por palavra?",
+          "answer": "Use o modo por linha para código, listas e arquivos em que linhas inteiras mudam. Use o modo por palavra quando uma frase foi editada no lugar."
         }
       ]
     },
@@ -267,6 +307,14 @@ const data: ToolPageTranslations = {
         {
           "question": "A caixa original é alterada?",
           "answer": "Não. A entrada continua como você colou. A lista única aparece na caixa de resultado depois que você executa a operação."
+        },
+        {
+          "question": "Como removo duplicatas de uma lista?",
+          "answer": "Cole a lista com um item por linha e execute a ferramenta. A primeira ocorrência de cada linha é mantida na ordem original e as repetições seguintes são descartadas."
+        },
+        {
+          "question": "Ele pode ignorar diferenças de maiúsculas ou espaços?",
+          "answer": "Sim. Ative as opções de maiúsculas e de aparar espaços para que linhas como Apple e apple, ou linhas com espaços extras, contem como iguais."
         }
       ]
     },
@@ -315,6 +363,14 @@ const data: ToolPageTranslations = {
         {
           "question": "Meu recuo vai ser destruído?",
           "answer": "Só se você ativar aparar, remover espaço inicial ou converter tabulações. Deixe essas opções desligadas para manter o recuo."
+        },
+        {
+          "question": "Como removo espaços duplos de um texto?",
+          "answer": "Ative a opção que junta espaços repetidos. Sequências de espaços dentro de cada linha viram um único espaço."
+        },
+        {
+          "question": "Como apago linhas vazias?",
+          "answer": "Use remover linhas em branco para tirar todas as linhas vazias, ou juntar linhas em branco para manter uma linha vazia entre parágrafos."
         }
       ]
     },
@@ -372,6 +428,14 @@ const data: ToolPageTranslations = {
         {
           "question": "As linhas vazias são mantidas?",
           "answer": "Sim, a menos que você escolha “Ignorar linhas vazias”. Nos modos alfabéticos, elas são ordenadas como textos vazios."
+        },
+        {
+          "question": "Como ordeno uma lista em ordem alfabética?",
+          "answer": "Cole um item por linha e escolha A a Z, ou Z a A para a ordem inversa. Linhas iguais mantêm a ordem original."
+        },
+        {
+          "question": "Como ordeno linhas por número?",
+          "answer": "Escolha numérico crescente ou decrescente. Cada linha é ordenada pelo número do início, então 2 vem antes de 10."
         }
       ]
     },
@@ -432,6 +496,14 @@ const data: ToolPageTranslations = {
         {
           "question": "O que eu digito é enviado a um servidor?",
           "answer": "Não. O texto e a busca ficam nesta aba. Eles não são enviados a nenhum servidor."
+        },
+        {
+          "question": "Como substituo uma palavra em todo o texto?",
+          "answer": "Digite a palavra a localizar e a substituta, escolha “Substituir tudo” e copie o resultado. Ative a diferenciação de maiúsculas se isso importar."
+        },
+        {
+          "question": "Localizar e substituir aceita expressões regulares?",
+          "answer": "Não. Ele procura exatamente o texto que você digita. Para padrões, teste primeiro o padrão no testador de regex."
         }
       ]
     },
@@ -490,6 +562,14 @@ const data: ToolPageTranslations = {
         {
           "question": "O que eu digito é enviado a um servidor?",
           "answer": "Não. O texto colado é reescrito nesta aba. Ele não é enviado."
+        },
+        {
+          "question": "Como removo quebras de linha de um texto copiado de um PDF?",
+          "answer": "Cole o texto e escolha a opção que mantém os parágrafos. Quebras simples dentro de um parágrafo viram espaços, e as linhas em branco entre parágrafos continuam."
+        },
+        {
+          "question": "Qual é a diferença entre substituir e remover quebras de linha?",
+          "answer": "Substituir transforma cada quebra em um espaço, então as palavras continuam separadas. Remover apaga a quebra, o que junta o fim de uma linha ao começo da próxima."
         }
       ]
     },
@@ -545,6 +625,14 @@ const data: ToolPageTranslations = {
         {
           "question": "O que eu digito é enviado a um servidor?",
           "answer": "Não. As linhas e o número inicial ficam nesta aba. Eles não são enviados a nenhum servidor."
+        },
+        {
+          "question": "Como numero as linhas de um texto?",
+          "answer": "Cole o texto, defina o número inicial e o separador, como um ponto e um espaço, depois adicione os números e copie o resultado."
+        },
+        {
+          "question": "Linhas vazias são numeradas?",
+          "answer": "Sim. Cada quebra de linha real começa uma nova linha numerada, incluindo linhas vazias e uma linha vazia no final."
         }
       ]
     },

@@ -18,8 +18,10 @@ import {
   IMAGE_PROMPT_PRESETS,
   type ImagePromptDraft,
 } from "@/lib/tools/image-prompt";
+import { useTx } from "@/i18n/tool-text";
 
 export function PromptToImageTool() {
+  const tx = useTx();
   const [draft, setDraft] = useState<ImagePromptDraft>(EMPTY_IMAGE_PROMPT);
   const [error, setError] = useState("");
   const [prompt, setPrompt] = useState("");
@@ -45,11 +47,9 @@ export function PromptToImageTool() {
 
   return (
     <ToolPanel>
-      <p className="text-sm leading-6 text-muted-foreground">
-        Build prompt writes an image prompt in your browser. Generate with AI sends your description to Google&apos;s Gemini API through ToolStarHub and returns a more detailed image prompt. This page does not render an image. The text is not stored.
-      </p>
+      <p className="text-sm leading-6 text-muted-foreground">{tx("Build prompt writes an image prompt in your browser. Generate with AI sends your description to Google's Gemini API through ToolStarHub and returns a more detailed image prompt. This page does not render an image. The text is not stored.")}</p>
       <fieldset className="mt-4">
-        <legend className="text-sm font-medium text-foreground">Style presets</legend>
+        <legend className="text-sm font-medium text-foreground">{tx("Style presets")}</legend>
         <div className="mt-2 flex flex-wrap gap-2">
           {IMAGE_PROMPT_PRESETS.map((preset) => (
             <button
@@ -58,7 +58,7 @@ export function PromptToImageTool() {
               className="min-h-11 rounded-xl border border-border bg-background px-3 py-2 text-sm text-foreground hover:bg-muted"
               onClick={() => setDraft((current) => ({ ...current, ...preset.draft }))}
             >
-              {preset.label}
+              {tx(preset.label)}
             </button>
           ))}
         </div>
@@ -78,24 +78,24 @@ export function PromptToImageTool() {
             ["quality", "Quality and detail", "prompt-image-quality"],
           ] as const
         ).map(([key, label, id]) => (
-          <ToolField key={key} id={id} label={label}>
+          <ToolField key={key} id={id} label={tx(label)}>
             <input id={id} value={draft[key]} onChange={(event) => update(key, event.target.value)} className={toolControlClass} />
           </ToolField>
         ))}
       </div>
       <div className="mt-4">
-        <ToolField id="prompt-image-negative" label="Negative prompt" hint="Things you want left out of the picture.">
+        <ToolField id="prompt-image-negative" label={tx("Negative prompt")} hint={tx("Things you want left out of the picture.")}>
           <textarea id="prompt-image-negative" value={draft.negative} onChange={(event) => update("negative", event.target.value)} rows={3} className={`${toolControlClass} min-h-20 resize-y`} />
         </ToolField>
       </div>
       {error ? (
         <div className="mt-4">
-          <ToolError>{error}</ToolError>
+          <ToolError>{tx(error)}</ToolError>
         </div>
       ) : null}
       <div className="mt-4">
         <ToolActions>
-          <Button type="button" onClick={generate}>Build prompt</Button>
+          <Button type="button" onClick={generate}>{tx("Build prompt")}</Button>
           <Button
             type="button"
             variant="secondary"
@@ -116,25 +116,21 @@ export function PromptToImageTool() {
                 negative: draft.negative,
               });
             }}
-          >
-            Generate with AI
-          </Button>
-          <CopyButton value={prompt} label="Copy prompt" />
-          <CopyButton value={negative} label="Copy negative prompt" />
-          <Button type="button" variant="ghost" onClick={() => { setDraft(EMPTY_IMAGE_PROMPT); setPrompt(""); setNegative(""); setError(""); }}>
-            Clear
-          </Button>
+          >{tx("Generate with AI")}</Button>
+          <CopyButton value={prompt} label={tx("Copy prompt")} />
+          <CopyButton value={negative} label={tx("Copy negative prompt")} />
+          <Button type="button" variant="ghost" onClick={() => { setDraft(EMPTY_IMAGE_PROMPT); setPrompt(""); setNegative(""); setError(""); }}>{tx("Clear")}</Button>
         </ToolActions>
       </div>
       <div className="mt-6 space-y-4">
-        <ToolOutput label="Image prompt">
-          <p className="whitespace-pre-wrap break-words text-sm leading-6">{prompt || "The prompt will appear here."}</p>
+        <ToolOutput label={tx("Image prompt")}>
+          <p className="whitespace-pre-wrap break-words text-sm leading-6">{prompt || tx("The prompt will appear here.")}</p>
         </ToolOutput>
-        <ToolOutput label="Negative prompt">
-          <p className="whitespace-pre-wrap break-words text-sm leading-6">{negative || "Optional."}</p>
+        <ToolOutput label={tx("Negative prompt")}>
+          <p className="whitespace-pre-wrap break-words text-sm leading-6">{negative || tx("Optional.")}</p>
         </ToolOutput>
       </div>
-      <AiResult status={ai.status} text={ai.text} error={ai.error} label="AI image prompt" copyLabel="Copy AI prompt" />
+      <AiResult status={ai.status} text={ai.text} error={ai.error} label={tx("AI image prompt")} copyLabel={tx("Copy AI prompt")} />
     </ToolPanel>
   );
 }

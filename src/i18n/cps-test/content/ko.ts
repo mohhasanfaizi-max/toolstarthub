@@ -1,7 +1,7 @@
 import type { LocalizedToolPage } from "../types.ts";
 
 const page: LocalizedToolPage = {
-  metaTitle: "CPS 테스트 — 클릭 속도 테스트, 초당 클릭 수",
+  metaTitle: "CPS 테스트: 클릭 속도와 초당 클릭 수",
   quickAnswer:
     "CPS 테스트는 정해진 시간 동안 몇 번 클릭했는지 세고 그 수를 초로 나눠 초당 클릭 수를 알려 줍니다. 손가락 하나로 하는 일반 클릭은 보통 6~7 CPS 정도가 나오며, 평균으로 가장 자주 언급되는 수치도 이 정도입니다. 지터 클릭과 버터플라이 클릭은 더 높게 나올 수 있습니다.",
   headings: {

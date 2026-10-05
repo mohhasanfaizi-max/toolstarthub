@@ -277,6 +277,7 @@ const messages: Messages = {
         "Consultez l’{link} pour savoir ce que ces outils ne couvrent pas.",
       disclaimerLink: "avertissement",
       faq: "FAQ",
+      howToName: "Mode d’emploi : {name}",
       defaultHowTo: [
         "Saisissez vos valeurs ou choisissez un fichier si l’outil en a besoin.",
         "Lancez l’action sur cette page.",

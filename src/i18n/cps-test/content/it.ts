@@ -1,7 +1,7 @@
 import type { LocalizedToolPage } from "../types.ts";
 
 const page: LocalizedToolPage = {
-  metaTitle: "Test CPS — Test di velocità di clic, clic al secondo",
+  metaTitle: "Test CPS: velocità di clic e clic al secondo",
   quickAnswer:
     "Un test CPS conta quante volte clicchi in un tempo fisso e divide per i secondi, così ottieni i clic al secondo. Il clic normale con un dito si aggira spesso sui 6-7 CPS, il valore citato più spesso come media. Jitter click e butterfly click possono andare oltre.",
   headings: {

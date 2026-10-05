@@ -265,6 +265,7 @@ const messages: Messages = {
       disclaimer: "これらのツールの対象外については{link}をご覧ください。",
       disclaimerLink: "免責事項",
       faq: "よくある質問",
+      howToName: "{name}の使い方",
       defaultHowTo: [
         "値を入力するか、必要に応じてファイルを選びます。",
         "このページで処理を実行します。",
