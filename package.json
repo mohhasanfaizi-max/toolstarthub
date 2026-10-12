@@ -8,6 +8,7 @@
     "start": "next start",
     "lint": "eslint",
     "check:tools": "node --experimental-strip-types src/lib/tools/run-checks.ts",
+    "check:meta": "node --experimental-strip-types scripts/seo-meta-check.mts",
     "verify:production": "node scripts/verify-production.mjs"
   },
   "engines": {
