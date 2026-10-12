@@ -4,7 +4,6 @@ import { createBrotliDecompress, createGunzip, createInflate } from "node:zlib";
 /** Cap for the decompressed response body. Compressed wire size is not this limit. */
 export const OG_MAX_BODY_BYTES = 512 * 1024;
 
-const TOO_LARGE = "That page is too large to preview.";
 const UNREADABLE = "That page could not be previewed.";
 
 function readLimited(stream: Readable, max: number, stop: () => void): Promise<{ bytes: Buffer; truncated: boolean }> {
@@ -80,10 +79,7 @@ export async function readCappedBody(
     source.destroy();
     return { ok: false, error: UNREADABLE };
   }
-  if (contentLength !== undefined && contentLength > OG_MAX_BODY_BYTES) {
-    source.destroy();
-    return { ok: false, error: TOO_LARGE };
-  }
+  void contentLength;
 
   try {
     if (encoding === "identity") {

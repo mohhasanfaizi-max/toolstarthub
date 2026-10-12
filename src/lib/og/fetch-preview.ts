@@ -14,6 +14,9 @@ export const OG_HOP_LIMIT = 5;
 const BAD_URL = "Enter an http or https page URL.";
 const BLOCKED = "That address cannot be fetched.";
 const FAILED = "That page could not be previewed.";
+const BLOCKED_BY_SITE = "This site blocked the preview request.";
+const RATE_LIMITED_BY_SITE = "This site rate-limited the preview request.";
+const NOT_FOUND = "That page was not found.";
 const TIMEOUT = "The preview request timed out.";
 const TOO_MANY = "That page redirected too many times.";
 const NOT_HTML = "That page is not HTML.";
@@ -100,9 +103,9 @@ export function requestPinnedPage(
         path: `${target.pathname}${target.search}`,
         headers: {
           Host: target.host,
-          Accept: "text/html",
-          "Accept-Encoding": "identity",
-          "User-Agent": "ToolsStarHub-LinkPreview/1.0",
+          Accept: "text/html,application/xhtml+xml;q=0.9,*/*;q=0.8",
+          "Accept-Encoding": "gzip, deflate, br",
+          "User-Agent": "ToolsStarHub-LinkPreview/1.0 (+https://www.toolstarhub.com)",
         },
         servername: hostname,
         lookup: pinnedLookup(address, family),
@@ -174,7 +177,21 @@ function contentLengthOf(headers: Record<string, string>): number | undefined {
 
 function isHtml(contentType: string | undefined): boolean {
   const mediaType = contentType?.split(";")[0]?.trim().toLowerCase() ?? "";
-  return mediaType === "text/html";
+  return mediaType === "text/html" || mediaType === "application/xhtml+xml";
+}
+
+function charsetOf(contentType: string | undefined): "utf-8" | "latin1" {
+  const match = /charset\s*=\s*["']?([^\s"';]+)/i.exec(contentType ?? "");
+  const raw = match?.[1]?.toLowerCase() ?? "utf-8";
+  if (raw === "iso-8859-1" || raw === "latin1" || raw === "windows-1252") return "latin1";
+  return "utf-8";
+}
+
+function statusError(status: number): string {
+  if (status === 401 || status === 403) return BLOCKED_BY_SITE;
+  if (status === 429) return RATE_LIMITED_BY_SITE;
+  if (status === 404) return NOT_FOUND;
+  return FAILED;
 }
 
 function isRedirect(status: number): boolean {
@@ -226,7 +243,7 @@ export async function fetchOpenGraph(
 
     if (response.response.status !== 200) {
       response.response.body.destroy();
-      return { ok: false, error: FAILED };
+      return { ok: false, error: statusError(response.response.status) };
     }
     if (!isHtml(response.response.headers["content-type"])) {
       response.response.body.destroy();
@@ -239,7 +256,9 @@ export async function fetchOpenGraph(
       contentLengthOf(response.response.headers),
     );
     if (!body.ok) return body;
-    const html = new TextDecoder("utf-8", { fatal: false }).decode(body.bytes);
+    const html = new TextDecoder(charsetOf(response.response.headers["content-type"]), {
+      fatal: false,
+    }).decode(body.bytes);
     return { ok: true, preview: extractPreview(html, parsed.url.href, current.href) };
   }
 

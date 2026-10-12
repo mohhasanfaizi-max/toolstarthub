@@ -12,7 +12,16 @@ const RATE_LIMIT_ERROR = "Too many preview requests. Wait a minute and try again
 
 function statusFor(error: string): number {
   if (error === "The preview request timed out.") return 504;
-  if (error === "That page could not be previewed.") return 502;
+  if (
+    error === "That page could not be previewed." ||
+    error === "This site blocked the preview request." ||
+    error === "This site rate-limited the preview request." ||
+    error === "That page was not found." ||
+    error === "That page is not HTML." ||
+    error === "That page redirected too many times."
+  ) {
+    return 502;
+  }
   return 400;
 }
 

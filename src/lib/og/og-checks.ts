@@ -127,15 +127,55 @@ export async function runOgChecks(assert: Assert): Promise<void> {
   );
   assert(inflated.ok && inflated.bytes.subarray(0, 20).toString().includes("<title>Kept</title>"), "Truncation keeps the start of the page");
 
-  let oversizedReads = 0;
-  const oversized = new Readable({
-    read() {
-      oversizedReads += 1;
-      this.push(null);
-    },
+  const prefixHtml =
+    `<html><head><title>Wiki Head</title><meta property="og:title" content="HTML page"></head><body>` +
+    "X".repeat(OG_MAX_BODY_BYTES) +
+    `</body></html>`;
+  const largePage = await fetchOpenGraph("https://public.example/wiki", Date.now(), {
+    lookup: async () => [{ address: "1.1.1.1", family: 4 }],
+    request: async () =>
+      htmlResponse(
+        200,
+        { "content-type": "text/html; charset=utf-8", "content-length": String(prefixHtml.length) },
+        prefixHtml,
+      ),
   });
-  const rejected = await readCappedBody(oversized, undefined, OG_MAX_BODY_BYTES + 1);
-  assert(!rejected.ok && rejected.error === "That page is too large to preview." && oversizedReads === 0, "An oversized content length is rejected before reading");
+  assert(largePage.ok && largePage.preview.title === "Wiki Head", "A page larger than the cap is still parsed from the first bytes");
+  assert(largePage.ok && largePage.preview.openGraph.title === "HTML page", "Open Graph tags in the head survive truncation");
+
+  const blocked = await fetchOpenGraph("https://news.example/article", Date.now(), {
+    lookup: async () => [{ address: "1.1.1.1", family: 4 }],
+    request: async () => htmlResponse(401, { "content-type": "text/html" }, "<title>No</title>"),
+  });
+  assert(!blocked.ok && blocked.error === "This site blocked the preview request.", "HTTP 401 is reported as a site block");
+
+  const forbidden = await fetchOpenGraph("https://news.example/article", Date.now(), {
+    lookup: async () => [{ address: "1.1.1.1", family: 4 }],
+    request: async () => htmlResponse(403, { "content-type": "text/html" }, "<title>No</title>"),
+  });
+  assert(!forbidden.ok && forbidden.error === "This site blocked the preview request.", "HTTP 403 is reported as a site block");
+
+  const gzipHtml = gzipSync(Buffer.from("<title>Gzip Title</title><meta property=\"og:title\" content=\"Gzip Share\">"));
+  const gzipPage = await fetchOpenGraph("https://public.example/gzip", Date.now(), {
+    lookup: async () => [{ address: "1.1.1.1", family: 4 }],
+    request: async () => htmlResponse(200, { "content-type": "text/html", "content-encoding": "gzip" }, gzipHtml),
+  });
+  assert(gzipPage.ok && gzipPage.preview.title === "Gzip Title", "gzip HTML is decoded before tags are read");
+  assert(gzipPage.ok && gzipPage.preview.openGraph.title === "Gzip Share", "gzip Open Graph tags are read");
+
+  const latin = Buffer.from([0x3c, 0x74, 0x69, 0x74, 0x6c, 0x65, 0x3e, 0x43, 0x61, 0x66, 0xe9, 0x3c, 0x2f, 0x74, 0x69, 0x74, 0x6c, 0x65, 0x3e]);
+  const latinPage = await fetchOpenGraph("https://public.example/latin", Date.now(), {
+    lookup: async () => [{ address: "1.1.1.1", family: 4 }],
+    request: async () => htmlResponse(200, { "content-type": "text/html; charset=iso-8859-1" }, latin),
+  });
+  assert(latinPage.ok && latinPage.preview.title === "Café", "iso-8859-1 titles are decoded");
+
+  const xhtml = await fetchOpenGraph("https://public.example/xhtml", Date.now(), {
+    lookup: async () => [{ address: "1.1.1.1", family: 4 }],
+    request: async () =>
+      htmlResponse(200, { "content-type": "application/xhtml+xml; charset=utf-8" }, "<title>XHTML</title>"),
+  });
+  assert(xhtml.ok && xhtml.preview.title === "XHTML", "application/xhtml+xml is treated as HTML");
 
   let lookups = 0;
   const timedOut = await fetchOpenGraph("https://public.example/", Date.now() - OG_TIMEOUT_MS - 1, {
