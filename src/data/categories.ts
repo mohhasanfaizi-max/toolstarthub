@@ -7,17 +7,23 @@ export const categories: Category[] = [
     description: "Everyday calculation tools",
     shortDescription:
       "Percentages, age, units and other everyday calculations.",
+    metaTitle: "Free Calculators - Percent, Tip, and Loan",
+    metaDescription: "Calculate a percent, sale price, tip, tax, age, or loan estimate in your browser. Open a calculator and type the numbers you have.",
     icon: "calculator",
     route: "/categories/calculators",
     intro:
-      "These calculators answer a specific number question: a percent, a percent change, a sale price, a tip, sales tax, age, days or business days between dates, a unit conversion, a loan or mortgage estimate, wages, room area, GPA, or a random number in a range.",
+      "Need a percent off, a tip, or your age in years and days? Open the Percentage Calculator, Discount Calculator, Tip Calculator, or Age Calculator and type the numbers. Sales tax uses the rate you supply. Date Difference and Business Days count calendar days in this browser. Loan, mortgage, wage, and paycheck pages are estimates from what you enter. They do not use tax tables or live lender rates.",
     audience:
       "Use them when a spreadsheet is more than the job needs. They are arithmetic helpers. Loan, tax, and wage results are estimates. They are not financial, tax, medical, or engineering advice.",
     startingSlugs: [
       "percentage-calculator",
-      "loan-calculator",
+      "percentage-change-calculator",
+      "discount-calculator",
       "age-calculator",
-      "unit-converter",
+      "sales-tax-calculator",
+      "tip-calculator",
+      "gpa-calculator",
+      "square-footage-calculator",
     ],
   },
   {
@@ -25,17 +31,23 @@ export const categories: Category[] = [
     name: "Text Tools",
     description: "Tools for writing and text processing",
     shortDescription: "Count, clean, convert and format text in the browser.",
+    metaTitle: "Text Tools - Count, Edit, and Compare",
+    metaDescription: "Count words, change case, find and replace, sort lines, and compare drafts. Text tools run in your browser. Paste a draft to start.",
     icon: "text",
     route: "/categories/text-tools",
     intro:
-      "Text tools count words and characters, change case, find and replace, remove line breaks, number lines, remove duplicate lines or extra spaces, sort lines, compare two drafts, and generate placeholder copy for a layout.",
+      "Paste a draft to count words, change case, or find and replace exact text. The Word Counter, Character Counter, Find and Replace, and Text Diff tools run in this browser. Clean extra spaces, drop duplicate lines, sort a list, or join wrapped lines. Generate lorem ipsum when a layout needs filling. The original stays on the page until you copy a result or clear the box. Nothing here checks grammar or identifies an author.",
     audience:
       "They are for writers, editors, and anyone cleaning text pasted from a document or a spreadsheet. The text you paste stays in the browser.",
     startingSlugs: [
       "word-counter",
+      "character-counter",
+      "find-and-replace",
+      "whitespace-remover",
       "text-diff",
       "case-converter",
       "duplicate-line-remover",
+      "line-sorter",
     ],
   },
   {
@@ -45,17 +57,23 @@ export const categories: Category[] = [
       "Format, encode, minify, and convert data in the browser",
     shortDescription:
       "Format JSON, encode data, minify code, and convert Markdown or HTML locally.",
+    metaTitle: "Developer Tools - Format JSON and Code",
+    metaDescription: "Format JSON, encode data, minify code, and convert Markdown or HTML in your browser. Invalid input is rejected instead of silently rewritten.",
     icon: "code",
     route: "/categories/developer-tools",
     intro:
-      "Developer tools format JSON, convert JSON and CSV, test a regular expression, hash text with SHA-256 or SHA-512, encode and decode Base64, URLs, and HTML, minify HTML, CSS, or JavaScript, convert Markdown, and generate UUIDs or Unix timestamps. Color tools here turn hex values into RGB, check contrast, and build CSS gradients and box shadows.",
+      "Need pretty-printed JSON, a SHA hash, or a regex check? Open the JSON Formatter, Hash Generator, Regex Tester, Base64 Encoder, or JavaScript Minifier and paste the sample in this tab. Convert objects with JSON to CSV, encode URLs, and minify HTML or CSS the same way. Hash pasted text with SHA-256, SHA-384, or SHA-512. Convert Markdown. Generate UUIDs or Unix timestamps. Copy hex to RGB, a contrast ratio, or a CSS gradient. Invalid input is rejected instead of silently rewritten.",
     audience:
       "They are for people editing code or data who want a result on the page without installing a package. Minifiers and converters follow the rules of each format, so invalid input is rejected instead of silently rewritten.",
     startingSlugs: [
       "json-formatter",
+      "url-encoder",
+      "html-encoder",
+      "css-gradient-generator",
       "base64-encoder",
-      "javascript-minifier",
       "markdown-to-html",
+      "javascript-minifier",
+      "hash-generator",
     ],
   },
   {
@@ -64,17 +82,23 @@ export const categories: Category[] = [
     description: "Browser-based image and PDF tools",
     shortDescription:
       "Compress, convert, and inspect images and PDFs without uploading.",
+    metaTitle: "Free Image and PDF Tools - Compress Files",
+    metaDescription: "Compress, convert, crop, and inspect images and PDFs in your browser. Check the download before you replace the original. Upload a file.",
     icon: "image",
     route: "/categories/image-tools",
     intro:
-      "Image tools compress, resize, crop, convert, and sample colors from a picture. PDF tools in this category merge, split, compress, count pages, read or remove metadata, extract text, turn pages into JPG images, and make a PDF from images or text.",
+      "Compress, resize, crop, or convert a JPG, PNG, or WebP, then download the result from this browser. JPEG and WebP compression is lossy. PNG is re-encoded without a lossy quality slider. Merge, split, or compress a PDF, count its pages, or turn pages into JPG. Extract selectable text. A scan may not yield words. Check a download before you replace the original.",
     audience:
       "Files are processed in the browser. A scanned PDF may not yield selectable text. Compression and conversion can reduce quality, so check the download before you replace the original.",
     startingSlugs: [
       "image-compressor",
-      "pdf-to-text",
+      "image-resizer",
+      "pdf-to-jpg",
       "pdf-merger",
+      "pdf-page-counter",
+      "pdf-metadata",
       "image-converter",
+      "pdf-to-text",
     ],
   },
   {
@@ -83,17 +107,23 @@ export const categories: Category[] = [
     description: "Links, slugs, QR codes, and passwords",
     shortDescription:
       "Build UTM links and slugs, create or scan QR codes, and generate passwords.",
+    metaTitle: "SEO Tools - UTM Links, QR, and Slugs",
+    metaDescription: "Build a UTM link or URL slug, create or scan a QR code, and generate a password on this device. Open a utility and finish the job here.",
     icon: "search",
     route: "/categories/seo-utilities",
     intro:
-      "These utilities build a campaign URL, turn a title into a URL slug, create a QR code from text or a structured payload, scan a QR code from the camera or an image, and generate a password locally.",
+      "Need a campaign link, a permalink, a QR code, or a password? Open the UTM Builder, Slug Generator, QR Code Generator, QR Code Scanner, or Password Generator and finish the job on this device. Scan from the camera or an image. QR Code Generator Pro adds Wi-Fi, contact, and color codes. A password is created on this device; you can also rate one from length and character set. Write robots.txt or meta tags as text you still have to publish. None of these pages is a password manager or a live crawl of your site.",
     audience:
       "The basic QR tool encodes plain text or a URL. QR Code Generator Pro adds Wi-Fi, contact, and color controls. The password generator creates a string on this device. It is not a password manager.",
     startingSlugs: [
       "utm-builder",
       "slug-generator",
       "qr-code-generator",
+      "qr-code-generator-pro",
       "password-generator",
+      "qr-code-scanner",
+      "meta-tag-generator",
+      "robots-txt-generator",
     ],
   },
   {
@@ -102,6 +132,8 @@ export const categories: Category[] = [
     description: "Prompt builders and writing tools, with optional Gemini AI",
     shortDescription:
       "Build prompts, study writing patterns, and shorten a draft, in the browser or with Gemini AI.",
+    metaTitle: "AI Writing Tools - Prompts and Drafts",
+    metaDescription: "Build a prompt, study writing patterns, or shorten a draft. Browser actions stay local; Generate with AI sends the text you submit.",
     icon: "bolt",
     route: "/categories/ai-tools",
     intro:
@@ -111,8 +143,10 @@ export const categories: Category[] = [
     startingSlugs: [
       "ai-prompt-generator",
       "prompt-to-image",
+      "prompt-to-video",
       "ai-article-compressor",
       "ai-article-detector",
+      "ai-text-humanizer",
     ],
   },
 ];

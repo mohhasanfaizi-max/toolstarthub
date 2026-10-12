@@ -134,6 +134,15 @@ export function GuideArticle({
         </Link>
         {content.cta.after ?? ""}
       </p>
+      {content.alsoSee?.map((item) => (
+        <p key={item.href} className="mt-4 text-sm leading-7 text-muted-foreground">
+          {item.before}{" "}
+          <Link href={item.href} className="font-medium text-accent hover:underline">
+            {item.linkLabel}
+          </Link>
+          {item.after ?? ""}
+        </p>
+      ))}
     </article>
   );
 }

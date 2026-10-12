@@ -149,11 +149,11 @@ export function runPublicationChecks(assert: (condition: unknown, message: strin
   }
 
   assert(
-    getToolBySlug("word-counter")?.metaTitle === "Word Counter — Count Words Online",
+    getToolBySlug("word-counter")?.metaTitle === "Word Counter - Words and Reading Time",
     "Word Counter title owns word count",
   );
   assert(
-    getToolBySlug("image-converter")?.metaTitle === "Image Converter — JPG and PNG in Your Browser",
+    getToolBySlug("image-converter")?.metaTitle === "Image Converter - JPG and PNG",
     "Image Converter title covers both directions",
   );
   assert(

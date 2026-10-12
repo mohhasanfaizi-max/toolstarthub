@@ -13,8 +13,9 @@ const guidesDescription =
   "Free how-to guides that answer one task each: percentages, dates, loans, image and PDF files, JSON, regex, URLs, colors, and more, with a tool to try it.";
 
 export const metadata = createPageMetadata({
-  title: "How-To Guides for Calculators, Text, Images and Code",
-  description: guidesDescription,
+  title: "Guides – Step-by-Step Tool Help",
+  description:
+    "Read short guides for percentages, PDFs, JSON, UTM links, and more, then open the matching free tool. No account is required.",
   path: "/guides",
 });
 

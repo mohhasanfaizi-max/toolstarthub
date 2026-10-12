@@ -14,6 +14,19 @@ export type ToolFaq = {
   answer: string;
 };
 
+export type ToolRelatedLink = {
+  before: string;
+  linkLabel: string;
+  href: string;
+  after?: string;
+};
+
+export type ToolExtraSection = {
+  heading: string;
+  paragraphs: string[];
+  code?: string;
+};
+
 export type ToolContent = {
   howTo: string[];
   examples: ToolExample[];
@@ -23,12 +36,14 @@ export type ToolContent = {
   features?: string[];
   tips?: string[];
   limitations?: string;
+  extraSections?: ToolExtraSection[];
+  relatedLinks?: ToolRelatedLink[];
 };
 
 export const toolContent: Record<string, ToolContent> = {
   "percentage-calculator": {
     about:
-      "Find a percent of a number, what percent one number is of another, or a percent increase or decrease. Students and anyone checking a grade or a price change can do that arithmetic here. Discount, sales tax, and tip each have their own calculator.",
+      "Find a percent of a number, what percent one number is of another, or a percent increase or decrease applied to one starting value. Students and anyone checking a grade or a price change can do that arithmetic here. Comparing an old total with a new total belongs on the Percentage Change Calculator. Discount, sales tax, and tip each have their own calculator.",
     howTo: [
       "Choose the calculation you need: X% of Y, X as a percent of Y, or increase/decrease.",
       "Enter the two numbers. Use decimals if you need them.",
@@ -72,7 +87,7 @@ export const toolContent: Record<string, ToolContent> = {
   },
   "age-calculator": {
     about:
-      "Count years, months, and days from a date of birth to today, or to another date you pick. Use it for a birthday, an anniversary, or the age someone will be on a future day. A date before the birthday is rejected, and a leap-day birthday follows the calendar instead of a 365-day year.",
+      "Count years, months, and days from a date of birth to today, or to another date you pick. Use it for a birthday, an anniversary, or the age someone will be on a future day. This is calendar age, not next-birthday countdown. A date before the birthday is rejected, and a leap-day birthday follows the calendar instead of a 365-day year.",
     howTo: [
       "Enter the date of birth.",
       "Optionally choose another date if you want the age on that day instead of today.",
@@ -112,7 +127,7 @@ export const toolContent: Record<string, ToolContent> = {
   },
   "percentage-change-calculator": {
     about:
-      "Compare an original number with a new one and see the percent increase or decrease. Use it when a price, a score, or a measurement moved and you need the size of that move. Going from 80 to 100 is a 25% increase, while 100 back to 80 is a 20% decrease, because the starting numbers differ.",
+      "Compare an original number with a new one and see the percent increase or decrease. Use it when a price, a score, or a measurement moved and you need the size of that move. This is not “what percent is 20 of 80”; that belongs on the Percentage Calculator. Going from 80 to 100 is a 25% increase, while 100 back to 80 is a 20% decrease, because the starting numbers differ.",
     howTo: [
       "Enter the original value and the new value.",
       "Press Calculate to see the percentage change.",
@@ -137,6 +152,11 @@ export const toolContent: Record<string, ToolContent> = {
         question: "Is the Percentage Change Calculator free?",
         answer:
           "Yes. Comparing an original value with a new value to get the percent increase or decrease is free, and no account is required.",
+      },
+      {
+        question: "Is percentage change the same as a percent of a number?",
+        answer:
+          "No. A percent of a number is original × percent ÷ 100. Percentage change is (new − original) ÷ original × 100. Use this page for the second case.",
       },
       {
         question: "Why can’t I use 0 as the original value?",
@@ -177,6 +197,11 @@ export const toolContent: Record<string, ToolContent> = {
         question: "Is the Discount Calculator free?",
         answer:
           "Yes. Taking a percent off a price and showing the amount saved is free here, with no signup.",
+      },
+      {
+        question: "Can I enter a dollar amount off instead of a percent?",
+        answer:
+          "No. The discount field is a percentage from 0 to 100. Subtract a dollar amount yourself, or convert that amount to a percent of the original price first.",
       },
       {
         question: "Can I enter a currency symbol?",
@@ -410,6 +435,14 @@ export const toolContent: Record<string, ToolContent> = {
     ],
     explanation:
       "UTM parameters tell analytics tools where a visit came from. utm_source is the platform, utm_medium is the channel, and utm_campaign is the name of the promotion. utm_term and utm_content are optional. Values are URL-encoded so spaces and special characters stay valid.",
+    relatedLinks: [
+      {
+        before: "For naming rules, optional fields, and a worked campaign link, read",
+        linkLabel: "how to create a UTM URL",
+        href: "/guides/how-to-create-a-utm-url",
+        after: ".",
+      },
+    ],
     limitations:
       "A blank source, medium, or campaign is left off the link instead of being written as an empty parameter. The page does not shorten the address, and it does not record a visit. Text that is not a website URL is rejected.",
     faqs: [
@@ -432,7 +465,7 @@ export const toolContent: Record<string, ToolContent> = {
   },
   "image-compressor": {
     about:
-      "Reduce a JPG, PNG, or WebP by re-encoding it at a quality from 10 to 100. Use it before attaching a photo to an email or a page when the file is larger than you want. PNG stays lossless, so a flat graphic may barely shrink, and compressing a JPEG again can add artifacts.",
+      "Reduce a JPG, PNG, or WebP by re-encoding it in this browser at a quality from 10 to 100. JPEG and WebP are lossy. PNG is re-encoded as PNG, which is lossless, so a flat graphic may barely shrink. Use it before attaching a photo to an email or a page when the file is larger than you want. Compressing a JPEG again can add artifacts.",
     howTo: [
       "Choose a JPG, PNG or WebP image. You can drag it onto the box or use the file picker.",
       "Set quality between 10 and 100. Lower values usually make a smaller JPEG or WebP file.",
@@ -636,7 +669,7 @@ export const toolContent: Record<string, ToolContent> = {
   },
   "url-encoder": {
     about:
-      "Percent-encode a string with encodeURIComponent, or decode a percent-encoded string. Developers putting a query value into a URL use it when spaces, ampersands, or slashes must be escaped. The result is not encrypted, and a half-finished sequence such as %E0 fails on decode.",
+      "Percent-encode a string with encodeURIComponent, or decode one with decodeURIComponent. Developers putting a query value into a URL use it when spaces, ampersands, or slashes must be escaped. The result is not encrypted, and a half-finished sequence such as %E0 fails on decode.",
     howTo: [
       "Paste the text or encoded string into the input box.",
       "Press Encode to apply encodeURIComponent, or Decode to reverse it.",
@@ -661,6 +694,11 @@ export const toolContent: Record<string, ToolContent> = {
         question: "Is the URL Encoder free?",
         answer:
           "Yes. Percent-encoding a string, or decoding one, costs nothing and does not ask for an account.",
+      },
+      {
+        question: "Does this use encodeURI or encodeURIComponent?",
+        answer:
+          "Encode uses encodeURIComponent, so ?, &, /, and = are escaped. That is the usual choice for a query value. encodeURI leaves those characters alone because it is meant for a full URL, not one component.",
       },
       {
         question: "Why did decoding fail?",
@@ -1087,6 +1125,11 @@ export const toolContent: Record<string, ToolContent> = {
           "No. Input is never executed and is never inserted with innerHTML.",
       },
       {
+        question: "Does this sanitize HTML or stop XSS?",
+        answer:
+          "No. It only escapes or unescapes characters so markup can be shown as text. It is not a sanitizer and it does not make untrusted HTML safe to run.",
+      },
+      {
         question: "Is my input sent to a server?",
         answer:
           "No. Encoding and decoding happen in this tab. The text is not posted to a server or saved in local storage.",
@@ -1387,7 +1430,7 @@ export const toolContent: Record<string, ToolContent> = {
   },
   "pdf-page-counter": {
     about:
-      "Read how many pages a PDF has, along with the file name and size. Use it when you need the count before you split or merge. Blank pages and covers are included, and a password-protected or damaged file is not counted.",
+      "Read how many pages a PDF has, along with the file name and size. Use it when you need the count before you split, merge, or print. The number comes from the PDF’s page tree in this browser, so blank pages, covers, and nearly empty slides are included. A password-protected, damaged, or non-PDF file is not counted, and files over 20 MB are refused.",
     howTo: [
       "Choose a PDF file.",
       "Read the page count, file name and size.",
@@ -1398,11 +1441,15 @@ export const toolContent: Record<string, ToolContent> = {
         title: "A 12-page brochure",
         body: "After the file loads, the tool reports 12 pages along with the file name and size.",
       },
+      {
+        title: "A scanned handout",
+        body: "A scan still has a page count. This tool does not read the words on those pages; it only reports how many pages the file contains.",
+      },
     ],
     explanation:
-      "The count is read from the PDF structure in your browser. Blank pages and covers are included. This is not an editor and does not extract or rearrange pages.",
+      "The count is read from the PDF structure in your browser. Each page in the page tree is counted once, whether it has text, an image, or almost nothing. This is not an editor and does not extract, split, or rearrange pages.",
     limitations:
-      "Blank pages and covers are included in the count. A file that is not a PDF, a damaged file, or a password-protected file is not counted. Files over 20 MB are refused. The page does not extract, split, or reorder pages.",
+      "Blank pages and covers are included in the count. A file that is not a PDF, a damaged file, or a password-protected file is not counted. Files over 20 MB are refused. The page does not extract, split, or reorder pages, and it does not run OCR.",
     faqs: [
       {
         question: "Is the PDF Page Counter free?",
@@ -1410,9 +1457,14 @@ export const toolContent: Record<string, ToolContent> = {
           "Yes. Reading a PDF’s page count costs nothing, and you do not create an account.",
       },
       {
+        question: "Are blank pages counted?",
+        answer:
+          "Yes. A blank page, a cover, or a nearly empty slide is still a page in the file, so it is included.",
+      },
+      {
         question: "Why can’t a file be counted?",
         answer:
-          "The file may not be a PDF, may be damaged, or may be password-protected.",
+          "The file may not be a PDF, may be damaged, may be password-protected, or may be larger than 20 MB.",
       },
       {
         question: "Is my input sent to a server?",
@@ -1791,9 +1843,9 @@ export const toolContent: Record<string, ToolContent> = {
       },
     ],
     explanation:
-      "PDF files can store a document Info dictionary (and sometimes other metadata streams). This tool reads common Info fields with pdf-lib and can copy pages into a new file so those fields are blank. That is not a forensic wipe. Body text, comments, embedded files and images can still identify a person or device.",
+      "PDF files can store a document Info dictionary (and sometimes other metadata streams). This tool reads common Info fields with pdf-lib and can copy pages into a new file so those fields are blank. XMP packets and other metadata streams are not listed here. That is not a forensic wipe. Body text, comments, embedded files and images can still identify a person or device.",
     limitations:
-      "The viewer lists filename, size, page count, and the standard Info fields when they exist: title, author, subject, keywords, creator, producer, and dates. Remove metadata clears those fields in a new download. Page text, comments, embedded files, and images stay. Documents over 80 pages are refused, and a password-protected file will not open.",
+      "The viewer lists filename, size, page count, and the standard Info fields when they exist: title, author, subject, keywords, creator, producer, and dates. XMP and other metadata streams are not listed. Remove metadata clears those Info fields in a new download. Page text, comments, embedded files, and images stay. Documents over 80 pages are refused, and a password-protected file will not open.",
     faqs: [
       {
         question: "Is the PDF Metadata Viewer / Remover free?",

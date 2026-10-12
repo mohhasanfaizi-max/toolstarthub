@@ -23,6 +23,12 @@ export type GuideContent = {
     href: string;
     after?: string;
   };
+  alsoSee?: Array<{
+    before: string;
+    linkLabel: string;
+    href: string;
+    after?: string;
+  }>;
 };
 
 export const guideContent: Record<string, GuideContent> = {
@@ -98,6 +104,14 @@ export const guideContent: Record<string, GuideContent> = {
       href: "/tools/percentage-calculator",
       after: ". It works in the browser and does not require an account.",
     },
+    alsoSee: [
+      {
+        before: "To measure how much a number rose or fell from a starting value, use the",
+        linkLabel: "Percentage Change Calculator",
+        href: "/tools/percentage-change-calculator",
+        after: ".",
+      },
+    ],
   },
   "how-to-compress-an-image-without-losing-quality": {
     intro:
@@ -1590,7 +1604,7 @@ export const guideContent: Record<string, GuideContent> = {
     intro:
       "Regular annual pay is the hourly rate times hours per week times weeks per year. In salary mode, the hourly rate is the salary divided by that same schedule. Overtime is extra hours times the hourly rate times the multiplier, then times the weeks.",
     why:
-      "These totals are gross pay from the hours you enter. They do not subtract taxes or unpaid time off. That subtraction is the Paycheck Estimator, and only for the deductions you type.",
+      "These totals are gross pay from the hours you enter. They do not subtract taxes or unpaid time off. That subtraction is the Paycheck Estimate Calculator, and only for the deductions you type.",
     stepsHeading: "How to convert pay",
     steps: [
       {
@@ -1707,7 +1721,7 @@ export const guideContent: Record<string, GuideContent> = {
     ],
     cta: {
       before: "To estimate one paycheck from gross pay and the deductions you type, use the",
-      linkLabel: "Paycheck Estimator",
+      linkLabel: "Paycheck Estimate Calculator",
       href: "/tools/paycheck-estimator",
       after: ".",
     },

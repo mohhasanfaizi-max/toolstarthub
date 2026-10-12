@@ -469,7 +469,7 @@ export const financeToolContent: Record<string, ToolContent> = {
     ],
   },
   "hourly-wage-calculator": {
-    about: "Turn an hourly rate and a weekly schedule into weekly, monthly, and annual pay, or start from a salary and see the hourly rate.",
+    about: "Turn an hourly rate and a weekly schedule into weekly, monthly, and annual gross pay, or start from a salary and see the hourly rate. Overtime uses the multiplier you type. Taxes, benefits, and unpaid time off are not subtracted.",
     howTo: [
       "Choose hourly rate or annual salary.",
       "Enter hours per week and weeks per year.",
@@ -497,7 +497,7 @@ export const financeToolContent: Record<string, ToolContent> = {
     ],
   },
   "paycheck-estimator": {
-    about: "Estimate one paycheck and a year of pay from gross pay and the deductions you type.",
+    about: "You type gross pay, withholding, and deductions. The page subtracts those amounts. It does not look up IRS or state tax tables.",
     howTo: [
       "Enter gross pay for one paycheck.",
       "Choose weekly, every two weeks, twice a month, or monthly.",
@@ -581,7 +581,7 @@ export const financeToolContent: Record<string, ToolContent> = {
     ],
   },
   "business-days-calculator": {
-    about: "Count Monday through Friday between two dates. You can leave out dates that should not count.",
+    about: "Count Monday through Friday between two dates. You can leave out dates that should not count. Holidays are not applied; a holiday still counts as a business day unless you exclude it yourself.",
     howTo: [
       "Enter the start and end dates.",
       "Choose whether the end date is included.",
@@ -609,7 +609,7 @@ export const financeToolContent: Record<string, ToolContent> = {
     ],
   },
   "gpa-calculator": {
-    about: "Add courses with a letter grade or numeric grade points and a credit value. The GPA is total grade points divided by total credits.",
+    about: "Add courses with a letter grade or numeric grade points and a credit value. The GPA is total grade points divided by total credits on one common 4.0 map. A school may use different plus and minus points, so enter numeric values when your catalog disagrees.",
     howTo: ["Add each course.", "Enter a letter from the 4.0 map, or switch the course to numeric grade points.", "Enter the credits.", "Press Calculate."],
     features: ["Credit-weighted GPA.", "Letter grades or numeric points.", "Total credits and total grade points."],
     examples: [
@@ -631,7 +631,7 @@ export const financeToolContent: Record<string, ToolContent> = {
     ],
   },
   "square-footage-calculator": {
-    about: "Multiply length by width for each room, then add the rooms. The total is shown in square feet and square meters.",
+    about: "Multiply length by width for each rectangular room, then add the rooms. The total is shown in square feet and square meters. Closets, L-shapes, and triangles are not subtracted or added automatically.",
     howTo: ["Enter the length and width of the first room.", "Choose feet or meters.", "Add another room if you need one.", "Press Calculate."],
     features: ["One room or several.", "Feet or meters on each room.", "Totals in square feet and square meters."],
     examples: [{ title: "A 10 by 10 foot room", body: "The area is 100 square feet, which is 9.29 square meters." }],

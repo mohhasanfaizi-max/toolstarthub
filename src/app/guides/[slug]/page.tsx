@@ -37,9 +37,10 @@ export async function generateMetadata({
 
   const article = getArticleBySlug(slug);
   const dates = getGuideDates(slug, article?.publishedAt ?? article?.publishAt);
-  const description = guideMetaDescriptions[slug] ?? guide.description;
+  const description =
+    article?.metaDescription || guideMetaDescriptions[slug] || guide.description;
   const base = createPageMetadata({
-    title: guide.title,
+    title: article?.metaTitle || guide.title,
     description,
     path: guide.route,
     keywords: article

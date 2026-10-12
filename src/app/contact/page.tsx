@@ -12,7 +12,7 @@ import { getPublicContactEmail, siteConfig, siteContact } from "@/lib/site";
 
 const pageTitle = "Contact Tools Star Hub | Online Tools Support";
 const pageDescription =
-  "Contact Tools Star Hub for questions, feedback, tool issues, and suggestions. Reach us by email or phone.";
+  "Contact Tools Star Hub for questions, feedback, tool issues, and suggestions. Reach us by email or phone. No account is required to use the tools.";
 
 const relatedPages = [
   { href: "/tools", label: "Tools" },

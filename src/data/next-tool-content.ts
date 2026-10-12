@@ -51,7 +51,7 @@ export const nextToolContent: Record<string, ToolContent> = {
   },
   "sales-tax-calculator": {
     about:
-      "Add a sales tax rate to a price. You get the tax amount and the price after tax. The labels stay the same for any currency.",
+      "Add a sales tax rate to a pre-tax price. You get the tax amount and the price after tax. You type the rate; this is not a lookup of a city or state table, and it does not reverse tax out of an already-taxed total. The labels stay the same for any currency.",
     howTo: [
       "Enter the original price. It must be zero or greater.",
       "Enter the sales tax percentage. A rate of 0 is valid. A negative rate is not.",
@@ -146,7 +146,7 @@ export const nextToolContent: Record<string, ToolContent> = {
   },
   "find-and-replace": {
     about:
-      "Paste text, type what to find, and type the replacement. You can change the first match or every match, and you can ignore letter case.",
+      "Paste text, type what to find, and type the replacement. You can change the first match or every match, and you can ignore letter case. This is an exact character search, not a regular expression.",
     howTo: [
       "Paste the original text.",
       "Enter the text to find. A blank find box is rejected.",

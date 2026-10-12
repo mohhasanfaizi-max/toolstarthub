@@ -31,13 +31,13 @@ export const en = {
   meta: {
     tagline: "Free Online Tools That Just Work",
     description:
-      "Fast, free and easy-to-use online tools for calculations, text, developers, images, SEO and everyday tasks. No signup required.",
-    toolsTitle: "All Tools",
+      "Convert a PDF, compress an image, count words, or calculate a percent in your browser. Most tools stay on your device, with no account.",
+    toolsTitle: "All Tools – Free, No Sign-Up",
     toolsDescription:
-      "Browse free online tools for calculations, text, developers, images, SEO and everyday tasks.",
-    categoriesTitle: "Categories",
+      "Browse calculators, text, image, PDF, and developer tools. Search the full list and open a tool in your browser. Free, no sign-up needed.",
+    categoriesTitle: "Tool Categories – Find the Right Tool",
     categoriesDescription:
-      "Explore Tools Star Hub by category: calculators, text tools, developer tools, image and PDF tools, SEO utilities, and AI tools.",
+      "Explore calculators, text tools, developer utilities, image and PDF tools, SEO utilities, and AI tools. Pick a category and open a free tool. No sign-up.",
     categoryTitle: "{name} – Free Online Tools",
     categoryShareAlt: "{name} – free online tools",
     toolShareAlt: "{name} – free online tool",

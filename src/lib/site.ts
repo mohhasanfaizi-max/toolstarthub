@@ -48,8 +48,11 @@ export const siteConfig = {
   domain: PRODUCTION_DOMAIN,
   url: resolveSiteUrl(),
   tagline: "Free Online Tools That Just Work",
+  metaTitle: "Free PDF, Image, and Calculator Tools | Tools Star Hub",
   description:
-    "Fast, free and easy-to-use online tools for calculations, text, developers, images, SEO and everyday tasks. No signup required.",
+    "Convert a PDF, compress an image, count words, or calculate a percent in your browser. Most tools stay on your device, with no account.",
+  intro:
+    "Need a percentage, a smaller photo, or a word count? Open the Percentage Calculator, Image Compressor, or Word Counter and finish the job in this browser. Convert PDF pages to JPG, or make a QR code from a link, without creating an account. Most tools run on your device. Gemini-powered tools and the Open Graph preview send only what you submit. Loan, wage, and paycheck pages are estimates from the numbers you type. They do not use tax tables or live lender rates. Search above, or pick a category and a named tool below.",
   shortDescription:
     "Fast, simple, accurate tools for calculations, text, developers, images, SEO and everyday tasks.",
   positioning: ["Fast", "Free", "No Signup", "Browser tools"] as const,

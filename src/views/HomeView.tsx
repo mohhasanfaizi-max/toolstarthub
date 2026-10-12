@@ -18,8 +18,8 @@ import { siteConfig } from "@/lib/site";
 export function homeMetadata(locale: Locale) {
   const t = getMessages(locale).meta;
   return createPageMetadata({
-    title: `${siteConfig.name} — ${t.tagline}`,
-    description: t.description,
+    title: locale === "en" ? siteConfig.metaTitle : `${siteConfig.name} — ${t.tagline}`,
+    description: locale === "en" ? siteConfig.description : t.description,
     path: "/",
     locale,
     hreflang: true,

@@ -56,9 +56,9 @@ const publishedGuides: Article[] = [
     status: "PUBLISHED",
     metaTitle: "How to Calculate Percentage",
     metaDescription:
-      "How to calculate a percentage: X% of a number, a number as a percent of another, and percent increase or decrease.",
+      "Learn the three percentage formulas: a part of a whole, one amount as a share of another, and a percent change. Then try those steps in the calculator.",
     excerpt:
-      "How to calculate a percentage: X% of a number, a number as a percent of another, and percent increase or decrease.",
+      "Learn the three percentage formulas: a part of a whole, one amount as a share of another, and a percent change. Then try those steps in the calculator.",
     content: null,
     faq: [],
     relatedTools: ["percentage-calculator", "percentage-change-calculator", "discount-calculator"],
@@ -77,11 +77,11 @@ const publishedGuides: Article[] = [
     cluster: "image-compressor",
     articleType: "overview",
     status: "PUBLISHED",
-    metaTitle: "How to Compress an Image Without Losing Quality",
+    metaTitle: "How to Compress an Image",
     metaDescription:
-      "Resize first, pick JPEG, WebP, or PNG, then compress in small steps so a photo still looks sharp.",
+      "Resize a photo first, pick JPEG, WebP, or PNG, then compress in small steps while you compare a preview. The file stays in your browser.",
     excerpt:
-      "Resize first, pick JPEG, WebP, or PNG, then compress in small steps so a photo still looks sharp.",
+      "Resize a photo first, pick JPEG, WebP, or PNG, then compress in small steps while you compare a preview. The file stays in your browser.",
     content: null,
     faq: [],
     relatedTools: [
@@ -110,9 +110,9 @@ const publishedGuides: Article[] = [
     status: "PUBLISHED",
     metaTitle: "What Is JSON?",
     metaDescription:
-      "JSON is a text format for objects and arrays. See how to read it, why it fails to parse, and how to format it in the browser.",
+      "JSON is a text format for objects and arrays. See how to read it, why a parse fails, and how to pretty-print it in the browser. Paste a sample.",
     excerpt:
-      "JSON is a text format for objects and arrays. See how to read it, why it fails to parse, and how to format it in the browser.",
+      "JSON is a text format for objects and arrays. See how to read it, why a parse fails, and how to pretty-print it in the browser. Paste a sample.",
     content: null,
     faq: [],
     relatedTools: [
@@ -128,7 +128,7 @@ const publishedGuides: Article[] = [
   },
   {
     id: "how-to-create-a-utm-url",
-    title: "How to Create a UTM URL",
+    title: "How to Create a UTM Link: Steps + Free Tool",
     slug: "how-to-create-a-utm-url",
     primaryKeyword: "utm url",
     secondaryKeywords: ["utm_source", "utm_medium", "utm_campaign"],
@@ -138,11 +138,11 @@ const publishedGuides: Article[] = [
     cluster: "utm-builder",
     articleType: "overview",
     status: "PUBLISHED",
-    metaTitle: "How to Create a UTM URL",
+    metaTitle: "How to Create a UTM Link",
     metaDescription:
-      "Add utm_source, utm_medium, and utm_campaign to a destination URL so analytics can tell campaigns apart.",
+      "Build a UTM link with source, medium, and campaign, plus optional term and content. Blank fields are omitted. Then create yours in the UTM Builder.",
     excerpt:
-      "Add utm_source, utm_medium, and utm_campaign to a destination URL so analytics can tell campaigns apart.",
+      "Build a UTM link with source, medium, and campaign, plus optional term and content. Blank fields are omitted. Then create yours in the UTM Builder.",
     content: null,
     faq: [],
     relatedTools: ["utm-builder", "qr-code-generator", "qr-code-generator-pro", "slug-generator"],
@@ -163,9 +163,9 @@ const publishedGuides: Article[] = [
     status: "PUBLISHED",
     metaTitle: "How to Calculate Age",
     metaDescription:
-      "Count age in years, months, and days from a date of birth using the civil calendar, including leap days.",
+      "Walk through civil-calendar age from a date of birth, including leap days, broken into years, months, and days. Enter the birth date to see the breakdown.",
     excerpt:
-      "Count age in years, months, and days from a date of birth using the civil calendar, including leap days.",
+      "Walk through civil-calendar age from a date of birth, including leap days, broken into years, months, and days. Enter the birth date to see the breakdown.",
     content: null,
     faq: [],
     relatedTools: ["age-calculator"],
@@ -186,9 +186,9 @@ const publishedGuides: Article[] = [
     status: "PUBLISHED",
     metaTitle: "How to Work with PDFs in Your Browser",
     metaDescription:
-      "Compress a PDF, extract text, check metadata, or merge pages in the browser without uploading the file.",
+      "Compress a PDF, extract text, check metadata, or merge pages in the browser without uploading the file. Open a PDF tool and keep the file local.",
     excerpt:
-      "Compress a PDF, extract text, check metadata, or merge pages in the browser without uploading the file.",
+      "Compress a PDF, extract text, check metadata, or merge pages in the browser without uploading the file. Open a PDF tool and keep the file local.",
     content: null,
     faq: [],
     relatedTools: ["pdf-compressor", "pdf-to-text", "pdf-metadata", "text-to-pdf", "pdf-merger", "pdf-splitter"],
@@ -209,9 +209,9 @@ const publishedGuides: Article[] = [
     status: "PUBLISHED",
     metaTitle: "How to Clean and Compare Text",
     metaDescription:
-      "Remove duplicate lines, tidy whitespace, sort a list, and compare two drafts locally in the browser.",
+      "Remove duplicate lines, tidy whitespace, sort a list, and compare two drafts locally in your browser. Paste the text you want to clean.",
     excerpt:
-      "Remove duplicate lines, tidy whitespace, sort a list, and compare two drafts locally in the browser.",
+      "Remove duplicate lines, tidy whitespace, sort a list, and compare two drafts locally in your browser. Paste the text you want to clean.",
     content: null,
     faq: [],
     relatedTools: [
@@ -239,9 +239,9 @@ const publishedGuides: Article[] = [
     status: "PUBLISHED",
     metaTitle: "How to Calculate a Tip",
     metaDescription:
-      "Multiply the bill by the tip rate, add it to the total, and divide by the number of people when the check is shared equally.",
+      "Multiply the bill by the tip rate, add it to the total, and divide by the number of people when the check is shared equally. Enter the three figures.",
     excerpt:
-      "Multiply the bill by the tip rate, add it to the total, and divide by the number of people when the check is shared equally.",
+      "Multiply the bill by the tip rate, add it to the total, and divide by the number of people when the check is shared equally. Enter the three figures.",
     content: null,
     faq: [],
     relatedTools: ["tip-calculator", "sales-tax-calculator", "discount-calculator", "percentage-calculator"],
@@ -260,11 +260,11 @@ const publishedGuides: Article[] = [
     cluster: "hex-to-rgb",
     articleType: "overview",
     status: "PUBLISHED",
-    metaTitle: "How to Convert a Hex Color to RGB",
+    metaTitle: "How to Convert Hex to RGB",
     metaDescription:
-      "Split a hex color into red, green, and blue pairs and convert each pair from base 16 to a number from 0 to 255.",
+      "Split a hex color into red, green, and blue pairs and convert each pair from base 16 to a number from 0 to 255. Copy RGB or HSL next.",
     excerpt:
-      "Split a hex color into red, green, and blue pairs and convert each pair from base 16 to a number from 0 to 255.",
+      "Split a hex color into red, green, and blue pairs and convert each pair from base 16 to a number from 0 to 255. Copy RGB or HSL next.",
     content: null,
     faq: [],
     relatedTools: ["hex-to-rgb", "color-contrast-checker", "color-picker", "css-gradient-generator"],
@@ -283,11 +283,11 @@ const publishedGuides: Article[] = [
     cluster: "pdf-page-counter",
     articleType: "overview",
     status: "PUBLISHED",
-    metaTitle: "How to Count the Pages in a PDF",
+    metaTitle: "How to Count PDF Pages",
     metaDescription:
-      "Read the number of pages stored in a PDF, including blank pages and a cover, before you split or merge the file.",
+      "Read the number of pages stored in a PDF, including blank pages and a cover, before you split or merge. The count runs on this device.",
     excerpt:
-      "Read the number of pages stored in a PDF, including blank pages and a cover, before you split or merge the file.",
+      "Read the number of pages stored in a PDF, including blank pages and a cover, before you split or merge. The count runs on this device.",
     content: null,
     faq: [],
     relatedTools: ["pdf-page-counter", "pdf-metadata", "pdf-splitter", "pdf-merger"],
@@ -308,9 +308,9 @@ const publishedGuides: Article[] = [
     status: "PUBLISHED",
     metaTitle: "How to Add Sales Tax to a Price",
     metaDescription:
-      "Multiply a pre-tax price by the tax rate you type, round the tax to cents, and add it to the price.",
+      "Multiply a pre-tax price by the tax rate you type, round the tax to cents, and add it to the price. Enter the price and the rate you were given.",
     excerpt:
-      "Multiply a pre-tax price by the tax rate you type, round the tax to cents, and add it to the price.",
+      "Multiply a pre-tax price by the tax rate you type, round the tax to cents, and add it to the price. Enter the price and the rate you were given.",
     content: null,
     faq: [],
     relatedTools: ["sales-tax-calculator", "tip-calculator", "discount-calculator", "percentage-calculator"],
@@ -329,11 +329,11 @@ const publishedGuides: Article[] = [
     cluster: "unit-converter",
     articleType: "overview",
     status: "PUBLISHED",
-    metaTitle: "How to Convert Length, Weight, and Temperature",
+    metaTitle: "How to Convert Length and Weight",
     metaDescription:
-      "Convert length and weight by a fixed factor, and temperature with the Celsius, Fahrenheit, and Kelvin formulas.",
+      "Convert length and weight by a fixed factor, and temperature with the Celsius, Fahrenheit, and Kelvin formulas. Pick a category and type a value.",
     excerpt:
-      "Convert length and weight by a fixed factor, and temperature with the Celsius, Fahrenheit, and Kelvin formulas.",
+      "Convert length and weight by a fixed factor, and temperature with the Celsius, Fahrenheit, and Kelvin formulas. Pick a category and type a value.",
     content: null,
     faq: [],
     relatedTools: ["unit-converter", "square-footage-calculator", "age-calculator"],
@@ -352,11 +352,11 @@ const publishedGuides: Article[] = [
     cluster: "date-difference-calculator",
     articleType: "overview",
     status: "PUBLISHED",
-    metaTitle: "How to Count the Days Between Two Dates",
+    metaTitle: "How to Count Days Between Dates",
     metaDescription:
-      "Count midnights between two dates, then read weeks and a calendar span in years, months, and days.",
+      "Learn how midnight-to-midnight day counts work, plus weeks and a years-months-days span. Choose two dates on the calendar to follow along.",
     excerpt:
-      "Count midnights between two dates, then read weeks and a calendar span in years, months, and days.",
+      "Learn how midnight-to-midnight day counts work, plus weeks and a years-months-days span. Choose two dates on the calendar to follow along.",
     content: null,
     faq: [],
     relatedTools: ["date-difference-calculator", "age-calculator", "business-days-calculator"],
@@ -375,11 +375,11 @@ const publishedGuides: Article[] = [
     cluster: "character-counter",
     articleType: "overview",
     status: "PUBLISHED",
-    metaTitle: "How to Count Characters in a Text",
+    metaTitle: "How to Count Characters in Text",
     metaDescription:
-      "Count Unicode characters, including spaces, plus a total without spaces, words, and lines.",
+      "Count Unicode characters, including spaces, plus a total without spaces, words, and lines. Emoji usually count as one character. Paste a caption.",
     excerpt:
-      "Count Unicode characters, including spaces, plus a total without spaces, words, and lines.",
+      "Count Unicode characters, including spaces, plus a total without spaces, words, and lines. Emoji usually count as one character. Paste a caption.",
     content: null,
     faq: [],
     relatedTools: ["character-counter", "word-counter", "case-converter", "whitespace-remover"],
@@ -398,11 +398,11 @@ const publishedGuides: Article[] = [
     cluster: "color-picker",
     articleType: "overview",
     status: "PUBLISHED",
-    metaTitle: "How to Pick a Color and Copy HEX, RGB, or HSL",
+    metaTitle: "How to Pick a Color and Copy HEX",
     metaDescription:
-      "Choose one opaque color with the browser color control and copy it as HEX, RGB, or HSL.",
+      "Use the system color well to sample a swatch, then copy HEX, RGB, or HSL for a stylesheet. No photo upload is required to start.",
     excerpt:
-      "Choose one opaque color with the browser color control and copy it as HEX, RGB, or HSL.",
+      "Use the system color well to sample a swatch, then copy HEX, RGB, or HSL for a stylesheet. No photo upload is required to start.",
     content: null,
     faq: [],
     relatedTools: ["color-picker", "hex-to-rgb", "color-contrast-checker", "image-color-analyzer"],
@@ -421,11 +421,11 @@ const publishedGuides: Article[] = [
     cluster: "image-color-analyzer",
     articleType: "overview",
     status: "PUBLISHED",
-    metaTitle: "How to List the Dominant Colors in an Image",
+    metaTitle: "How to List Dominant Colors",
     metaDescription:
-      "Sample a JPG, PNG, or WebP and list 3 to 10 colors with each color's share of the sampled pixels.",
+      "Sample a JPG, PNG, or WebP and list 3 to 10 colors with each color's share of the sampled pixels. Upload an image to build a palette.",
     excerpt:
-      "Sample a JPG, PNG, or WebP and list 3 to 10 colors with each color's share of the sampled pixels.",
+      "Sample a JPG, PNG, or WebP and list 3 to 10 colors with each color's share of the sampled pixels. Upload an image to build a palette.",
     content: null,
     faq: [],
     relatedTools: ["image-color-analyzer", "color-picker", "hex-to-rgb", "color-contrast-checker"],
@@ -444,11 +444,11 @@ const publishedGuides: Article[] = [
     cluster: "qr-code-scanner",
     articleType: "overview",
     status: "PUBLISHED",
-    metaTitle: "How to Read a QR Code from the Camera or an Image",
+    metaTitle: "How to Scan a QR Code",
     metaDescription:
-      "Decode one QR code from the camera or from a PNG or JPG, then open a link only after you read it.",
+      "Decode one QR code from the camera or from a PNG or JPG, then open a link only after you read it. Decoding stays on this device.",
     excerpt:
-      "Decode one QR code from the camera or from a PNG or JPG, then open a link only after you read it.",
+      "Decode one QR code from the camera or from a PNG or JPG, then open a link only after you read it. Decoding stays on this device.",
     content: null,
     faq: [],
     relatedTools: ["qr-code-scanner", "qr-code-generator", "url-parser", "password-generator"],
@@ -469,9 +469,9 @@ const publishedGuides: Article[] = [
     status: "PUBLISHED",
     metaTitle: "How to Generate a Random Number",
     metaDescription:
-      "Draw 1 to 200 integers or decimals between a minimum and a maximum. Unique mode works for integers only.",
+      "Draw 1 to 200 integers or decimals between a minimum and a maximum. Unique mode works for integers. Set the range, then generate a list.",
     excerpt:
-      "Draw 1 to 200 integers or decimals between a minimum and a maximum. Unique mode works for integers only.",
+      "Draw 1 to 200 integers or decimals between a minimum and a maximum. Unique mode works for integers. Set the range, then generate a list.",
     content: null,
     faq: [],
     relatedTools: ["random-number-generator", "uuid-generator", "password-generator", "hash-generator"],
@@ -492,9 +492,9 @@ const publishedGuides: Article[] = [
     status: "PUBLISHED",
     metaTitle: "How to Estimate a Fuel Cost",
     metaDescription:
-      "Divide distance by fuel economy, then multiply by the price and the number of trips.",
+      "Work out trip fuel by dividing distance by economy, then multiplying by price and the number of trips. Enter distance, economy, and price.",
     excerpt:
-      "Divide distance by fuel economy, then multiply by the price and the number of trips.",
+      "Work out trip fuel by dividing distance by economy, then multiplying by price and the number of trips. Enter distance, economy, and price.",
     content: null,
     faq: [],
     relatedTools: ["fuel-cost-calculator", "unit-converter", "tip-calculator", "date-difference-calculator"],
@@ -515,9 +515,9 @@ const publishedGuides: Article[] = [
     status: "PUBLISHED",
     metaTitle: "How to Calculate an Aspect Ratio",
     metaDescription:
-      "Divide width and height by their greatest common divisor, or find the missing side from a ratio.",
+      "Divide width and height by their greatest common divisor, or find the missing side from a known ratio. Enter two numbers to solve.",
     excerpt:
-      "Divide width and height by their greatest common divisor, or find the missing side from a ratio.",
+      "Divide width and height by their greatest common divisor, or find the missing side from a known ratio. Enter two numbers to solve.",
     content: null,
     faq: [],
     relatedTools: ["aspect-ratio-calculator", "square-footage-calculator", "image-resizer", "image-cropper"],
@@ -536,11 +536,11 @@ const publishedGuides: Article[] = [
     cluster: "url-encoder",
     articleType: "overview",
     status: "PUBLISHED",
-    metaTitle: "How to Percent-Encode a URL Value",
+    metaTitle: "How to Percent-Encode a URL",
     metaDescription:
-      "Encode a URL component with encodeURIComponent, or decode a percent-encoded string back to text.",
+      "Encode a URL component with encodeURIComponent, or decode a percent-encoded string back to readable text. Paste the value to convert.",
     excerpt:
-      "Encode a URL component with encodeURIComponent, or decode a percent-encoded string back to text.",
+      "Encode a URL component with encodeURIComponent, or decode a percent-encoded string back to readable text. Paste the value to convert.",
     content: null,
     faq: [],
     relatedTools: ["url-encoder", "url-parser", "base64-encoder", "utm-builder"],
@@ -561,9 +561,9 @@ const publishedGuides: Article[] = [
     status: "PUBLISHED",
     metaTitle: "How to Read a Unix Timestamp",
     metaDescription:
-      "Turn seconds or milliseconds since 1970-01-01 UTC into a UTC date, or turn a UTC date back into a timestamp.",
+      "Turn seconds or milliseconds since 1970-01-01 UTC into a local, UTC, and ISO date, or turn a date back into a timestamp. Pick the unit first.",
     excerpt:
-      "Turn seconds or milliseconds since 1970-01-01 UTC into a UTC date, or turn a UTC date back into a timestamp.",
+      "Turn seconds or milliseconds since 1970-01-01 UTC into a local, UTC, and ISO date, or turn a date back into a timestamp. Pick the unit first.",
     content: null,
     faq: [],
     relatedTools: ["timestamp-converter", "time-zone-converter", "date-difference-calculator"],
@@ -582,11 +582,11 @@ const publishedGuides: Article[] = [
     cluster: "html-encoder",
     articleType: "overview",
     status: "PUBLISHED",
-    metaTitle: "How to Escape HTML So It Shows as Text",
+    metaTitle: "How to Escape HTML as Text",
     metaDescription:
-      "Replace <, >, &, and quotes with entities so markup is shown as text, or turn those entities back into characters.",
+      "Replace <, >, &, and quotes with HTML entities so markup shows as text, or decode those entities back. Paste the snippet to convert.",
     excerpt:
-      "Replace <, >, &, and quotes with entities so markup is shown as text, or turn those entities back into characters.",
+      "Replace <, >, &, and quotes with HTML entities so markup shows as text, or decode those entities back. Paste the snippet to convert.",
     content: null,
     faq: [],
     relatedTools: ["html-encoder", "html-minifier", "markdown-to-html", "html-to-markdown"],
@@ -605,11 +605,11 @@ const publishedGuides: Article[] = [
     cluster: "color-contrast-checker",
     articleType: "overview",
     status: "PUBLISHED",
-    metaTitle: "How to Check Contrast Between Two Colors",
+    metaTitle: "How to Check Color Contrast",
     metaDescription:
-      "Compare two solid colors and read the WCAG 2 ratio, including AA and AAA for normal and large text.",
+      "Read the WCAG 2 contrast ratio for two solid colors, including AA and AAA on body copy and large type. Type both hex values to compare.",
     excerpt:
-      "Compare two solid colors and read the WCAG 2 ratio, including AA and AAA for normal and large text.",
+      "Read the WCAG 2 contrast ratio for two solid colors, including AA and AAA on body copy and large type. Type both hex values to compare.",
     content: null,
     faq: [],
     relatedTools: ["color-contrast-checker", "color-picker", "hex-to-rgb", "css-gradient-generator"],
@@ -651,11 +651,11 @@ const publishedGuides: Article[] = [
     cluster: "box-shadow-generator",
     articleType: "overview",
     status: "PUBLISHED",
-    metaTitle: "How to Write One CSS Box Shadow",
+    metaTitle: "How to Write a CSS Box Shadow",
     metaDescription:
-      "Set one offset, blur, spread, color, and opacity, then copy a single box-shadow declaration.",
+      "Set offset, blur, spread, color, and opacity on a preview, then copy a single box-shadow declaration. Adjust the sliders as you watch.",
     excerpt:
-      "Set one offset, blur, spread, color, and opacity, then copy a single box-shadow declaration.",
+      "Set offset, blur, spread, color, and opacity on a preview, then copy a single box-shadow declaration. Adjust the sliders as you watch.",
     content: null,
     faq: [],
     relatedTools: ["box-shadow-generator", "css-gradient-generator", "color-picker", "hex-to-rgb"],
@@ -674,11 +674,11 @@ const publishedGuides: Article[] = [
     cluster: "json-to-csv",
     articleType: "overview",
     status: "PUBLISHED",
-    metaTitle: "How to Turn a JSON Array into CSV",
+    metaTitle: "How to Turn JSON into CSV",
     metaDescription:
-      "Turn a JSON array of objects into CSV. The first row is the keys, and commas inside cells are quoted.",
+      "Turn a JSON array of objects into CSV. The first row is the keys, and commas inside cells are quoted. Paste an array of objects.",
     excerpt:
-      "Turn a JSON array of objects into CSV. The first row is the keys, and commas inside cells are quoted.",
+      "Turn a JSON array of objects into CSV. The first row is the keys, and commas inside cells are quoted. Paste an array of objects.",
     content: null,
     faq: [],
     relatedTools: ["json-to-csv", "csv-to-json", "json-formatter"],
@@ -699,9 +699,9 @@ const publishedGuides: Article[] = [
     status: "PUBLISHED",
     metaTitle: "How to Turn CSV into JSON",
     metaDescription:
-      "Use the first CSV row as keys and turn each following row into a JSON object.",
+      "Use the first CSV row as keys and turn each following row into a JSON object. Quoted cells and commas inside values are kept. Paste CSV.",
     excerpt:
-      "Use the first CSV row as keys and turn each following row into a JSON object.",
+      "Use the first CSV row as keys and turn each following row into a JSON object. Quoted cells and commas inside values are kept. Paste CSV.",
     content: null,
     faq: [],
     relatedTools: ["csv-to-json", "json-to-csv", "json-formatter"],
@@ -722,9 +722,9 @@ const publishedGuides: Article[] = [
     status: "PUBLISHED",
     metaTitle: "How to Test a Regular Expression",
     metaDescription:
-      "Run a JavaScript regular expression on sample text and read each match, its index, and its capture groups.",
+      "Run a JavaScript regular expression on sample text and read each match, its index, and its capture groups. Paste a pattern and a sample.",
     excerpt:
-      "Run a JavaScript regular expression on sample text and read each match, its index, and its capture groups.",
+      "Run a JavaScript regular expression on sample text and read each match, its index, and its capture groups. Paste a pattern and a sample.",
     content: null,
     faq: [],
     relatedTools: ["regex-tester", "find-and-replace", "json-formatter"],
@@ -743,11 +743,11 @@ const publishedGuides: Article[] = [
     cluster: "hash-generator",
     articleType: "overview",
     status: "PUBLISHED",
-    metaTitle: "How to Hash Text with SHA-256, SHA-384, or SHA-512",
+    metaTitle: "How to Hash Text with SHA-256",
     metaDescription:
-      "Hash pasted text with SHA-256, SHA-384, or SHA-512. The hex is a fingerprint, not a way back to the text.",
+      "Hash pasted text with SHA-256, SHA-384, or SHA-512 and copy the hex fingerprint from this browser tab. Paste the string you want hashed.",
     excerpt:
-      "Hash pasted text with SHA-256, SHA-384, or SHA-512. The hex is a fingerprint, not a way back to the text.",
+      "Hash pasted text with SHA-256, SHA-384, or SHA-512 and copy the hex fingerprint from this browser tab. Paste the string you want hashed.",
     content: null,
     faq: [],
     relatedTools: ["hash-generator", "uuid-generator", "password-generator", "base64-encoder"],
@@ -768,9 +768,9 @@ const publishedGuides: Article[] = [
     status: "PUBLISHED",
     metaTitle: "How to Generate Lorem Ipsum",
     metaDescription:
-      "Generate 1 to 20 placeholder paragraphs, 1 to 50 sentences, or 1 to 500 words of lorem ipsum.",
+      "Generate 1 to 20 placeholder paragraphs, 1 to 50 sentences, or 1 to 500 words of classic lorem ipsum. Copy it when a layout needs filling.",
     excerpt:
-      "Generate 1 to 20 placeholder paragraphs, 1 to 50 sentences, or 1 to 500 words of lorem ipsum.",
+      "Generate 1 to 20 placeholder paragraphs, 1 to 50 sentences, or 1 to 500 words of classic lorem ipsum. Copy it when a layout needs filling.",
     content: null,
     faq: [],
     relatedTools: ["lorem-ipsum-generator", "word-counter", "character-counter"],
@@ -791,9 +791,9 @@ const publishedGuides: Article[] = [
     status: "PUBLISHED",
     metaTitle: "How to Find and Replace Text",
     metaDescription:
-      "Replace the first exact match or every match. Case can be ignored. This is not a regular expression.",
+      "Replace the first exact match or every match in pasted text. Ignore letter case when you need to. Paste a draft, then type the search string.",
     excerpt:
-      "Replace the first exact match or every match. Case can be ignored. This is not a regular expression.",
+      "Replace the first exact match or every match in pasted text. Ignore letter case when you need to. Paste a draft, then type the search string.",
     content: null,
     faq: [],
     relatedTools: ["find-and-replace", "regex-tester", "whitespace-remover"],
@@ -814,9 +814,9 @@ const publishedGuides: Article[] = [
     status: "PUBLISHED",
     metaTitle: "How to Remove Line Breaks",
     metaDescription:
-      "Turn line breaks into spaces, delete them, or keep a blank line between paragraphs.",
+      "Turn line breaks into spaces, delete them, or keep a blank line between paragraphs. Wrapped email lines become one sentence. Paste wrapped text.",
     excerpt:
-      "Turn line breaks into spaces, delete them, or keep a blank line between paragraphs.",
+      "Turn line breaks into spaces, delete them, or keep a blank line between paragraphs. Wrapped email lines become one sentence. Paste wrapped text.",
     content: null,
     faq: [],
     relatedTools: ["remove-line-breaks", "whitespace-remover", "find-and-replace"],
@@ -837,9 +837,9 @@ const publishedGuides: Article[] = [
     status: "PUBLISHED",
     metaTitle: "How to Add Line Numbers",
     metaDescription:
-      "Put a starting number and a separator in front of each line without changing the line text.",
+      "Put a starting number and a separator in front of each line without changing the line text. Blank lines can still receive a number. Paste lines.",
     excerpt:
-      "Put a starting number and a separator in front of each line without changing the line text.",
+      "Put a starting number and a separator in front of each line without changing the line text. Blank lines can still receive a number. Paste lines.",
     content: null,
     faq: [],
     relatedTools: ["add-line-numbers", "find-and-replace", "line-sorter"],
@@ -860,9 +860,9 @@ const publishedGuides: Article[] = [
     status: "PUBLISHED",
     metaTitle: "How to Turn a Number into Words",
     metaDescription:
-      "Write a whole number from zero through 999,999,999 in English words, or parse a simple phrase back to digits.",
+      "Write a whole number from zero through 999,999,999 in English words, or parse a simple phrase back to digits. Type a whole number to convert.",
     excerpt:
-      "Write a whole number from zero through 999,999,999 in English words, or parse a simple phrase back to digits.",
+      "Write a whole number from zero through 999,999,999 in English words, or parse a simple phrase back to digits. Type a whole number to convert.",
     content: null,
     faq: [],
     relatedTools: ["number-to-words", "roman-numeral-converter"],
@@ -881,11 +881,11 @@ const publishedGuides: Article[] = [
     cluster: "morse-code",
     articleType: "overview",
     status: "PUBLISHED",
-    metaTitle: "How to Convert Text to Morse Code",
+    metaTitle: "How to Convert Text to Morse",
     metaDescription:
-      "Convert A to Z and 0 to 9 into Morse dots and dashes, or turn that code back into text.",
+      "Convert A to Z and 0 to 9 into Morse dots and dashes, or turn that code back into text. Other characters stop the conversion. Paste a message.",
     excerpt:
-      "Convert A to Z and 0 to 9 into Morse dots and dashes, or turn that code back into text.",
+      "Convert A to Z and 0 to 9 into Morse dots and dashes, or turn that code back into text. Other characters stop the conversion. Paste a message.",
     content: null,
     faq: [],
     relatedTools: ["morse-code", "roman-numeral-converter", "character-counter"],
@@ -904,11 +904,11 @@ const publishedGuides: Article[] = [
     cluster: "roman-numeral-converter",
     articleType: "overview",
     status: "PUBLISHED",
-    metaTitle: "How to Convert Numbers and Roman Numerals",
+    metaTitle: "How to Convert Roman Numerals",
     metaDescription:
-      "Convert 1 to 3999 into standard Roman numerals, or a valid numeral back into a number.",
+      "Write 1 through 3999 in standard Roman form, or decode a valid numeral back to Arabic digits. Type a number in that range to convert.",
     excerpt:
-      "Convert 1 to 3999 into standard Roman numerals, or a valid numeral back into a number.",
+      "Write 1 through 3999 in standard Roman form, or decode a valid numeral back to Arabic digits. Type a number in that range to convert.",
     content: null,
     faq: [],
     relatedTools: ["roman-numeral-converter", "number-to-words"],
@@ -927,11 +927,11 @@ const publishedGuides: Article[] = [
     cluster: "password-generator",
     articleType: "overview",
     status: "PUBLISHED",
-    metaTitle: "How to Generate a Password in the Browser",
+    metaTitle: "How to Generate a Password",
     metaDescription:
-      "Generate a password from 8 to 64 characters in the browser. The strength label is an estimate from length and set size.",
+      "Generate a password from 8 to 64 characters in the browser, then copy it and store it yourself. Nothing is stored or sent. Pick length and sets.",
     excerpt:
-      "Generate a password from 8 to 64 characters in the browser. The strength label is an estimate from length and set size.",
+      "Generate a password from 8 to 64 characters in the browser, then copy it and store it yourself. Nothing is stored or sent. Pick length and sets.",
     content: null,
     faq: [],
     relatedTools: ["password-generator", "uuid-generator", "hash-generator"],
@@ -950,11 +950,11 @@ const publishedGuides: Article[] = [
     cluster: "ai-prompt-generator",
     articleType: "overview",
     status: "PUBLISHED",
-    metaTitle: "How to Build a Prompt, and When That Text Leaves the Browser",
+    metaTitle: "How to Build an AI Prompt",
     metaDescription:
-      "Generate prompt stays in the browser. Generate with AI sends topic, goal, and the other listed fields to Gemini.",
+      "Build a prompt in the browser from topic, goal, and format. Generate with AI sends those fields to Gemini. Fill in the brief, then copy the result.",
     excerpt:
-      "Generate prompt stays in the browser. Generate with AI sends topic, goal, and the other listed fields to Gemini.",
+      "Build a prompt in the browser from topic, goal, and format. Generate with AI sends those fields to Gemini. Fill in the brief, then copy the result.",
     content: null,
     faq: [],
     relatedTools: ["ai-prompt-generator", "prompt-to-image", "prompt-to-video"],
@@ -973,11 +973,11 @@ const publishedGuides: Article[] = [
     cluster: "prompt-to-video",
     articleType: "overview",
     status: "PUBLISHED",
-    metaTitle: "How to Write a Video Prompt Without Rendering a Clip",
+    metaTitle: "How to Write a Video Prompt",
     metaDescription:
-      "Build prompt writes a shot in the browser. Generate with AI sends the shot fields to Gemini and returns text, not a video.",
+      "Build a shot prompt in the browser, or send the shot fields to Gemini and copy the returned text. Fill in subject, camera, and action.",
     excerpt:
-      "Build prompt writes a shot in the browser. Generate with AI sends the shot fields to Gemini and returns text, not a video.",
+      "Build a shot prompt in the browser, or send the shot fields to Gemini and copy the returned text. Fill in subject, camera, and action.",
     content: null,
     faq: [],
     relatedTools: ["prompt-to-video", "prompt-to-image", "ai-prompt-generator"],
@@ -996,11 +996,11 @@ const publishedGuides: Article[] = [
     cluster: "ai-article-compressor",
     articleType: "overview",
     status: "PUBLISHED",
-    metaTitle: "How to Shorten an Article in the Browser or with Gemini",
+    metaTitle: "How to Shorten an Article",
     metaDescription:
-      "Shorten article edits the draft in the browser. Compress with AI sends the article and the selected setting to Gemini.",
+      "Shorten a draft in the browser, or send the article and a setting to Gemini. Copy the shorter text. Paste a long draft to begin.",
     excerpt:
-      "Shorten article edits the draft in the browser. Compress with AI sends the article and the selected setting to Gemini.",
+      "Shorten a draft in the browser, or send the article and a setting to Gemini. Copy the shorter text. Paste a long draft to begin.",
     content: null,
     faq: [],
     relatedTools: ["ai-article-compressor", "ai-article-detector", "word-counter"],
@@ -1019,7 +1019,7 @@ const publishedGuides: Article[] = [
     cluster: "time-calculator",
     articleType: "overview",
     status: "PUBLISHED",
-    metaTitle: "How to Add or Subtract Hours and Minutes",
+    metaTitle: "How to Add Hours and Minutes",
     metaDescription:
       "Add or subtract hours and minutes by converting both sides to minutes, then splitting the signed total back into hours and a remainder.",
     excerpt:
@@ -1049,9 +1049,9 @@ const publishedGuides: Article[] = [
     status: "PUBLISHED",
     metaTitle: "How to Read a Cron Expression",
     metaDescription:
-      "Read a five-field cron expression. When both day fields are set, cron matches either day, not both.",
+      "Read a five-field cron expression, or build one and copy a plain-language summary. Sunday is 0. Paste an expression or fill the fields.",
     excerpt:
-      "Read a five-field cron expression. When both day fields are set, cron matches either day, not both.",
+      "Read a five-field cron expression, or build one and copy a plain-language summary. Sunday is 0. Paste an expression or fill the fields.",
     content: null,
     faq: [],
     relatedTools: [
@@ -1077,9 +1077,9 @@ const publishedGuides: Article[] = [
     status: "PUBLISHED",
     metaTitle: "How to Rewrite Stock Phrasing",
     metaDescription:
-      "Rewrite text stays in the browser. Humanize with AI sends the draft. The tool does not try to bypass an AI detector, and it does not claim the result will look like a particular kind of author.",
+      "Rewrite stock phrases in the browser, or send a draft to Gemini and copy the rewritten wording. Paste text that relies on stock phrases.",
     excerpt:
-      "Rewrite text stays in the browser. Humanize with AI sends the draft. The tool does not try to bypass an AI detector, and it does not claim the result will look like a particular kind of author.",
+      "Rewrite stock phrases in the browser, or send a draft to Gemini and copy the rewritten wording. Paste text that relies on stock phrases.",
     content: null,
     faq: [],
     relatedTools: ["ai-text-humanizer", "ai-article-compressor", "ai-article-detector", "word-counter"],
@@ -1098,11 +1098,11 @@ const publishedGuides: Article[] = [
     cluster: "average-calculator",
     articleType: "overview",
     status: "PUBLISHED",
-    metaTitle: "How to Find the Mean, Median, and Mode",
+    metaTitle: "How to Find Mean, Median, and Mode",
     metaDescription:
-      "Find the mean, median, and mode of a comma-separated list. 1, 2, 3, 4 has a mean of 2.5 and no mode.",
+      "Find the mean, median, and mode of a comma-separated list. The list 1, 2, 3, 4 has a mean of 2.5 and no mode. Paste a list of numbers.",
     excerpt:
-      "Find the mean, median, and mode of a comma-separated list. 1, 2, 3, 4 has a mean of 2.5 and no mode.",
+      "Find the mean, median, and mode of a comma-separated list. The list 1, 2, 3, 4 has a mean of 2.5 and no mode. Paste a list of numbers.",
     content: null,
     faq: [],
     relatedTools: ["average-calculator", "gpa-calculator", "percentage-calculator", "number-to-words"],
@@ -1123,9 +1123,9 @@ const publishedGuides: Article[] = [
     status: "PUBLISHED",
     metaTitle: "How to Read Text from a Photo",
     metaDescription:
-      "Read English text from one JPG, PNG, or WebP in the browser. The first run downloads about 6.6 MB, and a clear sign can still come back wrong.",
+      "Run English OCR on one photo in the tab. The first pass downloads about 6.6 MB of recognition files. Upload a JPG, PNG, or WebP of printed type.",
     excerpt:
-      "Read English text from one JPG, PNG, or WebP in the browser. The first run downloads about 6.6 MB, and a clear sign can still come back wrong.",
+      "Run English OCR on one photo in the tab. The first pass downloads about 6.6 MB of recognition files. Upload a JPG, PNG, or WebP of printed type.",
     content: null,
     faq: [],
     relatedTools: ["image-to-text", "pdf-to-text", "image-compressor", "image-resizer"],
@@ -1144,11 +1144,11 @@ const publishedGuides: Article[] = [
     cluster: "word-to-pdf",
     articleType: "overview",
     status: "PUBLISHED",
-    metaTitle: "How to Turn a Word Document into a PDF",
+    metaTitle: "How to Turn a Word File into PDF",
     metaDescription:
-      "Read the words from a .docx file into a plain PDF. Images, table grids, headers, footers, and text styling are left out.",
+      "Read the words from a .docx file into a plain PDF. Images, table grids, headers, footers, and text styling are left out. Upload a .docx.",
     excerpt:
-      "Read the words from a .docx file into a plain PDF. Images, table grids, headers, footers, and text styling are left out.",
+      "Read the words from a .docx file into a plain PDF. Images, table grids, headers, footers, and text styling are left out. Upload a .docx.",
     content: null,
     faq: [],
     relatedTools: ["word-to-pdf", "text-to-pdf", "pdf-to-text", "image-to-pdf"],
@@ -1169,9 +1169,9 @@ const publishedGuides: Article[] = [
     status: "PUBLISHED",
     metaTitle: "How to Make a Simple Favicon",
     metaDescription:
-      "Draw PNG icons at 16, 32, and 180 pixels. The ICO file holds the 16 and 32 pixel images only.",
+      "Make a letter-and-color icon set: 16px and 32px PNG plus an ICO of those two, and a 180px Apple touch PNG. Pick letters and colors in this tab.",
     excerpt:
-      "Draw PNG icons at 16, 32, and 180 pixels. The ICO file holds the 16 and 32 pixel images only.",
+      "Make a letter-and-color icon set: 16px and 32px PNG plus an ICO of those two, and a 180px Apple touch PNG. Pick letters and colors in this tab.",
     content: null,
     faq: [],
     relatedTools: ["favicon-generator", "image-resizer", "image-converter", "color-picker"],
@@ -1192,9 +1192,9 @@ const publishedGuides: Article[] = [
     status: "PUBLISHED",
     metaTitle: "How to Repeat a Word or Line",
     metaDescription:
-      "Repeat text from 1 to 200 times with nothing, a space, or a new line between copies. The separator is not added after the last copy.",
+      "Repeat a word or line from 1 to 200 times with nothing, a space, or a new line between copies. Type the text and choose a count.",
     excerpt:
-      "Repeat text from 1 to 200 times with nothing, a space, or a new line between copies. The separator is not added after the last copy.",
+      "Repeat a word or line from 1 to 200 times with nothing, a space, or a new line between copies. Type the text and choose a count.",
     content: null,
     faq: [],
     relatedTools: ["text-repeater", "lorem-ipsum-generator", "find-and-replace", "duplicate-line-remover"],
@@ -1215,9 +1215,9 @@ const publishedGuides: Article[] = [
     status: "PUBLISHED",
     metaTitle: "How to Write Meta Tags",
     metaDescription:
-      "Write a charset tag, a title, and a robots tag, plus optional description and social tags. The page does not fetch a live URL.",
+      "Write a charset tag, a title, and a robots tag, plus optional description and Open Graph tags you can paste. Fill in the fields, then copy HTML.",
     excerpt:
-      "Write a charset tag, a title, and a robots tag, plus optional description and social tags. The page does not fetch a live URL.",
+      "Write a charset tag, a title, and a robots tag, plus optional description and Open Graph tags you can paste. Fill in the fields, then copy HTML.",
     content: null,
     faq: [],
     relatedTools: ["meta-tag-generator", "robots-txt-generator", "utm-builder", "html-encoder"],
@@ -1238,9 +1238,9 @@ const publishedGuides: Article[] = [
     status: "PUBLISHED",
     metaTitle: "How to Check an Open Graph Preview",
     metaDescription:
-      "Check preview sends the URL off this device to fetch the page. The site reads the share tags and does not save the page.",
+      "Paste a public page URL to see the title, description, image, and Twitter card that page publishes. The URL is sent to this site.",
     excerpt:
-      "Check preview sends the URL off this device to fetch the page. The site reads the share tags and does not save the page.",
+      "Paste a public page URL to see the title, description, image, and Twitter card that page publishes. The URL is sent to this site.",
     content: null,
     faq: [],
     relatedTools: ["open-graph-preview", "meta-tag-generator", "url-parser", "html-encoder"],
@@ -1261,9 +1261,9 @@ const publishedGuides: Article[] = [
     status: "PUBLISHED",
     metaTitle: "How to Write a .gitignore File",
     metaDescription:
-      "Build .gitignore text from Node, Next.js, environment, and other templates. Generating the text does not update a repository.",
+      "Assemble ignore rules from Node, Next.js, env, and extra templates, then copy the file. Tick the stacks you use and add custom patterns.",
     excerpt:
-      "Build .gitignore text from Node, Next.js, environment, and other templates. Generating the text does not update a repository.",
+      "Assemble ignore rules from Node, Next.js, env, and extra templates, then copy the file. Tick the stacks you use and add custom patterns.",
     content: null,
     faq: [],
     relatedTools: ["gitignore-generator", "robots-txt-generator", "json-formatter", "hash-generator"],
@@ -1284,9 +1284,9 @@ const publishedGuides: Article[] = [
     status: "PUBLISHED",
     metaTitle: "How to Rate a Password",
     metaDescription:
-      "Rate a password from its length and character pool. Under 50 bits is Short, under 80 is Moderate, and 80 or more is Strong.",
+      "Rate a password from its length and character pool. Under 50 bits is Short, under 80 is Moderate, and 80 or more is Strong. Type it in this tab.",
     excerpt:
-      "Rate a password from its length and character pool. Under 50 bits is Short, under 80 is Moderate, and 80 or more is Strong.",
+      "Rate a password from its length and character pool. Under 50 bits is Short, under 80 is Moderate, and 80 or more is Strong. Type it in this tab.",
     content: null,
     faq: [],
     relatedTools: ["password-strength-checker", "password-generator", "hash-generator", "uuid-generator"],
@@ -1304,6 +1304,7 @@ type QueueInput = {
   siblingToolSlugs: string[];
   cluster: string;
   category: CategorySlug;
+  metaTitle?: string;
   metaDescription: string;
   relatedTools: string[];
   relatedArticles: string[];
@@ -1319,7 +1320,8 @@ const queue: QueueInput[] = [
     siblingToolSlugs: ["savings-goal-calculator"],
     cluster: "compound-interest-calculator",
     category: "calculators",
-    metaDescription: "Compound interest adds growth onto a balance over time. See the monthly method this calculator uses, including an optional contribution.",
+    metaTitle: "How Compound Interest Grows Money",
+    metaDescription: "See how compound interest adds growth onto a balance over time, including an optional monthly contribution. Enter a starting amount and a rate.",
     relatedTools: ["compound-interest-calculator", "savings-goal-calculator"],
     relatedArticles: ["how-much-to-save-for-a-goal"],
   },
@@ -1332,7 +1334,7 @@ const queue: QueueInput[] = [
     siblingToolSlugs: ["mortgage-calculator"],
     cluster: "loan-calculator",
     category: "calculators",
-    metaDescription: "An installment payment is estimated from the amount, annual rate, and term. A separate fee is not rolled into that payment.",
+    metaDescription: "Estimate an installment payment from the amount, annual rate, and term you enter, then read interest and payoff. Type the three loan figures.",
     relatedTools: ["loan-calculator", "mortgage-calculator"],
     relatedArticles: ["how-a-mortgage-payment-is-estimated"],
   },
@@ -1345,7 +1347,7 @@ const queue: QueueInput[] = [
     siblingToolSlugs: ["loan-calculator"],
     cluster: "mortgage-calculator",
     category: "calculators",
-    metaDescription: "A mortgage estimate starts from home price and down payment, then can add tax, insurance, HOA, and PMI.",
+    metaDescription: "Estimate a mortgage from home price and down payment, then add tax, insurance, HOA, and PMI. Enter the housing numbers you have.",
     relatedTools: ["mortgage-calculator", "loan-calculator"],
     relatedArticles: ["how-a-loan-payment-is-calculated"],
   },
@@ -1358,7 +1360,7 @@ const queue: QueueInput[] = [
     siblingToolSlugs: ["loan-calculator"],
     cluster: "auto-loan-calculator",
     category: "calculators",
-    metaDescription: "A car payment estimate starts from vehicle price, then subtracts down payment and trade-in after tax, fees, and add-ons.",
+    metaDescription: "Estimate a car payment from vehicle price, then subtract down payment and trade-in after tax, fees, and add-ons. Enter the deal figures.",
     relatedTools: ["auto-loan-calculator", "loan-calculator"],
     relatedArticles: ["how-a-loan-payment-is-calculated"],
   },
@@ -1371,7 +1373,8 @@ const queue: QueueInput[] = [
     siblingToolSlugs: ["mortgage-calculator"],
     cluster: "home-affordability-calculator",
     category: "calculators",
-    metaDescription: "This estimate sizes a home price from income, debts, and a target ratio. It is not a promise of what you can safely buy.",
+    metaTitle: "How a Home Price Estimate Works",
+    metaDescription: "See how income, debts, down payment, and a target ratio become a budget home price from the figures you type. Enter income and the debts you carry.",
     relatedTools: ["home-affordability-calculator", "mortgage-calculator"],
     relatedArticles: ["how-a-mortgage-payment-is-estimated"],
   },
@@ -1384,7 +1387,8 @@ const queue: QueueInput[] = [
     siblingToolSlugs: ["mortgage-calculator", "home-affordability-calculator"],
     cluster: "rent-vs-buy-calculator",
     category: "calculators",
-    metaDescription: "How to compare an estimated rent cost with an estimated buying cost for the same period.",
+    metaTitle: "How to Compare Renting and Buying",
+    metaDescription: "Compare estimated rent paid with estimated buying cash and equity over the years you choose. Enter rent, price, and the years to compare.",
     relatedTools: ["rent-vs-buy-calculator", "mortgage-calculator", "home-affordability-calculator"],
     relatedArticles: ["how-a-mortgage-payment-is-estimated"],
   },
@@ -1397,7 +1401,7 @@ const queue: QueueInput[] = [
     siblingToolSlugs: ["credit-card-payoff-calculator"],
     cluster: "debt-payoff-calculator",
     category: "calculators",
-    metaDescription: "How a payoff timeline is estimated when more than one debt is being paid down.",
+    metaDescription: "Estimate how many months several balances take to reach zero when you choose where extra payment goes. Enter each balance, APR, and minimum.",
     relatedTools: ["debt-payoff-calculator", "credit-card-payoff-calculator", "loan-calculator"],
     relatedArticles: ["how-long-to-pay-off-a-credit-card"],
   },
@@ -1410,7 +1414,8 @@ const queue: QueueInput[] = [
     siblingToolSlugs: ["debt-payoff-calculator"],
     cluster: "credit-card-payoff-calculator",
     category: "calculators",
-    metaDescription: "How long one card balance can take to pay off at a chosen payment.",
+    metaTitle: "How Long to Pay Off a Credit Card",
+    metaDescription: "Estimate how many months a card balance takes to reach zero from the APR and the payment you enter. Type the balance, rate, and payment.",
     relatedTools: ["credit-card-payoff-calculator", "debt-payoff-calculator", "loan-calculator"],
     relatedArticles: ["how-to-plan-a-debt-payoff"],
   },
@@ -1423,7 +1428,7 @@ const queue: QueueInput[] = [
     siblingToolSlugs: ["compound-interest-calculator"],
     cluster: "savings-goal-calculator",
     category: "calculators",
-    metaDescription: "At 0% interest, divide the gap between the target and what you have saved by the number of deposits.",
+    metaDescription: "Estimate the regular amount to set aside so current savings can reach a target you choose, with a rate you type. Enter the goal and the rate.",
     relatedTools: ["savings-goal-calculator", "compound-interest-calculator", "hourly-wage-calculator"],
     relatedArticles: ["how-compound-interest-works"],
   },
@@ -1436,7 +1441,8 @@ const queue: QueueInput[] = [
     siblingToolSlugs: ["paycheck-estimator"],
     cluster: "hourly-wage-calculator",
     category: "calculators",
-    metaDescription: "How a yearly or weekly salary converts to an hourly rate, including overtime hours.",
+    metaTitle: "How to Convert Salary to Hourly",
+    metaDescription: "Turn an hourly rate and weekly schedule into weekly, monthly, and annual gross pay, or convert a salary to hourly. Enter hours and the rate.",
     relatedTools: ["hourly-wage-calculator", "paycheck-estimator", "tip-calculator"],
     relatedArticles: ["what-a-paycheck-estimate-includes"],
   },
@@ -1449,7 +1455,7 @@ const queue: QueueInput[] = [
     siblingToolSlugs: ["hourly-wage-calculator"],
     cluster: "paycheck-estimator",
     category: "calculators",
-    metaDescription: "What this paycheck estimate includes, and which taxes and deductions it does not calculate.",
+    metaDescription: "See what a paycheck estimate includes, from gross pay through the deductions you enter, and why it does not calculate IRS or state tax.",
     relatedTools: ["paycheck-estimator", "hourly-wage-calculator", "sales-tax-calculator"],
     relatedArticles: ["how-to-convert-salary-to-hourly"],
   },
@@ -1462,7 +1468,7 @@ const queue: QueueInput[] = [
     siblingToolSlugs: ["percentage-calculator"],
     cluster: "gpa-calculator",
     category: "calculators",
-    metaDescription: "How a 4.0 GPA is credit-weighted from course grades.",
+    metaDescription: "Learn credit-weighted GPA: multiply grade points by credits, then divide by total credits using a common 4.0 letter map. Add each course and its hours.",
     relatedTools: ["gpa-calculator", "percentage-calculator", "age-calculator"],
     relatedArticles: [],
   },
@@ -1475,7 +1481,8 @@ const queue: QueueInput[] = [
     siblingToolSlugs: ["unit-converter"],
     cluster: "square-footage-calculator",
     category: "calculators",
-    metaDescription: "How to calculate room area in square feet or square meters from length and width.",
+    metaTitle: "How to Calculate Square Footage",
+    metaDescription: "Multiply length by width for each rectangular room, then add the rooms. Totals are shown in square feet and square meters. Add each room.",
     relatedTools: ["square-footage-calculator", "unit-converter", "aspect-ratio-calculator"],
     relatedArticles: [],
   },
@@ -1488,7 +1495,7 @@ const queue: QueueInput[] = [
     siblingToolSlugs: ["date-difference-calculator"],
     cluster: "business-days-calculator",
     category: "calculators",
-    metaDescription: "How weekdays between two dates are counted, without treating that span as an age.",
+    metaDescription: "Learn weekday counting: skip Saturday and Sunday, list those weekends, and drop extra dates you mark. Choose both dates on the calendar.",
     relatedTools: ["business-days-calculator", "date-difference-calculator", "age-calculator"],
     relatedArticles: [],
   },
@@ -1501,7 +1508,8 @@ const queue: QueueInput[] = [
     siblingToolSlugs: ["url-encoder", "jwt-decoder"],
     cluster: "base64-encoder",
     category: "developer-tools",
-    metaDescription: "Encode text to Base64 after UTF-8, or decode it back. The result is not encryption.",
+    metaTitle: "What Is Base64 Encoding?",
+    metaDescription: "Encode text to Base64 after UTF-8, or decode a Base64 string back to text in your browser. Copy either result. Paste the text to convert.",
     relatedTools: ["base64-encoder", "url-encoder", "hash-generator", "jwt-decoder"],
     relatedArticles: ["how-to-read-a-jwt"],
   },
@@ -1514,7 +1522,8 @@ const queue: QueueInput[] = [
     siblingToolSlugs: ["hash-generator", "password-generator"],
     cluster: "uuid-generator",
     category: "developer-tools",
-    metaDescription: "Generate 1 to 100 random UUID version 4 values. They are not sequential keys or passwords.",
+    metaTitle: "What Is a UUID, and How to Make One",
+    metaDescription: "Generate 1 to 100 random UUID version 4 values in the browser, then copy the list for IDs you need. Choose a count and generate the list.",
     relatedTools: ["uuid-generator", "hash-generator", "password-generator", "base64-encoder"],
     relatedArticles: [],
   },
@@ -1527,7 +1536,8 @@ const queue: QueueInput[] = [
     siblingToolSlugs: ["base64-encoder", "json-formatter"],
     cluster: "jwt-decoder",
     category: "developer-tools",
-    metaDescription: "How to read a JWT header and payload, and why that does not verify the signature.",
+    metaTitle: "How to Read a JWT Token",
+    metaDescription: "Read a JWT header and payload in this browser, then copy the claims as JSON. Presence of a signature is shown. Paste a compact token.",
     relatedTools: ["jwt-decoder", "base64-encoder", "json-formatter"],
     relatedArticles: ["what-is-base64"],
   },
@@ -1540,7 +1550,7 @@ const queue: QueueInput[] = [
     siblingToolSlugs: ["url-parser"],
     cluster: "robots-txt-generator",
     category: "seo-utilities",
-    metaDescription: "What a robots.txt file tells crawlers, and why generating the text does not publish it.",
+    metaDescription: "Write User-agent, Allow, and Disallow lines for a robots.txt file, plus an optional sitemap URL. Copy the file text. Fill in the rules.",
     relatedTools: ["robots-txt-generator", "url-parser"],
     relatedArticles: [],
   },
@@ -1553,20 +1563,21 @@ const queue: QueueInput[] = [
     siblingToolSlugs: ["utm-builder", "url-encoder"],
     cluster: "url-parser",
     category: "seo-utilities",
-    metaDescription: "How to read a URL's protocol, host, path, and query without encoding or tagging it.",
+    metaDescription: "Read a URL's protocol, host, path, and query parameters without encoding the value or adding UTM tags. Paste a full http or https address.",
     relatedTools: ["url-parser", "utm-builder", "url-encoder"],
     relatedArticles: ["how-to-create-a-utm-url"],
   },
   {
     title: "How to Write an Image Prompt Without Creating an Image",
     slug: "how-to-write-an-image-prompt",
+    metaTitle: "How to Write an Image Prompt",
     primaryKeyword: "image prompt",
     secondaryKeywords: ["text to image prompt", "scene description"],
     toolSlug: "prompt-to-image",
     siblingToolSlugs: ["ai-prompt-generator", "prompt-to-video"],
     cluster: "prompt-to-image",
     category: "ai-tools",
-    metaDescription: "Build prompt stays in the browser and does not render an image. Generate with AI sends the brief to Gemini.",
+    metaDescription: "Build an image prompt in the browser, or send the brief to Gemini and copy the returned scene text. Describe subject, setting, and style.",
     relatedTools: ["prompt-to-image", "ai-prompt-generator", "prompt-to-video"],
     relatedArticles: [],
   },
@@ -1579,7 +1590,7 @@ const queue: QueueInput[] = [
     siblingToolSlugs: ["word-counter", "ai-article-compressor"],
     cluster: "ai-article-detector",
     category: "ai-tools",
-    metaDescription: "Analyze writing stays in the browser. Analyze with AI sends the draft to Gemini. Neither result is an authorship verdict.",
+    metaDescription: "See what a pattern check can report: average sentence length, repeated wording, and vocabulary spread, locally or with Gemini. Paste a draft to review.",
     relatedTools: ["ai-article-detector", "word-counter", "ai-article-compressor"],
     relatedArticles: [],
   },
@@ -1592,7 +1603,7 @@ const queue: QueueInput[] = [
     siblingToolSlugs: ["timestamp-converter", "date-difference-calculator"],
     cluster: "time-zone-converter",
     category: "developer-tools",
-    metaDescription: "How to convert the same instant between two time zones, without turning it into a Unix timestamp.",
+    metaDescription: "Convert the same clock instant between two time zones, including daylight-saving offsets from the browser. Pick two zones and a date-time.",
     relatedTools: ["time-zone-converter", "timestamp-converter", "date-difference-calculator"],
     relatedArticles: [],
   },
@@ -1637,7 +1648,7 @@ const queuedArticles: Article[] = queue.map((item, queueIndex) => {
     cluster: item.cluster,
     articleType: "supporting" as const,
     status: publishedQueueSlugs.has(item.slug) ? "PUBLISHED" : "DRAFT",
-    metaTitle: item.title,
+    metaTitle: item.metaTitle ?? item.title,
     metaDescription: item.metaDescription,
     excerpt: item.metaDescription,
     content: body ? flattenGuideContent(body) : null,

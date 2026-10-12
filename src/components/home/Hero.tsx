@@ -29,8 +29,8 @@ export function Hero({ locale = "en" }: { locale?: Locale }) {
           <h1 className="mx-auto mt-3 max-w-[18ch] text-balance text-[2rem] font-bold leading-[1.15] tracking-tight text-foreground sm:text-[2.375rem] md:text-[2.75rem] lg:text-5xl xl:text-6xl">
             {t.h1}
           </h1>
-          <p className="mx-auto mt-4 max-w-xl text-base leading-7 text-muted-foreground sm:text-lg">
-            {formatMessage(t.intro, { name: siteConfig.name })}
+          <p className="mx-auto mt-4 max-w-2xl text-base leading-7 text-muted-foreground sm:text-lg">
+            {locale === "en" ? siteConfig.intro : formatMessage(t.intro, { name: siteConfig.name })}
           </p>
           <div className="home-search mt-8 text-start">
             <ToolSearch variant="hero" />

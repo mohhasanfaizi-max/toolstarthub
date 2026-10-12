@@ -424,5 +424,8 @@ export function flattenGuideContent(content: GuideContent): string {
   for (const note of content.notes ?? []) parts.push(`${note.heading}. ${note.body}`);
   for (const faq of content.faqs) parts.push(`${faq.question} ${faq.answer}`);
   parts.push(`${content.cta.before} ${content.cta.linkLabel} ${content.cta.after ?? ""}`.trim());
+  for (const item of content.alsoSee ?? []) {
+    parts.push(`${item.before} ${item.linkLabel} ${item.after ?? ""}`.trim());
+  }
   return parts.join("\n\n");
 }

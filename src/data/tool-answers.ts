@@ -156,7 +156,7 @@ export const toolQuickAnswers: Record<string, string> = {
   "hourly-wage-calculator":
     "An hourly wage calculator turns an hourly rate and a weekly schedule into weekly, monthly, and annual pay. It can also turn a salary into an hourly rate. Taxes are not included.",
   "paycheck-estimator":
-    "A paycheck estimator subtracts the pre-tax deductions, withholding, and post-tax deductions you enter from gross pay. Withholding is your assumption, not an official tax calculation.",
+    "A paycheck estimate calculator subtracts the pre-tax deductions, withholding, and post-tax deductions you enter from gross pay. Withholding is your assumption, not an official tax calculation.",
   "rent-vs-buy-calculator":
     "A rent vs buy calculator estimates rent paid and the cash cost and equity of buying over the years you choose. Rent growth and home-value change are assumptions, not a recommendation.",
   "fuel-cost-calculator":

@@ -16,8 +16,9 @@ const description =
   "About Tools Star Hub: who builds the free browser tools and guides, how results are checked, how input is handled, and how to report a mistake.";
 
 export const metadata = createPageMetadata({
-  title: "About Us: Who Builds the Free Tools and Guides",
-  description,
+  title: "About Tools Star Hub – Free Browser Tools",
+  description:
+    "Tools Star Hub has 100 free browser tools and no account. Most run on your device. Gemini and page-preview tools send what you submit.",
   path: "/about",
 });
 

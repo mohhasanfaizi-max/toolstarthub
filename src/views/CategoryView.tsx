@@ -42,10 +42,13 @@ export function categoryMetadata(locale: Locale, slug: string) {
   const t = getMessages(locale).meta;
   const englishRoute = `/categories/${category.slug}`;
   return createPageMetadata({
-    title: formatMessage(t.categoryTitle, { name: category.name }),
+    title:
+      locale === "en" && category.metaTitle
+        ? category.metaTitle
+        : formatMessage(t.categoryTitle, { name: category.name }),
     description:
       locale === "en"
-        ? categoryMetaDescriptions[category.slug]
+        ? category.metaDescription || categoryMetaDescriptions[category.slug]
         : category.shortDescription,
     path: englishRoute,
     locale,

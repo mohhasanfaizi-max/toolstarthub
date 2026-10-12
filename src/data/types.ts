@@ -66,6 +66,8 @@ export type Category = {
   name: string;
   description: string;
   shortDescription: string;
+  metaTitle: string;
+  metaDescription: string;
   icon: IconName;
   route: string;
   intro: string;

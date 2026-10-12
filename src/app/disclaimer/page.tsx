@@ -7,7 +7,8 @@ import { siteConfig } from "@/lib/site";
 
 export const metadata = createPageMetadata({
   title: "Disclaimer",
-  description: `How to use ${siteConfig.name} results: calculators and converters are general information and estimates, not financial, legal, tax, or medical advice.`,
+  description:
+    "Read what Tools Star Hub tools and guides do not cover, including estimates, compression quality, and advice limits. Check a result before you rely on it.",
   path: "/disclaimer",
 });
 

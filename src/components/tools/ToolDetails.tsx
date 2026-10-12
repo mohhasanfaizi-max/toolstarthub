@@ -68,6 +68,18 @@ export function ToolDetails({
           <p className="mt-3 max-w-3xl text-sm leading-7 text-muted-foreground">
             {content.about}
           </p>
+          {content.relatedLinks?.map((link) => (
+            <p
+              key={link.href}
+              className="mt-3 max-w-3xl text-sm leading-7 text-muted-foreground"
+            >
+              {link.before}{" "}
+              <Link href={link.href} className="font-medium text-accent hover:underline">
+                {link.linkLabel}
+              </Link>
+              {link.after ?? ""}
+            </p>
+          ))}
         </section>
       ) : null}
 
@@ -142,6 +154,34 @@ export function ToolDetails({
           </p>
         </section>
       ) : null}
+
+      {content?.extraSections?.map((section, index) => (
+        <section
+          key={section.heading}
+          aria-labelledby={`extra-section-${index}-heading`}
+          className="mt-14"
+        >
+          <h2
+            id={`extra-section-${index}-heading`}
+            className="text-xl font-semibold tracking-tight text-foreground"
+          >
+            {section.heading}
+          </h2>
+          {section.paragraphs.map((paragraph) => (
+            <p
+              key={paragraph}
+              className="mt-3 max-w-3xl text-sm leading-7 text-muted-foreground"
+            >
+              {paragraph}
+            </p>
+          ))}
+          {section.code ? (
+            <div className="mt-4 max-w-3xl rounded-2xl border border-border bg-card px-5 py-4">
+              <p className="text-sm leading-6 text-muted-foreground">{section.code}</p>
+            </div>
+          ) : null}
+        </section>
+      ))}
 
       {content?.tips && content.tips.length > 0 ? (
         <section aria-labelledby="tips-heading" className="mt-14">
