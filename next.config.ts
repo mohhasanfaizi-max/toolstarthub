@@ -40,9 +40,29 @@ const securityHeaders = [
   },
 ];
 
+/** Nine language prefixes only. Must not match English routes such as /tools. */
+export const LOCALE_PREFIX_PATTERN = "de|fr|it|tr|ru|ko|id|es|nl";
+
 const nextConfig: NextConfig = {
   poweredByHeader: false,
   serverExternalPackages: ["pdfjs-dist", "terser"],
+  experimental: {
+    inlineCss: true,
+  },
+  async redirects() {
+    return [
+      {
+        source: `/:prefix(${LOCALE_PREFIX_PATTERN})`,
+        destination: "/",
+        permanent: true,
+      },
+      {
+        source: `/:prefix(${LOCALE_PREFIX_PATTERN})/:path*`,
+        destination: "/:path*",
+        permanent: true,
+      },
+    ];
+  },
   async headers() {
     return [
       {
