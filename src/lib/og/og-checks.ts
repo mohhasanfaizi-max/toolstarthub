@@ -1,5 +1,5 @@
 import { Readable } from "node:stream";
-import { gzipSync } from "node:zlib";
+import { brotliCompressSync, deflateSync, gzipSync } from "node:zlib";
 import { consumeRateLimit, resetRateLimits } from "../ai/rate-limit.ts";
 import { isBlockedAddress } from "./blocked-address.ts";
 import { fetchOpenGraph, OG_TIMEOUT_MS, type PageRequest } from "./fetch-preview.ts";
@@ -85,11 +85,47 @@ export async function runOgChecks(assert: Assert): Promise<void> {
   assert(!redirect.ok && redirect.error === BLOCKED && redirectRequests === 1, "A redirect to loopback is rejected before the next request");
   assert(!JSON.stringify(redirect).includes("127.0.0.1"), "A blocked redirect error hides the resolved address");
 
+  let metadataRequests = 0;
+  const metadata = await fetchOpenGraph("https://public.example/start", Date.now(), {
+    lookup: async (hostname) => {
+      if (hostname === "public.example") return [{ address: "8.8.8.8", family: 4 }];
+      return [{ address: "169.254.169.254", family: 4 }];
+    },
+    request: async (target) => {
+      metadataRequests += 1;
+      assert(target.hostname === "public.example", "The metadata hop does not fetch the link-local host");
+      return htmlResponse(302, { location: "http://169.254.169.254/latest/meta-data/" }, "");
+    },
+  });
+  assert(!metadata.ok && metadata.error === BLOCKED && metadataRequests === 1, "A redirect to 169.254.169.254 is rejected before the next request");
+  assert(!JSON.stringify(metadata).includes("169.254.169.254"), "A blocked metadata redirect hides the address");
+
+  let reboundRequests = 0;
+  const rebound = await fetchOpenGraph("https://public.example/start", Date.now(), {
+    lookup: async (hostname) => {
+      if (hostname === "public.example") return [{ address: "8.8.8.8", family: 4 }];
+      if (hostname === "metadata.internal") return [{ address: "169.254.169.254", family: 4 }];
+      throw new Error(`unexpected host ${hostname}`);
+    },
+    request: async (target) => {
+      reboundRequests += 1;
+      assert(target.hostname === "public.example", "A private DNS target is not requested");
+      return htmlResponse(302, { location: "http://metadata.internal/" }, "");
+    },
+  });
+  assert(!rebound.ok && rebound.error === BLOCKED && reboundRequests === 1, "A redirect whose host resolves to a private IP is rejected");
+
   const fileRedirect = await fetchOpenGraph("https://public.example/start", Date.now(), {
     lookup: async () => [{ address: "8.8.8.8", family: 4 }],
     request: async () => htmlResponse(301, { location: "file:///etc/passwd" }, ""),
   });
   assert(!fileRedirect.ok && fileRedirect.error === "Enter an http or https page URL.", "A redirect to a file URL is rejected");
+
+  const scriptRedirect = await fetchOpenGraph("https://public.example/start", Date.now(), {
+    lookup: async () => [{ address: "8.8.8.8", family: 4 }],
+    request: async () => htmlResponse(302, { location: "javascript:alert(1)" }, ""),
+  });
+  assert(!scriptRedirect.ok && scriptRedirect.error === "Enter an http or https page URL.", "A redirect to a non-http scheme is rejected");
 
   let hops = 0;
   const tooMany = await fetchOpenGraph("https://public.example/start", Date.now(), {
@@ -118,14 +154,23 @@ export async function runOgChecks(assert: Assert): Promise<void> {
   assert(preview.ok && preview.preview.openGraph.image === "https://public.example/cover.png", "A relative image URL is resolved");
   assert(preview.ok && preview.preview.twitter.card === "summary" && preview.preview.twitter.image === "", "A script image URL is dropped");
 
-  const packed = gzipSync(Buffer.from(`<title>Kept</title>${"A".repeat(OG_MAX_BODY_BYTES * 2)}`));
-  assert(packed.length < OG_MAX_BODY_BYTES, "The sample gzip payload is smaller than the cap");
-  const inflated = await readCappedBody(Readable.from([packed]), "gzip", packed.length);
-  assert(
-    inflated.ok && inflated.truncated && inflated.bytes.length === OG_MAX_BODY_BYTES,
-    "The size cap applies to decompressed bytes",
-  );
-  assert(inflated.ok && inflated.bytes.subarray(0, 20).toString().includes("<title>Kept</title>"), "Truncation keeps the start of the page");
+  const bomb = Buffer.from(`<title>Kept</title>${"A".repeat(OG_MAX_BODY_BYTES * 8)}`);
+  for (const [encoding, packed] of [
+    ["gzip", gzipSync(bomb)],
+    ["deflate", deflateSync(bomb)],
+    ["br", brotliCompressSync(bomb)],
+  ] as const) {
+    assert(packed.length < OG_MAX_BODY_BYTES, `The sample ${encoding} payload is smaller than the cap`);
+    const inflated = await readCappedBody(Readable.from([packed]), encoding, packed.length);
+    assert(
+      inflated.ok && inflated.truncated && inflated.bytes.length === OG_MAX_BODY_BYTES,
+      `The ${encoding} size cap applies to decompressed bytes and stops at the cap`,
+    );
+    assert(
+      inflated.ok && inflated.bytes.subarray(0, 20).toString().includes("<title>Kept</title>"),
+      `${encoding} truncation keeps the start of the page`,
+    );
+  }
 
   const prefixHtml =
     `<html><head><title>Wiki Head</title><meta property="og:title" content="HTML page"></head><body>` +

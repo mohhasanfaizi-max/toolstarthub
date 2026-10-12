@@ -35,7 +35,7 @@ function readLimited(stream: Readable, max: number, stop: () => void): Promise<{
       if (settled) return;
       const buf = Buffer.isBuffer(chunk) ? chunk : Buffer.from(chunk);
       const room = max - total;
-      if (buf.length > room) {
+      if (buf.length >= room) {
         if (room > 0) chunks.push(buf.subarray(0, room));
         total = max;
         halt();
@@ -64,9 +64,10 @@ function encodingName(contentEncoding: string | undefined): "identity" | "gzip" 
 }
 
 function decoderFor(encoding: "gzip" | "deflate" | "br"): Transform {
-  if (encoding === "gzip") return createGunzip();
-  if (encoding === "deflate") return createInflate();
-  return createBrotliDecompress();
+  const limit = { maxOutputLength: OG_MAX_BODY_BYTES };
+  if (encoding === "gzip") return createGunzip(limit);
+  if (encoding === "deflate") return createInflate(limit);
+  return createBrotliDecompress(limit);
 }
 
 export async function readCappedBody(
