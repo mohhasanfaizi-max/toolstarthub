@@ -25,7 +25,7 @@ export const extraArticles: Article[] = [
     articleType: "overview",
     status: "PUBLISHED",
     publishedAt: "2026-10-04T09:00:00.000Z",
-    metaTitle: "How to Click Faster: Average CPS, Jitter and Butterfly Clicking",
+    metaTitle: "How to Click Faster: CPS Tips",
     metaDescription:
       "How to click faster: the average CPS, a CPS rating table, and how regular, jitter, butterfly, and drag clicking compare, plus mouse tips and wrist safety.",
     excerpt:

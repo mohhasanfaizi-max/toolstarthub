@@ -137,7 +137,7 @@ export const categories: Category[] = [
     icon: "bolt",
     route: "/categories/ai-tools",
     intro:
-      "These tools help you write a prompt, describe an image or video scene, look at writing patterns, or shorten a long draft. The main button on each tool runs in your browser. The AI buttons (Generate, Analyze, Compress, or Humanize with AI) send the text you enter to Google's Gemini model to generate the result.",
+      "These tools help you write a prompt, describe an image or video scene, look at writing patterns, or shorten a long draft. The main button on each tool runs in your browser. The AI buttons (Generate, Analyze, Compress, or Humanize with AI) send the text you enter to Google's Gemini model to generate the result. Pick a tool to start.",
     audience:
       "Use the browser button when you do not want your text to leave this device. Use an AI button when you want Gemini to rewrite or expand it. Text sent to Gemini is not saved on this site. The prompt tools return text, not images or videos. The writing tools do not decide authorship, and they do not promise that a shorter draft will pass a detector.",
     startingSlugs: [

@@ -605,7 +605,7 @@ export const tools: Tool[] = [
     slug: "css-gradient-generator",
     name: "CSS Gradient Generator",
     description:
-      "Build linear, radial or conic CSS gradients, or gradient text, and copy the CSS or HTML.",
+      "Build linear, radial, or conic CSS gradients, or gradient text, then copy the CSS or an HTML snippet in your browser. You need two to eight color stops.",
     category: "developer-tools",
     icon: "palette",
     route: "/tools/css-gradient-generator",
@@ -619,10 +619,10 @@ export const tools: Tool[] = [
       "gradient text",
       "background-clip text",
       "stops",
-      "gradient text",
+      "color",
     ],
     status: "available",
-    metaTitle: "CSS Gradient Generator — Linear, Radial, Conic and Text",
+    metaTitle: "CSS Gradients: Linear, Radial, Conic",
     relatedSlugs: ["box-shadow-generator", "css-minifier", "color-picker", "hex-to-rgb", "color-contrast-checker"],
   },
   {

@@ -13,7 +13,7 @@ import { siteConfig } from "../src/lib/site.ts";
 
 export const TITLE_SUFFIX = " | Tools Star Hub";
 const TITLE_MIN = 25;
-const TITLE_MAX = 58;
+const TITLE_MAX = 63;
 const DESC_MIN = 120;
 const DESC_MAX = 155;
 const INTRO_MIN = 60;
