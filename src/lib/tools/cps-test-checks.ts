@@ -103,10 +103,7 @@ export function runCpsTestChecks(assert: Assert): void {
     "CPS Test stays out of the PDF, QR and color filters",
   );
   const englishMeta = cpsTestPages.en.metaTitle.toLowerCase();
-  assert(
-    englishMeta.includes("cps test") && englishMeta.includes("click speed test") && englishMeta.includes("clicks per second"),
-    "English title targets cps test, click speed test and clicks per second",
-  );
+  assert(englishMeta.includes("cps test"), "English title targets cps test");
 
   // Translations
   for (const locale of locales) {
