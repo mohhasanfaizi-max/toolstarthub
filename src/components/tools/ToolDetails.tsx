@@ -20,6 +20,7 @@ const mobileFaqSlugs = new Set([
   "image-color-analyzer",
   "qr-code-scanner",
   "color-picker",
+  "face-shape-detector",
 ]);
 
 type DetailLabels = Messages["toolPage"]["details"];
@@ -155,33 +156,105 @@ export function ToolDetails({
         </section>
       ) : null}
 
-      {content?.extraSections?.map((section, index) => (
-        <section
-          key={section.heading}
-          aria-labelledby={`extra-section-${index}-heading`}
-          className="mt-14"
-        >
-          <h2
-            id={`extra-section-${index}-heading`}
-            className="text-xl font-semibold tracking-tight text-foreground"
+      {content?.extraSections?.map((section, index) => {
+        const headingId = section.id ?? `extra-section-${index}-heading`;
+        return (
+          <section
+            key={section.heading}
+            aria-labelledby={headingId}
+            className="mt-14"
           >
-            {section.heading}
-          </h2>
-          {section.paragraphs.map((paragraph) => (
-            <p
-              key={paragraph}
-              className="mt-3 max-w-3xl text-sm leading-7 text-muted-foreground"
+            <h2
+              id={headingId}
+              className="text-xl font-semibold tracking-tight text-foreground"
             >
-              {paragraph}
-            </p>
-          ))}
-          {section.code ? (
-            <div className="mt-4 max-w-3xl rounded-2xl border border-border bg-card px-5 py-4">
-              <p className="text-sm leading-6 text-muted-foreground">{section.code}</p>
-            </div>
-          ) : null}
-        </section>
-      ))}
+              {section.heading}
+            </h2>
+            {section.paragraphs.map((paragraph) => (
+              <p
+                key={paragraph}
+                className="mt-3 max-w-3xl text-sm leading-7 text-muted-foreground"
+              >
+                {paragraph}
+              </p>
+            ))}
+            {section.table ? (
+              <div className="mt-5 overflow-x-auto rounded-2xl border border-border">
+                <table className="w-full min-w-[32rem] border-collapse text-start text-sm">
+                  <caption className="px-4 pt-3 text-start text-xs text-muted-foreground">
+                    {section.table.caption}
+                  </caption>
+                  <thead>
+                    <tr className="border-b border-border">
+                      {section.table.headers.map((header) => (
+                        <th
+                          key={header}
+                          scope="col"
+                          className="px-4 py-3 text-start font-medium text-foreground"
+                        >
+                          {header}
+                        </th>
+                      ))}
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {section.table.rows.map((row) => (
+                      <tr key={row.join("|")} className="border-b border-border last:border-b-0">
+                        {row.map((cell, cellIndex) =>
+                          cellIndex === 0 ? (
+                            <th
+                              key={`${cell}-${cellIndex}`}
+                              scope="row"
+                              className="px-4 py-3 text-start align-top font-medium text-foreground"
+                            >
+                              {cell}
+                            </th>
+                          ) : (
+                            <td
+                              key={`${cell}-${cellIndex}`}
+                              className="px-4 py-3 align-top leading-6 text-muted-foreground"
+                            >
+                              {cell}
+                            </td>
+                          ),
+                        )}
+                      </tr>
+                    ))}
+                  </tbody>
+                </table>
+              </div>
+            ) : null}
+            {section.subsections?.map((sub) => (
+              <div key={sub.heading} className="mt-6" id={sub.id}>
+                <h3
+                  id={sub.id ? `${sub.id}-heading` : undefined}
+                  className="font-medium text-foreground"
+                >
+                  {sub.heading}
+                </h3>
+                {sub.paragraphs.map((paragraph) => (
+                  <p
+                    key={paragraph}
+                    className="mt-2 max-w-3xl text-sm leading-7 text-muted-foreground"
+                  >
+                    {paragraph}
+                  </p>
+                ))}
+              </div>
+            ))}
+            {section.after ? (
+              <p className="mt-4 max-w-3xl text-sm leading-7 text-muted-foreground">
+                {section.after}
+              </p>
+            ) : null}
+            {section.code ? (
+              <div className="mt-4 max-w-3xl rounded-2xl border border-border bg-card px-5 py-4">
+                <p className="text-sm leading-6 text-muted-foreground">{section.code}</p>
+              </div>
+            ) : null}
+          </section>
+        );
+      })}
 
       {content?.tips && content.tips.length > 0 ? (
         <section aria-labelledby="tips-heading" className="mt-14">

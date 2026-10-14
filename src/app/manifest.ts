@@ -3,11 +3,15 @@ import { siteConfig } from "@/lib/site";
 
 export default function manifest(): MetadataRoute.Manifest {
   return {
+    id: "/",
     name: siteConfig.name,
     short_name: "Tools Star Hub",
     description: siteConfig.description,
     start_url: "/",
+    scope: "/",
     display: "standalone",
+    lang: "en",
+    dir: "ltr",
     background_color: "#ffffff",
     theme_color: "#2563eb",
     icons: [

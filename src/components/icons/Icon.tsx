@@ -255,6 +255,21 @@ export function Icon({ name, ...props }: IconProps) {
           <path d="M3.5 12h17M12 3.5c2.4 2.5 3.6 5.3 3.6 8.5s-1.2 6-3.6 8.5c-2.4-2.5-3.6-5.3-3.6-8.5s1.2-6 3.6-8.5z" />
         </Svg>
       );
+    case "home":
+      return (
+        <Svg {...props}>
+          <path d="M4.5 11 12 4.5 19.5 11" />
+          <path d="M6.5 10.5V19h4.2v-5h2.6v5H17.5v-8.5" />
+        </Svg>
+      );
+    case "dots":
+      return (
+        <Svg {...props}>
+          <circle cx="6" cy="12" r="1.35" fill="currentColor" stroke="none" />
+          <circle cx="12" cy="12" r="1.35" fill="currentColor" stroke="none" />
+          <circle cx="18" cy="12" r="1.35" fill="currentColor" stroke="none" />
+        </Svg>
+      );
     default: {
       const exhaustive: never = name;
       return exhaustive;

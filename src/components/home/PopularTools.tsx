@@ -1,21 +1,13 @@
 import { HomeHeading } from "@/components/home/HomeHeading";
 import { HomeToolCard } from "@/components/home/HomeToolCard";
 import { Section } from "@/components/ui/Section";
+import { popularToolSlugs } from "@/data/popular-tool-slugs";
 import { localizePath, type Locale } from "@/i18n/config";
 import { getMessages, getTool } from "@/i18n/server";
 
-const popularSlugs = [
-  "pdf-to-jpg",
-  "pdf-to-text",
-  "image-compressor",
-  "markdown-to-html",
-  "json-formatter",
-  "percentage-calculator",
-] as const;
-
 export function PopularTools({ locale = "en" }: { locale?: Locale }) {
   const t = getMessages(locale).home;
-  const tools = popularSlugs.flatMap((slug) => {
+  const tools = popularToolSlugs.flatMap((slug) => {
     const tool = getTool(slug, locale);
     return tool ? [tool] : [];
   });

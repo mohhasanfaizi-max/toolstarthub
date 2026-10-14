@@ -1,5 +1,11 @@
 import { cpsTestDescription, cpsTestName } from "../i18n/cps-test/content/en.ts";
 import cpsTestPage from "../i18n/cps-test/content/en.ts";
+import {
+  faceShapeDetectorDescription,
+  faceShapeDetectorHeadline,
+  faceShapeDetectorMetaTitle,
+  faceShapeDetectorName,
+} from "./face-shape-detector-content.ts";
 import type { Tool } from "./types.ts";
 
 /**
@@ -8,6 +14,40 @@ import type { Tool } from "./types.ts";
  * share images pick them up automatically.
  */
 export const extraTools: Tool[] = [
+  {
+    slug: "face-shape-detector",
+    name: faceShapeDetectorName,
+    headline: faceShapeDetectorHeadline,
+    description: faceShapeDetectorDescription,
+    category: "image-tools",
+    icon: "user",
+    route: "/tools/face-shape-detector",
+    featured: false,
+    new: true,
+    keywords: [
+      "face shape detector",
+      "what is my face shape",
+      "face shape",
+      "free face shape detector",
+      "AI face shape detector",
+      "face shape finder",
+      "determine face shape",
+      "how to determine your face shape",
+      "what shape is my face",
+      "what face shape do I have",
+      "detect face shape from photo",
+      "face type detector",
+      "online face shape detector",
+    ],
+    status: "available",
+    metaTitle: faceShapeDetectorMetaTitle,
+    relatedSlugs: [
+      "image-color-analyzer",
+      "image-resizer",
+      "image-cropper",
+      "image-compressor",
+    ],
+  },
   {
     slug: "cps-test",
     name: cpsTestName,

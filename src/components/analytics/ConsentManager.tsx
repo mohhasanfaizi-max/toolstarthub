@@ -111,7 +111,7 @@ export function ConsentManager() {
         <section
           ref={bannerRef}
           aria-labelledby={titleId}
-          className="fixed inset-x-0 bottom-0 z-50 px-3 pb-3 sm:px-4 sm:pb-4"
+          className="consent-banner fixed inset-x-0 bottom-0 z-50 px-3 pb-3 sm:px-4 sm:pb-4"
         >
           <div className="mx-auto flex max-w-3xl flex-col gap-3 rounded-2xl border border-border bg-card p-4 shadow-lg sm:flex-row sm:items-center sm:gap-5 sm:p-5">
             <div className="flex-1">

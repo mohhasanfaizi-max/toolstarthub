@@ -42,7 +42,9 @@ export type IconName =
   | "star"
   | "phone"
   | "mail"
-  | "globe";
+  | "globe"
+  | "home"
+  | "dots";
 
 export type ToolStatus = "coming-soon" | "available";
 
@@ -58,6 +60,8 @@ export type Tool = {
   keywords: string[];
   status: ToolStatus;
   metaTitle?: string;
+  /** Optional page H1. Cards, search, and JSON-LD still use `name`. */
+  headline?: string;
   relatedSlugs?: string[];
 };
 

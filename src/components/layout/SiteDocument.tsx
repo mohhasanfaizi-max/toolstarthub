@@ -4,10 +4,17 @@ import { GoogleAnalyticsRouteChange } from "@/components/analytics/GoogleAnalyti
 import { Footer } from "@/components/layout/Footer";
 import { Header } from "@/components/layout/Header";
 import { SkipLink } from "@/components/layout/SkipLink";
+import { InstallNotice } from "@/components/pwa/InstallNotice";
+import {
+  PwaBottomNav,
+  PwaHeader,
+  PwaStandaloneSync,
+} from "@/components/pwa/PwaShell";
 import { I18nProvider } from "@/i18n/client";
 import { localeInfo, type Locale } from "@/i18n/config";
 import { getMessages } from "@/i18n/server";
 import { consentDefaultsScript } from "@/lib/consent";
+import { standaloneDetectScript } from "@/lib/pwa/standalone";
 
 const themeScript = `(function(){try{var t=localStorage.getItem("tsh-theme");var d=t==="dark"||(t!=="light"&&window.matchMedia("(prefers-color-scheme: dark)").matches);document.documentElement.setAttribute("data-theme",d?"dark":"light");}catch(e){}})();`;
 
@@ -32,16 +39,27 @@ export function SiteDocument({
       <body className="flex min-h-full flex-col antialiased">
         <script dangerouslySetInnerHTML={{ __html: themeScript }} />
         <script dangerouslySetInnerHTML={{ __html: consentDefaultsScript }} />
+        <script dangerouslySetInnerHTML={{ __html: standaloneDetectScript }} />
         <I18nProvider locale={locale} messages={messages.client}>
+          <PwaStandaloneSync />
           <Suspense fallback={null}>
             <GoogleAnalyticsRouteChange />
           </Suspense>
           <SkipLink label={messages.header.skip} />
-          <Header locale={locale} />
+          <div className="site-web-chrome">
+            <Header locale={locale} />
+            <InstallNotice />
+          </div>
+          <PwaHeader />
           <main id="main-content" className="flex-1">
             {children}
           </main>
-          <Footer locale={locale} />
+          <div className="site-web-chrome">
+            <Footer locale={locale} />
+          </div>
+          <Suspense fallback={null}>
+            <PwaBottomNav />
+          </Suspense>
           <ConsentManager />
         </I18nProvider>
       </body>

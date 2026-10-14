@@ -23,8 +23,20 @@ export type ToolRelatedLink = {
 
 export type ToolExtraSection = {
   heading: string;
+  id?: string;
   paragraphs: string[];
   code?: string;
+  table?: {
+    caption: string;
+    headers: string[];
+    rows: string[][];
+  };
+  subsections?: Array<{
+    heading: string;
+    id?: string;
+    paragraphs: string[];
+  }>;
+  after?: string;
 };
 
 export type ToolContent = {

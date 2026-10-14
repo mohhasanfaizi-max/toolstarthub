@@ -163,7 +163,7 @@ export function ToolView({ locale, slug }: { locale: Locale; slug: string }) {
         </div>
         <div className="mt-3 flex items-start justify-between gap-3">
           <h1 className="min-w-0 break-words hyphens-auto text-3xl font-semibold tracking-tight text-foreground sm:text-4xl">
-            {tool.name}
+            {tool.headline ?? tool.name}
           </h1>
           <FavoriteButton slug={tool.slug} name={tool.name} />
         </div>

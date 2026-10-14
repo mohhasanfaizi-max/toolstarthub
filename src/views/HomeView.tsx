@@ -1,3 +1,4 @@
+import { InstalledHome } from "@/components/pwa/InstalledHome";
 import { Benefits } from "@/components/home/Benefits";
 import { Categories } from "@/components/home/Categories";
 import { FinalCTA } from "@/components/home/FinalCTA";
@@ -33,18 +34,21 @@ export function HomeView({ locale }: { locale: Locale }) {
         data={websiteNode(locale, getMessages(locale).meta.description)}
       />
       <JsonLd data={organizationNode()} />
-      <Hero locale={locale} />
-      <PopularTools locale={locale} />
-      <ToolCatalog locale={locale} />
-      <Categories locale={locale} />
-      <Benefits locale={locale} />
-      <HowItWorks locale={locale} />
-      {/* Guides are English-only for now (Part 2). */}
-      {locale === "en" ? <HelpfulGuides /> : null}
-      <Pricing locale={locale} />
-      {/* Site FAQ (FAQPage) is English-only, like the guides. */}
-      {locale === "en" ? <HomeFaq /> : null}
-      <FinalCTA locale={locale} />
+      <InstalledHome />
+      <div className="site-web-home">
+        <Hero locale={locale} />
+        <PopularTools locale={locale} />
+        <ToolCatalog locale={locale} />
+        <Categories locale={locale} />
+        <Benefits locale={locale} />
+        <HowItWorks locale={locale} />
+        {/* Guides are English-only for now (Part 2). */}
+        {locale === "en" ? <HelpfulGuides /> : null}
+        <Pricing locale={locale} />
+        {/* Site FAQ (FAQPage) is English-only, like the guides. */}
+        {locale === "en" ? <HomeFaq /> : null}
+        <FinalCTA locale={locale} />
+      </div>
     </>
   );
 }

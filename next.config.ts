@@ -3,7 +3,7 @@ import type { NextConfig } from "next";
 // Content Security Policy.
 // - 'unsafe-inline' scripts: Next.js inline bootstrap scripts, the theme and
 //   consent-default scripts, and JSON-LD blocks (no nonces, pages are static).
-// - 'wasm-unsafe-eval': WebAssembly used by the OCR and PDF tools.
+// - 'wasm-unsafe-eval': WebAssembly used by the OCR, PDF, and face landmark tools.
 // - googletagmanager / google-analytics: GA4, loaded only after consent.
 // - Gemini is called server-side through /api/ai/generate, so 'self' covers it.
 // - img-src https:: the Open Graph preview tool shows remote share images.
@@ -63,6 +63,15 @@ const nextConfig: NextConfig = {
       },
       {
         source: "/pdfjs/:path*",
+        headers: [
+          {
+            key: "Cache-Control",
+            value: "public, max-age=31536000, immutable",
+          },
+        ],
+      },
+      {
+        source: "/mediapipe/:path*",
         headers: [
           {
             key: "Cache-Control",

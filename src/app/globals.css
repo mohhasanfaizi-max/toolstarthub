@@ -170,6 +170,27 @@
   padding: 1.5rem;
 }
 
+.pwa-app-chrome {
+  display: none;
+}
+
+html[data-pwa="standalone"] .site-web-chrome,
+html[data-pwa="standalone"] .site-web-home {
+  display: none;
+}
+
+html[data-pwa="standalone"] .pwa-app-chrome {
+  display: block;
+}
+
+html[data-pwa="standalone"] #main-content {
+  padding-bottom: calc(4.75rem + env(safe-area-inset-bottom));
+}
+
+html[data-pwa="standalone"] .consent-banner {
+  bottom: calc(3.75rem + env(safe-area-inset-bottom));
+}
+
 @media (prefers-reduced-motion: reduce) {
   .home-enter {
     animation: none;
