@@ -94,7 +94,8 @@ export default async function GuidePage({
       <JsonLd
         data={guideArticleJsonLd({
           title: guide.title,
-          description: guideMetaDescriptions[guide.slug] ?? guide.description,
+          description:
+            article.metaDescription || guideMetaDescriptions[guide.slug] || guide.description,
           path: guide.route,
           datePublished: dates.published,
           dateModified: dates.modified,

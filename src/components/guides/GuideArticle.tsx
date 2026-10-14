@@ -66,6 +66,28 @@ export function GuideArticle({
       {content.why ? (
         <p className="mt-4 text-base leading-7 text-muted-foreground">{content.why}</p>
       ) : null}
+      {content.sections && content.sections.length >= 3 ? (
+        <nav
+          aria-label="On this page"
+          className="mt-8 rounded-2xl border border-border bg-muted px-5 py-4"
+        >
+          <p className="text-sm font-semibold text-foreground">On this page</p>
+          <ol className="mt-3 list-decimal space-y-1.5 pl-5 text-sm">
+            {content.sections.map((section) => (
+              <li key={section.id}>
+                <a href={`#guide-${section.id}`} className="font-medium text-accent hover:underline">
+                  {section.heading}
+                </a>
+              </li>
+            ))}
+            <li>
+              <a href="#guide-steps-heading" className="font-medium text-accent hover:underline">
+                {content.stepsHeading}
+              </a>
+            </li>
+          </ol>
+        </nav>
+      ) : null}
       <AdSlot placement="guide" />
       {content.sections?.length ? <GuideSections sections={content.sections} /> : null}
 
