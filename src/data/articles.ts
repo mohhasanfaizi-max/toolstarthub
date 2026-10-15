@@ -69,19 +69,25 @@ const publishedGuides: Article[] = [
     id: "how-to-compress-an-image-without-losing-quality",
     title: "How to Compress an Image Without Losing Quality",
     slug: "how-to-compress-an-image-without-losing-quality",
-    primaryKeyword: "compress an image",
-    secondaryKeywords: ["jpeg", "webp", "png"],
+    primaryKeyword: "compress an image without losing quality",
+    secondaryKeywords: [
+      "image compression",
+      "reduce image file size",
+      "best image format for websites",
+      "image compression settings",
+      "optimize images for website speed",
+    ],
     searchIntent: "informational",
     toolSlug: "image-compressor",
     siblingToolSlugs: ["image-resizer", "image-cropper", "image-converter"],
     cluster: "image-compressor",
     articleType: "overview",
     status: "PUBLISHED",
-    metaTitle: "How to Compress an Image Without Losing Quality",
+    metaTitle: "Compress an Image Without Losing Quality",
     metaDescription:
-      "Resize first, pick JPEG, WebP, or PNG, then compress in small steps so a photo still looks sharp.",
+      "Compress an image without losing quality: resize to the layout, pick JPEG, WebP, or PNG, then lower quality in small steps while you compare a preview.",
     excerpt:
-      "Resize first, pick JPEG, WebP, or PNG, then compress in small steps so a photo still looks sharp.",
+      "Resize a photo first, pick JPEG, WebP, or PNG, then compress in small steps while you compare a preview. The file stays in your browser.",
     content: null,
     faq: [],
     relatedTools: [
@@ -93,7 +99,11 @@ const publishedGuides: Article[] = [
       "image-to-pdf",
       "pdf-compressor",
     ],
-    relatedArticles: [],
+    relatedArticles: [
+      "how-to-work-with-pdfs-in-your-browser",
+      "how-to-read-text-from-a-photo",
+      "how-to-make-a-simple-favicon",
+    ],
     category: "image-tools",
   },
   {

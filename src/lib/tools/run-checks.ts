@@ -179,6 +179,13 @@ import {
   collectText,
   markdownFormattingIssues,
 } from "../content-style.ts";
+import {
+  DEFAULT_GUIDE_FAQ_MAX,
+  DEFAULT_GUIDE_FAQ_MIN,
+  RAISED_GUIDE_FAQ_MAX,
+  guideFaqCountIsAllowed,
+  resolveGuideFaqMax,
+} from "../content/guide-faq-validation.ts";
 
 function assert(condition: unknown, message: string): asserts condition {
   if (!condition) {
@@ -2399,15 +2406,45 @@ for (const guide of guides) {
   assert(content.why.trim().length > 0, `${guide.slug} explains why the method is useful`);
   assert(content.steps.length >= 3, `${guide.slug} has numbered steps`);
   assert(content.examples.length >= 1, `${guide.slug} has a practical example`);
+  const faqMax = resolveGuideFaqMax(content);
   assert(
-    content.faqs.length >= 3 && content.faqs.length <= 5,
-    `${guide.slug} has 3–5 FAQs`,
+    guideFaqCountIsAllowed(content.faqs.length, content),
+    `${guide.slug} has ${DEFAULT_GUIDE_FAQ_MIN}–${faqMax} FAQs`,
   );
   assert(content.cta.href.startsWith("/tools/"), `${guide.slug} CTAs to a tool`);
   const blob = collectText(content).join("\n");
   assert(!markdownFormattingIssues(blob), `${guide.slug} ${markdownFormattingIssues(blob) ?? ""}`.trim());
   assert(!bannedPhraseIssues(blob), `${guide.slug} ${bannedPhraseIssues(blob) ?? ""}`.trim());
 }
+
+assert(guideFaqCountIsAllowed(3), "An ordinary guide with 3 FAQs passes");
+assert(guideFaqCountIsAllowed(5), "An ordinary guide with 5 FAQs passes");
+assert(!guideFaqCountIsAllowed(6), "An ordinary guide with 6 FAQs fails");
+assert(
+  guideFaqCountIsAllowed(10, { faqMax: RAISED_GUIDE_FAQ_MAX }),
+  "The image-compression guide with 10 FAQs passes",
+);
+assert(
+  !guideFaqCountIsAllowed(11, { faqMax: RAISED_GUIDE_FAQ_MAX }),
+  "The image-compression guide with 11 FAQs fails",
+);
+
+const raisedFaqGuides = guides.filter((guide) => getGuideContent(guide.slug)?.faqMax != null);
+assert(raisedFaqGuides.length === 1, "Only one guide opts into a higher FAQ maximum");
+assert(
+  raisedFaqGuides[0]?.slug === "how-to-compress-an-image-without-losing-quality",
+  "Only the image-compression guide raises the FAQ maximum",
+);
+assert(
+  resolveGuideFaqMax(getGuideContent(raisedFaqGuides[0].slug)!) === RAISED_GUIDE_FAQ_MAX,
+  "The image-compression guide FAQ maximum is 10",
+);
+assert(
+  guides
+    .filter((guide) => guide.slug !== raisedFaqGuides[0]?.slug)
+    .every((guide) => resolveGuideFaqMax(getGuideContent(guide.slug)!) === DEFAULT_GUIDE_FAQ_MAX),
+  "No other guide receives a higher FAQ allowance",
+);
 
 const sitemapPaths = new Set([
   "/",

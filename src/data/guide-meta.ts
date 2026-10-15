@@ -6,7 +6,7 @@
  */
 export const guideMetaDescriptions: Record<string, string> = {
   "how-to-compress-an-image-without-losing-quality":
-    "How to compress an image without losing quality: resize first, choose JPEG, WebP, or PNG, then lower quality in small steps while you compare a preview.",
+    "Compress an image without losing quality: resize to the layout, pick JPEG, WebP, or PNG, then lower quality in small steps while you compare a preview.",
   "how-to-add-sales-tax":
     "How to add sales tax to a price: multiply the pre-tax price by the tax rate, round the tax to cents, and add it to the price. Worked example included.",
   "how-to-count-days-between-dates":

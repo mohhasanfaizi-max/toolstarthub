@@ -30,7 +30,7 @@ export const guideDates: Record<string, GuideDates> = {
   "how-to-clean-and-compare-text": { published: "2026-09-22T14:37:10Z", modified: "2026-09-24T16:40:00Z" },
   "how-to-click-faster": { published: "2026-10-04T18:15:30Z", modified: "2026-10-04T18:15:30Z" },
   "how-to-compare-renting-and-buying": { published: "2026-09-27T06:54:31Z", modified: "2026-09-27T06:54:31Z" },
-  "how-to-compress-an-image-without-losing-quality": { published: "2026-09-22T14:37:10Z", modified: "2026-09-24T16:40:00Z" },
+  "how-to-compress-an-image-without-losing-quality": { published: "2026-09-22T14:37:10Z", modified: "2026-10-14T16:30:00Z" },
   "how-to-convert-csv-to-json": { published: "2026-09-27T06:54:31Z", modified: "2026-09-27T06:54:31Z" },
   "how-to-convert-hex-to-rgb": { published: "2026-09-27T06:54:31Z", modified: "2026-09-27T06:54:31Z" },
   "how-to-convert-json-to-csv": { published: "2026-09-27T06:54:31Z", modified: "2026-09-27T06:54:31Z" },
