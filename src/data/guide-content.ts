@@ -1,3 +1,4 @@
+import type { GuideFaqMax } from "../lib/content/guide-faq-validation.ts";
 import { financeGuideContent } from "./finance-guide-content.ts";
 import { extraGuideContent, type GuideSection } from "./extra-guide-content.ts";
 
@@ -17,6 +18,8 @@ export type GuideContent = {
   /** Optional question-style sections (with tables) shown after the intro. */
   sections?: GuideSection[];
   faqs: GuideFaq[];
+  /** Raises the FAQ maximum from 5. The only supported override is 10. */
+  faqMax?: GuideFaqMax;
   cta: {
     before: string;
     linkLabel: string;
@@ -206,6 +209,7 @@ export const guideContent: Record<string, GuideContent> = {
         body: "If the preview already looks fine and the size fits, stop. Extra quality drops cost detail you will not get back.",
       },
     ],
+    faqMax: 10,
     faqs: [
       {
         question: "How do I compress an image without losing quality?",
