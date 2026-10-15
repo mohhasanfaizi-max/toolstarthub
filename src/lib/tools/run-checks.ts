@@ -2400,8 +2400,8 @@ for (const guide of guides) {
   assert(content.steps.length >= 3, `${guide.slug} has numbered steps`);
   assert(content.examples.length >= 1, `${guide.slug} has a practical example`);
   assert(
-    content.faqs.length >= 3 && content.faqs.length <= 5,
-    `${guide.slug} has 3–5 FAQs`,
+    content.faqs.length >= 3 && content.faqs.length <= 10,
+    `${guide.slug} has 3–10 FAQs`,
   );
   assert(content.cta.href.startsWith("/tools/"), `${guide.slug} CTAs to a tool`);
   const blob = collectText(content).join("\n");

@@ -23,6 +23,12 @@ export type GuideContent = {
     href: string;
     after?: string;
   };
+  alsoSee?: Array<{
+    before: string;
+    linkLabel: string;
+    href: string;
+    after?: string;
+  }>;
 };
 
 export const guideContent: Record<string, GuideContent> = {
@@ -101,64 +107,155 @@ export const guideContent: Record<string, GuideContent> = {
   },
   "how-to-compress-an-image-without-losing-quality": {
     intro:
-      "To compress an image without an obvious drop in quality, resize it to the size you will actually display, pick a format that fits the picture, then lower quality in small steps while you compare a preview. Photos usually shrink well as JPEG or WebP. Logos, screenshots, and text stay sharper as PNG.",
+      "To compress an image without losing quality in a way people will notice, resize it to the width you will display, then re-encode it as JPEG, WebP, or PNG. Resizing drops unused pixels. Compression then shrinks the remaining data. Photos usually shrink well as JPEG or WebP. Logos, screenshots, and text stay sharper as PNG.",
     why:
-      "A camera file is often thousands of pixels wide. If a website shows it at 800 pixels, most of that data is unused. Compression after a resize is what makes pages load faster and emails accept the attachment.",
-    stepsHeading: "How to reduce image size",
+      "A camera file is often thousands of pixels wide. If a page shows it at 800 pixels, visitors still download the unused pixels unless you resize first. Compression after that resize is what makes pages load faster and emails accept the attachment. A large hero image can delay Largest Contentful Paint, one of the Core Web Vitals. Smaller files can help that metric and make the page feel quicker. They do not guarantee a better search ranking.",
+    sections: [
+      {
+        id: "lossy-vs-lossless",
+        heading: "What is the difference between lossy and lossless compression?",
+        paragraphs: [
+          "Lossless compression keeps every pixel. You can reverse it and get the same picture back. PNG works this way. It is the right choice for logos, screenshots, UI, and type, where a soft edge looks wrong.",
+          "Lossy compression throws away detail that is hard to see, so the file gets smaller. JPEG and WebP quality settings work this way. A moderate setting on a photograph is often hard to spot. A harsh setting, or a second save of an already compressed JPEG, shows blocks, ringing, or muddy color.",
+          "Resizing is not compression. Resizing changes width and height, so there are fewer pixels to store. Compression re-encodes the pixels you keep. Do the resize first when the display size is smaller than the original.",
+          "Lossless is not always the goal. For photos on a website, a modest lossy setting after a resize is usually the better trade. For an archive master, keep the original and export a web copy separately.",
+        ],
+      },
+      {
+        id: "image-formats",
+        heading: "Which image format should you use?",
+        paragraphs: [
+          "The best image format for websites depends on the picture, not on a single winner. Match the format to the content, then compress.",
+        ],
+        table: {
+          caption: "Common web image formats and when to use them",
+          headers: ["Format", "Best for", "Compression", "Watch for"],
+          rows: [
+            ["JPEG", "Photographs and gradients", "Lossy, with a quality slider", "Soft edges on logos and text; extra saves add artifacts"],
+            ["WebP", "Photos when the browser supports it", "Lossy or lossless, often smaller than JPEG at a similar look", "Older software may not open it"],
+            ["PNG", "Logos, screenshots, UI, and transparency", "Lossless", "Photos stay large; a lossless re-encode may barely shrink"],
+            ["GIF", "Simple animation with few colors", "Limited palette", "Poor for photos; Tools Star Hub does not compress GIF"],
+          ],
+        },
+        after:
+          "The Image Compressor on this site opens JPG, PNG, and WebP. It rejects GIF, HEIC, and SVG. JPEG and WebP use a quality setting from 10 to 100. PNG is re-encoded as PNG, which is lossless, so a flat graphic may barely shrink. AVIF can be smaller than JPEG or WebP on some photos, but this tool does not encode it, and not every browser or app opens it.",
+      },
+      {
+        id: "compression-formula",
+        heading: "How to measure how much you saved",
+        paragraphs: [
+          "You do not need a special encoder to read the result. Compare the file sizes.",
+          "Savings percent is (original bytes minus compressed bytes) divided by original bytes, then multiplied by 100. If a 2,000 KB photo becomes 400 KB, you saved 1,600 KB, which is 80 percent of the original. That arithmetic is an example, not a promise for your file.",
+          "Stop when the file is small enough for the job. There is no prize for the smallest possible image if the preview already looks soft.",
+        ],
+      },
+      {
+        id: "website-speed",
+        heading: "How image compression settings affect page speed",
+        paragraphs: [
+          "Large images are a common reason a page feels slow on a phone. Serving a 4000-pixel original into an 800-pixel column wastes bandwidth and can delay Largest Contentful Paint. Resize to the layout, then apply image compression settings you can live with in a side-by-side preview.",
+          "Faster loads can help people stay on the page. Page experience, including Core Web Vitals, can be one of many ranking signals. Compressing images does not guarantee better rankings, and no format is always best.",
+        ],
+      },
+    ],
+    stepsHeading: "A practical compression workflow",
     steps: [
       {
+        title: "Start from the original",
+        body: "Open the camera file or the highest-quality export you have. Do not keep squeezing a JPEG you already saved for the web. Each extra lossy save can add more artifacts.",
+      },
+      {
         title: "Resize to the layout width first",
-        body: "If the photo will sit in an 800 pixel column, export near that width before you squeeze quality. Shrinking a 4000 pixel original is the largest win you will get.",
+        body: "If the photo will sit in an 800 pixel column, export near that width before you squeeze quality. Shrinking a 4000 pixel original is usually the largest win. On this site, the Image Resizer can set width and height in the browser.",
       },
       {
         title: "Choose a format that matches the picture",
-        body: "Photographs belong in JPEG or WebP. Flat graphics, UI shots, and type belong in PNG. Turning a logo into a low quality JPEG is how you get muddy edges.",
+        body: "Photographs belong in JPEG or WebP. Flat graphics, UI shots, and type belong in PNG. Turning a logo into a low quality JPEG is how you get muddy edges. The Image Converter can change format when you need a different output.",
       },
       {
         title: "Lower quality a little at a time",
-        body: "Start at a moderate JPEG or WebP setting, look at the preview next to the original, then drop further only if the file is still too large.",
+        body: "On the Image Compressor, start around 70 to 80 for a JPEG or WebP photo, look at the preview next to the original, then drop further only if the file is still too large. Quality runs from 10 to 100. PNG has no lossy slider on this tool.",
       },
       {
         title: "Stop when the file is small enough",
-        body: "There is no prize for the smallest possible file. If it already fits the email cap or the page budget, keep the extra detail.",
+        body: "If it already fits the email cap or the page budget, keep the extra detail. Download the result and check it before you replace the original.",
       },
     ],
     examples: [
       {
         title: "A blog photo that will not upload",
-        body: "A 6 MB camera JPEG displayed at article width can often land under 300 KB after a resize and a moderate quality pass. That is usually enough for a CMS upload limit without making the photo look soft.",
+        body: "A 6 MB camera JPEG displayed at article width can often land under 300 KB after a resize and a moderate quality pass. That is a realistic path for a CMS upload limit. Your file may land higher or lower, so trust the preview, not a target kilobyte number from someone else’s photo.",
       },
     ],
+    notesHeading: "Common mistakes",
     notes: [
       {
-        heading: "Lossless is not always the goal",
-        body: "Lossless keeps every pixel. That is right for archives and graphics. For photos on the web, a modest lossy setting is usually a better trade.",
+        heading: "Skipping the resize",
+        body: "Compressing a huge original and letting the browser scale it still makes visitors download the large file. Resize first.",
       },
       {
-        heading: "Do not recompress the same JPEG over and over",
-        body: "Each extra lossy save can add more artifacts. Work from the original when you can.",
+        heading: "Recompressing the same JPEG over and over",
+        body: "Work from the original when you can. A third or fourth lossy save is where photos start to look crunchy.",
+      },
+      {
+        heading: "Using JPEG on a logo or screenshot",
+        body: "Type and hard edges need PNG (or a lossless WebP). A low JPEG quality setting is the usual source of muddy UI shots.",
+      },
+      {
+        heading: "Chasing the smallest file",
+        body: "If the preview already looks fine and the size fits, stop. Extra quality drops cost detail you will not get back.",
       },
     ],
     faqs: [
       {
-        question: "How do I reduce image size for a website?",
+        question: "How do I compress an image without losing quality?",
         answer:
-          "Resize to the displayed width, then compress. Serving a full camera resolution image and hoping the browser scales it still makes visitors download the large file.",
+          "Resize to the displayed width, pick JPEG or WebP for a photo or PNG for graphics, then lower quality in small steps while you compare a preview. Stop when the file is small enough and the picture still looks sharp.",
       },
       {
-        question: "Will compression always be visible?",
+        question: "What is the difference between lossy and lossless compression?",
         answer:
-          "Not at moderate settings on photographs. You will see it sooner on screenshots, small text, and already compressed files.",
+          "Lossless keeps every pixel, which is how PNG works. Lossy throws away hard-to-see detail so the file gets smaller, which is how JPEG and WebP quality settings work.",
       },
       {
-        question: "Does this site upload my image?",
+        question: "Which image format is best for a website?",
         answer:
-          "The image tools on Tools Star Hub decode and encode in your browser. The file stays on your device unless you download the result.",
+          "There is no single best format. Use JPEG or WebP for photographs and PNG for logos, screenshots, and text. Match the format to the picture, then compress.",
       },
       {
-        question: "What if I need a PDF instead of an image?",
+        question: "Should I resize before I compress?",
         answer:
-          "Use Image to PDF when the source is pictures. To shrink an existing PDF, use the PDF Compressor. Size reduction there is not guaranteed.",
+          "Yes, when the display size is smaller than the original. Resizing changes pixel dimensions. Compression re-encodes the pixels you keep. Serving a full camera image and hoping the browser scales it still downloads the unused pixels.",
+      },
+      {
+        question: "What JPEG or WebP quality should I use?",
+        answer:
+          "Start around 70 to 80 on a photograph, then drop only if you still need a smaller file. The Image Compressor uses a scale from 10 to 100. Trust the preview more than a fixed number.",
+      },
+      {
+        question: "Why didn’t my PNG get much smaller?",
+        answer:
+          "PNG re-encoding on this site is lossless. A photo saved as PNG stays large. Convert that photo to JPEG or WebP if you need a smaller file, and keep PNG for graphics.",
+      },
+      {
+        question: "Does compression make a site rank higher?",
+        answer:
+          "Not by itself. Smaller, correctly sized images can help a page load faster and can improve Largest Contentful Paint. Core Web Vitals may be one of many signals. Compression does not guarantee better rankings.",
+      },
+      {
+        question: "Is my photo uploaded on Tools Star Hub?",
+        answer:
+          "No. The Image Compressor re-encodes JPG, PNG, or WebP in this browser tab. The file is not sent to Tools Star Hub.",
+      },
+      {
+        question: "Can I compress a GIF, HEIC, or SVG here?",
+        answer:
+          "No. Those formats are rejected. An image must be 25 MB or smaller, and neither side can exceed 8192 pixels.",
+      },
+      {
+        question: "How many times can I compress a JPEG?",
+        answer:
+          "Avoid repeating lossy saves. Each extra JPEG or WebP encode can add artifacts. Export a web copy from the original when you can.",
       },
     ],
     cta: {
@@ -167,6 +264,26 @@ export const guideContent: Record<string, GuideContent> = {
       href: "/tools/image-compressor",
       after: ". Files are processed locally in your browser.",
     },
+    alsoSee: [
+      {
+        before: "To change width and height before you compress, use the",
+        linkLabel: "Image Resizer",
+        href: "/tools/image-resizer",
+        after: ".",
+      },
+      {
+        before: "To switch JPEG, PNG, or WebP, use the",
+        linkLabel: "Image Converter",
+        href: "/tools/image-converter",
+        after: ".",
+      },
+      {
+        before: "To shrink an existing PDF instead of a photo, use the",
+        linkLabel: "PDF Compressor",
+        href: "/tools/pdf-compressor",
+        after: ". A smaller PDF is not guaranteed.",
+      },
+    ],
   },
   "what-is-json": {
     intro:
@@ -434,6 +551,14 @@ export const guideContent: Record<string, GuideContent> = {
       href: "/tools/pdf-compressor",
       after: ". Related tools for text, metadata, merge, and split are linked on that page.",
     },
+    alsoSee: [
+      {
+        before: "To shrink a standalone JPG, PNG, or WebP instead of a PDF, see",
+        linkLabel: "how to compress a photo for the web",
+        href: "/guides/how-to-compress-an-image-without-losing-quality",
+        after: ".",
+      },
+    ],
   },
   "how-to-clean-and-compare-text": {
     intro:
