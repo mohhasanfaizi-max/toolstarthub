@@ -13,7 +13,7 @@ import { locales } from "@/i18n/config";
 import { PRODUCTION_CANONICAL_HOST, siteConfig, siteContact } from "@/lib/site";
 
 const description =
-  "About Tools Star Hub: who builds the free browser tools and guides, how results are checked, how input is handled, and how to report a mistake.";
+  "About Tools Star Hub, an independent site run by Ali Ahmed: free browser tools and guides, how input is handled, and how to report a mistake.";
 
 export const metadata = createPageMetadata({
   title: "About Us: Who Builds the Free Tools and Guides",
@@ -44,12 +44,13 @@ export default function AboutPage() {
       />
       <div className="mt-8 max-w-3xl space-y-5 text-base leading-7 text-muted-foreground">
         <p>
-          {siteConfig.name} is a free collection of {tools.length} online tools across{" "}
-          {categories.length} categories: calculators, text tools, developer helpers,
-          image and PDF tools, SEO utilities, and AI tools. It also publishes{" "}
-          {guideCount} guides that explain the method behind the tools. The site is
-          published at {PRODUCTION_CANONICAL_HOST} and is available in {locales.length}{" "}
-          languages.
+          {siteConfig.name} is an independent website run by Ali Ahmed. Its
+          purpose is to offer free online tools for everyday tasks, and short
+          guides that explain the method. The collection has {tools.length} tools
+          across {categories.length} categories: calculators, text tools, developer
+          helpers, image and PDF tools, SEO utilities, and AI tools, plus{" "}
+          {guideCount} guides. The site is published at {PRODUCTION_CANONICAL_HOST}{" "}
+          and the interface is available in {locales.length} languages.
         </p>
         <p>
           Open a tool, use it, and get a result. Most tools run in your
@@ -65,6 +66,15 @@ export default function AboutPage() {
         <p>
           There is no signup, no account, and no payment system. Pages stay
           lightweight so they remain usable on phones and slower connections.
+          Questions and corrections can go to{" "}
+          <a href={`mailto:${siteContact.email}`} className={linkClass}>
+            {siteContact.email}
+          </a>{" "}
+          or the{" "}
+          <Link href="/contact" className={linkClass}>
+            contact page
+          </Link>
+          .
         </p>
       </div>
 
@@ -146,7 +156,7 @@ export default function AboutPage() {
             mistakes are corrected on the page.
           </p>
           <p>
-            {siteConfig.name} is a small independent website. This page does not
+            Ali Ahmed runs this independent website. This page does not
             list a company registration, office, staff count, or certifications
             because those are not published facts. For how information is handled,
             see the{" "}

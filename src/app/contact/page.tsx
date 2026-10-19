@@ -59,7 +59,7 @@ export default function ContactPage() {
   const contactFaqs = [
     {
       question: "How can I contact Tools Star Hub?",
-      answer: `Email ${email} or call or WhatsApp ${siteContact.phoneDisplay}. You can send a tool problem, a suggestion, feedback, or a general question.`,
+      answer: `Email ${email} or call or WhatsApp ${siteContact.phoneDisplay}. Include the page, what you did, and what you expected. We read that inbox and reply by email.`,
     },
     {
       question: "What should I include when reporting a tool problem?",
@@ -111,6 +111,8 @@ export default function ContactPage() {
                 {siteContact.phoneDisplay}
               </a>
               . Send a tool problem, a suggestion, feedback, or a general question.
+              Include the page, what you did, and what you expected. We read{" "}
+              {email} and reply by email.
             </p>
           </div>
         </Container>
@@ -163,7 +165,7 @@ export default function ContactPage() {
               {email}
             </a>
             <p className="mt-2 text-sm leading-6 text-muted-foreground">
-              Email is the best place for a tool problem, a suggestion, or a longer note.
+              Email is the inbox we read. It is the best place for a tool problem, a suggestion, or a longer note. We reply by email.
             </p>
             <div className="mt-5">
               <Button href={`mailto:${email}`} className="w-full sm:w-auto">

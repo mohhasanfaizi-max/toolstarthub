@@ -3,9 +3,9 @@ import {
   defaultLocale,
   localeInfo,
   localizePath,
-  locales,
   type Locale,
 } from "@/i18n/config";
+import { indexableLocales, isTranslationIndexable } from "@/i18n/indexing";
 import { siteConfig } from "@/lib/site";
 
 type PageMetadataInput = {
@@ -21,16 +21,26 @@ type PageMetadataInput = {
   shareImage?: { route: string; alt: string };
   /** Page language. `path` is always the English path; it is localized here. */
   locale?: Locale;
-  /** Emit hreflang alternates for all locales (page exists in every language). */
+  /** Emit hreflang for indexable locales when more than one language is indexed. */
   hreflang?: boolean;
   /** noindex but keep following links (pages whose content is not translated yet). */
   noIndexFollow?: boolean;
 };
 
-/** hreflang map for an English path: every locale plus x-default (English). */
-export function languageAlternates(path: string): Record<string, string> {
+/**
+ * hreflang map for an English path. Only indexable locales are included,
+ * plus x-default (English). Returns undefined when English is the only
+ * indexable locale, so noindex translations are not advertised.
+ */
+export function languageAlternates(
+  path: string,
+): Record<string, string> | undefined {
+  const indexable = indexableLocales();
+  if (indexable.length < 2) {
+    return undefined;
+  }
   const languages: Record<string, string> = {};
-  for (const locale of locales) {
+  for (const locale of indexable) {
     languages[localeInfo[locale].tag] = absoluteUrl(localizePath(path, locale));
   }
   languages["x-default"] = absoluteUrl(localizePath(path, defaultLocale));
@@ -81,6 +91,13 @@ export function createPageMetadata({
   const twitterImage = pageImage
     ? shareImage(pageImage.route, pageImage.alt, "twitter-image")
     : shareImage();
+  // Prefixed locales stay out of the index while INDEX_TRANSLATIONS is off.
+  // Query-string pages keep noindex, nofollow. English robots are unchanged.
+  const translationHidden = !isTranslationIndexable(locale);
+  const languages =
+    hreflang && !noIndex && !noIndexFollow && !translationHidden
+      ? languageAlternates(path)
+      : undefined;
 
   return {
     title: path === "/" ? { absolute: title } : title,
@@ -88,16 +105,14 @@ export function createPageMetadata({
     keywords,
     alternates: {
       canonical: url,
-      ...(hreflang && !noIndex && !noIndexFollow
-        ? { languages: languageAlternates(path) }
-        : {}),
+      ...(languages ? { languages } : {}),
     },
     robots: noIndex
       ? {
           index: false,
           follow: false,
         }
-      : noIndexFollow
+      : noIndexFollow || translationHidden
         ? {
             index: false,
             follow: true,

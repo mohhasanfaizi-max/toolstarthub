@@ -4,7 +4,8 @@
  * join the Organization, WebSite, pages and tools into one graph.
  *
  * Only facts that are published on the site are used: no ratings, reviews,
- * people, addresses, or social profiles are invented here.
+ * addresses, or social profiles are invented here. Ali Ahmed is named because
+ * the About page says he runs the site.
  */
 import {
   defaultLocale,
@@ -64,6 +65,7 @@ function organizationData() {
     contactPoint: {
       "@type": "ContactPoint",
       contactType: "customer support",
+      name: "Ali Ahmed",
       email: siteContact.email,
       url: absoluteUrl("/contact"),
       availableLanguage: ["English"],

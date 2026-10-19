@@ -2,7 +2,8 @@ import type { MetadataRoute } from "next";
 import { categories } from "@/data/categories";
 import { getPublicGuides } from "@/data/guides";
 import { tools } from "@/data/tools";
-import { localizePath, locales } from "@/i18n/config";
+import { localizePath } from "@/i18n/config";
+import { indexableLocales } from "@/i18n/indexing";
 import { isToolTranslatedEverywhere } from "@/i18n/tool-pages/server";
 import { absoluteUrl, languageAlternates } from "@/lib/seo";
 import { siteConfig } from "@/lib/site";
@@ -26,16 +27,16 @@ const localizedRoutes = new Set(["", "/tools", "/categories"]);
 
 type Entry = MetadataRoute.Sitemap[number];
 
-/** One entry per language for a page that is translated, with alternates. */
+/** One entry per indexable language. Noindex translations are left out. */
 function localizedEntries(
   path: string,
   base: Omit<Entry, "url" | "alternates">,
 ): Entry[] {
   const languages = languageAlternates(path || "/");
-  return locales.map((locale) => ({
+  return indexableLocales().map((locale) => ({
     ...base,
     url: absoluteUrl(localizePath(path || "/", locale)),
-    alternates: { languages },
+    ...(languages ? { alternates: { languages } } : {}),
   }));
 }
 
