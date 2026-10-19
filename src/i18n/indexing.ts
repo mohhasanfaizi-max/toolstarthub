@@ -24,7 +24,7 @@ export const INDEX_TRANSLATIONS: false | Partial<Record<PrefixedLocale, boolean>
 
 /** English is always indexable. A prefixed locale is indexable only when the flag allows it. */
 export function isTranslationIndexable(locale: Locale): boolean {
-  if (locale === defaultLocale) {
+  if (locale === "en") {
     return true;
   }
   if (INDEX_TRANSLATIONS === false) {
