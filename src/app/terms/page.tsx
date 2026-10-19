@@ -60,7 +60,8 @@ export default function TermsPage() {
           <Link href="/privacy" className="font-medium text-accent hover:underline">
             privacy policy
           </Link>
-          . The site does not sell accounts or paid plans.
+          . Advertising and cookies are described in the privacy policy. The
+          site does not sell accounts or paid plans.
         </p>
         <p>
           These terms can change. The version on this page is the current one.

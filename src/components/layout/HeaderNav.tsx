@@ -12,6 +12,7 @@ export function HeaderNav({ locale = "en" }: { locale?: Locale }) {
     { href: "/guides", label: nav.guides },
     { href: "/#popular-tools", label: nav.popularTools },
     { href: "/about", label: nav.about },
+    { href: "/contact", label: nav.contact },
   ];
 
   return (
