@@ -16,6 +16,7 @@ export const metadata = createPageMetadata({
   title: "How-To Guides for Calculators, Text, Images and Code",
   description: guidesDescription,
   path: "/guides",
+  shareImage: { route: "/guides", alt: "Helpful Guides" },
 });
 
 export default function GuidesPage() {

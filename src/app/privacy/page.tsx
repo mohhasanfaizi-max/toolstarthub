@@ -11,6 +11,7 @@ export const metadata = createPageMetadata({
   title: "Privacy Policy",
   description: `How ${siteConfig.name} handles browser tools, Google Analytics, and advertising cookies from Google AdSense and other partners.`,
   path: "/privacy",
+  shareImage: { route: "/privacy", alt: `Privacy Policy — ${siteConfig.name}` },
 });
 
 export default function PrivacyPage() {

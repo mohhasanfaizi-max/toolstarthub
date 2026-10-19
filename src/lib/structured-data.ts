@@ -153,6 +153,21 @@ export function guideArticleJsonLd(input: GuideArticleInput) {
   };
 }
 
+/** English share card for a guide or tool, even when the page path is localized. */
+function openGraphImageUrl(path: string): string {
+  const parts = path.split("/").filter(Boolean);
+  const toolAt = parts.indexOf("tools");
+  if (toolAt >= 0 && parts[toolAt + 1]) {
+    return absoluteUrl(`/tools/${parts[toolAt + 1]}/opengraph-image`);
+  }
+  const guideAt = parts.indexOf("guides");
+  if (guideAt >= 0 && parts[guideAt + 1]) {
+    return absoluteUrl(`/guides/${parts[guideAt + 1]}/opengraph-image`);
+  }
+  const normalized = path.startsWith("/") ? path : `/${path}`;
+  return absoluteUrl(`${normalized}/opengraph-image`);
+}
+
 export function howToJsonLd(input: {
   name: string;
   description?: string;
@@ -163,6 +178,7 @@ export function howToJsonLd(input: {
   stepAnchors?: boolean;
 }) {
   const url = absoluteUrl(input.path);
+  const imageUrl = openGraphImageUrl(input.path);
   return {
     "@context": "https://schema.org",
     "@type": "HowTo",
@@ -170,6 +186,12 @@ export function howToJsonLd(input: {
     name: input.name,
     ...(input.description ? { description: input.description } : {}),
     url,
+    image: {
+      "@type": "ImageObject",
+      url: imageUrl,
+      width: 1200,
+      height: 630,
+    },
     inLanguage: "en",
     ...(input.toolName
       ? { tool: [{ "@type": "HowToTool", name: input.toolName }] }

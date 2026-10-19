@@ -7,7 +7,9 @@ export const contentType = ogImageContentType;
 
 export default function OpenGraphImage() {
   return renderOgImage({
+    eyebrow: "Free tools",
     title: siteConfig.tagline,
-    description: "Fast, free online tools for calculations, text, developers, images, PDFs, SEO and AI. No signup required.",
+    accent: "brand",
+    icon: "hub",
   });
 }

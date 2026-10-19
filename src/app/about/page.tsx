@@ -19,6 +19,7 @@ export const metadata = createPageMetadata({
   title: "About Us: Who Builds the Free Tools and Guides",
   description,
   path: "/about",
+  shareImage: { route: "/about", alt: `About ${siteConfig.name}` },
 });
 
 const linkClass = "font-medium text-accent hover:underline";

@@ -1,5 +1,6 @@
 import { getCategoryBySlug } from "@/data/categories";
 import { getToolBySlug, tools } from "@/data/tools";
+import { toolOgIcon } from "@/lib/og-icons";
 import { ogImageContentType, ogImageSize, renderOgImage } from "@/lib/og-image";
 import { siteConfig } from "@/lib/site";
 
@@ -17,8 +18,9 @@ export default async function Image({ params }: { params: Promise<{ slug: string
   const tool = getToolBySlug(slug);
   const category = tool ? getCategoryBySlug(tool.category) : undefined;
   return renderOgImage({
-    eyebrow: category ? `Free tool · ${category.name}` : "Free tool",
+    eyebrow: category?.name ?? "Free tool",
     title: tool?.name ?? siteConfig.name,
-    description: tool?.description,
+    accent: tool?.category ?? "brand",
+    icon: toolOgIcon(tool?.icon, tool?.category),
   });
 }

@@ -50,6 +50,7 @@ export const metadata: Metadata = {
     title: pageTitle,
     description: pageDescription,
     path: "/contact",
+    shareImage: { route: "/contact", alt: `Contact ${siteConfig.name}` },
   }),
   title: { absolute: pageTitle },
 };

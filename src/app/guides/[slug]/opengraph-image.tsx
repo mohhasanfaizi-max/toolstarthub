@@ -1,5 +1,6 @@
 import { articles, getArticleBySlug } from "@/data/articles";
 import { getCategoryBySlug } from "@/data/categories";
+import { categoryOgIcon } from "@/lib/og-icons";
 import { ogImageContentType, ogImageSize, renderOgImage } from "@/lib/og-image";
 import { siteConfig } from "@/lib/site";
 
@@ -19,6 +20,7 @@ export default async function Image({ params }: { params: Promise<{ slug: string
   return renderOgImage({
     eyebrow: category ? `Guide · ${category.name}` : "Guide",
     title: article?.title ?? siteConfig.name,
-    description: article?.excerpt,
+    accent: category?.slug ?? "brand",
+    icon: categoryOgIcon(category?.slug),
   });
 }
