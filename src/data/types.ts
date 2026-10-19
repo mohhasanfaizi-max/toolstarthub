@@ -61,6 +61,11 @@ export type Tool = {
   relatedSlugs?: string[];
 };
 
+export type CategorySection = {
+  heading: string;
+  paragraphs: string[];
+};
+
 export type Category = {
   slug: CategorySlug;
   name: string;
@@ -70,6 +75,8 @@ export type Category = {
   route: string;
   intro: string;
   audience: string;
+  /** Extra English sections. Rendered only on the English category page. */
+  sections?: CategorySection[];
   startingSlugs: string[];
 };
 

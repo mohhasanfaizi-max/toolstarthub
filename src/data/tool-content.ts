@@ -2,6 +2,7 @@ import { aiToolContent } from "./ai-tool-content.ts";
 import { extraToolContent } from "./extra-tool-content.ts";
 import { financeToolContent } from "./finance-tool-content.ts";
 import { nextToolContent } from "./next-tool-content.ts";
+import { priorityToolContent } from "./priority-tool-content.ts";
 import { extraToolFaqs } from "./tool-faq-extra.ts";
 
 export type ToolExample = {
@@ -14,6 +15,11 @@ export type ToolFaq = {
   answer: string;
 };
 
+export type ToolSection = {
+  heading: string;
+  paragraphs: string[];
+};
+
 export type ToolContent = {
   howTo: string[];
   examples: ToolExample[];
@@ -23,9 +29,13 @@ export type ToolContent = {
   features?: string[];
   tips?: string[];
   limitations?: string;
+  /** Extra H3 sections under “How it works”. English priority pages use these. */
+  sections?: ToolSection[];
 };
 
 export const toolContent: Record<string, ToolContent> = {
+  // The seven AdSense priority tools are served from priority-tool-content.ts.
+  // getToolContent() prefers that file, so the copies below are not rendered.
   "percentage-calculator": {
     about:
       "Find a percent of a number, what percent one number is of another, or a percent increase or decrease. Students and anyone checking a grade or a price change can do that arithmetic here. Discount, sales tax, and tip each have their own calculator.",
@@ -2102,7 +2112,13 @@ export const toolContent: Record<string, ToolContent> = {
 };
 
 export function getToolContent(slug: string): ToolContent | undefined {
-  const content = toolContent[slug] ?? aiToolContent[slug] ?? nextToolContent[slug] ?? financeToolContent[slug] ?? extraToolContent[slug];
+  const content =
+    priorityToolContent[slug] ??
+    toolContent[slug] ??
+    aiToolContent[slug] ??
+    nextToolContent[slug] ??
+    financeToolContent[slug] ??
+    extraToolContent[slug];
   // Extra English FAQs (tool-faq-extra.ts) are appended after the tool's own.
   const extraFaqs = extraToolFaqs[slug];
   return content && extraFaqs ? { ...content, faqs: [...content.faqs, ...extraFaqs] } : content;

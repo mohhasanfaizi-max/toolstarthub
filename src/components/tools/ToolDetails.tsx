@@ -140,6 +140,21 @@ export function ToolDetails({
           <p className="mt-3 max-w-3xl text-sm leading-7 text-muted-foreground">
             {content.explanation}
           </p>
+          {content.sections?.map((section) => (
+            <div key={section.heading} className="mt-6">
+              <h3 className="text-base font-semibold text-foreground">
+                {section.heading}
+              </h3>
+              {section.paragraphs.map((paragraph) => (
+                <p
+                  key={paragraph}
+                  className="mt-3 max-w-3xl text-sm leading-7 text-muted-foreground"
+                >
+                  {paragraph}
+                </p>
+              ))}
+            </div>
+          ))}
         </section>
       ) : null}
 
