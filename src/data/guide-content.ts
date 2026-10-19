@@ -1,6 +1,7 @@
 import type { GuideFaqMax } from "../lib/content/guide-faq-validation.ts";
 import { financeGuideContent } from "./finance-guide-content.ts";
 import { extraGuideContent, type GuideSection } from "./extra-guide-content.ts";
+import { phase3GuideContent } from "./phase3-guides.ts";
 
 export type GuideFaq = {
   question: string;
@@ -4545,5 +4546,10 @@ export const guideContent: Record<string, GuideContent> = {
 };
 
 export function getGuideContent(slug: string): GuideContent | undefined {
-  return guideContent[slug] ?? financeGuideContent[slug] ?? extraGuideContent[slug];
+  return (
+    phase3GuideContent[slug] ??
+    guideContent[slug] ??
+    financeGuideContent[slug] ??
+    extraGuideContent[slug]
+  );
 }
