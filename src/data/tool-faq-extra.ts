@@ -7,18 +7,6 @@ import type { ToolFaq } from "./tool-content.ts";
  * the page and in its FAQPage structured data.
  */
 export const extraToolFaqs: Record<string, ToolFaq[]> = {
-  "percentage-calculator": [
-    {
-      question: "How do I calculate a percentage of a number?",
-      answer:
-        "Multiply the number by the percent, then divide by 100. For example, 15% of 80 is 80 × 15 ÷ 100 = 12.",
-    },
-    {
-      question: "How do I find what percent one number is of another?",
-      answer:
-        "Divide the part by the whole and multiply by 100. For example, 12 out of 40 is 12 ÷ 40 × 100 = 30%.",
-    },
-  ],
   "percentage-change-calculator": [
     {
       question: "What is the formula for percentage change?",
@@ -41,30 +29,6 @@ export const extraToolFaqs: Record<string, ToolFaq[]> = {
       question: "Are two discounts of 20% the same as 40% off?",
       answer:
         "No. A second 20% is taken from the already reduced price, so 20% off and then another 20% off is 36% off in total, not 40%.",
-    },
-  ],
-  "age-calculator": [
-    {
-      question: "How do I calculate my exact age?",
-      answer:
-        "Count the full years since your birth date, then the full months since your last birthday, then the remaining days. The Age Calculator does this from the dates you enter.",
-    },
-    {
-      question: "How is age counted for someone born on February 29?",
-      answer:
-        "The count follows the real calendar, so leap days are handled by the dates themselves instead of by a fixed 365-day year.",
-    },
-  ],
-  "word-counter": [
-    {
-      question: "How many words is a 5-minute speech?",
-      answer:
-        "Speaking pace varies, but around 130 to 150 words per minute is a common rule of thumb, so a 5-minute speech is often about 650 to 750 words.",
-    },
-    {
-      question: "How is reading time estimated?",
-      answer:
-        "The word count is divided by about 225 words per minute. It is an estimate for an average reader, not a measured reading speed.",
     },
   ],
   "character-counter": [
@@ -101,30 +65,6 @@ export const extraToolFaqs: Record<string, ToolFaq[]> = {
       question: "When should I use placeholder text?",
       answer:
         "Use it for mockups, templates, and font tests. Replace it with real copy before a page goes live, because placeholder text tells visitors nothing.",
-    },
-  ],
-  "json-formatter": [
-    {
-      question: "How do I fix invalid JSON?",
-      answer:
-        "Check the error position, then look for single quotes, a trailing comma before } or ], comments, or a missing comma between items. Standard JSON needs double quotes around keys and strings.",
-    },
-    {
-      question: "What is the difference between formatting and minifying JSON?",
-      answer:
-        "Formatting adds line breaks and indentation so people can read it. Minifying removes that whitespace to make the file smaller. The data is the same either way.",
-    },
-  ],
-  "image-compressor": [
-    {
-      question: "How do I reduce an image's file size without losing quality?",
-      answer:
-        "Resize it to the size you actually display first, then use JPEG or WebP and lower the quality in small steps while you compare the preview. Quality around 70 to 85 often looks close to the original for photos.",
-    },
-    {
-      question: "Which is smaller, JPEG, PNG, or WebP?",
-      answer:
-        "For photos, WebP is usually smallest, then JPEG. PNG is lossless and is often much larger for photos, but it suits logos, screenshots, and images that need transparency.",
     },
   ],
   "image-resizer": [
@@ -269,18 +209,6 @@ export const extraToolFaqs: Record<string, ToolFaq[]> = {
       question: "How do I use a picked color in CSS?",
       answer:
         "Copy the value and paste it into a CSS property, for example color: #1E90FF; or background: rgb(30, 144, 255);.",
-    },
-  ],
-  "qr-code-generator": [
-    {
-      question: "Do QR codes made here expire?",
-      answer:
-        "No. The text or link is stored directly in the pattern, with no redirect service in between, so the code works for as long as the link itself works.",
-    },
-    {
-      question: "How do I make a QR code for a website?",
-      answer:
-        "Paste the full address, including https://, generate the code, download the PNG, and test it with a phone camera before you print it.",
     },
   ],
   "html-encoder": [

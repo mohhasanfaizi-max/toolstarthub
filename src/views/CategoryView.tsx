@@ -121,6 +121,20 @@ export function CategoryView({
       <div className="mt-8 max-w-3xl space-y-4 text-base leading-7 text-muted-foreground">
         <p>{category.intro}</p>
         <p>{category.audience}</p>
+        {locale === "en"
+          ? category.sections?.map((section) => (
+              <section key={section.heading} className="pt-2">
+                <h2 className="text-xl font-semibold tracking-tight text-foreground">
+                  {section.heading}
+                </h2>
+                {section.paragraphs.map((paragraph) => (
+                  <p key={paragraph} className="mt-3">
+                    {paragraph}
+                  </p>
+                ))}
+              </section>
+            ))
+          : null}
       </div>
       {startingTools.length > 0 ? (
         <section aria-labelledby="starting-points-heading" className="mt-8">

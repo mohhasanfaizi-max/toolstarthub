@@ -4,6 +4,7 @@ import { FinalCTA } from "@/components/home/FinalCTA";
 import { HelpfulGuides } from "@/components/home/HelpfulGuides";
 import { HomeFaq } from "@/components/home/HomeFaq";
 import { Hero } from "@/components/home/Hero";
+import { HomeIntro } from "@/components/home/HomeIntro";
 import { HowItWorks } from "@/components/home/HowItWorks";
 import { PopularTools } from "@/components/home/PopularTools";
 import { Pricing } from "@/components/home/Pricing";
@@ -34,6 +35,7 @@ export function HomeView({ locale }: { locale: Locale }) {
       />
       <JsonLd data={organizationNode()} />
       <Hero locale={locale} />
+      {locale === "en" ? <HomeIntro /> : null}
       <PopularTools locale={locale} />
       <ToolCatalog locale={locale} />
       <Categories locale={locale} />
