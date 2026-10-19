@@ -31,6 +31,7 @@ import {
   getTool,
 } from "@/i18n/server";
 import { getLocalizedToolPage } from "@/i18n/localized-tool-content";
+import { ShareCardImage } from "@/components/seo/ShareCardImage";
 import { howToJsonLd } from "@/lib/structured-data";
 import {
   breadcrumbJsonLd,
@@ -206,6 +207,12 @@ export function ToolView({ locale, slug }: { locale: Locale; slug: string }) {
       <AdSlot placement="tool-intro" />
 
       <ToolPrivacyNote slug={tool.slug} locale={locale} />
+      {english ? (
+        <ShareCardImage
+          route={englishTool.route}
+          title={englishTool.metaTitle ?? englishTool.name}
+        />
+      ) : null}
       {localizedPage ? (
         <LocalizedToolDetails page={localizedPage} />
       ) : fullContent ? (

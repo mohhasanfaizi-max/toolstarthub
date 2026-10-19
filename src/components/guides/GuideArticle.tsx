@@ -2,11 +2,16 @@ import Link from "next/link";
 import { FaqList } from "@/components/content/FaqList";
 import { AdSlot } from "@/components/ads/AdSlot";
 import { GuideSections } from "@/components/guides/GuideSections";
+import { ShareCardImage } from "@/components/seo/ShareCardImage";
 import type { GuideContent } from "@/data/guide-content";
 import type { Category } from "@/data/types";
 
 type GuideArticleProps = {
   title: string;
+  /** Metadata title, used as the share-card alt text. */
+  pageTitle: string;
+  /** English path, used for this page's opengraph image. */
+  route: string;
   category?: Category;
   content: GuideContent;
   /** ISO dates for the byline (published, last updated). */
@@ -25,6 +30,8 @@ function formatGuideDate(iso: string) {
 
 export function GuideArticle({
   title,
+  pageTitle,
+  route,
   category,
   content,
   published,
@@ -63,6 +70,7 @@ export function GuideArticle({
         ) : null}
       </p>
       <p className="mt-4 text-lg leading-7 text-muted-foreground">{content.intro}</p>
+      <ShareCardImage route={route} title={pageTitle} />
       {content.why ? (
         <p className="mt-4 text-base leading-7 text-muted-foreground">{content.why}</p>
       ) : null}
