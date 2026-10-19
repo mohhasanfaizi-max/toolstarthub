@@ -29,6 +29,7 @@ export function toolsMetadata(locale: Locale, params: SearchParams) {
     noIndex: hasDiscoveryQuery,
     locale,
     hreflang: true,
+    shareImage: { route: "/tools", alt: t.toolsTitle },
   });
 }
 

@@ -15,6 +15,7 @@ export function categoriesMetadata(locale: Locale) {
     path: "/categories",
     locale,
     hreflang: true,
+    shareImage: { route: "/categories", alt: t.categoriesTitle },
   });
 }
 

@@ -40,9 +40,38 @@ const securityHeaders = [
   },
 ];
 
+const ogFont = ["./src/lib/og/Inter-Bold.ttf"];
+const ogImageRoutes = [
+  "/opengraph-image",
+  "/twitter-image",
+  "/guides/opengraph-image",
+  "/guides/twitter-image",
+  "/guides/[slug]/opengraph-image",
+  "/guides/[slug]/twitter-image",
+  "/tools/opengraph-image",
+  "/tools/twitter-image",
+  "/tools/[slug]/opengraph-image",
+  "/tools/[slug]/twitter-image",
+  "/categories/opengraph-image",
+  "/categories/twitter-image",
+  "/categories/[slug]/opengraph-image",
+  "/categories/[slug]/twitter-image",
+  "/about/opengraph-image",
+  "/about/twitter-image",
+  "/contact/opengraph-image",
+  "/contact/twitter-image",
+  "/privacy/opengraph-image",
+  "/privacy/twitter-image",
+  "/terms/opengraph-image",
+  "/terms/twitter-image",
+  "/disclaimer/opengraph-image",
+  "/disclaimer/twitter-image",
+];
+
 const nextConfig: NextConfig = {
   poweredByHeader: false,
   serverExternalPackages: ["pdfjs-dist", "terser"],
+  outputFileTracingIncludes: Object.fromEntries(ogImageRoutes.map((route) => [route, ogFont])),
   async headers() {
     return [
       {

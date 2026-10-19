@@ -24,6 +24,7 @@ import {
   getToolsInCategory,
 } from "@/i18n/server";
 import {
+  absoluteUrl,
   breadcrumbJsonLd,
   createPageMetadata,
   itemListJsonLd,
@@ -99,6 +100,7 @@ export function CategoryView({
         data={itemListJsonLd(
           category.name,
           categoryTools.map((tool) => ({ name: tool.name, path: tool.route })),
+          absoluteUrl(`/categories/${category.slug}/opengraph-image`),
         )}
       />
       <Breadcrumbs

@@ -9,6 +9,7 @@ export const metadata = createPageMetadata({
   title: "Disclaimer",
   description: `How to use ${siteConfig.name} results: calculators and converters are general information and estimates, not financial, legal, tax, or medical advice.`,
   path: "/disclaimer",
+  shareImage: { route: "/disclaimer", alt: `Disclaimer — ${siteConfig.name}` },
 });
 
 export default function DisclaimerPage() {

@@ -267,11 +267,22 @@ export function articleJsonLd(input: {
 export function itemListJsonLd(
   name: string,
   items: Array<{ name: string; path: string }>,
+  image?: string,
 ) {
   return {
     "@context": "https://schema.org",
     "@type": "ItemList",
     name,
+    ...(image
+      ? {
+          image: {
+            "@type": "ImageObject",
+            url: image,
+            width: 1200,
+            height: 630,
+          },
+        }
+      : {}),
     numberOfItems: items.length,
     itemListElement: items.map((item, index) => ({
       "@type": "ListItem",
