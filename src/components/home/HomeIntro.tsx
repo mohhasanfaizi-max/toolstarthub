@@ -8,7 +8,7 @@ import { siteConfig, siteContact } from "@/lib/site";
 const linkClass = "font-medium text-accent hover:underline";
 
 /**
- * English-only introduction under the hero. Static server markup.
+ * English-only introduction, last section above the footer. Static server markup.
  * Other locales keep their translated hero line and do not get this block.
  */
 export function HomeIntro() {

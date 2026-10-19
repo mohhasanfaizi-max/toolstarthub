@@ -35,7 +35,6 @@ export function HomeView({ locale }: { locale: Locale }) {
       />
       <JsonLd data={organizationNode()} />
       <Hero locale={locale} />
-      {locale === "en" ? <HomeIntro /> : null}
       <PopularTools locale={locale} />
       <ToolCatalog locale={locale} />
       <Categories locale={locale} />
@@ -47,6 +46,7 @@ export function HomeView({ locale }: { locale: Locale }) {
       {/* Site FAQ (FAQPage) is English-only, like the guides. */}
       {locale === "en" ? <HomeFaq /> : null}
       <FinalCTA locale={locale} />
+      {locale === "en" ? <HomeIntro /> : null}
     </>
   );
 }
