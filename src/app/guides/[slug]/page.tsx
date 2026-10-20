@@ -1,5 +1,6 @@
 import { notFound } from "next/navigation";
 import Link from "next/link";
+import { ShareCardImage } from "@/components/seo/ShareCardImage";
 import { Container } from "@/components/ui/Container";
 import { Breadcrumbs } from "@/components/seo/Breadcrumbs";
 import { JsonLd } from "@/components/seo/JsonLd";
@@ -130,6 +131,8 @@ export default async function GuidePage({
       {content ? (
         <GuideArticle
           title={guide.title}
+          pageTitle={article.metaTitle || guide.title}
+          route={guide.route}
           category={category}
           content={content}
           published={dates.published}
@@ -143,6 +146,7 @@ export default async function GuidePage({
           <p className="mt-4 text-lg leading-7 text-muted-foreground">
             {guide.description}
           </p>
+          <ShareCardImage route={guide.route} title={article.metaTitle || guide.title} />
         </article>
       )}
       <RelatedTools tools={relatedTools} />

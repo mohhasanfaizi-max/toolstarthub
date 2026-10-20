@@ -2,11 +2,16 @@ import Link from "next/link";
 import { FaqList } from "@/components/content/FaqList";
 import { AdSlot } from "@/components/ads/AdSlot";
 import { GuideSections } from "@/components/guides/GuideSections";
+import { ShareCardImage } from "@/components/seo/ShareCardImage";
 import type { GuideContent } from "@/data/guide-content";
 import type { Category } from "@/data/types";
 
 type GuideArticleProps = {
   title: string;
+  /** Metadata title, used as the share-card alt text. */
+  pageTitle: string;
+  /** English path, used for this page's opengraph image. */
+  route: string;
   category?: Category;
   content: GuideContent;
   /** ISO dates for the byline (published, last updated). */
@@ -25,6 +30,8 @@ function formatGuideDate(iso: string) {
 
 export function GuideArticle({
   title,
+  pageTitle,
+  route,
   category,
   content,
   published,
@@ -32,6 +39,10 @@ export function GuideArticle({
 }: GuideArticleProps) {
   const showUpdated =
     modified && published && formatGuideDate(modified) !== formatGuideDate(published);
+  const sections = content.sections ?? [];
+  const firstSection = sections[0];
+  const remainingSections = sections.slice(1);
+  const shareCard = <ShareCardImage route={route} title={pageTitle} />;
   return (
     <article className="mt-6 max-w-3xl">
       {category ? (
@@ -89,7 +100,9 @@ export function GuideArticle({
         </nav>
       ) : null}
       <AdSlot placement="guide" />
-      {content.sections?.length ? <GuideSections sections={content.sections} /> : null}
+      {firstSection ? <GuideSections sections={[firstSection]} /> : null}
+      {firstSection ? shareCard : null}
+      {remainingSections.length ? <GuideSections sections={remainingSections} /> : null}
 
       <section className="mt-10" aria-labelledby="guide-steps-heading">
         <h2
@@ -111,6 +124,7 @@ export function GuideArticle({
           ))}
         </ol>
       </section>
+      {firstSection ? null : shareCard}
 
       <section className="mt-10" aria-labelledby="guide-example-heading">
         <h2
