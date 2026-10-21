@@ -1,6 +1,8 @@
 import { resetRateLimits } from "../ai/rate-limit.ts";
 import { checkTranslation } from "./checks.ts";
 import { handleUrduNews, URDU_NEWS_MAX_CHARS, URDU_NEWS_RATE_MAX, urduNewsMessages } from "./handle.ts";
+import { humanizePrompt } from "./prompts.ts";
+import { cleanNewsBody } from "./text.ts";
 import { readJsonWithRetry, UrduNewsCallError } from "./json.ts";
 import { buildMetaDescription, buildMetaTitle, buildTitle, META_DESCRIPTION_MAX, META_TITLE_MAX, TITLE_MAX } from "./limits.ts";
 import { extractNumbers, normalizeDigits } from "./numbers.ts";
@@ -71,6 +73,27 @@ export async function runUrduNewsChecks(assert: Assert): Promise<void> {
 
   const description = buildMetaDescription(`${"word ".repeat(80)}end`);
   assert(description.shortened && description.text.length <= META_DESCRIPTION_MAX && !description.text.endsWith(" "), "Meta description is cut on a word boundary");
+
+  const mixedBody = [
+    "Title: Imran Khan Speaks",
+    "Subtitle: Budget remarks",
+    "Imran Khan said the budget is 12 billion rupees.",
+    "Meta description: Khan spoke about the budget.",
+    "Permalink: imran-khan-budget",
+    "Meta title: Imran Khan Speaks | Tools Star Hub",
+  ].join("\n\n");
+  assert(cleanNewsBody(mixedBody) === "Imran Khan said the budget is 12 billion rupees.", "Body drops SEO labels and keeps the paragraph");
+  assert(
+    cleanNewsBody("Body: Imran Khan said the budget is 12 billion rupees.") === "Imran Khan said the budget is 12 billion rupees.",
+    "A Body label is removed and the paragraph stays",
+  );
+  assert(
+    cleanNewsBody("The title of the bill stayed the same.").includes("title of the bill"),
+    "A sentence that mentions a title stays in the body",
+  );
+  const humanPrompt = humanizePrompt(urdu, brief);
+  assert(humanPrompt.includes("Return only the news paragraphs"), "Humanize asks for the body only");
+  assert(!humanPrompt.includes("Return a headline"), "Humanize does not ask for a headline");
 
   assert(normalizeDigits("۱۲") === "12" && normalizeDigits("١٢") === "12", "Urdu and Arabic-Indic digits become Western digits");
   assert(extractNumbers("۱٬۲۰۰ and 3.5").join(",") === "1200,3.5", "Thousands separators are ignored and decimals stay");
@@ -195,6 +218,44 @@ export async function runUrduNewsChecks(assert: Assert): Promise<void> {
     assert(translated.body.meta_title === "Imran Khan Speaks in Lahore on the Budget | Tools Star Hub", "SEO meta title is built in code");
     assert(!JSON.stringify(translated.body).includes("<b>"), "HTML from the model is stripped");
     assert(translated.body.verification && (translated.body.verification as { status: string }).status === "ok", "The sample draft does not need review");
+  }
+
+  const humanized = await handleUrduNews(
+    { action: "humanize", urdu, target: "medium", text: medium },
+    "humanize-body",
+    4_500,
+    async () =>
+      JSON.stringify({
+        text: "Title: Imran Khan Speaks\n\nSubtitle: Remarks\n\nImran Khan said in Lahore on Monday that the provincial budget is 12 billion rupees.\n\nMeta description: Khan spoke about the budget.\nPermalink: imran-khan-budget",
+      }),
+    true,
+  );
+  assert(humanized.status === 200 && humanized.body.success === true, "Humanize succeeds");
+  if (humanized.body.success) {
+    const text = String(humanized.body.text);
+    assert(text.includes("Imran Khan said in Lahore"), "Humanize keeps the news paragraph");
+    assert(!/^(title|subtitle|permalink|meta description|meta title)\s*:/im.test(text), "Humanize body has no SEO labels");
+  }
+
+  const expanded = await handleUrduNews(
+    { action: "expand", urdu, version: "medium", text: medium },
+    "expand-body",
+    4_600,
+    async () =>
+      JSON.stringify({
+        headline: "Title: Imran Khan Speaks in Lahore",
+        intro: "Subtitle: Budget remarks",
+        paragraphs: ["Imran Khan said in Lahore on Monday that the provincial budget is 12 billion rupees.", "Meta description: Khan spoke about the budget."],
+      }),
+    true,
+  );
+  assert(expanded.status === 200 && expanded.body.success === true, "Expand succeeds");
+  if (expanded.body.success) {
+    assert(expanded.body.headline === "Imran Khan Speaks in Lahore", "Expand headline stays outside the body");
+    const body = String(expanded.body.body);
+    assert(body.includes("Imran Khan said in Lahore"), "Expand body keeps the news paragraph");
+    assert(!/^(title|subtitle|permalink|meta description|headline)\s*:/im.test(body), "Expand body has no SEO labels");
+    assert(!body.includes("Imran Khan Speaks in Lahore"), "Expand body does not repeat the headline");
   }
 
   resetRateLimits();

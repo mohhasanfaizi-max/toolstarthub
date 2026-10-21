@@ -316,11 +316,11 @@ export const aiToolContent: Record<string, ToolContent> = {
       "Paste an Urdu news story and get three English drafts: Brief, Medium, and Full. Brief keeps who, what, when, and where. Medium adds the main quote and the key date or figure. Full translates every sentence. A fact check compares each draft with the Urdu. The page also checks digits, quotation marks, length, and a glossary of Pakistani names. Nothing here is published. An editor approves the draft first.",
     howTo: [
       "Paste the Urdu story into the right-to-left box. Translate sends it to Google's Gemini model through Tools Star Hub.",
-      "Read Brief, Medium, and Full. Medium is selected first. Use this switches the version that Expand and the approval Copy button use.",
+      "Read Brief, Medium, and Full. Medium is selected first. Use this switches the version that Expand and the approval Copy button use. Humanize rewrites the expanded body when one is open, and otherwise rewrites the selected body.",
       "Read the facts table and the verification report. An amber banner means the draft needs review.",
       "Edit the title, permalink, meta title, or any draft. An edit clears approval.",
-      "Press Expand news if you want a fuller article made only from facts in the Urdu. Humanize is optional and rewrites the English without changing those facts.",
-      "Press Approve, then Copy or Copy all. If the report has an error, the page asks you to confirm.",
+      "Press Expand news if you want a fuller article made only from facts in the Urdu. The expanded body is the paragraphs only. Humanize rewrites that body, or the selected body, and leaves the title, subtitle, permalink, and meta fields alone.",
+      "Each field has its own Copy button, and that button copies only that field. Press Approve, then Copy or Copy all. Copy all keeps the labels. If the report has an error, the page asks you to confirm.",
     ],
     features: [
       "Brief, Medium, and Full on one page, with editable subtitle, body, and meta description.",
@@ -336,7 +336,7 @@ export const aiToolContent: Record<string, ToolContent> = {
       },
     ],
     explanation:
-      "Translate asks for structured JSON. The page then builds the headline, permalink, and meta description in code. Brief is two sentences and 25 to 40 words, with no quotation. Medium is 60 to 100 words. Full should cover every Urdu sentence. The model is told not to add background, not to guess a name, and not to change claimed into confirmed. Unclear words stay in brackets. Urdu digits and Arabic-Indic digits become Western digits. A fact-check pass compares the Urdu with each version and reports only a real problem. Expand and Humanize run the code checks again.",
+      "Translate asks for structured JSON. The page then builds the headline, permalink, and meta description in code. Brief is two sentences and 25 to 40 words, with no quotation. Medium is 60 to 100 words. Full should cover every Urdu sentence. The model is told not to add background, not to guess a name, and not to change claimed into confirmed. Unclear words stay in brackets. Urdu digits and Arabic-Indic digits become Western digits. A fact-check pass compares the Urdu with each version and reports only a real problem. Humanize returns only the news paragraphs. Title, subtitle, permalink, meta title, and meta description stay in their own fields. Expand and Humanize run the code checks again.",
     sections: [
       {
         heading: "What each length is allowed to do",
@@ -349,7 +349,7 @@ export const aiToolContent: Record<string, ToolContent> = {
         heading: "What the checks can and cannot see",
         paragraphs: [
           "The code compares digit numbers. A number in the English that is not in the Urdu is an error. A number from the Urdu that is missing in Full is a warning. A number written as an Urdu word is not counted by that code. The fact-check pass covers those words, and a changed name, place, quote, or meaning.",
-          "Brief fails if it contains a quotation mark. Square brackets raise a warning so you can confirm the unclear word. If a glossary name is in the Urdu and the English uses a different spelling, the report warns. Any warning or error sets the status to needs review. Approve only unlocks Copy and Copy all in this browser.",
+          "Brief fails if it contains a quotation mark. Square brackets raise a warning so you can confirm the unclear word. If a glossary name is in the Urdu and the English uses a different spelling, the report warns. Any warning or error sets the status to needs review. Each field copies on its own. Approve unlocks Copy and Copy all. Copy all keeps the labels.",
         ],
       },
       {
@@ -372,7 +372,7 @@ export const aiToolContent: Record<string, ToolContent> = {
       {
         question: "Does this page publish the story?",
         answer:
-          "No. It prepares a draft. Copy stays off until you press Approve, and an editor still reviews the English before it is used anywhere else.",
+          "No. It prepares a draft. Each field has a Copy button for that text alone. Copy and Copy all in the approval bar stay off until you press Approve, and an editor still reviews the English before it is used anywhere else.",
       },
       {
         question: "Will it add background the Urdu did not say?",

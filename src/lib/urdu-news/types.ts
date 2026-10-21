@@ -55,8 +55,7 @@ export type FactIssue = {
 
 export type ExpandedArticle = {
   headline: string;
-  intro: string;
-  paragraphs: string[];
+  body: string;
 };
 
 export type UrduNewsAction = "translate" | "expand" | "humanize";

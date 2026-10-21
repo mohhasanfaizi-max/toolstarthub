@@ -1,7 +1,7 @@
 "use client";
 
 import { Noto_Naskh_Arabic, Noto_Nastaliq_Urdu } from "next/font/google";
-import { useEffect, useMemo, useRef, useState } from "react";
+import { useEffect, useMemo, useRef, useState, type ReactNode } from "react";
 import { Button } from "@/components/ui/Button";
 import { ToolActions, ToolError, ToolField, ToolPanel, toolControlClass } from "@/components/tools/ToolForm";
 import { checkDraftText, checkTranslation, withFactCheck } from "@/lib/urdu-news/checks";
@@ -53,8 +53,41 @@ function reviewStatus(checks: VerificationCheck[]): Verification["status"] {
   return checks.some((check) => check.level === "warning" || check.level === "error") ? "needs_review" : "ok";
 }
 
-function articleText(article: ExpandedArticle): string {
-  return [article.headline, article.intro, ...article.paragraphs].join("\n\n");
+function articleCheckText(article: ExpandedArticle): string {
+  return [article.headline, article.body].filter(Boolean).join("\n\n");
+}
+
+function CopyRow({
+  id,
+  label,
+  hint,
+  value,
+  copied,
+  onCopy,
+  children,
+}: {
+  id: string;
+  label: string;
+  hint?: string;
+  value: string;
+  copied: string;
+  onCopy: (id: string, value: string) => void;
+  children: ReactNode;
+}) {
+  return (
+    <div>
+      <div className="flex items-end justify-between gap-2">
+        <label className="text-sm font-medium text-foreground" htmlFor={id}>
+          {label}
+        </label>
+        <Button type="button" variant="secondary" disabled={!value.trim()} onClick={() => void onCopy(id, value)}>
+          {copied === id ? "Copied" : "Copy"}
+        </Button>
+      </div>
+      <div className="mt-1">{children}</div>
+      {hint ? <p className="mt-1 text-xs text-muted-foreground">{hint}</p> : null}
+    </div>
+  );
 }
 
 async function copyText(value: string): Promise<boolean> {
@@ -106,7 +139,7 @@ export function UrduNewsTranslatorTool() {
   const verification = useMemo(() => {
     if (!ready) return null;
     const base = checkTranslation(urdu, { title, meta_title: metaTitle, versions });
-    const extra = article ? checkDraftText(urdu, articleText(article), "article").checks : [];
+    const extra = article ? checkDraftText(urdu, articleCheckText(article), "article").checks : [];
     const merged = { status: "ok" as const, checks: [...base.checks, ...extra] };
     return factFresh ? withFactCheck(merged, factIssues) : { status: reviewStatus(merged.checks), checks: merged.checks };
   }, [ready, urdu, title, metaTitle, versions, article, factFresh, factIssues]);
@@ -166,18 +199,20 @@ export function UrduNewsTranslatorTool() {
         setArticle(null);
         setReady(true);
         setApproved(false);
-      } else if (typeof data.headline === "string" && typeof data.intro === "string" && Array.isArray(data.paragraphs)) {
-        setArticle({
-          headline: data.headline,
-          intro: data.intro,
-          paragraphs: data.paragraphs.filter((item): item is string => typeof item === "string"),
-        });
+      } else if (kind === "expand" && typeof data.headline === "string" && typeof data.body === "string") {
+        setArticle({ headline: data.headline, body: data.body });
         setApproved(false);
       } else if (kind === "humanize" && typeof data.text === "string") {
-        setVersions((current) => ({
-          ...current,
-          [selected]: { ...current[selected], body: data.text as string, word_count: countWords(data.text as string) },
-        }));
+        const text = data.text;
+        const target = body && typeof body === "object" && "target" in body ? body.target : undefined;
+        if (target === "article") {
+          setArticle((current) => (current ? { ...current, body: text } : current));
+        } else if (target === "brief" || target === "medium" || target === "average") {
+          setVersions((current) => ({
+            ...current,
+            [target]: { ...current[target], body: text, word_count: countWords(text) },
+          }));
+        }
         setFactFresh(false);
         setApproved(false);
       }
@@ -211,7 +246,7 @@ export function UrduNewsTranslatorTool() {
       ]),
     ];
     if (article) {
-      blocks.push("", "Expanded article", article.headline, "", article.intro, "", ...article.paragraphs);
+      blocks.push("", "Expanded article", `Headline: ${article.headline}`, article.body);
     }
     return blocks.join("\n");
   }
@@ -295,7 +330,7 @@ export function UrduNewsTranslatorTool() {
           <h2 id="english-draft-heading" className="text-lg font-semibold text-foreground">English draft</h2>
           {loading ? (
             <p className="mt-3 text-sm text-muted-foreground" role="status" aria-live="polite">
-              {loading === "translate" ? "Translating the article…" : loading === "expand" ? "Expanding the selected draft…" : "Rewriting the draft…"}
+              {loading === "translate" ? "Translating the article…" : loading === "expand" ? "Expanding the selected draft…" : "Rewriting the body…"}
             </p>
           ) : null}
           {error ? (
@@ -312,15 +347,15 @@ export function UrduNewsTranslatorTool() {
                   This draft needs review. Read the verification report before you approve it.
                 </p>
               ) : null}
-              <ToolField id="draft-title" label="Title" hint={`${title.length}/70`}>
+              <CopyRow id="draft-title" label="Title" hint={`${title.length}/70`} value={title} copied={copied} onCopy={rememberCopy}>
                 <input id="draft-title" value={title} className={toolControlClass} onChange={(event) => { setTitle(event.target.value); markEdited(); }} />
-              </ToolField>
-              <ToolField id="draft-permalink" label="Permalink">
+              </CopyRow>
+              <CopyRow id="draft-permalink" label="Permalink" value={permalink} copied={copied} onCopy={rememberCopy}>
                 <input id="draft-permalink" value={permalink} className={toolControlClass} onChange={(event) => { setPermalink(event.target.value); setApproved(false); }} />
-              </ToolField>
-              <ToolField id="draft-meta-title" label="Meta title" hint={`${metaTitle.length}/60`}>
+              </CopyRow>
+              <CopyRow id="draft-meta-title" label="Meta title" hint={`${metaTitle.length}/60`} value={metaTitle} copied={copied} onCopy={rememberCopy}>
                 <input id="draft-meta-title" value={metaTitle} className={toolControlClass} onChange={(event) => { setMetaTitle(event.target.value); markEdited(); }} />
-              </ToolField>
+              </CopyRow>
               <div className="grid gap-3">
                 {VERSIONS.map((item) => {
                   const version = versions[item.id];
@@ -331,19 +366,24 @@ export function UrduNewsTranslatorTool() {
                         <h3 className="font-medium text-foreground">{item.label}</h3>
                         <span className="text-xs text-muted-foreground">{version.word_count} words</span>
                       </div>
-                      <label className="mt-3 block text-sm font-medium text-foreground" htmlFor={`${item.id}-subtitle`}>Subtitle</label>
-                      <input id={`${item.id}-subtitle`} value={version.subtitle} className={toolControlClass} onChange={(event) => updateVersion(item.id, { subtitle: event.target.value })} />
-                      <label className="mt-3 block text-sm font-medium text-foreground" htmlFor={`${item.id}-body`}>Body</label>
-                      <textarea id={`${item.id}-body`} value={version.body} rows={6} className={`${toolControlClass} resize-y`} onChange={(event) => updateVersion(item.id, { body: event.target.value })} />
-                      <label className="mt-3 block text-sm font-medium text-foreground" htmlFor={`${item.id}-meta`}>Meta description</label>
-                      <textarea id={`${item.id}-meta`} value={version.meta_description} rows={3} className={`${toolControlClass} resize-y`} onChange={(event) => updateVersion(item.id, { meta_description: event.target.value })} />
-                      <p className="mt-1 text-xs text-muted-foreground">{version.meta_description.length}/155</p>
-                      <div className="mt-3 flex flex-wrap gap-2">
+                      <div className="mt-3">
+                        <CopyRow id={`${item.id}-subtitle`} label="Subtitle" value={version.subtitle} copied={copied} onCopy={rememberCopy}>
+                          <input id={`${item.id}-subtitle`} value={version.subtitle} className={toolControlClass} onChange={(event) => updateVersion(item.id, { subtitle: event.target.value })} />
+                        </CopyRow>
+                      </div>
+                      <div className="mt-3">
+                        <CopyRow id={`${item.id}-body`} label="Body" value={version.body} copied={copied} onCopy={rememberCopy}>
+                          <textarea id={`${item.id}-body`} value={version.body} rows={6} className={`${toolControlClass} resize-y`} onChange={(event) => updateVersion(item.id, { body: event.target.value })} />
+                        </CopyRow>
+                      </div>
+                      <div className="mt-3">
+                        <CopyRow id={`${item.id}-meta`} label="Meta description" hint={`${version.meta_description.length}/155`} value={version.meta_description} copied={copied} onCopy={rememberCopy}>
+                          <textarea id={`${item.id}-meta`} value={version.meta_description} rows={3} className={`${toolControlClass} resize-y`} onChange={(event) => updateVersion(item.id, { meta_description: event.target.value })} />
+                        </CopyRow>
+                      </div>
+                      <div className="mt-3">
                         <Button type="button" variant={active ? "primary" : "secondary"} aria-pressed={active} onClick={() => { setSelected(item.id); setApproved(false); }}>
                           Use this
-                        </Button>
-                        <Button type="button" variant="secondary" disabled={!version.body} onClick={() => void rememberCopy(item.label, version.body)}>
-                          {copied === item.label ? "Copied" : "Copy"}
                         </Button>
                       </div>
                     </article>
@@ -354,21 +394,21 @@ export function UrduNewsTranslatorTool() {
                 <h3 className="text-base font-semibold text-foreground">2. Expand news</h3>
                 <p className="mt-1 text-sm leading-6 text-muted-foreground">Build a fuller article from the selected version, using only the Urdu.</p>
                 <div className="mt-3">
-                  <Button type="button" variant="secondary" disabled={disabled || !selectedBody} onClick={() => void run("expand", { action: "expand", urdu, version: selected, text: `${versions[selected].subtitle}\n\n${selectedBody}` })}>
+                  <Button type="button" variant="secondary" disabled={disabled || !selectedBody} onClick={() => void run("expand", { action: "expand", urdu, version: selected, text: selectedBody })}>
                     {loading === "expand" ? "Expanding…" : "Expand news"}
                   </Button>
                 </div>
               </div>
               <div>
                 <h3 className="text-base font-semibold text-foreground">3. Humanize</h3>
-                <p className="mt-1 text-sm leading-6 text-muted-foreground">Optional. Rewrite the English so it reads naturally, without changing a fact.</p>
+                <p className="mt-1 text-sm leading-6 text-muted-foreground">Optional. Rewrite the selected body, or the expanded body, without changing a fact. Title, subtitle, permalink, and meta fields stay as they are.</p>
                 <div className="mt-3">
                   <Button
                     type="button"
                     variant="secondary"
                     disabled={disabled || (!article && !selectedBody)}
                     onClick={() => void run("humanize", article
-                      ? { action: "humanize", urdu, target: "article", text: articleText(article) }
+                      ? { action: "humanize", urdu, target: "article", text: article.body }
                       : { action: "humanize", urdu, target: selected, text: selectedBody })}
                   >
                     {loading === "humanize" ? "Rewriting…" : "Humanize"}
@@ -376,29 +416,14 @@ export function UrduNewsTranslatorTool() {
                 </div>
               </div>
               {article ? (
-                <div className="rounded-2xl border border-border p-4">
+                <div className="space-y-3 rounded-2xl border border-border p-4">
                   <h3 className="font-medium text-foreground">Expanded article</h3>
-                  <label className="mt-3 block text-sm font-medium" htmlFor="article-headline">Headline</label>
-                  <input id="article-headline" value={article.headline} className={toolControlClass} onChange={(event) => { setArticle({ ...article, headline: event.target.value }); setApproved(false); }} />
-                  <label className="mt-3 block text-sm font-medium" htmlFor="article-intro">Intro</label>
-                  <textarea id="article-intro" value={article.intro} rows={4} className={`${toolControlClass} resize-y`} onChange={(event) => { setArticle({ ...article, intro: event.target.value }); setApproved(false); }} />
-                  {article.paragraphs.map((paragraph, index) => (
-                    <div key={`paragraph-${index}`}>
-                      <label className="mt-3 block text-sm font-medium" htmlFor={`article-p-${index}`}>Paragraph {index + 1}</label>
-                      <textarea
-                        id={`article-p-${index}`}
-                        value={paragraph}
-                        rows={4}
-                        className={`${toolControlClass} resize-y`}
-                        onChange={(event) => {
-                          const paragraphs = article.paragraphs.slice();
-                          paragraphs[index] = event.target.value;
-                          setArticle({ ...article, paragraphs });
-                          setApproved(false);
-                        }}
-                      />
-                    </div>
-                  ))}
+                  <CopyRow id="expand-headline" label="Headline" value={article.headline} copied={copied} onCopy={rememberCopy}>
+                    <input id="expand-headline" value={article.headline} className={toolControlClass} onChange={(event) => { setArticle({ ...article, headline: event.target.value }); setApproved(false); }} />
+                  </CopyRow>
+                  <CopyRow id="expand-body" label="Body" value={article.body} copied={copied} onCopy={rememberCopy}>
+                    <textarea id="expand-body" value={article.body} rows={8} className={`${toolControlClass} resize-y`} onChange={(event) => { setArticle({ ...article, body: event.target.value }); setApproved(false); }} />
+                  </CopyRow>
                 </div>
               ) : null}
             </div>
@@ -459,12 +484,12 @@ export function UrduNewsTranslatorTool() {
           <section aria-labelledby="approval-heading" className="rounded-2xl border border-border bg-muted px-4 py-4">
             <h2 id="approval-heading" className="text-base font-semibold text-foreground">Approval</h2>
             <p className="mt-1 text-sm leading-6 text-muted-foreground">
-              {approved ? "Approved for copying. An edit or a new selection clears this." : "Copy and Copy all stay off until you approve the draft."}
+              {approved ? "Approved for copying. An edit or a new selection clears this." : "Each field copies on its own. Copy and Copy all stay off until you approve the draft."}
             </p>
             <div className="mt-3">
               <ToolActions>
                 <Button type="button" disabled={!verification || approved} onClick={approve}>Approve</Button>
-                <Button type="button" variant="secondary" disabled={!approved} onClick={() => void rememberCopy("selection", selectedBody || (article ? articleText(article) : ""))}>
+                <Button type="button" variant="secondary" disabled={!approved || !selectedBody} onClick={() => void rememberCopy("selection", selectedBody)}>
                   {copied === "selection" ? "Copied" : "Copy"}
                 </Button>
                 <Button type="button" variant="secondary" disabled={!approved} onClick={() => void rememberCopy("all", packageText())}>

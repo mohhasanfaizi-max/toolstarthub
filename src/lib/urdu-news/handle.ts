@@ -4,7 +4,7 @@ import { readJsonWithRetry, UrduNewsCallError } from "./json.ts";
 import { applySeo } from "./limits.ts";
 import { expandPrompt, factCheckPrompt, humanizePrompt, translationPrompt } from "./prompts.ts";
 import type { SchemaName } from "./schema.ts";
-import { plainText } from "./text.ts";
+import { cleanNewsBody, plainText, stripFieldLabel } from "./text.ts";
 import type { ExpandedArticle, FactIssue, FactRow, FactType, TranslationResult, VersionId } from "./types.ts";
 
 /** Best-effort in-memory cap. Each server instance has its own counter. Article text is not stored. */
@@ -78,10 +78,12 @@ function readVersion(value: unknown): VersionId | null {
 function parseVersion(value: unknown): { subtitle: string; body: string; meta_description: string } {
   const record = asRecord(value);
   if (!record || typeof record.body !== "string" || !record.body.trim()) throw new Error("Invalid version");
+  const body = cleanNewsBody(record.body);
+  if (!body) throw new Error("Invalid version");
   return {
-    subtitle: typeof record.subtitle === "string" ? record.subtitle : "",
-    body: record.body,
-    meta_description: typeof record.meta_description === "string" ? record.meta_description : "",
+    subtitle: typeof record.subtitle === "string" ? stripFieldLabel(record.subtitle) : "",
+    body,
+    meta_description: typeof record.meta_description === "string" ? stripFieldLabel(record.meta_description) : "",
   };
 }
 
@@ -144,19 +146,22 @@ function parseArticle(value: unknown): ExpandedArticle {
   if (!record || typeof record.headline !== "string" || typeof record.intro !== "string" || !Array.isArray(record.paragraphs)) {
     throw new Error("Invalid article");
   }
-  const paragraphs = record.paragraphs
-    .filter((item): item is string => typeof item === "string" && item.trim().length > 0)
-    .map((item) => plainText(item));
-  const headline = plainText(record.headline);
-  const intro = plainText(record.intro);
-  if (!headline || !intro || paragraphs.length === 0) throw new Error("Invalid article");
-  return { headline, intro, paragraphs };
+  const paragraphs = record.paragraphs.filter((item): item is string => typeof item === "string" && item.trim().length > 0);
+  const headline = stripFieldLabel(record.headline);
+  const body = cleanNewsBody([record.intro, ...paragraphs].join("\n\n"))
+    .split("\n\n")
+    .filter((paragraph) => paragraph !== headline)
+    .join("\n\n");
+  if (!headline || !body) throw new Error("Invalid article");
+  return { headline, body };
 }
 
 function parseRewrite(value: unknown): string {
   const record = asRecord(value);
   if (!record || typeof record.text !== "string" || !record.text.trim()) throw new Error("Invalid rewrite");
-  return plainText(record.text);
+  const text = cleanNewsBody(record.text);
+  if (!text) throw new Error("Invalid rewrite");
+  return text;
 }
 
 async function ask<T>(
@@ -232,23 +237,20 @@ export async function handleUrduNews(
       const draft = readDraft(record);
       if (!version) return fail(urduNewsMessages.invalid);
       if (!draft.ok) return draft.response;
-      const article = await ask(generate, expandPrompt(urdu.urdu, version, draft.text), "article", 4096, parseArticle);
-      const verification = checkDraftText(urdu.urdu, [article.headline, article.intro, ...article.paragraphs].join("\n\n"), "article");
+      const article = await ask(generate, expandPrompt(urdu.urdu, version, cleanNewsBody(draft.text)), "article", 4096, parseArticle);
+      const verification = checkDraftText(urdu.urdu, `${article.headline}\n\n${article.body}`, "article");
       return { status: 200, body: { success: true, ...article, verification } };
     }
 
     if (record.action === "humanize") {
       const draft = readDraft(record);
       if (!draft.ok) return draft.response;
-      if (record.target === "article") {
-        const article = await ask(generate, humanizePrompt(urdu.urdu, draft.text, true), "article", 4096, parseArticle);
-        const verification = checkDraftText(urdu.urdu, [article.headline, article.intro, ...article.paragraphs].join("\n\n"), "article");
-        return { status: 200, body: { success: true, ...article, verification } };
-      }
-      const version = readVersion(record.target);
-      if (!version) return fail(urduNewsMessages.invalid);
-      const text = await ask(generate, humanizePrompt(urdu.urdu, draft.text, false), "rewrite", 4096, parseRewrite);
-      const verification = checkDraftText(urdu.urdu, text, version);
+      const version = record.target === "article" ? null : readVersion(record.target);
+      if (record.target !== "article" && !version) return fail(urduNewsMessages.invalid);
+      const source = cleanNewsBody(draft.text);
+      if (!source) return fail(urduNewsMessages.draftEmpty);
+      const text = await ask(generate, humanizePrompt(urdu.urdu, source), "rewrite", 4096, parseRewrite);
+      const verification = checkDraftText(urdu.urdu, text, version ?? "article");
       return { status: 200, body: { success: true, text, verification } };
     }
 
