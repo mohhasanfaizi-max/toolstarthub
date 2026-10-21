@@ -1,6 +1,6 @@
 import { missingGlossaryNames } from "./glossary.ts";
 import { BRIEF_MAX_WORDS, BRIEF_MIN_WORDS, MEDIUM_MAX_WORDS, MEDIUM_MIN_WORDS, META_DESCRIPTION_MAX, META_TITLE_MAX, TITLE_MAX } from "./limits.ts";
-import { extractNumbers } from "./numbers.ts";
+import { numberValues, requiredNumbers } from "./numbers.ts";
 import { countQuoteMarks } from "./quotes.ts";
 import { countWords } from "./text.ts";
 import type { FactIssue, Verification, VerificationCheck, VersionId } from "./types.ts";
@@ -31,16 +31,22 @@ function finish(checks: VerificationCheck[]): Verification {
   return { status: statusOf(checks), checks };
 }
 
+function isSmallCount(value: string): boolean {
+  return /^(?:[1-9]|10)$/.test(value);
+}
+
 function addedNumberChecks(urdu: string, english: string, label: string): VerificationCheck[] {
-  const source = new Set(extractNumbers(urdu));
-  const extra = [...new Set(extractNumbers(english))].filter((value) => !source.has(value));
+  const source = new Set(numberValues(urdu));
+  const extra = [...new Set(numberValues(english))].filter((value) => !source.has(value));
   if (extra.length === 0) {
     return [{ level: "ok", message: `${label} uses only numbers that appear in the Urdu.` }];
   }
-  return extra.map((value) => ({
-    level: "error",
-    message: `${label} has ${value}, which is not in the Urdu.`,
-  }));
+  return extra.map((value) => {
+    if (isSmallCount(value)) {
+      return { level: "warning" as const, message: `check: ${value} may be written in words in the Urdu` };
+    }
+    return { level: "error" as const, message: `${label} has ${value}, which is not in the Urdu.` };
+  });
 }
 
 function bracketCheck(english: string, label: string): VerificationCheck {
@@ -99,8 +105,8 @@ export function checkTranslation(urdu: string, draft: CheckedDraft): Verificatio
 
   checks.push(...addedNumberChecks(urdu, english, "The English"));
 
-  const sourceNumbers = extractNumbers(urdu);
-  const fullNumbers = new Set(extractNumbers(draft.versions.average.body));
+  const sourceNumbers = requiredNumbers(urdu);
+  const fullNumbers = new Set(numberValues(draft.versions.average.body));
   const missing = [...new Set(sourceNumbers)].filter((value) => !fullNumbers.has(value));
   if (missing.length === 0) {
     checks.push({ level: "ok", message: "Full includes the numbers found in the Urdu." });
@@ -141,7 +147,7 @@ export function checkDraftText(urdu: string, english: string, target: VersionId 
   const label = target === "article" ? "The article" : VERSION_LABEL[target];
   const checks: VerificationCheck[] = [...addedNumberChecks(urdu, english, label)];
   if (target === "average") {
-    const missing = [...new Set(extractNumbers(urdu))].filter((value) => !new Set(extractNumbers(english)).has(value));
+    const missing = [...new Set(requiredNumbers(urdu))].filter((value) => !new Set(numberValues(english)).has(value));
     for (const value of missing) {
       checks.push({ level: "warning", message: `Full is missing ${value} from the Urdu.` });
     }
@@ -162,8 +168,16 @@ export function checkDraftText(urdu: string, english: string, target: VersionId 
   return finish(checks);
 }
 
+function factCheckFlagsNumber(issues: FactIssue[], value: string): boolean {
+  return issues.some((issue) => (issue.type === "number" || issue.type === "amount") && numberValues(issue.detail).includes(value));
+}
+
 export function withFactCheck(verification: Verification, issues: FactIssue[] | null): Verification {
-  const checks = [...verification.checks];
+  const checks = verification.checks.map((check) => {
+    const small = /^check: (\d+) may be written in words in the Urdu$/.exec(check.message);
+    if (!small || !issues || !factCheckFlagsNumber(issues, small[1])) return check;
+    return { level: "error" as const, message: check.message };
+  });
   if (issues === null) {
     checks.push({ level: "warning", message: "The fact check could not be read. Review the draft yourself." });
   } else if (issues.length === 0) {

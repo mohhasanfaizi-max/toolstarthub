@@ -1,11 +1,11 @@
 import { resetRateLimits } from "../ai/rate-limit.ts";
-import { checkTranslation } from "./checks.ts";
+import { checkDraftText, checkTranslation, withFactCheck } from "./checks.ts";
 import { handleUrduNews, URDU_NEWS_MAX_CHARS, URDU_NEWS_RATE_MAX, urduNewsMessages } from "./handle.ts";
 import { humanizePrompt } from "./prompts.ts";
 import { cleanNewsBody } from "./text.ts";
 import { readJsonWithRetry, UrduNewsCallError } from "./json.ts";
 import { buildMetaDescription, buildMetaTitle, buildTitle, META_DESCRIPTION_MAX, META_TITLE_MAX, TITLE_MAX } from "./limits.ts";
-import { extractNumbers, normalizeDigits } from "./numbers.ts";
+import { extractNumbers, normalizeDigits, numberValues } from "./numbers.ts";
 import { buildPermalink, uniquePermalink } from "./permalink.ts";
 import { countQuoteMarks } from "./quotes.ts";
 import type { SchemaName } from "./schema.ts";
@@ -128,6 +128,66 @@ export async function runUrduNewsChecks(assert: Assert): Promise<void> {
 
   assert(normalizeDigits("۱۲") === "12" && normalizeDigits("١٢") === "12", "Urdu and Arabic-Indic digits become Western digits");
   assert(extractNumbers("۱٬۲۰۰ and 3.5").join(",") === "1200,3.5", "Thousands separators are ignored and decimals stay");
+
+  const urduWordNumbers: Record<string, string> = {
+    ایک: "1",
+    دو: "2",
+    تین: "3",
+    چار: "4",
+    پانچ: "5",
+    چھ: "6",
+    سات: "7",
+    آٹھ: "8",
+    نو: "9",
+    دس: "10",
+    گیارہ: "11",
+    بارہ: "12",
+    تیرہ: "13",
+    چودہ: "14",
+    پندرہ: "15",
+    سولہ: "16",
+    سترہ: "17",
+    اٹھارہ: "18",
+    انیس: "19",
+    بیس: "20",
+    پچاس: "50",
+  };
+  for (const [word, digit] of Object.entries(urduWordNumbers)) {
+    assert(numberValues(`شہر ${word} کلینک`).includes(digit), `${word} counts as ${digit}`);
+  }
+  assert(numberValues("نوجوان آیا").includes("9") === false, "نو inside a longer word is not a number");
+  assert(numberValues("یہ نو بجے ہے").includes("9"), "A whole word نو counts as 9");
+  assert(numberValues("دو ہزار روپے").includes("2000") && !numberValues("دو ہزار روپے").includes("2"), "دو ہزار is 2000, not a bare 2");
+  assert(numberValues("تین سو").includes("300"), "تین سو is 300");
+  assert(numberValues("دس ہزار").includes("10000"), "دس ہزار is 10000");
+  assert(numberValues("ایک لاکھ").includes("100000"), "ایک لاکھ is 100000");
+  assert(numberValues("دو کروڑ").includes("20000000"), "دو کروڑ is 20000000");
+  assert(numberValues("تین ارب").includes("3000000000"), "تین ارب is 3000000000");
+  assert(numberValues("ہزار").includes("1000") && numberValues("سو").includes("100"), "A bare ہزار or سو keeps its value");
+  assert(numberValues("twenty clinics").includes("20") && !numberValues("twenty").includes("2"), "English twenty counts as 20, not 2");
+  assert(numberValues("The city will open two clinics.").includes("2"), "English two counts as 2");
+
+  const wordMatch = checkDraftText("شہر دو کلینک کھولے گا", "The city will open 2 clinics.", "article");
+  assert(!wordMatch.checks.some((item) => item.message.includes("2,") || item.message.includes("check: 2")), "دو in the Urdu covers an English 2");
+
+  const smallWarning = checkDraftText("شہر کلینک کھولے گا", "The city will open 2 clinics.", "article");
+  assert(
+    smallWarning.checks.some((item) => item.level === "warning" && item.message === "check: 2 may be written in words in the Urdu"),
+    "A small English number missing from the Urdu is a warning",
+  );
+  assert(!smallWarning.checks.some((item) => item.level === "error" && item.message.includes("2")), "That small number is not an error by itself");
+
+  const largeError = checkDraftText("شہر کلینک کھولے گا", "The city will open 20 clinics.", "article");
+  assert(
+    largeError.checks.some((item) => item.level === "error" && item.message === "The article has 20, which is not in the Urdu."),
+    "A number above 10 that is missing from the Urdu stays an error",
+  );
+
+  const flagged = withFactCheck(smallWarning, [{ version: "medium", type: "number", detail: "The number 2 was added." }]);
+  assert(
+    flagged.checks.some((item) => item.level === "error" && item.message === "check: 2 may be written in words in the Urdu"),
+    "A small number the fact check also flags becomes an error",
+  );
 
   const clean = checkTranslation(urdu, {
     title: "Imran Khan Speaks in Lahore on the Budget",

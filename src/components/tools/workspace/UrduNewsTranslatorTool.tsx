@@ -227,8 +227,7 @@ export function UrduNewsTranslatorTool() {
 
   function approve() {
     if (!verification) return;
-    const hasError = verification.checks.some((check) => check.level === "error");
-    if (hasError && !window.confirm("This draft has errors. Approve it only if you have reviewed each one.")) return;
+    if (verification.status === "needs_review" && !window.confirm("Some checks need review. Read the Verification list, then press OK to approve.")) return;
     setApproved(true);
   }
 
