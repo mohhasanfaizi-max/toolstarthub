@@ -200,6 +200,8 @@ export const en = {
         "The original buttons stay in your browser. Generate with AI, Analyze with AI, and Compress with AI send the text you submit to Google's Gemini API through ToolStarHub. That text is not saved here. On the free tier, Google may use it to improve its products. Favorites store only tool names.",
       humanizer:
         "Rewrite text stays in your browser. Humanize with AI sends the text you submit to Google's Gemini API through ToolStarHub. That text is not saved here. On the free tier, Google may use it to improve its products. Favorites store only tool names.",
+      urduNews:
+        "Translate, Expand, and Humanize send the Urdu article and the English draft to Google's Gemini API through ToolStarHub. That text is not saved here. On the free tier, Google may use it to improve its products. Favorites store only tool names.",
       fetch:
         "Check preview sends the URL to this site, which requests that public page and reads its tags. The page is not saved here. A private or non-http address is rejected. Favorites store only tool names.",
       see: "See the {link}.",

@@ -153,7 +153,7 @@ export const categories: Category[] = [
     icon: "bolt",
     route: "/categories/ai-tools",
     intro:
-      "These tools help you draft a prompt, describe an image or video scene in words, look at writing patterns, or shorten a long draft. The main button on each tool runs in your browser and does not send the text away. The AI buttons, labeled Generate, Analyze, Compress, or Humanize with AI, send the text you submit to Google’s Gemini model and show the text that comes back.",
+      "These tools help you draft a prompt, describe an image or video scene in words, look at writing patterns, shorten a long draft, or translate an Urdu news story. On the prompt and writing tools, the main button runs in your browser and does not send the text away. Their AI buttons, labeled Generate, Analyze, Compress, or Humanize with AI, send the text you submit to Google’s Gemini model and show the text that comes back. The Urdu News Translator sends the story when you translate, expand, or humanize it.",
     audience:
       "Use the browser button when the draft should stay on this device. Use an AI button only when you want Gemini to rewrite or expand it. Text sent to Gemini is not saved on this site. Prompt tools return text. They do not return an image file or a video file. The writing tools do not decide who wrote a draft, and they do not promise that a shorter or rewritten draft will pass a detector. If you need a word count after a rewrite, paste the result into the Word Counter.",
     startingSlugs: [
@@ -161,6 +161,7 @@ export const categories: Category[] = [
       "prompt-to-image",
       "ai-article-compressor",
       "ai-article-detector",
+      "urdu-news-translator",
     ],
   },
 ];

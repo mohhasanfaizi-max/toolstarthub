@@ -1,4 +1,5 @@
 import { runAiChecks } from "../ai/ai-checks.ts";
+import { runUrduNewsChecks } from "../urdu-news/urdu-news-checks.ts";
 import { runOgChecks } from "../og/og-checks.ts";
 import { runPublicationChecks } from "../content/publication-checks.ts";
 import { runCpsTestChecks } from "./cps-test-checks.ts";
@@ -2178,8 +2179,8 @@ assert(!generateMetaTags({ title: "Page", description: "", canonical: "javascrip
 assert(!generateMetaTags({ title: "", description: "", canonical: "", index: true, follow: true, ogTitle: "", ogDescription: "", ogImage: "", ogUrl: "", ogType: "", twitterCard: "", twitterTitle: "", twitterDescription: "", twitterImage: "" }).ok, "A blank title is rejected");
 assert(!generateMetaTags({ title: "Page", description: "", canonical: "", index: true, follow: true, ogTitle: "", ogDescription: "", ogImage: "", ogUrl: "", ogType: "", twitterCard: "", twitterTitle: "Hello", twitterDescription: "", twitterImage: "" }).ok, "A Twitter title without a card is rejected");
 
-assert(tools.length === 101, "Registry has 101 tools");
-assert(new Set(tools.map((tool) => tool.slug)).size === 101, "Tool slugs are unique");
+assert(tools.length === 102, "Registry has 102 tools");
+assert(new Set(tools.map((tool) => tool.slug)).size === 102, "Tool slugs are unique");
 assert(getNewTools().length === 4, "Homepage recently added stays at 4 tools");
 assert(
   tools.every((tool) => tool.status === "available"),
@@ -2236,7 +2237,7 @@ assert(
 );
 assert(searchTools("json").some((tool) => tool.slug === "json-formatter"), "Partial json match");
 assert(searchTools("xyzzy-no-such-tool").length === 0, "Unknown query has no results");
-assert(searchTools("").length === 101, "Empty query returns all tools");
+assert(searchTools("").length === 102, "Empty query returns all tools");
 assert(searchTools("compress pdf")[0]?.slug === "pdf-compressor", "compress pdf ranks compressor");
 assert(searchTools("extract text").some((tool) => tool.slug === "pdf-to-text"), "extract text finds PDF to Text");
 assert(searchTools("remove pdf metadata").some((tool) => tool.slug === "pdf-metadata"), "metadata search");
@@ -2542,6 +2543,7 @@ runCpsTestChecks(assert);
 runSeoContentChecks(assert);
 
 await runAiChecks(assert);
+await runUrduNewsChecks(assert);
 await runOgChecks(assert);
 runPublicationChecks(assert);
 

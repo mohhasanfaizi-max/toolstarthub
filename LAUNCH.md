@@ -46,12 +46,18 @@ Optional (set in Vercel Production only):
 | `NEXT_PUBLIC_SITE_URL` | Override the canonical origin. Leave unset unless you need a non-production canonical. Default is `https://www.toolstarhub.com`. Do **not** point this at a preview URL for production. |
 | `NEXT_PUBLIC_GOOGLE_SITE_VERIFICATION` | Search Console HTML-tag token only. |
 | `NEXT_PUBLIC_CONTACT_EMAIL` | Optional override for the mailbox on `/contact`. The page already lists the public phone number and mailbox from `src/lib/site.ts`. |
-| `GEMINI_API_KEY` | Server-only key for the five AI buttons. Local value: `GEMINI_API_KEY=your_key_here` in `.env.local`. Do not prefix it with `NEXT_PUBLIC_`. |
-| `GEMINI_MODEL` | Optional model name. Unset uses `gemini-3.5-flash-lite`. |
+| `GEMINI_API_KEY` | Server-only key for the AI buttons and the Urdu News Translator. Local value: `GEMINI_API_KEY=your_key_here` in `.env.local`. Do not prefix it with `NEXT_PUBLIC_`. |
+| `GEMINI_MODEL` | Optional model name. Unset uses `gemini-3.5-flash-lite`. The Urdu News Translator uses this same model. |
 | `AI_RATE_LIMIT_MAX` | Requests allowed per window per IP. Default `10`. |
 | `AI_RATE_LIMIT_WINDOW_MS` | Rate-limit window in milliseconds. Default `60000`. The counter is in memory on each server instance and does not store prompt text. |
 
 Redeploy after changing `NEXT_PUBLIC_*` values. Add `GEMINI_API_KEY` in the host's environment settings. Do not put the key in the repository.
+
+### Urdu News Translator
+
+No new variable. The page reuses `GEMINI_API_KEY` and optional `GEMINI_MODEL` from the existing Gemini helper (`src/lib/ai/gemini.ts`). If `GEMINI_API_KEY` is already set in Vercel, Ali does not add another key. If it is missing, the page still builds and shows “temporarily unavailable.”
+
+The translator route allows about 20 requests per 15 minutes per IP. The counter is in memory on each server instance and does not store or log the article. See `docs/urdu-news-translator.md`.
 
 ## After deploy, verify
 

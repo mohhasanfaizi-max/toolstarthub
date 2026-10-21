@@ -117,6 +117,8 @@ export const toolQuickAnswers: Record<string, string> = {
     "An article compressor shortens a draft by cutting filler and repeated sentences. Compress with AI asks Gemini to keep the main meaning. Check the result before you publish it.",
   "ai-text-humanizer":
     "An AI text humanizer rewrites stock phrases with a fixed list in the browser. Humanize with AI sends the draft to Google's Gemini API through ToolStarHub. The tool does not try to bypass an AI detector, and it does not claim the result will look like a particular kind of author.",
+  "urdu-news-translator":
+    "The Urdu News Translator turns a pasted Urdu news story into Brief, Medium, and Full English drafts, then checks names, numbers, dates, and quotes against the Urdu. The result is a draft for an editor, not a published story.",
   "tip-calculator":
     "A tip calculator turns a bill, a tip rate, and a headcount into the tip, the total, and each person's share.",
   "sales-tax-calculator":

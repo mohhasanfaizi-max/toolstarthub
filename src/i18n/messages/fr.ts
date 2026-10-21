@@ -7,6 +7,7 @@ const messages: Messages = {
       allTools: "Tous les outils",
       categories: "Catégories",
       guides: "Guides",
+      urduTranslator: "Traducteur ourdou",
       popularTools: "Outils populaires",
       about: "À propos",
       howItWorks: "Fonctionnement",
@@ -297,6 +298,8 @@ const messages: Messages = {
         "« Rewrite text » reste dans votre navigateur. « Humanize with AI » envoie le texte saisi à l’API Gemini de Google via ToolStarHub. Ce texte n’est pas enregistré ici. Avec l’offre gratuite, Google peut l’utiliser pour améliorer ses produits. Les favoris n’enregistrent que des noms d’outils.",
       fetch:
         "« Check preview » envoie l’URL à ce site, qui consulte cette page publique et lit ses balises. La page n’est pas enregistrée ici. Les adresses privées ou non HTTP sont refusées. Les favoris n’enregistrent que des noms d’outils.",
+      urduNews:
+        "Traduire, Développer et Humaniser envoient l’article en ourdou et le brouillon anglais à l’API Gemini de Google via ToolStarHub. Ce texte n’est pas enregistré ici. Avec l’offre gratuite, Google peut l’utiliser pour améliorer ses produits. Les favoris n’enregistrent que des noms d’outils.",
       see: "Consultez la {link}.",
       link: "politique de confidentialité",
     },
