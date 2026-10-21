@@ -355,7 +355,7 @@ export const aiToolContent: Record<string, ToolContent> = {
       {
         heading: "Headline, permalink, and description",
         paragraphs: [
-          "The title is title case and at most 70 characters. The meta title is that title plus “ | Tools Star Hub”, at most 60 characters. If the suffix will not fit, the title is shortened at a word, or the suffix is dropped. Each meta description is cut at a word to 155 characters.",
+          "The title is title case and at most 70 characters. The meta title adds “ | Tools Star Hub” when that line fits in 60 characters. If the suffix will not fit, the meta title is the title alone. A longer title is cut at a word to 60 characters, with no suffix, and it does not stop on a number or a small word such as in, of, the, to, or and. Each meta description is cut at a word to 155 characters.",
           "The permalink is lowercase, hyphenated, and ASCII. Small words such as the, of, and in are removed. Dates and Urdu letters are left out. It keeps 4 to 8 words and at most 60 characters. A repeat in the same browser session gets a numeric suffix. The site does not store stories, so it cannot reserve that address on the server.",
         ],
       },
