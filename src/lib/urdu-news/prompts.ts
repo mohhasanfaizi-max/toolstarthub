@@ -24,6 +24,7 @@ Lengths:
 Return title, versions.brief, versions.medium, versions.average, and facts.
 Each version has subtitle, body, and meta_description. The meta description is taken from that version and adds no new facts.
 title is a news headline.
+The body is only the news paragraphs. Do not put the title, subtitle, permalink, meta title, or meta description inside the body, and do not add labels there.
 facts lists each person, place, number, date, and quote you used. type is person, place, number, date, or quote. english and urdu are the forms you used. in_brief, in_medium, and in_average say whether that fact appears in that version.
 
 Glossary:
@@ -61,10 +62,11 @@ ${versions.average}`;
 }
 
 export function expandPrompt(urdu: string, version: VersionId, text: string): string {
-  return `Expand the selected English version into a news article with one headline, one intro paragraph, and body paragraphs.
+  return `Expand the selected English body into a news article with one headline, one intro paragraph, and body paragraphs.
 
 ${SHARED_RULES}
 Do not invent background, names, numbers, dates, or quotes. If the selected version is shorter than the Urdu, you may restore facts that are in the Urdu and missing from the selection. Do not add anything the Urdu does not say.
+The headline is its own field. The intro and body paragraphs are only the news prose. Do not repeat the headline, title, subtitle, permalink, meta title, or meta description inside those paragraphs. Do not add labels or headings inside them.
 
 Selected version (${version === "average" ? "full" : version}):
 ${text}
@@ -76,11 +78,11 @@ Urdu source:
 ${urdu}`;
 }
 
-export function humanizePrompt(urdu: string, text: string, article: boolean): string {
-  return `Rewrite the English so it reads naturally. Vary the sentence lengths. Use plain wording. Do not use stock phrases such as "in today's digital world", "let's dive into", "it is important to note", or "unlock the power".
+export function humanizePrompt(urdu: string, text: string): string {
+  return `Rewrite this news body so it reads naturally. Vary the sentence lengths. Use plain wording. Do not use stock phrases such as "in today's digital world", "let's dive into", "it is important to note", or "unlock the power".
 
 Keep every fact, name, number, date, and quote exact. Do not add or remove a fact. Do not change an attribution verb. Keep a [bracket] note if the word is still unclear.
-${article ? "Return a headline, an intro, and body paragraphs." : "Return the rewritten text only."}
+Return only the news paragraphs. Do not include a title, subtitle, permalink, meta title, meta description, headline, or any label. Do not add headings.
 
 Glossary:
 ${glossaryPromptLines(urdu)}

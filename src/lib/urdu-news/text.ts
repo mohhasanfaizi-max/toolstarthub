@@ -28,6 +28,48 @@ export function countWords(text: string): number {
   return trimmed.split(/\s+/).length;
 }
 
+const FIELD_LABEL = "title|subtitle|permalink|meta[\\s_-]?title|meta[\\s_-]?description|headline|seo title|slug|body";
+const FIELD_LINE = new RegExp(`^(?:#{1,6}\\s*)?(${FIELD_LABEL})\\s*[:：]\\s*(.*)$`, "i");
+const FIELD_SPLIT = new RegExp(`(?<=^|[.!?])\\s*(?=(?:${FIELD_LABEL})\\s*[:：])`, "i");
+const DROPPED_LINES = new Set(["brief", "medium", "full", "expanded article", "english draft"]);
+
+/** Remove a leading "Title:" style label from one SEO field. */
+export function stripFieldLabel(value: string): string {
+  const text = plainText(value);
+  const match = text.match(FIELD_LINE);
+  if (!match) return text;
+  return match[2].trim();
+}
+
+/**
+ * News prose only. Drops title, subtitle, permalink, meta title, meta description,
+ * and headline lines the model sometimes pastes into the body.
+ */
+export function cleanNewsBody(value: string): string {
+  const source = value.replace(/<[^>]*>/g, "").replace(/[<>]/g, "").replace(/\u0000/g, "");
+  const kept: string[] = [];
+  for (const rawLine of source.split(/\n+/)) {
+    const pieces = rawLine
+      .trim()
+      .replace(/[ \t]+/g, " ")
+      .split(FIELD_SPLIT)
+      .map((part) => part.trim())
+      .filter(Boolean);
+    for (const line of pieces) {
+      if (DROPPED_LINES.has(line.toLowerCase().replace(/:$/, ""))) continue;
+      const match = line.match(FIELD_LINE);
+      if (!match) {
+        kept.push(line);
+        continue;
+      }
+      const label = match[1].toLowerCase().replace(/[\s_-]+/g, " ");
+      const rest = match[2].trim();
+      if (label === "body" && rest) kept.push(rest);
+    }
+  }
+  return kept.join("\n\n");
+}
+
 /** Drop tags so model output is shown as text, never as HTML. */
 export function plainText(value: string): string {
   return value
