@@ -13,6 +13,50 @@ export const MEDIUM_MAX_WORDS = 100;
 
 const META_SUFFIX = ` | ${siteConfig.name}`;
 
+/** Small words and pure numbers that should not be the last word of a cut meta title. */
+const DANGLING_ENDINGS = new Set([
+  "a",
+  "an",
+  "the",
+  "of",
+  "in",
+  "on",
+  "at",
+  "to",
+  "for",
+  "and",
+  "or",
+  "is",
+  "are",
+  "was",
+  "were",
+  "by",
+  "with",
+  "from",
+]);
+
+function isDanglingEnding(word: string): boolean {
+  const bare = word.replace(/^[^A-Za-z0-9]+|[^A-Za-z0-9]+$/g, "");
+  if (!bare) return true;
+  if (/^\d+(?:[.,]\d+)*$/.test(bare)) return true;
+  return DANGLING_ENDINGS.has(bare.toLowerCase());
+}
+
+/** Keep whole words inside 60 characters, and do not stop on a number or a small word. */
+function trimMetaTitle(title: string): string {
+  const words = title.split(/\s+/).filter(Boolean);
+  const kept: string[] = [];
+  for (const word of words) {
+    const next = kept.length === 0 ? word : `${kept.join(" ")} ${word}`;
+    if (next.length > META_TITLE_MAX) break;
+    kept.push(word);
+  }
+  while (kept.length > 0 && isDanglingEnding(kept[kept.length - 1])) kept.pop();
+  if (kept.length > 0) return kept.join(" ");
+  const content = words.find((word) => !isDanglingEnding(word));
+  return cutAtWord(content ?? title, META_TITLE_MAX);
+}
+
 export type SeoVersionInput = {
   subtitle: string;
   body: string;
@@ -27,20 +71,17 @@ export function buildTitle(raw: string): { text: string; shortened: boolean } {
   return { text, shortened: text !== cased };
 }
 
-/** Title plus " | Tools Star Hub", or the title alone when the suffix will not fit. */
+/**
+ * Meta title rules, in order:
+ * 1. Title plus " | Tools Star Hub" when that fits in 60 characters.
+ * 2. The full title alone when it fits in 60 characters.
+ * 3. The title cut on a word to 60 characters, with no suffix, and not ending on a number or a small word.
+ */
 export function buildMetaTitle(title: string): { text: string; droppedSuffix: boolean } {
-  const full = `${title}${META_SUFFIX}`;
-  if (full.length <= META_TITLE_MAX) return { text: full, droppedSuffix: false };
-  const room = META_TITLE_MAX - META_SUFFIX.length;
-  const slice = title.slice(0, room + 1);
-  const lastSpace = slice.lastIndexOf(" ");
-  if (lastSpace > 0) {
-    const shortened = title.slice(0, lastSpace).trim();
-    if (shortened && `${shortened}${META_SUFFIX}`.length <= META_TITLE_MAX) {
-      return { text: `${shortened}${META_SUFFIX}`, droppedSuffix: false };
-    }
-  }
-  return { text: cutAtWord(title, META_TITLE_MAX), droppedSuffix: true };
+  const clean = title.trim().replace(/\s+/g, " ");
+  if (`${clean}${META_SUFFIX}`.length <= META_TITLE_MAX) return { text: `${clean}${META_SUFFIX}`, droppedSuffix: false };
+  if (clean.length <= META_TITLE_MAX) return { text: clean, droppedSuffix: true };
+  return { text: trimMetaTitle(clean), droppedSuffix: true };
 }
 
 export function buildMetaDescription(raw: string): { text: string; shortened: boolean } {

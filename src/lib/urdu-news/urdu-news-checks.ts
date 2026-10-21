@@ -64,12 +64,43 @@ export async function runUrduNewsChecks(assert: Assert): Promise<void> {
   assert(hugeTitle.shortened && hugeTitle.text.length <= TITLE_MAX && !hugeTitle.text.endsWith(" "), "A long title is cut on a word boundary");
 
   const meta = buildMetaTitle("Imran Khan Speaks in Lahore on the Budget");
-  assert(meta.text === "Imran Khan Speaks in Lahore on the Budget | Tools Star Hub", "Meta title adds the site suffix");
-  assert(meta.text.length <= META_TITLE_MAX, "Meta title stays within 60 characters");
+  assert(meta.text === "Imran Khan Speaks in Lahore on the Budget | Tools Star Hub", "Meta title adds the site suffix when the line fits");
+  assert(meta.text.length <= META_TITLE_MAX && !meta.droppedSuffix, "A short meta title keeps the suffix inside 60 characters");
+
+  const fitsAlone = buildMetaTitle("Imran Khan Speaks in Lahore on the Budget Today");
+  assert(fitsAlone.text === "Imran Khan Speaks in Lahore on the Budget Today", "A title that fits in 60 characters drops the suffix instead of being cut");
+  assert(fitsAlone.droppedSuffix && fitsAlone.text.length <= META_TITLE_MAX, "The unsuffixed title stays within 60 characters");
+
+  const petrol = "Prime Minister Shehbaz Sharif Announces 10 Rupees Reduction in Petrol";
+  const petrolMeta = buildMetaTitle(petrol);
+  assert(
+    petrolMeta.text === "Prime Minister Shehbaz Sharif Announces 10 Rupees Reduction",
+    "A long petrol headline is cut on a word with no site suffix",
+  );
+  assert(!petrolMeta.text.endsWith("10") && !petrolMeta.text.includes("|"), "The petrol meta title does not end on 10 or keep the suffix");
+  assert(petrolMeta.droppedSuffix && petrolMeta.text.length <= META_TITLE_MAX, "The petrol meta title stays within 60 characters");
+
+  const endsOnNumber = buildMetaTitle("Prime Minister Shehbaz Sharif Confirms Petrol Relief of 10 Rupees Today");
+  assert(
+    endsOnNumber.text === "Prime Minister Shehbaz Sharif Confirms Petrol Relief",
+    "A cut meta title does not stop on a number or on of",
+  );
+  const endsOnIn = buildMetaTitle("Prime Minister Announces a Nationwide Cut of 10 Rupees in Petrol Prices");
+  assert(endsOnIn.text === "Prime Minister Announces a Nationwide Cut of 10 Rupees", "A cut meta title does not stop on in");
+  const endsOnAnd = buildMetaTitle("Government Approves Immediate Relief of 10 in Petrol and Diesel Prices");
+  assert(endsOnAnd.text === "Government Approves Immediate Relief of 10 in Petrol", "A cut meta title does not stop on and");
+
   const oversized = buildMetaTitle("International Monetary Fund Reviews Pakistan Budget Talks Today");
-  assert(oversized.text.endsWith("| Tools Star Hub") && oversized.text.length <= META_TITLE_MAX, "A long meta title is shortened at a word");
+  assert(
+    oversized.text === "International Monetary Fund Reviews Pakistan Budget Talks",
+    "A title over 60 characters is cut on a word and drops the suffix",
+  );
+  assert(!oversized.text.includes("|") && oversized.text.length <= META_TITLE_MAX, "The cut meta title has no suffix and stays within 60 characters");
+
   const oneWord = buildMetaTitle("Supercalifragilisticexpialidociousbudgetheadlineword");
-  assert(!oneWord.text.includes("|") && oneWord.droppedSuffix && oneWord.text.length <= META_TITLE_MAX, "A single long word drops the meta suffix");
+  assert(oneWord.text === "Supercalifragilisticexpialidociousbudgetheadlineword" && oneWord.droppedSuffix, "A title that fits alone drops the suffix");
+  const hugeWord = buildMetaTitle("A".repeat(70));
+  assert(!hugeWord.text.includes("|") && hugeWord.text.length === META_TITLE_MAX && hugeWord.droppedSuffix, "One word longer than 60 characters is cut to 60");
 
   const description = buildMetaDescription(`${"word ".repeat(80)}end`);
   assert(description.shortened && description.text.length <= META_DESCRIPTION_MAX && !description.text.endsWith(" "), "Meta description is cut on a word boundary");
