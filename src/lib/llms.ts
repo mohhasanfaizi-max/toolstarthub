@@ -27,7 +27,7 @@ function siteSummary(guideCount: number): string[] {
     "Key facts:",
     "",
     `- Every tool is free to use without an account.`,
-    "- Most tools process input locally in the browser. Exceptions: the AI buttons on AI tools send the entered text to Google's Gemini model, and the Open Graph preview sends the entered URL to this site.",
+    "- Most tools process input locally in the browser. Exceptions: the AI buttons on AI tools, and every step of the Urdu News Translator, send the entered text to Google's Gemini model. The Open Graph preview sends the entered URL to this site.",
     `- Each tool page has a short definition, step-by-step instructions, examples, limitations, and an FAQ. Guides are written by the ${siteConfig.name} Editorial Team.`,
     `- The interface is available in ${locales.length} languages: ${locales.map((locale) => localeInfo[locale].tag).join(", ")}. English URLs have no prefix; other languages use /<locale>/ (for example /es/tools/word-counter). Guides are in English.`,
     `- Contact: ${siteContact.email} (${absoluteUrl("/contact")}).`,

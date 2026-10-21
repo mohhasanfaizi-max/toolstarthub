@@ -20,13 +20,16 @@ export function ToolPrivacyNote({
   const t = getMessages(locale).toolPage.privacy;
   const usesGemini = slug ? aiSlugs.has(slug) : false;
   const humanizer = slug === "ai-text-humanizer";
+  const urduNews = slug === "urdu-news-translator";
   const fetchesPage = slug === "open-graph-preview";
   const [before, after] = t.see.split("{link}");
   return (
     <p className="mt-6 max-w-3xl text-sm leading-6 text-muted-foreground">
-      {humanizer
-        ? t.humanizer
-        : usesGemini
+      {urduNews
+        ? t.urduNews
+        : humanizer
+          ? t.humanizer
+          : usesGemini
           ? t.gemini
           : fetchesPage
             ? t.fetch

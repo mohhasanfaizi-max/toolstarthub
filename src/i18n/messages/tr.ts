@@ -7,6 +7,7 @@ const messages: Messages = {
       allTools: "Tüm Araçlar",
       categories: "Kategoriler",
       guides: "Rehberler",
+      urduTranslator: "Urduca çevirmen",
       popularTools: "Popüler Araçlar",
       about: "Hakkında",
       howItWorks: "Nasıl Çalışır",
@@ -291,6 +292,8 @@ const messages: Messages = {
         "“Rewrite text” tarayıcınızda kalır. “Humanize with AI”, gönderdiğiniz metni ToolStarHub üzerinden Google’ın Gemini API’sine iletir. Bu metin burada saklanmaz. Ücretsiz katmanda Google onu ürünlerini geliştirmek için kullanabilir. Favoriler yalnızca araç adlarını saklar.",
       fetch:
         "“Check preview” URL’yi bu siteye gönderir; site o herkese açık sayfayı ister ve etiketlerini okur. Sayfa burada saklanmaz. Özel veya http olmayan adresler reddedilir. Favoriler yalnızca araç adlarını saklar.",
+      urduNews:
+        "Çevir, Genişlet ve İnsanileştir, Urduca haberi ve İngilizce taslağı ToolStarHub üzerinden Google’ın Gemini API’sine gönderir. Bu metin burada saklanmaz. Ücretsiz katmanda Google onu ürünlerini geliştirmek için kullanabilir. Favoriler yalnızca araç adlarını saklar.",
       see: "{link} sayfasına göz atın.",
       link: "Gizlilik politikası",
     },

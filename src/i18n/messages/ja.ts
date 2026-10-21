@@ -7,6 +7,7 @@ const messages: Messages = {
       allTools: "すべてのツール",
       categories: "カテゴリ",
       guides: "ガイド",
+      urduTranslator: "ウルドゥー語翻訳",
       popularTools: "人気のツール",
       about: "サイトについて",
       howItWorks: "使い方",
@@ -285,6 +286,8 @@ const messages: Messages = {
         "「Rewrite text」はブラウザ内で動作します。「Humanize with AI」は、入力したテキストを ToolStarHub 経由で Google の Gemini API に送信します。そのテキストはこのサイトには保存されません。無料枠では、Google が製品改善のために利用する場合があります。お気に入りに保存されるのはツール名だけです。",
       fetch:
         "「Check preview」は URL をこのサイトに送信し、サイトがその公開ページを取得してタグを読み取ります。ページはここに保存されません。プライベートなアドレスや http 以外のアドレスは拒否されます。お気に入りに保存されるのはツール名だけです。",
+      urduNews:
+        "翻訳、展開、ヒューマナイズは、ウルドゥー語の記事と英語の下書きを ToolStarHub 経由で Google の Gemini API に送信します。そのテキストはこのサイトには保存されません。無料枠では、Google が製品改善のために利用する場合があります。お気に入りに保存されるのはツール名だけです。",
       see: "詳しくは{link}をご覧ください。",
       link: "プライバシーポリシー",
     },

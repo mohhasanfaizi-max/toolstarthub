@@ -9,6 +9,27 @@ import type { Tool } from "./types.ts";
  */
 export const extraTools: Tool[] = [
   {
+    slug: "urdu-news-translator",
+    name: "Urdu News Translator",
+    description:
+      "Paste Urdu news and get Brief, Medium, and Full English drafts, with a fact check. An editor reviews the draft before it is published.",
+    category: "ai-tools",
+    icon: "globe",
+    route: "/tools/urdu-news-translator",
+    featured: false,
+    new: false,
+    keywords: [
+      "urdu news translator",
+      "urdu to english",
+      "urdu news",
+      "english news draft",
+      "news translation",
+    ],
+    status: "available",
+    metaTitle: "Urdu News Translator — English Drafts from Urdu News",
+    relatedSlugs: ["ai-article-compressor", "ai-text-humanizer", "word-counter", "ai-prompt-generator"],
+  },
+  {
     slug: "cps-test",
     name: cpsTestName,
     description: cpsTestDescription,

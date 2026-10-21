@@ -84,6 +84,7 @@ const workspaces: Record<string, ComponentType> = {
   "ai-article-detector": lazyTool(async () => (await import("./workspace/AiArticleDetectorTool")).AiArticleDetectorTool),
   "ai-article-compressor": lazyTool(async () => (await import("./workspace/AiArticleCompressorTool")).AiArticleCompressorTool),
   "ai-text-humanizer": lazyTool(async () => (await import("./workspace/AiTextHumanizerTool")).AiTextHumanizerTool),
+  "urdu-news-translator": lazyTool(async () => (await import("./workspace/UrduNewsTranslatorTool")).UrduNewsTranslatorTool),
   "tip-calculator": lazyTool(async () => (await import("./workspace/TipCalculatorTool")).TipCalculatorTool),
   "sales-tax-calculator": lazyTool(async () => (await import("./workspace/SalesTaxCalculatorTool")).SalesTaxCalculatorTool),
   "date-difference-calculator": lazyTool(async () => (await import("./workspace/DateDifferenceCalculatorTool")).DateDifferenceCalculatorTool),

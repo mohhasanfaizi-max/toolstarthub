@@ -7,6 +7,7 @@ const messages: Messages = {
       allTools: "전체 도구",
       categories: "카테고리",
       guides: "가이드",
+      urduTranslator: "우르두어 번역",
       popularTools: "인기 도구",
       about: "소개",
       howItWorks: "이용 방법",
@@ -282,6 +283,8 @@ const messages: Messages = {
         "“Rewrite text”는 브라우저에서 처리됩니다. “Humanize with AI”는 입력한 텍스트를 ToolStarHub를 통해 Google의 Gemini API로 보냅니다. 해당 텍스트는 이곳에 저장되지 않습니다. 무료 등급에서는 Google이 제품 개선에 사용할 수 있습니다. 즐겨찾기에는 도구 이름만 저장됩니다.",
       fetch:
         "“Check preview”는 URL을 이 사이트로 보내고, 사이트가 해당 공개 페이지를 요청해 태그를 읽습니다. 페이지는 이곳에 저장되지 않습니다. 비공개 주소나 http가 아닌 주소는 거부됩니다. 즐겨찾기에는 도구 이름만 저장됩니다.",
+      urduNews:
+        "번역, 확장, 휴머나이즈는 우르두어 기사와 영어 초안을 ToolStarHub를 통해 Google의 Gemini API로 보냅니다. 해당 텍스트는 이곳에 저장되지 않습니다. 무료 등급에서는 Google이 제품 개선에 사용할 수 있습니다. 즐겨찾기에는 도구 이름만 저장됩니다.",
       see: "자세한 내용은 {link}을 확인하세요.",
       link: "개인정보처리방침",
     },

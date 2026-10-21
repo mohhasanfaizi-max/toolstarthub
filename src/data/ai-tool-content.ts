@@ -311,4 +311,89 @@ export const aiToolContent: Record<string, ToolContent> = {
       },
     ],
   },
+  "urdu-news-translator": {
+    about:
+      "Paste an Urdu news story and get three English drafts: Brief, Medium, and Full. Brief keeps who, what, when, and where. Medium adds the main quote and the key date or figure. Full translates every sentence. A fact check compares each draft with the Urdu. The page also checks digits, quotation marks, length, and a glossary of Pakistani names. Nothing here is published. An editor approves the draft first.",
+    howTo: [
+      "Paste the Urdu story into the right-to-left box. Translate sends it to Google's Gemini model through Tools Star Hub.",
+      "Read Brief, Medium, and Full. Medium is selected first. Use this switches the version that Expand and the approval Copy button use.",
+      "Read the facts table and the verification report. An amber banner means the draft needs review.",
+      "Edit the title, permalink, meta title, or any draft. An edit clears approval.",
+      "Press Expand news if you want a fuller article made only from facts in the Urdu. Humanize is optional and rewrites the English without changing those facts.",
+      "Press Approve, then Copy or Copy all. If the report has an error, the page asks you to confirm.",
+    ],
+    features: [
+      "Brief, Medium, and Full on one page, with editable subtitle, body, and meta description.",
+      "A permalink, title, and meta title built in code, with live character counts.",
+      "A facts table showing which length includes each person, place, number, date, or quote.",
+      "Code checks for extra numbers, Brief quotations, length, bracketed words, and glossary spellings.",
+      "A glossary of Pakistani politicians, parties, cities, and institutions. Only the entries found in the story are sent with the request.",
+    ],
+    examples: [
+      {
+        title: "A two-sentence lead",
+        body: "Sample Urdu meaning: the chief minister said in Lahore on Monday that the city would open two clinics. Brief keeps the person, the place, the day, and the plan, and it leaves the quotation out. Medium can keep the quote and the day. Full keeps both sentences and the verb said. If the English says 20 clinics, the number check marks an error because 20 is not in the Urdu.",
+      },
+    ],
+    explanation:
+      "Translate asks for structured JSON. The page then builds the headline, permalink, and meta description in code. Brief is two sentences and 25 to 40 words, with no quotation. Medium is 60 to 100 words. Full should cover every Urdu sentence. The model is told not to add background, not to guess a name, and not to change claimed into confirmed. Unclear words stay in brackets. Urdu digits and Arabic-Indic digits become Western digits. A fact-check pass compares the Urdu with each version and reports only a real problem. Expand and Humanize run the code checks again.",
+    sections: [
+      {
+        heading: "What each length is allowed to do",
+        paragraphs: [
+          "Brief selects. It answers who did what, when, and where. It does not quote anyone, and it does not add a reason the Urdu never gave. If the story is only a denial, Brief stays a denial.",
+          "Medium keeps the key facts, the main quote, and the key date or figure. A quote stays inside quotation marks. The verb stays faithful: said, claimed, or alleged. Full translates every sentence. The page warns when Full is under 70 percent of the Urdu word count, which usually means a sentence was dropped.",
+        ],
+      },
+      {
+        heading: "What the checks can and cannot see",
+        paragraphs: [
+          "The code compares digit numbers. A number in the English that is not in the Urdu is an error. A number from the Urdu that is missing in Full is a warning. A number written as an Urdu word is not counted by that code. The fact-check pass covers those words, and a changed name, place, quote, or meaning.",
+          "Brief fails if it contains a quotation mark. Square brackets raise a warning so you can confirm the unclear word. If a glossary name is in the Urdu and the English uses a different spelling, the report warns. Any warning or error sets the status to needs review. Approve only unlocks Copy and Copy all in this browser.",
+        ],
+      },
+      {
+        heading: "Headline, permalink, and description",
+        paragraphs: [
+          "The title is title case and at most 70 characters. The meta title is that title plus “ | Tools Star Hub”, at most 60 characters. If the suffix will not fit, the title is shortened at a word, or the suffix is dropped. Each meta description is cut at a word to 155 characters.",
+          "The permalink is lowercase, hyphenated, and ASCII. Small words such as the, of, and in are removed. Dates and Urdu letters are left out. It keeps 4 to 8 words and at most 60 characters. A repeat in the same browser session gets a numeric suffix. The site does not store stories, so it cannot reserve that address on the server.",
+        ],
+      },
+    ],
+    tips: [
+      "Paste the story you want translated, not a summary you wrote beside it. Extra lines become source facts.",
+      "Read Full against the Urdu before you trust Brief. Brief is allowed to leave sentences out. It is not allowed to invent them.",
+      "If a name is in brackets, check the Urdu spelling before you delete the brackets.",
+      "After you approve a draft, the Word Counter can confirm the length you are about to file.",
+    ],
+    limitations:
+      "The tool drafts English. It does not publish, and it does not know your newsroom style beyond the glossary. It can miss a number written as a word, and it can miss a meaning change that the fact check also misses. Expand and Humanize are still limited to the Urdu. They are not a source of background. The rate limit is about 20 requests per 15 minutes on each server instance, and a story over 8,000 characters is refused. Text sent for translation is not saved on this site.",
+    faqs: [
+      {
+        question: "Does this page publish the story?",
+        answer:
+          "No. It prepares a draft. Copy stays off until you press Approve, and an editor still reviews the English before it is used anywhere else.",
+      },
+      {
+        question: "Will it add background the Urdu did not say?",
+        answer:
+          "It is instructed not to. Brief and Medium may only shorten. Full translates each sentence. Expand may restore a fact that is in the Urdu and missing from the short version. A new name, number, date, or quote should show up as an error.",
+      },
+      {
+        question: "What is the difference between Brief, Medium, and Full?",
+        answer:
+          "Brief is two sentences of key facts and has no quote. Medium is 60 to 100 words and keeps the main quote and the key date or figure. Full follows every Urdu sentence. Medium opens selected.",
+      },
+      {
+        question: "Is the Urdu story stored?",
+        answer:
+          "Tools Star Hub does not save the story. Translate, Expand, and Humanize send the text to Google's Gemini API. On the free tier, Google may use that text to improve its products. The permalink list exists only in this browser session.",
+      },
+      {
+        question: "Why does a draft say it needs review?",
+        answer:
+          "The banner appears for any warning or error: an extra number, a quote in Brief, a short Full version, a bracketed word, or a glossary spelling that was not used. If an error remains, Approve asks you to confirm.",
+      },
+    ],
+  },
 };

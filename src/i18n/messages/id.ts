@@ -7,6 +7,7 @@ const messages: Messages = {
       allTools: "Semua Alat",
       categories: "Kategori",
       guides: "Panduan",
+      urduTranslator: "Penerjemah Urdu",
       popularTools: "Alat Populer",
       about: "Tentang",
       howItWorks: "Cara Kerja",
@@ -287,6 +288,8 @@ const messages: Messages = {
         "“Rewrite text” tetap di browser Anda. “Humanize with AI” mengirim teks yang Anda masukkan ke Gemini API milik Google melalui ToolStarHub. Teks itu tidak disimpan di sini. Pada paket gratis, Google dapat menggunakannya untuk meningkatkan produknya. Favorit hanya menyimpan nama alat.",
       fetch:
         "“Check preview” mengirim URL ke situs ini, yang meminta halaman publik tersebut dan membaca tag-nya. Halaman itu tidak disimpan di sini. Alamat privat atau non-http ditolak. Favorit hanya menyimpan nama alat.",
+      urduNews:
+        "Terjemahkan, Perluas, dan Humanisasi mengirim artikel Urdu dan draf bahasa Inggris ke Gemini API milik Google melalui ToolStarHub. Teks itu tidak disimpan di sini. Pada paket gratis, Google dapat menggunakannya untuk meningkatkan produknya. Favorit hanya menyimpan nama alat.",
       see: "Lihat {link}.",
       link: "kebijakan privasi",
     },

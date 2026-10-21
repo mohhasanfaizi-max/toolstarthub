@@ -7,6 +7,7 @@ const messages: Messages = {
       allTools: "Tutti gli strumenti",
       categories: "Categorie",
       guides: "Guide",
+      urduTranslator: "Traduttore urdu",
       popularTools: "Strumenti più usati",
       about: "Chi siamo",
       howItWorks: "Come funziona",
@@ -292,6 +293,8 @@ const messages: Messages = {
         "«Rewrite text» resta nel tuo browser. «Humanize with AI» invia il testo inserito all’API Gemini di Google tramite ToolStarHub. Il testo non viene salvato qui. Nel piano gratuito, Google può usarlo per migliorare i propri prodotti. I preferiti salvano solo i nomi degli strumenti.",
       fetch:
         "«Check preview» invia l’URL a questo sito, che richiede la pagina pubblica e ne legge i tag. La pagina non viene salvata qui. Gli indirizzi privati o non http vengono rifiutati. I preferiti salvano solo i nomi degli strumenti.",
+      urduNews:
+        "Traduci, Espandi e Umanizza inviano l’articolo in urdu e la bozza inglese all’API Gemini di Google tramite ToolStarHub. Il testo non viene salvato qui. Nel piano gratuito, Google può usarlo per migliorare i propri prodotti. I preferiti salvano solo i nomi degli strumenti.",
       see: "Consulta l’{link}.",
       link: "informativa sulla privacy",
     },

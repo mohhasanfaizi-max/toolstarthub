@@ -9,6 +9,7 @@ export const enClient = {
     allTools: "All Tools",
     categories: "Categories",
     guides: "Guides",
+    urduTranslator: "Urdu Translator",
     popularTools: "Popular Tools",
     about: "About",
     howItWorks: "How It Works",

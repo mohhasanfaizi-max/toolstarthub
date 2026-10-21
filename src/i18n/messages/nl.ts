@@ -7,6 +7,7 @@ const messages: Messages = {
       allTools: "Alle tools",
       categories: "Categorieën",
       guides: "Handleidingen",
+      urduTranslator: "Urdu-vertaler",
       popularTools: "Populaire tools",
       about: "Over ons",
       howItWorks: "Hoe het werkt",
@@ -292,6 +293,8 @@ const messages: Messages = {
         "‘Rewrite text’ blijft in je browser. ‘Humanize with AI’ stuurt de ingevoerde tekst via ToolStarHub naar de Gemini-API van Google. Die tekst wordt hier niet opgeslagen. Bij het gratis abonnement kan Google hem gebruiken om zijn producten te verbeteren. Favorieten bewaren alleen toolnamen.",
       fetch:
         "‘Check preview’ stuurt de URL naar deze site, die de openbare pagina opvraagt en de tags uitleest. De pagina wordt hier niet opgeslagen. Privé- of niet-http-adressen worden geweigerd. Favorieten bewaren alleen toolnamen.",
+      urduNews:
+        "Vertalen, Uitbreiden en Humanize sturen het Urdu-artikel en de Engelse versie via ToolStarHub naar de Gemini-API van Google. Die tekst wordt hier niet opgeslagen. Bij het gratis abonnement kan Google hem gebruiken om zijn producten te verbeteren. Favorieten bewaren alleen toolnamen.",
       see: "Lees het {link}.",
       link: "privacybeleid",
     },

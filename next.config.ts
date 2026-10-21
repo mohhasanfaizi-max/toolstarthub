@@ -5,7 +5,8 @@ import type { NextConfig } from "next";
 //   consent-default scripts, and JSON-LD blocks (no nonces, pages are static).
 // - 'wasm-unsafe-eval': WebAssembly used by the OCR and PDF tools.
 // - googletagmanager / google-analytics: GA4, loaded only after consent.
-// - Gemini is called server-side through /api/ai/generate, so 'self' covers it.
+// - Gemini is called server-side through /api/ai/generate and
+//   /api/urdu-news-translator, so 'self' covers it.
 // - img-src https:: the Open Graph preview tool shows remote share images.
 const contentSecurityPolicy = [
   "default-src 'self'",
