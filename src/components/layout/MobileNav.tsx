@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useId, useState } from "react";
+import { createPortal } from "react-dom";
 import Link from "next/link";
 import { Icon } from "@/components/icons/Icon";
 import { Button } from "@/components/ui/Button";
@@ -58,53 +59,56 @@ export function MobileNav() {
         <Icon name={open ? "close" : "menu"} className="size-5" />
       </button>
 
-      {open ? (
-        <div
-          id={panelId}
-          className="fixed inset-x-0 top-16 bottom-0 z-40 overflow-y-auto border-t border-border bg-background"
-        >
-          <div className="mx-auto max-w-6xl space-y-6 px-4 py-5 sm:px-6">
-            <div onClick={() => setOpen(false)}>
-              <Button href={href("/tools")} className="w-full">
-                {nav.exploreTools}
-              </Button>
-            </div>
-            <nav aria-label={nav.mobileNav}>
-              <ul className="space-y-1">
-                {navLinks.map((link) => (
-                  <li key={link.href}>
-                    <Link
-                      href={href(link.href)}
-                      className="block rounded-lg px-3 py-3 text-base font-medium text-foreground hover:bg-muted"
-                      onClick={() => setOpen(false)}
-                    >
-                      {link.label}
-                    </Link>
-                  </li>
-                ))}
-              </ul>
-            </nav>
-            <div>
-              <p className="px-3 text-xs font-semibold uppercase tracking-wide text-muted-foreground">
-                {nav.categories}
-              </p>
-              <ul className="mt-2 space-y-1">
-                {categorySlugs.map((slug) => (
-                  <li key={slug}>
-                    <Link
-                      href={href(`/categories/${slug}`)}
-                      className="block rounded-lg px-3 py-2.5 text-sm text-foreground hover:bg-muted"
-                      onClick={() => setOpen(false)}
-                    >
-                      {messages.categoryNames[slug]}
-                    </Link>
-                  </li>
-                ))}
-              </ul>
-            </div>
-          </div>
-        </div>
-      ) : null}
+      {open
+        ? createPortal(
+            <div
+              id={panelId}
+              className="fixed inset-x-0 top-16 bottom-0 z-40 overflow-y-auto border-t border-border bg-background"
+            >
+              <div className="mx-auto max-w-6xl space-y-6 px-4 py-5 sm:px-6">
+                <div onClick={() => setOpen(false)}>
+                  <Button href={href("/tools")} className="w-full">
+                    {nav.exploreTools}
+                  </Button>
+                </div>
+                <nav aria-label={nav.mobileNav}>
+                  <ul className="space-y-1">
+                    {navLinks.map((link) => (
+                      <li key={link.href}>
+                        <Link
+                          href={href(link.href)}
+                          className="block rounded-lg px-3 py-3 text-base font-medium text-foreground hover:bg-muted"
+                          onClick={() => setOpen(false)}
+                        >
+                          {link.label}
+                        </Link>
+                      </li>
+                    ))}
+                  </ul>
+                </nav>
+                <div>
+                  <p className="px-3 text-xs font-semibold uppercase tracking-wide text-muted-foreground">
+                    {nav.categories}
+                  </p>
+                  <ul className="mt-2 space-y-1">
+                    {categorySlugs.map((slug) => (
+                      <li key={slug}>
+                        <Link
+                          href={href(`/categories/${slug}`)}
+                          className="block rounded-lg px-3 py-2.5 text-sm text-foreground hover:bg-muted"
+                          onClick={() => setOpen(false)}
+                        >
+                          {messages.categoryNames[slug]}
+                        </Link>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              </div>
+            </div>,
+            document.body,
+          )
+        : null}
     </div>
   );
 }
