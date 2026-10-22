@@ -71,14 +71,15 @@ function lengthChecks(draft: CheckedDraft): VerificationCheck[] {
   const checks: VerificationCheck[] = [];
   const briefWords = countWords(draft.versions.brief.body);
   const mediumWords = countWords(draft.versions.medium.body);
-  if (briefWords < BRIEF_MIN_WORDS) {
+  const fullWords = countWords(draft.versions.average.body);
+  if (briefWords > BRIEF_MAX_WORDS) {
     checks.push({ level: "warning", message: `Brief is ${briefWords} words. The range is 25 to 40.` });
-  } else if (briefWords > BRIEF_MAX_WORDS) {
+  } else if (briefWords < BRIEF_MIN_WORDS && fullWords > BRIEF_MIN_WORDS) {
     checks.push({ level: "warning", message: `Brief is ${briefWords} words. The range is 25 to 40.` });
   }
-  if (mediumWords < MEDIUM_MIN_WORDS) {
+  if (mediumWords > MEDIUM_MAX_WORDS) {
     checks.push({ level: "warning", message: `Medium is ${mediumWords} words. The range is 60 to 100.` });
-  } else if (mediumWords > MEDIUM_MAX_WORDS) {
+  } else if (mediumWords < MEDIUM_MIN_WORDS && fullWords > MEDIUM_MIN_WORDS) {
     checks.push({ level: "warning", message: `Medium is ${mediumWords} words. The range is 60 to 100.` });
   }
   if (draft.title.length > TITLE_MAX) {

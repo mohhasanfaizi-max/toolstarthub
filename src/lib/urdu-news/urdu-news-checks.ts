@@ -1,10 +1,10 @@
 import { resetRateLimits } from "../ai/rate-limit.ts";
 import { checkDraftText, checkTranslation, withFactCheck } from "./checks.ts";
 import { handleUrduNews, URDU_NEWS_MAX_CHARS, URDU_NEWS_RATE_MAX, urduNewsMessages } from "./handle.ts";
-import { humanizePrompt } from "./prompts.ts";
-import { cleanNewsBody } from "./text.ts";
+import { humanizePrompt, translationPrompt } from "./prompts.ts";
+import { cleanNewsBody, countWords, firstSentences } from "./text.ts";
 import { readJsonWithRetry, UrduNewsCallError } from "./json.ts";
-import { buildMetaDescription, buildMetaTitle, buildTitle, META_DESCRIPTION_MAX, META_TITLE_MAX, TITLE_MAX } from "./limits.ts";
+import { applySeo, buildMetaDescription, buildMetaTitle, buildTitle, META_DESCRIPTION_MAX, META_TITLE_MAX, TITLE_MAX } from "./limits.ts";
 import { extractNumbers, normalizeDigits, numberValues } from "./numbers.ts";
 import { buildPermalink, uniquePermalink } from "./permalink.ts";
 import { countQuoteMarks } from "./quotes.ts";
@@ -21,12 +21,17 @@ const medium =
 const full =
   "Imran Khan said in Lahore on Monday that the provincial budget is 12 billion rupees. He said, \"The city will open two clinics this year.\"";
 
+function words(count: number): string {
+  return Array.from({ length: count }, () => "word").join(" ");
+}
+
 function translationFixture() {
+  const shortBrief = "Imran Khan said in Lahore on Monday that the provincial budget is 12 billion rupees.";
   return {
     title: "<b>Imran Khan Speaks in Lahore on the Budget</b>",
     versions: {
-      brief: { subtitle: "Budget remarks in Lahore", body: brief, meta_description: "Imran Khan spoke in Lahore about a 12 billion rupee provincial budget." },
-      medium: { subtitle: "What Imran Khan said in Lahore", body: medium, meta_description: "Imran Khan said in Lahore that the provincial budget is 12 billion rupees." },
+      brief: { subtitle: "Budget remarks in Lahore", body: shortBrief, meta_description: "Imran Khan spoke in Lahore about a 12 billion rupee provincial budget." },
+      medium: { subtitle: "What Imran Khan said in Lahore", body: full, meta_description: "Imran Khan said in Lahore that the provincial budget is 12 billion rupees." },
       average: { subtitle: "Full translation", body: full, meta_description: "Imran Khan said in Lahore that the city will open two clinics." },
     },
     facts: [
@@ -125,6 +130,107 @@ export async function runUrduNewsChecks(assert: Assert): Promise<void> {
   const humanPrompt = humanizePrompt(urdu, brief);
   assert(humanPrompt.includes("Return only the news paragraphs"), "Humanize asks for the body only");
   assert(!humanPrompt.includes("Return a headline"), "Humanize does not ask for a headline");
+
+  const lengthRule = "Never add words or facts to reach a length. If the Urdu is short, Brief and Medium may be as short as the facts allow, even identical to Full.";
+  const hospitalUrdu = "وزیراعظم نے کہا کہ دو نئے ہسپتال بنائے جائیں گے۔";
+  const hospitalPrompt = translationPrompt(hospitalUrdu);
+  assert(hospitalPrompt.includes(lengthRule), "The translation prompt forbids padding a short story");
+  assert(!hospitalPrompt.includes("25 to 40 words") && !hospitalPrompt.includes("60 to 100 words"), "Word ranges are not written as targets");
+  assert(hospitalPrompt.includes("at most 40 words") && hospitalPrompt.includes("at most 100 words"), "Brief and Medium keep upper limits");
+
+  const quotedSentences = 'He said, "Go now. Then wait." The plan is two clinics.';
+  assert(firstSentences(quotedSentences, 2) === quotedSentences, "A period inside a quotation does not end the sentence");
+  assert(firstSentences("One clinic. Two clinics. Three clinics.", 2) === "One clinic. Two clinics.", "The first two sentences stop before the third");
+  assert(firstSentences('He said, "Go now." Then he left.', 1) === 'He said, "Go now."', "A closing quotation can end the sentence");
+
+  const hospitalFull = "The prime minister said that two new hospitals will be built.";
+  const paddedBrief = "The prime minister said that two new hospitals will be built in the healthcare sector over the next two years to improve access.";
+  const paddedMedium = `${paddedBrief} Officials said the work starts next month and finishes within three years. The healthcare sector will receive new staff.`;
+  assert(countWords(hospitalFull) <= 25 && countWords(paddedBrief) > countWords(hospitalFull) && countWords(paddedMedium) > countWords(hospitalFull), "The hospital fixture is one short sentence with padded drafts");
+  const capped = applySeo({
+    title: "Two New Hospitals",
+    versions: {
+      brief: { subtitle: "Hospitals", body: paddedBrief, meta_description: "The prime minister said two hospitals will be built." },
+      medium: { subtitle: "Hospitals", body: paddedMedium, meta_description: "The prime minister said two hospitals will be built." },
+      average: { subtitle: "Hospitals", body: hospitalFull, meta_description: "The prime minister said two hospitals will be built." },
+    },
+  });
+  assert(capped.versions.brief.body === hospitalFull && capped.versions.medium.body === hospitalFull, "Padded brief and medium on a short story are replaced with Full");
+  assert(capped.versions.brief.word_count === countWords(hospitalFull) && capped.versions.medium.word_count === countWords(hospitalFull), "The replaced versions are not longer than Full");
+  assert(
+    capped.notes.some((note) => note.level === "info" && note.message.includes("first two sentences")) &&
+      capped.notes.some((note) => note.level === "info" && note.message.includes("Medium uses Full")),
+    "Replacing a padded short story adds info checks",
+  );
+  assert(!capped.notes.some((note) => note.level === "warning"), "A short story replacement is not a warning");
+
+  const exactFull = `${hospitalFull} ${words(14)}`;
+  assert(countWords(exactFull) === 25, "The boundary fixture is 25 words");
+  const exact = applySeo({
+    title: "Two New Hospitals",
+    versions: {
+      brief: { subtitle: "Hospitals", body: words(30), meta_description: "The prime minister said two hospitals will be built." },
+      medium: { subtitle: "Hospitals", body: hospitalFull, meta_description: "The prime minister said two hospitals will be built." },
+      average: { subtitle: "Hospitals", body: exactFull, meta_description: "The prime minister said two hospitals will be built." },
+    },
+  });
+  assert(exact.versions.brief.body === exactFull && exact.versions.brief.word_count <= 25, "A 25-word Full caps a longer brief at the first two sentences");
+  assert(exact.versions.medium.body === hospitalFull, "Medium that is already no longer than Full stays as written");
+
+  const midFull = `Imran Khan said the budget is 12 billion rupees. ${words(40)}`;
+  const midBrief = words(20);
+  const midMedium = words(80);
+  assert(countWords(midFull) > 25 && countWords(midFull) <= 60 && countWords(midMedium) > countWords(midFull), "The mid-length fixture sits between the brief and medium floors");
+  const mid = applySeo({
+    title: "Budget Update",
+    versions: {
+      brief: { subtitle: "Budget", body: midBrief, meta_description: "A budget update." },
+      medium: { subtitle: "Budget", body: midMedium, meta_description: "A budget update." },
+      average: { subtitle: "Budget", body: midFull, meta_description: "A budget update." },
+    },
+  });
+  assert(mid.versions.brief.body === midBrief, "Brief is left alone when it does not exceed Full");
+  assert(mid.versions.medium.body === midFull, "Medium is replaced with Full when Full is at or below 60 words");
+  assert(mid.notes.some((note) => note.level === "info" && note.message.includes("Medium uses Full")), "The medium replacement is an info check");
+  assert(!mid.notes.some((note) => note.message.includes("first two sentences")), "Brief is not replaced when it is already shorter than Full");
+
+  const suffix = applySeo({
+    title: "Imran Khan Speaks in Lahore on the Budget Today",
+    versions: {
+      brief: { subtitle: "Lahore", body: words(30), meta_description: "Imran Khan spoke in Lahore." },
+      medium: { subtitle: "Lahore", body: words(70), meta_description: "Imran Khan spoke in Lahore." },
+      average: { subtitle: "Lahore", body: words(80), meta_description: "Imran Khan spoke in Lahore." },
+    },
+  });
+  assert(suffix.notes.some((note) => note.level === "info" && note.message.includes("| Tools Star Hub")), "Dropping the meta title suffix is an info check");
+  assert(!suffix.notes.some((note) => note.level === "warning" && note.message.includes("Tools Star Hub")), "Dropping the meta title suffix is not a warning");
+
+  const lengthDraft = (briefBody: string, mediumBody: string, fullBody: string) => ({
+    title: "Two Hospitals",
+    meta_title: "Two Hospitals",
+    versions: {
+      brief: { subtitle: "", body: briefBody, meta_description: "" },
+      medium: { subtitle: "", body: mediumBody, meta_description: "" },
+      average: { subtitle: "", body: fullBody, meta_description: "" },
+    },
+  });
+  const shortStory = checkTranslation(hospitalUrdu, lengthDraft(hospitalFull, hospitalFull, hospitalFull));
+  assert(!shortStory.checks.some((item) => item.message.includes("range is")), "A short Full does not warn that Brief or Medium is below the range");
+  assert(
+    shortStory.status === "ok",
+    `A faithful short story passes (${shortStory.checks.filter((item) => item.level !== "ok" && item.level !== "info").map((item) => item.message).join("; ")})`,
+  );
+  const longFull = `${hospitalFull} ${words(70)}`;
+  const longStory = checkTranslation(hospitalUrdu, lengthDraft(words(10), longFull, longFull));
+  assert(
+    longStory.checks.some((item) => item.level === "warning" && item.message.includes("range is 25 to 40")),
+    "A long story still warns when Brief is under 25 words",
+  );
+  const overBrief = checkTranslation(hospitalUrdu, lengthDraft(words(45), words(70), words(90)));
+  assert(
+    overBrief.checks.some((item) => item.level === "warning" && item.message.includes("range is 25 to 40")),
+    "Brief over 40 words still warns",
+  );
 
   assert(normalizeDigits("۱۲") === "12" && normalizeDigits("١٢") === "12", "Urdu and Arabic-Indic digits become Western digits");
   assert(extractNumbers("۱٬۲۰۰ and 3.5").join(",") === "1200,3.5", "Thousands separators are ignored and decimals stay");
@@ -309,6 +415,37 @@ export async function runUrduNewsChecks(assert: Assert): Promise<void> {
     assert(translated.body.meta_title === "Imran Khan Speaks in Lahore on the Budget | Tools Star Hub", "SEO meta title is built in code");
     assert(!JSON.stringify(translated.body).includes("<b>"), "HTML from the model is stripped");
     assert(translated.body.verification && (translated.body.verification as { status: string }).status === "ok", "The sample draft does not need review");
+  }
+
+  const hospital = await handleUrduNews(
+    { action: "translate", urdu: hospitalUrdu },
+    "short-story",
+    4_200,
+    async (_prompt, schema) => {
+      if (schema === "fact") return JSON.stringify({ issues: [] });
+      return JSON.stringify({
+        title: "Two New Hospitals",
+        versions: {
+          brief: { subtitle: "Hospitals", body: paddedBrief, meta_description: "The prime minister said two hospitals will be built." },
+          medium: { subtitle: "Hospitals", body: paddedMedium, meta_description: "The prime minister said two hospitals will be built." },
+          average: { subtitle: "Hospitals", body: hospitalFull, meta_description: "The prime minister said two hospitals will be built." },
+        },
+        facts: [],
+      });
+    },
+    true,
+  );
+  assert(hospital.status === 200 && hospital.body.success === true, "A padded short story still returns a translation");
+  if (hospital.body.success) {
+    const versions = hospital.body.versions as { brief: { body: string }; medium: { body: string } };
+    const verification = hospital.body.verification as { status: string; checks: Array<{ level: string; message: string }> };
+    assert(versions.brief.body === hospitalFull && versions.medium.body === hospitalFull, "The API stores the unpadded brief and medium");
+    assert(verification.status === "ok", "An info check does not mark the short story needs review");
+    assert(
+      verification.checks.some((item) => item.level === "info" && item.message.includes("first two sentences")),
+      "The API reports the brief cap as info",
+    );
+    assert(!verification.checks.some((item) => item.level === "warning" && item.message.includes("range is")), "The API does not warn that the short story is below the range");
   }
 
   const humanized = await handleUrduNews(

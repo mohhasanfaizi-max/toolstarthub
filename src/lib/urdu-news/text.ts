@@ -102,6 +102,78 @@ export function toTitleCase(input: string): string {
     .join(" ");
 }
 
+const QUOTE_PAIRS: Record<string, string> = {
+  '"': '"',
+  "“": "”",
+  "«": "»",
+};
+
+function sentenceEndsAtQuote(source: string, periodIndex: number, closer: string): boolean {
+  let cursor = periodIndex + 1;
+  while (cursor < source.length && ".!?".includes(source[cursor])) cursor += 1;
+  if (source[cursor] !== closer) return false;
+  cursor += 1;
+  return cursor >= source.length || /\s/.test(source[cursor]);
+}
+
+function takeSentence(sentences: string[], source: string, start: number, end: number, count: number): { start: number; done: boolean } {
+  const sentence = source.slice(start, end).trim();
+  if (sentence) sentences.push(sentence);
+  if (sentences.length >= count) return { start: end, done: true };
+  let next = end;
+  while (next < source.length && /\s/.test(source[next])) next += 1;
+  return { start: next, done: false };
+}
+
+/** First `count` sentences. A period inside a quotation ends a sentence only when the quote closes there. */
+export function firstSentences(text: string, count: number): string {
+  const source = text.trim();
+  if (!source || count <= 0) return "";
+  const sentences: string[] = [];
+  let start = 0;
+  let closer: string | null = null;
+  for (let index = 0; index <= source.length; index += 1) {
+    const char = source[index] ?? "";
+    if (closer) {
+      const quoteSentence = (char === "." || char === "!" || char === "?") && sentenceEndsAtQuote(source, index, closer);
+      if (!quoteSentence) {
+        if (char === closer) closer = null;
+        continue;
+      }
+      let end = index + 1;
+      while (end < source.length && ".!?".includes(source[end])) end += 1;
+      if (source[end] === closer) end += 1;
+      const taken = takeSentence(sentences, source, start, end, count);
+      start = taken.start;
+      closer = null;
+      if (taken.done) break;
+      index = start - 1;
+      continue;
+    }
+    if (QUOTE_PAIRS[char]) {
+      closer = QUOTE_PAIRS[char];
+      continue;
+    }
+    const ended = char === "." || char === "!" || char === "?" || index === source.length;
+    if (!ended) continue;
+    let end = index;
+    if (index < source.length) {
+      end = index + 1;
+      while (end < source.length && ".!?".includes(source[end])) end += 1;
+      while (end < source.length && `"”»`.includes(source[end])) end += 1;
+    }
+    const taken = takeSentence(sentences, source, start, end, count);
+    start = taken.start;
+    if (taken.done || index === source.length) break;
+    index = start - 1;
+  }
+  if (sentences.length < count && start < source.length) {
+    const rest = source.slice(start).trim();
+    if (rest) sentences.push(rest);
+  }
+  return sentences.slice(0, count).join(" ");
+}
+
 export function trimWords(text: string, max: number): { text: string; trimmed: boolean } {
   const words = text.trim().split(/\s+/).filter(Boolean);
   if (words.length <= max) return { text: words.join(" "), trimmed: false };

@@ -1,7 +1,7 @@
 import { siteConfig } from "../site.ts";
 import type { VerificationCheck, VersionId } from "./types.ts";
 import { buildPermalink } from "./permalink.ts";
-import { countWords, cutAtWord, plainText, toTitleCase, trimWords } from "./text.ts";
+import { countWords, cutAtWord, firstSentences, plainText, toTitleCase, trimWords } from "./text.ts";
 
 export const TITLE_MAX = 70;
 export const META_TITLE_MAX = 60;
@@ -108,22 +108,35 @@ export function applySeo(input: {
   const meta = buildMetaTitle(title.text);
   if (meta.droppedSuffix) {
     notes.push({
-      level: "warning",
+      level: "info",
       message: "The meta title dropped “| Tools Star Hub” so it could stay within 60 characters.",
     });
   }
 
+  const fullBody = plainText(input.versions.average.body);
+  const fullWords = countWords(fullBody);
   const versions = {} as Record<VersionId, SeoVersion>;
   for (const id of ["brief", "medium", "average"] as const) {
     const source = input.versions[id];
     const subtitle = plainText(source.subtitle);
-    let body = plainText(source.body);
-    if (id === "brief") {
+    let body = id === "average" ? fullBody : plainText(source.body);
+    if (id === "brief" && fullWords <= BRIEF_MIN_WORDS && countWords(body) > fullWords) {
+      body = firstSentences(fullBody, 2);
+      notes.push({
+        level: "info",
+        message: "Brief uses the first two sentences of Full because the story is at or below 25 words.",
+      });
+    } else if (id === "medium" && fullWords <= MEDIUM_MIN_WORDS && countWords(body) > fullWords) {
+      body = fullBody;
+      notes.push({
+        level: "info",
+        message: "Medium uses Full because the story is at or below 60 words.",
+      });
+    } else if (id === "brief") {
       const trimmed = trimWords(body, BRIEF_MAX_WORDS);
       body = trimmed.text;
       if (trimmed.trimmed) notes.push({ level: "warning", message: "Brief was cut to 40 words." });
-    }
-    if (id === "medium") {
+    } else if (id === "medium") {
       const trimmed = trimWords(body, MEDIUM_MAX_WORDS);
       body = trimmed.text;
       if (trimmed.trimmed) notes.push({ level: "warning", message: "Medium was cut to 100 words." });

@@ -336,12 +336,12 @@ export const aiToolContent: Record<string, ToolContent> = {
       },
     ],
     explanation:
-      "Translate asks for structured JSON. The page then builds the headline, permalink, and meta description in code. Brief is two sentences and 25 to 40 words, with no quotation. Medium is 60 to 100 words. Full should cover every Urdu sentence. The model is told not to add background, not to guess a name, and not to change claimed into confirmed. Unclear words stay in brackets. Urdu digits and Arabic-Indic digits become Western digits. A fact-check pass compares the Urdu with each version and reports only a real problem. Humanize returns only the news paragraphs. Title, subtitle, permalink, meta title, and meta description stay in their own fields. Expand and Humanize run the code checks again.",
+      "Translate asks for structured JSON. The page then builds the headline, permalink, and meta description in code. Brief is at most two sentences and at most 40 words, with no quotation. Medium is at most 100 words. If the Urdu is short, Brief and Medium stay as short as the facts allow, and they may match Full. The model is told not to add words or facts to reach a length, not to add background, not to guess a name, and not to change claimed into confirmed. Unclear words stay in brackets. Urdu digits and Arabic-Indic digits become Western digits. A fact-check pass compares the Urdu with each version and reports only a real problem. Humanize returns only the news paragraphs. Title, subtitle, permalink, meta title, and meta description stay in their own fields. Expand and Humanize run the code checks again.",
     sections: [
       {
         heading: "What each length is allowed to do",
         paragraphs: [
-          "Brief selects. It answers who did what, when, and where. It does not quote anyone, and it does not add a reason the Urdu never gave. If the story is only a denial, Brief stays a denial.",
+          "Brief selects. It answers who did what, when, and where. It does not quote anyone, and it does not add a reason the Urdu never gave. If the story is only a denial, Brief stays a denial. A one-sentence Urdu story can leave Brief and Medium that short. They do not gain words to reach 40 or 100.",
           "Medium keeps the key facts, the main quote, and the key date or figure. A quote stays inside quotation marks. The verb stays faithful: said, claimed, or alleged. Full translates every sentence. The page warns when Full is under 70 percent of the Urdu word count, which usually means a sentence was dropped.",
         ],
       },
@@ -377,12 +377,12 @@ export const aiToolContent: Record<string, ToolContent> = {
       {
         question: "Will it add background the Urdu did not say?",
         answer:
-          "It is instructed not to. Brief and Medium may only shorten. Full translates each sentence. Expand may restore a fact that is in the Urdu and missing from the short version. A new name, number, date, or quote should show up as an error.",
+          "It is instructed not to. Brief and Medium may only shorten. They do not add words or facts to reach a length. Full translates each sentence. Expand may restore a fact that is in the Urdu and missing from the short version. A new name, number, date, or quote should show up as an error.",
       },
       {
         question: "What is the difference between Brief, Medium, and Full?",
         answer:
-          "Brief is two sentences of key facts and has no quote. Medium is 60 to 100 words and keeps the main quote and the key date or figure. Full follows every Urdu sentence. Medium opens selected.",
+          "Brief is at most two sentences of key facts and has no quote. Medium is at most 100 words and keeps the main quote and the key date or figure when the Urdu has them. A short Urdu story can make Brief and Medium as short as Full. Full follows every Urdu sentence. Medium opens selected.",
       },
       {
         question: "Is the Urdu story stored?",
