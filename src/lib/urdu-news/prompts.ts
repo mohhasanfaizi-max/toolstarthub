@@ -16,9 +16,9 @@ export function translationPrompt(urdu: string): string {
 
 ${SHARED_RULES}
 
-Lengths:
-- brief: exactly 2 sentences. Key facts only: who, what, when, where. No quotations. 25 to 40 words.
-- medium: 60 to 100 words. Include the key facts, the main quote, and the key date or figure.
+Lengths are upper limits, not targets. Never add words or facts to reach a length. If the Urdu is short, Brief and Medium may be as short as the facts allow, even identical to Full.
+- brief: at most 2 sentences and at most 40 words. Key facts only: who, what, when, where. No quotations. If the Urdu is one sentence, Brief is one sentence.
+- medium: at most 100 words. Include the key facts, and include the main quote and the key date or figure when the Urdu has them.
 - average: translate every sentence. Do not drop a sentence. Editors see this version labeled Full.
 
 Return title, versions.brief, versions.medium, versions.average, and facts.

@@ -6,7 +6,7 @@ export const FACT_TYPES = ["person", "place", "number", "date", "quote"] as cons
 
 export type FactType = (typeof FACT_TYPES)[number];
 
-export const CHECK_LEVELS = ["ok", "warning", "error"] as const;
+export const CHECK_LEVELS = ["ok", "info", "warning", "error"] as const;
 
 export type CheckLevel = (typeof CHECK_LEVELS)[number];
 

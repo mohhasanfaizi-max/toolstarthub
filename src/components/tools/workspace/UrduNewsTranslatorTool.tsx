@@ -53,6 +53,18 @@ function reviewStatus(checks: VerificationCheck[]): Verification["status"] {
   return checks.some((check) => check.level === "warning" || check.level === "error") ? "needs_review" : "ok";
 }
 
+function infoNotes(data: Record<string, unknown>): VerificationCheck[] {
+  const verification = data.verification;
+  if (!verification || typeof verification !== "object" || !("checks" in verification)) return [];
+  const checks = verification.checks;
+  if (!Array.isArray(checks)) return [];
+  return checks.flatMap((check) => {
+    if (!check || typeof check !== "object" || !("level" in check) || !("message" in check)) return [];
+    if (check.level !== "info" || typeof check.message !== "string") return [];
+    return [{ level: "info" as const, message: check.message }];
+  });
+}
+
 function articleCheckText(article: ExpandedArticle): string {
   return [article.headline, article.body].filter(Boolean).join("\n\n");
 }
@@ -114,6 +126,7 @@ export function UrduNewsTranslatorTool() {
   const [article, setArticle] = useState<ExpandedArticle | null>(null);
   const [factIssues, setFactIssues] = useState<FactIssue[] | null>(null);
   const [factFresh, setFactFresh] = useState(false);
+  const [serverInfo, setServerInfo] = useState<VerificationCheck[]>([]);
   const [approved, setApproved] = useState(false);
   const [copied, setCopied] = useState("");
   const usedPermalinks = useRef(new Set<string>());
@@ -140,9 +153,10 @@ export function UrduNewsTranslatorTool() {
     if (!ready) return null;
     const base = checkTranslation(urdu, { title, meta_title: metaTitle, versions });
     const extra = article ? checkDraftText(urdu, articleCheckText(article), "article").checks : [];
-    const merged = { status: "ok" as const, checks: [...base.checks, ...extra] };
+    const notes = factFresh ? serverInfo : [];
+    const merged = { status: "ok" as const, checks: [...notes, ...base.checks, ...extra] };
     return factFresh ? withFactCheck(merged, factIssues) : { status: reviewStatus(merged.checks), checks: merged.checks };
-  }, [ready, urdu, title, metaTitle, versions, article, factFresh, factIssues]);
+  }, [ready, urdu, title, metaTitle, versions, article, factFresh, factIssues, serverInfo]);
 
   function markEdited() {
     setApproved(false);
@@ -194,6 +208,7 @@ export function UrduNewsTranslatorTool() {
         setVersions(nextVersions);
         setFacts(Array.isArray(data.facts) ? (data.facts as FactRow[]) : []);
         setFactIssues(Array.isArray(data.fact_issues) ? (data.fact_issues as FactIssue[]) : data.fact_issues === null ? null : []);
+        setServerInfo(infoNotes(data));
         setFactFresh(true);
         setSelected("medium");
         setArticle(null);
@@ -472,7 +487,7 @@ export function UrduNewsTranslatorTool() {
               <ul className="mt-3 space-y-2">
                 {verification.checks.map((check, index) => (
                   <li key={`${check.level}-${index}`} className="text-sm leading-6 text-foreground">
-                    <span aria-hidden="true">{check.level === "ok" ? "✓" : check.level === "warning" ? "!" : "✕"} </span>
+                    <span aria-hidden="true">{check.level === "ok" ? "✓" : check.level === "info" ? "i" : check.level === "warning" ? "!" : "✕"} </span>
                     {check.message}
                   </li>
                 ))}
