@@ -29,9 +29,11 @@ const categoryText = Object.fromEntries(
 export const en = {
   client: enClient,
   meta: {
-    tagline: "Free Online Tools That Just Work",
+    // English homepage document title (also og:title). Other locales still
+    // prefix their own tagline with the site name.
+    tagline: "Free Digital Tools for Work, Study, and News — Tools Star Hub",
     description:
-      "Fast, free and easy-to-use online tools for calculations, text, developers, images, SEO and everyday tasks. No signup required.",
+      "Free digital tools for freelancers, students, digital marketers, and news writers. Convert PDFs, compress images, count words, and build links. No account.",
     toolsTitle: "All Tools",
     toolsDescription:
       "Browse free online tools for calculations, text, developers, images, SEO and everyday tasks.",
@@ -68,10 +70,10 @@ export const en = {
     rights: "© {year} {name}. All rights reserved.",
   },
   home: {
-    h1: "Free Online Tools for Everyday Tasks",
+    h1: "Free Digital Tools",
     intro:
-      "Find a tool, use it, and get a result. {name} is a simple place for PDFs, images, calculations, and text, with no account.",
-    popularLabel: "Popular:",
+      "Convert PDFs, compress images, count or rewrite text, and calculate. Free to use, with no account.",
+    popularLabel: "Most valuable tools:",
     trust: [
       "Free to use",
       "No sign-up required",
