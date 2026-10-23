@@ -14,9 +14,25 @@ const popularSlugs = [
   "percentage-calculator",
 ] as const;
 
+/** Highest-value tools on the English homepage. Names and routes come from the registry. */
+const valuableSlugs = [
+  "urdu-news-translator",
+  "ai-text-humanizer",
+  "pdf-to-jpg",
+  "pdf-compressor",
+  "image-compressor",
+  "word-counter",
+  "qr-code-generator",
+  "utm-builder",
+] as const;
+
+const englishAudience =
+  "For freelancers, students, digital marketers and news writers";
+
 export function Hero({ locale = "en" }: { locale?: Locale }) {
   const t = getMessages(locale).home;
-  const popular = popularSlugs.flatMap((slug) => {
+  const slugs = locale === "en" ? valuableSlugs : popularSlugs;
+  const popular = slugs.flatMap((slug) => {
     const tool = getTool(slug, locale);
     return tool ? [{ href: tool.route, label: tool.name }] : [];
   });
@@ -26,17 +42,22 @@ export function Hero({ locale = "en" }: { locale?: Locale }) {
       <Container className="py-12 sm:py-16 lg:py-20">
         <div className="home-enter mx-auto max-w-3xl text-center">
           <p className="text-sm font-medium text-accent">{siteConfig.name}</p>
-          <h1 className="mx-auto mt-3 max-w-[18ch] text-balance text-[2rem] font-bold leading-[1.15] tracking-tight text-foreground sm:text-[2.375rem] md:text-[2.75rem] lg:text-5xl xl:text-6xl">
+          <h1 className="mx-auto mt-3 max-w-full text-balance text-[2rem] font-bold leading-[1.15] tracking-tight text-foreground sm:text-[2.375rem] md:text-[2.75rem] lg:text-5xl xl:text-6xl">
             {t.h1}
           </h1>
           <p className="mx-auto mt-4 max-w-xl text-base leading-7 text-muted-foreground sm:text-lg">
             {formatMessage(t.intro, { name: siteConfig.name })}
           </p>
+          {locale === "en" ? (
+            <p className="mx-auto mt-3 max-w-xl text-balance text-sm font-medium leading-6 text-foreground sm:text-base">
+              {englishAudience}
+            </p>
+          ) : null}
           <div className="home-search mt-8 text-start">
             <ToolSearch variant="hero" />
           </div>
           {popular.length > 0 ? (
-            <div className="mt-5 flex flex-wrap items-center justify-center gap-x-2 gap-y-2 text-sm">
+            <div className="mt-5 flex w-full min-w-0 flex-wrap items-center justify-center gap-x-2 gap-y-2 text-sm">
               <span className="font-medium text-foreground">
                 {t.popularLabel}
               </span>

@@ -19,7 +19,9 @@ import { siteConfig } from "@/lib/site";
 export function homeMetadata(locale: Locale) {
   const t = getMessages(locale).meta;
   return createPageMetadata({
-    title: `${siteConfig.name} — ${t.tagline}`,
+    // English stores the full ~60 character title. Other locales keep
+    // "Site name — tagline" and their existing translations.
+    title: locale === "en" ? t.tagline : `${siteConfig.name} — ${t.tagline}`,
     description: t.description,
     path: "/",
     locale,
