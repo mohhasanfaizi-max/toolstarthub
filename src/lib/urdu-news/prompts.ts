@@ -79,17 +79,18 @@ ${urdu}`;
 }
 
 export function humanizePrompt(urdu: string, text: string): string {
-  return `Rewrite this news body so it reads naturally. Vary the sentence lengths. Use plain wording. Do not use stock phrases such as "in today's digital world", "let's dive into", "it is important to note", or "unlock the power".
+  return `Rewrite the English news body so it reads naturally. Vary the sentence lengths. Use plain wording. Do not use stock phrases such as "in today's digital world", "let's dive into", "it is important to note", or "unlock the power".
 
 Keep every fact, name, number, date, and quote exact. Do not add or remove a fact. Do not change an attribution verb. Keep a [bracket] note if the word is still unclear.
+The reply is English only. Do not copy the Urdu, and do not answer in Urdu.
 Return only the news paragraphs. Do not include a title, subtitle, permalink, meta title, meta description, headline, or any label. Do not add headings.
 
 Glossary:
 ${glossaryPromptLines(urdu)}
 
-English:
-${text}
+Urdu, for checking facts only. Do not output this text:
+${urdu}
 
-Urdu, for checking facts only:
-${urdu}`;
+English to rewrite:
+${text}`;
 }

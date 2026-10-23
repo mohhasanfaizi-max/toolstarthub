@@ -7,7 +7,7 @@ import { ToolActions, ToolError, ToolField, ToolPanel, toolControlClass } from "
 import { checkDraftText, checkTranslation, withFactCheck } from "@/lib/urdu-news/checks";
 import { matchingGlossary } from "@/lib/urdu-news/glossary";
 import { uniquePermalink } from "@/lib/urdu-news/permalink";
-import { countWords } from "@/lib/urdu-news/text";
+import { countWords, englishOnlyRewrite } from "@/lib/urdu-news/text";
 import type { ExpandedArticle, FactIssue, FactRow, Verification, VerificationCheck, VersionCopy, VersionId } from "@/lib/urdu-news/types";
 
 const nastaliq = Noto_Nastaliq_Urdu({
@@ -129,6 +129,7 @@ export function UrduNewsTranslatorTool() {
   const [serverInfo, setServerInfo] = useState<VerificationCheck[]>([]);
   const [approved, setApproved] = useState(false);
   const [copied, setCopied] = useState("");
+  const [notice, setNotice] = useState("");
   const usedPermalinks = useRef(new Set<string>());
   const busy = useRef(false);
 
@@ -196,6 +197,7 @@ export function UrduNewsTranslatorTool() {
     busy.current = true;
     setLoading(kind);
     setError("");
+    setNotice("");
     try {
       const data = await post(body);
       if (kind === "translate") {
@@ -218,18 +220,28 @@ export function UrduNewsTranslatorTool() {
         setArticle({ headline: data.headline, body: data.body });
         setApproved(false);
       } else if (kind === "humanize" && typeof data.text === "string") {
-        const text = data.text;
+        const text = englishOnlyRewrite(urdu, data.text);
         const target = body && typeof body === "object" && "target" in body ? body.target : undefined;
-        if (target === "article") {
-          setArticle((current) => (current ? { ...current, body: text } : current));
-        } else if (target === "brief" || target === "medium" || target === "average") {
-          setVersions((current) => ({
-            ...current,
-            [target]: { ...current[target], body: text, word_count: countWords(text) },
-          }));
+        const previous = target === "article"
+          ? article?.body ?? ""
+          : target === "brief" || target === "medium" || target === "average"
+            ? versions[target].body
+            : "";
+        if (!text) {
+          setError("The rewrite was not English. Try again.");
+        } else {
+          if (target === "article") {
+            setArticle((current) => (current ? { ...current, body: text } : current));
+          } else if (target === "brief" || target === "medium" || target === "average") {
+            setVersions((current) => ({
+              ...current,
+              [target]: { ...current[target], body: text, word_count: countWords(text) },
+            }));
+          }
+          setNotice(text === previous ? "The rewrite kept this wording." : "Body rewritten.");
+          setFactFresh(false);
+          setApproved(false);
         }
-        setFactFresh(false);
-        setApproved(false);
       }
     } catch (caught) {
       const offline = caught instanceof TypeError;
@@ -428,6 +440,7 @@ export function UrduNewsTranslatorTool() {
                     {loading === "humanize" ? "Rewriting…" : "Humanize"}
                   </Button>
                 </div>
+                {notice ? <p className="mt-2 text-sm text-muted-foreground" role="status">{notice}</p> : null}
               </div>
               {article ? (
                 <div className="space-y-3 rounded-2xl border border-border p-4">

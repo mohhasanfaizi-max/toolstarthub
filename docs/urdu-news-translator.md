@@ -17,6 +17,18 @@ The article text is not logged and is not stored. There is no database.
 
 Humanize rewrites only the news body, or the expanded body. It does not write the title, subtitle, permalink, meta title, or meta description into that text. Those stay in their own fields, and each field has its own copy button. Copy all, after approval, is the labeled package.
 
+The reply has to be English. If the model copies the Urdu source into the body, the server retries once and then returns an error. It does not replace the English draft with Urdu.
+
+## Request
+
+`POST /api/urdu-news-translator` with JSON:
+
+- Translate: `{ "action": "translate", "urdu": "..." }`
+- Expand: `{ "action": "expand", "urdu": "...", "version": "brief" | "medium" | "average", "text": "..." }`
+- Humanize: `{ "action": "humanize", "urdu": "...", "target": "brief" | "medium" | "average" | "article", "text": "..." }`
+
+Humanize uses `target`. Expand uses `version`. A humanize body that omits `urdu` or `target`, or that sends `version` instead of `target`, is rejected with “The translator could not read that request.” The page sends `target`.
+
 ## Rate limit
 
 `/api/urdu-news-translator` allows about 20 requests per 15 minutes per IP. The counter is in memory on each server instance, so it is best-effort and resets when that instance restarts. It stores a count and a reset time, not the article. This limit is fixed in code. It is separate from the other AI buttons, which stay at their own limit.

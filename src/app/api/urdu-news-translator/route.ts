@@ -1,7 +1,9 @@
 import { GeminiJsonError, geminiConfigured, generateGeminiJsonText } from "@/lib/ai/gemini";
 import { handleUrduNews } from "@/lib/urdu-news/handle";
-import { UrduNewsCallError } from "@/lib/urdu-news/json";
+import { UrduNewsCallError, withDeadline } from "@/lib/urdu-news/json";
 import { URDU_SCHEMAS, type SchemaName } from "@/lib/urdu-news/schema";
+
+const GEMINI_TIMEOUT_MS = 45_000;
 
 export const runtime = "nodejs";
 export const dynamic = "force-dynamic";
@@ -30,10 +32,11 @@ export async function POST(request: Request): Promise<Response> {
     Date.now(),
     async (prompt, schema: SchemaName, maxOutputTokens) => {
       try {
-        return await generateGeminiJsonText(prompt, URDU_SCHEMAS[schema], maxOutputTokens);
+        return await withDeadline(generateGeminiJsonText(prompt, URDU_SCHEMAS[schema], maxOutputTokens), GEMINI_TIMEOUT_MS);
       } catch (error) {
         // Do not log the article. Gemini errors can echo the prompt.
         console.error("Urdu news translator request failed");
+        if (error instanceof UrduNewsCallError) throw error;
         if (error instanceof GeminiJsonError) throw new UrduNewsCallError(error.kind);
         throw new UrduNewsCallError("api");
       }
