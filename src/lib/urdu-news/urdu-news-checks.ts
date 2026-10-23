@@ -1,9 +1,9 @@
 import { resetRateLimits } from "../ai/rate-limit.ts";
 import { checkDraftText, checkTranslation, withFactCheck } from "./checks.ts";
-import { handleUrduNews, URDU_NEWS_MAX_CHARS, URDU_NEWS_RATE_MAX, urduNewsMessages } from "./handle.ts";
+import { handleUrduNews, URDU_DRAFT_MAX_CHARS, URDU_NEWS_MAX_CHARS, URDU_NEWS_RATE_MAX, urduNewsMessages } from "./handle.ts";
 import { humanizePrompt, translationPrompt } from "./prompts.ts";
-import { cleanNewsBody, countWords, firstSentences } from "./text.ts";
-import { readJsonWithRetry, UrduNewsCallError } from "./json.ts";
+import { cleanNewsBody, countWords, englishOnlyRewrite, firstSentences } from "./text.ts";
+import { readJsonWithRetry, UrduNewsCallError, withDeadline } from "./json.ts";
 import { applySeo, buildMetaDescription, buildMetaTitle, buildTitle, META_DESCRIPTION_MAX, META_TITLE_MAX, TITLE_MAX } from "./limits.ts";
 import { extractNumbers, normalizeDigits, numberValues } from "./numbers.ts";
 import { buildPermalink, uniquePermalink } from "./permalink.ts";
@@ -129,7 +129,18 @@ export async function runUrduNewsChecks(assert: Assert): Promise<void> {
   );
   const humanPrompt = humanizePrompt(urdu, brief);
   assert(humanPrompt.includes("Return only the news paragraphs"), "Humanize asks for the body only");
+  assert(humanPrompt.includes("Do not copy the Urdu"), "Humanize forbids copying the Urdu");
+  assert(humanPrompt.includes("The reply is English only"), "Humanize asks for English");
+  assert(
+    humanPrompt.indexOf("English to rewrite:") > humanPrompt.indexOf("Do not output this text:"),
+    "The English body is the last source in the humanize prompt",
+  );
   assert(!humanPrompt.includes("Return a headline"), "Humanize does not ask for a headline");
+  assert(englishOnlyRewrite(urdu, urdu) === null, "A Urdu echo is not an English rewrite");
+  assert(
+    englishOnlyRewrite(urdu, `${brief}\n\n${urdu}`)?.includes("Imran Khan") && !englishOnlyRewrite(urdu, `${brief}\n\n${urdu}`)?.includes("عمران"),
+    "A pasted Urdu copy is removed from an English rewrite",
+  );
 
   const lengthRule = "Never add words or facts to reach a length. If the Urdu is short, Brief and Medium may be as short as the facts allow, even identical to Full.";
   const hospitalUrdu = "وزیراعظم نے کہا کہ دو نئے ہسپتال بنائے جائیں گے۔";
@@ -464,6 +475,167 @@ export async function runUrduNewsChecks(assert: Assert): Promise<void> {
     assert(text.includes("Imran Khan said in Lahore"), "Humanize keeps the news paragraph");
     assert(!/^(title|subtitle|permalink|meta description|meta title)\s*:/im.test(text), "Humanize body has no SEO labels");
   }
+
+  const probe = await handleUrduNews(
+    { action: "humanize", text: medium, version: "medium" },
+    "humanize-probe",
+    4_700,
+    async () => {
+      throw new Error("should not call");
+    },
+    true,
+  );
+  assert(
+    probe.status === 400 && probe.body.success === false && probe.body.error === urduNewsMessages.invalid,
+    "Humanize without urdu and with version is rejected",
+  );
+
+  let versionCalls = 0;
+  const versionInstead = await handleUrduNews(
+    { action: "humanize", urdu, version: "medium", text: medium },
+    "humanize-version",
+    4_710,
+    async () => {
+      versionCalls += 1;
+      return JSON.stringify({ text: medium });
+    },
+    true,
+  );
+  assert(versionInstead.status === 400 && versionCalls === 0, "Humanize does not read version in place of target");
+
+  const blankDraft = await handleUrduNews(
+    { action: "humanize", urdu, target: "medium", text: "   " },
+    "humanize-empty",
+    4_720,
+    async () => {
+      throw new Error("should not call");
+    },
+    true,
+  );
+  assert(blankDraft.status === 400 && blankDraft.body.success === false && blankDraft.body.error === urduNewsMessages.draftEmpty, "Empty English draft is rejected");
+
+  const longDraft = await handleUrduNews(
+    { action: "humanize", urdu, target: "medium", text: "word ".repeat(URDU_DRAFT_MAX_CHARS) },
+    "humanize-long",
+    4_730,
+    async () => {
+      throw new Error("should not call");
+    },
+    true,
+  );
+  assert(longDraft.status === 400 && longDraft.body.success === false && longDraft.body.error === urduNewsMessages.draftLong, "A draft over 16,000 characters is rejected");
+
+  const shortRewrite = "Imran Khan said in Lahore on Monday that the budget is 12 billion rupees.";
+  const short = await handleUrduNews(
+    { action: "humanize", urdu, target: "brief", text: shortRewrite },
+    "humanize-short",
+    4_740,
+    async () => JSON.stringify({ text: shortRewrite }),
+    true,
+  );
+  assert(short.status === 200 && short.body.success === true && short.body.text === shortRewrite, "A short English draft can be returned when it is already English");
+
+  const longEnglish = `${medium} ${words(400)}`;
+  const longOk = await handleUrduNews(
+    { action: "humanize", urdu, target: "average", text: longEnglish },
+    "humanize-long-ok",
+    4_745,
+    async () => JSON.stringify({ text: longEnglish }),
+    true,
+  );
+  assert(longOk.status === 200 && longOk.body.success === true && longOk.body.text === longEnglish, "A long English draft is accepted");
+
+  let echoCalls = 0;
+  const quoted = 'Imran Khan said in Lahore on Monday that the provincial budget is 12 billion rupees. He said, "The city will open two clinics this year."';
+  const echoed = await handleUrduNews(
+    { action: "humanize", urdu, target: "medium", text: medium },
+    "humanize-echo",
+    4_750,
+    async () => {
+      echoCalls += 1;
+      if (echoCalls === 1) return JSON.stringify({ text: urdu });
+      return JSON.stringify({ text: quoted });
+    },
+    true,
+  );
+  assert(echoed.status === 200 && echoed.body.success === true && echoCalls === 2, "A Urdu echo is retried once");
+  if (echoed.body.success) {
+    const text = String(echoed.body.text);
+    assert(!/[\u0600-\u06FF]/.test(text), "The retry is English, not the Urdu rewritten into the body");
+    assert(text.includes("Imran Khan") && text.includes("Lahore") && text.includes("Monday") && text.includes("12"), "Names, the place, the date, and the figure stay");
+    assert(text.includes("The city will open two clinics this year."), "The quote stays");
+  }
+
+  let urduCalls = 0;
+  const stillUrdu = await handleUrduNews(
+    { action: "humanize", urdu, target: "article", text: medium },
+    "humanize-urdu",
+    4_760,
+    async () => {
+      urduCalls += 1;
+      return JSON.stringify({ text: urdu });
+    },
+    true,
+  );
+  assert(
+    stillUrdu.status === 502 && stillUrdu.body.success === false && stillUrdu.body.error === urduNewsMessages.notEnglish,
+    "Urdu rewritten as the body is an error",
+  );
+  assert(!("text" in stillUrdu.body) && urduCalls === 2, "A failed humanize has no fake body and retries once");
+
+  const timedOut = await handleUrduNews(
+    { action: "humanize", urdu, target: "medium", text: medium },
+    "humanize-timeout",
+    4_770,
+    async () => {
+      throw new UrduNewsCallError("timeout");
+    },
+    true,
+  );
+  assert(timedOut.status === 504 && timedOut.body.success === false && timedOut.body.error === urduNewsMessages.timeout, "A Gemini timeout is a clear error");
+  assert(!("text" in timedOut.body), "A timeout has no fake body");
+
+  const failedCall = await handleUrduNews(
+    { action: "humanize", urdu, target: "medium", text: medium },
+    "humanize-fail",
+    4_780,
+    async () => {
+      throw new UrduNewsCallError("api");
+    },
+    true,
+  );
+  assert(failedCall.status === 502 && failedCall.body.success === false && failedCall.body.error === urduNewsMessages.failed, "A Gemini failure is a clear error");
+  assert(!("text" in failedCall.body), "A Gemini failure has no fake body");
+
+  const badHumanize = await handleUrduNews(
+    { action: "humanize", urdu, target: "medium", text: medium },
+    "humanize-bad-json",
+    4_790,
+    async () => "not-json",
+    true,
+  );
+  assert(badHumanize.status === 502 && badHumanize.body.success === false && badHumanize.body.error === urduNewsMessages.badJson, "Unreadable humanize JSON is an error");
+  assert(!("text" in badHumanize.body), "Unreadable humanize JSON has no fake body");
+
+  const invalidTarget = await handleUrduNews(
+    { action: "humanize", urdu, target: "full", text: medium },
+    "humanize-full-label",
+    4_800,
+    async () => {
+      throw new Error("should not call");
+    },
+    true,
+  );
+  assert(invalidTarget.status === 400 && invalidTarget.body.success === false && invalidTarget.body.error === urduNewsMessages.invalid, "The Full label is not a humanize target");
+
+  let deadlineHit = false;
+  try {
+    await withDeadline(new Promise((resolve) => setTimeout(() => resolve("late"), 40)), 10);
+  } catch (error) {
+    deadlineHit = error instanceof UrduNewsCallError && error.kind === "timeout";
+  }
+  assert(deadlineHit, "A hung Gemini call times out");
+  assert(await withDeadline(Promise.resolve("ok"), 50) === "ok", "A finished Gemini call is returned");
 
   const expanded = await handleUrduNews(
     { action: "expand", urdu, version: "medium", text: medium },

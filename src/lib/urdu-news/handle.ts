@@ -4,7 +4,7 @@ import { readJsonWithRetry, UrduNewsCallError } from "./json.ts";
 import { applySeo } from "./limits.ts";
 import { expandPrompt, factCheckPrompt, humanizePrompt, translationPrompt } from "./prompts.ts";
 import type { SchemaName } from "./schema.ts";
-import { cleanNewsBody, plainText, stripFieldLabel } from "./text.ts";
+import { cleanNewsBody, englishOnlyRewrite, plainText, stripFieldLabel } from "./text.ts";
 import type { ExpandedArticle, FactIssue, FactRow, FactType, TranslationResult, VersionId } from "./types.ts";
 
 /** Best-effort in-memory cap. Each server instance has its own counter. Article text is not stored. */
@@ -25,6 +25,8 @@ export const urduNewsMessages = {
   busy: "The translator is busy. Wait a minute and try again.",
   failed: "The translator could not finish that request. Try again in a moment.",
   badJson: "The translator returned a result that could not be read. Try again.",
+  notEnglish: "The rewrite was not English. Try again.",
+  timeout: "The translator took too long. Try again in a moment.",
 } as const;
 
 export type UrduJsonGenerator = (prompt: string, schema: SchemaName, maxOutputTokens: number) => Promise<string>;
@@ -47,6 +49,7 @@ function fromCall(error: UrduNewsCallError): UrduNewsResponse {
   if (error.kind === "safety") return fail(urduNewsMessages.safety, 502);
   if (error.kind === "rate") return fail(urduNewsMessages.busy, 429);
   if (error.kind === "bad_json") return fail(urduNewsMessages.badJson, 502);
+  if (error.kind === "timeout") return fail(urduNewsMessages.timeout, 504);
   return fail(urduNewsMessages.failed, 502);
 }
 
@@ -164,6 +167,23 @@ function parseRewrite(value: unknown): string {
   return text;
 }
 
+async function rewriteEnglish(generate: UrduJsonGenerator, urdu: string, source: string): Promise<string | null> {
+  const prompt = humanizePrompt(urdu, source);
+  const first = englishOnlyRewrite(urdu, await ask(generate, prompt, "rewrite", 4096, parseRewrite));
+  if (first) return first;
+  const second = englishOnlyRewrite(
+    urdu,
+    await ask(
+      generate,
+      `${prompt}\n\nThe previous reply was not English. Return only the rewritten English paragraphs.`,
+      "rewrite",
+      4096,
+      parseRewrite,
+    ),
+  );
+  return second;
+}
+
 async function ask<T>(
   generate: UrduJsonGenerator,
   prompt: string,
@@ -249,7 +269,8 @@ export async function handleUrduNews(
       if (record.target !== "article" && !version) return fail(urduNewsMessages.invalid);
       const source = cleanNewsBody(draft.text);
       if (!source) return fail(urduNewsMessages.draftEmpty);
-      const text = await ask(generate, humanizePrompt(urdu.urdu, source), "rewrite", 4096, parseRewrite);
+      const text = await rewriteEnglish(generate, urdu.urdu, source);
+      if (!text) return fail(urduNewsMessages.notEnglish, 502);
       const verification = checkDraftText(urdu.urdu, text, version ?? "article");
       return { status: 200, body: { success: true, text, verification } };
     }

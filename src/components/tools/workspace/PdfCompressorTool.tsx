@@ -88,6 +88,7 @@ export function PdfCompressorTool() {
   }
 
   async function compress() {
+    cancelled.current = false;
     if (!file || !bytes) {
       setError("Choose a PDF file.");
       return;

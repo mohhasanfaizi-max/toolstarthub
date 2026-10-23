@@ -1,5 +1,5 @@
 export class UrduNewsCallError extends Error {
-  readonly kind: "unconfigured" | "safety" | "rate" | "unavailable" | "empty" | "api" | "bad_json";
+  readonly kind: "unconfigured" | "safety" | "rate" | "unavailable" | "empty" | "api" | "bad_json" | "timeout";
 
   constructor(kind: UrduNewsCallError["kind"]) {
     super(kind);
@@ -31,4 +31,21 @@ export async function readJsonWithRetry<T>(
   }
   if (last instanceof UrduNewsCallError) throw last;
   throw new UrduNewsCallError("bad_json");
+}
+
+/** Stop a hung model call. The article is not included in the error. */
+export function withDeadline<T>(work: Promise<T>, ms: number): Promise<T> {
+  return new Promise((resolve, reject) => {
+    const timer = setTimeout(() => reject(new UrduNewsCallError("timeout")), ms);
+    work.then(
+      (value) => {
+        clearTimeout(timer);
+        resolve(value);
+      },
+      (error) => {
+        clearTimeout(timer);
+        reject(error);
+      },
+    );
+  });
 }

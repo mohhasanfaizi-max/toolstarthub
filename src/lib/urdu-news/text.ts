@@ -70,6 +70,30 @@ export function cleanNewsBody(value: string): string {
   return kept.join("\n\n");
 }
 
+function arabicLetterShare(text: string): number {
+  let letters = 0;
+  let arabic = 0;
+  for (const char of text) {
+    if (!/\p{L}/u.test(char)) continue;
+    letters += 1;
+    if (/\p{Script=Arabic}/u.test(char)) arabic += 1;
+  }
+  return letters === 0 ? 1 : arabic / letters;
+}
+
+/**
+ * Humanize must stay English. Drop a pasted copy of the Urdu source.
+ * Reject a reply that is still mostly Urdu so the English body is not replaced with it.
+ */
+export function englishOnlyRewrite(urdu: string, text: string): string | null {
+  const source = urdu.trim();
+  let next = text;
+  if (source && next.includes(source)) next = next.split(source).join(" ");
+  next = cleanNewsBody(next);
+  if (!next || arabicLetterShare(next) > 0.4) return null;
+  return next;
+}
+
 /** Drop tags so model output is shown as text, never as HTML. */
 export function plainText(value: string): string {
   return value

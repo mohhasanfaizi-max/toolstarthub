@@ -1,5 +1,8 @@
 import type { PDFDocumentLoadingTask, PDFDocumentProxy } from "pdfjs-dist";
+import { ensurePdfJsRuntime } from "./pdf-js-runtime.ts";
 import { pdfScaleForPage, validatePdfBytes } from "./pdf.ts";
+
+const PDFJS_WORKER = "/pdfjs/pdf.worker.entry.mjs";
 
 export async function openPdfJsDocument(data: Uint8Array): Promise<{
   task: PDFDocumentLoadingTask;
@@ -9,8 +12,9 @@ export async function openPdfJsDocument(data: Uint8Array): Promise<{
   if (!sniffed.ok) {
     throw new Error("Invalid PDF");
   }
+  ensurePdfJsRuntime();
   const pdfjs = await import("pdfjs-dist");
-  pdfjs.GlobalWorkerOptions.workerSrc = "/pdfjs/pdf.worker.min.mjs";
+  pdfjs.GlobalWorkerOptions.workerSrc = PDFJS_WORKER;
   const task = pdfjs.getDocument({
     data,
     wasmUrl: "/pdfjs/wasm/",
@@ -41,9 +45,11 @@ export async function renderPdfPageToJpeg(
   }
   context.fillStyle = "#ffffff";
   context.fillRect(0, 0, canvas.width, canvas.height);
+  // pdf.js 6 replaces the context when a canvas is passed. Passing both makes
+  // getContext() return null, so the page never renders. Keep this context.
   await page.render({
+    canvas: null,
     canvasContext: context,
-    canvas,
     viewport,
   }).promise;
 

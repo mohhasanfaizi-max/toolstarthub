@@ -105,8 +105,10 @@ export function PdfToJpgTool() {
       await releasePdf();
       revokeAll();
       const data = new Uint8Array(await nextFile.arrayBuffer());
+      const { ensurePdfJsRuntime } = await import("@/lib/tools/pdf-js-runtime");
+      ensurePdfJsRuntime();
       const pdfjs = await import("pdfjs-dist");
-      pdfjs.GlobalWorkerOptions.workerSrc = "/pdfjs/pdf.worker.min.mjs";
+      pdfjs.GlobalWorkerOptions.workerSrc = "/pdfjs/pdf.worker.entry.mjs";
       const task = pdfjs.getDocument({
         data,
         wasmUrl: "/pdfjs/wasm/",
@@ -379,9 +381,11 @@ async function renderPage(
   }
   context.fillStyle = "#ffffff";
   context.fillRect(0, 0, canvas.width, canvas.height);
+  // pdf.js 6 replaces the context when a canvas is passed. Passing both makes
+  // getContext() return null, so the page never renders. Keep this context.
   await page.render({
+    canvas: null,
     canvasContext: context,
-    canvas,
     viewport,
   }).promise;
 
