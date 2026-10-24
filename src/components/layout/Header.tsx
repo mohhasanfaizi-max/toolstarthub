@@ -15,18 +15,22 @@ export function Header({ locale = "en" }: { locale?: Locale }) {
 
   return (
     <header className="sticky top-0 z-50 border-b border-border bg-header/95 backdrop-blur-sm">
-      <Container className="grid h-16 grid-cols-[auto_1fr_auto] items-center gap-2 sm:gap-3 lg:grid-cols-[1fr_auto_1fr]">
+      <Container
+        fullWidth
+        className="grid h-16 grid-cols-[auto_1fr_auto] items-center gap-2 sm:gap-3 xl:grid-cols-[1fr_auto_1fr]"
+      >
         <Logo
           compact
+          className="shrink-0"
           href={localizePath("/", locale)}
           label={formatMessage(messages.header.logoHome, {
             name: siteConfig.name,
           })}
         />
-        <div className="justify-self-center">
+        <div className="min-w-0 justify-self-center">
           <HeaderNav locale={locale} />
         </div>
-        <div className="flex items-center justify-end gap-0.5 sm:gap-2">
+        <div className="flex shrink-0 items-center justify-end gap-0.5 sm:gap-2">
           <HeaderSearch />
           <LanguageSwitcher />
           <ThemeToggle />
