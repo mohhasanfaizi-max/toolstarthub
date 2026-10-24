@@ -85,7 +85,9 @@ export function CategoryView({
     .map((item) => getCategory(item, locale))
     .filter((item): item is Category => item !== undefined);
   const relatedGuides =
-    locale === "en" ? getGuidesByCategory(category.slug) : [];
+    locale === "en"
+      ? getGuidesByCategory(category.slug).filter((guide) => guide.slug !== "free-digital-tools")
+      : [];
 
   return (
     <Container className="py-10 sm:py-14">

@@ -48,6 +48,7 @@ export const guideDates: Record<string, GuideDates> = {
   "how-to-estimate-a-car-loan-payment": { published: "2026-09-27T06:54:31Z", modified: "2026-09-27T06:54:31Z" },
   "how-to-estimate-fuel-cost": { published: "2026-09-27T06:54:31Z", modified: "2026-10-19T16:00:00Z" },
   "how-to-find-and-replace-text": { published: "2026-09-27T06:54:31Z", modified: "2026-09-27T06:54:31Z" },
+  "free-digital-tools": { published: "2026-10-23", modified: "2026-10-23" },
   "how-to-find-dominant-colors": { published: "2026-09-27T06:54:31Z", modified: "2026-09-27T06:54:31Z" },
   "how-to-find-the-mean-median-and-mode": { published: "2026-09-27T06:54:31Z", modified: "2026-09-27T06:54:31Z" },
   "how-to-generate-a-password": { published: "2026-09-27T06:54:31Z", modified: "2026-10-19T16:00:00Z" },

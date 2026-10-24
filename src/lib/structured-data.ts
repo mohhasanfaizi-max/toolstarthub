@@ -111,6 +111,8 @@ export type GuideArticleInput = {
   section?: string;
   tools?: Array<{ name: string; path: string }>;
   wordCount?: number;
+  /** When set, this guide is credited to a person instead of the editorial team. */
+  personAuthor?: { name: string; url: string };
 };
 
 export function guideArticleJsonLd(input: GuideArticleInput) {
@@ -134,7 +136,13 @@ export function guideArticleJsonLd(input: GuideArticleInput) {
     ...(input.dateModified ?? input.datePublished
       ? { dateModified: input.dateModified ?? input.datePublished }
       : {}),
-    author: editorialTeam,
+    author: input.personAuthor
+      ? {
+          "@type": "Person",
+          name: input.personAuthor.name,
+          url: input.personAuthor.url,
+        }
+      : editorialTeam,
     publisher: publisherRef,
     isPartOf: { "@id": websiteId() },
     ...(input.section ? { articleSection: input.section } : {}),

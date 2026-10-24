@@ -9,6 +9,14 @@ import { RelatedTools } from "@/components/tools/RelatedTools";
 import { getCategoryBySlug } from "@/data/categories";
 import { getArticleBySlug } from "@/data/articles";
 import { getGuideContent } from "@/data/guide-content";
+import {
+  FREE_DIGITAL_TOOLS_META_DESCRIPTION,
+  FREE_DIGITAL_TOOLS_META_TITLE,
+  FREE_DIGITAL_TOOLS_SLUG,
+  freeDigitalToolsFaqs,
+  freeDigitalToolsWordCount,
+} from "@/data/free-digital-tools-guide";
+import { FreeDigitalToolsArticle } from "@/components/guides/FreeDigitalToolsArticle";
 import { getGuideDates } from "@/data/guide-dates";
 import { guideMetaDescriptions } from "@/data/guide-meta";
 import { getPublicGuideBySlug, getRelatedPublicArticles, toGuide } from "@/data/guides";
@@ -38,28 +46,33 @@ export async function generateMetadata({
 
   const article = getArticleBySlug(slug);
   const dates = getGuideDates(slug, article?.publishedAt ?? article?.publishAt);
-  const description =
-    article?.metaDescription || guideMetaDescriptions[slug] || guide.description;
+  const catalogGuide = slug === FREE_DIGITAL_TOOLS_SLUG;
+  const description = catalogGuide
+    ? FREE_DIGITAL_TOOLS_META_DESCRIPTION
+    : article?.metaDescription || guideMetaDescriptions[slug] || guide.description;
   const base = createPageMetadata({
-    title: article?.metaTitle || guide.title,
+    title: catalogGuide ? FREE_DIGITAL_TOOLS_META_TITLE : article?.metaTitle || guide.title,
     description,
     path: guide.route,
     keywords: article
       ? [article.primaryKeyword, ...article.secondaryKeywords]
       : undefined,
-    shareImage: { route: guide.route, alt: guide.title },
+    shareImage: { route: guide.route, alt: catalogGuide ? FREE_DIGITAL_TOOLS_META_TITLE : guide.title },
   });
   const category = getCategoryBySlug(guide.category);
   return {
     ...base,
-    authors: [{ name: EDITORIAL_TEAM_NAME, url: absoluteUrl("/about#editorial-team") }],
+    ...(catalogGuide ? { title: { absolute: FREE_DIGITAL_TOOLS_META_TITLE } } : {}),
+    authors: catalogGuide
+      ? [{ name: "Ali Ahmed", url: absoluteUrl("/about") }]
+      : [{ name: EDITORIAL_TEAM_NAME, url: absoluteUrl("/about#editorial-team") }],
     openGraph: {
       ...base.openGraph,
       type: "article",
       ...(dates.published ? { publishedTime: dates.published } : {}),
       ...(dates.modified ? { modifiedTime: dates.modified } : {}),
-      authors: [absoluteUrl("/about#editorial-team")],
-      ...(category ? { section: category.name } : {}),
+      authors: [absoluteUrl(catalogGuide ? "/about" : "/about#editorial-team")],
+      ...(category && !catalogGuide ? { section: category.name } : {}),
     },
   };
 }
@@ -82,6 +95,9 @@ export default async function GuidePage({
     .filter((tool): tool is Tool => tool !== undefined);
   const relatedGuides = getRelatedPublicArticles(article, now).map(toGuide);
   const dates = getGuideDates(guide.slug, article.publishedAt ?? article.publishAt);
+  const catalogGuide = guide.slug === FREE_DIGITAL_TOOLS_SLUG;
+  const description =
+    article.metaDescription || guideMetaDescriptions[guide.slug] || guide.description;
 
   return (
     <Container className="py-10 sm:py-14">
@@ -95,20 +111,24 @@ export default async function GuidePage({
       <JsonLd
         data={guideArticleJsonLd({
           title: guide.title,
-          description:
-            article.metaDescription || guideMetaDescriptions[guide.slug] || guide.description,
+          description,
           path: guide.route,
           datePublished: dates.published,
           dateModified: dates.modified,
           keywords: [article.primaryKeyword, ...article.secondaryKeywords],
-          section: category?.name,
+          section: catalogGuide ? undefined : category?.name,
           tools: relatedTools.map((tool) => ({ name: tool.name, path: tool.route })),
-          wordCount: content
-            ? collectText(content).join(" ").split(/\s+/).filter(Boolean).length
+          wordCount: catalogGuide
+            ? freeDigitalToolsWordCount
+            : content
+              ? collectText(content).join(" ").split(/\s+/).filter(Boolean).length
+              : undefined,
+          personAuthor: catalogGuide
+            ? { name: "Ali Ahmed", url: absoluteUrl("/about") }
             : undefined,
         })}
       />
-      {content?.steps.length ? (
+      {content?.steps.length && !catalogGuide ? (
         <JsonLd
           data={howToJsonLd({
             name: content.stepsHeading,
@@ -120,7 +140,11 @@ export default async function GuidePage({
           })}
         />
       ) : null}
-      {content?.faqs.length ? <JsonLd data={faqJsonLd(content.faqs)} /> : null}
+      {catalogGuide ? (
+        <JsonLd data={faqJsonLd(freeDigitalToolsFaqs())} />
+      ) : content?.faqs.length ? (
+        <JsonLd data={faqJsonLd(content.faqs)} />
+      ) : null}
       <Breadcrumbs
         items={[
           { name: "Home", href: "/" },
@@ -128,7 +152,14 @@ export default async function GuidePage({
           { name: guide.title },
         ]}
       />
-      {content ? (
+      {catalogGuide ? (
+        <FreeDigitalToolsArticle
+          route={guide.route}
+          pageTitle={FREE_DIGITAL_TOOLS_META_TITLE}
+          published={dates.published}
+          modified={dates.modified}
+        />
+      ) : content ? (
         <GuideArticle
           title={guide.title}
           pageTitle={article.metaTitle || guide.title}
