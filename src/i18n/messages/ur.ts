@@ -7,6 +7,7 @@ const messages: Messages = {
       allTools: "تمام ٹولز",
       categories: "زمرے",
       guides: "رہنمائیاں",
+      freeDigitalTools: "مفت ڈیجیٹل ٹولز",
       urduTranslator: "اردو مترجم",
       popularTools: "مقبول ٹولز",
       about: "ہمارے بارے میں",

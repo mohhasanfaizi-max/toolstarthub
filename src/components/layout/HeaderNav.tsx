@@ -10,6 +10,7 @@ export function HeaderNav({ locale = "en" }: { locale?: Locale }) {
     { href: "/tools", label: nav.allTools },
     { href: "/categories", label: nav.categories },
     { href: "/guides", label: nav.guides },
+    { href: "/guides/free-digital-tools", label: nav.freeDigitalTools },
     { href: "/tools/urdu-news-translator", label: nav.urduTranslator },
     { href: "/#popular-tools", label: nav.popularTools },
     { href: "/about", label: nav.about },

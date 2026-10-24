@@ -7,6 +7,7 @@ const messages: Messages = {
       allTools: "すべてのツール",
       categories: "カテゴリ",
       guides: "ガイド",
+      freeDigitalTools: "無料デジタルツール",
       urduTranslator: "ウルドゥー語翻訳",
       popularTools: "人気のツール",
       about: "サイトについて",

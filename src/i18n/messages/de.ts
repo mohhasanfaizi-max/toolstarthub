@@ -7,6 +7,7 @@ const messages: Messages = {
       allTools: "Alle Tools",
       categories: "Kategorien",
       guides: "Ratgeber",
+      freeDigitalTools: "Kostenlose Digitaltools",
       urduTranslator: "Urdu-Übersetzer",
       popularTools: "Beliebte Tools",
       about: "Über uns",

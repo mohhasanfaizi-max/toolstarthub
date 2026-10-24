@@ -7,6 +7,7 @@ const messages: Messages = {
       allTools: "전체 도구",
       categories: "카테고리",
       guides: "가이드",
+      freeDigitalTools: "무료 디지털 도구",
       urduTranslator: "우르두어 번역",
       popularTools: "인기 도구",
       about: "소개",
