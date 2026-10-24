@@ -32,6 +32,7 @@ import {
 } from "@/i18n/server";
 import { getLocalizedToolPage } from "@/i18n/localized-tool-content";
 import { ShareCardImage } from "@/components/seo/ShareCardImage";
+import { FreeDigitalToolsBacklink } from "@/components/tools/FreeDigitalToolsBacklink";
 import { howToJsonLd } from "@/lib/structured-data";
 import {
   breadcrumbJsonLd,
@@ -171,6 +172,7 @@ export function ToolView({ locale, slug }: { locale: Locale; slug: string }) {
         <p className="mt-3 text-base leading-7 text-muted-foreground sm:text-lg">
           {tool.description}
         </p>
+        {english ? <FreeDigitalToolsBacklink slug={tool.slug} /> : null}
         {quickAnswer ? (
           <section aria-labelledby="quick-answer-heading" className="mt-5">
             <h2
