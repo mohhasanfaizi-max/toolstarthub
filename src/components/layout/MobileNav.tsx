@@ -20,6 +20,7 @@ export function MobileNav() {
     { href: "/#popular-tools", label: nav.popularTools },
     { href: "/about", label: nav.about },
     { href: "/guides", label: nav.guides },
+    { href: "/guides/free-digital-tools", label: nav.freeDigitalTools },
     { href: "/tools/urdu-news-translator", label: nav.urduTranslator },
     { href: "/#how-it-works", label: nav.howItWorks },
     { href: "/contact", label: nav.contact },
@@ -47,7 +48,7 @@ export function MobileNav() {
   }, [open]);
 
   return (
-    <div className="lg:hidden">
+    <div className="xl:hidden">
       <button
         type="button"
         className="inline-flex size-10 items-center justify-center rounded-lg text-foreground hover:bg-muted"

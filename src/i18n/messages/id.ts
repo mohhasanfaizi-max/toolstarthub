@@ -7,6 +7,7 @@ const messages: Messages = {
       allTools: "Semua Alat",
       categories: "Kategori",
       guides: "Panduan",
+      freeDigitalTools: "Alat Digital Gratis",
       urduTranslator: "Penerjemah Urdu",
       popularTools: "Alat Populer",
       about: "Tentang",

@@ -10,6 +10,7 @@ export function HeaderNav({ locale = "en" }: { locale?: Locale }) {
     { href: "/tools", label: nav.allTools },
     { href: "/categories", label: nav.categories },
     { href: "/guides", label: nav.guides },
+    { href: "/guides/free-digital-tools", label: nav.freeDigitalTools },
     { href: "/tools/urdu-news-translator", label: nav.urduTranslator },
     { href: "/#popular-tools", label: nav.popularTools },
     { href: "/about", label: nav.about },
@@ -17,13 +18,16 @@ export function HeaderNav({ locale = "en" }: { locale?: Locale }) {
   ];
 
   return (
-    <nav className="hidden lg:block" aria-label={messages.header.primaryNav}>
+    <nav
+      className="hidden max-w-full overflow-x-auto xl:block [scrollbar-width:none]"
+      aria-label={messages.header.primaryNav}
+    >
       <ul className="flex items-center gap-1">
         {links.map((link) => (
           <li key={link.href}>
             <Link
               href={localizePath(link.href, locale)}
-              className="inline-flex whitespace-nowrap rounded-lg px-2.5 py-2 text-sm font-medium text-muted-foreground hover:bg-muted hover:text-foreground xl:px-3"
+              className="inline-flex whitespace-nowrap rounded-lg px-2.5 py-2 text-sm font-medium text-muted-foreground hover:bg-muted hover:text-foreground min-[1400px]:px-3"
             >
               {link.label}
             </Link>
