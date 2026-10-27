@@ -1588,6 +1588,27 @@ export const tools: Tool[] = [
     metaTitle: "Open Graph Preview — Check a Page's Share Tags",
     relatedSlugs: ["meta-tag-generator", "url-parser", "html-encoder"],
   },
+  {
+    slug: "significant-figures-calculator",
+    name: "Significant Figures Calculator and Counter",
+    description:
+      "Count significant figures, round numbers to a specified precision, convert scientific notation, and solve mathematical operations using significant-figure rules with clear explanations.",
+    category: "calculators",
+    icon: "calculator",
+    route: "/tools/significant-figures-calculator",
+    featured: false,
+    new: false,
+    keywords: [
+      "significant figures",
+      "sig fig calculator",
+      "significant figures calculator",
+      "round to significant figures",
+      "scientific notation",
+    ],
+    status: "available",
+    metaTitle: "Significant Figures Calculator & Sig Fig Counter",
+    relatedSlugs: ["percentage-calculator", "average-calculator", "unit-converter"],
+  },
   ...extraTools,
 ];
 

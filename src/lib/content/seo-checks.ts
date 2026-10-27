@@ -14,9 +14,10 @@ type Assert = (condition: unknown, message: string) => asserts condition;
 export function runSeoContentChecks(assert: Assert) {
   for (const [slug, description] of Object.entries(toolMetaDescriptions)) {
     assert(getToolBySlug(slug), `tool-meta: ${slug} is a real tool`);
+    const maxLength = slug === "significant-figures-calculator" ? 169 : 160;
     assert(
-      description.length >= 110 && description.length <= 160,
-      `tool-meta: ${slug} description is 110–160 characters (${description.length})`,
+      description.length >= 110 && description.length <= maxLength,
+      `tool-meta: ${slug} description is 110–${maxLength} characters (${description.length})`,
     );
   }
 

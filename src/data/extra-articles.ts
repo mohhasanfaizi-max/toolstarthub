@@ -75,4 +75,42 @@ export const extraArticles: Article[] = [
     relatedArticles: [],
     category: "seo-utilities",
   },
+  {
+    id: "significant-figures-calculator",
+    title: "Significant Figures Calculator: Count, Round, and Solve Sig Figs",
+    slug: "significant-figures-calculator",
+    primaryKeyword: "significant figures calculator",
+    secondaryKeywords: [
+      "sig fig calculator",
+      "significant figures rules",
+      "rounding significant figures",
+      "scientific notation significant figures",
+    ],
+    searchIntent: "informational",
+    toolSlug: "significant-figures-calculator",
+    siblingToolSlugs: ["percentage-calculator", "average-calculator", "unit-converter"],
+    cluster: "significant-figures-calculator",
+    articleType: "overview",
+    status: "PUBLISHED",
+    publishedAt: "2026-10-27T16:00:00Z",
+    metaTitle: "Significant Figures Calculator: Count, Round, and Solve Sig Figs",
+    metaDescription:
+      "Count and round significant figures, then add or multiply with the matching rule. 150, 80, and 1200 stay ambiguous.",
+    excerpt:
+      "Count and round significant figures, then add or multiply with the matching rule. 150, 80, and 1200 stay ambiguous.",
+    content: null,
+    faq: [],
+    relatedTools: [
+      "significant-figures-calculator",
+      "percentage-calculator",
+      "average-calculator",
+      "unit-converter",
+    ],
+    relatedArticles: [
+      "how-to-calculate-percentage",
+      "how-to-find-the-mean-median-and-mode",
+      "how-to-convert-units",
+    ],
+    category: "calculators",
+  },
 ];

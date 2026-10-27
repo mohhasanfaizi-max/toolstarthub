@@ -120,6 +120,7 @@ const workspaces: Record<string, ComponentType> = {
   "robots-txt-generator": lazyTool(async () => (await import("./workspace/RobotsTxtGeneratorTool")).RobotsTxtGeneratorTool),
   "time-calculator": lazyTool(async () => (await import("./workspace/TimeCalculatorTool")).TimeCalculatorTool),
   "average-calculator": lazyTool(async () => (await import("./workspace/AverageCalculatorTool")).AverageCalculatorTool),
+  "significant-figures-calculator": lazyTool(async () => (await import("./workspace/SignificantFiguresCalculatorTool")).SignificantFiguresCalculatorTool),
   "text-repeater": lazyTool(async () => (await import("./workspace/TextRepeaterTool")).TextRepeaterTool),
   "password-strength-checker": lazyTool(async () => (await import("./workspace/PasswordStrengthCheckerTool")).PasswordStrengthCheckerTool),
   "gitignore-generator": lazyTool(async () => (await import("./workspace/GitignoreGeneratorTool")).GitignoreGeneratorTool),

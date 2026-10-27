@@ -148,4 +148,7 @@ export const toolMetaDescriptions: Record<string, string> = {
     "Free favicon generator: make a simple letter or color favicon as PNG icons at 16, 32, and 180 pixels, plus an ICO file, in your browser.",
   "meta-tag-generator":
     "Free meta tag generator: write SEO title, description, robots, canonical, Open Graph, and Twitter card tags as HTML you can paste into a page.",
+  // Specified search description. It is 169 characters, above the usual 160 cap.
+  "significant-figures-calculator":
+    "Count significant figures, round numbers, and solve sig fig calculations with our free Significant Figures Calculator. Includes rules, examples, and scientific notation.",
 };

@@ -22,6 +22,16 @@ export async function generateMetadata({
   if (!description) {
     return metadata;
   }
+  if (slug === "significant-figures-calculator") {
+    const title = "Significant Figures Calculator & Sig Fig Counter | Tools Star Hub";
+    return {
+      ...metadata,
+      title: { absolute: title },
+      description,
+      openGraph: { ...metadata.openGraph, title, description },
+      twitter: { ...metadata.twitter, title, description },
+    };
+  }
   return {
     ...metadata,
     description,

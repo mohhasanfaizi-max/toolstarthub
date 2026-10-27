@@ -203,6 +203,8 @@ export const toolQuickAnswers: Record<string, string> = {
     "A meta tag generator writes HTML title, description, robots, canonical, Open Graph, and Twitter tags. It does not fetch a page.",
   "open-graph-preview":
     "An Open Graph preview sends a page URL to this site, reads the public title and share tags, and does not save the page. Private and non-http addresses are rejected.",
+  "significant-figures-calculator":
+    "A significant figures calculator counts the digits a written number actually shows, rounds to a precision you choose, and keeps addition on decimal places while multiplication uses the fewer significant figures. 150, 80, and 1200 stay ambiguous.",
   ...extraToolQuickAnswers,
 };
 
