@@ -86,6 +86,7 @@ export const guideDates: Record<string, GuideDates> = {
   "what-is-base64": { published: "2026-09-27T06:54:31Z", modified: "2026-10-19T16:00:00Z" },
   "what-is-json": { published: "2026-09-22T14:37:10Z", modified: "2026-10-19T16:00:00Z" },
   "what-is-robots-txt": { published: "2026-09-27T06:54:31Z", modified: "2026-09-27T06:54:31Z" },
+  "significant-figures-calculator": { published: "2026-10-27T16:00:00Z", modified: "2026-10-27T16:00:00Z" },
 };
 
 export function getGuideDates(

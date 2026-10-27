@@ -1,4 +1,5 @@
 import { OCR_MAX_EDGE, OCR_PANEL_LEAD, ocrFirstRunMegabytes } from "../lib/tools/ocr.ts";
+import { significantFiguresToolContent } from "./significant-figures-tool-content.ts";
 import type { ToolContent } from "./tool-content.ts";
 
 export const nextToolContent: Record<string, ToolContent> = {
@@ -1038,4 +1039,5 @@ export const nextToolContent: Record<string, ToolContent> = {
       },
     ],
   },
+  "significant-figures-calculator": significantFiguresToolContent,
 };

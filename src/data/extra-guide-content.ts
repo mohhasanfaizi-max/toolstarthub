@@ -1,4 +1,5 @@
 import type { GuideContent } from "./guide-content.ts";
+import { significantFiguresGuide } from "./significant-figures-guide.ts";
 
 /** A question-style guide section, optionally with a table or subsections. */
 export type GuideSection = {
@@ -17,6 +18,7 @@ export type GuideSection = {
 
 /** Guide bodies for articles registered in extra-articles.ts. */
 export const extraGuideContent: Record<string, GuideContent> = {
+  "significant-figures-calculator": significantFiguresGuide,
   "how-to-click-faster": {
     intro:
       "To click faster, pick a technique that suits your mouse, relax your hand, and practice in short timed runs with a CPS test. Regular one-finger clicking usually lands somewhere around 5 to 8 clicks per second (CPS). Jitter clicking and butterfly clicking can push that into the teens for some people, but they cost accuracy and put more strain on your hand. Measure first, change one thing at a time, and stop if your wrist or forearm hurts.",
