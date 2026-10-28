@@ -1,3 +1,4 @@
+import { inspectSigFigExpression } from "./significant-figures-expression.ts";
 import {
   calculateSigFigArithmetic,
   calculateSignificantFigures,
@@ -205,4 +206,91 @@ export function runSignificantFiguresChecks(assert: Assert): void {
 
   const combined = calculateSignificantFigures({ operation: "round", values: ["999"], precision: "2" });
   assert(combined.ok && combined.headline === "1.0 × 10³", "The shared calculator entry rounds 999 to 2 significant figures");
+
+  function ready(expression: string, precision?: string) {
+    const result = inspectSigFigExpression(expression, precision);
+    if (result.state !== "ready") {
+      const detail = result.state === "invalid" ? result.error : result.state;
+      throw new Error(`${expression}: ${detail}`);
+    }
+    return result.result;
+  }
+
+  const counted: Array<[string, string]> = [
+    ["1.00", "3"],
+    ["0.08", "1"],
+    ["0.080", "2"],
+    ["81.60", "4"],
+    ["0.00450", "3"],
+    ["1.500e3", "4"],
+    ["1.500×10^3", "4"],
+    ["((2.50))", "3"],
+  ];
+  for (const [expression, figs] of counted) {
+    const result = ready(expression);
+    assert(result.countKnown && result.sigFigLabel === figs && !result.ambiguous, `${expression} shows ${figs} significant figures`);
+  }
+
+  const oneFiftyView = ready("150");
+  assert(oneFiftyView.ambiguous && oneFiftyView.sigFigLabel === "2–3" && oneFiftyView.statusLabel === "2–3", "150 stays a range in the calculator");
+  assert(
+    oneFiftyView.statusNote === "Trailing zeros without a decimal point are ambiguous.",
+    "150 explains the trailing-zero ambiguity",
+  );
+  assert(!oneFiftyView.countKnown, "150 is not given one significant-figure count");
+
+  const roundedView: Array<[string, string, string]> = [
+    ["123.456", "3", "123"],
+    ["0.004567", "2", "0.0046"],
+    ["999", "2", "1.0 × 10³"],
+  ];
+  for (const [expression, precision, display] of roundedView) {
+    const result = ready(expression, precision);
+    assert(result.roundedDisplay === display, `${expression} rounds to ${display} from the keypad precision`);
+    assert(result.value.trim().startsWith(expression), `${expression} keeps the original value beside the rounding`);
+  }
+  assert(ready("999", "2").copyText.includes("1.0e3"), "999 to 2 significant figures copies 1.0e3");
+  assert(ready("-1.25", "2").roundedDisplay === "-1.3", "Negative half-up rounding stays away from zero");
+
+  assert(ready("12.11+0.3").value === "12.4", "12.11 + 0.3 = 12.4");
+  assert(ready("12.11−0.3").value === "11.8", "12.11 − 0.3 = 11.8");
+  assert(ready("0.10 + 0.20").value === "0.30", "0.10 + 0.20 = 0.30");
+  assert(ready("100.1+0.05+0.05").value === "100.2", "A sum rounds once, after adding every term");
+  assert(ready("(100.1+0.05)+0.05").value === "100.3", "Parentheses round the inner sum before the next addition");
+  assert(ready("2.5×3.42").value === "8.6", "2.5 × 3.42 = 8.6");
+  assert(ready("15.0÷4.0").value === "3.8", "15.0 ÷ 4.0 = 3.8");
+  assert(ready("2.00/3.00").value === "0.667", "2.00 / 3.00 = 0.667");
+  assert(ready("150*2.5").value === "3.8 × 10²", "150 × 2.5 is limited to 2 significant figures");
+  assert(ready("(12.11+0.3)×2.0").value === "25", "(12.11 + 0.3) × 2.0 = 25");
+  assert(ready("81.6×2.0").value === "1.6 × 10²", "81.6 × 2.0 = 1.6 × 10²");
+  assert(ready("2.5^2").value === "6.3", "2.5^2 keeps two significant figures");
+  assert(ready("2.00^3").value === "8.00", "2.00^3 keeps three significant figures");
+  assert(ready("4.0^2").value === "16", "4.0^2 is 16");
+  assert(ready("2.0^2").value === "4.0", "2.0^2 is 4.0");
+
+  const ambiguousPower = ready("10^2");
+  assert(ambiguousPower.ambiguous, "10^2 does not invent one significant-figure count");
+  const ambiguousProductView = ready("150×2.00");
+  assert(
+    ambiguousProductView.ambiguous && ambiguousProductView.value === "Precision cannot be determined",
+    "150 × 2.00 stays undetermined",
+  );
+
+  const divideByZero = inspectSigFigExpression("4.0÷0");
+  assert(divideByZero.state === "invalid" && divideByZero.error === "Cannot divide by zero.", "4.0 ÷ 0 is rejected");
+  const divideByZeroDecimal = inspectSigFigExpression("4/0.0");
+  assert(divideByZeroDecimal.state === "invalid", "4 / 0.0 is rejected");
+  const fractionalPower = inspectSigFigExpression("2.5^1.5");
+  assert(fractionalPower.state === "invalid" && fractionalPower.error.includes("integer"), "A fractional power is rejected");
+  const log = inspectSigFigExpression("1.5/log(5+1)");
+  assert(log.state === "invalid" && log.error.includes("not available"), "log is not offered as a working function");
+  const constantE = inspectSigFigExpression("e");
+  assert(constantE.state === "invalid" && constantE.error.includes("not available"), "The constant e is not a fake key result");
+  assert(inspectSigFigExpression("").state === "empty", "An empty display is not a result");
+  assert(inspectSigFigExpression("12.11+").state === "partial", "A trailing operator waits for the next number");
+  assert(inspectSigFigExpression("abc").state === "invalid", "Letters are rejected");
+  assert(inspectSigFigExpression("1.23", "0").state === "invalid", "Zero custom precision is rejected");
+  assert(inspectSigFigExpression("1.23", "51").state === "invalid", "Precision above 50 is rejected");
+  assert(inspectSigFigExpression("1.23", "1.5").state === "invalid", "A fractional precision is rejected");
+  assert(ready("1.500e3+2").value === "1.502 × 10³" || ready("1.500e3+2").value === "1502", "1.500e3 + 2 follows decimal places");
 }

@@ -29,7 +29,8 @@ export type SigFigOperation =
   | "add"
   | "subtract"
   | "multiply"
-  | "divide";
+  | "divide"
+  | "power";
 
 export type ScientificForm = {
   sigFigs: number;
@@ -80,6 +81,10 @@ export type SigFigSuccess = {
   min?: number;
   max?: number;
   forms?: ScientificForm[];
+  /** Parseable rounded value. Absent when the result has no single precision. */
+  carried?: string;
+  /** True when the value was not rounded to a measurement. */
+  exactResult?: boolean;
 };
 
 export type SigFigFailure = { ok: false; error: string };
@@ -775,7 +780,7 @@ export function calculateSigFigArithmetic(input: ArithmeticInput): SigFigResult 
   if (input.operation === "add" || input.operation === "subtract") {
     return finishAddition(input.operation, values, exact, allExact, measured, steps);
   }
-  return finishProduct(input.operation, values, allExact, measured, steps);
+  return finishProduct(input.operation, values, measured, steps);
 }
 
 function finishAddition(
@@ -805,6 +810,8 @@ function finishAddition(
       sigFigLabel: "Exact",
       steps,
       ambiguous: false,
+      carried: exactText,
+      exactResult: true,
     };
   }
 
@@ -824,6 +831,7 @@ function finishAddition(
       sigFigLabel: placeName(coarsest),
       steps,
       ambiguous: false,
+      carried: shown.plain,
     };
   }
 
@@ -846,10 +854,99 @@ function finishAddition(
   };
 }
 
+function presentMeasuredSigFigs(
+  operation: SigFigOperation,
+  total: ExactDecimal,
+  values: ParsedNumber[],
+  measured: number[],
+  steps: string[],
+  mode: "product" | "power" = "product",
+): SigFigResult {
+  const allExact = measured.length === 0;
+
+  if (total.digits === "0") {
+    steps.push("The result is 0. A zero result does not gain extra significant figures.");
+    return {
+      ok: true,
+      operation,
+      headline: "0",
+      plain: "0",
+      sigFigLabel: "0",
+      steps,
+      ambiguous: false,
+      count: 0,
+      carried: "0",
+    };
+  }
+
+  if (allExact) {
+    const shown = roundDecimalToSigFigs(total, Math.min(15, total.digits.length));
+    steps.push("Every number is marked exact, so significant-figure limits are not applied.");
+    steps.push(`A 15-digit reading of the exact value is ${shown.display}.`);
+    return {
+      ok: true,
+      operation,
+      headline: shown.display,
+      plain: shown.plain === shown.display ? shown.display : `${shown.display}\n${shown.plain}`,
+      sigFigLabel: "Exact",
+      steps,
+      ambiguous: false,
+      carried: shown.plain,
+      exactResult: true,
+    };
+  }
+
+  const minFigs = Math.min(...measured.map((index) => values[index]?.sigFigMin ?? 1));
+  const maxFigs = Math.min(...measured.map((index) => values[index]?.sigFigMax ?? 1));
+  steps.push(ROUNDING_NOTE);
+  if (minFigs === maxFigs) {
+    const shown = roundDecimalToSigFigs(total, minFigs);
+    steps.push(
+      mode === "power"
+        ? `The base has ${minFigs} significant ${minFigs === 1 ? "figure" : "figures"}.`
+        : `The fewest significant figures is ${minFigs}.`,
+    );
+    steps.push(`The rounded result is ${shown.display}.`);
+    return {
+      ok: true,
+      operation,
+      headline: shown.display,
+      plain: shown.plain === shown.display ? shown.display : `${shown.display}\n${shown.plain}`,
+      sigFigLabel: String(minFigs),
+      steps,
+      ambiguous: false,
+      count: minFigs,
+      carried: shown.plain,
+    };
+  }
+
+  const options: string[] = [];
+  for (let count = minFigs; count <= maxFigs; count += 1) {
+    const shown = roundDecimalToSigFigs(total, count);
+    options.push(`${count}: ${shown.display}${shown.plain === shown.display ? "" : ` (${shown.plain})`}`);
+    steps.push(
+      mode === "power"
+        ? `If the base has ${count} significant ${count === 1 ? "figure" : "figures"}, the rounded result is ${shown.display}.`
+        : `If the fewest count is ${count}, the rounded result is ${shown.display}.`,
+    );
+  }
+  steps.push("Those counts are all possible, so one result would invent precision.");
+  return {
+    ok: true,
+    operation,
+    headline: "Precision cannot be determined",
+    plain: options.join("\n"),
+    sigFigLabel: `${minFigs}–${maxFigs}`,
+    steps,
+    ambiguous: true,
+    min: minFigs,
+    max: maxFigs,
+  };
+}
+
 function finishProduct(
   operation: "multiply" | "divide",
   values: ParsedNumber[],
-  allExact: boolean,
   measured: number[],
   steps: string[],
 ): SigFigResult {
@@ -869,72 +966,195 @@ function finishProduct(
       : "Division uses the fewest significant figures, not the least precise decimal place.",
   );
 
-  if (total.digits === "0") {
-    steps.push("The result is 0. A zero result does not gain extra significant figures.");
-    return {
-      ok: true,
-      operation,
-      headline: "0",
-      plain: "0",
-      sigFigLabel: "0",
-      steps,
-      ambiguous: false,
-      count: 0,
-    };
+  return presentMeasuredSigFigs(operation, total, values, measured, steps, "product");
+}
+
+const MAX_INTEGER_POWER = 999;
+
+function integerFromExact(value: ExactDecimal): number | null {
+  if (value.digits === "0") {
+    return 0;
+  }
+  if (value.exp < 0) {
+    return null;
+  }
+  const text = value.digits + "0".repeat(value.exp);
+  if (text.length > 15) {
+    return null;
+  }
+  const magnitude = Number(text);
+  if (!Number.isSafeInteger(magnitude)) {
+    return null;
+  }
+  return value.sign < 0 ? -magnitude : magnitude;
+}
+
+function powExact(base: ExactDecimal, exponent: number): ExactDecimal {
+  if (exponent === 0) {
+    return { sign: 1, digits: "1", exp: 0 };
+  }
+  const negative = exponent < 0;
+  let n = Math.abs(exponent);
+  let result: ExactDecimal = { sign: 1, digits: "1", exp: 0 };
+  let factor = base;
+  while (n > 0) {
+    if (n % 2 === 1) {
+      result = multiplyExact(result, factor);
+    }
+    n = Math.floor(n / 2);
+    if (n > 0) {
+      factor = multiplyExact(factor, factor);
+    }
+  }
+  if (!negative) {
+    return result;
+  }
+  if (result.digits === "0") {
+    throw new Error("division by zero");
+  }
+  return divideExact({ sign: 1, digits: "1", exp: 0 }, result, MAX_SIG_FIGS + 12);
+}
+
+function describeMeasured(value: ParsedNumber, exact: boolean, decimalRule: boolean): string {
+  if (exact) {
+    return `${numberLabel(value)} is marked exact, so it does not limit the result.`;
+  }
+  if (value.ambiguous) {
+    return `${numberLabel(value)} is ambiguous: ${value.sigFigMin}–${value.sigFigMax} significant figures, and the last precise place could be ${placeName(value.decimalPlaceMin)} through ${placeName(value.decimalPlaceMax)}.`;
+  }
+  if (decimalRule) {
+    return `${numberLabel(value)} is precise to ${placeName(value.decimalPlaceMax)}.`;
+  }
+  return `${numberLabel(value)} has ${value.sigFigs} significant ${value.sigFigs === 1 ? "figure" : "figures"}.`;
+}
+
+export type SigFigFactor = {
+  raw: string;
+  divide?: boolean;
+  exact?: boolean;
+};
+
+/** Multiply and divide factors in order, then round once to the fewest significant figures. */
+export function calculateSigFigProduct(factors: SigFigFactor[]): SigFigResult {
+  if (factors.length < 2) {
+    return fail("Enter at least two numbers.");
+  }
+  const parsed: ParsedNumber[] = [];
+  const exact: boolean[] = [];
+  const divide: boolean[] = [];
+  for (const factor of factors) {
+    const value = parseSigFigNumber(factor.raw);
+    if (!value.ok) {
+      return value;
+    }
+    parsed.push(value.value);
+    exact.push(factor.exact === true);
+    divide.push(factor.divide === true);
   }
 
-  if (allExact) {
-    const shown = roundDecimalToSigFigs(total, Math.min(15, total.digits.length));
-    steps.push("Every number is marked exact, so significant-figure limits are not applied.");
-    steps.push(`A 15-digit reading of the exact value is ${shown.display}.`);
+  const steps = parsed.map((value, index) => describeMeasured(value, exact[index] === true, false));
+  let total = parsed[0]?.exact ?? { sign: 1 as const, digits: "0", exp: 0 };
+  try {
+    for (let index = 1; index < parsed.length; index += 1) {
+      const next = parsed[index];
+      if (!next) {
+        continue;
+      }
+      if (divide[index] && next.zero) {
+        return fail("Cannot divide by zero.");
+      }
+      total = divide[index] ? divideExact(total, next.exact, MAX_SIG_FIGS + 8) : multiplyExact(total, next.exact);
+    }
+  } catch {
+    return fail("Cannot divide by zero.");
+  }
+
+  const divides = divide.some((flag, index) => index > 0 && flag);
+  const multiplies = divide.some((flag, index) => index > 0 && !flag);
+  if (divides && multiplies) {
+    steps.push("Multiplication and division use the fewest significant figures, not the least precise decimal place.");
+  } else if (divides) {
+    steps.push("Division uses the fewest significant figures, not the least precise decimal place.");
+  } else {
+    steps.push("Multiplication uses the fewest significant figures, not the least precise decimal place.");
+  }
+
+  return presentMeasuredSigFigs(
+    divides && !multiplies ? "divide" : "multiply",
+    total,
+    parsed,
+    measuredIndexes(exact),
+    steps,
+    "product",
+  );
+}
+
+export function calculateSigFigPower(
+  baseRaw: string,
+  exponentRaw: string,
+  options?: { baseExact?: boolean },
+): SigFigResult {
+  const baseParsed = parseSigFigNumber(baseRaw);
+  if (!baseParsed.ok) {
+    return baseParsed;
+  }
+  const exponentParsed = parseSigFigNumber(exponentRaw);
+  if (!exponentParsed.ok) {
+    return exponentParsed;
+  }
+  const base = baseParsed.value;
+  const exponent = exponentParsed.value;
+  if (exponent.ambiguous) {
+    return fail("The exponent is ambiguous, so the power cannot be determined.");
+  }
+  const n = integerFromExact(exponent.exact);
+  if (n === null) {
+    return fail("Enter an integer exponent, such as 2.5^2. Fractional powers are not evaluated.");
+  }
+  if (Math.abs(n) > MAX_INTEGER_POWER) {
+    return fail(`Enter an integer exponent from -${MAX_INTEGER_POWER} to ${MAX_INTEGER_POWER}.`);
+  }
+  if (base.zero && n < 0) {
+    return fail("Cannot raise 0 to a negative power.");
+  }
+  if (base.zero && n === 0) {
+    return fail("0^0 is undefined.");
+  }
+  if (base.exact.digits.length * Math.abs(n) > 8000) {
+    return fail("That power is too large for this calculator.");
+  }
+
+  const steps = [
+    `${numberLabel(base)} raised to ${n}.`,
+    "The exponent is a whole number, so it is treated as exact and does not set the significant figures.",
+  ];
+  if (n === 0) {
+    steps.push("Any nonzero number to the power 0 is 1.");
     return {
       ok: true,
-      operation,
-      headline: shown.display,
-      plain: shown.plain === shown.display ? shown.display : `${shown.display}\n${shown.plain}`,
+      operation: "power",
+      headline: "1",
+      plain: "1",
       sigFigLabel: "Exact",
       steps,
       ambiguous: false,
+      carried: "1",
+      exactResult: true,
     };
   }
 
-  const minFigs = Math.min(...measured.map((index) => values[index]?.sigFigMin ?? 1));
-  const maxFigs = Math.min(...measured.map((index) => values[index]?.sigFigMax ?? 1));
-  steps.push(ROUNDING_NOTE);
-  if (minFigs === maxFigs) {
-    const shown = roundDecimalToSigFigs(total, minFigs);
-    steps.push(`The fewest significant figures is ${minFigs}.`);
-    steps.push(`The rounded result is ${shown.display}.`);
-    return {
-      ok: true,
-      operation,
-      headline: shown.display,
-      plain: shown.plain === shown.display ? shown.display : `${shown.display}\n${shown.plain}`,
-      sigFigLabel: String(minFigs),
-      steps,
-      ambiguous: false,
-      count: minFigs,
-    };
+  let total: ExactDecimal;
+  try {
+    total = powExact(base.exact, n);
+  } catch {
+    return fail("Cannot raise 0 to a negative power.");
   }
 
-  const options: string[] = [];
-  for (let count = minFigs; count <= maxFigs; count += 1) {
-    const shown = roundDecimalToSigFigs(total, count);
-    options.push(`${count}: ${shown.display}${shown.plain === shown.display ? "" : ` (${shown.plain})`}`);
-    steps.push(`If the fewest count is ${count}, the rounded result is ${shown.display}.`);
+  const baseExact = options?.baseExact === true;
+  if (baseExact) {
+    steps.push("The base is exact, so the power is not rounded to the base’s significant figures.");
   }
-  steps.push("Those counts are all possible, so one result would invent precision.");
-  return {
-    ok: true,
-    operation,
-    headline: "Precision cannot be determined",
-    plain: options.join("\n"),
-    sigFigLabel: `${minFigs}–${maxFigs}`,
-    steps,
-    ambiguous: true,
-    min: minFigs,
-    max: maxFigs,
-  };
+  return presentMeasuredSigFigs("power", total, [base], measuredIndexes([baseExact]), steps, "power");
 }
 
 function formatExact(value: ExactDecimal): string {
@@ -966,6 +1186,11 @@ export function calculateSignificantFigures(input: {
   }
   if (input.operation === "scientific") {
     return convertToScientificNotation(input.values[0] ?? "");
+  }
+  if (input.operation === "power") {
+    return calculateSigFigPower(input.values[0] ?? "", input.values[1] ?? "", {
+      baseExact: input.exact?.[0] === true,
+    });
   }
   return calculateSigFigArithmetic({
     operation: input.operation,

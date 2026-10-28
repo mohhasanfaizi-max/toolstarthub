@@ -4,10 +4,10 @@ export const significantFiguresToolContent: ToolContent = {
   about:
     "Count the significant figures in a written number, round it to a precision you choose, convert it to scientific notation, or add, subtract, multiply, and divide under the matching rule. The arithmetic stays in this browser tab. A whole number that ends in zero, such as 150, 80, or 1200, is left as a range instead of a single count.",
   howTo: [
-    "Choose Count significant figures, Round to significant figures, Convert to scientific notation, or an arithmetic operation.",
-    "Enter the number. Decimals, a leading minus, and scientific notation such as 1.500e3 are accepted.",
-    "For rounding, enter how many significant figures to keep. For arithmetic, enter each operand and mark a number exact only when it is a count or a defined conversion.",
-    "Press Calculate. Read the result, the count or the limiting place, and the steps. Copy result writes the plain text.",
+    "Type a number, or an expression that uses +, −, ×, ÷, parentheses, and an integer power such as 2.50^2.",
+    "Use EXP when you want a scientific-notation exponent, as in 1.500e3. Decimals and a leading minus are accepted.",
+    "Choose 1 through 5, or type a custom precision from 1 to 50, when you want the value rounded. Leave it blank to count a number or to let the operation set the precision.",
+    "Press Solve. Read the value, the count or the limiting place, and the explanation. Copy writes the displayed result.",
   ],
   features: [
     "Trailing zeros after a decimal point stay significant, so 1.00 has 3 and 0.080 has 2.",
@@ -51,7 +51,7 @@ export const significantFiguresToolContent: ToolContent = {
       heading: "Rounding and the two operation rules",
       paragraphs: [
         "Half up means a first dropped digit of 5 or more increases the last kept digit by 1, away from zero. 1.2345 to 4 significant figures is 1.235. 1.25 to 2 is 1.3, and -1.25 to 2 is -1.3. 999 to 2 is 1.0 × 10³, copied as 1.0e3. 1200 to 4 is 1.200 × 10³.",
-        "12.11 + 0.3 is 12.4 because 0.3 stops at the tenths place. 2.5 × 3.42 is 8.6 because 2.5 has fewer significant figures. 15.0 ÷ 4.0 is 3.8. Division by zero is rejected. An exact number, such as a counted item or a defined conversion, does not limit the result.",
+        "12.11 + 0.3 is 12.4 because 0.3 stops at the tenths place. 2.5 × 3.42 is 8.6 because 2.5 has fewer significant figures. 15.0 ÷ 4.0 is 3.8. Division by zero is rejected. A counted or defined number is exact. Leave it out of the expression so it does not limit the measured digits.",
       ],
     },
   ],
@@ -60,7 +60,7 @@ export const significantFiguresToolContent: ToolContent = {
     "Use the Percentage Calculator for a percent of a number. This page does not convert a result into a percent.",
   ],
   limitations:
-    "Every typed number is treated as a measurement unless you mark it exact during arithmetic. The page cannot know whether the zero in 150 was measured. Precision above 50 significant figures is rejected, and exponents outside -9999 to 9999 are rejected. Results are the rules on this page, not a lab’s local rounding policy.",
+    "Every typed number is treated as a measurement. The page cannot know whether the zero in 150 was measured. Precision above 50 significant figures is rejected, and exponents outside -9999 to 9999 are rejected. Integer powers use an exponent from -999 to 999. Logs are not evaluated. Results are the rules on this page, not a lab’s local rounding policy.",
   faqs: [
     {
       question: "Is the Significant Figures Calculator free?",
