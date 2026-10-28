@@ -8,16 +8,16 @@ export const significantFiguresGuide: GuideContent = {
   stepsHeading: "How to Use the Sig Fig Calculator",
   steps: [
     {
-      title: "Choose the operation",
-      body: "Count significant figures, round to significant figures, convert to scientific notation, or pick addition, subtraction, multiplication, or division. The arithmetic buttons do not share one rounding rule.",
+      title: "Type the number or the expression",
+      body: "Enter one written number, or an expression that uses addition, subtraction, multiplication, division, and parentheses. An integer power such as 2.50^2 keeps the significant figures of the base. Addition does not use the multiplication rule.",
     },
     {
       title: "Type the number the way it was measured",
       body: "Keep trailing zeros that belong in the measurement. 1.00, 0.080, 4.0, and 1.500e3 are different from 1, 0.08, 4, and 1.5e3. A comma is rejected, so type 1200 rather than 1,200.",
     },
     {
-      title: "Set the precision or the other operands",
-      body: "Rounding asks for a whole number from 1 to 50. Arithmetic needs at least one more number. Mark a value exact only when it is a counted item or a defined conversion, such as 12 eggs or 100 centimeters in a meter.",
+      title: "Set a rounding precision only when you need one",
+      body: "Choose 1 through 5, or type a whole number from 1 to 50. Leave the precision blank to count a number, or to let addition use decimal places and multiplication use the fewest significant figures. A counted 12, or 100 centimeters in a meter, is exact, so leave it out of the expression when it should not limit the result.",
     },
     {
       title: "Read the result and the steps",
@@ -121,7 +121,7 @@ export const significantFiguresGuide: GuideContent = {
       heading: "Significant Figures in Mathematical Operations",
       paragraphs: [
         "Addition and subtraction follow the least precise decimal place. Multiplication and division follow the fewest significant figures. Using one rule for the other changes the answer. The calculator keeps extra digits until the final round, then applies half up once.",
-        "An exact number does not limit the result. A counted 12 items, or a defined 100 centimeters in a meter, is exact. Mark it exact on the calculator. If every operand is exact, the page leaves the arithmetic unrounded. A measured number is still limited by its own decimal places or significant figures.",
+        "An exact number does not limit the result. A counted 12 items, or a defined 100 centimeters in a meter, is exact. This calculator treats every typed number as a measurement, so leave an exact count out of the expression when it should not set the precision. A measured number is still limited by its own decimal places or significant figures.",
       ],
       subsections: [
         {
@@ -163,7 +163,7 @@ export const significantFiguresGuide: GuideContent = {
         },
         {
           heading: "Treating an exact count as a measurement",
-          body: "Twelve students is exact. It should not cut a measured average down to two significant figures. Mark that 12 exact, and let the measured numbers set the limit.",
+          body: "Twelve students is exact. It should not cut a measured average down to two significant figures. Leave that exact count out of the expression and let the measured numbers set the limit.",
         },
       ],
     },
@@ -186,7 +186,7 @@ export const significantFiguresGuide: GuideContent = {
     },
     {
       heading: "Defined numbers and counted numbers",
-      body: "A conversion that is defined, such as 100 centimeters in a meter, is exact. Leave it unmarked and it will limit the result like any other typed number. Mark it exact when that is what you mean.",
+      body: "A conversion that is defined, such as 100 centimeters in a meter, is exact. Typed here, it is treated as a measurement and will limit the result. Leave a defined conversion out of the expression when it should not set the precision.",
     },
   ],
   faqs: [
