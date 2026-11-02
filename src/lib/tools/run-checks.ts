@@ -5,6 +5,7 @@ import { runPublicationChecks } from "../content/publication-checks.ts";
 import { runCpsTestChecks } from "./cps-test-checks.ts";
 import { runSignificantFiguresChecks } from "./significant-figures-checks.ts";
 import { runBannerChecks, runFiveToolsChecks } from "./five-tools-checks.ts";
+import { runSecretSantaChecks } from "./secret-santa-checks.ts";
 import { runSeoContentChecks } from "../content/seo-checks.ts";
 import { roundTo } from "./numbers.ts";
 import { calculateCompoundInterest } from "./compound-interest.ts";
@@ -2181,8 +2182,8 @@ assert(!generateMetaTags({ title: "Page", description: "", canonical: "javascrip
 assert(!generateMetaTags({ title: "", description: "", canonical: "", index: true, follow: true, ogTitle: "", ogDescription: "", ogImage: "", ogUrl: "", ogType: "", twitterCard: "", twitterTitle: "", twitterDescription: "", twitterImage: "" }).ok, "A blank title is rejected");
 assert(!generateMetaTags({ title: "Page", description: "", canonical: "", index: true, follow: true, ogTitle: "", ogDescription: "", ogImage: "", ogUrl: "", ogType: "", twitterCard: "", twitterTitle: "Hello", twitterDescription: "", twitterImage: "" }).ok, "A Twitter title without a card is rejected");
 
-assert(tools.length === 108, "Registry has 108 tools");
-assert(new Set(tools.map((tool) => tool.slug)).size === 108, "Tool slugs are unique");
+assert(tools.length === 109, "Registry has 109 tools");
+assert(new Set(tools.map((tool) => tool.slug)).size === 109, "Tool slugs are unique");
 assert(getNewTools().length === 4, "Homepage recently added stays at 4 tools");
 assert(
   tools.every((tool) => tool.status === "available"),
@@ -2239,7 +2240,7 @@ assert(
 );
 assert(searchTools("json").some((tool) => tool.slug === "json-formatter"), "Partial json match");
 assert(searchTools("xyzzy-no-such-tool").length === 0, "Unknown query has no results");
-assert(searchTools("").length === 108, "Empty query returns all tools");
+assert(searchTools("").length === 109, "Empty query returns all tools");
 assert(searchTools("compress pdf")[0]?.slug === "pdf-compressor", "compress pdf ranks compressor");
 assert(searchTools("extract text").some((tool) => tool.slug === "pdf-to-text"), "extract text finds PDF to Text");
 assert(searchTools("remove pdf metadata").some((tool) => tool.slug === "pdf-metadata"), "metadata search");
@@ -2544,6 +2545,7 @@ assert(
 runCpsTestChecks(assert);
 runSignificantFiguresChecks(assert);
 runFiveToolsChecks(assert);
+runSecretSantaChecks(assert);
 runBannerChecks(assert);
 runSeoContentChecks(assert);
 

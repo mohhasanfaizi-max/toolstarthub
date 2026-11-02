@@ -31,6 +31,8 @@ export type ToolContent = {
   limitations?: string;
   /** Extra H3 sections under “How it works”. English priority pages use these. */
   sections?: ToolSection[];
+  /** Long-form guide rendered as an H2 with H3 sections. Paragraphs may contain [text](/path) links. */
+  article?: { title: string; intro: string; sections: ToolSection[] };
 };
 
 export const toolContent: Record<string, ToolContent> = {

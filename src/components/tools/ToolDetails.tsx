@@ -189,7 +189,39 @@ export function ToolDetails({
         </p>
       </section>
 
-      <FaqList items={faqs} heading={labels.faq} />
+      {content?.article ? (
+        <section aria-labelledby="article-heading" className="mt-14">
+          <h2
+            id="article-heading"
+            className="text-xl font-semibold tracking-tight text-foreground"
+          >
+            {content.article.title}
+          </h2>
+          <p className="mt-3 max-w-3xl text-sm leading-7 text-muted-foreground">
+            {content.article.intro}
+          </p>
+          {content.article.sections.map((section) => (
+            <div key={section.heading} className="mt-6">
+              <h3 className="text-base font-semibold text-foreground">
+                {section.heading}
+              </h3>
+              {section.paragraphs.map((paragraph) => (
+                <p
+                  key={paragraph}
+                  className="mt-3 max-w-3xl text-sm leading-7 text-muted-foreground"
+                >
+                  <LinkedText text={paragraph} />
+                </p>
+              ))}
+            </div>
+          ))}
+        </section>
+      ) : null}
+
+      <FaqList
+        items={faqs}
+        heading={content?.article ? "Frequently Asked Questions" : labels.faq}
+      />
     </>
   );
 }
@@ -214,4 +246,27 @@ export function getFaqsForTool(
     ];
   }
   return faqs;
+}
+
+/** Renders [text](/internal-path) markers as Next links; other text is plain. */
+function LinkedText({ text }: { text: string }) {
+  const parts = text.split(/(\[[^\]]+\]\(\/[^)\s]+\))/g);
+  return (
+    <>
+      {parts.map((part, index) => {
+        const match = /^\[([^\]]+)\]\((\/[^)\s]+)\)$/.exec(part);
+        return match ? (
+          <Link
+            key={index}
+            href={match[2]}
+            className="font-medium text-foreground underline underline-offset-2"
+          >
+            {match[1]}
+          </Link>
+        ) : (
+          part
+        );
+      })}
+    </>
+  );
 }

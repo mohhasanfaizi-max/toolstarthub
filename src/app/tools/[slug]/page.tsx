@@ -18,7 +18,14 @@ const NO_HOWTO_SLUGS = new Set([
   "fantasy-point-calculator",
   "graduation-calculator-by-birthday",
   "unemployment-benefits-calculator",
+  "secret-santa-generator",
 ]);
+
+// Search titles used verbatim, without the site-name template.
+const ABSOLUTE_TITLES: Record<string, string> = {
+  "significant-figures-calculator": "Significant Figures Calculator & Sig Fig Counter | Tools Star Hub",
+  "secret-santa-generator": "Free Secret Santa Generator – Random Gift Exchange Draw",
+};
 
 export async function generateMetadata({
   params,
@@ -30,8 +37,8 @@ export async function generateMetadata({
   if (!description) {
     return metadata;
   }
-  if (slug === "significant-figures-calculator") {
-    const title = "Significant Figures Calculator & Sig Fig Counter | Tools Star Hub";
+  const title = ABSOLUTE_TITLES[slug];
+  if (title) {
     return {
       ...metadata,
       title: { absolute: title },

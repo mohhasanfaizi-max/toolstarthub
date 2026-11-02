@@ -1684,6 +1684,21 @@ export const tools: Tool[] = [
     metaTitle: "Unemployment Benefits Calculator – CA, NY, TX, FL",
     relatedSlugs: ["paycheck-estimator", "hourly-wage-calculator", "savings-goal-calculator", "loan-calculator"],
   },
+  {
+    slug: "secret-santa-generator",
+    name: "Secret Santa Generator",
+    description:
+      "Create a free Secret Santa gift exchange online. Add participants, generate random assignments, set exclusions, and organize your gift exchange without registration.",
+    category: "seo-utilities",
+    icon: "bolt",
+    route: "/tools/secret-santa-generator",
+    featured: false,
+    new: true,
+    keywords: ["secret santa generator", "free secret santa generator", "secret santa name generator", "online secret santa generator", "secret santa draw", "gift exchange generator", "secret santa with exclusions"],
+    status: "available",
+    metaTitle: "Free Secret Santa Generator – Random Gift Exchange Draw",
+    relatedSlugs: ["random-number-generator", "qr-code-generator", "date-difference-calculator", "time-zone-converter", "password-generator"],
+  },
   ...extraTools,
 ];
 

@@ -205,6 +205,8 @@ export const toolQuickAnswers: Record<string, string> = {
     "An Open Graph preview sends a page URL to this site, reads the public title and share tags, and does not save the page. Private and non-http addresses are rejected.",
   "significant-figures-calculator":
     "A significant figures calculator counts the digits a written number actually shows, rounds to a precision you choose, and keeps addition on decimal places while multiplication uses the fewer significant figures. 150, 80, and 1200 stay ambiguous.",
+  "secret-santa-generator":
+    "A Secret Santa generator randomly gives each person one gift recipient, never themselves, while following exclusions such as couples. This one runs in your browser, needs no account, hides results until revealed and does not store names.",
   "youtube-banner-maker":
     "A YouTube banner should be 2560 × 1440 pixels and under 6 MB, with names and logos inside the centred 1546 × 423 safe area that every device shows. This maker exports that size as PNG or JPG without the guide.",
   "partial-pressure-calculator":

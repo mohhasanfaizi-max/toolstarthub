@@ -151,6 +151,8 @@ export const toolMetaDescriptions: Record<string, string> = {
   // Specified search description. It is 169 characters, above the usual 160 cap.
   "significant-figures-calculator":
     "Count significant figures, round numbers, and solve sig fig calculations with our free Significant Figures Calculator. Includes rules, examples, and scientific notation.",
+  "secret-santa-generator":
+    "Create a free Secret Santa gift exchange online. Add names, set exclusions, generate random pairings, and share assignments privately. No login required.",
   "youtube-banner-maker":
     "Free YouTube banner maker: design 2560×1440 channel art with 15 templates, text, logos and a safe-area guide, then export PNG or JPG under 6 MB.",
   "partial-pressure-calculator":
