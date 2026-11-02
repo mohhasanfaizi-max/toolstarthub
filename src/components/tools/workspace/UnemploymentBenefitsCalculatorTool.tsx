@@ -103,10 +103,9 @@ export function UnemploymentBenefitsCalculatorTool() {
         </>
       )}
       <p className="mt-6 rounded-xl bg-[#F7F0D8] p-3 text-xs leading-5 text-[#1f1a08] dark:bg-[#C9A227]/10 dark:text-foreground">
-        Disclaimer: this is an educational estimate, not legal or financial advice and not a determination of eligibility. Only your
-        state unemployment agency can decide whether you qualify and how much you receive. Non-monetary rules (why you left work,
-        availability, work search), taxes, deductions, partial earnings and benefit-law changes are not modelled. Nothing you enter
-        leaves your browser.
+        This calculator provides an estimate for informational purposes only. It does not determine eligibility, guarantee
+        benefits, or replace an official unemployment agency decision. Actual payments depend on state regulations and individual
+        circumstances. Nothing you enter leaves your browser.
       </p>
     </ToolPanel>
   );
