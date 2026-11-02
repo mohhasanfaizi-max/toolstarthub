@@ -205,6 +205,16 @@ export const toolQuickAnswers: Record<string, string> = {
     "An Open Graph preview sends a page URL to this site, reads the public title and share tags, and does not save the page. Private and non-http addresses are rejected.",
   "significant-figures-calculator":
     "A significant figures calculator counts the digits a written number actually shows, rounds to a precision you choose, and keeps addition on decimal places while multiplication uses the fewer significant figures. 150, 80, and 1200 stay ambiguous.",
+  "youtube-banner-maker":
+    "A YouTube banner should be 2560 × 1440 pixels and under 6 MB, with names and logos inside the centred 1546 × 423 safe area that every device shows. This maker exports that size as PNG or JPG without the guide.",
+  "partial-pressure-calculator":
+    "Partial pressure is a gas's share of the total: Pᵢ = Xᵢ × P_total, where Xᵢ is its mole fraction. The partial pressures of all gases in a mixture add up to the total pressure (Dalton's law).",
+  "fantasy-point-calculator":
+    "Fantasy points are each stat multiplied by your league's points for it, then added. Enter one player's stats, adjust the illustrative rules to match your league, and see the total with a breakdown.",
+  "graduation-calculator-by-birthday":
+    "Find the first year a child reaches the entry age by the cutoff date, then add the years of school minus one. With age 5 by September 1 and 13 years, a child born August 20, 2020 graduates in June 2038.",
+  "unemployment-benefits-calculator":
+    "Most states base weekly unemployment pay on your highest-earning quarter, divided by a set figure and capped. This estimate covers only CA, NY, TX and FL, with official sources; the state agency decides the real amount.",
   ...extraToolQuickAnswers,
 };
 

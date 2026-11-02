@@ -87,6 +87,11 @@ export const guideDates: Record<string, GuideDates> = {
   "what-is-json": { published: "2026-09-22T14:37:10Z", modified: "2026-10-19T16:00:00Z" },
   "what-is-robots-txt": { published: "2026-09-27T06:54:31Z", modified: "2026-09-27T06:54:31Z" },
   "significant-figures-calculator": { published: "2026-10-27T16:00:00Z", modified: "2026-10-28T14:00:00Z" },
+  "youtube-banner-maker": { published: "2026-11-02T08:00:00Z", modified: "2026-11-02T08:00:00Z" },
+  "partial-pressure-calculator": { published: "2026-11-02T08:00:00Z", modified: "2026-11-02T08:00:00Z" },
+  "fantasy-point-calculator": { published: "2026-11-02T08:00:00Z", modified: "2026-11-02T08:00:00Z" },
+  "graduation-calculator-by-birthday": { published: "2026-11-02T08:00:00Z", modified: "2026-11-02T08:00:00Z" },
+  "unemployment-benefits-calculator": { published: "2026-11-02T08:00:00Z", modified: "2026-11-02T08:00:00Z" },
 };
 
 export function getGuideDates(

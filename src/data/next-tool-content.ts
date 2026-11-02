@@ -1,5 +1,8 @@
 import { OCR_MAX_EDGE, OCR_PANEL_LEAD, ocrFirstRunMegabytes } from "../lib/tools/ocr.ts";
 import { significantFiguresToolContent } from "./significant-figures-tool-content.ts";
+import { partialPressureContent, youtubeBannerContent } from "./five-tools-content-a.ts";
+import { fantasyPointContent, graduationContent } from "./five-tools-content-b.ts";
+import { unemploymentContent } from "./five-tools-content-c.ts";
 import type { ToolContent } from "./tool-content.ts";
 
 export const nextToolContent: Record<string, ToolContent> = {
@@ -1040,4 +1043,9 @@ export const nextToolContent: Record<string, ToolContent> = {
     ],
   },
   "significant-figures-calculator": significantFiguresToolContent,
+  "youtube-banner-maker": youtubeBannerContent,
+  "partial-pressure-calculator": partialPressureContent,
+  "fantasy-point-calculator": fantasyPointContent,
+  "graduation-calculator-by-birthday": graduationContent,
+  "unemployment-benefits-calculator": unemploymentContent,
 };

@@ -12,6 +12,14 @@ export function generateStaticParams() {
 
 export const dynamicParams = false;
 
+const NO_HOWTO_SLUGS = new Set([
+  "youtube-banner-maker",
+  "partial-pressure-calculator",
+  "fantasy-point-calculator",
+  "graduation-calculator-by-birthday",
+  "unemployment-benefits-calculator",
+]);
+
 export async function generateMetadata({
   params,
 }: PageProps<"/tools/[slug]">): Promise<Metadata> {
@@ -43,7 +51,8 @@ export async function generateMetadata({
 export default async function ToolPage({ params }: PageProps<"/tools/[slug]">) {
   const { slug } = await params;
   const tool = getToolBySlug(slug);
-  const howTo = getToolContent(slug)?.howTo ?? [];
+  // The five November 2026 tools publish only WebApplication, BreadcrumbList and FAQPage data.
+  const howTo = NO_HOWTO_SLUGS.has(slug) ? [] : (getToolContent(slug)?.howTo ?? []);
   return (
     <>
       {tool && howTo.length >= 2 ? (

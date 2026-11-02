@@ -151,4 +151,14 @@ export const toolMetaDescriptions: Record<string, string> = {
   // Specified search description. It is 169 characters, above the usual 160 cap.
   "significant-figures-calculator":
     "Count significant figures, round numbers, and solve sig fig calculations with our free Significant Figures Calculator. Includes rules, examples, and scientific notation.",
+  "youtube-banner-maker":
+    "Free YouTube banner maker: design 2560×1440 channel art with 15 templates, text, logos and a safe-area guide, then export PNG or JPG under 6 MB.",
+  "partial-pressure-calculator":
+    "Free partial pressure calculator using Dalton's law: mole fractions, gas mixtures, ideal gas pressure and atm, kPa, bar and mmHg conversions with steps.",
+  "fantasy-point-calculator":
+    "Free fantasy point calculator for cricket, football and basketball. Edit the scoring rules, save them in your browser and see a line-by-line points breakdown.",
+  "graduation-calculator-by-birthday":
+    "Graduation calculator by birthday: estimate school start and graduation years from a date of birth with your own cutoff date, entry age and school calendar.",
+  "unemployment-benefits-calculator":
+    "Estimate weekly unemployment benefits and claim totals for California, New York, Texas and Florida using each state's official formula, limits and sources.",
 };
