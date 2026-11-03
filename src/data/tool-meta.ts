@@ -53,7 +53,7 @@ export const toolMetaDescriptions: Record<string, string> = {
   "color-contrast-checker":
     "Free color contrast checker: test text and background colors against WCAG 2 and see the contrast ratio with AA and AAA results for normal and large text.",
   "css-gradient-generator":
-    "Free CSS gradient generator: build linear, radial, or conic CSS gradients or gradient text, adjust colors and angles, then copy the CSS or HTML.",
+    "Create beautiful CSS gradients online. Pick colors, set angle and stops, preview live, and copy CSS or HTML code instantly. 100% free, no signup.",
   "box-shadow-generator":
     "Free CSS box-shadow generator: adjust offset, blur, spread, color, and opacity with a live preview, then copy the box-shadow declaration.",
   "qr-code-generator-pro":

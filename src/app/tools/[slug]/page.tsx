@@ -25,6 +25,7 @@ const NO_HOWTO_SLUGS = new Set([
 const ABSOLUTE_TITLES: Record<string, string> = {
   "significant-figures-calculator": "Significant Figures Calculator & Sig Fig Counter | Tools Star Hub",
   "secret-santa-generator": "Free Secret Santa Generator – Random Gift Exchange Draw",
+  "css-gradient-generator": "Free CSS Gradient Generator – Linear, Radial & Conic | ToolStarHub",
 };
 
 export async function generateMetadata({
