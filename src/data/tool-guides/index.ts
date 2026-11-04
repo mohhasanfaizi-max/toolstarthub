@@ -8,12 +8,13 @@ import { batch5Guides } from "./batch-5.ts";
 import { batch6Guides } from "./batch-6.ts";
 import { batch7Guides } from "./batch-7.ts";
 import { batch8Guides } from "./batch-8.ts";
+import { batch9Guides } from "./batch-9.ts";
 
 /** One tool guide: the article record plus the visible guide body. */
 export type ToolGuide = { article: Article; content: GuideContent };
 
 /** Guides written for tools that had no guide of their own (10 FAQs each). */
-export const toolGuides: ToolGuide[] = [...batch1Guides, ...batch2Guides, ...batch3Guides, ...batch4Guides, ...batch5Guides, ...batch6Guides, ...batch7Guides, ...batch8Guides];
+export const toolGuides: ToolGuide[] = [...batch1Guides, ...batch2Guides, ...batch3Guides, ...batch4Guides, ...batch5Guides, ...batch6Guides, ...batch7Guides, ...batch8Guides, ...batch9Guides];
 
 export const toolGuideArticles: Article[] = toolGuides.map((guide) => guide.article);
 
