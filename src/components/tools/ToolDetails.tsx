@@ -1,3 +1,4 @@
+import type { ReactNode } from "react";
 import Link from "next/link";
 import { getToolContent, type ToolContent } from "@/data/tool-content";
 import { FaqList, getDefaultToolFaqs } from "@/components/content/FaqList";
@@ -25,6 +26,8 @@ const mobileFaqSlugs = new Set([
 type DetailLabels = Messages["toolPage"]["details"];
 
 type ToolDetailsProps = {
+  /** Rendered after the article sections and before the FAQ list. */
+  beforeFaq?: ReactNode;
   slug: string;
   toolName: string;
   /** Translated content; defaults to the English content for the slug. */
@@ -52,6 +55,7 @@ export function ToolDetails({
   toolName,
   content = getToolContent(slug),
   labels = englishLabels,
+  beforeFaq,
 }: ToolDetailsProps) {
   const faqs = getFaqsForTool(slug, toolName, content, labels);
 
@@ -218,6 +222,7 @@ export function ToolDetails({
         </section>
       ) : null}
 
+      {beforeFaq}
       <FaqList
         items={faqs}
         heading={content?.article ? "Frequently Asked Questions" : labels.faq}

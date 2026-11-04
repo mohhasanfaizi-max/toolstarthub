@@ -7,6 +7,7 @@ import { JsonLd } from "@/components/seo/JsonLd";
 import { AdSlot } from "@/components/ads/AdSlot";
 import { RelatedGuides } from "@/components/guides/RelatedGuides";
 import { RelatedTools } from "@/components/tools/RelatedTools";
+import { ToolLearnMore } from "@/components/tools/ToolLearnMore";
 import { FavoriteButton } from "@/components/tools/FavoriteButton";
 import { RecentTracker } from "@/components/tools/RecentTracker";
 import { ToolDetails, getFaqsForTool } from "@/components/tools/ToolDetails";
@@ -104,6 +105,14 @@ export function ToolView({ locale, slug }: { locale: Locale; slug: string }) {
       : english
         ? getToolQuickAnswer(tool.slug, tool.name, tool.description)
         : null);
+
+  const learnMore = english ? (
+    <ToolLearnMore
+      tool={englishTool}
+      topic={englishTool.name}
+      relatedToolSlugs={relatedTools.map((r) => r.slug)}
+    />
+  ) : null;
 
   return (
     <Container className="py-10 sm:py-14">
@@ -223,6 +232,7 @@ export function ToolView({ locale, slug }: { locale: Locale; slug: string }) {
           toolName={tool.name}
           content={translation?.content}
           labels={details}
+          beforeFaq={learnMore}
         />
       ) : (
         <>
@@ -230,7 +240,7 @@ export function ToolView({ locale, slug }: { locale: Locale; slug: string }) {
             {t.englishContent}
           </p>
           <div lang="en" dir="ltr">
-            <ToolDetails slug={tool.slug} toolName={englishTool.name} />
+            <ToolDetails slug={tool.slug} toolName={englishTool.name} beforeFaq={learnMore} />
           </div>
         </>
       )}
