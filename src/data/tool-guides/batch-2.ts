@@ -435,7 +435,7 @@ const pdfToJpg: ToolGuide = {
       "Turn one page, chosen pages or a whole PDF into JPG images in your browser. How quality and resolution work, file naming, and what to do with long PDFs.",
     excerpt:
       "A JPG of a PDF page is easy to post, paste or preview anywhere. This guide covers choosing pages, setting quality, the resolution you get, and how to handle larger documents.",
-    relatedArticles: ["how-to-work-with-pdfs-in-your-browser", "how-to-count-pdf-pages", "how-to-turn-a-word-document-into-a-pdf"],
+    relatedArticles: ["how-to-work-with-pdfs-in-your-browser", "how-to-count-pdf-pages", "how-to-split-a-pdf"],
     category: "image-tools",
     publishedAt: PUBLISHED,
   }),
