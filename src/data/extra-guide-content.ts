@@ -1,5 +1,6 @@
 import type { GuideContent } from "./guide-content.ts";
 import { significantFiguresGuide } from "./significant-figures-guide.ts";
+import { toolGuideContent } from "./tool-guides/index.ts";
 
 /** A question-style guide section, optionally with a table or subsections. */
 export type GuideSection = {
@@ -18,6 +19,7 @@ export type GuideSection = {
 
 /** Guide bodies for articles registered in extra-articles.ts. */
 export const extraGuideContent: Record<string, GuideContent> = {
+  ...toolGuideContent,
   "significant-figures-calculator": significantFiguresGuide,
   "how-to-click-faster": {
     intro:

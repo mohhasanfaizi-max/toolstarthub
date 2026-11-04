@@ -1,3 +1,4 @@
+import { TOOL_GUIDE_SLUGS } from "../../data/tool-guides/index.ts";
 import { articlePath, articles, getArticleBySlug } from "../../data/articles.ts";
 import { getGuideContent } from "../../data/guide-content.ts";
 import { getGuidesForTool, getPublicArticles, getPublicGuides, getRelatedPublicArticles } from "../../data/guides.ts";
@@ -67,7 +68,7 @@ export function runPublicationChecks(assert: (condition: unknown, message: strin
     publicRoutes.every((url) => url.startsWith("https://www.toolstarhub.com/guides/")),
     "Public guide canonicals use the www host",
   );
-  assert(publicRoutes.length === 78, "Seventy-eight written guides are public");
+  assert(publicRoutes.length === 78 + TOOL_GUIDE_SLUGS.length, "The 78 written guides plus the tool guides are public");
   assert(
     getRelatedPublicArticles({ ...published!, relatedArticles: [draft.slug] }, now).length === 0,
     "Unpublished articles are not related links",

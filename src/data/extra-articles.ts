@@ -1,4 +1,5 @@
 import type { Article } from "./articles.ts";
+import { toolGuideArticles } from "./tool-guides/index.ts";
 
 /**
  * Guides added after the main lists in articles.ts. Appended to `articles`,
@@ -113,4 +114,5 @@ export const extraArticles: Article[] = [
     ],
     category: "calculators",
   },
+  ...toolGuideArticles,
 ];

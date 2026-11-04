@@ -173,7 +173,9 @@ import { serializeJsonLd } from "../serialize-json-ld.ts";
 import { searchTools, tools, getRelatedTools, getToolBySlug, getNewTools } from "../../data/tools.ts";
 import { filterToolsByDiscovery } from "../../data/discovery.ts";
 import { categories } from "../../data/categories.ts";
-import { getPublicGuides } from "../../data/guides.ts";
+import { getGuidesForTool, getPublicGuides } from "../../data/guides.ts";
+import { getArticleBySlug } from "../../data/articles.ts";
+import { TOOL_GUIDE_SLUGS } from "../../data/tool-guides/index.ts";
 import { getToolContent } from "../../data/tool-content.ts";
 import { toolQuickAnswers } from "../../data/tool-answers.ts";
 import { PRODUCTION_SITE_URL, siteConfig, siteContact } from "../site.ts";
@@ -2434,21 +2436,52 @@ assert(
 );
 
 const raisedFaqGuides = guides.filter((guide) => getGuideContent(guide.slug)?.faqMax != null);
-assert(raisedFaqGuides.length === 1, "Only one guide opts into a higher FAQ maximum");
+const approvedRaisedFaqSlugs = new Set([
+  "how-to-compress-an-image-without-losing-quality",
+  ...TOOL_GUIDE_SLUGS,
+]);
 assert(
-  raisedFaqGuides[0]?.slug === "how-to-compress-an-image-without-losing-quality",
-  "Only the image-compression guide raises the FAQ maximum",
+  raisedFaqGuides.some((guide) => guide.slug === "how-to-compress-an-image-without-losing-quality"),
+  "The image-compression guide raises the FAQ maximum",
 );
 assert(
-  resolveGuideFaqMax(getGuideContent(raisedFaqGuides[0].slug)!) === RAISED_GUIDE_FAQ_MAX,
-  "The image-compression guide FAQ maximum is 10",
+  raisedFaqGuides.every((guide) => approvedRaisedFaqSlugs.has(guide.slug)),
+  "Only the image-compression guide and the tool guides raise the FAQ maximum",
+);
+assert(
+  raisedFaqGuides.every((guide) => resolveGuideFaqMax(getGuideContent(guide.slug)!) === RAISED_GUIDE_FAQ_MAX),
+  "Raised guide FAQ maximum is 10",
 );
 assert(
   guides
-    .filter((guide) => guide.slug !== raisedFaqGuides[0]?.slug)
+    .filter((guide) => !approvedRaisedFaqSlugs.has(guide.slug))
     .every((guide) => resolveGuideFaqMax(getGuideContent(guide.slug)!) === DEFAULT_GUIDE_FAQ_MAX),
   "No other guide receives a higher FAQ allowance",
 );
+
+for (const slug of TOOL_GUIDE_SLUGS) {
+  const article = getArticleBySlug(slug);
+  const content = getGuideContent(slug);
+  assert(article && content, `${slug} tool guide is registered`);
+  assert(content.faqs.length === 10, `${slug} tool guide has 10 FAQs`);
+  assert(
+    getGuidesForTool(article.toolSlug).some((guide) => guide.slug === slug),
+    `${slug} is returned for ${article.toolSlug}`,
+  );
+  const toolQuestions = new Set(
+    (getToolContent(article.toolSlug)?.faqs ?? []).map((faq) => faq.question.trim().toLowerCase()),
+  );
+  assert(
+    content.faqs.every((faq) => !toolQuestions.has(faq.question.trim().toLowerCase())),
+    `${slug} FAQs do not repeat the tool page FAQs`,
+  );
+  const words = collectText(content).join(" ").split(/\s+/).filter(Boolean).length;
+  assert(words >= 1500 && words <= 2100, `${slug} tool guide is 1,500–2,000 words (${words})`);
+}
+const toolGuideQuestions = TOOL_GUIDE_SLUGS.flatMap((slug) =>
+  getGuideContent(slug)!.faqs.map((faq) => faq.question.trim().toLowerCase()),
+);
+assert(new Set(toolGuideQuestions).size === toolGuideQuestions.length, "Tool guide FAQ questions are unique");
 
 const sitemapPaths = new Set([
   "/",
