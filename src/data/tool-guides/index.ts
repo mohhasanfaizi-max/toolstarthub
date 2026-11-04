@@ -1,12 +1,13 @@
 import type { Article } from "../articles.ts";
 import type { GuideContent } from "../guide-content.ts";
 import { batch1Guides } from "./batch-1.ts";
+import { batch2Guides } from "./batch-2.ts";
 
 /** One tool guide: the article record plus the visible guide body. */
 export type ToolGuide = { article: Article; content: GuideContent };
 
 /** Guides written for tools that had no guide of their own (10 FAQs each). */
-export const toolGuides: ToolGuide[] = [...batch1Guides];
+export const toolGuides: ToolGuide[] = [...batch1Guides, ...batch2Guides];
 
 export const toolGuideArticles: Article[] = toolGuides.map((guide) => guide.article);
 
