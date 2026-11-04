@@ -13,7 +13,7 @@ const htmlMinifier: ToolGuide = {
     siblingToolSlugs: ["css-minifier", "javascript-minifier", "html-encoder"],
     metaTitle: "How to Minify HTML: Comments, Whitespace and Safe Tags",
     metaDescription:
-      "Strip comments and collapse whitespace in HTML while pre, textarea, script and style stay untouched. What minifying saves, what it skips, and how to test the result.",
+      "How to minify HTML: strip comments and collapse whitespace while pre, textarea, script and style stay intact. What it saves and how to test the result.",
     excerpt:
       "Minifying HTML removes comments and extra spaces so the markup is smaller. This guide explains exactly what the minifier changes, which blocks it leaves alone, and how to check nothing broke.",
     relatedArticles: ["how-to-minify-css", "how-to-minify-javascript", "how-to-escape-html"],

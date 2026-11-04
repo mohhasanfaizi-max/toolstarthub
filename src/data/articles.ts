@@ -3,6 +3,7 @@ import { getGuideContent } from "./guide-content.ts";
 import { flattenGuideContent } from "./finance-guide-content.ts";
 import type { ArticleStatus } from "../lib/content/publication.ts";
 import { extraArticles } from "./extra-articles.ts";
+import { guideRelatedArticleOverrides } from "./guide-seo-links.ts";
 
 export type ArticleIntent =
   | "tool-use"
@@ -1087,9 +1088,9 @@ const publishedGuides: Article[] = [
     status: "PUBLISHED",
     metaTitle: "How to Rewrite Stock Phrasing",
     metaDescription:
-      "Rewrite text stays in the browser. Humanize with AI sends the draft. The tool does not try to bypass an AI detector, and it does not claim the result will look like a particular kind of author.",
+      "How to rewrite stock phrasing into plain, specific sentences, what the Rewrite and Humanize with AI modes do, and why neither tries to bypass AI detectors.",
     excerpt:
-      "Rewrite text stays in the browser. Humanize with AI sends the draft. The tool does not try to bypass an AI detector, and it does not claim the result will look like a particular kind of author.",
+      "How to rewrite stock phrasing into plain, specific sentences, what the Rewrite and Humanize with AI modes do, and why neither tries to bypass AI detectors.",
     content: null,
     faq: [],
     relatedTools: ["ai-text-humanizer", "ai-article-compressor", "ai-article-detector", "word-counter"],
@@ -1420,7 +1421,7 @@ const queue: QueueInput[] = [
     siblingToolSlugs: ["debt-payoff-calculator"],
     cluster: "credit-card-payoff-calculator",
     category: "calculators",
-    metaDescription: "How long one card balance can take to pay off at a chosen payment.",
+    metaDescription: "How long a credit card balance takes to pay off at a fixed monthly payment, how APR changes the total interest, and how to pay it off sooner.",
     relatedTools: ["credit-card-payoff-calculator", "debt-payoff-calculator", "loan-calculator"],
     relatedArticles: ["how-to-plan-a-debt-payoff"],
   },
@@ -1472,7 +1473,7 @@ const queue: QueueInput[] = [
     siblingToolSlugs: ["percentage-calculator"],
     cluster: "gpa-calculator",
     category: "calculators",
-    metaDescription: "How a 4.0 GPA is credit-weighted from course grades.",
+    metaDescription: "How to calculate GPA on a 4.0 scale: convert letter grades to points, weight each course by credit hours, and divide by total credits, with examples.",
     relatedTools: ["gpa-calculator", "percentage-calculator", "age-calculator"],
     relatedArticles: [],
   },
@@ -1659,7 +1660,12 @@ const queuedArticles: Article[] = queue.map((item, queueIndex) => {
   };
 });
 
-export const articles: Article[] = [...publishedGuides, ...queuedArticles, ...extraArticles];
+export const articles: Article[] = [...publishedGuides, ...queuedArticles, ...extraArticles].map(
+  (article) => {
+    const related = guideRelatedArticleOverrides[article.slug];
+    return related ? { ...article, relatedArticles: related } : article;
+  },
+);
 
 export function getArticleBySlug(slug: string): Article | undefined {
   return articles.find((article) => article.slug === slug);

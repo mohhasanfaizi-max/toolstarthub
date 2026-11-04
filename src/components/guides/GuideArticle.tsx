@@ -179,6 +179,30 @@ export function GuideArticle({
           {item.after ?? ""}
         </p>
       ))}
+      {content.sources?.length ? (
+        <section className="mt-10" aria-labelledby="guide-sources-heading">
+          <h2
+            id="guide-sources-heading"
+            className="text-xl font-semibold tracking-tight text-foreground"
+          >
+            Sources and further reading
+          </h2>
+          <ul className="mt-4 list-disc space-y-2 pl-5 text-sm leading-6 text-muted-foreground">
+            {content.sources.map((source) => (
+              <li key={source.href}>
+                <a
+                  href={source.href}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="font-medium text-accent hover:underline"
+                >
+                  {source.label}
+                </a>
+              </li>
+            ))}
+          </ul>
+        </section>
+      ) : null}
     </article>
   );
 }

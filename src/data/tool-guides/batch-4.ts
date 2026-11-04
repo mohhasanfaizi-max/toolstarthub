@@ -342,7 +342,7 @@ const pdfMetadata: ToolGuide = {
     siblingToolSlugs: ["pdf-page-counter", "pdf-compressor", "pdf-to-text"],
     metaTitle: "How to View and Remove PDF Metadata (Author, Title)",
     metaDescription:
-      "See a PDF's title, author, subject, keywords, creator, producer and dates, then download a copy with those Info fields cleared. What it removes and what it cannot.",
+      "See a PDF's title, author, keywords, creator, producer and dates, then download a copy with those fields cleared. What it removes and what it cannot.",
     excerpt:
       "PDF files carry hidden properties such as the author's name and the software used. This guide shows how to read them and clear the standard fields in a copy.",
     relatedArticles: ["how-to-count-pdf-pages", "how-to-copy-text-out-of-a-pdf", "how-to-work-with-pdfs-in-your-browser"],
@@ -686,7 +686,7 @@ const mdToHtml: ToolGuide = {
     siblingToolSlugs: ["html-to-markdown", "html-minifier", "html-encoder"],
     metaTitle: "How to Convert Markdown to HTML: Syntax & Safe Links",
     metaDescription:
-      "Turn Markdown into HTML source: headings, lists, tables, code blocks, links and images. See which syntax is supported, how links are filtered and why raw HTML is escaped.",
+      "Turn Markdown into HTML: headings, lists, tables, code, links and images. See which syntax is supported, how links are filtered and why raw HTML is escaped.",
     excerpt:
       "Paste Markdown and get clean HTML you can drop into a page or CMS. This guide lists exactly which Markdown features are supported and which are not.",
     relatedArticles: ["how-to-convert-html-to-markdown", "how-to-minify-html", "how-to-escape-html"],
@@ -874,7 +874,7 @@ const htmlToMd: ToolGuide = {
     siblingToolSlugs: ["markdown-to-html", "html-encoder", "find-and-replace"],
     metaTitle: "How to Convert HTML to Markdown: Tags, Tables & Limits",
     metaDescription:
-      "Paste HTML and get Markdown: headings, links, images, lists, code, quotes and tables. See which tags are dropped, how whitespace is handled and what to tidy afterwards.",
+      "Paste HTML and get Markdown: headings, links, images, lists, code, quotes and tables. See which tags are dropped and what to tidy afterwards.",
     excerpt:
       "Move content from a web page or CMS into Markdown for docs, a README or a static site. This guide explains each conversion rule and the limits to expect.",
     relatedArticles: ["how-to-convert-markdown-to-html", "how-to-escape-html", "how-to-find-and-replace-text"],

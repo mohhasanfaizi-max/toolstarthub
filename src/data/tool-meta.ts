@@ -150,7 +150,7 @@ export const toolMetaDescriptions: Record<string, string> = {
     "Free meta tag generator: write SEO title, description, robots, canonical, Open Graph, and Twitter card tags as HTML you can paste into a page.",
   // Specified search description. It is 169 characters, above the usual 160 cap.
   "significant-figures-calculator":
-    "Count significant figures, round numbers, and solve sig fig calculations with our free Significant Figures Calculator. Includes rules, examples, and scientific notation.",
+    "Count significant figures, round to any sig figs, and solve sig fig calculations free. Includes the rules, worked examples and scientific notation.",
   "secret-santa-generator":
     "Create a free Secret Santa gift exchange online. Add names, set exclusions, generate random pairings, and share assignments privately. No login required.",
   "youtube-banner-maker":

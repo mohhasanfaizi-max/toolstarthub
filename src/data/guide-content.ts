@@ -3,6 +3,7 @@ import { financeGuideContent } from "./finance-guide-content.ts";
 import { extraGuideContent, type GuideSection } from "./extra-guide-content.ts";
 import { getFreeDigitalToolsGuideContent } from "./free-digital-tools-guide.ts";
 import { phase3GuideContent } from "./phase3-guides.ts";
+import { guideExtraAlsoSee, guideSources, type GuideSource } from "./guide-seo-links.ts";
 
 export type GuideFaq = {
   question: string;
@@ -34,6 +35,8 @@ export type GuideContent = {
     href: string;
     after?: string;
   }>;
+  /** Official or reference sources, rendered as outbound links. */
+  sources?: GuideSource[];
 };
 
 export const guideContent: Record<string, GuideContent> = {
@@ -4546,7 +4549,7 @@ export const guideContent: Record<string, GuideContent> = {
   },
 };
 
-export function getGuideContent(slug: string): GuideContent | undefined {
+function getBaseGuideContent(slug: string): GuideContent | undefined {
   if (slug === "free-digital-tools") return getFreeDigitalToolsGuideContent();
   return (
     phase3GuideContent[slug] ??
@@ -4554,4 +4557,17 @@ export function getGuideContent(slug: string): GuideContent | undefined {
     financeGuideContent[slug] ??
     extraGuideContent[slug]
   );
+}
+
+export function getGuideContent(slug: string): GuideContent | undefined {
+  const base = getBaseGuideContent(slug);
+  if (!base) return undefined;
+  const extraAlso = guideExtraAlsoSee[slug];
+  const sources = guideSources[slug];
+  if (!extraAlso && !sources) return base;
+  return {
+    ...base,
+    alsoSee: extraAlso ? [...(base.alsoSee ?? []), ...extraAlso] : base.alsoSee,
+    sources: sources ?? base.sources,
+  };
 }
