@@ -7261,5 +7261,473 @@ export const extraGuideFaqs: Record<string, GuideFaq[]> = {
       answer:
         "They can reduce backtracking in some engines, but clarity and tests matter more than micro-tweaks.",
     }
+  ],
+  "how-to-translate-urdu-news-into-english": [
+    {
+      question: "Should I translate headlines separately from body copy?",
+      answer:
+        "Often yes—headlines are denser; review them after the body so tone stays natural in English.",
+    },
+    {
+      question: "How do I handle Urdu poetry or idioms in news?",
+      answer:
+        "Prefer sense-for-sense English and note cultural idioms briefly instead of forced word swaps.",
+    },
+    {
+      question: "Can mixed English loanwords stay untranslated?",
+      answer:
+        "Keep widely known loanwords when readers expect them; translate obscure terms for clarity.",
+    },
+    {
+      question: "Why might names of officials look inconsistent?",
+      answer:
+        "Transliteration varies—pick one Latin spelling per person and reuse it through the article.",
+    },
+    {
+      question: "Does Brief mode drop important figures?",
+      answer:
+        "Shorter modes compress detail; verify numbers against the Urdu source before publishing.",
+    },
+    {
+      question: "How should I treat embedded tweets or quotes?",
+      answer:
+        "Translate surrounding narration; keep quoted social text accurate or clearly marked if left bilingual.",
+    },
+    {
+      question: "Is machine output enough for legal notices?",
+      answer:
+        "No—sensitive or legal text needs a human reviewer fluent in both languages.",
+    },
+    {
+      question: "Can I paste columns from a PDF newspaper?",
+      answer:
+        "Clean broken line wraps first so sentences are contiguous before translation.",
+    },
+    {
+      question: "How do date formats change in English?",
+      answer:
+        "Convert to a clear English order (for example 5 November 2026) so international readers are not confused.",
+    },
+    {
+      question: "Should agency bylines be translated?",
+      answer:
+        "Keep recognizable agency names in their usual English form (AFP, Reuters) when standard.",
+    }
+  ],
+  "what-is-pdf-a-and-when-you-need-it": [
+    {
+      question: "Do courts always require PDF/A filings?",
+      answer:
+        "Many prefer or mandate PDF/A, but rules vary—check the clerk’s technical standards before filing.",
+    },
+    {
+      question: "Can fonts be missing in a valid PDF/A?",
+      answer:
+        "No—needed fonts must be embedded so the file renders the same years later.",
+    },
+    {
+      question: "Is PDF/A good for interactive forms?",
+      answer:
+        "Basic archival levels restrict some interactivity; confirm the level your archive allows.",
+    },
+    {
+      question: "How does PDF/A relate to long-term digital preservation?",
+      answer:
+        "It constrains features that break over time, favoring self-contained, predictable documents.",
+    },
+    {
+      question: "Can I convert an existing PDF to PDF/A easily?",
+      answer:
+        "Converters exist, but failures happen when fonts, encryption, or media violate the profile.",
+    },
+    {
+      question: "Does color management matter for PDF/A?",
+      answer:
+        "Yes—profiles and output intents help keep colors reproducible in archival viewers.",
+    },
+    {
+      question: "Should marketing flyers be saved as PDF/A?",
+      answer:
+        "Usually unnecessary—use PDF/A for records retention, not everyday promotional PDFs.",
+    },
+    {
+      question: "What happens if JavaScript is present?",
+      answer:
+        "Most PDF/A levels disallow or strip active JavaScript because it is not archival-safe.",
+    },
+    {
+      question: "Is PDF/A-4 aimed at newer PDF versions?",
+      answer:
+        "PDF/A-4 aligns with newer PDF editions; pick the level your repository documents support.",
+    },
+    {
+      question: "Can scanned images alone satisfy PDF/A?",
+      answer:
+        "Image-only scans can, if the file meets embedding and metadata rules for the chosen level.",
+    }
+  ],
+  "how-to-reduce-pdf-size-for-email": [
+    {
+      question: "Should I downsample images before compressing the PDF?",
+      answer:
+        "For photo-heavy decks, resize large images first, then run compression for smaller attachments.",
+    },
+    {
+      question: "Why do corporate gateways reject some “small” PDFs?",
+      answer:
+        "Policy filters may block by type or reputation, not only size—ask IT if compression is not enough.",
+    },
+    {
+      question: "Can OCR increase file size after a scan?",
+      answer:
+        "Hidden text layers add bytes; balance searchability against attachment limits.",
+    },
+    {
+      question: "Is ZIP better than PDF compression for email?",
+      answer:
+        "Some clients block ZIPs; a lean PDF is often safer for recipients.",
+    },
+    {
+      question: "How do fonts affect PDF weight?",
+      answer:
+        "Embedded font subsets help fidelity but add size—standard fonts keep files lighter.",
+    },
+    {
+      question: "Will printing to PDF from a browser shrink slides?",
+      answer:
+        "Sometimes, but quality varies; dedicated compression after export is more predictable.",
+    },
+    {
+      question: "Can I remove unused pages to save space?",
+      answer:
+        "Yes—delete or extract only needed pages before compressing the remainder.",
+    },
+    {
+      question: "Does grayscale conversion help much?",
+      answer:
+        "For color scans, grayscale can cut size noticeably when color is not required.",
+    },
+    {
+      question: "What quality setting should invoices use?",
+      answer:
+        "Keep text sharp—moderate compression that still leaves amounts readable under zoom.",
+    },
+    {
+      question: "Are cloud “email large file” links an alternative?",
+      answer:
+        "Yes when policy allows; still compress if the recipient needs an attached PDF offline.",
+    }
+  ],
+  "how-to-convert-jpg-to-png-and-png-to-jpg": [
+    {
+      question: "When should I keep PNG instead of converting to JPG?",
+      answer:
+        "Keep PNG for sharp UI graphics, screenshots with text, or images that need transparency.",
+    },
+    {
+      question: "Does repeated JPG re-encoding hurt quality?",
+      answer:
+        "Yes—each lossy save can add artifacts; convert from the best master you still have.",
+    },
+    {
+      question: "Can I batch-rename outputs after conversion?",
+      answer:
+        "Downloads keep clear names; rename in your file manager if you need a project convention.",
+    },
+    {
+      question: "Why convert PNG screenshots to JPG for email?",
+      answer:
+        "Photos and soft gradients shrink more as JPG; screenshots with text may look worse—preview first.",
+    },
+    {
+      question: "Is WebP a better middle ground?",
+      answer:
+        "Often for the web, but use JPG/PNG when a recipient or printer demands those formats.",
+    },
+    {
+      question: "Do color profiles survive conversion?",
+      answer:
+        "Behavior varies; for print-critical work, verify color in the destination app.",
+    },
+    {
+      question: "Can animated PNGs convert cleanly to JPG?",
+      answer:
+        "JPG is a still format—you will get a single frame, not animation.",
+    },
+    {
+      question: "Should product photos on white use JPG or PNG?",
+      answer:
+        "JPG is usually enough for soft photos; PNG helps if you need a truly flat transparent cutout later.",
+    },
+    {
+      question: "How do I avoid muddy text after JPG conversion?",
+      answer:
+        "Raise quality or stay on PNG when the frame is mostly text and hard edges.",
+    },
+    {
+      question: "Does conversion change EXIF orientation flags?",
+      answer:
+        "Viewers may normalize rotation; check the pixels if a phone photo looks sideways afterward.",
+    }
+  ],
+  "how-to-convert-pdf-pages-to-jpg": [
+    {
+      question: "How do I export only pages 3 through 5?",
+      answer:
+        "Set the page range before rendering so you do not download unused images.",
+    },
+    {
+      question: "Why are JPG pages larger than the PDF?",
+      answer:
+        "Raster pages store every pixel; vector PDFs stay compact until flattened to images.",
+    },
+    {
+      question: "Can I raise DPI for poster prints?",
+      answer:
+        "Higher render resolution yields larger, sharper JPGs suitable for print—watch file size.",
+    },
+    {
+      question: "Will form field values appear in the JPG?",
+      answer:
+        "Filled appearances usually rasterize; interactive form logic does not carry over.",
+    },
+    {
+      question: "How should I zip many page images?",
+      answer:
+        "Use Download all when offered, or select the folder of JPGs and compress them locally.",
+    },
+    {
+      question: "Do crop boxes affect what gets rendered?",
+      answer:
+        "Yes—visible page boxes determine the frame; unexpected crops often come from trim boxes.",
+    },
+    {
+      question: "Can password-protected PDFs convert?",
+      answer:
+        "Unlock or remove the password first; encrypted files cannot be rasterized here.",
+    },
+    {
+      question: "Is JPG ideal for diagrams with thin lines?",
+      answer:
+        "Thin lines can softens—try higher quality or PNG if edges look blocky.",
+    },
+    {
+      question: "How do facing pages in spreads export?",
+      answer:
+        "Each PDF page becomes its own JPG unless the file already flattened a spread onto one page.",
+    },
+    {
+      question: "Should I flatten layers before converting?",
+      answer:
+        "If optional content hides art, flatten or enable those layers so the JPG matches the intended view.",
+    }
+  ],
+  "how-to-convert-images-to-pdf": [
+    {
+      question: "Can I mix portrait and landscape photos in one PDF?",
+      answer:
+        "Yes—auto orientation or manual rotation keeps each page upright before export.",
+    },
+    {
+      question: "How do I make a photo booklet with equal margins?",
+      answer:
+        "Choose fit mode so entire images show with consistent padding instead of aggressive cropping.",
+    },
+    {
+      question: "Will HEIC from iPhone convert on desktop browsers?",
+      answer:
+        "Support varies by browser; convert HEIC to JPG first if the tool cannot decode it.",
+    },
+    {
+      question: "Can I add page numbers to the photo PDF?",
+      answer:
+        "This flow focuses on image pages; add numbers in a PDF editor afterward if required.",
+    },
+    {
+      question: "What order should scanned homework pages use?",
+      answer:
+        "Sort filenames or drag pages so problem sets stay sequential before creating the PDF.",
+    },
+    {
+      question: "Does fill mode crop important edges?",
+      answer:
+        "Fill covers the page and may crop overflow—switch to fit when you must see the whole image.",
+    },
+    {
+      question: "How large can a vacation album PDF get?",
+      answer:
+        "Dozens of high-res photos grow quickly; compress images first if you need emailable size.",
+    },
+    {
+      question: "Are annotations from the source photos kept?",
+      answer:
+        "Only pixel content is placed on pages—separate sidecar notes are not imported.",
+    },
+    {
+      question: "Can I password-protect the resulting PDF?",
+      answer:
+        "Encryption is a separate step in a PDF editor after you download the file.",
+    },
+    {
+      question: "Should screenshots use PNG before making a PDF?",
+      answer:
+        "PNG keeps UI text crisp; JPG may blur interface edges inside the PDF.",
+    }
+  ],
+  "how-to-extract-one-page-from-a-pdf": [
+    {
+      question: "Does extraction copy bookmarks from the parent file?",
+      answer:
+        "Usually only the chosen page content is saved; bookmarks covering other pages are dropped.",
+    },
+    {
+      question: "Can I extract a page range as one file?",
+      answer:
+        "Yes when the splitter allows ranges—enter start and end so contiguous pages stay together.",
+    },
+    {
+      question: "Will annotations on that page survive?",
+      answer:
+        "Most visible annotations remain with the page; behavior can differ for complex markup.",
+    },
+    {
+      question: "How do I extract the last page quickly?",
+      answer:
+        "Enter the final page number from the viewer’s page count rather than guessing.",
+    },
+    {
+      question: "Does extraction reduce file size a lot?",
+      answer:
+        "One page is smaller than the whole document, though shared fonts may still add overhead.",
+    },
+    {
+      question: "Can I extract pages from a portfolio PDF?",
+      answer:
+        "Portfolio attachments differ—open embedded files individually if page extract cannot see them.",
+    },
+    {
+      question: "Why is the extracted page rotated?",
+      answer:
+        "It inherits the page’s rotate flag; rotate in a viewer if your printer expects upright output.",
+    },
+    {
+      question: "Is batch extraction of many singles supported?",
+      answer:
+        "Split into single-page files when you need every page separately, then keep the one you want.",
+    },
+    {
+      question: "Do digital signatures remain valid after extract?",
+      answer:
+        "Splitting usually breaks signature coverage—treat extracted pages as new unsigned files.",
+    },
+    {
+      question: "Can I extract to replace a damaged page elsewhere?",
+      answer:
+        "Yes—export the good page, then use merge tools to rebuild a clean document.",
+    }
+  ],
+  "title-tag-length": [
+    {
+      question: "How do mobile SERPs truncate titles differently?",
+      answer:
+        "Narrow screens may show fewer pixels—front-load unique meaning so early words still make sense.",
+    },
+    {
+      question: "Should keyword stuffing fill leftover characters?",
+      answer:
+        "No—irrelevant extras look spammy and may be rewritten by Google anyway.",
+    },
+    {
+      question: "Can pipe separators waste precious width?",
+      answer:
+        "They are fine in moderation; multiple pipes plus a long brand can push key words out of view.",
+    },
+    {
+      question: "Do numbers in titles improve click-through?",
+      answer:
+        "Specific years or counts can help when accurate; avoid clickbait that the page does not deliver.",
+    },
+    {
+      question: "How often should I rewrite title tags?",
+      answer:
+        "Refresh when the page intent changes or CTR is weak—not on a rigid weekly schedule.",
+    },
+    {
+      question: "Is 70 characters ever acceptable?",
+      answer:
+        "Pixel width matters more than character myths; test previews rather than forcing a hard 70.",
+    },
+    {
+      question: "Should localized pages share one title?",
+      answer:
+        "No—each language or region needs its own accurate title and unique snippet.",
+    },
+    {
+      question: "Do title tags affect social share cards?",
+      answer:
+        "Social platforms often prefer og:title; keep both aligned to avoid mismatched headlines.",
+    },
+    {
+      question: "Can I A/B test titles inside Google Search Console?",
+      answer:
+        "GSC reports performance after changes; true experiments need careful logging of what you shipped.",
+    },
+    {
+      question: "Why did Google rewrite my carefully crafted title?",
+      answer:
+        "It may pull other on-page text if it thinks that better matches the query—improve clarity on-page too.",
+    }
+  ],
+  "rule-of-72-explained": [
+    {
+      question: "How do I estimate years to double at 9%?",
+      answer:
+        "Divide 72 by 9 to get about 8 years—a quick approximation of compounding growth.",
+    },
+    {
+      question: "Can I reverse the rule to find a needed return?",
+      answer:
+        "Yes—divide 72 by your target years to estimate the annual rate that roughly doubles money.",
+    },
+    {
+      question: "Does inflation need a separate rule-of-72 pass?",
+      answer:
+        "You can apply it to inflation to see purchasing-power half-life, separate from investment doubling.",
+    },
+    {
+      question: "Why do fees change the doubling story?",
+      answer:
+        "Net return after fees is what matters—run the rule on the rate you actually keep.",
+    },
+    {
+      question: "Is the rule useful for irregular contributions?",
+      answer:
+        "It assumes a lump sum compounding; new deposits need a savings schedule calculator instead.",
+    },
+    {
+      question: "How far off is it at very high rates?",
+      answer:
+        "Error grows as rates get extreme; use exact compound formulas when precision matters.",
+    },
+    {
+      question: "Can I apply it to population or traffic growth?",
+      answer:
+        "Any steady percentage growth can use the same mental math, with the same caveats.",
+    },
+    {
+      question: "Does daily compounding break the rule?",
+      answer:
+        "More frequent compounding raises effective yield slightly—adjust the rate or switch to exact math.",
+    },
+    {
+      question: "How should students remember 72 vs 69.3?",
+      answer:
+        "72 is friendlier for mental division; 69.3 ties to the natural-log rule of 70 for continuous growth.",
+    },
+    {
+      question: "Where does the rule fail for debt snowballs?",
+      answer:
+        "Minimum payments and changing balances need amortization tools, not a single doubling shortcut.",
+    }
   ]
 };

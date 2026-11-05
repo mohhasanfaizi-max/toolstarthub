@@ -7605,5 +7605,156 @@ export const extraToolFaqs: Record<string, ToolFaq[]> = {
       answer:
         "Watch saturation limits; condensation means the simple gas-mixture model no longer holds.",
     }
+  ],
+  "youtube-banner-maker": [
+    {
+      question: "What canvas size should I start with for TV viewers?",
+      answer:
+        "Design on the full banner canvas, then keep critical logos and text inside the TV-safe center so cropped edges on large screens stay clean.",
+    },
+    {
+      question: "Can I upload my own channel logo as a layer?",
+      answer:
+        "Yes—add an image layer, resize it, and lock it inside the safe area before exporting.",
+    },
+    {
+      question: "How do I keep text sharp on retina displays?",
+      answer:
+        "Export at the recommended pixel dimensions and avoid extreme upscaling of small bitmaps.",
+    },
+    {
+      question: "Should the same banner work on mobile and desktop?",
+      answer:
+        "Yes if key content sits in the overlapping safe zone; edges may crop differently per device.",
+    },
+    {
+      question: "Can I match brand colors with hex values?",
+      answer:
+        "Use hex picks for backgrounds and shapes so the banner stays consistent with your site palette.",
+    },
+    {
+      question: "How many image layers are practical?",
+      answer:
+        "A few well-composed layers beat dozens of tiny pieces—merge decorative bits before fine positioning.",
+    },
+    {
+      question: "Will a busy photo hide my channel name?",
+      answer:
+        "Often—add a soft scrim or solid bar behind text so contrast stays readable.",
+    },
+    {
+      question: "Can I reuse a banner for seasonal campaigns?",
+      answer:
+        "Duplicate the project, swap seasonal art, and keep the logo placement fixed for recognition.",
+    },
+    {
+      question: "Does the export include bleed beyond YouTube’s crop?",
+      answer:
+        "Extra edge pixels may be cropped on some devices; treat outer margins as optional atmosphere only.",
+    },
+    {
+      question: "How should I name downloaded banner files?",
+      answer:
+        "Include the channel and date so you can roll back if a redesign underperforms.",
+    },
+    {
+      question: "Is animation supported in the banner export?",
+      answer:
+        "YouTube channel art is a still image here—create motion in video intros instead.",
+    }
+  ],
+  "unemployment-benefits-calculator": [
+    {
+      question: "What is a base period in unemployment claims?",
+      answer:
+        "It is the past wage window your state uses to judge monetary eligibility—often the first four of the last five completed quarters.",
+    },
+    {
+      question: "Do severance payments delay benefits?",
+      answer:
+        "Some states postpone weeks while severance covers wages; check local rules beyond this estimate.",
+    },
+    {
+      question: "How should gig or 1099 income be entered?",
+      answer:
+        "Only include wages your state counts for UI; contractor income is often excluded unless covered specially.",
+    },
+    {
+      question: "Can partial employment reduce the weekly amount?",
+      answer:
+        "Yes—many states subtract earnings above a disregard; report work as required when you claim.",
+    },
+    {
+      question: "Why do dependents change some state formulas?",
+      answer:
+        "A few programs add dependent allowances; if your state supports them, the estimate reflects that rule set.",
+    },
+    {
+      question: "Is the maximum weekly benefit a hard cap?",
+      answer:
+        "Yes for the listed states—earnings-based amounts stop rising once they hit the statutory ceiling.",
+    },
+    {
+      question: "How accurate is a multi-state comparison?",
+      answer:
+        "Formulas differ; use it for ballpark planning, then confirm with the agency where you file.",
+    },
+    {
+      question: "Should I enter gross or net pay stubs?",
+      answer:
+        "Use gross wages the employer reported for UI tax purposes, not take-home pay.",
+    },
+    {
+      question: "Do waiting weeks appear in the calculator?",
+      answer:
+        "Some states impose an unpaid waiting week; duration fields note typical payable weeks, not every procedural delay.",
+    },
+    {
+      question: "Can I appeal if the estimate disagrees with my notice?",
+      answer:
+        "Follow your determination letter’s appeal instructions—the tool is educational, not a legal decision.",
+    }
+  ],
+  "secret-santa-generator": [
+    {
+      question: "How do exclusion rules work for couples?",
+      answer:
+        "Mark pairs that must not draw each other; the shuffle retries until constraints are satisfied when possible.",
+    },
+    {
+      question: "What if the exclusions make a draw impossible?",
+      answer:
+        "Too many blocks can leave no valid derangement—relax a constraint or add participants.",
+    },
+    {
+      question: "Can names include emojis or nicknames?",
+      answer:
+        "Yes—use whatever labels your group recognizes; keep them unique so assignments stay clear.",
+    },
+    {
+      question: "Should I reshuffle after someone drops out?",
+      answer:
+        "Remove the name and generate again so leftover chains stay fair.",
+    },
+    {
+      question: "How do I run a remote-only exchange?",
+      answer:
+        "Share each assignment privately by message, set a ship-by date, and agree on a budget in chat.",
+    },
+    {
+      question: "Can I set a spending minimum and maximum?",
+      answer:
+        "Budgets are social rules—state them in your invite; the generator only handles name draws.",
+    },
+    {
+      question: "Does order of names affect randomness?",
+      answer:
+        "No—the shuffle should treat the list without favoring early entries.",
+    },
+    {
+      question: "How do I keep the organizer from seeing every match?",
+      answer:
+        "Have each person draw on their own device, or send sealed messages so only recipients see targets.",
+    }
   ]
 };
