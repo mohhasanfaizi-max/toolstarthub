@@ -494,7 +494,81 @@ export const extraToolFaqs: Record<string, ToolFaq[]> = {
       answer:
         "The last two digits are the alpha channel, which sets opacity. #FF000080 is red at about 50% opacity.",
     },
-  ],
+    {
+      question: "How do I turn a hex color into RGB channel values?",
+      answer:
+        "Enter the hex (with or without #), convert, and read the R, G, and B channels for CSS or design tools.",
+    },
+    {
+      question: "Do I need to type the leading hash mark?",
+      answer:
+        "Usually optional—both #336699 and 336699 should parse. Follow the field hint if one form is required.",
+    },
+    {
+      question: "What does an 8-digit hex color include beyond RGB?",
+      answer:
+        "The extra pair is alpha (opacity). RGB output may show a separate alpha channel.",
+    },
+    {
+      question: "Is the short form #369 equal to #336699?",
+      answer:
+        "Yes—3-digit hex expands by doubling each digit (#369 → #336699).",
+    },
+    {
+      question: "What RGB values does #ffffff map to?",
+      answer:
+        "White: rgb(255, 255, 255).",
+    },
+    {
+      question: "Can I type a CSS color keyword such as crimson?",
+      answer:
+        "Name support varies. Prefer hex or rgb() when you need exact control.",
+    },
+    {
+      question: "How do I convert RGB numbers back into hex?",
+      answer:
+        "Use a companion RGB-to-hex mode or reverse the channels into two-digit hex pairs.",
+    },
+    {
+      question: "Why might a hex string be rejected?",
+      answer:
+        "Wrong length, non-hex characters, or missing digits. Stick to 3, 6, or 8 hex digits.",
+    },
+    {
+      question: "Are hex color codes case-sensitive?",
+      answer:
+        "No—#ABC and #abc are the same. Style guides may still prefer lowercase.",
+    },
+    {
+      question: "How do designers pair this with contrast checks?",
+      answer:
+        "Convert brand hex to RGB/HSL, then test text contrast against backgrounds.",
+    },
+    {
+      question: "Does hex↔RGB conversion change the perceived color?",
+      answer:
+        "Hex and sRGB RGB represent the same sRGB color; displays still vary.",
+    },
+    {
+      question: "Can I paste hex tokens from Figma or Sketch?",
+      answer:
+        "Yes—copy the hex token and convert for hand-off to developers.",
+    },
+    {
+      question: "What about wide-gamut or Display P3 colors?",
+      answer:
+        "This converter targets classic hex/sRGB. Wide-gamut workflows need specialized tools.",
+    },
+    {
+      question: "Should I keep a trailing alpha of FF when opaque?",
+      answer:
+        "FF means fully opaque. You can drop to 6-digit hex when opacity is full.",
+    },
+    {
+      question: "Does hex conversion leave my browser session?",
+      answer:
+        "Conversion runs locally in the page session.",
+    }],
   "color-picker": [
     {
       question: "What is the difference between HEX, RGB, and HSL?",
@@ -518,7 +592,81 @@ export const extraToolFaqs: Record<string, ToolFaq[]> = {
       answer:
         "Encode text when you want to display code on a page, or when user input is shown inside HTML, so tags appear as text instead of running.",
     },
-  ],
+    {
+      question: "How do I escape HTML so tags show as plain text?",
+      answer:
+        "Paste the markup, encode to entities, and place the result where you need literal tags visible.",
+    },
+    {
+      question: "What are HTML character entities used for?",
+      answer:
+        "They represent reserved characters like <, >, &, and quotes so browsers do not treat them as markup.",
+    },
+    {
+      question: "When should I encode HTML rather than sanitize it?",
+      answer:
+        "Encode when you must display source as text. Sanitize when you allow a safe HTML subset to render.",
+    },
+    {
+      question: "Why encode ampersands with special care?",
+      answer:
+        "& starts entities; a bare & in text should become &amp; to keep HTML valid.",
+    },
+    {
+      question: "Can I reverse entities back into editable markup?",
+      answer:
+        "Yes—decode reverses common entities so you can edit the original characters again.",
+    },
+    {
+      question: "How can blogs publish code samples safely?",
+      answer:
+        "Escape the sample HTML/XML inside <pre><code> (or a highlighter that escapes for you).",
+    },
+    {
+      question: "Do attribute quotes need entity encoding?",
+      answer:
+        "Yes when the quote matches the attribute delimiter—use &quot; or &apos; as appropriate.",
+    },
+    {
+      question: "Is escaping alone enough to stop every XSS risk?",
+      answer:
+        "No. Context matters (HTML, attributes, JS, URLs). Use framework-safe APIs and CSP too.",
+    },
+    {
+      question: "Which entity codes appear most often in samples?",
+      answer:
+        "&lt; &gt; &amp; &quot; and &nbsp; show up constantly in escaped samples.",
+    },
+    {
+      question: "Should entire documents be escaped for HTML email?",
+      answer:
+        "Sometimes for embedding samples; for sending HTML email use a proper MIME HTML part instead.",
+    },
+    {
+      question: "How do Markdown renderers treat escaped HTML?",
+      answer:
+        "Markdown may pass raw HTML through. Escape when you need literal tags in the rendered page.",
+    },
+    {
+      question: "Can a browser expand entities without a decode button?",
+      answer:
+        "Yes—HTML parsers expand entities when rendering. Encoded source still shows as text if double-escaped.",
+    },
+    {
+      question: "Why would a decoder refuse my pasted string?",
+      answer:
+        "Broken entity syntax or unsupported sequences. Fix &…; forms and retry.",
+    },
+    {
+      question: "Is HTML entity encoding the same as percent-encoding?",
+      answer:
+        "No. Percent-encoding is for URLs; HTML entities are for markup text.",
+    },
+    {
+      question: "When is a rich-text editor safer than hand escaping?",
+      answer:
+        "When non-authors publish content—editors apply context-aware escaping for you.",
+    }],
   "html-minifier": [
     {
       question: "Does minifying HTML improve page speed?",
@@ -530,7 +678,81 @@ export const extraToolFaqs: Record<string, ToolFaq[]> = {
       answer:
         "This one removes comments and collapses spaces between tags, while leaving the contents of pre, textarea, script, and style unchanged.",
     },
-  ],
+    {
+      question: "How do I minify HTML before uploading a page?",
+      answer:
+        "Paste the HTML, run minify, and save the compact file. Keep a readable source in version control.",
+    },
+    {
+      question: "Does shrinking HTML usually help load times?",
+      answer:
+        "It can shrink transfer size slightly. Combine with compression (gzip/br) and image optimization for bigger wins.",
+    },
+    {
+      question: "What kinds of bytes does an HTML minifier drop?",
+      answer:
+        "Extra whitespace, comments, and sometimes optional quotes or tags—depending on aggressiveness.",
+    },
+    {
+      question: "Will HTML comments vanish after minifying?",
+      answer:
+        "Most comments are stripped. Preserve license headers manually if you must keep them.",
+    },
+    {
+      question: "Can aggressive minify break pre or textarea content?",
+      answer:
+        "Aggressive whitespace removal can. Prefer safer presets around those elements.",
+    },
+    {
+      question: "Does this pass also compress inline CSS and JS?",
+      answer:
+        "Some tools do light passes; dedicated CSS/JS minifiers are better for scripts and styles.",
+    },
+    {
+      question: "Why might adjacent links look stuck together afterward?",
+      answer:
+        "Removed spaces between tags can join visible words. Keep space where text nodes need it.",
+    },
+    {
+      question: "Can attribute quotes disappear during minify?",
+      answer:
+        "Advanced minifiers might. Spot-check attributes that contain spaces.",
+    },
+    {
+      question: "Are spaces inside quoted attribute values preserved?",
+      answer:
+        "They should be. If a value looks wrong, compare against your source.",
+    },
+    {
+      question: "Is the size savings counted in raw bytes?",
+      answer:
+        "Yes—compare source and minified byte lengths (and again after gzip).",
+    },
+    {
+      question: "What is a practical maximum paste size here?",
+      answer:
+        "Huge pages may slow the tab. Minify templates in a build pipeline for large sites.",
+    },
+    {
+      question: "Is minifying still useful when gzip already runs?",
+      answer:
+        "Yes, modestly—smaller input still helps, but gzip already collapses repeated whitespace.",
+    },
+    {
+      question: "Should I minify HTML during local development?",
+      answer:
+        "Usually no—debug readable HTML, minify in CI or before deploy.",
+    },
+    {
+      question: "Can invalid HTML still go through a minifier?",
+      answer:
+        "Yes, which can hide problems. Validate important templates separately.",
+    },
+    {
+      question: "Does HTML minify upload my markup to a server?",
+      answer:
+        "Processing is intended to stay in the browser session.",
+    }],
   "css-minifier": [
     {
       question: "Why minify CSS?",
@@ -760,7 +982,81 @@ export const extraToolFaqs: Record<string, ToolFaq[]> = {
       answer:
         "Yes. Links become [text](url) and images become ![alt](src). Scripts, styles, and embedded frames are skipped.",
     },
-  ],
+    {
+      question: "How do I convert an HTML fragment into Markdown?",
+      answer:
+        "Paste the HTML, convert, and copy the Markdown. Review lists, links, and tables afterward.",
+    },
+    {
+      question: "Why bother converting HTML into Markdown form?",
+      answer:
+        "Markdown is easier to edit in repos and CMSs; conversion helps migrate old HTML content.",
+    },
+    {
+      question: "Does the converter keep hyperlinks and images?",
+      answer:
+        "Usually yes as [text](url) and ![alt](src). Missing href/src values need a manual fix.",
+    },
+    {
+      question: "What happens to embedded script and style tags?",
+      answer:
+        "They are typically dropped because Markdown has no safe equivalent for raw scripts.",
+    },
+    {
+      question: "Are generic div and span wrappers kept as markup?",
+      answer:
+        "Often flattened away. Semantic tags (headings, lists, emphasis) matter more.",
+    },
+    {
+      question: "Why might every ordered item render as 1.?",
+      answer:
+        "Some engines emit 1. for each item and renumber on render. Others write incremental numbers.",
+    },
+    {
+      question: "Do nested lists keep their indentation levels?",
+      answer:
+        "Good converters indent nested ul/ol. Fix indentation if a level looks flat.",
+    },
+    {
+      question: "Is emphasis inside table cells preserved?",
+      answer:
+        "When tables are supported, emphasis markers should remain inside cells—verify complex tables.",
+    },
+    {
+      question: "What if an anchor tag is missing its href?",
+      answer:
+        "You may get bare text or an empty link. Add URLs before publishing.",
+    },
+    {
+      question: "Are HTML entities turned into ordinary characters?",
+      answer:
+        "Often yes (&amp; → &). Re-escape if you need literal entity text.",
+    },
+    {
+      question: "Is whitespace inside fenced code blocks kept?",
+      answer:
+        "<pre><code> content should keep indentation; report bugs if a fence collapses spaces.",
+    },
+    {
+      question: "Do HTML comments survive the Markdown conversion?",
+      answer:
+        "Usually removed. Keep important notes outside the HTML before converting.",
+    },
+    {
+      question: "Can I convert an entire saved web page dump?",
+      answer:
+        "You can paste it, but navigation chrome and scripts will clutter results—trim to the article body first.",
+    },
+    {
+      question: "Do complex HTML tables always survive intact?",
+      answer:
+        "Simple tables fare better than merged cells. Complex layouts may need manual Markdown tables.",
+    },
+    {
+      question: "Does HTML-to-Markdown send markup to a remote server?",
+      answer:
+        "Conversion on this page is meant to run locally in the session.",
+    }],
   "text-diff": [
     {
       question: "What is a diff?",
@@ -1286,7 +1582,81 @@ export const extraToolFaqs: Record<string, ToolFaq[]> = {
       answer:
         "No. It matches the exact text you type. For pattern matching, test the pattern in the Regex Tester first.",
     },
-  ],
+    {
+      question: "How do I swap one phrase for another across a draft?",
+      answer:
+        "Paste the text, enter find and replacement strings, choose replace-all or first-only, then copy the result.",
+    },
+    {
+      question: "When is a plain text replace safer than regex?",
+      answer:
+        "Use plain replace for fixed words and spellings. Reach for regex only when you need patterns you can test first.",
+    },
+    {
+      question: "How can I clear every match without putting new text in?",
+      answer:
+        "Leave the replacement empty (or use an explicit delete mode) so each match is removed.",
+    },
+    {
+      question: "Why might a short token alter longer words around it?",
+      answer:
+        "Substring matches hit inside bigger words. Prefer whole-word options or add boundaries when available.",
+    },
+    {
+      question: "Should I enable case-sensitive matching for names?",
+      answer:
+        "Yes when capitals matter (names, code identifiers). Leave it off for casual prose cleanup.",
+    },
+    {
+      question: "How do I update only the first hit in the paste?",
+      answer:
+        "Use replace-first / replace-once instead of replace-all, then review before further passes.",
+    },
+    {
+      question: "What is a careful workflow for a long document?",
+      answer:
+        "Copy a backup, replace in small sections, and diff before/after so mistakes are easy to undo.",
+    },
+    {
+      question: "Can a replace pass standardize spelling variants in a draft?",
+      answer:
+        "Yes for known variants (color/colour). Keep a checklist of brand spellings you must not alter.",
+    },
+    {
+      question: "How do newline characters change what gets matched?",
+      answer:
+        "A pattern that spans lines may miss unless multiline mode exists. Normalize breaks first when needed.",
+    },
+    {
+      question: "Is an in-browser replace enough for production codebases?",
+      answer:
+        "For quick edits maybe; for repos prefer editor/project-wide tools with preview and VCS.",
+    },
+    {
+      question: "How can I keep hyperlinks intact during a bulk swap?",
+      answer:
+        "Exclude URL-heavy sections or use more specific find strings than bare tokens like http.",
+    },
+    {
+      question: "What does a rejected paste usually signal?",
+      answer:
+        "Empty find text, oversized paste, or unsupported control characters—adjust and retry.",
+    },
+    {
+      question: "Can I run find-and-replace across an entire project from here?",
+      answer:
+        "This page handles one paste. Use an IDE or CLI for multi-file projects.",
+    },
+    {
+      question: "How should localization teams apply glossary swaps?",
+      answer:
+        "Replace glossary terms carefully after locking already-translated segments you must keep.",
+    },
+    {
+      question: "Does a text replace rewrite invisible rich-text marks?",
+      answer:
+        "It changes the characters you match. Rich-text formatting outside the plain paste is not preserved.",
+    }],
   "remove-line-breaks": [
     {
       question: "How do I remove line breaks from text copied from a PDF?",
@@ -1506,7 +1876,81 @@ export const extraToolFaqs: Record<string, ToolFaq[]> = {
       answer:
         "Not on its own. Password storage should use a slow, salted algorithm such as bcrypt, scrypt, or Argon2, because plain SHA-256 can be guessed very quickly.",
     },
-  ],
+    {
+      question: "How do I create a SHA-256 digest of some text?",
+      answer:
+        "Paste or type the text, choose SHA-256, and copy the hex digest. Keep the original if you still need it.",
+    },
+    {
+      question: "Is hashing the same thing as encrypting data?",
+      answer:
+        "No. Hashes are one-way fingerprints. Encryption is designed to be reversed with a key.",
+    },
+    {
+      question: "Can I recover the original message from the digest?",
+      answer:
+        "Not practically for SHA-256. You can only compare hashes or try guessing inputs.",
+    },
+    {
+      question: "What is SHA-256 commonly used for in practice?",
+      answer:
+        "Integrity checks, content addressing, and signing workflows—not for storing passwords by itself.",
+    },
+    {
+      question: "Should passwords be stored as plain SHA-256 digests?",
+      answer:
+        "No. Use a slow password KDF (Argon2, bcrypt, scrypt) with unique salts.",
+    },
+    {
+      question: "Will the same input always produce the same digest?",
+      answer:
+        "Yes for a given algorithm with no key. Any tiny input change yields a different hash.",
+    },
+    {
+      question: "Why does an empty input still show a hash value?",
+      answer:
+        "The empty string has a defined digest. Clear the output if you did not mean to hash anything.",
+    },
+    {
+      question: "Does picking a longer digest hide the text better?",
+      answer:
+        "Length is about collision resistance, not secrecy. Hashes are not concealment.",
+    },
+    {
+      question: "How do checksums help verify a download?",
+      answer:
+        "Compare the published digest to one you compute locally to detect corruption or tampering.",
+    },
+    {
+      question: "What does a hash collision mean for files?",
+      answer:
+        "Two different inputs sharing one digest. Strong algorithms make accidental collisions vanishingly rare.",
+    },
+    {
+      question: "Is MD5 appropriate for security-sensitive checks?",
+      answer:
+        "Avoid MD5 for security. It can still appear in legacy checksum contexts with caution.",
+    },
+    {
+      question: "Can two different files share one SHA-256 digest?",
+      answer:
+        "In theory via collision; in practice for honest files it means they are the same content.",
+    },
+    {
+      question: "What is HMAC used for compared with a plain digest?",
+      answer:
+        "A keyed hash that authenticates a message with a secret—different from a plain digest.",
+    },
+    {
+      question: "Should I hash production secrets in a browser tab?",
+      answer:
+        "Prefer not for production secrets. Use local trusted tooling when confidentiality matters.",
+    },
+    {
+      question: "Does generating a hash upload my text anywhere?",
+      answer:
+        "Hashing on this page is meant to stay in the browser session.",
+    }],
   "javascript-minifier": [
     {
       question: "How do I minify JavaScript online?",

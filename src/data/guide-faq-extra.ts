@@ -4110,5 +4110,472 @@ export const extraGuideFaqs: Record<string, GuideFaq[]> = {
       answer:
         "When flags repeat the same advice—apply it once thoroughly, then proof for meaning.",
     }
+  ],
+  "what-is-a-uuid": [
+    {
+      question: "What is a UUID used for in applications?",
+      answer:
+        "It is a 128-bit identifier for records, sessions, or resources when you need uniqueness without a central counter.",
+    },
+    {
+      question: "What does UUID version 4 mean in day-to-day use?",
+      answer:
+        "Version 4 fills most bits randomly (with version/variant bits set), which is the common “random UUID” people mean.",
+    },
+    {
+      question: "Do freshly generated UUID v4 values arrive in order?",
+      answer:
+        "No. Random v4 values do not increase in order, unlike some time-based versions.",
+    },
+    {
+      question: "Can two independently minted UUID v4 values collide?",
+      answer:
+        "It is theoretically possible but astronomically unlikely for honest random generators.",
+    },
+    {
+      question: "Should I treat a UUID like a password to protect?",
+      answer:
+        "Not by itself—UUIDs identify; they do not authenticate. Do not treat them as passwords.",
+    },
+    {
+      question: "How is a UUID usually written as readable text?",
+      answer:
+        "As eight-four-four-four-twelve hexadecimal groups, e.g. 123e4567-e89b-42d3-a456-426614174000.",
+    },
+    {
+      question: "How does a UUID compare with an auto-increment primary key?",
+      answer:
+        "Auto-increment is short and ordered but needs a central allocator; UUIDs are wider and easy to mint offline.",
+    },
+    {
+      question: "Should new public APIs prefer UUID v1 or v4?",
+      answer:
+        "v4 is the usual default for random ids. Prefer specialized versions only when you need their properties.",
+    },
+    {
+      question: "Can UUIDs be used as safe file names?",
+      answer:
+        "Yes, though some filesystems dislike uppercase or require stripping braces. Stick to lowercase hex with hyphens.",
+    },
+    {
+      question: "Are hyphenated UUIDs safe to put in URL paths?",
+      answer:
+        "Yes when hex/hyphen form is used. URL-encode if your format includes braces or other punctuation.",
+    },
+    {
+      question: "How many UUIDs can I mint in one click here?",
+      answer:
+        "Stay within the on-page control (bulk limits apply). Generate again if you need more batches.",
+    },
+    {
+      question: "Do freshly created UUIDs leave my browser?",
+      answer:
+        "Generation is intended to stay in the browser; nothing needs a server round-trip.",
+    },
+    {
+      question: "What is the variant nibble inside a UUID for?",
+      answer:
+        "It marks the RFC layout family so parsers know how to interpret the bits.",
+    },
+    {
+      question: "Can I sort UUID v4 values by creation time?",
+      answer:
+        "No—random order. Use ULID/UUIDv7-style schemes when sortable ids matter.",
+    },
+    {
+      question: "Should every database primary key be a UUID?",
+      answer:
+        "They help distribution and merges, but indexes are wider. Choose based on scale and ops needs.",
+    },
+    {
+      question: "How do I check that a string is a valid UUID?",
+      answer:
+        "Check length, hex characters, hyphen positions, and version/variant nibbles when strict.",
+    }
+  ],
+  "how-a-loan-payment-is-calculated": [
+    {
+      question: "How do lenders compute a fixed monthly loan payment?",
+      answer:
+        "They amortize principal and interest over the term so each payment is level while the interest/principal split shifts.",
+    },
+    {
+      question: "Which fields does a payment estimate require?",
+      answer:
+        "Loan amount, interest rate, and term—plus fees if you model them separately.",
+    },
+    {
+      question: "How does stretching the term change the monthly bill?",
+      answer:
+        "Payments usually fall while total interest rises because you borrow the money longer.",
+    },
+    {
+      question: "What does amortization mean for borrowers?",
+      answer:
+        "It is the schedule that pays interest due and gradually reduces principal to zero by the final payment.",
+    },
+    {
+      question: "Does a basic P&I calculator fold in taxes and insurance?",
+      answer:
+        "Often not—those escrow items are separate from pure principal-and-interest math.",
+    },
+    {
+      question: "How do voluntary extra payments change payoff timing?",
+      answer:
+        "Extra principal cuts interest and can shorten the term; confirm the lender applies it to principal.",
+    },
+    {
+      question: "How do fixed-rate and variable-rate loans differ?",
+      answer:
+        "Fixed stays set; variable can move with an index, changing future payments.",
+    },
+    {
+      question: "Should the rate field be APR or the note rate?",
+      answer:
+        "Use the rate the formula expects—often the nominal note rate—while APR is a broader cost measure.",
+    },
+    {
+      question: "Can I simulate a promotional zero-interest installment?",
+      answer:
+        "Yes by setting rate to 0; payment then splits principal evenly across months.",
+    },
+    {
+      question: "Why does early interest take most of each payment?",
+      answer:
+        "Interest is charged on the current balance, which is highest at the start.",
+    },
+    {
+      question: "How trustworthy is a web loan payment sketch?",
+      answer:
+        "Good for education; lenders may round differently or add fees not in the toy model.",
+    },
+    {
+      question: "Can one amortizing formula cover auto and personal loans?",
+      answer:
+        "Yes for simple amortizing loans. Leases and revolving credit use other formulas.",
+    },
+    {
+      question: "What if I deliberately round each payment upward?",
+      answer:
+        "You may finish slightly early and pay a bit less interest; the last payment adjusts.",
+    },
+    {
+      question: "Does paying every other week change total interest?",
+      answer:
+        "Paying half more often can equal an extra monthly payment per year—model it explicitly.",
+    },
+    {
+      question: "How do financed origination fees show up in the payment?",
+      answer:
+        "If financed into principal they raise the balance; if paid upfront they may not change P&I.",
+    }
+  ],
+  "how-a-mortgage-payment-is-estimated": [
+    {
+      question: "How do I ballpark a monthly mortgage P&I bill?",
+      answer:
+        "Enter home price or loan amount, rate, and term; read the amortizing payment before taxes and insurance.",
+    },
+    {
+      question: "What usually makes up a full monthly housing payment?",
+      answer:
+        "Principal, interest, and frequently taxes, insurance, and PMI when required.",
+    },
+    {
+      question: "How does putting more money down change the payment?",
+      answer:
+        "It lowers the loan amount (and may remove PMI), so the monthly P&I drops.",
+    },
+    {
+      question: "Which mortgage term lengths should I compare first?",
+      answer:
+        "Compare 30-year and 15-year side by side for payment vs total interest tradeoffs.",
+    },
+    {
+      question: "How do optional principal prepayments help a mortgage?",
+      answer:
+        "They reduce balance faster, cut interest, and can shorten the schedule when applied correctly.",
+    },
+    {
+      question: "Is the APR figure the same rate the formula wants?",
+      answer:
+        "Not always—APR includes certain fees. The amortizing formula usually wants the note rate.",
+    },
+    {
+      question: "Can this simple estimate model an adjustable-rate loan?",
+      answer:
+        "Simple tools assume a fixed rate. ARMs need rate-reset assumptions beyond a single payment.",
+    },
+    {
+      question: "Why does interest dominate the earliest mortgage payments?",
+      answer:
+        "The balance is largest then, so interest takes most of the fixed payment.",
+    },
+    {
+      question: "How close is an online mortgage sketch to a real quote?",
+      answer:
+        "Useful for ballparks; closing disclosures and lender quotes are authoritative.",
+    },
+    {
+      question: "What does PMI mean and when is it charged?",
+      answer:
+        "Private mortgage insurance often applies when the down payment is small; it can drop after enough equity.",
+    },
+    {
+      question: "Can investors use the same P&I estimate for rentals?",
+      answer:
+        "As a rough P&I sketch yes; investor products may price risk differently.",
+    },
+    {
+      question: "How do mortgage discount points change the payment?",
+      answer:
+        "Points buy a lower rate (for a fee), which can reduce the monthly P&I if you keep the loan long enough.",
+    },
+    {
+      question: "What if I round each mortgage payment up a few dollars?",
+      answer:
+        "Extra dollars typically hit principal and trim interest over time.",
+    },
+    {
+      question: "Does a biweekly mortgage program change lifetime totals?",
+      answer:
+        "It can create an extra full payment each year—confirm with your servicer’s program rules.",
+    },
+    {
+      question: "Are property taxes baked into the headline P&I number?",
+      answer:
+        "Only if you explicitly add tax/insurance fields; many quotes show P&I alone.",
+    }
+  ],
+  "how-long-to-pay-off-a-credit-card": [
+    {
+      question: "How do I project months to clear a card balance?",
+      answer:
+        "Enter balance, APR, and planned monthly payment; read months and total interest from the payoff model.",
+    },
+    {
+      question: "What payment finishes a card by a chosen deadline?",
+      answer:
+        "Solve for the payment that amortizes the balance by your deadline at the given APR.",
+    },
+    {
+      question: "Why is relying on the card minimum risky?",
+      answer:
+        "It barely covers interest, so payoff stretches for years and interest piles up.",
+    },
+    {
+      question: "Does statement compounding change the payoff sketch?",
+      answer:
+        "Most consumer estimates assume monthly compounding aligned with statements—close enough for planning.",
+    },
+    {
+      question: "How do fresh purchases disrupt a payoff plan?",
+      answer:
+        "New charges reset the plan; freeze spending or include ongoing purchases in the model.",
+    },
+    {
+      question: "Should fees be added into the starting balance field?",
+      answer:
+        "Yes—late fees and similar increase what you owe and should be in the balance field.",
+    },
+    {
+      question: "What if each month I send only the interest portion?",
+      answer:
+        "The principal never falls, so you never finish and interest continues forever.",
+    },
+    {
+      question: "Can I sketch a temporary 0% intro APR window?",
+      answer:
+        "Set APR to 0 for that period, then switch to the go-to rate afterward in a staged plan.",
+    },
+    {
+      question: "How much total interest will a plan cost me?",
+      answer:
+        "Payoff tools show cumulative interest; compare scenarios before choosing a payment.",
+    },
+    {
+      question: "Does paying the card every two weeks help much?",
+      answer:
+        "Paying sooner reduces average balance slightly; the bigger lever is raising the total monthly amount.",
+    },
+    {
+      question: "How do balance-transfer offers change the math?",
+      answer:
+        "A lower promo APR can help if fees do not erase the savings—model fee + new rate.",
+    },
+    {
+      question: "Why do real-world payoff dates often slip?",
+      answer:
+        "Missed payments, new purchases, rate changes, or fees not in the original estimate.",
+    },
+    {
+      question: "Can one screen pay off several cards together?",
+      answer:
+        "Usually you model one balance; avalanche/snowball methods prioritize across cards manually.",
+    },
+    {
+      question: "What if a planned payment cannot cover interest charges?",
+      answer:
+        "The balance grows—raise the payment above interest before a payoff date exists.",
+    },
+    {
+      question: "Does the payoff sketch contact my card issuer?",
+      answer:
+        "No—it is a local projection, not an account action.",
+    }
+  ],
+  "how-to-add-sales-tax": [
+    {
+      question: "How do I add sales tax onto a pre-tax price?",
+      answer:
+        "Multiply price by the rate percent, divide by 100 for tax, then add tax to the price for the total.",
+    },
+    {
+      question: "How do I recover the pre-tax amount from a tax-inclusive total?",
+      answer:
+        "Divide the total by (1 + rate as a decimal) to back out the net price.",
+    },
+    {
+      question: "Does this page look up my local sales-tax rate?",
+      answer:
+        "No—you enter the rate that applies to the purchase.",
+    },
+    {
+      question: "May the price field be a negative number?",
+      answer:
+        "No meaningful retail price is negative; use positive amounts.",
+    },
+    {
+      question: "Is restaurant tip part of sales-tax math?",
+      answer:
+        "Tips are separate from sales tax unless a local rule says otherwise.",
+    },
+    {
+      question: "Why omit currency symbols from the inputs?",
+      answer:
+        "Numbers are unitless currency amounts; add $, €, etc. when you write receipts.",
+    },
+    {
+      question: "Can I enter a zero percent tax rate?",
+      answer:
+        "Yes—for untaxed items the tax is 0 and total equals the price.",
+    },
+    {
+      question: "Where is the sales-tax arithmetic computed?",
+      answer:
+        "In the browser session on the page.",
+    },
+    {
+      question: "Should shipping charges be taxed?",
+      answer:
+        "Depends on jurisdiction and item type—check local rules rather than assuming.",
+    },
+    {
+      question: "How should discounts interact with tax?",
+      answer:
+        "Many places tax the discounted price; apply discounts before tax unless rules differ.",
+    },
+    {
+      question: "How do stacked city and state taxes work?",
+      answer:
+        "Add rates only the way your locality defines (combined rate or stacked bases).",
+    },
+    {
+      question: "Do VAT systems use the same add-on formula?",
+      answer:
+        "VAT is often embedded differently; this guide targets US-style add-on sales tax.",
+    },
+    {
+      question: "How should printed receipts present the tax line?",
+      answer:
+        "List net, tax rate/amount, and gross total so customers see the breakdown.",
+    },
+    {
+      question: "Can I run the same math for foreign-currency invoices?",
+      answer:
+        "Yes for arithmetic; currency conversion is a separate step.",
+    },
+    {
+      question: "Why might a cash register disagree by one cent?",
+      answer:
+        "Rounding per line vs on the subtotal differs—match the register’s policy.",
+    }
+  ],
+  "how-to-calculate-a-tip": [
+    {
+      question: "How do I figure an 18–20% restaurant tip?",
+      answer:
+        "Multiply the bill by 0.18 or 0.20 for the tip, then add it to the bill for the total.",
+    },
+    {
+      question: "How do friends divide a tipped check evenly?",
+      answer:
+        "Add tip to the bill, then divide the grand total by the number of people.",
+    },
+    {
+      question: "Can diners share an uneven check fairly?",
+      answer:
+        "Have each person cover their items, then tip on the full pre-tip total or on their share—agree first.",
+    },
+    {
+      question: "What if the bill amount field stays empty?",
+      answer:
+        "The calculator needs a bill amount; enter the pre-tip total from the receipt.",
+    },
+    {
+      question: "Why might three equal shares miss the exact total?",
+      answer:
+        "Cent rounding can leave a leftover penny—assign the extra cent to someone.",
+    },
+    {
+      question: "Can the party size be a fraction of a person?",
+      answer:
+        "Party size should be a whole number of people; use custom amounts for odd splits.",
+    },
+    {
+      question: "Does the calculator lock me into one tip percent?",
+      answer:
+        "It offers common presets; you can type another percent when local norms differ.",
+    },
+    {
+      question: "Is the restaurant bill amount uploaded anywhere?",
+      answer:
+        "Tip math stays in the browser session.",
+    },
+    {
+      question: "Should diners tip on the pre-tax or post-tax total?",
+      answer:
+        "Customs vary—some tip on pre-tax, some on post-tax. Follow house or local norms.",
+    },
+    {
+      question: "How do I tip when automatic gratuity is already listed?",
+      answer:
+        "If gratuity is already included, add more only for exceptional service—avoid double-tipping blindly.",
+    },
+    {
+      question: "What is a quick mental trick for about 20%?",
+      answer:
+        "Take 10% by moving the decimal, then double it.",
+    },
+    {
+      question: "How should delivery-driver tips be handled?",
+      answer:
+        "Tip drivers separately from restaurant service; apps may suggest amounts—adjust for distance and effort.",
+    },
+    {
+      question: "Can I leave a flat tip instead of a percentage?",
+      answer:
+        "Yes—flat tips work for coffee counters or small checks.",
+    },
+    {
+      question: "What if the receipt already suggests tip amounts?",
+      answer:
+        "Treat suggestions as optional; compute what you intend before signing.",
+    },
+    {
+      question: "How do group dining apps change the split workflow?",
+      answer:
+        "Itemize first, then tip on the shared pre-tip total so percentages stay fair.",
+    }
   ]
 };
