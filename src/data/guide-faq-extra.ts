@@ -5963,5 +5963,367 @@ export const extraGuideFaqs: Record<string, GuideFaq[]> = {
       answer:
         "Parse it with a strict parser, confirm required keys, and check types against your schema.",
     }
+  ],
+  "how-to-count-pdf-pages": [
+    {
+      question: "How do I see the page count for a PDF on my computer?",
+      answer:
+        "Open the counter, choose the PDF, and read the reported page total once processing finishes.",
+    },
+    {
+      question: "Does the count include cover pages?",
+      answer:
+        "Yes—every page in the file counts, including covers, blanks, and appendices.",
+    },
+    {
+      question: "Can I count pages in a scanned PDF?",
+      answer:
+        "Yes—scans still have page objects; image-only pages are counted like text pages.",
+    },
+    {
+      question: "What if the file is corrupted?",
+      answer:
+        "The tool may fail to open it; try re-exporting the PDF from the original app.",
+    },
+    {
+      question: "Will bookmarks change the page total?",
+      answer:
+        "No—bookmarks are navigation aids; the count follows actual pages in the document.",
+    },
+    {
+      question: "Can I check several PDFs one after another?",
+      answer:
+        "Yes—run each file separately and note the totals; clear the previous file before the next.",
+    },
+    {
+      question: "How accurate is the number for print shops?",
+      answer:
+        "It matches the PDF’s page objects; confirm facing-page or spread setups if the shop bills differently.",
+    },
+    {
+      question: "Does rotating a page alter the count?",
+      answer:
+        "No—rotation changes orientation only; the number of pages stays the same.",
+    },
+    {
+      question: "What about PDFs created from many images?",
+      answer:
+        "Each image page still counts as one page unless they were combined onto shared sheets.",
+    },
+    {
+      question: "Can I count pages offline?",
+      answer:
+        "If the counter runs locally in the browser, you can work without uploading the file to a server.",
+    },
+    {
+      question: "Why might two apps show different totals?",
+      answer:
+        "Rare repair tools or viewer bugs differ; re-save a clean PDF and count again.",
+    },
+    {
+      question: "Do attachments inside a PDF add pages?",
+      answer:
+        "Embedded files are not extra pages unless they appear as pages in the main document.",
+    },
+    {
+      question: "Is there a maximum file size?",
+      answer:
+        "Large files can hit memory limits; split huge PDFs before counting if the tool errors.",
+    },
+    {
+      question: "Can I use the count to estimate printing cost?",
+      answer:
+        "Yes—multiply pages by the shop’s per-page rate, and clarify color versus grayscale separately.",
+    },
+    {
+      question: "Does the tool modify my PDF while counting?",
+      answer:
+        "Counting should be read-only; download or overwrite only if you use a different edit tool afterward.",
+    }
+  ],
+  "significant-figures-calculator": [
+    {
+      question: "How do I enter a number to count its significant figures?",
+      answer:
+        "Type the value, including decimals or scientific notation if needed, then read the significant-figure count.",
+    },
+    {
+      question: "Why do leading zeros not count as significant?",
+      answer:
+        "They only place the decimal point, as in 0.0032, which has two significant figures.",
+    },
+    {
+      question: "When are trailing zeros significant?",
+      answer:
+        "Trailing zeros are significant when a decimal point is shown, such as 2.50 having three significant figures.",
+    },
+    {
+      question: "How should I write ambiguous zeros in whole numbers?",
+      answer:
+        "Use scientific notation, like 1.20 × 10^3, to show that trailing zeros are intentional.",
+    },
+    {
+      question: "What rule applies when multiplying measured values?",
+      answer:
+        "The product should match the fewest significant figures among the factors.",
+    },
+    {
+      question: "What rule applies when adding measured values?",
+      answer:
+        "The sum follows the least precise decimal place among the addends, not the significant-figure count alone.",
+    },
+    {
+      question: "Can I round a long calculator result to N significant figures?",
+      answer:
+        "Yes—choose the target count and apply standard rounding so the reported value matches your precision.",
+    },
+    {
+      question: "Does the calculator treat exact counts differently?",
+      answer:
+        "Exact counted integers can have infinite precision in theory; follow your lab’s instructions for those cases.",
+    },
+    {
+      question: "How do I handle numbers in scientific notation?",
+      answer:
+        "Count digits in the coefficient only; the power of ten does not add significant figures.",
+    },
+    {
+      question: "Why did 100 and 1.00×10^2 get different counts?",
+      answer:
+        "Without a decimal, 100 is ambiguous; scientific notation clarifies how many zeros are significant.",
+    },
+    {
+      question: "Can this help with chemistry homework?",
+      answer:
+        "Yes for counting and rounding practice; still show work if your teacher requires manual steps.",
+    },
+    {
+      question: "What if I paste units with the number?",
+      answer:
+        "Enter the bare number; units are separate from significant-figure rules.",
+    },
+    {
+      question: "How precise should lab reports show results?",
+      answer:
+        "Match the instrument and calculation rules your course specifies; do not overstate precision.",
+    },
+    {
+      question: "Is rounding the same as truncating?",
+      answer:
+        "No—rounding looks at the next digit; truncating just cuts off digits and biases results.",
+    },
+    {
+      question: "Can I check intermediate steps before the final round?",
+      answer:
+        "Keep extra digits during multi-step work, then round once for the final reported value when that is the policy.",
+    }
+  ],
+  "common-json-errors-and-how-to-fix-them": [
+    {
+      question: "How do I find the line that broke my JSON parse?",
+      answer:
+        "Read the parser’s line and column hint, open that spot, and fix commas, quotes, or brackets there.",
+    },
+    {
+      question: "Why do single quotes around keys fail?",
+      answer:
+        "JSON requires double quotes for keys and strings; replace single quotes before parsing.",
+    },
+    {
+      question: "What fixes an unescaped backslash in a path?",
+      answer:
+        "Double the backslash or switch to forward slashes so the string stays valid JSON.",
+    },
+    {
+      question: "How can trailing commas sneak in from JavaScript style?",
+      answer:
+        "JS allows trailing commas in objects; JSON does not—delete the comma after the last property.",
+    },
+    {
+      question: "Why does capital True fail while true works?",
+      answer:
+        "JSON literals are lowercase true, false, and null only; other capitalizations are invalid.",
+    },
+    {
+      question: "What should I do when the response is an HTML error page?",
+      answer:
+        "Inspect status codes and Content-Type; fix the endpoint so it returns application/json instead of an HTML body.",
+    },
+    {
+      question: "How do I encode newlines inside a string value?",
+      answer:
+        "Use \\n inside the JSON string rather than a raw line break unless you are using a relaxed format.",
+    },
+    {
+      question: "Can duplicate keys cause confusing results?",
+      answer:
+        "Parsers may keep the last duplicate silently; remove duplicates so intent is clear.",
+    },
+    {
+      question: "How do I validate NDJSON differently from one JSON document?",
+      answer:
+        "Parse each line as its own JSON value; a wrapper array is a different shape than newline-delimited rows.",
+    },
+    {
+      question: "What is a quick check before sending JSON to an API?",
+      answer:
+        "Run it through a strict formatter or parser locally and confirm required fields and types.",
+    }
+  ],
+  "debt-snowball-vs-avalanche": [
+    {
+      question: "How do I compare snowball and avalanche on the same debts?",
+      answer:
+        "Enter identical balances, rates, and extras, then switch methods to compare months and interest.",
+    },
+    {
+      question: "When is snowball emotionally easier to stick with?",
+      answer:
+        "When small wins keep you motivated; clearing a tiny balance first can build momentum.",
+    },
+    {
+      question: "When does avalanche usually win on cost?",
+      answer:
+        "When rate gaps are large and you reliably pay extras toward the highest APR first.",
+    },
+    {
+      question: "Should I include a 0% promo balance in avalanche math?",
+      answer:
+        "Yes—model the promo end date mentally; a 0% APR ranks last for avalanche until the rate jumps.",
+    },
+    {
+      question: "How does the size of the extra payment change the gap?",
+      answer:
+        "Larger extras shrink both timelines; the interest gap between methods often widens when extras are small.",
+    },
+    {
+      question: "Can I switch methods mid-plan?",
+      answer:
+        "Yes—update remaining balances and pick a new order; consistency matters more than purity.",
+    },
+    {
+      question: "What if two debts share the same APR?",
+      answer:
+        "Break ties by balance or convenience; avalanche treats equal rates as indifferent on interest.",
+    },
+    {
+      question: "How should couples pick a method together?",
+      answer:
+        "Agree on the goal—speed of wins versus dollars saved—then lock the payment amount you both fund.",
+    },
+    {
+      question: "Does balance transfer change which method is better?",
+      answer:
+        "After a transfer, rerun with the new rate and fees; the better method can flip.",
+    },
+    {
+      question: "Is either method a substitute for a budget?",
+      answer:
+        "No—both need a real surplus; without extras, minimums alone decide the timeline.",
+    }
+  ],
+  "dynamic-vs-static-qr-codes": [
+    {
+      question: "What is the core difference between static and dynamic QR codes?",
+      answer:
+        "Static codes embed the final payload; dynamic codes point at a short URL you can retarget later.",
+    },
+    {
+      question: "When is a static code the better choice?",
+      answer:
+        "Use static for Wi-Fi, fixed text, or a URL that will never need to change after printing.",
+    },
+    {
+      question: "When should I prefer a dynamic code?",
+      answer:
+        "Choose dynamic for campaigns, print runs, or posters where the destination may change.",
+    },
+    {
+      question: "Do I need a server for static QR content?",
+      answer:
+        "No—once printed, the payload is in the pattern; scanning does not depend on your hosting.",
+    },
+    {
+      question: "Why might a dynamic code stop working?",
+      answer:
+        "If the redirect service expires, is deleted, or goes offline, scans fail until you restore the link.",
+    },
+    {
+      question: "Can I gather scan analytics with static codes?",
+      answer:
+        "Not from the code itself; you would need destination-page analytics or a tagged URL.",
+    },
+    {
+      question: "How do short redirect links affect design space?",
+      answer:
+        "Shorter payloads make simpler QR patterns that are easier to style and scan from farther away.",
+    },
+    {
+      question: "Is reprinting required after a URL change?",
+      answer:
+        "Static codes need a reprint; dynamic codes can keep the same printed pattern with a new target.",
+    },
+    {
+      question: "Are dynamic codes always paid?",
+      answer:
+        "Many hosts charge for redirects and analytics; static generation can stay free for fixed payloads.",
+    },
+    {
+      question: "What should I test before a large print order?",
+      answer:
+        "Scan from multiple phones, distances, and lighting, and confirm dynamic redirects still land correctly.",
+    }
+  ],
+  "15-year-vs-30-year-mortgage": [
+    {
+      question: "How should I compare 15-year and 30-year payments side by side?",
+      answer:
+        "Enter the same loan amount and rate assumptions for each term, then compare payment, interest, and payoff date.",
+    },
+    {
+      question: "Why is the 15-year payment higher even at a lower rate?",
+      answer:
+        "You repay principal over fewer years, so each month must cover more principal.",
+    },
+    {
+      question: "What cash-flow flexibility does a 30-year term add?",
+      answer:
+        "Lower required payments free budget for emergencies, though total interest is usually higher if you only pay the minimum.",
+    },
+    {
+      question: "Can extra payments on a 30-year loan mimic a 15-year payoff?",
+      answer:
+        "Yes—consistent principal prepayments can shorten the schedule; confirm there is no prepayment penalty.",
+    },
+    {
+      question: "How do rates typically differ between the two terms?",
+      answer:
+        "15-year quotes are often lower than 30-year quotes from the same lender, but always compare live offers.",
+    },
+    {
+      question: "What equity builds faster on a 15-year loan?",
+      answer:
+        "More of each early payment goes to principal, so equity usually grows quicker than on a 30-year schedule.",
+    },
+    {
+      question: "Should taxes and insurance change which term I pick?",
+      answer:
+        "They affect the full housing payment either way; compare principal-and-interest first, then add escrow estimates.",
+    },
+    {
+      question: "How do I stress-test a 15-year payment?",
+      answer:
+        "Ask whether the higher payment still works if income drops; if not, a 30-year with voluntary extras may fit better.",
+    },
+    {
+      question: "What role does expected time in the home play?",
+      answer:
+        "Short stays may favor lower payments; long stays increase the value of interest savings from a shorter term.",
+    },
+    {
+      question: "Is refinancing from 30-year to 15-year common?",
+      answer:
+        "Yes when rates and budget allow; run new payment numbers before closing costs lock you in.",
+    }
   ]
 };

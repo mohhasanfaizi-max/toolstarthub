@@ -570,6 +570,81 @@ export const extraToolFaqs: Record<string, ToolFaq[]> = {
       answer:
         "In theory, yes, but with 122 random bits the chance is so small that UUID v4 values are treated as unique in practice.",
     },
+    {
+      question: "How do I generate a single UUID v4 for an API id?",
+      answer:
+        "Click generate and copy the value; v4 UUIDs are random 128-bit identifiers in the usual 8-4-4-4-12 form.",
+    },
+    {
+      question: "Can I create a batch of UUIDs at once?",
+      answer:
+        "Yes—set the count within the allowed range and copy the list for seeds, tests, or bulk inserts.",
+    },
+    {
+      question: "Should I strip hyphens before storing UUIDs?",
+      answer:
+        "Only if your database expects the compact form; many systems keep the hyphenated canonical string.",
+    },
+    {
+      question: "Are generated UUIDs sorted by time?",
+      answer:
+        "v4 values are random, not time-ordered; use a time-based version if you need sortable ids.",
+    },
+    {
+      question: "Can I use these as secret tokens?",
+      answer:
+        "UUIDs are identifiers, not passwords; use a dedicated secret generator for credentials.",
+    },
+    {
+      question: "What does the version nibble in a UUID mean?",
+      answer:
+        "It marks the UUID version; v4 sets that nibble to 4 so readers know the value is random-based.",
+    },
+    {
+      question: "How do uppercase and lowercase UUID strings compare?",
+      answer:
+        "Hex digits are case-insensitive in the UUID grammar; pick one style and stay consistent in APIs.",
+    },
+    {
+      question: "Will refreshing the page repeat the same UUID?",
+      answer:
+        "No—each generate draws new randomness; copy values you need before leaving.",
+    },
+    {
+      question: "Is it safe to put UUIDs in public URLs?",
+      answer:
+        "Yes for opaque resource ids when guessability is a concern; still enforce authorization on the server.",
+    },
+    {
+      question: "Can two runs collide in practice?",
+      answer:
+        "Collision odds for proper v4 UUIDs are negligible for ordinary app volumes; still use unique constraints in databases.",
+    },
+    {
+      question: "Do I need a network call to generate UUIDs?",
+      answer:
+        "No—generation can use the browser’s crypto APIs locally without uploading anything.",
+    },
+    {
+      question: "How many UUIDs can I request in one click?",
+      answer:
+        "Stay within the tool’s stated maximum (often up to 100) so the page stays responsive.",
+    },
+    {
+      question: "Should database primary keys always be UUIDs?",
+      answer:
+        "They help distributed inserts; sequential integers can still be fine for single-node tables.",
+    },
+    {
+      question: "What is the nil UUID used for?",
+      answer:
+        "The all-zero UUID is a conventional null-like placeholder; this generator focuses on random v4 values.",
+    },
+    {
+      question: "Can I validate a UUID I pasted from elsewhere?",
+      answer:
+        "Check the 8-4-4-4-12 hex shape and version/variant bits; a formatter or validator can confirm details.",
+    }
   ],
   "url-encoder": [
     {
@@ -1702,6 +1777,81 @@ export const extraToolFaqs: Record<string, ToolFaq[]> = {
       answer:
         "The PDF uses the Helvetica font, which cannot draw every script or emoji. Characters it cannot draw are replaced with ?.",
     },
+    {
+      question: "How do I set a title that appears in the PDF metadata?",
+      answer:
+        "If the tool offers a title field, fill it before generating; otherwise the file may use a generic name.",
+    },
+    {
+      question: "Can I choose page size such as A4 or Letter?",
+      answer:
+        "Use the page-size control when available so the PDF matches your printer or submission rules.",
+    },
+    {
+      question: "Will long lines wrap or get cut off?",
+      answer:
+        "Long lines typically wrap inside the page margins; preview and adjust font size if text feels cramped.",
+    },
+    {
+      question: "How do I convert notes with multiple paragraphs?",
+      answer:
+        "Paste the full text with blank lines between paragraphs, then generate so spacing is preserved.",
+    },
+    {
+      question: "Does font choice affect file size much?",
+      answer:
+        "Embedded fonts can add weight; standard fonts keep small text PDFs lighter.",
+    },
+    {
+      question: "Can I include Urdu or other complex scripts?",
+      answer:
+        "Yes when the font supports those glyphs; otherwise characters may show as boxes or question marks.",
+    },
+    {
+      question: "How do I download the finished PDF?",
+      answer:
+        "Generate, then use the download control; open the file locally to confirm layout before sharing.",
+    },
+    {
+      question: "Is there a character limit for the paste box?",
+      answer:
+        "Very large pastes may slow the browser; split into chapters if generation stalls.",
+    },
+    {
+      question: "Will hyperlinks in plain text become clickable?",
+      answer:
+        "Plain text converters often leave URLs as text only unless a link option is enabled.",
+    },
+    {
+      question: "Can I password-protect the PDF here?",
+      answer:
+        "Only if the tool exposes an encryption option; otherwise protect the file in a PDF editor afterward.",
+    },
+    {
+      question: "How do margins affect printable text?",
+      answer:
+        "Wider margins reduce line length; narrower margins fit more words but can look crowded when printed.",
+    },
+    {
+      question: "Does regenerating overwrite my previous download?",
+      answer:
+        "Each generate creates a new file in your downloads; rename earlier copies if you need both.",
+    },
+    {
+      question: "Can I convert markdown to PDF with this tool?",
+      answer:
+        "It expects plain text layout; convert markdown to rendered text first if you need headings styled.",
+    },
+    {
+      question: "Why is my PDF blank after download?",
+      answer:
+        "Check that the text box was not empty and that a popup blocker did not stop the file.",
+    },
+    {
+      question: "Is the source text stored after I leave?",
+      answer:
+        "Keep sensitive drafts offline; the page is designed for local conversion without uploading your notes.",
+    }
   ],
   "markdown-to-html": [
     {
@@ -2059,6 +2209,81 @@ export const extraToolFaqs: Record<string, ToolFaq[]> = {
       answer:
         "Use remove blank lines to drop every empty line, or collapse blank lines to keep one empty line between paragraphs.",
     },
+    {
+      question: "How do I collapse multiple spaces into one?",
+      answer:
+        "Paste the text and run the cleaner so repeated spaces shrink to a single space between words.",
+    },
+    {
+      question: "Can I remove leading and trailing spaces on each line?",
+      answer:
+        "Yes—trim line edges when that option is on, which helps tidy pasted tables or code comments.",
+    },
+    {
+      question: "Will tabs be converted or deleted?",
+      answer:
+        "Depending on settings, tabs may become spaces or be removed; preview if indentation matters.",
+    },
+    {
+      question: "How do I delete blank lines without touching word spacing?",
+      answer:
+        "Choose an empty-line cleanup mode, or run a dedicated empty-line pass if the tool separates those controls.",
+    },
+    {
+      question: "Does non-breaking space get removed?",
+      answer:
+        "Some cleaners normalize NBSP to regular spaces; check a known NBSP sample if layout depends on it.",
+    },
+    {
+      question: "Can I clean text before putting it in a CSV?",
+      answer:
+        "Yes—normalize spaces first so cells do not carry hidden padding that breaks joins.",
+    },
+    {
+      question: "Will code indentation survive?",
+      answer:
+        "Aggressive remove-all-whitespace modes destroy indentation; use gentle collapse modes for prose only.",
+    },
+    {
+      question: "How do I strip spaces around punctuation?",
+      answer:
+        "After collapsing runs of spaces, fix odd gaps beside commas manually if the cleaner leaves them.",
+    },
+    {
+      question: "Can I process one paragraph at a time?",
+      answer:
+        "Paste smaller chunks when you want tighter control, then assemble the cleaned parts.",
+    },
+    {
+      question: "Why do my lines still look indented in the editor?",
+      answer:
+        "The editor may show wrap or residual tabs; copy into a plain-text view to confirm.",
+    },
+    {
+      question: "Is removing whitespace the same as removing line breaks?",
+      answer:
+        "No—line-break tools target newlines; whitespace removers focus on spaces, tabs, and similar gaps.",
+    },
+    {
+      question: "Can I undo a cleanup?",
+      answer:
+        "Keep the original paste or use undo; regenerating from a saved draft is safer for long text.",
+    },
+    {
+      question: "Does cleaning change the meaning of aligned columns?",
+      answer:
+        "Yes—space-aligned text can shift; use a monospace editor or table tool when columns matter.",
+    },
+    {
+      question: "How should I clean text copied from a web page?",
+      answer:
+        "Paste, collapse extra spaces, and trim edges; HTML often leaves irregular gaps between words.",
+    },
+    {
+      question: "Is my text uploaded while cleaning?",
+      answer:
+        "The remover is meant to run in the browser; copy results locally if you need a lasting file.",
+    }
   ],
   "line-sorter": [
     {
@@ -2932,6 +3157,81 @@ export const extraToolFaqs: Record<string, ToolFaq[]> = {
       answer:
         "Replacing turns each break into a space so words stay apart. Removing deletes the break, which joins the end of one line to the start of the next.",
     },
+    {
+      question: "How do I join a paragraph that wrapped in a PDF copy?",
+      answer:
+        "Paste the broken text, remove line breaks, then copy the rejoined paragraph into your document.",
+    },
+    {
+      question: "Will blank lines between paragraphs stay?",
+      answer:
+        "Many removers keep empty lines as separators while joining single breaks inside a block—review the output.",
+    },
+    {
+      question: "Can I process only part of a long paste?",
+      answer:
+        "Yes—paste just the broken section so lists or poetry elsewhere stay untouched.",
+    },
+    {
+      question: "Do Windows and Mac line endings both get removed?",
+      answer:
+        "Yes—CRLF, LF, and CR are normalized so mixed pastes still join cleanly.",
+    },
+    {
+      question: "Will words smash together after joining?",
+      answer:
+        "A careful remover inserts a space when a break sat between words; skim once for odd hyphens.",
+    },
+    {
+      question: "How do soft returns from Word behave?",
+      answer:
+        "They usually arrive as ordinary newlines and are removed the same way as hard breaks.",
+    },
+    {
+      question: "Can I keep a bullet list intact?",
+      answer:
+        "Run the tool on prose blocks only, or restore list newlines afterward if a full paste was cleaned.",
+    },
+    {
+      question: "Why does the editor still wrap after cleaning?",
+      answer:
+        "Display wrap follows window width; the underlying text may already be one logical line.",
+    },
+    {
+      question: "How do I prepare text for a single CSV cell?",
+      answer:
+        "Join lines first, then escape quotes as your spreadsheet format requires.",
+    },
+    {
+      question: "Is undo available after removing breaks?",
+      answer:
+        "Use browser or editor undo, or keep the original paste in another tab before running the tool.",
+    },
+    {
+      question: "Should I clean markdown code fences this way?",
+      answer:
+        "Avoid it—removing breaks inside fenced code can ruin indentation and structure.",
+    },
+    {
+      question: "What about hyphenated words split across lines?",
+      answer:
+        "End-of-line hyphens may remain; delete them manually if a word was split only for wrapping.",
+    },
+    {
+      question: "Can chat logs with one word per line be fixed?",
+      answer:
+        "Yes—strip breaks to form sentences, then fix spacing around timestamps if needed.",
+    },
+    {
+      question: "Does this change non-breaking spaces?",
+      answer:
+        "Focus is newlines; exotic spaces may remain unless you also run a whitespace cleaner.",
+    },
+    {
+      question: "Will the cleaned text leave my browser?",
+      answer:
+        "Processing is meant to stay in the page session; copy results you want to keep elsewhere.",
+    }
   ],
   "add-line-numbers": [
     {
@@ -3202,6 +3502,81 @@ export const extraToolFaqs: Record<string, ToolFaq[]> = {
       answer:
         "Parentheses in a pattern create a capture group, which saves the part of the match inside them. (\\d{4})-(\\d{2}) captures the year and the month separately.",
     },
+    {
+      question: "How do I test a pattern against sample text quickly?",
+      answer:
+        "Paste the regex and the sample, choose flags, then read the match list or highlights the tester shows.",
+    },
+    {
+      question: "When should I enable the multiline flag?",
+      answer:
+        "Turn it on when ^ and $ should match each line’s start and end, not only the whole string boundaries.",
+    },
+    {
+      question: "How do I match a literal special character?",
+      answer:
+        "Escape it with a backslash, such as \\. for a period or \\( for an opening parenthesis.",
+    },
+    {
+      question: "Why does my greedy pattern swallow too much text?",
+      answer:
+        "Greedy quantifiers take the longest match; try a lazy form like *? or tighten the character class.",
+    },
+    {
+      question: "Can I inspect numbered capture groups?",
+      answer:
+        "Yes—each group’s text appears with the match so you can verify what parentheses collected.",
+    },
+    {
+      question: "What does the case-insensitive flag change?",
+      answer:
+        "Letter case stops mattering, so Room and room can match with one pattern.",
+    },
+    {
+      question: "How do word boundaries help?",
+      answer:
+        "\\\\b anchors a match at word edges so cat does not match inside category unless you want that.",
+    },
+    {
+      question: "Will an invalid pattern crash the page?",
+      answer:
+        "The tester should show a syntax error instead of matches; fix brackets or escapes and retry.",
+    },
+    {
+      question: "Can I paste a long log as the subject?",
+      answer:
+        "Yes within browser limits; sample a slice first if a huge paste slows highlighting.",
+    },
+    {
+      question: "How is this different from replacing in an editor?",
+      answer:
+        "Here you focus on match and group debugging; use an editor when you need substitution previews.",
+    },
+    {
+      question: "Do JavaScript regex features match other languages?",
+      answer:
+        "Core syntax is close, but lookbehind and Unicode details differ—confirm in the runtime you ship.",
+    },
+    {
+      question: "How can I match either of two alternatives?",
+      answer:
+        "Use | inside a group, such as (error|warn), and test both spellings in the sample.",
+    },
+    {
+      question: "What if nothing matches but the pattern looks right?",
+      answer:
+        "Check hidden spaces, wrong flags, or an anchor that is too strict; simplify until a match appears.",
+    },
+    {
+      question: "Can I share a pattern with a teammate safely?",
+      answer:
+        "Copy the pattern and a short sample into docs; the session itself is not published by the tool.",
+    },
+    {
+      question: "Should production validation rely only on a quick regex?",
+      answer:
+        "Use regex for shape checks, then apply proper parsers or libraries for emails, URLs, and similar data.",
+    }
   ],
   "hash-generator": [
     {
@@ -5931,6 +6306,83 @@ export const extraToolFaqs: Record<string, ToolFaq[]> = {
       question: "Are numbers stored after conversion?",
       answer:
         "They remain in the page session only.",
+    }
+  ],
+  "urdu-news-translator": [
+    {
+      question: "How do I paste an Urdu news paragraph for a draft English version?",
+      answer:
+        "Paste the Urdu text, pick Brief, Medium, or Full, then generate and edit the English draft before publishing.",
+    },
+    {
+      question: "When should I choose Brief instead of Full?",
+      answer:
+        "Use Brief for a short summary blurb; choose Full when you need closer coverage of the original detail.",
+    },
+    {
+      question: "Why must a human review the English draft?",
+      answer:
+        "Names, numbers, and nuance can be wrong; treat the output as a starting draft, not a finished article.",
+    },
+    {
+      question: "Can I translate headlines separately from body copy?",
+      answer:
+        "Yes—run the headline alone for a tight title, then translate the body in another pass.",
+    },
+    {
+      question: "Does the tool invent quotes that were not in Urdu?",
+      answer:
+        "It should not add facts; if a draft invents detail, cut it and align with the source sentences.",
+    },
+    {
+      question: "How do I handle mixed Urdu and English in one paste?",
+      answer:
+        "Keep proper nouns as they appear, and clarify ambiguous bits while editing the English draft.",
+    },
+    {
+      question: "What if important numbers look rounded or changed?",
+      answer:
+        "Compare every figure to the Urdu source and correct the draft before anything goes live.",
+    },
+    {
+      question: "Can I use this for opinion columns as well as straight news?",
+      answer:
+        "Yes, but preserve tone carefully; opinion voice is easy to flatten or exaggerate in a draft.",
+    },
+    {
+      question: "How long can the Urdu input be?",
+      answer:
+        "Very long articles may need section-by-section passes so each draft stays readable to edit.",
+    },
+    {
+      question: "Will the English draft keep paragraph breaks?",
+      answer:
+        "Structure can shift; restore paragraph breaks and subheads while you fact-check.",
+    },
+    {
+      question: "Is machine output okay to publish without edits?",
+      answer:
+        "No—always edit for accuracy, style, and house rules before publishing under your byline.",
+    },
+    {
+      question: "How do I credit the original outlet?",
+      answer:
+        "Follow your newsroom policy for attribution and rights; translation drafts do not grant republishing rights.",
+    },
+    {
+      question: "Can I re-run with a different length after editing?",
+      answer:
+        "Yes—change Brief/Medium/Full and regenerate, then merge the best sentences into your edit.",
+    },
+    {
+      question: "What should I do with untranslated terms?",
+      answer:
+        "Keep widely known Urdu terms or add a short gloss once so readers are not lost.",
+    },
+    {
+      question: "Does leaving the page delete my draft?",
+      answer:
+        "Copy the English draft into your CMS or notes; refreshing can clear the form.",
     }
   ]
 };

@@ -2475,7 +2475,11 @@ for (const slug of TOOL_GUIDE_SLUGS) {
   const article = getArticleBySlug(slug);
   const content = getGuideContent(slug);
   assert(article && content, `${slug} tool guide is registered`);
-  assert(content.faqs.length === 10, `${slug} tool guide has 10 FAQs`);
+  const expectedToolGuideFaqs = extraGuideFaqs[slug] ? TARGET_GUIDE_FAQ_MAX : 10;
+  assert(
+    content.faqs.length === expectedToolGuideFaqs,
+    `${slug} tool guide has ${expectedToolGuideFaqs} FAQs`,
+  );
   assert(
     getGuidesForTool(article.toolSlug).some((guide) => guide.slug === slug),
     `${slug} is returned for ${article.toolSlug}`,
