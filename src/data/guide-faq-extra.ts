@@ -7729,5 +7729,629 @@ export const extraGuideFaqs: Record<string, GuideFaq[]> = {
       answer:
         "Minimum payments and changing balances need amortization tools, not a single doubling shortcut.",
     }
+  ],
+  "how-to-draw-names-for-secret-santa": [
+    {
+      question: "Should I draw names before or after collecting wishlists?",
+      answer:
+        "Collect wishlists first when you can—givers shop faster once they know both their recipient and preferences.",
+    },
+    {
+      question: "How do I handle a last-minute new coworker?",
+      answer:
+        "Add them and regenerate if the group agrees, or run a tiny side draw so existing pairs stay intact.",
+    },
+    {
+      question: "Can I print assignments without showing everyone else’s matches?",
+      answer:
+        "Export or copy one pairing at a time into sealed notes so only each giver sees their recipient.",
+    },
+    {
+      question: "What naming format works best for large offices?",
+      answer:
+        "Use first name plus last initial or team so duplicates like “Alex” stay unique in the list.",
+    },
+    {
+      question: "Does a seed or redo button change fairness?",
+      answer:
+        "Each valid shuffle should be equally fair; redo only when constraints or dropouts require a new graph.",
+    },
+    {
+      question: "How should international teams pick a ship-by date?",
+      answer:
+        "Work backward from the party using the slowest postal lane, then add a buffer for customs.",
+    },
+    {
+      question: "Can kids’ groups use the same draw rules?",
+      answer:
+        "Yes—simplify exclusions and have an adult manage private reveals so surprises stay intact.",
+    },
+    {
+      question: "What if someone wants to gift as a pair?",
+      answer:
+        "Treat the couple as one giver entry only if your rules allow joint gifts; otherwise keep separate draws.",
+    },
+    {
+      question: "Should organizers participate in the draw?",
+      answer:
+        "They can, but use private delivery so seeing the full list is unnecessary.",
+    },
+    {
+      question: "How do I archive this year’s pairings?",
+      answer:
+        "Save a private copy for dispute checks, then delete public posts after gifts are exchanged.",
+    }
+  ],
+  "secret-santa-rules-and-gift-ideas": [
+    {
+      question: "How do theme nights change gift ideas?",
+      answer:
+        "Announce the theme with the budget—books, snacks, or handmade—so everyone shops in the same spirit.",
+    },
+    {
+      question: "Should regifting be allowed?",
+      answer:
+        "Only if the group agrees upfront and items are new or clearly welcome; otherwise skip it.",
+    },
+    {
+      question: "What is a good backup gift if shipping fails?",
+      answer:
+        "Keep a small gift-card option ready so remote participants are not empty-handed on the day.",
+    },
+    {
+      question: "How do dietary limits affect food gifts?",
+      answer:
+        "Ask for allergies on the wishlist form and prefer sealed, labeled treats when in doubt.",
+    },
+    {
+      question: "Can charity donations replace physical gifts?",
+      answer:
+        "Yes when the group votes for it—name the charity and proof expectations in the rules.",
+    },
+    {
+      question: "How strict should “no spoilers” chats be?",
+      answer:
+        "Ban recipient names in public channels; use DMs only with the organizer for logistics.",
+    },
+    {
+      question: "What if two people buy nearly identical gifts?",
+      answer:
+        "Wishlists with specifics reduce clashes; still allow returns or swaps after the reveal if needed.",
+    },
+    {
+      question: "Should kids wrap gifts differently from adults?",
+      answer:
+        "Use sturdy bags and name tags kids can read; adults can handle fancier wrapping separately.",
+    },
+    {
+      question: "How do I set a white-elephant hybrid rule?",
+      answer:
+        "Decide whether stealing is allowed after the Secret Santa reveal—or keep the events separate.",
+    },
+    {
+      question: "When should thank-you notes go out?",
+      answer:
+        "Within a week of the exchange is polite, especially for shipped gifts across time zones.",
+    }
+  ],
+  "how-many-words-is-a-5-minute-speech": [
+    {
+      question: "How many words fit a 7-minute school speech?",
+      answer:
+        "At about 130 wpm you need roughly 900 words; at 150 wpm closer to 1,050—time a rehearsal to confirm.",
+    },
+    {
+      question: "Does pausing for slides change the word budget?",
+      answer:
+        "Yes—subtract time for demos and laughter so the script is shorter than a pure talk.",
+    },
+    {
+      question: "Should I write a full script or bullet cards?",
+      answer:
+        "Scripts hit exact timing; cards feel natural but need extra rehearsals to stay near five minutes.",
+    },
+    {
+      question: "How do quotes affect speaking time?",
+      answer:
+        "Slow down for quotations—count them in the word total and leave a buffer.",
+    },
+    {
+      question: "What pace suits a solemn memorial talk?",
+      answer:
+        "Aim slower than a sales pitch, often near 110–120 wpm, so emotion has room.",
+    },
+    {
+      question: "Can I judge length by pages instead of words?",
+      answer:
+        "Double-spaced pages vary by font; word count plus a timed read is more reliable.",
+    },
+    {
+      question: "How much time should Q&A leave after five minutes?",
+      answer:
+        "If the slot is five minutes total, keep the speech under four so questions fit.",
+    },
+    {
+      question: "Do filler words inflate delivery time?",
+      answer:
+        "They can—edit fillers in rehearsal so the timed script matches the stage version.",
+    },
+    {
+      question: "How should bilingual speeches split minutes?",
+      answer:
+        "Decide the minute split first, then write each language section to that budget.",
+    },
+    {
+      question: "Is teleprompter speed the same as podium pace?",
+      answer:
+        "Prompters tempt rushing—lock a wpm target and practice with the same device.",
+    }
+  ],
+  "how-to-estimate-unemployment-benefits": [
+    {
+      question: "Should overtime be included in base-period wages?",
+      answer:
+        "If it was reported as UI-covered wages, include it; exclude reimbursements your state ignores.",
+    },
+    {
+      question: "How do I estimate if I worked in two states?",
+      answer:
+        "Filing usually follows where you worked or live per agency rules—run each state’s math separately then read official guidance.",
+    },
+    {
+      question: "Does severance change the weekly benefit amount?",
+      answer:
+        "It more often shifts when benefits start than the weekly rate; confirm with your determination.",
+    },
+    {
+      question: "Can I model a part-time return to work?",
+      answer:
+        "Use the weekly benefit estimate first, then apply your state’s earnings disregard rules manually.",
+    },
+    {
+      question: "Why enter wages by quarter instead of a yearly total?",
+      answer:
+        "Many formulas use high-quarter or average-quarter wages, so quarterly detail matters.",
+    },
+    {
+      question: "Are tips counted the same as hourly wages?",
+      answer:
+        "Only when reported for UI—undeclared cash tips may not appear in the wage record.",
+    },
+    {
+      question: "How should federal employees treat this estimate?",
+      answer:
+        "Federal claims follow different wage sources; treat this as a rough private-sector style check only.",
+    },
+    {
+      question: "What if my employer reported wrong wages?",
+      answer:
+        "Dispute through your agency with pay stubs—the calculator cannot correct employer filings.",
+    },
+    {
+      question: "Do training extensions appear here?",
+      answer:
+        "Basic estimates cover regular UI weeks; special extensions need separate program notices.",
+    },
+    {
+      question: "Should I subtract health insurance premiums?",
+      answer:
+        "No—enter gross covered wages, not take-home pay after deductions.",
+    }
+  ],
+  "how-to-view-and-remove-pdf-metadata": [
+    {
+      question: "Can removed metadata be recovered later?",
+      answer:
+        "A cleaned download should omit the cleared fields; keep the original if you still need them.",
+    },
+    {
+      question: "Do embedded file attachments count as metadata?",
+      answer:
+        "Attachments are separate payloads—removing document info fields may not strip embedded files.",
+    },
+    {
+      question: "Will XMP packets always clear with basic cleanup?",
+      answer:
+        "Many cleaners target common info dictionaries; stubborn XMP may need a stricter tool.",
+    },
+    {
+      question: "Should legal exhibits keep author fields?",
+      answer:
+        "Follow counsel guidance—some filings want identifiable authorship, others prefer minimal properties.",
+    },
+    {
+      question: "Does cleaning metadata flatten form fields?",
+      answer:
+        "Info cleanup should not flatten forms; page content stays unless you run other tools.",
+    },
+    {
+      question: "Can phone-scan apps add hidden GPS tags?",
+      answer:
+        "Images inside PDFs may carry EXIF; document properties and image EXIF are different layers.",
+    },
+    {
+      question: "Why might Preview and Acrobat show different fields?",
+      answer:
+        "Viewers surface different property panels; compare Producer, Creator, and custom keys carefully.",
+    },
+    {
+      question: "Is batch cleaning many PDFs supported?",
+      answer:
+        "This flow is one file at a time; script a desktop tool when you need hundreds of cleans.",
+    },
+    {
+      question: "Do digital signatures conflict with metadata edits?",
+      answer:
+        "Changing the file after signing usually invalidates the signature—clean before signing.",
+    },
+    {
+      question: "Should invoices keep title metadata for search?",
+      answer:
+        "Helpful titles improve desktop search; strip only sensitive custom fields you do not need.",
+    }
+  ],
+  "open-graph-image-size": [
+    {
+      question: "Should blog posts and products share one og:image?",
+      answer:
+        "Unique images perform better; a brand fallback is fine when a page lacks custom art.",
+    },
+    {
+      question: "How much safe margin should text keep inside 1200×630?",
+      answer:
+        "Keep headlines away from the outer edges so crops on some apps do not clip letters.",
+    },
+    {
+      question: "Do LinkedIn and Facebook prefer different ratios?",
+      answer:
+        "Both handle ~1.91:1 well; always spot-check each network’s debugger after upload.",
+    },
+    {
+      question: "Can I overlay a logo without hurting clarity?",
+      answer:
+        "Yes—place a compact logo in a corner with contrast, not over the focal subject.",
+    },
+    {
+      question: "Why cache old images after I replace the file?",
+      answer:
+        "Networks cache aggressively—change the filename or query string and re-scrape.",
+    },
+    {
+      question: "Is 600×315 still acceptable?",
+      answer:
+        "It meets older minimums but looks soft on retina feeds; prefer 1200×630 when you can.",
+    },
+    {
+      question: "Should og:image:alt describe the graphic?",
+      answer:
+        "Provide concise alt text for accessibility and clearer previews where platforms use it.",
+    },
+    {
+      question: "Do animated GIFs work as og:image?",
+      answer:
+        "Most large networks expect a still image; use a representative frame instead.",
+    },
+    {
+      question: "How do I test before publishing the CMS change?",
+      answer:
+        "Point the preview tool at a staging URL with absolute image links that are publicly reachable.",
+    },
+    {
+      question: "Can dark-mode art confuse light-mode feeds?",
+      answer:
+        "Design for average feed backgrounds—ensure contrast works on both light and dark UIs.",
+    }
+  ],
+  "how-to-make-a-youtube-thumbnail-that-matches-your-banner": [
+    {
+      question: "Should faces be larger on thumbnails than on banners?",
+      answer:
+        "Yes—thumbnails shrink in the browse grid, so faces and words need more scale than channel art.",
+    },
+    {
+      question: "How do I reuse banner brand colors in the thumbnail?",
+      answer:
+        "Sample the same hex palette so the upload feels like one identity across art and episodes.",
+    },
+    {
+      question: "Can end-screen templates clash with thumbnail style?",
+      answer:
+        "Keep fonts and color blocking consistent so cards and thumbs feel related without copying layout.",
+    },
+    {
+      question: "How many words belong on a thumbnail?",
+      answer:
+        "Three to five strong words usually beat a full sentence at small sizes.",
+    },
+    {
+      question: "Should every episode use the identical layout frame?",
+      answer:
+        "A repeating frame builds recognition; swap the episode-specific photo or number each time.",
+    },
+    {
+      question: "Do YouTube A/B tests need matching banner colors?",
+      answer:
+        "Tests compare thumbs; still keep brand hues close so winners do not look off-brand on the channel page.",
+    },
+    {
+      question: "What export color space should I use?",
+      answer:
+        "sRGB JPG or PNG is the practical choice for YouTube uploads.",
+    },
+    {
+      question: "How do I avoid safe-area conflicts with timestamps?",
+      answer:
+        "Keep critical art out of the bottom-right where duration badges sit.",
+    },
+    {
+      question: "Can I match Shorts covers to long-form thumbs?",
+      answer:
+        "Use the same fonts and colors, but compose vertically for Shorts’ taller preview.",
+    },
+    {
+      question: "Should the banner include the video title too?",
+      answer:
+        "No—banners stay evergreen; put episode titles on thumbnails only.",
+    }
+  ],
+  "how-to-merge-pdf-files": [
+    {
+      question: "Can I merge files that use different page sizes?",
+      answer:
+        "Yes—pages keep their own sizes unless you later normalize them in an editor.",
+    },
+    {
+      question: "How do I insert a cover PDF at the front?",
+      answer:
+        "Place the cover file first in the merge order before combining.",
+    },
+    {
+      question: "Will bookmarks from each file survive?",
+      answer:
+        "Some mergers preserve bookmarks; verify in a viewer if navigation matters.",
+    },
+    {
+      question: "Can I merge scanned and text PDFs together?",
+      answer:
+        "Yes—output contains both page types; OCR remains only where it already existed.",
+    },
+    {
+      question: "What if one file is already a portfolio?",
+      answer:
+        "Flatten or extract portfolio documents first so merge sees ordinary pages.",
+    },
+    {
+      question: "Does merging re-compress images?",
+      answer:
+        "Usually pages are copied; size drops more from removing dupes than from new compression.",
+    },
+    {
+      question: "How should I name the merged download?",
+      answer:
+        "Include project and date so teammates can tell versions apart.",
+    },
+    {
+      question: "Can I undo a bad page order after merging?",
+      answer:
+        "Split or rearrange with a PDF organizer, or rematch from the original files.",
+    },
+    {
+      question: "Are form fields still fillable after a merge?",
+      answer:
+        "AcroForm fields may remain, but name collisions can break scripts—test interactive files.",
+    },
+    {
+      question: "Is there a privacy risk merging confidential decks?",
+      answer:
+        "Work locally and avoid uploading sensitive PDFs to third-party services when policy forbids it.",
+    }
+  ],
+  "how-to-copy-text-out-of-a-pdf": [
+    {
+      question: "Why is extracted text missing spaces?",
+      answer:
+        "Some PDFs store glyphs without clear spacing cues—cleanup in an editor may be needed.",
+    },
+    {
+      question: "Can I pull text from only even pages?",
+      answer:
+        "Extract the full range, then delete odd sections, or split even pages first if your tool allows filters.",
+    },
+    {
+      question: "Do footnotes stay next to their references?",
+      answer:
+        "Reading order can scramble footnotes; verify academic exports carefully.",
+    },
+    {
+      question: "How should I handle multi-language PDFs?",
+      answer:
+        "Extraction keeps Unicode when fonts encode it; mojibake means the PDF lacks proper Unicode maps.",
+    },
+    {
+      question: "Will copy include hidden optional-content layers?",
+      answer:
+        "Hidden layers may be skipped—enable or flatten content before extracting if text is missing.",
+    },
+    {
+      question: "Can I export straight to a .txt file?",
+      answer:
+        "Yes—use download or paste into an editor and save as plain text.",
+    },
+    {
+      question: "Why are bullet symbols weird characters?",
+      answer:
+        "Custom dingbat fonts often lack Unicode mapping; replace bullets manually after extract.",
+    },
+    {
+      question: "Is OCR automatic for every scan?",
+      answer:
+        "Image-only scans need OCR; native text PDFs extract without it.",
+    },
+    {
+      question: "How do line numbers in transcripts behave?",
+      answer:
+        "They become ordinary text—strip or keep them depending on your editing needs.",
+    },
+    {
+      question: "Can extraction capture filled form answers?",
+      answer:
+        "Appearing values often extract; complex widget-only data may need flattening first.",
+    }
+  ],
+  "how-to-split-a-pdf": [
+    {
+      question: "How do I split every page into its own file?",
+      answer:
+        "Choose a single-page split mode or enter each page as its own range when building outputs.",
+    },
+    {
+      question: "Can I split before and after a cover sheet?",
+      answer:
+        "Make ranges that isolate page 1, then another range for the remaining body pages.",
+    },
+    {
+      question: "Does splitting preserve PDF/A status?",
+      answer:
+        "Not guaranteed—revalidate if archival compliance still matters after the split.",
+    },
+    {
+      question: "What happens to document-level JavaScript?",
+      answer:
+        "Document scripts may not carry into every shard; test interactive PDFs after splitting.",
+    },
+    {
+      question: "Can I split by file-size target?",
+      answer:
+        "This tool splits by page ranges; compress afterward if email size is the real goal.",
+    },
+    {
+      question: "How should I label many output files?",
+      answer:
+        "Include the source name and page span in each filename for easy reassembly.",
+    },
+    {
+      question: "Is extracting the same as deleting pages?",
+      answer:
+        "Extraction saves chosen pages; deletion rebuilds a file without the removed ones—pick the intent you need.",
+    },
+    {
+      question: "Can landscape and portrait pages split together?",
+      answer:
+        "Yes—orientation stays per page inside each output file.",
+    },
+    {
+      question: "Why did a split PDF lose search highlights I had saved?",
+      answer:
+        "Viewer-specific markups are not always embedded; export comments first if you need them.",
+    },
+    {
+      question: "Do split files share the original password?",
+      answer:
+        "Unlocked splits are typically open; re-encrypt outputs if confidentiality still applies.",
+    }
+  ],
+  "how-to-find-graduation-year-by-birthday": [
+    {
+      question: "How do mid-year moves between states affect the year?",
+      answer:
+        "The new district’s cutoff and placement decision win—rerun with that cutoff after enrollment confirms.",
+    },
+    {
+      question: "Can preschool delay change high-school graduation?",
+      answer:
+        "Yes—entering kindergarten a year later usually shifts the entire K–12 timeline by one year.",
+    },
+    {
+      question: "Should I count transitional kindergarten as grade one?",
+      answer:
+        "Follow the district’s labeling; TK often sits before kindergarten without advancing the cohort alone.",
+    },
+    {
+      question: "How do I model a planned gap year after grade 12?",
+      answer:
+        "The calculator targets diploma year; add the gap manually when planning college matriculation.",
+    },
+    {
+      question: "What if the school uses continuous promotion?",
+      answer:
+        "Birthday cutoffs still set entry; promotion policies may adjust later years—ask the counselor.",
+    },
+    {
+      question: "Can homeschool transcripts use the same projection?",
+      answer:
+        "Use it as a planning scaffold, then align course credits with your state’s homeschool rules.",
+    },
+    {
+      question: "Do international GCSEs map cleanly to this timeline?",
+      answer:
+        "Not always—map ages to local leaving exams instead of forcing a US grade-12 label.",
+    },
+    {
+      question: "How should twins with different start waivers be entered?",
+      answer:
+        "Run each child separately with the start year their school actually assigned.",
+    },
+    {
+      question: "Can I estimate elementary promotion years too?",
+      answer:
+        "Yes—once kindergarten start is fixed, add successive grade years for milestones.",
+    },
+    {
+      question: "Why might summer birthday cutoffs feel unfair?",
+      answer:
+        "Policy aims at age bands, not individual readiness—districts may offer assessments for edge cases.",
+    }
+  ],
+  "how-to-convert-gpa-to-percentage": [
+    {
+      question: "Does a 4.3 scale convert the same as a 4.0 scale?",
+      answer:
+        "No—confirm the scale maximum before converting, or percentages will be wrong.",
+    },
+    {
+      question: "How should plus/minus grades enter the math?",
+      answer:
+        "Use your school’s grade points for A−/B+ rather than collapsing them to whole letters.",
+    },
+    {
+      question: "Can percentage conversion help WES evaluations?",
+      answer:
+        "Evaluators use their own methods—submit official transcripts rather than DIY conversions alone.",
+    },
+    {
+      question: "Why do Indian percentage systems disagree with US GPA maps?",
+      answer:
+        "Different country formulas exist; never assume one linear map fits every university.",
+    },
+    {
+      question: "Should pass/fail courses affect the percentage?",
+      answer:
+        "Usually exclude them from GPA-based conversions unless your institution says otherwise.",
+    },
+    {
+      question: "How do I convert term GPA versus cumulative GPA?",
+      answer:
+        "Convert the specific GPA you need; term and cumulative figures are different inputs.",
+    },
+    {
+      question: "Is 75% always a 3.0?",
+      answer:
+        "Not universally—some schools map bands differently, so prefer published tables when available.",
+    },
+    {
+      question: "Can I convert percentage back to GPA?",
+      answer:
+        "Only with the same scale rules in reverse; ambiguous bands need the registrar’s chart.",
+    },
+    {
+      question: "Do weighted AP points belong in percentage claims?",
+      answer:
+        "Say whether the GPA was weighted; converting a weighted GPA without note misleads readers.",
+    },
+    {
+      question: "What rounding should applications use?",
+      answer:
+        "Follow the form’s instructions—many want two decimal GPA places and whole-number percents.",
+    }
   ]
 };
