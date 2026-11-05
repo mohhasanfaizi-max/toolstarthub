@@ -1515,11 +1515,6 @@ export const extraToolFaqs: Record<string, ToolFaq[]> = {
       question: "Can I convert a single screenshot to PDF?",
       answer:
         "Yes. Upload one image and download a one-page PDF—useful for receipts and error messages you need to archive.",
-    },
-    {
-      question: "Are my photos uploaded to convert them?",
-      answer:
-        "This tool is designed to work in the browser with your files. Prefer non-sensitive images if you are unsure about any network path on your device.",
     }
   ],
   "loan-calculator": [
@@ -1925,11 +1920,6 @@ export const extraToolFaqs: Record<string, ToolFaq[]> = {
       question: "How many times should I recompress the same file?",
       answer:
         "Once is usually enough. Repeated lossy passes can degrade scans without much more size savings.",
-    },
-    {
-      question: "Are my PDF files uploaded to compress them?",
-      answer:
-        "This compressor is built for in-browser processing. Avoid highly sensitive files on shared devices regardless of the path.",
     }
   ]
 };
