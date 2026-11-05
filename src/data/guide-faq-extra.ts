@@ -8960,4 +8960,308 @@ export const extraGuideFaqs: Record<string, GuideFaq[]> = {
         "Script a quality ladder per image, or process them one by one when counts are small.",
     }
   ],
+  "how-to-resize-an-image": [
+    {
+      question: "Should I resize before or after color correction?",
+      answer:
+        "Either works; many people color-correct the master, then export resized derivatives so edits stay consistent.",
+    },
+    {
+      question: "How do I keep aspect ratio when only width is known?",
+      answer:
+        "Enter width and leave height locked so the tool scales height proportionally.",
+    },
+    {
+      question: "Is nearest-neighbor better for pixel art?",
+      answer: "Yes for sharp pixels—avoid soft resampling that blurs hard edges.",
+    },
+    {
+      question: "Can I downsize for email attachments?",
+      answer:
+        "Yes—pick a width that fits the client and compress after if the file is still heavy.",
+    },
+    {
+      question: "Why does my print look soft after upsizing?",
+      answer:
+        "Enlarging invents pixels; start from a higher-resolution original when print sharpness matters.",
+    },
+    {
+      question: "Do social platforms need exact pixel sizes?",
+      answer:
+        "They often accept a range, but matching published sizes reduces unexpected crops.",
+    },
+    {
+      question: "How should I name resized exports?",
+      answer:
+        "Include dimensions in the filename so teams can tell 1080-wide from 2048-wide versions.",
+    },
+    {
+      question: "Can SVG icons be resized in this flow?",
+      answer:
+        "This path targets raster photos; scale SVGs in a vector editor or as CSS.",
+    },
+    {
+      question: "Does locking aspect ratio affect crop needs?",
+      answer:
+        "Locking scales the whole frame; cropping is still required when composition must change.",
+    },
+    {
+      question: "What if my form rejects files over a max dimension?",
+      answer:
+        "Set both sides at or under the limit, then recheck the download’s pixel size.",
+    }
+  ],
+  "webp-vs-png-vs-jpg": [
+    {
+      question: "When is JPG still the safest upload choice?",
+      answer:
+        "Legacy portals and many ID forms still expect JPG even when WebP would be smaller.",
+    },
+    {
+      question: "Does PNG support animation like GIF?",
+      answer:
+        "APNG exists but support varies; GIF and animated WebP are more common for short loops.",
+    },
+    {
+      question: "How does WebP lossless compare to PNG?",
+      answer:
+        "Lossless WebP often beats PNG on size for photos with flat areas; always A/B the visual result.",
+    },
+    {
+      question: "Should product thumbnails use WebP with JPG fallback?",
+      answer:
+        "Yes on modern sites—serve WebP where supported and JPG for older clients.",
+    },
+    {
+      question: "Why keep a PNG master for logos?",
+      answer:
+        "Transparency and crisp edges survive edits better than a lossy JPG intermediate.",
+    },
+    {
+      question: "Can I convert PNG to JPG without noticing banding?",
+      answer:
+        "Gradients can band—raise quality or dither, or keep PNG/WebP for soft skies.",
+    },
+    {
+      question: "Is AVIF worth mentioning next to WebP?",
+      answer:
+        "AVIF can shrink further but encoding and support differ; WebP remains the broad middle ground.",
+    },
+    {
+      question: "Do CMYK print files belong in this comparison?",
+      answer:
+        "No—these formats are for screen RGB workflows; print shops often want TIFF or PDF.",
+    },
+    {
+      question: "How should email signatures pick a format?",
+      answer:
+        "Small JPG or PNG with modest dimensions; WebP support in mail clients is uneven.",
+    },
+    {
+      question: "Does changing format erase EXIF by itself?",
+      answer:
+        "Some converters strip metadata; check privacy needs separately from format choice.",
+    }
+  ],
+  "passport-and-visa-photo-sizes-explained": [
+    {
+      question: "Do Schengen visa photos match every EU passport rule?",
+      answer:
+        "Many use 35×45 mm, but each country and portal can add head-size and background rules.",
+    },
+    {
+      question: "How much of the frame should the head occupy?",
+      answer:
+        "Follow the country’s head-height band—US and UK charts specify millimeters or inches of chin-to-crown.",
+    },
+    {
+      question: "Can glasses be worn in US passport photos?",
+      answer:
+        "Current US guidance generally prefers no glasses; check the latest State Department page.",
+    },
+    {
+      question: "Why do portals reject otherwise correct pixel sizes?",
+      answer:
+        "Face position, shadows, compression artifacts, or wrong background often fail automated checks.",
+    },
+    {
+      question: "Should I leave a white border around the face?",
+      answer:
+        "Only if the guide asks for it; most biometric styles want a plain background without decorative borders.",
+    },
+    {
+      question: "How do digital-only uploads differ from print shop cuts?",
+      answer:
+        "Digital portals care about pixels and file size; print shops also need physical millimeters at the right DPI.",
+    },
+    {
+      question: "Can I reuse a photo older than six months?",
+      answer:
+        "Many authorities require a recent likeness—do not reuse outdated school or ID photos.",
+    },
+    {
+      question: "What background color is safest?",
+      answer:
+        "Plain white or light neutral as stated for that document; avoid patterns and heavy shadows.",
+    },
+    {
+      question: "Do infants need eyes open in every country?",
+      answer:
+        "Rules vary; read the infant exceptions for your authority before retaking.",
+    },
+    {
+      question: "How should I verify size after cropping?",
+      answer:
+        "Check both pixel dimensions and the stated inch/mm size at the required DPI before upload.",
+    }
+  ],
+  "instagram-and-facebook-image-sizes": [
+    {
+      question: "What size works for Instagram Reels covers?",
+      answer:
+        "Design vertical near 1080×1920 and keep titles inside the central safe area phones do not crop.",
+    },
+    {
+      question: "How wide should a Facebook cover photo be?",
+      answer:
+        "Use current Meta cover dimensions and keep text away from profile-photo overlap zones.",
+    },
+    {
+      question: "Can Stories use the same file as feed posts?",
+      answer: "Feed is often 4:5 or 1:1; Stories need 9:16—export separate crops.",
+    },
+    {
+      question: "Why do carousel slides look uneven?",
+      answer:
+        "Keep every slide on the same ratio and pixel size so Instagram does not rescale mid-swipe.",
+    },
+    {
+      question: "Should I upload sRGB photos?",
+      answer: "Yes—sRGB is the safe color space for Meta apps so hues do not shift.",
+    },
+    {
+      question: "How do I avoid muddy text on link previews?",
+      answer:
+        "Use large type and high contrast; preview images are shown small in the feed.",
+    },
+    {
+      question: "Is 1080 px wide still enough in 2026?",
+      answer:
+        "It remains a solid Instagram width; sharper masters help when the app compresses uploads.",
+    },
+    {
+      question: "Can I post a 16:9 landscape on Instagram feed?",
+      answer:
+        "Yes, but expect more letterboxing or cropping versus 4:5 portraits that fill phones better.",
+    },
+    {
+      question: "Do Facebook ads need different safe margins?",
+      answer:
+        "Ad placements crop differently—follow Ads Manager placement previews, not only organic sizes.",
+    },
+    {
+      question: "How often should size charts be rechecked?",
+      answer:
+        "Meta tweaks specs; verify against current help docs before a big campaign.",
+    }
+  ],
+  "percentage-points-vs-percent": [
+    {
+      question: "How should I say a poll moved from 48% to 51%?",
+      answer:
+        "Call it a 3 percentage-point rise, or about a 6.25% relative increase from 48.",
+    },
+    {
+      question: "Do finance writers mix points and percent wrongly?",
+      answer:
+        "Often—interest-rate moves are usually quoted in points or basis points, not casual “percent.”",
+    },
+    {
+      question: "How many basis points is one percentage point?",
+      answer: "One percentage point equals 100 basis points.",
+    },
+    {
+      question: "Can percentage points be negative?",
+      answer: "Yes—a drop from 10% to 7% is −3 percentage points.",
+    },
+    {
+      question: "When is relative percent change misleading?",
+      answer:
+        "When the starting rate is tiny, a small point move looks huge as a percent change.",
+    },
+    {
+      question: "Should charts label axes in points or percent?",
+      answer:
+        "Label clearly—“percentage points” vs “percent change”—so readers know which math you used.",
+    },
+    {
+      question: "How do I convert a 50 bp move to points?",
+      answer: "Divide by 100: 50 basis points = 0.5 percentage points.",
+    },
+    {
+      question: "Is “grew 2%” ambiguous in news copy?",
+      answer:
+        "Yes—clarify whether you mean points or relative percent when both readings are possible.",
+    },
+    {
+      question: "Do survey margins of error use points?",
+      answer:
+        "Margins are usually stated in percentage points around the reported share.",
+    },
+    {
+      question: "Can I compare point gaps across different base rates?",
+      answer: "You can, but also show relative change when bases differ a lot.",
+    }
+  ],
+  "kindergarten-age-cutoff-dates": [
+    {
+      question: "What if my district uses a different date than the state default?",
+      answer:
+        "Local boards can set policy within state law—confirm with the school you will enroll in.",
+    },
+    {
+      question: "How do private schools treat cutoff dates?",
+      answer: "They often set their own ages; state public cutoffs may not bind them.",
+    },
+    {
+      question: "Can summer birthdays force a wait year?",
+      answer:
+        "In early-cutoff states, late-summer birthdays commonly miss the current cohort.",
+    },
+    {
+      question: "Do cutoff rules affect preschool Pre-K too?",
+      answer:
+        "Many Pre-K programs use related age rules—ask that program, not only kindergarten.",
+    },
+    {
+      question: "How should military families handle mid-year moves?",
+      answer:
+        "Bring prior enrollment proof; receiving districts may honor continuity under interstate guidance.",
+    },
+    {
+      question: "Is transitional kindergarten the same as kindergarten?",
+      answer:
+        "No—TK is an earlier bridge year in some states with its own age window.",
+    },
+    {
+      question: "Can I request early admission testing?",
+      answer:
+        "Some districts allow assessment-based early entry; policies and deadlines vary widely.",
+    },
+    {
+      question: "How do cutoffs map to graduating with a class?",
+      answer:
+        "Kindergarten start year usually sets the default twelfth-grade cohort if you stay on track.",
+    },
+    {
+      question: "Should I redshirt for sports eligibility later?",
+      answer:
+        "Athletic benefits are uncertain; weigh academic and social fit first with counselors.",
+    },
+    {
+      question: "Where do I find official 2026 cutoff text?",
+      answer:
+        "Use your state education department and district kindergarten pages, not secondary blogs alone.",
+    }
+  ],
 };
