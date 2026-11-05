@@ -947,4 +947,497 @@ export const extraToolFaqs: Record<string, ToolFaq[]> = {
         "Very large documents may hit browser memory limits. Split huge files or convert on the desktop if the tab runs out of memory.",
     },
   ],
+
+  "ai-text-humanizer": [
+    {
+      question: "How does an AI text humanizer work?",
+      answer:
+        "It rewrites phrasing, rhythm, and word choice so the draft reads more like everyday writing while trying to keep your meaning. Results vary by model and by how stiff or repetitive the original text was.",
+    },
+    {
+      question: "When should I use a humanizer instead of rewriting myself?",
+      answer:
+        "Use it when you need a faster first pass on stiff AI drafts, product blurbs, or translated copy. Always review the output yourself for facts, tone, and claims before you publish.",
+    },
+    {
+      question: "Will humanizing change technical terms or brand names?",
+      answer:
+        "It may soften surrounding sentences, but you should check that product names, numbers, and jargon stay exact. Re-paste any term the rewrite mangled before you ship the text.",
+    },
+    {
+      question: "Can I humanize only one paragraph of a longer article?",
+      answer:
+        "Yes. Paste just that paragraph, run the tool, then drop the result back into the full draft. Shorter chunks are easier to review and less likely to drift off-topic.",
+    },
+    {
+      question: "Does a humanizer fix grammar and spelling too?",
+      answer:
+        "It often smooths awkward phrasing, but it is not a dedicated proofreader. Run a spell check afterward if the draft will go to customers or a teacher.",
+    },
+    {
+      question: "Is humanized text the same as original writing?",
+      answer:
+        "No. It is still derived from your source draft. Schools and publishers may treat heavy AI editing under their own policies, so follow those rules when they apply.",
+    },
+    {
+      question: "Why does the rewrite sometimes sound flatter than the original?",
+      answer:
+        "Humanizers often prefer plain words and shorter sentences. If you need punchier marketing voice, keep a few of your original phrases or edit the result by hand.",
+    },
+    {
+      question: "How long can the pasted text be?",
+      answer:
+        "Browser tools usually work best on a few hundred to a few thousand words at a time. Very long articles may need chunking so the rewrite stays coherent.",
+    },
+    {
+      question: "Does the tool store my draft after I leave the page?",
+      answer:
+        "This page is built for on-page rewriting; treat anything sensitive as private and avoid pasting secrets. Clear the box when you are done if you share the device.",
+    },
+    {
+      question: "Can I use it for emails and LinkedIn posts?",
+      answer:
+        "Yes, for tone cleanup on short professional copy. Still verify names, dates, and offers so the smoother wording does not invent details you did not write.",
+    },
+    {
+      question: "What is the difference between humanize and paraphrase?",
+      answer:
+        "Paraphrase focuses on saying the same idea with different words. Humanize additionally targets patterns that sound machine-generated, such as repetitive cadence or stock transitions.",
+    },
+    {
+      question: "Will detectors always label humanized text as human?",
+      answer:
+        "No. Detectors are imperfect and update often. Do not rely on any rewrite tool as a guarantee that content will pass a specific detector.",
+    },
+    {
+      question: "Should I humanize academic citations and quotes?",
+      answer:
+        "Leave quoted material and citation strings alone. Rewrite only the surrounding explanation so you do not alter someone else’s exact words.",
+    },
+    {
+      question: "Does running humanize twice improve the result?",
+      answer:
+        "A second pass can soften leftover stock phrases, but it can also wash out voice. Compare both versions and keep the clearer one.",
+    },
+    {
+      question: "Can the humanizer invent facts I never wrote?",
+      answer:
+        "Rewrites sometimes fill gaps with plausible wording. Check every number, claim, and proper noun against your source before publishing.",
+    },
+    {
+      question: "Is there an offline way to soften AI phrasing?",
+      answer:
+        "Yes: cut filler openers, vary sentence length, replace vague adjectives with specifics, and read the draft aloud. Those edits often beat a second automated pass.",
+    },
+  ],
+  "average-calculator": [
+    {
+      question: "How do I calculate the mean of a list of numbers?",
+      answer:
+        "Add every value, then divide by how many values you entered. That quotient is the arithmetic mean, which most people simply call the average.",
+    },
+    {
+      question: "What is the difference between mean, median, and mode?",
+      answer:
+        "The mean is the sum divided by the count. The median is the middle value after sorting. The mode is the value that appears most often.",
+    },
+    {
+      question: "When should I use the median instead of the mean?",
+      answer:
+        "Use the median when a few extreme values would pull the mean up or down, such as incomes or house prices. The middle value is less sensitive to outliers.",
+    },
+    {
+      question: "Can I paste numbers separated by commas or spaces?",
+      answer:
+        "Yes. The calculator accepts common separators so you can paste from a spreadsheet cell list or a quick note. Invalid tokens are usually ignored or flagged.",
+    },
+    {
+      question: "Does order matter when I calculate an average?",
+      answer:
+        "Not for the mean. Order matters for finding the median because the list must be sorted first, but the final median does not care how you typed the rows.",
+    },
+    {
+      question: "How do I average percentages correctly?",
+      answer:
+        "If each percentage came from the same-sized group, a simple mean is fine. If group sizes differ, weight each percentage by its group size instead of averaging the percents alone.",
+    },
+    {
+      question: "What happens if I include zero in the list?",
+      answer:
+        "Zero still counts as a value. It lowers the mean and can become the mode if it appears most often. Do not drop zeros unless they were empty cells you meant to skip.",
+    },
+    {
+      question: "Can this calculator find a weighted average?",
+      answer:
+        "This page focuses on unweighted mean, median, and mode. For grades or portfolio weights, multiply each value by its weight, sum those products, then divide by the total weight.",
+    },
+    {
+      question: "Why is my mean a long decimal?",
+      answer:
+        "Division often produces repeating decimals. Round only for display; keep full precision if you will feed the result into another calculation.",
+    },
+    {
+      question: "How many numbers can I enter at once?",
+      answer:
+        "Small classroom or spreadsheet lists work well in the browser. Extremely large datasets belong in a spreadsheet or statistics package.",
+    },
+    {
+      question: "Is the average always between the smallest and largest values?",
+      answer:
+        "Yes for the arithmetic mean of real numbers. If your result sits outside that range, a separator or sign was probably misread.",
+    },
+    {
+      question: "What is a bimodal dataset?",
+      answer:
+        "It is a set with two different values tied for most frequent. Some tools report both modes; others say there is no single mode.",
+    },
+    {
+      question: "Do negative numbers work in an average calculator?",
+      answer:
+        "Yes. Losses, temperatures, and signed scores are valid inputs. The mean can be negative when negatives dominate the sum.",
+    },
+    {
+      question: "How is average used in everyday decisions?",
+      answer:
+        "People average test scores, monthly spending, commute times, and sports stats to summarize a list in one number. Pair it with the range when outliers matter.",
+    },
+    {
+      question: "Should blank lines count toward the average?",
+      answer:
+        "No. Empty entries are not numbers. Remove blanks before calculating so the count matches the values you actually measured.",
+    },
+    {
+      question: "Can I compare two averages from different sample sizes?",
+      answer:
+        "You can compare the numbers, but the smaller sample is noisier. Note the counts beside each average so readers do not over-read a tiny group.",
+    },
+  ],
+  "compound-interest-calculator": [
+    {
+      question: "What inputs do I need for a compound interest estimate?",
+      answer:
+        "You typically need a starting balance, an annual rate, a compounding frequency, a time span, and optional regular contributions. The calculator compounds the balance over each period you choose.",
+    },
+    {
+      question: "How does annual percentage yield relate to the stated rate?",
+      answer:
+        "APY reflects compounding within a year, so it can be higher than the nominal annual rate when interest is added more than once a year. Compare APYs when offers use different compounding schedules.",
+    },
+    {
+      question: "Should I enter the rate as 5 or 0.05?",
+      answer:
+        "Most consumer calculators expect a percent such as 5 for five percent. If a field asks for a decimal rate, it will say so; entering the wrong form will skew every period.",
+    },
+    {
+      question: "What is the difference between starting balance and contribution?",
+      answer:
+        "The starting balance is money already invested. Contributions are amounts you add on a schedule. Both can earn interest after they are in the account, depending on timing rules.",
+    },
+    {
+      question: "Does more frequent compounding always grow faster?",
+      answer:
+        "Yes for the same nominal rate, more frequent compounding grows a little faster, but the gap between daily and continuous is often small. Rate and time still dominate the result.",
+    },
+    {
+      question: "Can I model withdrawing money with this calculator?",
+      answer:
+        "Many growth calculators assume deposits only. For drawdowns, use a loan or retirement withdrawal tool, or enter negative contributions only if the page explicitly supports them.",
+    },
+    {
+      question: "Why does doubling the rate not exactly double the final balance?",
+      answer:
+        "Interest earns interest, so growth is exponential in the rate and time, not a straight line. Fees, contribution timing, and compounding frequency also change the path.",
+    },
+    {
+      question: "How long does it take money to double with compound interest?",
+      answer:
+        "A rough rule of 72 divides 72 by the annual percent rate for an approximate doubling time. The calculator’s timeline is more precise when contributions or odd rates are involved.",
+    },
+    {
+      question: "Are taxes and fees included in the projection?",
+      answer:
+        "Typical online estimators show gross growth before taxes, account fees, or early-withdrawal penalties. Subtract those separately when you need a take-home estimate.",
+    },
+    {
+      question: "What compounding frequency should I pick for a savings account?",
+      answer:
+        "Match the bank’s stated schedule—daily, monthly, or quarterly. If you are unsure, monthly is a common middle ground for rough planning, then confirm on the account disclosure.",
+    },
+    {
+      question: "Can compound interest work against me on debt?",
+      answer:
+        "Yes. Credit cards and some loans add interest on unpaid balances, so debt can grow the same way savings do. Paying more than the minimum reduces the balance that compounds.",
+    },
+    {
+      question: "Why do two calculators disagree slightly on the same inputs?",
+      answer:
+        "They may round differently, apply contributions at the start versus end of a period, or treat the last partial period another way. Read each tool’s assumptions under the result.",
+    },
+    {
+      question: "Is past market return a safe rate to enter?",
+      answer:
+        "No. Historical averages are not guarantees. For planning, try a few conservative rates and treat the chart as a scenario, not a promise.",
+    },
+    {
+      question: "How do I include an employer match in the estimate?",
+      answer:
+        "Add the match to your contribution amount for periods when it applies, or raise the starting balance if the match is a one-time deposit. Keep the match rules in mind so you do not overstate it.",
+    },
+    {
+      question: "Does inflation change the calculator’s output?",
+      answer:
+        "The raw balance is usually in today’s dollars of contribution, not inflation-adjusted buying power. For real growth, subtract an inflation assumption after you see the nominal total.",
+    },
+    {
+      question: "When is simple interest a better model than compound interest?",
+      answer:
+        "Some short-term notes and classroom examples pay simple interest only. If interest is never added to the balance during the term, use a simple-interest formula instead.",
+    },
+  ],
+  "cron-expression-generator": [
+    {
+      question: "What is a cron expression used for?",
+      answer:
+        "A cron expression is a compact schedule string that tells a job runner when to fire—hourly backups, nightly reports, or weekly cleanups. Each field narrows minutes, hours, days, months, and weekdays.",
+    },
+    {
+      question: "How many fields does a standard cron expression have?",
+      answer:
+        "Classic Unix cron uses five fields: minute, hour, day of month, month, and day of week. Some systems add a sixth seconds field; this generator focuses on the common five-field form.",
+    },
+    {
+      question: "What does an asterisk mean in cron?",
+      answer:
+        "An asterisk means every value in that field. `* * * * *` would mean every minute. Narrow other fields when you only want a specific hour or weekday.",
+    },
+    {
+      question: "How do I run a job every day at 9:00?",
+      answer:
+        "Use `0 9 * * *` for minute 0 of hour 9 on every day of the month and every weekday. Confirm the server’s timezone so 9:00 is the clock you intend.",
+    },
+    {
+      question: "What is the difference between day-of-month and day-of-week?",
+      answer:
+        "Day-of-month picks calendar dates such as the 1st. Day-of-week picks Sunday through Saturday. Setting both can mean “either” or “both,” depending on the cron implementation.",
+    },
+    {
+      question: "Can I use names like MON instead of numbers?",
+      answer:
+        "Some cron flavors accept short day or month names; others require numbers only. If this generator rejects a name, switch to numeric fields for wider compatibility.",
+    },
+    {
+      question: "How do step values like */15 work?",
+      answer:
+        "A step runs every N units within the field. `*/15` in the minute field means minutes 0, 15, 30, and 45. Combine ranges and steps only when your cron dialect allows it.",
+    },
+    {
+      question: "Why should I avoid scheduling everything at midnight?",
+      answer:
+        "Many jobs default to 00:00, which creates load spikes. Offset non-urgent tasks by a few minutes or hours so servers and APIs are less likely to contend.",
+    },
+    {
+      question: "Does cron use the server timezone or UTC?",
+      answer:
+        "It uses whatever timezone the scheduler process sees, often the machine’s local zone unless you configure UTC. Document the zone next to the expression in your runbook.",
+    },
+    {
+      question: "How do I express “weekdays only” in cron?",
+      answer:
+        "Set the day-of-week field to Monday through Friday (commonly `1-5` when Sunday is 0). Keep day-of-month as `*` unless you also need a calendar constraint.",
+    },
+    {
+      question: "What happens if my cron job runs longer than the interval?",
+      answer:
+        "A second instance may start while the first is still running unless you add locking. Use a mutex, flock, or a queue worker so overlapping runs do not corrupt data.",
+    },
+    {
+      question: "Can I test a cron expression before deploying it?",
+      answer:
+        "Yes. Generate the string here, then confirm next-run times in your platform’s cron UI or a dry-run linter. Always verify on a staging job before production.",
+    },
+    {
+      question: "Why was my six-field expression rejected?",
+      answer:
+        "This tool targets five-field Unix cron. Platforms that want seconds need a different dialect. Drop the seconds field or use that platform’s native scheduler syntax.",
+    },
+    {
+      question: "How do lists and ranges appear in a field?",
+      answer:
+        "Lists use commas (`1,15`) and ranges use hyphens (`9-17`). You can combine them when the daemon supports it, such as `1,15,20-22`.",
+    },
+    {
+      question: "Is crontab the only place cron expressions appear?",
+      answer:
+        "No. CI systems, Kubernetes CronJobs, cloud schedulers, and app frameworks reuse similar strings. Always check that product’s field count and Sunday numbering.",
+    },
+    {
+      question: "Should secrets go inside a cron command line?",
+      answer:
+        "Prefer environment files or a secret manager. Crontab and process lists can expose commands to other users on the host.",
+    },
+  ],
+  "favicon-generator": [
+    {
+      question: "What size should a favicon be?",
+      answer:
+        "Classic favicons are 16×16 and 32×32 pixels. Many sites also ship 180×180 for Apple touch icons. Generating a few square PNGs covers most browsers and home-screen bookmarks.",
+    },
+    {
+      question: "What file formats work for favicons?",
+      answer:
+        "ICO bundles multiple sizes in one file; PNG works well for modern browsers. SVG favicons are supported in some browsers but not all, so keep a PNG or ICO fallback.",
+    },
+    {
+      question: "How do I add a favicon to my website?",
+      answer:
+        "Upload the icon files to your site root or asset folder, then link them in the HTML head with `rel=\"icon\"` (and `apple-touch-icon` when you ship a 180px PNG).",
+    },
+    {
+      question: "Why does my new favicon not show up?",
+      answer:
+        "Browsers cache favicons aggressively. Hard-refresh, try a private window, or bump the file name or query string after you replace the icon.",
+    },
+    {
+      question: "Should a favicon be a logo or a letter?",
+      answer:
+        "Either works if it stays readable at 16 pixels. Busy logos turn to mush; a simple mark or monogram usually survives the tiny tab size better.",
+    },
+    {
+      question: "Do I need a separate dark-mode favicon?",
+      answer:
+        "Optional but helpful. Light glyphs disappear on light tabs; some sites ship alternate icons or choose colors with contrast on both themes.",
+    },
+    {
+      question: "Can I make a favicon from a large PNG?",
+      answer:
+        "Yes. Start from a sharp square image, then downscale. Upscaling a tiny source stays blurry, so keep a high-resolution master.",
+    },
+    {
+      question: "What is the difference between favicon.ico and apple-touch-icon?",
+      answer:
+        "`favicon.ico` covers browser tabs and bookmarks. The Apple touch icon is the larger home-screen icon on iOS. Many generators export both from one design.",
+    },
+    {
+      question: "Will a transparent background work?",
+      answer:
+        "Often yes for PNG icons. On some tabs transparency shows the browser chrome through the mark, so test light and dark UI before you ship.",
+    },
+    {
+      question: "How many favicon sizes do I really need?",
+      answer:
+        "A solid baseline is 16, 32, and 180 pixels plus an ICO or PNG for `rel=\"icon\"`. Progressive web apps may add more icons via the web manifest.",
+    },
+    {
+      question: "Can emoji work as a favicon?",
+      answer:
+        "You can render an emoji to a square canvas and export PNG sizes. Check clarity at 16px; not every emoji stays recognizable that small.",
+    },
+    {
+      question: "Does the generator upload my logo to a server?",
+      answer:
+        "This page builds icons in the browser from what you provide. Prefer non-confidential artwork if you are unsure about any network path on your device.",
+    },
+    {
+      question: "Why was my hex color rejected?",
+      answer:
+        "Favicon color fields usually expect a full hex such as `#ffffff`. Shorthand or missing `#` can fail validation depending on the form.",
+    },
+    {
+      question: "Should the favicon match my Open Graph image?",
+      answer:
+        "They share brand colors, but OG images are large social previews and favicons are tiny tab marks. Design each for its size instead of reusing one file for both.",
+    },
+    {
+      question: "Can I change favicons per environment?",
+      answer:
+        "Yes. Staging sites often use a different color or badge so tabs are not confused with production. Point each environment’s head tags at its own icon files.",
+    },
+    {
+      question: "Do search engines use my favicon in results?",
+      answer:
+        "Some search result layouts show a favicon beside the site name. Keep the file crawlable, square, and stable so crawlers can pick it up.",
+    },
+  ],
+  "gitignore-generator": [
+    {
+      question: "What does a .gitignore file do?",
+      answer:
+        "It tells Git which files and folders to leave untracked, such as dependencies, build output, and local env files. Patterns keep secrets and clutter out of commits.",
+    },
+    {
+      question: "Where should I put .gitignore in a repository?",
+      answer:
+        "Place a root `.gitignore` at the top of the project so rules apply everywhere. You can add nested ignore files in subfolders for package-specific exceptions.",
+    },
+    {
+      question: "How do I ignore node_modules in Git?",
+      answer:
+        "Add a `node_modules/` line (with the trailing slash for the folder). Regenerate or paste that pattern from a Node template if you are starting a new app.",
+    },
+    {
+      question: "What is the difference between a slash at the start and the end of a pattern?",
+      answer:
+        "A leading slash anchors the pattern to the folder that contains the ignore file. A trailing slash marks a directory. `build/` ignores build directories; `/build` is root-only.",
+    },
+    {
+      question: "Can I un-ignore a file that matches a broader rule?",
+      answer:
+        "Yes. Use `!` negation patterns after the broad ignore, such as ignoring `dist/*` then `!dist/.gitkeep`. Order matters; later rules can re-include.",
+    },
+    {
+      question: "Why is a file still tracked after I added it to .gitignore?",
+      answer:
+        "Git only ignores untracked paths. If the file was already committed, remove it from the index with `git rm --cached` while keeping the working copy, then commit.",
+    },
+    {
+      question: "Should .env files be ignored?",
+      answer:
+        "Yes in almost every app that stores secrets there. Commit an `.env.example` with placeholder keys instead of real credentials.",
+    },
+    {
+      question: "How do OS junk files get ignored?",
+      answer:
+        "Templates often include `.DS_Store`, `Thumbs.db`, and editor swap files. Add a Global or operating-system template so those never clutter reviews.",
+    },
+    {
+      question: "Can one .gitignore cover multiple languages?",
+      answer:
+        "Yes. Stack templates—for example Node plus Python plus a custom section—so monorepos ignore each ecosystem’s artifacts without fighting.",
+    },
+    {
+      question: "Do ignore patterns support globs?",
+      answer:
+        "Yes. `*` matches within a path segment and `**` can match across folders in modern Git. Test tricky globs with `git check-ignore -v` on a sample path.",
+    },
+    {
+      question: "What should I not put in .gitignore?",
+      answer:
+        "Do not ignore source you intend to share, lockfiles your team relies on, or CI config. Ignoring `package-lock.json` by accident is a common footgun.",
+    },
+    {
+      question: "How do I ignore all files of one extension?",
+      answer:
+        "Use a pattern like `*.log` or `*.tmp`. Be careful with `*.js` in mixed projects; you might hide source. Prefer build output folders when possible.",
+    },
+    {
+      question: "Is .gitignore the same as .git/info/exclude?",
+      answer:
+        "Both use the same pattern syntax, but `exclude` is local to your clone and is not committed. Use `.gitignore` for rules the whole team should share.",
+    },
+    {
+      question: "Will the generator commit the file for me?",
+      answer:
+        "No. It builds the text for you to save as `.gitignore` and commit yourself. That keeps review control in your normal Git workflow.",
+    },
+    {
+      question: "How do I comment lines inside .gitignore?",
+      answer:
+        "Start a line with `#` for a comment. Blank lines are fine for grouping templates such as dependencies, build, and secrets.",
+    },
+    {
+      question: "Can ignored files still be sent to a remote another way?",
+      answer:
+        "Yes—zip uploads, Docker build contexts, or misconfigured CI can still include them. Keep a separate deploy allowlist when secrets are nearby.",
+    },
+  ],
 };

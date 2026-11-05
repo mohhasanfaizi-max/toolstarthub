@@ -666,4 +666,497 @@ export const extraGuideFaqs: Record<string, GuideFaq[]> = {
         "Unreserved characters such as letters, digits, hyphen, period, underscore, and tilde typically stay as they are. Reserved characters depend on where they sit in the URL.",
     },
   ],
+
+  "how-a-home-price-estimate-works": [
+    {
+      question: "What numbers go into a home affordability estimate?",
+      answer:
+        "Typical inputs are income, monthly debts, down payment, interest rate, and property tax or insurance assumptions. The calculator maps those into a loan size and an estimated price band.",
+    },
+    {
+      question: "What is a debt-to-income ratio in plain terms?",
+      answer:
+        "It is the share of your gross monthly income already spoken for by debt payments. Lenders use it as a quick filter for how large a new mortgage payment might fit.",
+    },
+    {
+      question: "Why do affordability tools show several percentage caps?",
+      answer:
+        "Rules of thumb such as 28% housing or 36% total debt are common starting points, not laws. Showing a few caps illustrates how sensitive the price is to that choice.",
+    },
+    {
+      question: "Does a higher down payment always raise the price I can buy?",
+      answer:
+        "Usually yes, because less of the price must be financed. Taxes, insurance, and rate still matter, so the gain is not always one-for-one with the extra cash down.",
+    },
+    {
+      question: "Are property taxes included in the estimate?",
+      answer:
+        "Many affordability calculators fold estimated tax and insurance into the monthly housing cost. If a field is missing, the price band can look higher than a full PITI payment allows.",
+    },
+    {
+      question: "How is this different from a lender pre-approval?",
+      answer:
+        "A pre-approval reviews credit, income documents, and underwriting rules. This page is an educational estimate you can run yourself before talking to a lender.",
+    },
+    {
+      question: "What happens if my debts already fill the ratio?",
+      answer:
+        "Little or no room remains for a new mortgage payment under that cap. Paying down revolving debt or raising income is how the estimate moves again.",
+    },
+    {
+      question: "Should I use take-home pay or gross income?",
+      answer:
+        "Lender-style ratios usually start from gross income. For personal budgeting, rerun the numbers with take-home pay so the payment still fits groceries and savings.",
+    },
+    {
+      question: "Do HOA fees change affordability?",
+      answer:
+        "Yes. Monthly HOA dues act like another housing cost. If the tool has no HOA field, subtract dues from the payment you are willing to carry.",
+    },
+    {
+      question: "Can I use the estimate for an investment property?",
+      answer:
+        "Primary-home rules of thumb rarely match investment underwriting, which often needs larger down payments and different ratios. Treat this page as owner-occupant planning only.",
+    },
+    {
+      question: "Why does a small rate change move the price so much?",
+      answer:
+        "Mortgage math is sensitive to rate because payments stretch over decades. A fraction of a percent changes how much principal a fixed payment can support.",
+    },
+    {
+      question: "Is the estimated price the same as a bid I should offer?",
+      answer:
+        "No. It is a budget ceiling style figure. Inspections, repairs, closing costs, and local competition still shape what you should offer.",
+    },
+    {
+      question: "How do closing costs fit into affordability?",
+      answer:
+        "Closing costs need cash beyond the down payment. Keep a separate reserve so the headline price does not consume every dollar you can bring to closing.",
+    },
+    {
+      question: "What if my income varies month to month?",
+      answer:
+        "Use a conservative average or the income a lender is likely to count, not a single peak month. Variable earners often need a larger cash buffer than the raw ratio suggests.",
+    },
+    {
+      question: "Does location change the calculator’s formula?",
+      answer:
+        "The payment math is similar, but tax, insurance, and HOA assumptions differ by market. Adjust those inputs when you compare cities.",
+    },
+    {
+      question: "When should I ignore online affordability numbers?",
+      answer:
+        "Ignore them as a final answer when credit issues, gift funds, or special loan programs apply. Those cases need a human underwriter, not a generic ratio.",
+    },
+  ],
+  "how-compound-interest-works": [
+    {
+      question: "What everyday accounts use compound interest?",
+      answer:
+        "Savings accounts, certificates of deposit, and many investment accounts credit earnings that can themselves earn later. Debt products can compound too when balances revolve.",
+    },
+    {
+      question: "How do I read a compound interest growth chart?",
+      answer:
+        "Watch how the curve steepens over time when rates and contributions stay steady. Early years look slow; later years show interest-on-interest more clearly.",
+    },
+    {
+      question: "What is the principal in a compounding example?",
+      answer:
+        "Principal is the balance that interest is calculated on. When interest is capitalized, it joins the principal for the next period.",
+    },
+    {
+      question: "How does contribution timing change the final amount?",
+      answer:
+        "Deposits made at the beginning of a period usually have more time to compound than end-of-period deposits. Compare both modes if your tool offers the switch.",
+    },
+    {
+      question: "Why do educators teach the rule of 72?",
+      answer:
+        "It gives a quick mental estimate of doubling time by dividing 72 by the annual percent rate. It is a teaching shortcut, not a replacement for a full schedule.",
+    },
+    {
+      question: "Can compounding frequency be continuous?",
+      answer:
+        "Continuous compounding is a mathematical limit used in some formulas. Real consumer accounts typically credit daily or monthly instead.",
+    },
+    {
+      question: "How should beginners compare two savings offers?",
+      answer:
+        "Align APY, fees, minimums, and withdrawal rules—not just the headline rate. A slightly lower APY with no fees can win after costs.",
+    },
+    {
+      question: "What mistake do people make with monthly contributions?",
+      answer:
+        "They forget that the contribution amount must be sustainable for the whole timeline. An aggressive deposit that stops early underperforms a smaller deposit kept for years.",
+    },
+    {
+      question: "Does compounding help short emergency funds?",
+      answer:
+        "A little, but emergency funds prioritize liquidity and safety over yield. Do not lock money you may need next month into long compounding products.",
+    },
+    {
+      question: "How do I explain compound interest to a teenager?",
+      answer:
+        "Show a small deposit growing over several years next to the same deposit earning only simple interest. The gap is the “interest earning interest” story.",
+    },
+    {
+      question: "Are advertised rates before or after compounding?",
+      answer:
+        "Marketing may show a nominal rate or an APY. APY already folds compounding into a yearly figure, which makes unequal schedules easier to compare.",
+    },
+    {
+      question: "What role do time horizons play versus rate?",
+      answer:
+        "Extra years often matter as much as a slightly higher rate because exponents reward patience. Raising contributions can matter even more than tiny rate tweaks.",
+    },
+    {
+      question: "Can I use compound interest math for inflation examples?",
+      answer:
+        "Yes. Inflation compounds buying-power loss the same way. A price that rises 3% a year illustrates why long-term goals need growth above inflation.",
+    },
+    {
+      question: "Why might a calculator ignore leap days or exact calendars?",
+      answer:
+        "Many educational tools use equal periods for clarity. Bank ledgers may use day-count conventions that differ by a few dollars on large balances.",
+    },
+    {
+      question: "Should windfalls go in before or after regular contributions in a model?",
+      answer:
+        "Add a windfall to the starting balance if it lands up front, or as a one-time contribution in the month it arrives. Placement changes how many periods it compounds.",
+    },
+    {
+      question: "When is compound interest the wrong mental model?",
+      answer:
+        "Skip it for one-time fees, flat coupons, or short invoices that never capitalize interest. Those need simple arithmetic instead of growth curves.",
+    },
+  ],
+  "how-much-to-save-for-a-goal": [
+    {
+      question: "How do I set a savings goal amount that is realistic?",
+      answer:
+        "Start from the purchase or buffer you need, add a contingency, then divide by months you actually have. If the monthly figure hurts, extend the timeline or trim the target.",
+    },
+    {
+      question: "Should my goal calculator include investment returns?",
+      answer:
+        "Include returns only when the money will stay invested for the whole horizon and you accept market risk. For near-term cash goals, model zero return so you do not under-save.",
+    },
+    {
+      question: "What is the difference between a fixed monthly deposit and a fixed end date?",
+      answer:
+        "One mode asks how much to save each month to hit a date. The other asks how long a chosen deposit will take. Use whichever question matches the decision you face.",
+    },
+    {
+      question: "How do the sample rate rows help me plan?",
+      answer:
+        "Side-by-side rates show sensitivity. If 3% and 7% rows diverge a lot, your plan depends heavily on return assumptions and needs a wider safety margin.",
+    },
+    {
+      question: "Can I count money I already saved toward the goal?",
+      answer:
+        "Yes. Enter it as a current balance so the remaining gap—and the required monthly deposit—shrinks. Leaving it out makes the plan look harder than it is.",
+    },
+    {
+      question: "What if my income arrives biweekly instead of monthly?",
+      answer:
+        "Convert to a monthly average (biweekly pay × 26 ÷ 12) or save on each paycheck with an equivalent per-check amount. Consistency matters more than the calendar label.",
+    },
+    {
+      question: "How should couples split a shared savings goal?",
+      answer:
+        "Agree on the target and timeline first, then split deposits by income share or fifty-fifty. Track the joint balance so neither person assumes the other filled a gap.",
+    },
+    {
+      question: "Do I need a separate account for each goal?",
+      answer:
+        "Separate accounts or sub-accounts reduce accidental spending and clarify progress. A single account with labeled balances can work if you track carefully.",
+    },
+    {
+      question: "What happens if I miss a month of contributions?",
+      answer:
+        "The timeline slips unless you catch up. Recalculate with the new balance and remaining months instead of guessing the old monthly figure still works.",
+    },
+    {
+      question: "Should emergency funds and vacation goals share one bucket?",
+      answer:
+        "Better to separate them. Dipping into emergency cash for travel recreates the risk the emergency fund was meant to cover.",
+    },
+    {
+      question: "How do taxes affect investment-based goals?",
+      answer:
+        "Taxable account growth may owe tax when you sell. Retirement wrappers have their own rules. Prefer after-tax estimates for spending goals outside sheltered accounts.",
+    },
+    {
+      question: "Is it better to pay debt or save for the goal first?",
+      answer:
+        "High-interest debt often wins mathematically, while a small emergency buffer still deserves priority. Many people split cash: minimums plus debt attack, then goal deposits.",
+    },
+    {
+      question: "Can I automate the plan without a special calculator?",
+      answer:
+        "Yes. Schedule transfers on payday for the monthly amount the plan needs. Automation beats perfect math that never leaves checking.",
+    },
+    {
+      question: "Why did my goal show as already reached?",
+      answer:
+        "If the current balance meets or exceeds the target, no further deposit is required for that goal. Raise the target if you meant a larger buffer.",
+    },
+    {
+      question: "How often should I revisit the savings plan?",
+      answer:
+        "Recheck after raises, moved deadlines, or big price changes. A quarterly glance keeps the monthly transfer aligned with reality.",
+    },
+    {
+      question: "What contingency percent should I add on top of a sticker price?",
+      answer:
+        "Five to fifteen percent is a common range for travel, moving, or home projects where surprise costs appear. Larger uncertainty deserves a larger cushion.",
+    },
+  ],
+  "how-to-add-hours-and-minutes": [
+    {
+      question: "How do I add hours and minutes without a calculator?",
+      answer:
+        "Add minutes first; if the sum reaches 60 or more, carry the extra hours. Then add the hour columns including that carry so the total stays in proper clock units.",
+    },
+    {
+      question: "How do I subtract a shorter time from a longer one?",
+      answer:
+        "Borrow one hour (60 minutes) when the minutes on top are too small, then subtract hours. Digital tools do the borrow for you when you enter both durations.",
+    },
+    {
+      question: "What is the difference between duration math and clock time?",
+      answer:
+        "Duration math adds lengths such as 1h 45m. Clock arithmetic lands on a time of day and must wrap at midnight. Use the tool that matches your question.",
+    },
+    {
+      question: "How can I convert 150 minutes into hours and minutes?",
+      answer:
+        "Divide by 60 for whole hours and keep the remainder as minutes. 150 minutes becomes 2 hours and 30 minutes.",
+    },
+    {
+      question: "Why did my total show more than 24 hours?",
+      answer:
+        "Duration totals are allowed to exceed a day when you sum shifts or videos. Convert to days only if you need that display; the minute total is still valid.",
+    },
+    {
+      question: "Can I add negative minutes for corrections?",
+      answer:
+        "Yes when you are adjusting a draft total downward. A minus result means the correction was larger than the running total.",
+    },
+    {
+      question: "How do timesheets use hour-minute addition?",
+      answer:
+        "Workers log each segment; payroll sums them and may round to the nearest five or fifteen minutes. Knowing exact sums helps you spot rounding surprises.",
+    },
+    {
+      question: "What format should I type: 1:45 or 1h 45m?",
+      answer:
+        "Follow the field hints on the page. Many tools accept `h` and `m` labels or colon syntax; mixing formats in one box can confuse parsing.",
+    },
+    {
+      question: "How do I average several durations?",
+      answer:
+        "Convert each to minutes, average the minutes, then convert back to hours and minutes. Averaging the hour parts alone ignores leftover minutes.",
+    },
+    {
+      question: "Does daylight saving time affect duration addition?",
+      answer:
+        "Pure duration sums do not care about clock shifts. Problems appear only when you convert start/end clock stamps that cross a DST change.",
+    },
+    {
+      question: "How can I check that a carry from minutes is correct?",
+      answer:
+        "Confirm minutes in the answer are under 60 and that hours increased by the number of times you subtracted 60 from the minute pile.",
+    },
+    {
+      question: "Can I add hours across multiple people for billing?",
+      answer:
+        "Sum each person’s duration separately first, then add those totals if you need a combined figure. Keep per-person rows for invoices.",
+    },
+    {
+      question: "Why is 1.5 hours not always written as 1:50?",
+      answer:
+        "Decimal hours use fractions of an hour: 1.5 means 1 hour 30 minutes. Colon notation 1:50 means 110 minutes. Mixing decimal and sexagesimal causes billing errors.",
+    },
+    {
+      question: "How do video editors use runtime addition?",
+      answer:
+        "They sum clip lengths to estimate timeline length before export. Frame-accurate tools go further, but hour-minute sums catch rough pacing issues early.",
+    },
+    {
+      question: "When is a spreadsheet better than a quick time adder?",
+      answer:
+        "Use a sheet when you have dozens of rows, need rounding rules, or must keep an audit trail. The online adder shines for a handful of durations.",
+    },
+    {
+      question: "Can seconds be included in the same sum?",
+      answer:
+        "Convert seconds to minutes or use a tool with an explicit seconds field. Dropping seconds silently understates long multi-clip totals.",
+    },
+  ],
+  "how-to-build-an-ai-prompt": [
+    {
+      question: "What makes a strong AI prompt?",
+      answer:
+        "Clear role, task, constraints, and output format beat vague wishes. State the audience, length, and what to avoid so the model wastes fewer tokens guessing.",
+    },
+    {
+      question: "Should I put examples inside the prompt?",
+      answer:
+        "Yes when format matters. One or two short input/output samples often steer structure better than another paragraph of abstract instructions.",
+    },
+    {
+      question: "How long should an AI prompt be?",
+      answer:
+        "Long enough to remove ambiguity, short enough to stay readable. If you need pages of policy, attach them as reference sections instead of one endless sentence.",
+    },
+    {
+      question: "What is a system prompt versus a user prompt?",
+      answer:
+        "System prompts set standing rules for the assistant. User prompts ask for the specific task. Product UIs may hide the system layer while still applying it.",
+    },
+    {
+      question: "How do I ask for JSON or a table from a model?",
+      answer:
+        "Say the exact schema or column list and forbid surrounding commentary if you need clean parsing. Provide a tiny example object when fields are easy to confuse.",
+    },
+    {
+      question: "Why do vague adjectives hurt prompt results?",
+      answer:
+        "Words like “nice” or “better” are subjective. Replace them with measurable targets such as “eighth-grade reading level” or “under 120 words.”",
+    },
+    {
+      question: "Can I reuse one prompt template across tasks?",
+      answer:
+        "Yes. Keep slots for topic, audience, and tone, then fill them per job. Templates speed teams up when everyone shares the same quality bar.",
+    },
+    {
+      question: "How should I handle sensitive data in prompts?",
+      answer:
+        "Strip secrets, personal identifiers, and confidential figures before pasting into third-party models. Use placeholders when the structure matters more than the real values.",
+    },
+    {
+      question: "What is prompt chaining?",
+      answer:
+        "It means breaking a big job into sequenced prompts—outline, then draft, then edit—so each step has a narrower goal and clearer evaluation.",
+    },
+    {
+      question: "How do temperature or creativity settings interact with prompts?",
+      answer:
+        "Higher creativity settings explore more phrasings; lower ones stay closer to deterministic wording. Tighten the prompt when you need identical structure every run.",
+    },
+    {
+      question: "Should I tell the model what not to do?",
+      answer:
+        "Negative constraints help when the model keeps adding disclaimers, markdown, or sales fluff you do not want. Pair them with a positive pattern to follow.",
+    },
+    {
+      question: "How do I debug a prompt that suddenly got worse?",
+      answer:
+        "Diff your instruction changes, remove the last addition, and test with the same sample input. Model updates can also shift behavior even when your text is fixed.",
+    },
+    {
+      question: "Is it useful to assign the model a role?",
+      answer:
+        "Role lines such as “you are a concise technical editor” bias vocabulary and priorities. Keep the role honest; exaggerated personas rarely beat clear tasks.",
+    },
+    {
+      question: "Can prompts include evaluation criteria?",
+      answer:
+        "Yes. Ask the model to self-check against a checklist before finalizing, or run a second prompt that scores the draft. Criteria make failures easier to spot.",
+    },
+    {
+      question: "How do multilingual prompts change the output language?",
+      answer:
+        "State the output language explicitly even if the input is mixed. Models sometimes mirror the dominant language in the prompt unless told otherwise.",
+    },
+    {
+      question: "When should I stop tweaking the prompt and edit the draft?",
+      answer:
+        "Stop when remaining issues are factual polish or brand voice only you can supply. Endless prompt churn costs more than a two-minute human edit.",
+    },
+  ],
+  "how-to-calculate-an-aspect-ratio": [
+    {
+      question: "What is an aspect ratio in simple terms?",
+      answer:
+        "It is the width-to-height relationship of a frame, written like 16:9 or 4:3. The numbers scale together so the shape stays the same when you resize.",
+    },
+    {
+      question: "How do I simplify a ratio like 1920×1080?",
+      answer:
+        "Divide both sides by their greatest common divisor. 1920 and 1080 share 120, which simplifies to 16:9—the familiar widescreen ratio.",
+    },
+    {
+      question: "How do I find a missing side when I know the ratio?",
+      answer:
+        "Solve proportionally. For 16:9 with width 1280, height = 1280 × 9 ÷ 16. Lock the ratio in an editor so you only type one side.",
+    },
+    {
+      question: "What aspect ratio do most YouTube videos use?",
+      answer:
+        "Horizontal uploads are typically 16:9. Vertical shorts use 9:16. Matching the platform reduces letterboxing.",
+    },
+    {
+      question: "Is 1:1 the same as square?",
+      answer:
+        "Yes. Width equals height. Social avatars and many product thumbnails use 1:1 so crops stay predictable.",
+    },
+    {
+      question: "Why do phone photos not always match 16:9?",
+      answer:
+        "Phone sensors and shooting modes use ratios such as 4:3 or 19.5:9. Export settings may crop to another ratio later.",
+    },
+    {
+      question: "Can aspect ratio tools resize my image file?",
+      answer:
+        "Ratio calculators usually only do the math. A separate resizer or crop tool applies new pixel dimensions to the file.",
+    },
+    {
+      question: "What is the difference between aspect ratio and resolution?",
+      answer:
+        "Resolution is the pixel count (for example 3840×2160). Aspect ratio is the shape those pixels form (here still 16:9).",
+    },
+    {
+      question: "How do ultrawide monitors express ratio?",
+      answer:
+        "Common ultrawide shapes include 21:9 and 32:9. Always confirm the native resolution so scaled UI does not look stretched.",
+    },
+    {
+      question: "Why does a “fit” export add black bars?",
+      answer:
+        "Letterboxing preserves the source ratio inside a differently shaped frame. Stretching would fill the frame but distort subjects.",
+    },
+    {
+      question: "How do I convert a ratio to a decimal?",
+      answer:
+        "Divide width by height. 16÷9 ≈ 1.778. Decimals help spreadsheets; colon form helps humans and camera menus.",
+    },
+    {
+      question: "Do printers care about aspect ratio?",
+      answer:
+        "Yes. Photo paper sizes like 4×6 (2:3) crop differently than 8×10. Match shoot ratio to print ratio to avoid surprise trims.",
+    },
+    {
+      question: "Can two resolutions share a ratio but look sharper?",
+      answer:
+        "Yes. 1280×720 and 1920×1080 are both 16:9, but the denser pixel grid carries more detail.",
+    },
+    {
+      question: "How should designers document ratio in a brief?",
+      answer:
+        "Write both the ratio and target pixel size, such as “16:9 at 1920×1080.” Ratio alone does not tell production the export resolution.",
+    },
+    {
+      question: "What happens if I enter decimal pixel sizes?",
+      answer:
+        "Real images use whole pixels. Round to integers after ratio math, and prefer even numbers when codecs expect them.",
+    },
+    {
+      question: "Is cinematic 2.39:1 an aspect ratio too?",
+      answer:
+        "Yes. It is a wider theatrical shape. When you adapt that footage for 16:9 screens you must crop or pad.",
+    },
+  ],
 };
