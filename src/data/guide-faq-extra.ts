@@ -4577,5 +4577,467 @@ export const extraGuideFaqs: Record<string, GuideFaq[]> = {
       answer:
         "Itemize first, then tip on the shared pre-tip total so percentages stay fair.",
     }
+  ],
+  "free-digital-tools": [
+    {
+      question: "Which everyday tasks can these free tools cover?",
+      answer:
+        "Counting words, converting formats, hashing text, and simple calculators—browser utilities for quick jobs.",
+    },
+    {
+      question: "Do I install software to use the catalog?",
+      answer:
+        "No—open the tool page in your browser and paste or type your input.",
+    },
+    {
+      question: "Are results private by default on these pages?",
+      answer:
+        "Most utilities are designed to run in the browser session without requiring an account.",
+    },
+    {
+      question: "Can teachers use these tools in class?",
+      answer:
+        "Yes for demos and homework checks—confirm school policies for student data.",
+    },
+    {
+      question: "What is a good first tool for writers?",
+      answer:
+        "A word/character counter or case converter is a gentle start before converters and generators.",
+    },
+    {
+      question: "How do I switch from one tool to a related guide?",
+      answer:
+        "Use the guide links on the tool page (or the guides index) for step-by-step explainers.",
+    },
+    {
+      question: "Are mobile browsers supported?",
+      answer:
+        "Yes for most pages; very large file tools may work better on desktop.",
+    },
+    {
+      question: "Can I bookmark a tool I use daily?",
+      answer:
+        "Absolutely—bookmark the tool URL for one-click access.",
+    },
+    {
+      question: "Do these tools replace professional software?",
+      answer:
+        "They cover quick tasks; heavy editing still belongs in dedicated apps.",
+    },
+    {
+      question: "Is there a cost after a free trial?",
+      answer:
+        "The public tools described here are free to use in the browser—no trial gate for core utilities.",
+    },
+    {
+      question: "How should teams share a workflow built on these tools?",
+      answer:
+        "Document the steps and links in your wiki so everyone uses the same pages.",
+    },
+    {
+      question: "Can I process confidential client files here?",
+      answer:
+        "Prefer offline/local apps for highly sensitive material even when a page says in-browser.",
+    },
+    {
+      question: "Where do I report a broken calculator?",
+      answer:
+        "Use the site contact/feedback options with the tool name and steps to reproduce.",
+    },
+    {
+      question: "Do guides and tools stay in sync?",
+      answer:
+        "Guides explain the matching tool; open both tabs when you want theory plus practice.",
+    },
+    {
+      question: "What if I need a tool that is not listed?",
+      answer:
+        "Check the tools index categories or contact the site with a request.",
+    }
+  ],
+  "how-to-calculate-age": [
+    {
+      question: "How do I get years, months, and days from two dates?",
+      answer:
+        "Enter birth date and as-of date; read the breakdown the calculator returns.",
+    },
+    {
+      question: "Why can two sites disagree by a day?",
+      answer:
+        "Inclusive vs exclusive day counting and timezone cutovers differ—align the as-of date.",
+    },
+    {
+      question: "Can I measure age only in total days?",
+      answer:
+        "Yes—many age tools also show a total-days figure beside Y/M/D.",
+    },
+    {
+      question: "How should forms store birth dates?",
+      answer:
+        "Store ISO dates (YYYY-MM-DD) and compute age at runtime for the relevant as-of day.",
+    },
+    {
+      question: "Does the calculator need hours and minutes?",
+      answer:
+        "Usually dates alone suffice; add time only when hour-level precision matters.",
+    },
+    {
+      question: "How do insurance ages sometimes differ?",
+      answer:
+        "Some products use age-last-birthday or age-nearest; read the policy definition.",
+    },
+    {
+      question: "Can I compare two people’s ages quickly?",
+      answer:
+        "Calculate each against the same as-of date, then subtract the year totals.",
+    },
+    {
+      question: "What if only the birth month and year are known?",
+      answer:
+        "Pick a conventional day (often the 1st or 15th) and note the assumption.",
+    },
+    {
+      question: "How do schools define “age by September 1”?",
+      answer:
+        "Use the cutoff date as the as-of date, not today.",
+    },
+    {
+      question: "Is age calculation the same worldwide?",
+      answer:
+        "The Y/M/D breakdown method is common; legal age definitions still vary by jurisdiction.",
+    },
+    {
+      question: "Can I use this for anniversary milestones?",
+      answer:
+        "Yes—set the as-of date to the anniversary you care about.",
+    },
+    {
+      question: "Why might months show as 0 right after a birthday?",
+      answer:
+        "The month counter resets when the year increments on the birthday.",
+    },
+    {
+      question: "Do time zones change someone’s age overnight?",
+      answer:
+        "Civil age usually follows the local calendar date where the event is observed.",
+    },
+    {
+      question: "How accurate is a browser age tool?",
+      answer:
+        "Accurate for standard Gregorian dates; confirm leap-day edge cases you care about.",
+    },
+    {
+      question: "Does entering birth dates upload them?",
+      answer:
+        "Age math on this page is intended to stay in the browser session.",
+    }
+  ],
+  "how-to-calculate-gpa": [
+    {
+      question: "How do I compute a term GPA from letter grades?",
+      answer:
+        "List each course’s grade and credit hours, convert letters to points, then do credit-weighted average.",
+    },
+    {
+      question: "What 4.0 scale mapping is typical in the US?",
+      answer:
+        "Commonly A=4.0, B=3.0, C=2.0, D=1.0, F=0—plus +/- variants when your school uses them.",
+    },
+    {
+      question: "How do credit hours weight the average?",
+      answer:
+        "Multiply points by credits per course, sum, then divide by total credits attempted.",
+    },
+    {
+      question: "Can I include a course I withdrew from?",
+      answer:
+        "Only if your school counts it; many W grades are excluded from GPA.",
+    },
+    {
+      question: "How does an F affect the semester average?",
+      answer:
+        "It contributes 0 points but still adds credits attempted, pulling GPA down.",
+    },
+    {
+      question: "What is a weighted high-school GPA?",
+      answer:
+        "Honors/AP courses may use a 5.0-style scale; unweighted stays on 4.0.",
+    },
+    {
+      question: "How do I estimate GPA after next semester’s grades?",
+      answer:
+        "Add planned courses to the cumulative points/credits and recompute.",
+    },
+    {
+      question: "Should I round mid-calculation or only at the end?",
+      answer:
+        "Keep full precision until the end; round to the places your transcript uses.",
+    },
+    {
+      question: "Can percentage grades convert to GPA here?",
+      answer:
+        "If you have a school map (e.g., 93–100=A), convert to letters/points first.",
+    },
+    {
+      question: "How do transfer credits factor in?",
+      answer:
+        "Policies vary—some omit transfers from institutional GPA.",
+    },
+    {
+      question: "What if two courses share the same name but different terms?",
+      answer:
+        "Treat each enrollment separately unless a retake policy replaces the old grade.",
+    },
+    {
+      question: "Is GPA the same as a percentage average?",
+      answer:
+        "No—GPA is point-based and credit-weighted; percentages are a different scale.",
+    },
+    {
+      question: "How many courses can I enter at once?",
+      answer:
+        "Enter a full term or cumulative list up to the tool’s practical limit.",
+    },
+    {
+      question: "Why might my unofficial GPA differ from the registrar?",
+      answer:
+        "Rounding, excluded courses, or weighting rules—trust the official transcript.",
+    },
+    {
+      question: "Does GPA math upload my grades?",
+      answer:
+        "Calculation on this page is meant to stay in the browser session.",
+    }
+  ],
+  "how-to-calculate-percentage": [
+    {
+      question: "How do I take a percentage of a whole number?",
+      answer:
+        "Multiply the whole by the percent, then divide by 100 (or multiply by the decimal form).",
+    },
+    {
+      question: "How do I turn a fraction into a percent?",
+      answer:
+        "Divide part by whole, then multiply by 100.",
+    },
+    {
+      question: "How do I apply a percent increase to a price?",
+      answer:
+        "Multiply the price by (1 + percent/100).",
+    },
+    {
+      question: "How do I apply a percent discount?",
+      answer:
+        "Multiply by (1 − percent/100), or subtract percent×price/100 from the price.",
+    },
+    {
+      question: "What is the percent if 25 is the part and 200 the whole?",
+      answer:
+        "25/200×100 = 12.5%.",
+    },
+    {
+      question: "How do percentage points differ from percent change?",
+      answer:
+        "Points are absolute differences between percents; percent change is relative to a start value.",
+    },
+    {
+      question: "Can I calculate percentages with decimals?",
+      answer:
+        "Yes—decimals work the same way as whole numbers.",
+    },
+    {
+      question: "What if the whole is zero?",
+      answer:
+        "You cannot divide by zero—percent of/as a fraction of zero is undefined.",
+    },
+    {
+      question: "How do I reverse a percent to find the original whole?",
+      answer:
+        "Divide the part by the percent as a decimal (part / (percent/100)).",
+    },
+    {
+      question: "Are percentages capped at 100?",
+      answer:
+        "Not always—values can exceed 100% when the part is larger than the whole.",
+    },
+    {
+      question: "How should I round money percentages?",
+      answer:
+        "Follow currency rounding rules (often two decimals) after the percent math.",
+    },
+    {
+      question: "Can I stack two percent discounts?",
+      answer:
+        "Apply them sequentially on the remaining balance—do not simply add the percents.",
+    },
+    {
+      question: "Is percent the same in every country?",
+      answer:
+        "The math is universal; tax-inclusive pricing customs differ.",
+    },
+    {
+      question: "How do I check a calculator result by hand?",
+      answer:
+        "Recompute part = whole × percent/100 and compare.",
+    },
+    {
+      question: "Does percentage math leave my browser?",
+      answer:
+        "The calculator is intended to run in the page session.",
+    }
+  ],
+  "how-to-clean-and-compare-text": [
+    {
+      question: "How do I spot edits between two drafts?",
+      answer:
+        "Paste the old text on one side and the new on the other, then run the diff.",
+    },
+    {
+      question: "Should I normalize quotes before comparing?",
+      answer:
+        "Yes—curly vs straight quotes create noisy diffs; standardize first.",
+    },
+    {
+      question: "How do I ignore trivial whitespace changes?",
+      answer:
+        "Trim lines or collapse spaces before diffing when formatting is not the point.",
+    },
+    {
+      question: "When is word-level diff better than line-level?",
+      answer:
+        "Word mode highlights small edits inside a paragraph; line mode suits code or lists.",
+    },
+    {
+      question: "Can I compare code snippets this way?",
+      answer:
+        "Yes—paste both versions; for repos prefer git diff for history.",
+    },
+    {
+      question: "How do I prepare OCR text for a cleaner diff?",
+      answer:
+        "Fix broken line breaks and hyphenation first so the diff focuses on real wording.",
+    },
+    {
+      question: "What does a large red/green block usually mean?",
+      answer:
+        "A whole paragraph was removed or rewritten rather than lightly edited.",
+    },
+    {
+      question: "Should I sort lines before comparing lists?",
+      answer:
+        "If order does not matter, sorting both sides reduces false shuffle noise.",
+    },
+    {
+      question: "Can diffs help with translation QA?",
+      answer:
+        "They highlight changed segments; still have a human review meaning.",
+    },
+    {
+      question: "How do I copy only the changed sentences?",
+      answer:
+        "Scan the highlighted hunks and extract those spans into your notes.",
+    },
+    {
+      question: "Does a diff prove plagiarism?",
+      answer:
+        "No—it only shows textual differences; similarity tools are a different analysis.",
+    },
+    {
+      question: "What limit should I expect for each side?",
+      answer:
+        "Very large pastes may slow the tab—compare chapters in chunks if needed.",
+    },
+    {
+      question: "Is cleaning text required before every diff?",
+      answer:
+        "Not required, but cleaning punctuation and breaks makes reviews faster.",
+    },
+    {
+      question: "Can I diff right-to-left languages?",
+      answer:
+        "Yes if Unicode text pastes correctly; confirm your font renders the script.",
+    },
+    {
+      question: "Does comparing text upload the drafts?",
+      answer:
+        "Diffing on this page is meant to stay in the browser session.",
+    }
+  ],
+  "how-to-convert-hex-to-rgb": [
+    {
+      question: "How do I read RGB channels from a brand hex code?",
+      answer:
+        "Paste the hex into the converter and note the red, green, and blue 0–255 values.",
+    },
+    {
+      question: "Why do design tools show both hex and RGB?",
+      answer:
+        "Hex is compact for CSS; RGB makes channel math and accessibility tweaks easier.",
+    },
+    {
+      question: "How do I use the RGB result in CSS?",
+      answer:
+        "Write rgb(r, g, b) or rgba(r, g, b, a) using the converted channels.",
+    },
+    {
+      question: "What does a hex pair like 80 mean in decimal?",
+      answer:
+        "Each two hex digits map to 0–255; 80₁₆ is 128₁₀.",
+    },
+    {
+      question: "Can I convert colors for an email template?",
+      answer:
+        "Yes—many email clients accept hex or RGB in inline CSS.",
+    },
+    {
+      question: "How do I check contrast after converting?",
+      answer:
+        "Drop the RGB or hex into a contrast checker with your text color.",
+    },
+    {
+      question: "Why might two hex codes look identical on a display?",
+      answer:
+        "Nearby values can be indistinguishable; rely on numbers for exact brand match.",
+    },
+    {
+      question: "How do I handle hex from a PDF brand guide?",
+      answer:
+        "Copy carefully—watch for O/0 and l/1 misreads when typing by eye.",
+    },
+    {
+      question: "Is RGB enough for print design?",
+      answer:
+        "Print often needs CMYK; treat RGB/hex as screen values unless converted for press.",
+    },
+    {
+      question: "Can I convert a list of hex swatches quickly?",
+      answer:
+        "Convert one by one here, or script a batch offline for large palettes.",
+    },
+    {
+      question: "What is the RGB for pure black and white?",
+      answer:
+        "Black is rgb(0,0,0); white is rgb(255,255,255).",
+    },
+    {
+      question: "How does alpha change the written color?",
+      answer:
+        "Alpha controls opacity; underlying background shows through when alpha < 1.",
+    },
+    {
+      question: "Should developers store hex or RGB in tokens?",
+      answer:
+        "Either works—pick one source of truth and generate the other as needed.",
+    },
+    {
+      question: "Why convert before adjusting brightness?",
+      answer:
+        "Channel math is clearer in RGB/HSL than in raw hex strings.",
+    },
+    {
+      question: "Does hex→RGB conversion upload my palette?",
+      answer:
+        "Conversion is intended to stay in the browser session.",
+    }
   ]
 };

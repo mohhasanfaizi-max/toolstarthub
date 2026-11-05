@@ -18,7 +18,81 @@ export const extraToolFaqs: Record<string, ToolFaq[]> = {
       answer:
         "The change is divided by the starting number. 20 out of 80 is a 25% rise, while 20 out of 100 is a 20% drop.",
     },
-  ],
+    {
+      question: "How do I measure the percent change from an old value to a new one?",
+      answer:
+        "Subtract old from new, divide by the old value, multiply by 100 for the percent change.",
+    },
+    {
+      question: "What does a negative percent change mean?",
+      answer:
+        "The new value is lower than the original—a decrease.",
+    },
+    {
+      question: "How is percent change different from percentage points?",
+      answer:
+        "Percent change is relative to the start value; percentage points are an absolute difference between two percents.",
+    },
+    {
+      question: "Can I compare this month’s revenue to last month’s?",
+      answer:
+        "Yes—use last month as original and this month as new.",
+    },
+    {
+      question: "Why does going up and then back down look asymmetric?",
+      answer:
+        "A rise from 80→100 is +25%, but 100→80 is −20% because the bases differ.",
+    },
+    {
+      question: "How do I express a change from 50 to 75?",
+      answer:
+        "(75−50)/50 = 0.5 → 50% increase.",
+    },
+    {
+      question: "What if both values are negative?",
+      answer:
+        "The same formula applies, but interpret signs carefully for debt or temperature contexts.",
+    },
+    {
+      question: "How should I present percent change in a report?",
+      answer:
+        "State both absolute values and the percent so readers see scale, not only the rate.",
+    },
+    {
+      question: "Does the tool accept decimals?",
+      answer:
+        "Yes—use decimals for precise finance or science figures.",
+    },
+    {
+      question: "How do I reverse a known percent change to find the start?",
+      answer:
+        "Divide the new value by (1 + change as a decimal) when the change was an increase.",
+    },
+    {
+      question: "When is percentage-point language clearer?",
+      answer:
+        "When comparing rates (unemployment 5%→6% is +1 point, not +20% change) to avoid confusion.",
+    },
+    {
+      question: "Can tiny base values make huge percents?",
+      answer:
+        "Yes—small denominators inflate percent change; show absolute deltas too.",
+    },
+    {
+      question: "How do marketers misuse percent change?",
+      answer:
+        "By picking a flattering baseline or mixing points with percent—always check the base.",
+    },
+    {
+      question: "Is week-over-week the same formula?",
+      answer:
+        "Yes—only the two numbers you compare change, not the math.",
+    },
+    {
+      question: "Does percent-change math leave the browser?",
+      answer:
+        "Calculation on this page is meant to stay in the session.",
+    }],
   "discount-calculator": [
     {
       question: "How do I calculate a discount?",
@@ -288,7 +362,81 @@ export const extraToolFaqs: Record<string, ToolFaq[]> = {
       answer:
         "Use it for mockups, templates, and font tests. Replace it with real copy before a page goes live, because placeholder text tells visitors nothing.",
     },
-  ],
+    {
+      question: "How do I fill a mockup with classic placeholder copy?",
+      answer:
+        "Choose words, sentences, or paragraphs, set a count, generate, then paste into the design.",
+    },
+    {
+      question: "Can I generate just a few words for a button label?",
+      answer:
+        "Yes—use words mode with a small count so the label stays short.",
+    },
+    {
+      question: "Why does placeholder Latin look scrambled?",
+      answer:
+        "It is intentionally pseudo-Latin filler so reviewers focus on layout, not meaning.",
+    },
+    {
+      question: "Should client demos ship with lorem still visible?",
+      answer:
+        "No—replace with real copy before launch so SEO and accessibility match the product.",
+    },
+    {
+      question: "How do I get paragraph breaks instead of one block?",
+      answer:
+        "Use paragraphs mode so the generator inserts separate blocks you can style.",
+    },
+    {
+      question: "Can I regenerate until the rhythm looks right?",
+      answer:
+        "Yes—generate again for a fresh sample; vary length until the layout feels balanced.",
+    },
+    {
+      question: "Does placeholder text need to be unique every time?",
+      answer:
+        "For screenshots maybe; for layout tests repeated lorem is usually fine.",
+    },
+    {
+      question: "How should writers hand off real copy over lorem?",
+      answer:
+        "Drop final strings into the same slots and delete leftover placeholder phrases.",
+    },
+    {
+      question: "Is lorem better than repeating “text text text”?",
+      answer:
+        "Yes—varied word lengths stress wrapping and spacing more realistically.",
+    },
+    {
+      question: "Can I generate lorem in another language?",
+      answer:
+        "This classic generator is Latin-style; use a localized filler tool for other languages.",
+    },
+    {
+      question: "What count should I use for a hero section?",
+      answer:
+        "A short sentence or two usually suffices; long paragraphs belong in body mockups.",
+    },
+    {
+      question: "Does generating lorem create copyright risk?",
+      answer:
+        "Standard lorem snippets are widely treated as filler; still avoid pasting third-party prose unlabeled.",
+    },
+    {
+      question: "How do wireframe tools typically use this output?",
+      answer:
+        "Designers paste blocks into text layers to judge hierarchy before content is ready.",
+    },
+    {
+      question: "Should QA test forms filled with lorem?",
+      answer:
+        "Useful for length/overflow; also test realistic names and emails before release.",
+    },
+    {
+      question: "Does the generator fetch paragraphs from the web?",
+      answer:
+        "Generation is meant to run locally from built-in samples in the page session.",
+    }],
   "image-resizer": [
     {
       question: "How do I resize an image without stretching it?",
@@ -850,7 +998,81 @@ export const extraToolFaqs: Record<string, ToolFaq[]> = {
       answer:
         "This one creates the password in your browser with crypto.getRandomValues and does not send or store it. Save it in a password manager rather than in a note.",
     },
-  ],
+    {
+      question: "How do I create a strong random password here?",
+      answer:
+        "Set length and character classes, generate, then copy into a password manager—not a chat log.",
+    },
+    {
+      question: "Should I include symbols in every password?",
+      answer:
+        "Symbols raise entropy when the site allows them. Skip only if a form rejects them.",
+    },
+    {
+      question: "How do I avoid look-alike characters?",
+      answer:
+        "Enable an “exclude ambiguous” option (0/O, 1/l/I) when you must read the password aloud.",
+    },
+    {
+      question: "Can I generate a passphrase of random words instead?",
+      answer:
+        "Use a passphrase mode if offered; otherwise prefer a long random character string.",
+    },
+    {
+      question: "How many passwords can I mint in one sitting?",
+      answer:
+        "Generate as needed, but store them in a manager rather than a notes file.",
+    },
+    {
+      question: "Is a longer password always stronger?",
+      answer:
+        "Length helps a lot when the characters stay unpredictable—avoid keyboard walks.",
+    },
+    {
+      question: "Should I reuse a generated password on two sites?",
+      answer:
+        "Never reuse. Create a unique password per account.",
+    },
+    {
+      question: "What length works for most modern sites?",
+      answer:
+        "Sixteen or more characters with mixed classes is a solid default when allowed.",
+    },
+    {
+      question: "Can the generator guarantee a digit and a symbol?",
+      answer:
+        "Many tools force at least one of each selected class—check the options.",
+    },
+    {
+      question: "How should I store the result safely?",
+      answer:
+        "Paste into a reputable password manager and enable its autofill; do not email it.",
+    },
+    {
+      question: "Does refreshing the page create a new password?",
+      answer:
+        "A new generate click does; do not rely on reload alone if the field still shows the old value.",
+    },
+    {
+      question: "Are pronounceable passwords weaker?",
+      answer:
+        "They can be if the pattern is guessable—prefer fully random when security matters most.",
+    },
+    {
+      question: "What if a site caps password length at 12?",
+      answer:
+        "Use the maximum allowed with full character variety, and enable 2FA.",
+    },
+    {
+      question: "Should shared team accounts use one generated password?",
+      answer:
+        "Prefer a shared vault entry with audit logging over a password pasted in Slack.",
+    },
+    {
+      question: "Does generating a password upload it somewhere?",
+      answer:
+        "Generation on this page is intended to stay in the browser session.",
+    }],
   "pdf-merger": [
     {
       question: "How do I combine PDF files into one?",
@@ -970,7 +1192,81 @@ export const extraToolFaqs: Record<string, ToolFaq[]> = {
       answer:
         "Yes. Simple tables, fenced code blocks, headings, lists, links, images, and quotes are converted.",
     },
-  ],
+    {
+      question: "How do I turn a Markdown draft into HTML?",
+      answer:
+        "Paste the Markdown, convert, then copy the HTML into your CMS, email, or static page.",
+    },
+    {
+      question: "Do headings become h1–h6 tags?",
+      answer:
+        "Yes—# through ###### map to the matching heading levels in the output.",
+    },
+    {
+      question: "How are Markdown links rendered?",
+      answer:
+        "[text](url) becomes an <a href> tag. Add titles only if your dialect supports them.",
+    },
+    {
+      question: "What about images written in Markdown?",
+      answer:
+        "![alt](src) becomes <img>. Ensure the src URL is reachable in the target site.",
+    },
+    {
+      question: "Are fenced code blocks wrapped in pre and code?",
+      answer:
+        "Typically yes, often with a language class when you label the fence.",
+    },
+    {
+      question: "How do unordered lists convert?",
+      answer:
+        "Hyphen or asterisk list markers become ul/li structures.",
+    },
+    {
+      question: "Will blockquotes survive conversion?",
+      answer:
+        "Lines starting with > usually become <blockquote> elements.",
+    },
+    {
+      question: "Can I preview the HTML visually on the page?",
+      answer:
+        "If a preview pane exists, use it; otherwise paste into a local HTML file to check.",
+    },
+    {
+      question: "Does front matter (YAML) convert?",
+      answer:
+        "Most simple converters ignore or pass it through—strip front matter before converting.",
+    },
+    {
+      question: "How do I keep inline code looking monospace?",
+      answer:
+        "Backticks become <code>; pair with CSS for the monospace look.",
+    },
+    {
+      question: "Are task-list checkboxes supported?",
+      answer:
+        "Only if the engine implements GFM task lists; otherwise they stay as plain text.",
+    },
+    {
+      question: "What if my Markdown uses footnotes?",
+      answer:
+        "Footnote support varies—confirm or convert footnotes manually.",
+    },
+    {
+      question: "Should I sanitize the HTML before publishing?",
+      answer:
+        "Yes when the Markdown comes from untrusted authors—sanitize or use a safe renderer.",
+    },
+    {
+      question: "Can I convert a whole README at once?",
+      answer:
+        "Yes—paste the file contents; review relative links afterward.",
+    },
+    {
+      question: "Does Markdown-to-HTML upload my draft?",
+      answer:
+        "Conversion on this page is meant to stay in the browser session.",
+    }],
   "html-to-markdown": [
     {
       question: "Why convert HTML to Markdown?",
@@ -1178,7 +1474,81 @@ export const extraToolFaqs: Record<string, ToolFaq[]> = {
       answer:
         "Choose numeric ascending or descending. Each line is sorted by the number at its start, so 2 comes before 10.",
     },
-  ],
+    {
+      question: "How do I alphabetize a pasted list of lines?",
+      answer:
+        "Paste one item per line, choose ascending A–Z, sort, then copy the result.",
+    },
+    {
+      question: "Can I sort case-insensitively so a and A group together?",
+      answer:
+        "Use a case-insensitive option when available so letter case does not scramble order.",
+    },
+    {
+      question: "How do I put the longest lines first?",
+      answer:
+        "Some sorters offer length order; otherwise sort in a spreadsheet by LEN().",
+    },
+    {
+      question: "Will blank lines stay in place after sorting?",
+      answer:
+        "Depends on settings—many tools keep or drop empties; pick the behavior you need.",
+    },
+    {
+      question: "How do I sort a grocery list without duplicates?",
+      answer:
+        "Sort, then remove duplicate lines (or use a combined sort+unique mode).",
+    },
+    {
+      question: "Can I sort by the second word on each line?",
+      answer:
+        "This page sorts whole lines. Split columns elsewhere if you need field-based sorts.",
+    },
+    {
+      question: "Why do numbers sort as 10 before 2?",
+      answer:
+        "That is lexicographic order. Choose numeric sort when you need 2 before 10.",
+    },
+    {
+      question: "How do I reverse a previously sorted list?",
+      answer:
+        "Run a descending / reverse sort, or reverse the line order without recomparing keys.",
+    },
+    {
+      question: "Does locale affect alphabetical order?",
+      answer:
+        "Yes—accent and locale rules differ. Results may vary from another OS dictionary order.",
+    },
+    {
+      question: "Can I sort CSV rows here?",
+      answer:
+        "Only if each row is one line and you accept whole-line order—not true CSV column sort.",
+    },
+    {
+      question: "What happens to leading spaces on a line?",
+      answer:
+        "They can change order. Trim lines first when whitespace should not matter.",
+    },
+    {
+      question: "Is the original paste kept after I sort?",
+      answer:
+        "Copy the output; undo locally if you still have the source. Keep a backup for big lists.",
+    },
+    {
+      question: "How should I sort version strings like 1.10 vs 1.9?",
+      answer:
+        "Plain alpha/numeric sorts misfire on versions—use a version-aware tool for semver.",
+    },
+    {
+      question: "Can I shuffle lines randomly instead of sorting?",
+      answer:
+        "Use a shuffle/randomize mode if present; otherwise sort is deterministic.",
+    },
+    {
+      question: "Does line sorting send my list to a server?",
+      answer:
+        "Sorting on this page is intended to stay in the browser session.",
+    }],
   "ai-prompt-generator": [
     {
       question: "What makes a good AI prompt?",
@@ -1766,7 +2136,81 @@ export const extraToolFaqs: Record<string, ToolFaq[]> = {
       answer:
         "Nested objects are not flattened into extra columns. Flatten them first if you need each nested field in its own column.",
     },
-  ],
+    {
+      question: "How do I turn a JSON array into a CSV file?",
+      answer:
+        "Paste a JSON array of objects, convert, then download or copy the CSV for Excel or Sheets.",
+    },
+    {
+      question: "What JSON shapes convert cleanly to rows?",
+      answer:
+        "An array of flat objects with shared keys works best. Deep nesting usually needs flattening first.",
+    },
+    {
+      question: "How are column headers chosen from the objects?",
+      answer:
+        "Headers typically come from object keys in first-seen order across the array.",
+    },
+    {
+      question: "Can I convert a single JSON object?",
+      answer:
+        "Many converters wrap one object as a one-row table; an array of objects is clearer.",
+    },
+    {
+      question: "What delimiter does the CSV use?",
+      answer:
+        "Comma is the default. Some tools offer semicolon or tab for locale-specific Excel.",
+    },
+    {
+      question: "How do boolean and null values appear in cells?",
+      answer:
+        "Booleans often become true/false text; nulls become empty cells—confirm before importing.",
+    },
+    {
+      question: "Can arrays inside a field become multiple columns?",
+      answer:
+        "Usually they stringify into one cell. Expand them beforehand if you need separate columns.",
+    },
+    {
+      question: "Why might Excel show garbled characters?",
+      answer:
+        "Missing UTF-8 BOM or wrong import encoding. Re-import as UTF-8 or save with a BOM if needed.",
+    },
+    {
+      question: "How do I convert only a subset of keys?",
+      answer:
+        "Trim the JSON to the fields you want before converting, or delete columns after import.",
+    },
+    {
+      question: "Does order of objects in the array matter?",
+      answer:
+        "Yes—row order follows the array order unless you sort later in a spreadsheet.",
+    },
+    {
+      question: "What if keys differ across objects?",
+      answer:
+        "Missing keys usually become blank cells for that row; extra keys add columns.",
+    },
+    {
+      question: "Can I go back from CSV to JSON afterward?",
+      answer:
+        "Use a CSV-to-JSON tool; round-trips may lose type info (everything becomes strings).",
+    },
+    {
+      question: "Is there a size limit for pasted JSON?",
+      answer:
+        "Very large pastes can slow the tab—split big datasets or convert offline.",
+    },
+    {
+      question: "Should I validate JSON before converting?",
+      answer:
+        "Yes—fix syntax errors first so you do not export a partial or empty CSV.",
+    },
+    {
+      question: "Does JSON-to-CSV upload my dataset?",
+      answer:
+        "Conversion on this page is meant to stay in the browser session.",
+    }],
   "csv-to-json": [
     {
       question: "How do I convert a spreadsheet to JSON?",
