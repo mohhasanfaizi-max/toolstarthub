@@ -6637,5 +6637,317 @@ export const extraGuideFaqs: Record<string, GuideFaq[]> = {
       answer:
         "Conversion is meant to run in the browser session; keep sensitive markup offline if needed.",
     }
+  ],
+  "how-to-write-a-url-slug": [
+    {
+      question: "Should I strip years from news slugs?",
+      answer:
+        "Keep a year only when it disambiguates evergreen titles; otherwise shorter topical slugs age better.",
+    },
+    {
+      question: "How do I slugify titles with ampersands?",
+      answer:
+        "Replace & with “and” or drop it so the slug stays readable without encoded characters.",
+    },
+    {
+      question: "Do trailing slashes belong in the slug field?",
+      answer:
+        "No—the slug is the path segment; your host adds or normalizes trailing slashes separately.",
+    },
+    {
+      question: "Should category folders sit before the slug?",
+      answer:
+        "Many CMS paths use /category/slug; keep the slug itself free of duplicated category words.",
+    },
+    {
+      question: "How do I handle duplicate draft titles?",
+      answer:
+        "Add a short disambiguator (product, city, or year) so each published slug stays unique.",
+    },
+    {
+      question: "Is transliteration better than dropping accents?",
+      answer:
+        "Transliterate when readers search Latin keywords; some sites keep Unicode if the stack supports it.",
+    },
+    {
+      question: "Can query strings be part of a slug?",
+      answer:
+        "No—slugs exclude ? and & parameters; keep tracking tags out of the path.",
+    },
+    {
+      question: "Should I update slugs when retitling lightly?",
+      answer:
+        "Avoid churn for tiny title edits; change slugs when the topic truly shifts, then redirect.",
+    },
+    {
+      question: "How short is too short for a slug?",
+      answer:
+        "Single generic words collide often; two or three clear tokens usually balance clarity and length.",
+    },
+    {
+      question: "Do ebook or PDF vanity URLs follow the same rules?",
+      answer:
+        "Yes—human-readable hyphenated segments still help sharing even for download landing pages.",
+    }
+  ],
+  "how-to-remove-duplicate-lines": [
+    {
+      question: "Does letter case affect duplicate detection?",
+      answer:
+        "Exact matching is usually case-sensitive; normalize case first if “Email” and “email” should collapse.",
+    },
+    {
+      question: "Can I dedupe while keeping the original order?",
+      answer:
+        "First-seen order is typical: earlier unique lines stay, later repeats drop.",
+    },
+    {
+      question: "How do I prepare a messy spreadsheet column?",
+      answer:
+        "Paste one column of values, trim spaces if needed, then remove duplicate lines before reimporting.",
+    },
+    {
+      question: "Will Windows and Unix line endings confuse matches?",
+      answer:
+        "Normalize line breaks first so the same text is not kept twice for CRLF vs LF only.",
+    },
+    {
+      question: "Can I dedupe multiline addresses?",
+      answer:
+        "This tool compares whole lines; join address blocks onto one line each before deduping.",
+    },
+    {
+      question: "What if duplicates are separated by blank lines?",
+      answer:
+        "Blank lines are separate entries; remove blanks or duplicates in two passes as needed.",
+    },
+    {
+      question: "Is fuzzy matching available for near-duplicates?",
+      answer:
+        "No—near matches need manual cleanup or a specialized fuzzy tool.",
+    },
+    {
+      question: "How should I dedupe tagged lists with prefixes?",
+      answer:
+        "Strip differing prefixes first, or duplicates with tags will look unique.",
+    },
+    {
+      question: "Does sorting before dedupe change results?",
+      answer:
+        "Sort only if you want alphabetical output; uniqueness itself does not require sorting.",
+    },
+    {
+      question: "Can I undo after removing duplicates?",
+      answer:
+        "Keep the original paste in another tab or undo in your editor before closing the page.",
+    }
+  ],
+  "how-to-remove-extra-spaces-from-text": [
+    {
+      question: "Will non-breaking spaces be cleaned?",
+      answer:
+        "Many cleaners treat regular spaces; paste into a plain field first if NBSP characters linger.",
+    },
+    {
+      question: "How do I preserve markdown code fences?",
+      answer:
+        "Skip minifying indented code blocks; clean prose separately from fenced samples.",
+    },
+    {
+      question: "Can I collapse spaces but keep paragraph breaks?",
+      answer:
+        "Choose a mode that trims within lines while leaving blank lines that mark paragraphs.",
+    },
+    {
+      question: "Why do double spaces appear after periods?",
+      answer:
+        "Old typing habits insert them; collapsing whitespace usually reduces them to one.",
+    },
+    {
+      question: "Is it safe for poetry with intentional gaps?",
+      answer:
+        "No—artistic spacing should be edited by hand so deliberate gaps survive.",
+    },
+    {
+      question: "How do leading spaces in lists behave?",
+      answer:
+        "Trimming lines can remove indentation that markdown or code relies on—preview first.",
+    },
+    {
+      question: "Can I strip spaces around commas in CSV?",
+      answer:
+        "Yes for simple files, but quoted fields with internal spaces need a CSV-aware editor.",
+    },
+    {
+      question: "Do zero-width characters count as spaces?",
+      answer:
+        "They are not normal spaces; use a dedicated Unicode cleaner if copy/paste inserts them.",
+    },
+    {
+      question: "Should I clean before or after spellcheck?",
+      answer:
+        "Clean first so spellcheck is not distracted by double spaces and stray tabs.",
+    },
+    {
+      question: "Will cleaning change my byte size much?",
+      answer:
+        "Prose often shrinks modestly; code with heavy indentation can shrink more.",
+    }
+  ],
+  "how-to-sort-lines-of-text": [
+    {
+      question: "How do I sort case-insensitively?",
+      answer:
+        "Lowercase a copy for ordering, or use a case-insensitive mode if the tool offers one.",
+    },
+    {
+      question: "Can I sort by the second column of a TSV?",
+      answer:
+        "Not directly—extract that column, sort it with keys, or use a spreadsheet for field sorts.",
+    },
+    {
+      question: "Where do blank lines go after sorting?",
+      answer:
+        "They usually cluster at the start or end depending on how empty strings compare.",
+    },
+    {
+      question: "How should version strings like 1.10 vs 1.2 sort?",
+      answer:
+        "Plain text puts 1.10 before 1.2; use numeric or natural sort when available.",
+    },
+    {
+      question: "Can I randomize lines instead of sorting?",
+      answer:
+        "This guide focuses on ordered sorts; shuffling needs a separate randomize step.",
+    },
+    {
+      question: "Does locale change alphabetical order?",
+      answer:
+        "Accent and language rules can; stick to one locale when comparing team outputs.",
+    },
+    {
+      question: "How do I sort dates written as text?",
+      answer:
+        "Prefer ISO YYYY-MM-DD so lexicographic order matches chronology.",
+    },
+    {
+      question: "Will sorting ruin paired name/email lines?",
+      answer:
+        "Keep pairs on one line (name, email) so they move together when sorted.",
+    },
+    {
+      question: "Can I sort descending numbers for leaderboards?",
+      answer:
+        "Use numeric sort with reverse order so 100 appears above 20.",
+    },
+    {
+      question: "Should I trim before sorting names?",
+      answer:
+        "Yes—leading spaces can push entries out of true alphabetical position.",
+    }
+  ],
+  "how-to-minify-javascript": [
+    {
+      question: "Should I minify during local development?",
+      answer:
+        "Keep readable sources while coding; minify for production builds or bandwidth checks.",
+    },
+    {
+      question: "Does minification replace a bundler?",
+      answer:
+        "No—bundlers resolve modules and trees; minifiers mainly shrink already-bundled output.",
+    },
+    {
+      question: "Will const and let be rewritten to var?",
+      answer:
+        "Modern minifiers usually keep block scoping; they compress names and whitespace instead.",
+    },
+    {
+      question: "Can I minify already-minified vendor files again?",
+      answer:
+        "Re-minifying rarely helps and can break files that expect specific formatting.",
+    },
+    {
+      question: "How do license comments survive?",
+      answer:
+        "Some tools keep @license banners when configured; this quick minify may strip all comments.",
+    },
+    {
+      question: "Is Unicode in strings safe?",
+      answer:
+        "Yes—string contents remain; only identifiers and whitespace around code are compressed.",
+    },
+    {
+      question: "What about template literals with spacing?",
+      answer:
+        "Spaces inside template strings stay; only outer code formatting is removed.",
+    },
+    {
+      question: "Should source maps ship to users?",
+      answer:
+        "Keep maps private or on protected URLs if you generate them elsewhere; this tool may not emit maps.",
+    },
+    {
+      question: "Can minified code hide secrets?",
+      answer:
+        "No—minification is not encryption; never put API secrets in front-end JavaScript.",
+    },
+    {
+      question: "Why did a regex break after minify?",
+      answer:
+        "Rare parser edge cases happen—compare the original, fix the pattern, and minify again.",
+    }
+  ],
+  "how-to-convert-markdown-to-html": [
+    {
+      question: "Do footnotes convert in this Markdown flavor?",
+      answer:
+        "Support varies; if footnotes stay plain text, use a flavor that documents footnote syntax.",
+    },
+    {
+      question: "How are images turned into HTML?",
+      answer:
+        "Standard ![alt](url) becomes an img tag; ensure URLs are reachable where you publish.",
+    },
+    {
+      question: "Can I keep class names on paragraphs?",
+      answer:
+        "Basic conversion rarely adds custom classes; wrap output in your own CSS later.",
+    },
+    {
+      question: "Why did my autolink stay unclickable?",
+      answer:
+        "Some parsers need explicit [text](url) markdown; bare URLs may remain plain.",
+    },
+    {
+      question: "Does YAML front matter get converted?",
+      answer:
+        "Strip front matter before converting if you only want the article body as HTML.",
+    },
+    {
+      question: "How do I preview responsive tables?",
+      answer:
+        "Paste the HTML into a page with your stylesheet; raw tags alone do not include layout CSS.",
+    },
+    {
+      question: "Do GitHub-style task lists become input checkboxes?",
+      answer:
+        "Only if the Markdown engine implements them; otherwise they appear as plain list text.",
+    },
+    {
+      question: "Can I convert Markdown that embeds KaTeX?",
+      answer:
+        "Math usually needs a separate renderer; this step focuses on standard Markdown to HTML.",
+    },
+    {
+      question: "Should I sanitize HTML before displaying user input?",
+      answer:
+        "Yes—treat converted HTML as untrusted if authors can inject raw tags.",
+    },
+    {
+      question: "Does conversion change smart quotes?",
+      answer:
+        "Text is preserved as written; typographic quotes remain characters in the HTML output.",
+    }
   ]
 };

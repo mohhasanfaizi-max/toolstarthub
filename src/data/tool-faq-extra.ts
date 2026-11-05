@@ -6816,5 +6816,432 @@ export const extraToolFaqs: Record<string, ToolFaq[]> = {
       answer:
         "Use forms like 1.25e3 if the field accepts them, matching scientific notation inputs.",
     }
+  ],
+  "qr-code-generator": [
+    {
+      question: "Can I encode a phone number or SMS link?",
+      answer:
+        "Yes—use tel: or sms: URLs if your scanner apps support them; keep payloads short so the code stays easy to read.",
+    },
+    {
+      question: "Should I test the PNG before printing stickers?",
+      answer:
+        "Always scan a draft print at the final size; printer contrast and gloss can reduce readability.",
+    },
+    {
+      question: "Does higher resolution improve scan success?",
+      answer:
+        "A sharp PNG helps on large prints, but quiet-zone margins and contrast matter more than megapixels alone.",
+    },
+    {
+      question: "Can I put a logo in the center?",
+      answer:
+        "This basic generator focuses on clean static codes; logo overlays need higher error correction and a design tool.",
+    },
+    {
+      question: "What happens if I paste a very long URL?",
+      answer:
+        "The pattern densifies and becomes harder to scan; prefer a short link when the destination is long.",
+    },
+    {
+      question: "Do I need internet after downloading the PNG?",
+      answer:
+        "No—once saved, the image is offline. Scanners only need the encoded data, not this site.",
+    },
+    {
+      question: "Can I make a vCard contact QR here?",
+      answer:
+        "Paste a vCard or MECARD text string if you already have one; the tool encodes the text you provide.",
+    },
+    {
+      question: "Why should outdoor signs use larger modules?",
+      answer:
+        "Distance and glare need bigger modules and stronger contrast so phones can lock on quickly.",
+    },
+    {
+      question: "Is SVG available for the download?",
+      answer:
+        "This page exports a PNG suited for screens and most print jobs; use a vector tool if you need SVG.",
+    },
+    {
+      question: "Can I batch-create many codes at once?",
+      answer:
+        "Generate one payload at a time here; for hundreds of URLs, script a dedicated QR library instead.",
+    },
+    {
+      question: "Does dark mode on my phone break scanning?",
+      answer:
+        "Most cameras ignore UI theme; poor lighting or low contrast on the printed code is the usual issue.",
+    },
+    {
+      question: "Should I wrap the QR with a call-to-action?",
+      answer:
+        "A short label like “Scan for menu” helps people trust the code without changing the encoded data.",
+    },
+    {
+      question: "Can I encode plain text that is not a URL?",
+      answer:
+        "Yes—any text payload works; scanners show the string or offer to copy it.",
+    },
+    {
+      question: "How do I keep a quiet zone around the code?",
+      answer:
+        "Leave a clear margin of empty space when placing the PNG in designs so edges are not cropped.",
+    }
+  ],
+  "savings-goal-calculator": [
+    {
+      question: "Should I enter goals before or after taxes?",
+      answer:
+        "Use the cash you can actually move to savings each month—usually after-tax take-home amounts.",
+    },
+    {
+      question: "What if my income varies month to month?",
+      answer:
+        "Average several months of realistic transfers, or run best- and worst-case monthly amounts separately.",
+    },
+    {
+      question: "Can I model an emergency fund and a vacation together?",
+      answer:
+        "Treat each goal on its own run, then add the monthly amounts if you fund them in parallel.",
+    },
+    {
+      question: "Does inflation change the target I should set?",
+      answer:
+        "For far-off purchases, raise the goal for expected price growth; the calculator uses the target you type.",
+    },
+    {
+      question: "How do windfalls affect the timeline?",
+      answer:
+        "Add a lump sum to starting savings and recalculate; one deposit can shorten months needed a lot.",
+    },
+    {
+      question: "Should debt payments come before this savings plan?",
+      answer:
+        "High-interest debt often deserves priority; use leftover cash as the monthly savings input.",
+    },
+    {
+      question: "Can I use weekly deposits instead of monthly?",
+      answer:
+        "Convert weekly amounts to a monthly equivalent (about ×4.33) so the schedule stays consistent.",
+    },
+    {
+      question: "What APY should I assume for a high-yield account?",
+      answer:
+        "Use a conservative rate you believe you can earn, not a promotional peak that may expire.",
+    },
+    {
+      question: "Does the tool account for fees or taxes on interest?",
+      answer:
+        "No—interest is a simple growth estimate; adjust the rate down if fees or taxes matter.",
+    },
+    {
+      question: "How do I plan when the deadline is fixed?",
+      answer:
+        "Enter the target and months available, then read the required monthly deposit and check affordability.",
+    },
+    {
+      question: "Can I include employer matching in the goal?",
+      answer:
+        "Only if match cash truly lands in the same pot; otherwise keep match out of this savings target.",
+    },
+    {
+      question: "Why is rounding months up safer?",
+      answer:
+        "Partial months still need a deposit; rounding up avoids finishing short when schedules are uneven.",
+    },
+    {
+      question: "Should kids’ accounts use the same inputs?",
+      answer:
+        "Yes for math—just use the realistic gift or allowance amounts you can sustain.",
+    },
+    {
+      question: "Is past performance of my fund baked in?",
+      answer:
+        "No—the projection only uses the rate and deposits you enter for this goal.",
+    }
+  ],
+  "square-footage-calculator": [
+    {
+      question: "How should I split an L-shaped floor plan?",
+      answer:
+        "Break the L into two rectangles, calculate each area, then add them for the room total.",
+    },
+    {
+      question: "Should closets be included in room totals?",
+      answer:
+        "Include them when flooring or paint covers those spaces; omit them for living-area comparisons.",
+    },
+    {
+      question: "How do I handle vaulted ceilings for flooring?",
+      answer:
+        "Flooring uses floor area, not wall height—measure length × width of the floor plan only.",
+    },
+    {
+      question: "Can I mix feet and inches in one room?",
+      answer:
+        "Convert everything to decimal feet (or meters) first so units stay consistent in the calculator.",
+    },
+    {
+      question: "What about triangular spaces?",
+      answer:
+        "Use ½ × base × height for each triangle, then add those areas to the other rooms.",
+    },
+    {
+      question: "Do exterior wall thicknesses change interior square feet?",
+      answer:
+        "Interior living area uses inside dimensions; builders may quote exterior measures differently.",
+    },
+    {
+      question: "How accurate is a phone measuring app?",
+      answer:
+        "Good for estimates; verify critical renovations with a tape for trim and flooring orders.",
+    },
+    {
+      question: "Should hallways count toward total home area?",
+      answer:
+        "Yes for whole-home totals; skip them when you only need a single room’s flooring.",
+    },
+    {
+      question: "How do I convert square yards for carpet?",
+      answer:
+        "Divide square feet by 9 to get square yards, then add waste per the installer’s advice.",
+    },
+    {
+      question: "Can I estimate paint from square footage?",
+      answer:
+        "Paint needs wall area (height × perimeter faces), not just floor square footage.",
+    },
+    {
+      question: "What if rooms share an open kitchen?",
+      answer:
+        "Measure the combined open footprint as one rectangle or split along a clear boundary you choose.",
+    },
+    {
+      question: "Do bay windows need special treatment?",
+      answer:
+        "Add the bay’s floor area as an extra rectangle or trapezoid on top of the main room.",
+    },
+    {
+      question: "Is rentable square footage the same as carpet area?",
+      answer:
+        "Lease definitions vary; confirm whether shared corridors or walls are included in your market.",
+    },
+    {
+      question: "Why did two measuring passes disagree?",
+      answer:
+        "Tape slip, furniture obstacles, or mixing interior vs exterior walls usually explain small gaps.",
+    }
+  ],
+  "time-zone-converter": [
+    {
+      question: "How do I schedule a call across three cities?",
+      answer:
+        "Pick one reference instant, convert it to each city, and share all three local times in the invite.",
+    },
+    {
+      question: "Does the tool follow daylight saving rules?",
+      answer:
+        "It uses standard zone databases, so spring-forward and fall-back dates are reflected for supported zones.",
+    },
+    {
+      question: "What if a city has multiple zone options?",
+      answer:
+        "Choose the IANA-style zone that matches the city (for example America/New_York), not just a GMT offset.",
+    },
+    {
+      question: "Can I convert recurring meeting times?",
+      answer:
+        "Convert one occurrence carefully around DST changes; recurring rules may shift local clock times twice a year.",
+    },
+    {
+      question: "Why does UTC matter for logs?",
+      answer:
+        "UTC avoids ambiguous local offsets when debugging servers and APIs across regions.",
+    },
+    {
+      question: "How do ship crews handle half-hour offsets?",
+      answer:
+        "Select the exact zone with a :30 or :45 offset; do not round to the nearest full hour.",
+    },
+    {
+      question: "Will airplane mode change the conversion?",
+      answer:
+        "No—conversion math does not need live network once zone data is available in the browser.",
+    },
+    {
+      question: "Can I convert historical dates before a zone existed?",
+      answer:
+        "Very old dates may lack reliable rules; treat pre-standard eras as approximations.",
+    },
+    {
+      question: "How should I label slides for a global webinar?",
+      answer:
+        "Show the time in the host zone plus UTC, or list two major audience zones to reduce confusion.",
+    },
+    {
+      question: "Does leap second handling appear here?",
+      answer:
+        "Everyday scheduling ignores leap seconds; civil clocks and zone offsets are what this tool converts.",
+    },
+    {
+      question: "What if my OS clock is wrong?",
+      answer:
+        "Fix system time first—“now” based conversions inherit whatever your device believes.",
+    },
+    {
+      question: "Can I compare offsets without a specific date?",
+      answer:
+        "Offsets alone mislead near DST; always convert a concrete date and time.",
+    },
+    {
+      question: "How do I share results without screenshots?",
+      answer:
+        "Copy the converted local times as text into chat or calendar descriptions.",
+    },
+    {
+      question: "Is military Zulu time the same as UTC?",
+      answer:
+        "For practical scheduling, Zulu aligns with UTC; still name the civilian zones for attendees.",
+    }
+  ],
+  "word-counter": [
+    {
+      question: "Do hyphenated words count as one or two?",
+      answer:
+        "Most counters treat a hyphenated token as one word; check your publisher if they split compounds.",
+    },
+    {
+      question: "How are numbers and dates counted?",
+      answer:
+        "Digit groups usually count as words (for example 2026 or 3.14), same as alphabetic tokens.",
+    },
+    {
+      question: "Does punctuation inflate the character count?",
+      answer:
+        "Yes—spaces, commas, and quotes are characters even when they are not words.",
+    },
+    {
+      question: "Can I paste from Google Docs safely?",
+      answer:
+        "Yes; hidden formatting is ignored for counts, though smart quotes still count as characters.",
+    },
+    {
+      question: "How should students treat citations?",
+      answer:
+        "Follow the assignment: some word limits exclude references, so delete that section before counting.",
+    },
+    {
+      question: "Why does Word disagree with this total?",
+      answer:
+        "Apps differ on hyphens, contractions, and footnotes; use one tool consistently for a draft.",
+    },
+    {
+      question: "Is speaking time the same as reading time?",
+      answer:
+        "No—speaking pace is usually slower; use the speech-oriented estimate when preparing talks.",
+    },
+    {
+      question: "Do hashtags count as words on social posts?",
+      answer:
+        "Here a #tag is typically one token; platforms may score characters differently for limits.",
+    },
+    {
+      question: "Can I count only a selected paragraph?",
+      answer:
+        "Paste just that paragraph into the box so the totals reflect the selection alone.",
+    },
+    {
+      question: "How are line breaks treated in paragraphs?",
+      answer:
+        "Blank lines usually split paragraphs; soft wraps inside a block stay one paragraph.",
+    },
+    {
+      question: "Does HTML markup count if I paste code?",
+      answer:
+        "Tags and attributes are characters and may create extra tokens—paste rendered text for prose counts.",
+    },
+    {
+      question: "What reading speed does the estimate use?",
+      answer:
+        "A common adult average around 200–250 words per minute; adjust if you know your pace.",
+    },
+    {
+      question: "Can I check keyword density here?",
+      answer:
+        "You get totals only; density needs separate term counting beyond this counter.",
+    },
+    {
+      question: "Is there a limit to paste size?",
+      answer:
+        "Browser memory is the practical limit; very large novels may feel slow but stay local.",
+    }
+  ],
+  "auto-loan-calculator": [
+    {
+      question: "Should sales tax be added to the loan amount?",
+      answer:
+        "If you finance tax and fees, include them in the amount financed; otherwise pay them cash and omit them.",
+    },
+    {
+      question: "How does APR differ from the interest rate quoted?",
+      answer:
+        "APR can fold in certain fees; this payment math uses the rate and term you enter.",
+    },
+    {
+      question: "What is a balloon payment on a car loan?",
+      answer:
+        "A large final sum due at the end; this simple schedule assumes level payments without a balloon.",
+    },
+    {
+      question: "Does paying biweekly cut interest?",
+      answer:
+        "Extra payments reduce principal sooner; model a higher effective monthly amount to approximate.",
+    },
+    {
+      question: "How do I compare dealer financing to a bank?",
+      answer:
+        "Match amount, term, and rate side by side, and watch for prepaid fees that change APR.",
+    },
+    {
+      question: "Should gap insurance be financed?",
+      answer:
+        "Only if you need it and accept the interest on that add-on; otherwise pay separately.",
+    },
+    {
+      question: "What happens if I refinance later?",
+      answer:
+        "A new loan replaces the balance; re-run the calculator with the remaining principal and new rate.",
+    },
+    {
+      question: "How much should I budget beyond the payment?",
+      answer:
+        "Add insurance, fuel, maintenance, and registration—payment alone understates ownership cost.",
+    },
+    {
+      question: "Does a larger down payment always help approval?",
+      answer:
+        "It lowers amount financed and risk, which can improve offers, but credit and income still matter.",
+    },
+    {
+      question: "Can I estimate early payoff savings?",
+      answer:
+        "Note remaining principal and remaining term, then compare interest if you pay off versus staying on schedule.",
+    },
+    {
+      question: "Are prepayment penalties common on auto loans?",
+      answer:
+        "Many consumer auto loans allow early payoff; read your contract before assuming zero fees.",
+    },
+    {
+      question: "How do negative equity roll-ins change payments?",
+      answer:
+        "Adding old loan balance to the new price raises amount financed and the monthly payment.",
+    },
+    {
+      question: "Should I use pre-tax or take-home income for affordability?",
+      answer:
+        "Judge payments against take-home cash so the budget stays realistic.",
+    }
   ]
 };
