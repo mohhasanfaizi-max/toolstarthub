@@ -5501,5 +5501,467 @@ export const extraGuideFaqs: Record<string, GuideFaq[]> = {
       answer:
         "Hashing is meant to run in the browser session.",
     }
+  ],
+  "how-to-plan-a-debt-payoff": [
+    {
+      question: "What is the difference between snowball and avalanche payoff?",
+      answer:
+        "Snowball pays smallest balances first for quick wins; avalanche pays highest interest rates first to cut cost.",
+    },
+    {
+      question: "How do I choose an extra monthly payment amount?",
+      answer:
+        "Start with a fixed surplus after essentials, enter it as extra payment, and compare months saved in the plan.",
+    },
+    {
+      question: "Can I model more than two credit cards?",
+      answer:
+        "Yes—add each debt with balance, rate, and minimum so the schedule can order them by your chosen method.",
+    },
+    {
+      question: "What if my interest rate is variable?",
+      answer:
+        "Use today’s rate as a snapshot and revisit the plan when the rate changes; the math is not a lender quote.",
+    },
+    {
+      question: "How do minimum payments affect the timeline?",
+      answer:
+        "Higher minimums shrink principal faster; entering realistic minima keeps the payoff date honest.",
+    },
+    {
+      question: "Should I include student loans with consumer debt?",
+      answer:
+        "You can list them together for a cash-flow view, or plan federal loans separately if their rules differ.",
+    },
+    {
+      question: "What does “months to debt free” assume?",
+      answer:
+        "Steady on-time payments at the amounts you entered, without new charges or fee surprises.",
+    },
+    {
+      question: "Can I pause a debt in the plan temporarily?",
+      answer:
+        "Remove or zero its payment while modeling a hardship month, then restore it when comparing long-term options.",
+    },
+    {
+      question: "How accurate is the interest saved estimate?",
+      answer:
+        "It is an illustration from your inputs, not a bank statement; actual interest depends on posting dates and fees.",
+    },
+    {
+      question: "What if I get a windfall like a bonus?",
+      answer:
+        "Apply it as a one-time principal payment on the target debt, then rerun the schedule with the new balance.",
+    },
+    {
+      question: "Does balance transfer fit into this guide’s workflow?",
+      answer:
+        "Model the new rate and fees as a separate debt or updated rate after the transfer posts.",
+    },
+    {
+      question: "How do I avoid underpaying after a rate change?",
+      answer:
+        "Update the APR field and confirm the new minimum so the plan does not assume the old cost.",
+    },
+    {
+      question: "Can couples combine debts in one payoff chart?",
+      answer:
+        "Yes—list shared and individual debts you both agree to fund, and decide whose income covers extras.",
+    },
+    {
+      question: "Why might payoff take longer than the chart shows?",
+      answer:
+        "Late fees, new spending, or skipped extras extend the date; keep payments matching the plan.",
+    },
+    {
+      question: "Is this a substitute for credit counseling?",
+      answer:
+        "No—it is a planning calculator. Seek a counselor or advisor for hardship programs and legal options.",
+    }
+  ],
+  "how-to-remove-line-breaks": [
+    {
+      question: "How do I join lines from a pasted PDF paragraph?",
+      answer:
+        "Paste the broken text, remove line breaks, and copy the rejoined paragraph for editing.",
+    },
+    {
+      question: "Will double line breaks between paragraphs stay?",
+      answer:
+        "Settings vary—many tools keep blank lines as paragraph separators while joining single breaks inside a block.",
+    },
+    {
+      question: "Can I remove breaks only inside selected sentences?",
+      answer:
+        "Process the selection alone, or paste just that block so untouched regions stay as they are.",
+    },
+    {
+      question: "What about soft returns from word processors?",
+      answer:
+        "They usually arrive as ordinary newline characters and are removed the same way as hard breaks.",
+    },
+    {
+      question: "Does the tool delete spaces when joining lines?",
+      answer:
+        "Good removers insert a space when needed so words do not smash together across former line ends.",
+    },
+    {
+      question: "How do I clean chat logs with one word per line?",
+      answer:
+        "Paste the log and strip breaks to form sentences; review spacing if timestamps sat on their own lines.",
+    },
+    {
+      question: "Can I keep bullet lists while fixing paragraphs?",
+      answer:
+        "Strip breaks on paragraph blocks separately; leaving list lines alone preserves each bullet.",
+    },
+    {
+      question: "Why do some lines still wrap after removal?",
+      answer:
+        "Your editor’s window width wraps display only; the underlying text may already be a single logical line.",
+    },
+    {
+      question: "Are Mac, Windows, and Linux endings treated alike?",
+      answer:
+        "Yes—CR, LF, and CRLF are normalized so mixed pastes still join correctly.",
+    },
+    {
+      question: "Can I undo after removing breaks?",
+      answer:
+        "Use the browser or editor undo, or keep the original paste in another tab before running the tool.",
+    },
+    {
+      question: "Will it affect markdown code fences?",
+      answer:
+        "Removing breaks inside fenced code can ruin formatting—limit the paste to prose sections.",
+    },
+    {
+      question: "How do I prepare text for a single-line CSV cell?",
+      answer:
+        "Join lines first, then escape quotes as your spreadsheet requires before saving the CSV.",
+    },
+    {
+      question: "Is there a difference between trim and remove breaks?",
+      answer:
+        "Trim clears edge whitespace; remove breaks targets newline characters inside the body.",
+    },
+    {
+      question: "Can poetry or address blocks be left unchanged?",
+      answer:
+        "Skip those stanzas—only run the remover on prose that was wrapped unintentionally.",
+    },
+    {
+      question: "Does joining lines change hyphenation at margins?",
+      answer:
+        "End-of-line hyphens may remain; delete stray hyphens manually if a word was split across lines.",
+    }
+  ],
+  "how-to-scan-a-qr-code": [
+    {
+      question: "How do I scan a QR code with my device camera?",
+      answer:
+        "Allow camera access, point at the code, and wait for the decoder to show the payload text or URL.",
+    },
+    {
+      question: "Can I upload a screenshot instead of using the camera?",
+      answer:
+        "Yes—choose an image file that contains a clear QR code if the scanner supports file input.",
+    },
+    {
+      question: "What if the code is blurry or too small?",
+      answer:
+        "Move closer, improve lighting, or upload a sharper crop; damaged codes may not decode.",
+    },
+    {
+      question: "Do QR codes for Wi-Fi work in the browser scanner?",
+      answer:
+        "The scanner can show the Wi-Fi payload text; connecting still depends on the OS or a helper app.",
+    },
+    {
+      question: "Can I scan codes on a computer monitor?",
+      answer:
+        "Yes—aim the camera at the screen or capture a screenshot and upload that image.",
+    },
+    {
+      question: "What payloads besides URLs can appear?",
+      answer:
+        "Plain text, phone numbers, SMS drafts, email drafts, Wi-Fi configs, and other formats the QR holds.",
+    },
+    {
+      question: "Is offline scanning possible?",
+      answer:
+        "If decoding runs locally in the page, you can scan without uploading frames; network is only needed to open links.",
+    },
+    {
+      question: "How do I know the link is safe before opening?",
+      answer:
+        "Read the decoded URL fully, check the domain, and avoid opening unexpected shortened links.",
+    },
+    {
+      question: "Why does permission keep getting denied?",
+      answer:
+        "Site or OS settings blocked the camera—reset permissions for the site and try a secure (HTTPS) page.",
+    },
+    {
+      question: "Can I scan inverted or stylized QR codes?",
+      answer:
+        "High-contrast standard codes work best; heavy design or low contrast often fails.",
+    },
+    {
+      question: "Does distance from the code matter?",
+      answer:
+        "Yes—fill most of the frame without cropping quiet zones around the square.",
+    },
+    {
+      question: "What is the quiet zone on a QR code?",
+      answer:
+        "The empty margin around the pattern; covering it with text or edges can prevent a successful scan.",
+    },
+    {
+      question: "Can one image with two QR codes be processed?",
+      answer:
+        "Some scanners return multiple payloads; others only read the clearest code—crop if needed.",
+    },
+    {
+      question: "Will a damaged printed corner still scan?",
+      answer:
+        "QR codes have error correction, but severe damage or missing finder patterns can still fail.",
+    },
+    {
+      question: "How do I copy the decoded text after a scan?",
+      answer:
+        "Use the copy control next to the result, or select the text and copy it into your notes.",
+    }
+  ],
+  "how-to-test-a-regular-expression": [
+    {
+      question: "How do I see all matches highlighted in the sample text?",
+      answer:
+        "Enter the pattern and test string, then read the match list or highlights the tester shows.",
+    },
+    {
+      question: "What does the global flag change?",
+      answer:
+        "With global matching enabled, the engine finds every match; without it, often only the first is returned.",
+    },
+    {
+      question: "When should I turn on case-insensitive matching?",
+      answer:
+        "Use it when letter case should not matter, such as matching Room and room with one pattern.",
+    },
+    {
+      question: "How do capture groups appear in the results?",
+      answer:
+        "Each group’s substring is listed beside the full match so you can verify what parentheses captured.",
+    },
+    {
+      question: "What if my pattern has a syntax error?",
+      answer:
+        "The tester shows an error instead of matches—fix brackets, escapes, and quantifiers before retrying.",
+    },
+    {
+      question: "Can I test multiline anchors like ^ and $?",
+      answer:
+        "Yes—enable multiline mode so ^ and $ match line starts and ends, not only the whole string edges.",
+    },
+    {
+      question: "How do I match digits without catching letters?",
+      answer:
+        "Use a digit class such as \\d or [0-9], and add boundaries if you need whole numbers only.",
+    },
+    {
+      question: "Why is my match empty even though something looks right?",
+      answer:
+        "Check for greedy quantifiers, wrong flags, or hidden spaces; simplify the pattern until a match appears.",
+    },
+    {
+      question: "Can I paste a long log file as the test subject?",
+      answer:
+        "Yes within browser limits; very large texts may run slowly, so sample a representative slice first.",
+    },
+    {
+      question: "How do lazy quantifiers differ in the tester?",
+      answer:
+        "Lazy forms match as little as possible; compare *? versus * on the same sample to see the span change.",
+    },
+    {
+      question: "Is JavaScript regex the same as other languages?",
+      answer:
+        "Core syntax is similar, but details differ—validate critical patterns in the language you ship.",
+    },
+    {
+      question: "How can I escape a literal dot or slash?",
+      answer:
+        "Prefix special characters with a backslash, such as \\. for a period, so they are not metacharacters.",
+    },
+    {
+      question: "Do replacements run inside this how-to’s tool?",
+      answer:
+        "Focus here is matching and groups; use a replace-capable editor if you need substitution previews.",
+    },
+    {
+      question: "Can I share patterns with teammates safely?",
+      answer:
+        "Copy the pattern and a short sample string into docs; the tester itself does not publish your session.",
+    },
+    {
+      question: "What is a quick check for email-shaped text?",
+      answer:
+        "Start with a simple character pattern for teaching, then harden it in production code with proper validation libraries.",
+    }
+  ],
+  "how-to-work-with-pdfs-in-your-browser": [
+    {
+      question: "Which PDF jobs can I do without installing software?",
+      answer:
+        "Common browser tools cover compress, merge, split, count pages, and related previews depending on the suite.",
+    },
+    {
+      question: "How do I keep text selectable after compression?",
+      answer:
+        "Choose a mode that recompresses streams without rasterizing pages when that option is offered.",
+    },
+    {
+      question: "What is a practical size limit for browser PDF tools?",
+      answer:
+        "Limits vary by tool and device memory; large scanned books may need desktop software instead.",
+    },
+    {
+      question: "Can I merge files that have different page sizes?",
+      answer:
+        "Usually yes—the merged file keeps each page’s original dimensions unless a tool normalizes them.",
+    },
+    {
+      question: "How do I extract only a page range?",
+      answer:
+        "Use split or extract with start and end page numbers, then download the smaller PDF.",
+    },
+    {
+      question: "Are annotations and forms preserved?",
+      answer:
+        "Some operations keep them; others flatten or drop interactive features—spot-check the output.",
+    },
+    {
+      question: "What if a PDF is encrypted?",
+      answer:
+        "Unlock it with the owner password in a capable reader first; many browser tools cannot process locked files.",
+    },
+    {
+      question: "Does processing happen on my device?",
+      answer:
+        "Prefer tools that state client-side processing when privacy matters; read each tool’s upload policy.",
+    },
+    {
+      question: "How can I reduce a scanned PDF’s file size?",
+      answer:
+        "Compression that downsamples images usually helps scans more than compressing already-efficient text PDFs.",
+    },
+    {
+      question: "Can I convert a PDF to images in the browser?",
+      answer:
+        "Where a PDF-to-image tool is available, pick the format and resolution, then download the pages.",
+    },
+    {
+      question: "Why does merge order matter?",
+      answer:
+        "Pages concatenate in the order you add files—reorder before running merge if chapters must follow a sequence.",
+    },
+    {
+      question: "How do I verify page count after splitting?",
+      answer:
+        "Open the result or use a page-counter tool to confirm each file has the pages you expected.",
+    },
+    {
+      question: "Will fonts embed correctly after edits?",
+      answer:
+        "Most compress/merge paths keep embedded fonts; converting to images removes live text entirely.",
+    },
+    {
+      question: "Can I work from a phone browser?",
+      answer:
+        "Many tools work on mobile browsers, though large files are easier on desktop with more memory.",
+    },
+    {
+      question: "What should I do before sharing a compressed PDF?",
+      answer:
+        "Open it, check clarity of scans, and confirm links or forms you still need are intact.",
+    }
+  ],
+  "what-is-json": [
+    {
+      question: "What does JSON stand for?",
+      answer:
+        "JavaScript Object Notation—a text format for structured data used widely in APIs and config files.",
+    },
+    {
+      question: "Which data types can appear in JSON?",
+      answer:
+        "Objects, arrays, strings, numbers, booleans, and null—no functions or undefined values.",
+    },
+    {
+      question: "Why must property names use double quotes?",
+      answer:
+        "The JSON spec requires double-quoted keys; single quotes make the document invalid.",
+    },
+    {
+      question: "How do arrays differ from objects in JSON?",
+      answer:
+        "Arrays are ordered lists in square brackets; objects are key/value maps in curly braces.",
+    },
+    {
+      question: "Can JSON hold comments?",
+      answer:
+        "Standard JSON does not allow comments; use a sidecar doc or a JSONC variant only if your stack supports it.",
+    },
+    {
+      question: "What causes a trailing comma error?",
+      answer:
+        "A comma after the last item in an array or object—remove it to make the document valid.",
+    },
+    {
+      question: "Is pretty-printed JSON different from minified JSON?",
+      answer:
+        "Only whitespace changes; parsers treat equivalent structures the same either way.",
+    },
+    {
+      question: "How do I represent nested data?",
+      answer:
+        "Place objects or arrays as values inside other objects or arrays to any practical depth.",
+    },
+    {
+      question: "Can numbers be quoted as strings?",
+      answer:
+        "You may store digits inside strings, but then they are text—math needs true JSON numbers.",
+    },
+    {
+      question: "What is UTF-8’s role with JSON?",
+      answer:
+        "JSON text is Unicode; UTF-8 is the common encoding on the wire and in files.",
+    },
+    {
+      question: "How do APIs use JSON day to day?",
+      answer:
+        "Clients send and receive JSON bodies over HTTP, then parse them into native structures.",
+    },
+    {
+      question: "Why reject NaN or Infinity in JSON numbers?",
+      answer:
+        "The JSON number grammar does not include those IEEE values; use null or strings if you must flag them.",
+    },
+    {
+      question: "Can I map JSON to classes automatically?",
+      answer:
+        "Many languages offer parsers and schema tools; always validate untrusted input before use.",
+    },
+    {
+      question: "How is JSON different from XML?",
+      answer:
+        "JSON is lighter for nested data structures; XML adds elements, attributes, and a different tooling ecosystem.",
+    },
+    {
+      question: "What should I validate before shipping a JSON file?",
+      answer:
+        "Parse it with a strict parser, confirm required keys, and check types against your schema.",
+    }
   ]
 };

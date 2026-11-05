@@ -582,6 +582,81 @@ export const extraToolFaqs: Record<string, ToolFaq[]> = {
       answer:
         "encodeURI leaves characters such as / ? & and = alone so a whole address still works. encodeURIComponent escapes them too, which is what you want for a single query value. This tool uses encodeURIComponent.",
     },
+    {
+      question: "When should I encode a full URL versus one query value?",
+      answer:
+        "Encode individual query or path segments with component encoding; encoding an entire URL can break reserved separators.",
+    },
+    {
+      question: "What characters usually need percent-encoding?",
+      answer:
+        "Spaces, non-ASCII text, and reserved symbols like &, =, ?, and # when they appear inside values.",
+    },
+    {
+      question: "How do I decode a percent-encoded string back?",
+      answer:
+        "Paste the encoded text, run decode, and copy the readable result; fix invalid % sequences if decode fails.",
+    },
+    {
+      question: "Why does a plus sign appear instead of a space?",
+      answer:
+        "In application/x-www-form-urlencoded data, + often means space; %20 is the safer encoding inside general URLs.",
+    },
+    {
+      question: "Can I encode Unicode characters like emoji?",
+      answer:
+        "Yes—they become UTF-8 byte sequences shown as %HH pairs so the URL stays ASCII-safe on the wire.",
+    },
+    {
+      question: "Is double-encoding a problem?",
+      answer:
+        "Yes—encoding twice turns % into %25 and breaks servers that decode only once. Encode each value a single time.",
+    },
+    {
+      question: "How do path segments differ from query strings?",
+      answer:
+        "Both may need encoding, but allowed characters differ slightly; follow what your framework’s helpers expect.",
+    },
+    {
+      question: "Will encoding change how browsers display the address bar?",
+      answer:
+        "Browsers may show decoded Unicode while still sending encoded bytes; copy the encoded form for APIs.",
+    },
+    {
+      question: "Can I encode JSON to put it in a query parameter?",
+      answer:
+        "Yes—stringify JSON, then percent-encode the string before appending it as a single parameter value.",
+    },
+    {
+      question: "What does a malformed % sequence look like?",
+      answer:
+        "A % not followed by two hex digits, or truncated endings; decoders typically reject or leave those alone.",
+    },
+    {
+      question: "Should I encode slashes inside a path parameter?",
+      answer:
+        "Often yes when a slash is data rather than a path separator—encode it as %2F so routing stays intact.",
+    },
+    {
+      question: "Does the tool normalize URLs beyond encoding?",
+      answer:
+        "No—it focuses on percent-encoding and decoding text; it does not rewrite hosts or resolve redirects.",
+    },
+    {
+      question: "How is this useful for OAuth redirect URIs?",
+      answer:
+        "Redirect and state parameters must be encoded when embedded in larger authorize URLs so reserved characters stay literal.",
+    },
+    {
+      question: "Can I paste multi-line text to encode?",
+      answer:
+        "Yes, but newlines become %0A (and %0D if present); confirm the receiver expects those escapes.",
+    },
+    {
+      question: "Is encoding the same as hashing or encrypting?",
+      answer:
+        "No—percent-encoding only makes text URL-safe; it does not hide or authenticate the content.",
+    }
   ],
   "timestamp-converter": [
     {
@@ -594,6 +669,81 @@ export const extraToolFaqs: Record<string, ToolFaq[]> = {
       answer:
         "Current timestamps in seconds have 10 digits, while timestamps in milliseconds have 13. Pick the matching unit before you convert.",
     },
+    {
+      question: "How do I turn epoch seconds into a calendar date on this page?",
+      answer:
+        "Paste the Unix number, confirm seconds or milliseconds, and read the calendar date in the zone you select.",
+    },
+    {
+      question: "Can I go from a calendar date back to a Unix timestamp?",
+      answer:
+        "Yes—enter the date and time fields, then copy the generated Unix value for APIs or logs.",
+    },
+    {
+      question: "What timezone does the output use by default?",
+      answer:
+        "It follows the zone you select or your browser’s local zone; always confirm before comparing across systems.",
+    },
+    {
+      question: "Why do some timestamps look like 13 digits?",
+      answer:
+        "Thirteen-digit values are usually milliseconds since the epoch; ten-digit ones are usually whole seconds.",
+    },
+    {
+      question: "What moment does a zero Unix timestamp represent?",
+      answer:
+        "It marks the start of Unix time: midnight UTC on 1 January 1970.",
+    },
+    {
+      question: "Can I convert UTC and local time in one step?",
+      answer:
+        "Yes—set the zone for input or output so you see both the UTC instant and the local wall clock.",
+    },
+    {
+      question: "Does daylight saving change the Unix number?",
+      answer:
+        "No—the Unix value is an absolute instant; DST only changes how that instant is labeled in local time.",
+    },
+    {
+      question: "What happens with negative timestamps?",
+      answer:
+        "Negative values mean dates before 1970; support depends on the converter, so check the displayed calendar date.",
+    },
+    {
+      question: "How precise is second versus millisecond mode?",
+      answer:
+        "Seconds omit sub-second detail; milliseconds keep finer timing useful for logs and performance traces.",
+    },
+    {
+      question: "Can I paste ISO-8601 strings as well as numbers?",
+      answer:
+        "If the tool accepts ISO input, paste the string; otherwise convert the ISO date to a timestamp with the date fields.",
+    },
+    {
+      question: "Why might two machines show different local times for the same stamp?",
+      answer:
+        "They use different timezones or DST rules; the underlying Unix instant can still match.",
+    },
+    {
+      question: "Is leap second handling included?",
+      answer:
+        "Most everyday converters ignore leap seconds and follow Unix time as implemented in common libraries.",
+    },
+    {
+      question: "Can I use this for JWT exp claims?",
+      answer:
+        "Yes—JWT exp and iat fields are Unix seconds; convert them here to verify expiry dates.",
+    },
+    {
+      question: "What if I mix up seconds and milliseconds?",
+      answer:
+        "The date jumps centuries away from today—switch mode or divide/multiply by 1000 and try again.",
+    },
+    {
+      question: "Does converting change the original number?",
+      answer:
+        "No—conversion only displays another representation; copy the value you need for your system.",
+    }
   ],
   "utm-builder": [
     {
@@ -606,6 +756,81 @@ export const extraToolFaqs: Record<string, ToolFaq[]> = {
       answer:
         "Source, medium, and campaign are the usual minimum. Term and content are optional and help tell keywords or ad versions apart.",
     },
+    {
+      question: "How do I add utm_source and utm_medium to a link?",
+      answer:
+        "Enter the base URL and the UTM fields, then copy the generated link with query parameters appended.",
+    },
+    {
+      question: "What is a good naming pattern for utm_campaign?",
+      answer:
+        "Use short, consistent tokens like spring_sale_2026 so reports stay easy to filter later.",
+    },
+    {
+      question: "Can I include utm_content and utm_term?",
+      answer:
+        "Yes—content distinguishes creatives or buttons; term is often used for paid search keywords.",
+    },
+    {
+      question: "Will UTM tags break my existing tracking parameters?",
+      answer:
+        "The builder keeps other query params when configured to merge; review the final URL before publishing.",
+    },
+    {
+      question: "Do UTM parameters work on every analytics tool?",
+      answer:
+        "They are a common convention; your analytics product must read those query keys to attribute sessions.",
+    },
+    {
+      question: "Why keep UTM field values in one consistent letter case?",
+      answer:
+        "Mixed capitalization often splits the same campaign into multiple rows; pick lowercase or a fixed style and stick to it.",
+    },
+    {
+      question: "Can I build links for email, social, and ads in one session?",
+      answer:
+        "Yes—change source and medium per channel, regenerate, and save each finished URL.",
+    },
+    {
+      question: "What happens if I omit utm_source?",
+      answer:
+        "Some validators warn because source is the usual minimum; medium and campaign are also strongly recommended.",
+    },
+    {
+      question: "Are UTM parameters case-sensitive in reports?",
+      answer:
+        "Many analytics tools treat them as case-sensitive strings, so Email and email can split into two rows.",
+    },
+    {
+      question: "Can I use spaces inside UTM values?",
+      answer:
+        "Avoid spaces; use underscores. If spaces slip in, they should be percent-encoded in the final URL.",
+    },
+    {
+      question: "Do UTMs affect SEO rankings by themselves?",
+      answer:
+        "Tagged links still point at the same page; keep clean canonical URLs and avoid stuffing UTMs into internal nav.",
+    },
+    {
+      question: "How do I test a tagged link before a campaign launch?",
+      answer:
+        "Open the URL, confirm redirects, and check the realtime or debug view in your analytics for the UTM fields.",
+    },
+    {
+      question: "Can shortened links preserve UTM tags?",
+      answer:
+        "Yes if the shortener stores the full destination including query string; always expand and verify once.",
+    },
+    {
+      question: "Should I tag links inside my own website?",
+      answer:
+        "Usually no for global nav—UTMs are for campaigns that bring traffic from outside or from specific creatives.",
+    },
+    {
+      question: "How long can a UTM-tagged URL be?",
+      answer:
+        "Keep values concise; extremely long query strings can hit browser or ad-platform limits.",
+    }
   ],
   "unit-converter": [
     {
@@ -618,6 +843,81 @@ export const extraToolFaqs: Record<string, ToolFaq[]> = {
       answer:
         "One inch is exactly 2.54 centimeters, so 12 inches (one foot) is 30.48 centimeters.",
     },
+    {
+      question: "How do I convert kilometers to miles?",
+      answer:
+        "Enter the kilometer value, choose length units from and to, and read the mile result instantly.",
+    },
+    {
+      question: "Can I convert weight as well as length?",
+      answer:
+        "Yes—pick mass units such as kilograms and pounds, or ounces, depending on what the converter lists.",
+    },
+    {
+      question: "Does the tool support liquid volume units?",
+      answer:
+        "Yes for common units like liters, milliliters, gallons, and cups when those categories are available.",
+    },
+    {
+      question: "How accurate are metric–imperial conversions?",
+      answer:
+        "They use standard factors; tiny rounding differences can appear at many decimal places.",
+    },
+    {
+      question: "Can I convert temperature and length in the same session?",
+      answer:
+        "Switch the unit category as needed; each conversion uses the fields you set for that category.",
+    },
+    {
+      question: "What is the factor from inches to centimeters?",
+      answer:
+        "One inch equals 2.54 centimeters exactly in modern metric definitions.",
+    },
+    {
+      question: "How do I change an area from metric to square feet?",
+      answer:
+        "Choose area units, enter the metric value, and read square feet without converting linear units by hand.",
+    },
+    {
+      question: "Will scientific notation inputs work?",
+      answer:
+        "If the field accepts them, yes; otherwise enter a plain decimal for very large or small values.",
+    },
+    {
+      question: "Can I convert cooking measurements like cups to grams?",
+      answer:
+        "Volume-to-mass needs density; pure unit converters only change volume or mass within the same kind of measure.",
+    },
+    {
+      question: "How do I convert nautical miles for travel planning?",
+      answer:
+        "Select nautical miles if listed under length, then convert to kilometers or statute miles for maps that use those units.",
+    },
+    {
+      question: "Does rounding change mid-calculation chains?",
+      answer:
+        "Convert in one step when possible; chaining many rounded steps can accumulate small errors.",
+    },
+    {
+      question: "Can I convert bytes to megabytes here?",
+      answer:
+        "Only if a data-size category is included; otherwise use a dedicated digital storage converter.",
+    },
+    {
+      question: "How do I switch the from and to units quickly?",
+      answer:
+        "Swap the unit dropdowns or use a swap control if shown, then recalculate with the same number.",
+    },
+    {
+      question: "Are US and UK gallons treated the same?",
+      answer:
+        "No—US and imperial gallons differ; pick the gallon type that matches your recipe or fuel context.",
+    },
+    {
+      question: "Can students use this for homework unit changes?",
+      answer:
+        "Yes for standard conversions; still show your work if the assignment requires manual steps.",
+    }
   ],
   "slug-generator": [
     {
@@ -1586,6 +1886,81 @@ export const extraToolFaqs: Record<string, ToolFaq[]> = {
       answer:
         "Use line mode for code, lists, and files where whole lines change. Use word mode when a sentence was edited in place.",
     },
+    {
+      question: "Can I paste whole paragraphs into each pane?",
+      answer:
+        "Yes—paste left and right text, then run the comparison to highlight inserts, deletes, and unchanged lines.",
+    },
+    {
+      question: "Does the checker show added and removed lines separately?",
+      answer:
+        "Yes—additions and deletions are marked so you can scan changes without reading every identical line.",
+    },
+    {
+      question: "When should I switch from line mode to word mode?",
+      answer:
+        "Use word mode when edits sit inside long lines; use line mode when whole rows moved or were rewritten.",
+    },
+    {
+      question: "Will trailing spaces count as a difference?",
+      answer:
+        "Often yes—whitespace at line ends can appear as a change. Trim drafts first if you want content-only diffs.",
+    },
+    {
+      question: "Can I compare code snippets as well as prose?",
+      answer:
+        "Yes—paste any plain text, including code, logs, or config files, as long as both sides are readable text.",
+    },
+    {
+      question: "How do I copy only the changed parts?",
+      answer:
+        "Select the highlighted output in the result view and copy; the tool does not export a patch file by itself.",
+    },
+    {
+      question: "Does order of the two panes matter?",
+      answer:
+        "Yes—left is usually treated as the original and right as the revised version, which flips how adds and deletes read.",
+    },
+    {
+      question: "What happens if one side is empty?",
+      answer:
+        "The empty side yields an all-delete or all-insert view against the filled side, which is useful for dumping a full draft.",
+    },
+    {
+      question: "Can I ignore case when comparing?",
+      answer:
+        "Only if the tool exposes a case-insensitive option; otherwise normalize both pastes yourself before running.",
+    },
+    {
+      question: "Is there a size limit for each text box?",
+      answer:
+        "Very large pastes may slow the browser; for huge files, prefer a desktop diff utility or split the work.",
+    },
+    {
+      question: "Does the diff survive a page refresh?",
+      answer:
+        "No—refresh clears the panes unless your browser restores form state. Copy results you need to keep.",
+    },
+    {
+      question: "Can I share a link that includes both texts?",
+      answer:
+        "No—the checker keeps text in the page only; paste into a document or ticket if you need a shared record.",
+    },
+    {
+      question: "How is this different from track-changes in a word processor?",
+      answer:
+        "Track-changes stores edits inside a document; this tool compares two plain snapshots without revision history.",
+    },
+    {
+      question: "Will Unicode characters compare correctly?",
+      answer:
+        "Yes for ordinary Unicode text, though visually similar characters (homoglyphs) still count as different code points.",
+    },
+    {
+      question: "Can I use it to review translation drafts?",
+      answer:
+        "Yes—paste source and draft translation sides when you want a quick visual of what changed between versions.",
+    }
   ],
   "duplicate-line-remover": [
     {
@@ -2212,6 +2587,81 @@ export const extraToolFaqs: Record<string, ToolFaq[]> = {
       answer:
         "Add the tip to the bill, then divide the total by the number of people. The calculator shows the tip, the total, and the amount per person.",
     },
+    {
+      question: "Can I include tax before calculating the tip?",
+      answer:
+        "Yes—enter the pre-tax bill if you tip on food only, or the taxed total if that is your custom; state which base you used.",
+    },
+    {
+      question: "How do I tip 15%, 18%, and 20% quickly?",
+      answer:
+        "Enter the bill once, then try each tip percent to compare totals and per-person shares.",
+    },
+    {
+      question: "Does the calculator round to whole cents?",
+      answer:
+        "Results are usually shown to two decimal places so they match cash or card amounts.",
+    },
+    {
+      question: "What if people want different tip amounts?",
+      answer:
+        "Compute the shared tip on the full bill, then adjust cash between diners, or run the tool once per subgroup.",
+    },
+    {
+      question: "Can I tip on delivery fees the same way?",
+      answer:
+        "Enter the amount you want to tip on—food only, food plus fees, or a flat delivery tip—as the bill field.",
+    },
+    {
+      question: "How do I handle a coupon that lowers the bill?",
+      answer:
+        "Decide whether to tip on the pre-discount or post-discount total; many diners tip on the pre-discount amount.",
+    },
+    {
+      question: "Is service charge the same as a tip?",
+      answer:
+        "Not always—read the receipt. If a mandatory service charge is included, clarify whether an extra tip is expected.",
+    },
+    {
+      question: "Can I leave a tip as a fixed dollar amount?",
+      answer:
+        "Yes—if the tool supports a custom tip field, enter dollars instead of a percent, or convert dollars to a percent yourself.",
+    },
+    {
+      question: "How should I split among three people with one non-drinker?",
+      answer:
+        "Split food evenly or by item, then allocate drink costs to those who ordered them before adding tip.",
+    },
+    {
+      question: "Does the tool store my restaurant receipts?",
+      answer:
+        "No—amounts stay in the browser session; clear the fields when you are done if you share the device.",
+    },
+    {
+      question: "What tip percent is common for sit-down service?",
+      answer:
+        "Many diners use roughly 15–20% of the pre-tax bill in the US, adjusting for service quality and local norms.",
+    },
+    {
+      question: "Can I calculate tip before sales tax is added?",
+      answer:
+        "Yes—enter the subtotal without tax if that is your rule; the tip then excludes tax from the base.",
+    },
+    {
+      question: "How do I tip when paying by card versus cash?",
+      answer:
+        "The math is the same; for cash you may round up to a convenient bill after the calculator shows the tip.",
+    },
+    {
+      question: "What if the party size changes after ordering?",
+      answer:
+        "Re-enter the final headcount and bill so per-person shares update before anyone pays.",
+    },
+    {
+      question: "Can I use this for buffet or counter service?",
+      answer:
+        "Yes—enter the total and a tip percent that fits the service level; some counters tip less than full table service.",
+    }
   ],
   "sales-tax-calculator": [
     {
