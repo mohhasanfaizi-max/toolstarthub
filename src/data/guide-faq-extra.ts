@@ -3618,5 +3618,497 @@ export const extraGuideFaqs: Record<string, GuideFaq[]> = {
       answer:
         "Re-export a simpler .docx, remove broken fields, or split a huge file, then try again.",
     }
+  ],
+  "how-to-write-a-box-shadow": [
+    {
+      question: "How do I create a CSS box-shadow from offsets and blur?",
+      answer:
+        "Set x/y offsets, blur, optional spread and color, then copy the box-shadow declaration into your stylesheet.",
+    },
+    {
+      question: "What does blur radius control on a shadow?",
+      answer:
+        "Larger blur softens and widens the shadow. Zero blur makes a hard edge.",
+    },
+    {
+      question: "What does spread radius add?",
+      answer:
+        "Spread expands or contracts the shadow shape before blur. Positive spread grows it; negative shrinks it.",
+    },
+    {
+      question: "How do X and Y offsets shift a box shadow?",
+      answer:
+        "Positive x moves the shadow right; positive y moves it down. Negatives go the other way.",
+    },
+    {
+      question: "When is an inset box-shadow the better choice?",
+      answer:
+        "For pressed buttons, wells, or inner glows. Inset draws the shadow inside the border box.",
+    },
+    {
+      question: "Can I stack several layered shadows on one element?",
+      answer:
+        "Yes—comma-separate multiple box-shadow values for depth.",
+    },
+    {
+      question: "Why might the generator show whole pixels?",
+      answer:
+        "Some UIs round for preview clarity. You can edit decimals in the final CSS if needed.",
+    },
+    {
+      question: "How can I style a soft elevated card shadow?",
+      answer:
+        "Use small offsets, medium blur, slight spread, and a low-opacity neutral color.",
+    },
+    {
+      question: "Does adding a box-shadow grow the element’s layout box?",
+      answer:
+        "No—shadows paint outside without changing layout flow (unlike outline in some cases).",
+    },
+    {
+      question: "Is it practical to animate box-shadow in CSS?",
+      answer:
+        "Yes with transitions or keyframes, but heavy shadows can be costly—test on mobile.",
+    },
+    {
+      question: "How is opacity applied in the shadow color?",
+      answer:
+        "Use rgba()/hsla() alpha, or modern rgb() with alpha, so the shadow can sit lightly on any background.",
+    },
+    {
+      question: "Do box shadows curve with rounded corners?",
+      answer:
+        "Yes—box-shadow follows the curve of the border box.",
+    },
+    {
+      question: "Which colors work best for a neutral drop shadow?",
+      answer:
+        "Soft black or gray with low alpha. Colored shadows can match brand accents sparingly.",
+    },
+    {
+      question: "Will the generator preview look identical on every page element?",
+      answer:
+        "Previews approximate one box. Parent backgrounds and filters can change perception.",
+    },
+    {
+      question: "Does copying box-shadow CSS send it to a server?",
+      answer:
+        "Generation stays local; you paste the CSS into your own project.",
+    },
+    {
+      question: "How do I clear a box-shadow from an element?",
+      answer:
+        "Set box-shadow: none; or delete the declaration.",
+    }
+  ],
+  "how-to-write-a-css-gradient": [
+    {
+      question: "How do I build a linear gradient for a background?",
+      answer:
+        "Pick two or more color stops, set direction or angle, then copy the linear-gradient(...) into background-image.",
+    },
+    {
+      question: "How do linear gradients differ from radial ones?",
+      answer:
+        "Linear blends along a line; radial blends outward from a center. Choose based on the shape you want.",
+    },
+    {
+      question: "Can gradient stops include alpha transparency?",
+      answer:
+        "Yes—use stops with alpha so the underlying background shows through.",
+    },
+    {
+      question: "How can text be filled with a CSS gradient?",
+      answer:
+        "Clip a background gradient to the text (background-clip: text) with transparent fill where supported.",
+    },
+    {
+      question: "When are CSS gradients preferable to gradient image files?",
+      answer:
+        "Often yes—smaller, resolution-independent, and easy to theme. Images still help for complex artwork.",
+    },
+    {
+      question: "Does the generator support Tailwind-style output?",
+      answer:
+        "If a Tailwind mode exists, copy that class-friendly snippet; otherwise adapt the raw CSS.",
+    },
+    {
+      question: "Why might the CSS panel stay empty at first?",
+      answer:
+        "The tool needs at least two valid colors to emit a gradient function.",
+    },
+    {
+      question: "Does the writer support conic-gradient output?",
+      answer:
+        "When the mode is offered, yes—conic sweeps around a center. Otherwise approximate with other types.",
+    },
+    {
+      question: "How are fractional stop percentages handled?",
+      answer:
+        "They are kept or rounded per the UI. Fine positions help smooth multi-stop blends.",
+    },
+    {
+      question: "Do I still need vendor prefixes on modern gradient CSS?",
+      answer:
+        "Modern syntax is widely supported. Add prefixes only if your browser targets require them.",
+    },
+    {
+      question: "How many color stops should I use?",
+      answer:
+        "Two for simple fades; three to five for richer blends. Too many can look muddy.",
+    },
+    {
+      question: "Can I repeat a gradient?",
+      answer:
+        "repeating-linear-gradient / repeating-radial-gradient tile the pattern—useful for stripes.",
+    },
+    {
+      question: "How do I mirror a gradient direction quickly?",
+      answer:
+        "Invert the angle or swap to the opposite keyword (e.g., to left vs to right).",
+    },
+    {
+      question: "Do gradients affect performance?",
+      answer:
+        "Usually cheap versus large images. Huge animated gradients can still cost GPU time.",
+    },
+    {
+      question: "Should brand colors use exact hex stops?",
+      answer:
+        "Yes—paste brand tokens so marketing stays consistent across pages.",
+    },
+    {
+      question: "Is gradient CSS generated on a server here?",
+      answer:
+        "Stop editing and CSS assembly run in the browser session.",
+    }
+  ],
+  "how-to-write-a-gitignore-file": [
+    {
+      question: "How do I generate a starter .gitignore for my stack?",
+      answer:
+        "Select language/OS templates, add custom patterns, then download or copy the file into the repo root.",
+    },
+    {
+      question: "What is the purpose of a .gitignore in a repo?",
+      answer:
+        "It tells Git which untracked paths to skip so build junk and secrets stay out of commits.",
+    },
+    {
+      question: "Which directory should hold the main .gitignore?",
+      answer:
+        "Usually at the repository root. Nested ignore files can apply to subfolders.",
+    },
+    {
+      question: "How do I stop Git from tracking node_modules?",
+      answer:
+        "Add a node_modules/ pattern (from a Node template or custom line) and commit the .gitignore.",
+    },
+    {
+      question: "How do leading and trailing slashes change a gitignore pattern?",
+      answer:
+        "A leading slash anchors to the file’s directory; a trailing slash marks a directory.",
+    },
+    {
+      question: "How do negation rules bring a file back after a broad ignore?",
+      answer:
+        "Yes with a negation pattern starting with !—order matters.",
+    },
+    {
+      question: "Why does an already-tracked file ignore the new gitignore rule?",
+      answer:
+        "Ignore rules do not untrack files already in the index. Remove them from the index while keeping the working copy.",
+    },
+    {
+      question: "Should .env secrets be listed in .gitignore?",
+      answer:
+        "Yes in almost every app repo. Commit an .env.example without secrets instead.",
+    },
+    {
+      question: "How do I ignore .DS_Store and similar OS junk?",
+      answer:
+        "Include macOS/Windows/Linux templates so .DS_Store and Thumbs.db stay out.",
+    },
+    {
+      question: "Can a single gitignore combine several language templates?",
+      answer:
+        "Yes—combine templates, then prune patterns you do not need.",
+    },
+    {
+      question: "Can gitignore patterns use wildcard globs?",
+      answer:
+        "Yes—*, **, and character classes work per gitignore rules.",
+    },
+    {
+      question: "What kinds of paths are a bad fit for .gitignore?",
+      answer:
+        "Do not use it to hide files that must be shared. Also avoid ignoring the ignore file itself by mistake.",
+    },
+    {
+      question: "How do I ignore every file with a given extension?",
+      answer:
+        "Use a pattern like *.log or *.tmp at the appropriate directory scope.",
+    },
+    {
+      question: "How does .gitignore differ from .git/info/exclude?",
+      answer:
+        "No—exclude is local to your clone and not committed. Prefer .gitignore for team rules.",
+    },
+    {
+      question: "Does generating a gitignore also create a Git commit?",
+      answer:
+        "No. You still add and commit .gitignore yourself.",
+    },
+    {
+      question: "How are comments written inside a gitignore file?",
+      answer:
+        "Start a line with # for a comment.",
+    }
+  ],
+  "how-to-write-an-image-prompt": [
+    {
+      question: "How do I write a strong text-to-image prompt?",
+      answer:
+        "Name the subject, setting, style, lighting, lens/camera, mood, and aspect ratio. Keep one clear focal idea.",
+    },
+    {
+      question: "What is a negative prompt used for?",
+      answer:
+        "It lists things to avoid—extra limbs, watermarks, blurry text—when the model supports negatives.",
+    },
+    {
+      question: "Why is there no image preview on the prompt writer?",
+      answer:
+        "It builds prompt text for you to paste into an image model elsewhere.",
+    },
+    {
+      question: "Does using Build prompt send the brief to a server?",
+      answer:
+        "Local assembly stays in the browser; follow any AI-assist privacy note if present.",
+    },
+    {
+      question: "Can a negative prompt alone describe the image?",
+      answer:
+        "You still need a positive subject prompt. Negatives alone do not describe the image.",
+    },
+    {
+      question: "Should I mention camera gear in the prompt?",
+      answer:
+        "Optional—lens and shot type can steer realism. Skip them for pure illustration styles.",
+    },
+    {
+      question: "How long should an image prompt be?",
+      answer:
+        "Long enough to constrain the scene, short enough to stay coherent. Cut conflicting adjectives.",
+    },
+    {
+      question: "Can I reuse a prompt template across subjects?",
+      answer:
+        "Yes—keep slots for subject, style, and lighting, then swap the subject each time.",
+    },
+    {
+      question: "Do different models read the same prompt identically?",
+      answer:
+        "No. Weights and defaults differ—tweak per model after the first tries.",
+    },
+    {
+      question: "How do I ask for a specific aspect ratio?",
+      answer:
+        "State it in the prompt and set the generator’s ratio control to match when available.",
+    },
+    {
+      question: "Should brand logos appear in AI images?",
+      answer:
+        "Avoid trademarked logos unless you have rights and the model policy allows them.",
+    },
+    {
+      question: "How do I reduce random text in generated images?",
+      answer:
+        "Add “no text, no watermark” to negatives and avoid asking for fine lettering.",
+    },
+    {
+      question: "Can I describe multiple subjects clearly?",
+      answer:
+        "Yes—specify counts and positions (“two cats on a sofa, left and right”). Ambiguity breeds merges.",
+    },
+    {
+      question: "Is seed control part of the prompt?",
+      answer:
+        "Seeds are usually UI settings, not prompt words. Reuse seeds in the model for consistency.",
+    },
+    {
+      question: "How should I iterate when results miss?",
+      answer:
+        "Change one variable at a time—style, lighting, or composition—then compare.",
+    },
+    {
+      question: "Are image prompts stored after the tab closes?",
+      answer:
+        "Keep your own copy; treat the session as temporary.",
+    }
+  ],
+  "how-to-write-meta-tags": [
+    {
+      question: "How do I generate title and description meta tags?",
+      answer:
+        "Enter title, description, and optional social fields, then copy the HTML into your page head.",
+    },
+    {
+      question: "What length works well for a meta description?",
+      answer:
+        "Aim roughly 140–160 characters for comfort. Search engines may rewrite snippets anyway.",
+    },
+    {
+      question: "Should the HTML title match the visible H1?",
+      answer:
+        "They should align in topic, not always verbatim. Titles can include brand; H1 can be more specific.",
+    },
+    {
+      question: "What does a canonical link tag do?",
+      answer:
+        "It points to the preferred URL for duplicate or parameterized pages so ranking signals consolidate.",
+    },
+    {
+      question: "Do indexable pages need their own titles and descriptions?",
+      answer:
+        "Yes for indexable pages. Duplicated titles/descriptions waste snippet space.",
+    },
+    {
+      question: "Which robots meta values are used most often?",
+      answer:
+        "index,follow for normal pages; noindex for thin or private utilities when appropriate.",
+    },
+    {
+      question: "Do Open Graph tags make a normal meta description unnecessary?",
+      answer:
+        "No—they complement them for social previews. Keep both when you care about sharing.",
+    },
+    {
+      question: "Can Twitter Card meta be produced alongside Open Graph?",
+      answer:
+        "When fields are provided, yes—card type, title, description, and image.",
+    },
+    {
+      question: "Why might the generator reject a character in the title field?",
+      answer:
+        "Some generators block control characters or overly long strings. Simplify punctuation and length.",
+    },
+    {
+      question: "Does clicking generate deploy meta tags live?",
+      answer:
+        "No. You must paste or deploy the markup yourself.",
+    },
+    {
+      question: "Where should the brand name sit in an HTML title?",
+      answer:
+        "Often at the end after a separator, unless brand recognition should lead.",
+    },
+    {
+      question: "Do meta keywords still help in Google Search?",
+      answer:
+        "Generally ignored by Google. Focus on titles, descriptions, and content quality.",
+    },
+    {
+      question: "What does the og:url property declare?",
+      answer:
+        "It declares the canonical social URL for the share preview.",
+    },
+    {
+      question: "Should each language version get its own meta tags?",
+      answer:
+        "Yes—localize titles/descriptions and use hreflang alongside correct language URLs.",
+    },
+    {
+      question: "How can I verify meta and social tags on the live page?",
+      answer:
+        "Use a social debugger or rich-result tester, and view source on the live URL.",
+    },
+    {
+      question: "When should utility pages use noindex?",
+      answer:
+        "Often yes if they add little unique value and dilute the crawl budget.",
+    }
+  ],
+  "what-a-writing-pattern-check-can-tell-you": [
+    {
+      question: "What can a writing-pattern check reveal about a draft?",
+      answer:
+        "It highlights even pacing, stock transitions, and low variation—clues to revise, not proof of who wrote it.",
+    },
+    {
+      question: "Why is there no single guilt score on careful tools?",
+      answer:
+        "A fake percent overstates certainty. Qualitative pattern notes are more honest.",
+    },
+    {
+      question: "Can polished human prose look statistically even?",
+      answer:
+        "Yes. Formal editing can resemble model regularity. Read flags as revision prompts.",
+    },
+    {
+      question: "Does an optional AI analyze step see different text than the local check?",
+      answer:
+        "It may use another model pass. Compare outputs and trust your own judgment on facts.",
+    },
+    {
+      question: "What happens to the draft after you close the tab?",
+      answer:
+        "Keep your own copy. Do not treat the page as archival storage.",
+    },
+    {
+      question: "How should teachers use pattern checks ethically?",
+      answer:
+        "As conversation starters with process evidence—not as sole academic integrity proof.",
+    },
+    {
+      question: "What edits reduce “AI-like” cadence?",
+      answer:
+        "Vary sentence length, swap generic transitions, and add concrete specifics only you know.",
+    },
+    {
+      question: "Should confidential client text go into online checkers?",
+      answer:
+        "Prefer redacted samples. Read privacy notes before pasting sensitive material.",
+    },
+    {
+      question: "How do pattern checks differ from plagiarism scanners?",
+      answer:
+        "Plagiarism matches known sources; pattern tools estimate stylistic regularity.",
+    },
+    {
+      question: "Can I analyze one section at a time?",
+      answer:
+        "Yes—narrow pastes show which parts feel most templated.",
+    },
+    {
+      question: "Do bullet lists skew pattern readings?",
+      answer:
+        "They can. Check prose bodies separately from dense lists or tables.",
+    },
+    {
+      question: "Is a “human” label certification?",
+      answer:
+        "No. Labels are heuristics that can miss edited machine text and flag humans.",
+    },
+    {
+      question: "How should multilingual drafts be treated?",
+      answer:
+        "English-trained heuristics may misread other languages—use bilingual review.",
+    },
+    {
+      question: "What process artifacts help after a flag?",
+      answer:
+        "Outlines, notes, version history, and cited sources show authentic work better than any score.",
+    },
+    {
+      question: "Can code mixed with prose confuse a checker?",
+      answer:
+        "Yes. Separate code blocks from narrative before judging style.",
+    },
+    {
+      question: "When should I stop checking and just revise?",
+      answer:
+        "When flags repeat the same advice—apply it once thoroughly, then proof for meaning.",
+    }
   ]
 };

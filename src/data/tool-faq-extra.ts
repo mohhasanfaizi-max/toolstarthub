@@ -30,7 +30,81 @@ export const extraToolFaqs: Record<string, ToolFaq[]> = {
       answer:
         "No. A second 20% is taken from the already reduced price, so 20% off and then another 20% off is 36% off in total, not 40%.",
     },
-  ],
+    {
+      question: "How do I work out a percent-off price quickly?",
+      answer:
+        "Multiply price by the percent, divide by 100 for the amount off, then subtract from the price.",
+    },
+    {
+      question: "What is the difference between discount rate and discount amount?",
+      answer:
+        "Rate is the percent; amount is currency off. Both appear in a clear receipt breakdown.",
+    },
+    {
+      question: "Is stacking 20% then another 20% the same as 40% off?",
+      answer:
+        "No. The second discount applies to the already-reduced price, so the combined cut is less than 40%.",
+    },
+    {
+      question: "How do I find what percent off I received?",
+      answer:
+        "Divide amount saved by the original price and multiply by 100.",
+    },
+    {
+      question: "How do I find the price before a discount?",
+      answer:
+        "Divide the discounted price by (1 − rate) when the rate is known.",
+    },
+    {
+      question: "Can I enter a discount with decimals like 12.5%?",
+      answer:
+        "Yes when the tool accepts decimal percents. Watch rounding on the final cent.",
+    },
+    {
+      question: "Is tax folded into the discounted total automatically?",
+      answer:
+        "Usually it discounts the entered price only. Apply tax in a separate step if needed.",
+    },
+    {
+      question: "Is buy one get one free the same as 50% off everything?",
+      answer:
+        "Only when both items share the same price and the free item is the full value. Mixed prices differ.",
+    },
+    {
+      question: "Why does my receipt differ by a cent?",
+      answer:
+        "Stores round per line or after tax differently. Match their rounding rules for exact cents.",
+    },
+    {
+      question: "What price do I see when the discount rate is zero?",
+      answer:
+        "The original price with zero saved.",
+    },
+    {
+      question: "Can I model coupon plus percentage off?",
+      answer:
+        "Apply them in the same order the store does—sequence changes the total.",
+    },
+    {
+      question: "Should shipping be discounted too?",
+      answer:
+        "Only if the offer says so. Often shipping is excluded from percent-off promos.",
+    },
+    {
+      question: "How do employee discounts usually work?",
+      answer:
+        "Policies vary—some exclude sale items. Use the posted rules, not a generic stack.",
+    },
+    {
+      question: "Can I compare two competing discount offers?",
+      answer:
+        "Compute final payables for both carts including tax and shipping.",
+    },
+    {
+      question: "Are my price inputs stored after calculating?",
+      answer:
+        "Figures stay in the page session only.",
+    }],
   "character-counter": [
     {
       question: "Do spaces count as characters?",
@@ -42,7 +116,81 @@ export const extraToolFaqs: Record<string, ToolFaq[]> = {
       answer:
         "On this page a single emoji counts as one Unicode character. Some apps count certain emoji as two or more, so their limit can differ slightly.",
     },
-  ],
+    {
+      question: "How do I count characters in a pasted draft?",
+      answer:
+        "Paste the text and read the live totals for characters, characters without spaces, words, and lines.",
+    },
+    {
+      question: "Do spaces count toward the main character total?",
+      answer:
+        "Yes in the main total. Use the without-spaces figure when a form excludes them.",
+    },
+    {
+      question: "How does this page count an emoji?",
+      answer:
+        "A single emoji usually counts as one Unicode character here. Some platforms count multi-codepoint emoji differently.",
+    },
+    {
+      question: "Are line breaks counted as characters?",
+      answer:
+        "Often yes—each newline can add to the character total. Check both totals if a limit is strict.",
+    },
+    {
+      question: "Can I count only a selected paragraph?",
+      answer:
+        "Paste just that paragraph, or trim the draft before checking the counter.",
+    },
+    {
+      question: "What is the difference between characters and bytes?",
+      answer:
+        "Characters are Unicode units; bytes depend on encoding (UTF-8 may use multiple bytes per character).",
+    },
+    {
+      question: "Do HTML tags count if I paste markup?",
+      answer:
+        "Yes—every character in the paste counts, including < and >. Strip tags first if you only need visible text.",
+    },
+    {
+      question: "How many characters fit a typical SMS segment?",
+      answer:
+        "Classic SMS limits are around 160 GSM characters; Unicode can lower that. Confirm with your carrier tool.",
+    },
+    {
+      question: "Is there a soft limit on paste size?",
+      answer:
+        "Very large pastes can slow the tab. Count chapter-sized chunks when needed.",
+    },
+    {
+      question: "Why do Word and this counter disagree slightly?",
+      answer:
+        "Word may treat breaks, fields, or hidden characters differently. Prefer the limit owner’s official counter when it matters.",
+    },
+    {
+      question: "Can I track Twitter or LinkedIn limits here?",
+      answer:
+        "Use the character total as a guide, then confirm against each network’s current limit and link shortening rules.",
+    },
+    {
+      question: "Do multiple spaces between words all count?",
+      answer:
+        "Yes in the main total. The without-spaces mode ignores them for that second figure.",
+    },
+    {
+      question: "Are sentences counted separately?",
+      answer:
+        "Some modes show sentence estimates. Treat them as approximate when abbreviations confuse the splitter.",
+    },
+    {
+      question: "What counts as a word here?",
+      answer:
+        "Runs of non-space characters. Hyphenation and punctuation rules can differ from a publisher’s style guide.",
+    },
+    {
+      question: "Is my text uploaded while counting?",
+      answer:
+        "Counting runs in the browser; nothing is kept as a permanent server copy.",
+    }],
   "case-converter": [
     {
       question: "What is the difference between title case and sentence case?",
@@ -394,7 +542,81 @@ export const extraToolFaqs: Record<string, ToolFaq[]> = {
       answer:
         "You can reformat it, but removed comments are gone. Keep your original, readable file and publish the minified copy.",
     },
-  ],
+    {
+      question: "How do I minify a stylesheet before publish?",
+      answer:
+        "Paste the CSS, run minify, and copy the compact output. Keep the readable source in version control.",
+    },
+    {
+      question: "Will minifying remove every comment?",
+      answer:
+        "Most comments are stripped. Important license headers may need to be preserved manually if required.",
+    },
+    {
+      question: "Is calc() usually safe after minifying?",
+      answer:
+        "Yes when whitespace inside calc() is handled carefully. Spot-check complex expressions after minify.",
+    },
+    {
+      question: "Does minification change colors or shorten values?",
+      answer:
+        "Some minifiers shorten hex colors or zero values. Compare a visual pass if your pipeline is aggressive.",
+    },
+    {
+      question: "Are url() paths rewritten?",
+      answer:
+        "Paths inside url() should stay intact. Broken paths usually mean a bad paste, not intentional rewrites.",
+    },
+    {
+      question: "Why can spacing around combinators matter?",
+      answer:
+        "Removing a required space can change selectors like div :first-child. Review selectors after minify.",
+    },
+    {
+      question: "Is the final semicolon before a closing brace dropped when minifying?",
+      answer:
+        "Often the final semicolon before } is optional and may be dropped. That is normal CSS.",
+    },
+    {
+      question: "Does this combine duplicate rules?",
+      answer:
+        "Simple minifiers usually do not merge selectors. Use a dedicated optimizer if you need that.",
+    },
+    {
+      question: "Is there a practical size limit for pasting CSS to minify?",
+      answer:
+        "Stay within browser comfort. Split huge bundles if the tab slows.",
+    },
+    {
+      question: "Does minify validate my CSS?",
+      answer:
+        "No—invalid CSS can still compress. Lint separately before production.",
+    },
+    {
+      question: "Should I minify during development?",
+      answer:
+        "Keep readable CSS while editing; minify as a build or publish step.",
+    },
+    {
+      question: "Can source maps recover the original?",
+      answer:
+        "Only if your build pipeline emits maps. This page alone does not create source maps.",
+    },
+    {
+      question: "Will vendor prefixes be removed?",
+      answer:
+        "Minify should keep prefixes it sees. It does not invent missing prefixes.",
+    },
+    {
+      question: "Is minified CSS harder to debug in DevTools?",
+      answer:
+        "Yes. Debug with source files or maps, then ship the minified asset.",
+    },
+    {
+      question: "Does minifying upload my stylesheet?",
+      answer:
+        "Processing stays in the page session.",
+    }],
   "password-generator": [
     {
       question: "How long should a password be?",
@@ -562,7 +784,81 @@ export const extraToolFaqs: Record<string, ToolFaq[]> = {
       answer:
         "Yes. Turn on the case and trim options so lines such as Apple and apple, or lines with extra spaces, count as the same.",
     },
-  ],
+    {
+      question: "How do I drop repeated lines from a list?",
+      answer:
+        "Paste one item per line, run the remover, and copy the deduped list. First occurrences usually keep their order.",
+    },
+    {
+      question: "Which copy is kept when a line repeats?",
+      answer:
+        "Typically the first. Later identical lines are removed.",
+    },
+    {
+      question: "Does removing duplicates also reorder the lines?",
+      answer:
+        "Not by default. Deduping preserves encounter order unless you also sort.",
+    },
+    {
+      question: "How can I dedupe a list of email addresses line by line?",
+      answer:
+        "Paste one address per line; enable case-insensitive matching if needed, then dedupe.",
+    },
+    {
+      question: "Is there a way to inspect which lines were dropped as repeats?",
+      answer:
+        "Some UIs highlight removals; otherwise compare counts before and after or diff the two lists.",
+    },
+    {
+      question: "How are empty lines treated during dedupe?",
+      answer:
+        "Consecutive blanks may collapse depending on options. Decide whether empty lines are meaningful.",
+    },
+    {
+      question: "Does the remover operate on words inside a single line?",
+      answer:
+        "Line removers operate per line, not per word. Split words to lines first if that is the goal.",
+    },
+    {
+      question: "Can whole CSV rows be deduped as lines?",
+      answer:
+        "Yes if each row is one line and equality is exact. Quoted commas still count as part of the line.",
+    },
+    {
+      question: "Is there a practical paste size for duplicate removal?",
+      answer:
+        "Very large lists may slow the tab. Chunk when needed.",
+    },
+    {
+      question: "Can trim-on-match alter spaces on the lines I keep?",
+      answer:
+        "Trim options affect matching and may strip edge spaces on kept lines—read the toggle labels.",
+    },
+    {
+      question: "Why might near-identical lines both survive dedupe?",
+      answer:
+        "Hidden spaces, different Unicode lookalikes, or case differences can separate them. Enable normalize options.",
+    },
+    {
+      question: "Can I dedupe while ignoring case?",
+      answer:
+        "Yes when a case-insensitive mode exists—Apple and apple count as one.",
+    },
+    {
+      question: "Should I sort before removing duplicates?",
+      answer:
+        "Only if you want sorted output. Sorting is separate from uniqueness.",
+    },
+    {
+      question: "Do Windows and Unix line endings affect matches?",
+      answer:
+        "Normalize endings first so the same text does not diverge on CR characters.",
+    },
+    {
+      question: "Is my list uploaded during dedupe?",
+      answer:
+        "Deduping runs in the browser session.",
+    }],
   "whitespace-remover": [
     {
       question: "How do I remove double spaces from text?",
@@ -904,7 +1200,81 @@ export const extraToolFaqs: Record<string, ToolFaq[]> = {
       answer:
         "The count is the number of days from the start date to the end date, so the start day itself is not added. Add 1 if you need to include both days.",
     },
-  ],
+    {
+      question: "How do I measure the span between two calendar dates?",
+      answer:
+        "Pick start and end dates, then read total days plus the years/months/days breakdown.",
+    },
+    {
+      question: "Does the total include both the first and last calendar days?",
+      answer:
+        "Usually the count is the difference from start to end without double-counting the start day—add 1 if you need inclusive days.",
+    },
+    {
+      question: "How do leap days change a February-spanning difference?",
+      answer:
+        "Leap years add February 29. Spans that cross Feb 29 gain an extra day.",
+    },
+    {
+      question: "Why can total days and the months breakdown disagree with a 30-day rule?",
+      answer:
+        "Total days is exact; months vary in length so month breakdowns are calendar-aware, not fixed 30-day blocks.",
+    },
+    {
+      question: "Do clock times matter in a date-only difference?",
+      answer:
+        "Date-only mode ignores clock time. Datetime tools may floor or round differently.",
+    },
+    {
+      question: "How can I exclude weekends from a date span?",
+      answer:
+        "Use a business-day tool or subtract weekends (and holidays if required) from the total.",
+    },
+    {
+      question: "What happens if I reverse start and end dates?",
+      answer:
+        "Many calculators swap or show a negative/absolute span—read the on-page behavior.",
+    },
+    {
+      question: "Do these calculators treat leap years as 366 days?",
+      answer:
+        "They follow the calendar, so leap years have 366 days.",
+    },
+    {
+      question: "Where does the “30-day month” shortcut come from?",
+      answer:
+        "It is a rough average for estimates. Exact tools use real month lengths.",
+    },
+    {
+      question: "How can I express someone’s age as a day count?",
+      answer:
+        "Set birth date as start and today (or another date) as end, then read total days.",
+    },
+    {
+      question: "Should project day counts treat the kickoff day as day one?",
+      answer:
+        "Clarify with stakeholders. Inclusive counting differs from pure date subtraction.",
+    },
+    {
+      question: "How should I compare dates when the two ends use different zones?",
+      answer:
+        "Prefer UTC calendar dates for both ends when zones differ, or you may shift the civil day.",
+    },
+    {
+      question: "What does an “average month” length mean on a results panel?",
+      answer:
+        "A convenience metric using ~30.44 days; not the same as calendar months.",
+    },
+    {
+      question: "Do public holidays change a raw day difference?",
+      answer:
+        "Raw day counts ignore holidays. Business-day modes need a holiday calendar.",
+    },
+    {
+      question: "What date input formats does the calculator accept?",
+      answer:
+        "Use the format the picker accepts, or ISO-style YYYY-MM-DD when typing is allowed.",
+    }],
   "find-and-replace": [
     {
       question: "How do I replace a word everywhere in a text?",
@@ -1038,7 +1408,81 @@ export const extraToolFaqs: Record<string, ToolFaq[]> = {
       answer:
         "No. CSV has no data types, so every cell becomes a JSON string, such as \"42\", and an empty cell becomes an empty string. Convert numbers in your own code if you need them.",
     },
-  ],
+    {
+      question: "How do I turn a CSV export into JSON objects?",
+      answer:
+        "Paste CSV with a header row, convert, and copy the JSON array. Each row becomes one object keyed by headers.",
+    },
+    {
+      question: "Why do quoted commas not create new CSV columns?",
+      answer:
+        "CSV quoting keeps commas inside a cell from splitting columns. Broken quotes split fields incorrectly.",
+    },
+    {
+      question: "How do I write a quote character inside a quoted CSV field?",
+      answer:
+        "Standard CSV doubles them (\"\"). A single bare quote often means a malformed row.",
+    },
+    {
+      question: "How are blank CSV cells represented after conversion to JSON?",
+      answer:
+        "Usually an empty string. Some workflows prefer null—adjust after conversion if needed.",
+    },
+    {
+      question: "What goes wrong when a CSV field never closes its quote?",
+      answer:
+        "Parsers may merge following rows into one field or fail. Fix quoting in the spreadsheet and re-export.",
+    },
+    {
+      question: "Do I need a header row to get JSON objects with keys?",
+      answer:
+        "For object-shaped JSON, yes. Without headers you get arrays of arrays instead.",
+    },
+    {
+      question: "Will tab-separated values convert like CSV if the delimiter matches?",
+      answer:
+        "If the tool accepts a tab delimiter option, yes. Otherwise replace tabs carefully or export as CSV.",
+    },
+    {
+      question: "How do postal codes with leading zeros stay intact in JSON?",
+      answer:
+        "Keep those columns as strings. Numeric coercion would drop leading zeros.",
+    },
+    {
+      question: "Does JSON usually shrink a flat table compared with CSV?",
+      answer:
+        "Often larger because keys repeat. CSV can be denser for flat tables.",
+    },
+    {
+      question: "Will a flat spreadsheet become nested JSON automatically?",
+      answer:
+        "Not automatically from a flat sheet. Post-process or use a richer export format.",
+    },
+    {
+      question: "Which text encoding is safest for CSV that becomes JSON?",
+      answer:
+        "UTF-8 is safest for web JSON. Re-export if accents look corrupted.",
+    },
+    {
+      question: "What size CSV pastes are realistic in a browser tab?",
+      answer:
+        "Large files may strain memory. Split or convert server-side for huge datasets.",
+    },
+    {
+      question: "Why might JSON object counts not match spreadsheet rows?",
+      answer:
+        "Embedded newlines inside quoted fields or blank trailing rows often explain mismatches.",
+    },
+    {
+      question: "Is it safer to leave date cells as JSON strings?",
+      answer:
+        "Usually yes unless you deliberately parse them into a typed format your API expects.",
+    },
+    {
+      question: "Does CSV-to-JSON conversion send the sheet to a server?",
+      answer:
+        "Conversion runs locally in the browser session.",
+    }],
   "regex-tester": [
     {
       question: "What does the g flag do in a regex?",
