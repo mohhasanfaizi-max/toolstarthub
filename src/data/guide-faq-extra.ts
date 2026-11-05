@@ -4578,83 +4578,6 @@ export const extraGuideFaqs: Record<string, GuideFaq[]> = {
         "Itemize first, then tip on the shared pre-tip total so percentages stay fair.",
     }
   ],
-  "free-digital-tools": [
-    {
-      question: "Which everyday tasks can these free tools cover?",
-      answer:
-        "Counting words, converting formats, hashing text, and simple calculators—browser utilities for quick jobs.",
-    },
-    {
-      question: "Do I install software to use the catalog?",
-      answer:
-        "No—open the tool page in your browser and paste or type your input.",
-    },
-    {
-      question: "Are results private by default on these pages?",
-      answer:
-        "Most utilities are designed to run in the browser session without requiring an account.",
-    },
-    {
-      question: "Can teachers use these tools in class?",
-      answer:
-        "Yes for demos and homework checks—confirm school policies for student data.",
-    },
-    {
-      question: "What is a good first tool for writers?",
-      answer:
-        "A word/character counter or case converter is a gentle start before converters and generators.",
-    },
-    {
-      question: "How do I switch from one tool to a related guide?",
-      answer:
-        "Use the guide links on the tool page (or the guides index) for step-by-step explainers.",
-    },
-    {
-      question: "Are mobile browsers supported?",
-      answer:
-        "Yes for most pages; very large file tools may work better on desktop.",
-    },
-    {
-      question: "Can I bookmark a tool I use daily?",
-      answer:
-        "Absolutely—bookmark the tool URL for one-click access.",
-    },
-    {
-      question: "Do these tools replace professional software?",
-      answer:
-        "They cover quick tasks; heavy editing still belongs in dedicated apps.",
-    },
-    {
-      question: "Is there a cost after a free trial?",
-      answer:
-        "The public tools described here are free to use in the browser—no trial gate for core utilities.",
-    },
-    {
-      question: "How should teams share a workflow built on these tools?",
-      answer:
-        "Document the steps and links in your wiki so everyone uses the same pages.",
-    },
-    {
-      question: "Can I process confidential client files here?",
-      answer:
-        "Prefer offline/local apps for highly sensitive material even when a page says in-browser.",
-    },
-    {
-      question: "Where do I report a broken calculator?",
-      answer:
-        "Use the site contact/feedback options with the tool name and steps to reproduce.",
-    },
-    {
-      question: "Do guides and tools stay in sync?",
-      answer:
-        "Guides explain the matching tool; open both tabs when you want theory plus practice.",
-    },
-    {
-      question: "What if I need a tool that is not listed?",
-      answer:
-        "Check the tools index categories or contact the site with a request.",
-    }
-  ],
   "how-to-calculate-age": [
     {
       question: "How do I get years, months, and days from two dates?",
@@ -5038,6 +4961,83 @@ export const extraGuideFaqs: Record<string, GuideFaq[]> = {
       question: "Does hex→RGB conversion upload my palette?",
       answer:
         "Conversion is intended to stay in the browser session.",
+    }
+  ],
+  "how-to-convert-json-to-csv": [
+    {
+      question: "How do I export JSON records as a spreadsheet-friendly CSV?",
+      answer:
+        "Paste an array of objects, convert to CSV, then open the file in Excel or Google Sheets.",
+    },
+    {
+      question: "Why should keys be consistent across every object?",
+      answer:
+        "Shared keys become columns. Inconsistent keys create sparse rows with blanks.",
+    },
+    {
+      question: "How do I flatten nested address fields first?",
+      answer:
+        "Lift nested properties into top-level keys (or stringify them) before converting.",
+    },
+    {
+      question: "Can trailing commas in JSON break the conversion?",
+      answer:
+        "Yes—strict JSON forbids trailing commas. Fix syntax, then convert.",
+    },
+    {
+      question: "How are dates represented in the CSV cells?",
+      answer:
+        "Whatever string/number form the JSON used; spreadsheets may auto-format on import.",
+    },
+    {
+      question: "Should I sort objects before creating the CSV?",
+      answer:
+        "Optional—sort in JSON or after import if you need a stable row order.",
+    },
+    {
+      question: "How do I keep leading zeros in ID fields?",
+      answer:
+        "Prefix with a tab or force text format in the spreadsheet after import.",
+    },
+    {
+      question: "What if a value contains commas and quotes?",
+      answer:
+        "Proper CSV escaping wraps fields and doubles quotes—use the converter’s output as-is.",
+    },
+    {
+      question: "Can I convert JSON Lines (NDJSON)?",
+      answer:
+        "Wrap lines into an array first, or use a tool that accepts NDJSON natively.",
+    },
+    {
+      question: "How do Unicode characters survive the export?",
+      answer:
+        "UTF-8 CSV keeps them; pick UTF-8 when the spreadsheet asks for an encoding.",
+    },
+    {
+      question: "Is a root-level JSON array required?",
+      answer:
+        "Most converters expect an array of row objects. Wrap a lone object in [ ] if needed.",
+    },
+    {
+      question: "How do empty strings differ from null in the sheet?",
+      answer:
+        "Both may look blank; null often becomes an empty cell while \"\" is an empty string.",
+    },
+    {
+      question: "Can I drop columns I do not need after conversion?",
+      answer:
+        "Yes—delete columns in the spreadsheet or strip keys from the JSON first.",
+    },
+    {
+      question: "What is a quick check that the CSV looks right?",
+      answer:
+        "Confirm header count matches key count and spot-check a few row values.",
+    },
+    {
+      question: "Does this guide’s converter send JSON to a server?",
+      answer:
+        "The matching on-site tool is designed to convert in the browser session.",
     }
   ]
 };
