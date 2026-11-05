@@ -8353,5 +8353,611 @@ export const extraGuideFaqs: Record<string, GuideFaq[]> = {
       answer:
         "Follow the form’s instructions—many want two decimal GPA places and whole-number percents.",
     }
-  ]
+  ],
+  "daltons-law-of-partial-pressures-explained": [
+    {
+      question: "How does Dalton's law relate to mole fraction?",
+      answer:
+        "For ideal mixtures, each partial pressure equals the mole fraction times the total pressure.",
+    },
+    {
+      question: "Can I apply Dalton's law inside a scuba tank?",
+      answer:
+        "Divers use it for planning, but real-gas and temperature effects still matter at high pressure.",
+    },
+    {
+      question: "Why subtract water vapor for gases collected over water?",
+      answer:
+        "The vapor contributes its own partial pressure, so dry-gas pressure is total minus vapor pressure.",
+    },
+    {
+      question: "Does altitude change oxygen's mole fraction in air?",
+      answer:
+        "Dry air’s mole fraction stays near 21%; partial pressure falls as total atmospheric pressure falls.",
+    },
+    {
+      question: "How should lab reports show unit consistency?",
+      answer:
+        "Keep every pressure in the same unit before adding or multiplying by mole fractions.",
+    },
+    {
+      question: "What breaks Dalton's law in ammonia absorption?",
+      answer:
+        "When a gas dissolves or reacts strongly, composition and pressure no longer follow a simple ideal sum.",
+    },
+    {
+      question: "Is volume percent equal to mole percent here?",
+      answer: "For ideal gases at the same T and P, yes; real gases can deviate.",
+    },
+    {
+      question: "Can I find total pressure from known partials?",
+      answer:
+        "Add the partial pressures of all components when Dalton’s assumptions hold.",
+    },
+    {
+      question: "How do temperature changes enter the story?",
+      answer:
+        "They can change vapor pressures and real-gas behavior even if mole fractions stay fixed.",
+    },
+    {
+      question: "Should students memorize 760 mmHg as 1 atm?",
+      answer:
+        "It is a common conversion; still prefer the unit your problem states explicitly.",
+    }
+  ],
+  "fantasy-cricket-points-system-explained": [
+    {
+      question: "Do wicket bonuses stack with bowling figures?",
+      answer:
+        "Usually yes—check whether extras like maiden or LBW bonuses are separate line items in your app.",
+    },
+    {
+      question: "How are substitute fielders scored?",
+      answer:
+        "Most contests ignore pure substitutes unless they become playing replacements under the rules.",
+    },
+    {
+      question: "Why publish different T20 and ODI sheets?",
+      answer:
+        "Scoring rates differ by format, so economy and strike-rate bands are tuned separately.",
+    },
+    {
+      question: "Can legacy Classic rules differ from small-league apps?",
+      answer:
+        "Yes—always open that contest’s scoring tab instead of assuming Dream11 defaults.",
+    },
+    {
+      question: "How should rain-shortened matches be handled?",
+      answer:
+        "Follow the operator’s abandoned/reduced rules; points may be voided or pro-rated.",
+    },
+    {
+      question: "Do byes and leg-byes give batting points?",
+      answer:
+        "Typically no batting run points; confirm extras treatment in the official sheet.",
+    },
+    {
+      question: "Is a run-out credited to a specific fielder?",
+      answer:
+        "Some systems award the assisting fielder; others only track the dismissal type for the batter.",
+    },
+    {
+      question: "How do impact players change fantasy lineups?",
+      answer:
+        "Only players who actually feature under tournament rules can score—bench IDs stay at zero.",
+    },
+    {
+      question: "Should I track balls faced for strike-rate bonuses?",
+      answer: "Yes when your sheet pays SR bands—enter balls faced along with runs.",
+    },
+    {
+      question: "Can two platforms disagree on the same ball?",
+      answer:
+        "Stat feeds and revision windows differ; wait for final scores before disputing a few points.",
+    }
+  ],
+  "how-long-unemployment-benefits-last": [
+    {
+      question: "What is a benefit year versus weeks payable?",
+      answer:
+        "The benefit year is the claim window; weeks payable are how many weekly checks that window can hold.",
+    },
+    {
+      question: "Do dependents add extra weeks in most states?",
+      answer:
+        "Dependents more often change the weekly amount than the week count—check your state table.",
+    },
+    {
+      question: "Can seasonal layoffs use the same duration rules?",
+      answer:
+        "Monetary duration follows the same statutes; eligibility still depends on wages and separation reasons.",
+    },
+    {
+      question: "How do shared-work programs affect week counts?",
+      answer:
+        "Partial benefits may use different accounting—read the shared-work notice, not only full UI charts.",
+    },
+    {
+      question: "Should I bank unused weeks across jobs?",
+      answer:
+        "Unused weeks usually expire with the benefit year; a new claim needs a new base period.",
+    },
+    {
+      question: "Do military claims follow state week charts?",
+      answer:
+        "UCX claims have federal overlays—confirm with the agency handling your military wages.",
+    },
+    {
+      question: "How accurate are 2026 duration tables online?",
+      answer:
+        "Laws change—verify against your state workforce site when planning finances.",
+    },
+    {
+      question: "Can refusing suitable work cut remaining weeks?",
+      answer: "Disqualifications can pause or end payable weeks until you requalify.",
+    },
+    {
+      question: "Does filing late shorten my entitlement?",
+      answer:
+        "Late filing can cost early weeks; total potential entitlement is still set by statute and wages.",
+    },
+    {
+      question: "How should I calendar the final payable week?",
+      answer:
+        "Count certified weeks from your start date, excluding waiting weeks your state does not pay.",
+    }
+  ],
+  "how-to-calculate-fantasy-points": [
+    {
+      question: "How do I score a player across two sports tabs?",
+      answer:
+        "Keep separate rule presets per sport, then enter only that sport’s counting stats.",
+    },
+    {
+      question: "Can I model PPR versus standard football quickly?",
+      answer:
+        "Clone the football rules and change the reception points field, then compare totals.",
+    },
+    {
+      question: "What if my league awards points for yards in 10-yard blocks?",
+      answer:
+        "Convert yards into block counts before entry, or scale the per-yard rule to match.",
+    },
+    {
+      question: "Do decimal totals mean I made a mistake?",
+      answer:
+        "Not if half-points or per-yard rates are allowed—match your league’s precision.",
+    },
+    {
+      question: "How should I treat voided plays?",
+      answer:
+        "Remove those stats and recalculate after official scoring corrections post.",
+    },
+    {
+      question: "Can I share a rule preset as text?",
+      answer:
+        "Copy the point values into a note for teammates when local storage will not sync.",
+    },
+    {
+      question: "Why reset stats without resetting rules?",
+      answer: "Clearing stats keeps your custom sheet ready for the next box score.",
+    },
+    {
+      question: "How do I handle dual-position eligibility?",
+      answer:
+        "Use one scoring pass; eligibility only matters for roster slots, not the arithmetic.",
+    },
+    {
+      question: "Should bonuses for long touchdowns be separate rows?",
+      answer:
+        "Add a bonus field when your league pays them, then enter how many times they hit.",
+    },
+    {
+      question: "Can I calculate a whole lineup salary cap here?",
+      answer:
+        "This tool totals fantasy points, not draft salaries—track cap elsewhere.",
+    }
+  ],
+  "how-to-calculate-partial-pressure": [
+    {
+      question: "How do I convert a percent composition to mole fraction?",
+      answer:
+        "Divide the percent by 100 (21% oxygen → 0.21) before multiplying by total pressure.",
+    },
+    {
+      question: "When should I pick mixture mode over ideal-gas mode?",
+      answer:
+        "Use mixture mode when you know total pressure and composition; use ideal-gas when you have n, V, and T.",
+    },
+    {
+      question: "Can torr and mmHg be treated as equal here?",
+      answer:
+        "For ordinary lab work they are treated as equal; keep labels consistent in the report.",
+    },
+    {
+      question: "What if my mole fractions sum to 0.99?",
+      answer:
+        "Round-off is common—renormalize or add the missing component before trusting the total.",
+    },
+    {
+      question: "How precise should R be for class problems?",
+      answer:
+        "Use the R value matching your units (for example L·atm) as stated in the tool or textbook.",
+    },
+    {
+      question: "Does gauge pressure work in these formulas?",
+      answer: "Convert to absolute pressure first by adding atmospheric pressure.",
+    },
+    {
+      question: "Can I solve for volume given partial pressure?",
+      answer:
+        "Rearrange the ideal-gas relation with that gas’s moles, T, and its partial pressure.",
+    },
+    {
+      question: "Why reject a mole fraction of 1.2?",
+      answer:
+        "Fractions cannot exceed 1 for a single component in a simple mixture model.",
+    },
+    {
+      question: "How do I report scientific notation answers?",
+      answer:
+        "Keep significant figures from your inputs; scientific notation is fine for tiny pressures.",
+    },
+    {
+      question: "Are dissolved oxygen problems in water different?",
+      answer:
+        "Yes—use Henry’s law for solubility, not Dalton’s gas-mixture shortcut alone.",
+    }
+  ],
+  "how-to-combine-scanned-pages-into-one-pdf": [
+    {
+      question: "Should I scan at 300 DPI for text documents?",
+      answer:
+        "300 DPI is a solid default for readable text; go higher only if you need fine print.",
+    },
+    {
+      question: "How do I fix a page that uploaded upside down?",
+      answer:
+        "Rotate that image before merging, or rotate the page after in a PDF viewer.",
+    },
+    {
+      question: "Can I insert a blank separator page?",
+      answer: "Add a blank white image in the sequence where you need a divider.",
+    },
+    {
+      question: "Why are colors dull after combining phone photos?",
+      answer:
+        "Auto HDR and compression differ per shot—retake under the same lighting when color matters.",
+    },
+    {
+      question: "Is Letter better than A4 for US forms?",
+      answer: "Match the form’s stated size so margins align when printed.",
+    },
+    {
+      question: "How can I keep file size email-friendly?",
+      answer: "Compress the finished PDF or downsize photos before combining.",
+    },
+    {
+      question: "Can receipts of different widths share one PDF?",
+      answer: "Yes—fit mode letterboxes each image on the chosen page size.",
+    },
+    {
+      question: "Do I need OCR before emailing a scan packet?",
+      answer:
+        "Only if recipients must search or copy text; image-only PDFs are fine for print.",
+    },
+    {
+      question: "What order should double-sided scans use?",
+      answer:
+        "Capture fronts in order, then backs, or use a duplex workflow that already interleaves sides.",
+    },
+    {
+      question: "Can I password-protect the combined scan?",
+      answer:
+        "Add encryption in a PDF editor after download if confidentiality requires it.",
+    }
+  ],
+  "how-to-compress-an-image-without-losing-quality": [
+    {
+      question: "When is lossless PNG recompression enough?",
+      answer:
+        "UI graphics and screenshots often shrink with lossless tools without changing pixels.",
+    },
+    {
+      question: "Does converting to WebP always look identical?",
+      answer:
+        "Near-lossless modes look very close; always flick between original and export on a sharp display.",
+    },
+    {
+      question: "How do I keep logos crisp while shrinking photos?",
+      answer:
+        "Treat logos as PNG/SVG and photos as JPG/WebP instead of one setting for everything.",
+    },
+    {
+      question: "Should I strip EXIF to save kilobytes?",
+      answer:
+        "Removing metadata can help a little and improves privacy; it does not replace real compression.",
+    },
+    {
+      question: "Why does a second pass barely help?",
+      answer:
+        "The first lossy pass already discarded detail—further passes add artifacts more than savings.",
+    },
+    {
+      question: "Is chroma subsampling noticeable on text?",
+      answer:
+        "It can blur colored text on flat backgrounds—raise quality or use PNG for UI.",
+    },
+    {
+      question: "Can I target a maximum dimension and a quality together?",
+      answer:
+        "Yes—resize to the display size first, then compress for the cleanest bytes.",
+    },
+    {
+      question: "Do retina displays need 2× pixel dimensions?",
+      answer:
+        "If you serve 2× assets, compress carefully so the larger pixel grid does not waste bandwidth.",
+    },
+    {
+      question: "How should product zooms be handled?",
+      answer:
+        "Keep a higher-quality master for zoom; ship a lighter derivative for listing grids.",
+    },
+    {
+      question: "Is GIF still useful for short clips?",
+      answer:
+        "Short muted clips are often smaller as MP4/WebM; GIF remains for simple animations.",
+    }
+  ],
+  "how-to-crop-an-image": [
+    {
+      question: "How do I crop for an Instagram portrait post?",
+      answer:
+        "Set a 4:5 ratio and frame the subject before exporting the cropped PNG or JPG.",
+    },
+    {
+      question: "Can I crop from the center automatically?",
+      answer:
+        "Choose a centered preset when available, or drag the box until the focus sits mid-frame.",
+    },
+    {
+      question: "Why did my crop export look softer?",
+      answer:
+        "Shrinking then upscaling softens edges—export at the crop’s native pixel size.",
+    },
+    {
+      question: "Should I crop before or after color correction?",
+      answer:
+        "Either works; many editors color-correct first so histograms use the final framing.",
+    },
+    {
+      question: "How do rule-of-thirds guides help?",
+      answer:
+        "Align eyes or horizons on the guide intersections for a steadier composition.",
+    },
+    {
+      question: "Can I crop animated GIFs frame by frame here?",
+      answer: "This flow targets still images—use a GIF editor for multi-frame crops.",
+    },
+    {
+      question: "What if I need the same crop on many photos?",
+      answer:
+        "Note the ratio and approximate offsets, or batch-crop in a dedicated desktop tool.",
+    },
+    {
+      question: "Does cropping change DPI metadata?",
+      answer:
+        "Pixel dimensions change; DPI tags may stay or reset depending on the encoder.",
+    },
+    {
+      question: "How do I crop out a watermark cleanly?",
+      answer:
+        "Crop only if the watermark sits outside the keep region; otherwise content-aware edits are needed.",
+    },
+    {
+      question: "Can circular social avatars be cropped as squares first?",
+      answer: "Yes—export a square, then the platform applies its circular mask.",
+    }
+  ],
+  "how-to-make-a-custom-qr-code": [
+    {
+      question: "How dark should the foreground be on colored codes?",
+      answer:
+        "Keep strong contrast with the background; pale-on-pale codes fail outdoor scans.",
+    },
+    {
+      question: "Can I put a logo over the center modules?",
+      answer:
+        "Yes with higher error correction and a modest logo that leaves most modules readable.",
+    },
+    {
+      question: "Should Wi-Fi codes include the network type?",
+      answer: "Yes—WPA/WPA2 vs nopass must match or phones will not join.",
+    },
+    {
+      question: "Do MECARD and vCard both store phone numbers?",
+      answer:
+        "Both can; vCard is richer for multiple fields when contacts apps support it.",
+    },
+    {
+      question: "What canvas size is safe for stickers?",
+      answer: "Export large, then scale down in print software so modules stay sharp.",
+    },
+    {
+      question: "Can dynamic short links sit inside a static QR?",
+      answer:
+        "The QR can point at a short URL you control; retarget the short link without reprinting.",
+    },
+    {
+      question: "Why reject low-contrast brand colors?",
+      answer:
+        "Scanners need luminance difference; tweak until the preview warning clears.",
+    },
+    {
+      question: "Is round-module styling always scannable?",
+      answer:
+        "Heavy styling can break finders—test on iOS and Android before a big print run.",
+    },
+    {
+      question: "How much quiet zone is enough?",
+      answer: "Leave a clear margin of roughly four modules so edges are not crowded.",
+    },
+    {
+      question: "Can one Pro code hold a calendar event?",
+      answer:
+        "If event text or a URL is supported in the payload list, encode that; otherwise link to an ICS file.",
+    }
+  ],
+  "how-to-make-a-qr-code": [
+    {
+      question: "How do I test a code before ordering signs?",
+      answer:
+        "Print a draft at final size and scan from the expected distance with multiple phones.",
+    },
+    {
+      question: "Should restaurant menus use short URLs?",
+      answer:
+        "Yes—shorter payloads keep modules larger and easier to scan in dim dining rooms.",
+    },
+    {
+      question: "Can I encode a plain Wi-Fi string without Pro?",
+      answer:
+        "Paste a valid WIFI: payload as text if you already have one; Pro helpers just build it for you.",
+    },
+    {
+      question: "Why avoid putting QR codes on reflective glass alone?",
+      answer:
+        "Glare hides modules—add a matte backing or place codes where lighting is controlled.",
+    },
+    {
+      question: "Do stickers need UV coating?",
+      answer:
+        "Outdoor stickers last longer with protective laminate; retest scans after finishing.",
+    },
+    {
+      question: "How small can a code be on a business card?",
+      answer:
+        "Keep it large enough that modules stay distinct—tiny dense codes frustrate cameras.",
+    },
+    {
+      question: "Can UTM parameters live in the QR URL?",
+      answer:
+        "Yes for campaign tracking; watch length so the pattern does not get too dense.",
+    },
+    {
+      question: "Should I frame the code with a call-to-action?",
+      answer:
+        "A short “Scan for menu” label builds trust without changing the encoded data.",
+    },
+    {
+      question: "What if a scanner shows a phishing warning?",
+      answer: "Use reputable HTTPS destinations and avoid look-alike domains.",
+    },
+    {
+      question: "Can I reuse one PNG across flyers and slides?",
+      answer:
+        "Yes—keep a master PNG and place it at different physical sizes as needed.",
+    }
+  ],
+  "how-to-make-a-youtube-banner": [
+    {
+      question: "How wide is the full YouTube banner canvas?",
+      answer:
+        "Design on the large TV-oriented canvas, then keep critical art inside the overlapping safe area.",
+    },
+    {
+      question: "Should seasonal overlays cover the channel avatar?",
+      answer:
+        "Avoid stacking busy art behind the circular avatar zone so the profile photo stays clear.",
+    },
+    {
+      question: "Can I match banner fonts to video end screens?",
+      answer:
+        "Reuse the same type family so the channel feels consistent from art to video chrome.",
+    },
+    {
+      question: "How many focal points should a banner have?",
+      answer:
+        "One primary message plus logo is enough; extra icons get cropped on phones.",
+    },
+    {
+      question: "Do wordmarks need more padding than icons?",
+      answer:
+        "Yes—text needs extra safe margin because device crops differ left and right.",
+    },
+    {
+      question: "Can stock photos be used commercially on banners?",
+      answer:
+        "Only with a license that allows YouTube channel art; keep proof of license.",
+    },
+    {
+      question: "Should CTAs on banners duplicate video titles?",
+      answer:
+        "Keep banners evergreen; put episode-specific CTAs on thumbnails instead.",
+    },
+    {
+      question: "How do I export for both desktop and TV?",
+      answer: "One correctly sized export covers both if the safe area is respected.",
+    },
+    {
+      question: "Will a 72 dpi label hurt YouTube quality?",
+      answer: "Pixel dimensions matter more than DPI metadata for screen art.",
+    },
+    {
+      question: "Can I animate the banner file itself?",
+      answer: "Channel art is still; use video intros or community posts for motion.",
+    }
+  ],
+  "how-to-reduce-image-size-to-100kb": [
+    {
+      question: "What if 100KB is still required after resizing to 1200px wide?",
+      answer:
+        "Lower JPG/WebP quality in small steps until the download is under the cap.",
+    },
+    {
+      question: "Can I hit 100KB with a transparent logo?",
+      answer:
+        "Transparent PNGs rarely reach tiny budgets—use a flat JPG on a solid background when forms demand it.",
+    },
+    {
+      question: "Should I check size in KB or KiB?",
+      answer:
+        "Confirm whether the form means 100×1000 or 100×1024 bytes; browsers often show KiB.",
+    },
+    {
+      question: "How do phone screenshots get under 100KB?",
+      answer:
+        "Crop UI chrome, resize down, then apply stronger compression than you would for a hero photo.",
+    },
+    {
+      question: "Is 100KB enough for a passport photo upload?",
+      answer:
+        "Some portals want both dimension and file-size caps—meet both, not only kilobytes.",
+    },
+    {
+      question: "Why does my editor show a different size than the OS?",
+      answer:
+        "Unsaved previews differ from exported files—always check the downloaded artifact.",
+    },
+    {
+      question: "Can progressive JPGs help perceived speed?",
+      answer:
+        "They can improve loading feel but may not shrink below 100KB by themselves.",
+    },
+    {
+      question: "What quality floor looks acceptable for faces?",
+      answer:
+        "Stay high enough that eyes stay clear; if you cannot, reduce pixel size first.",
+    },
+    {
+      question: "Do online compressors upload my ID scans?",
+      answer:
+        "Prefer on-device tools for sensitive IDs; assume uploads are stored if you use a remote service.",
+    },
+    {
+      question: "How do I batch many files to 100KB?",
+      answer:
+        "Script a quality ladder per image, or process them one by one when counts are small.",
+    }
+  ],
 };
