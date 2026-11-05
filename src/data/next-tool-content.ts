@@ -5,6 +5,7 @@ import { fantasyPointContent, graduationContent } from "./five-tools-content-b.t
 import { unemploymentContent } from "./five-tools-content-c.ts";
 import type { ToolContent } from "./tool-content.ts";
 import { secretSantaContent } from "./secret-santa-content.ts";
+import { tdeeCalculatorContent } from "./tdee-calculator-content.ts";
 
 export const nextToolContent: Record<string, ToolContent> = {
   "tip-calculator": {
@@ -1045,6 +1046,7 @@ export const nextToolContent: Record<string, ToolContent> = {
   },
   "significant-figures-calculator": significantFiguresToolContent,
   "secret-santa-generator": secretSantaContent,
+  "tdee-calculator": tdeeCalculatorContent,
   "youtube-banner-maker": youtubeBannerContent,
   "partial-pressure-calculator": partialPressureContent,
   "fantasy-point-calculator": fantasyPointContent,

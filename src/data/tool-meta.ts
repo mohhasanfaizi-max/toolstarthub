@@ -163,4 +163,7 @@ export const toolMetaDescriptions: Record<string, string> = {
     "Graduation calculator by birthday: estimate school start and graduation years from a date of birth with your own cutoff date, entry age and school calendar.",
   "unemployment-benefits-calculator":
     "Estimate weekly unemployment benefits and claim totals for California, New York, Texas and Florida using each state's official formula, limits and sources.",
+  "tdee-calculator":
+    "Free TDEE calculator: estimate daily calorie needs with Mifflin-St Jeor BMR, activity level, and maintain, lose or gain targets plus macros.",
+
 };

@@ -1699,6 +1699,30 @@ export const tools: Tool[] = [
     metaTitle: "Free Secret Santa Generator – Random Gift Exchange Draw",
     relatedSlugs: ["random-number-generator", "qr-code-generator", "date-difference-calculator", "time-zone-converter", "password-generator"],
   },
+  {
+    slug: "tdee-calculator",
+    name: "TDEE Calculator – Calculate Your Daily Calorie Needs",
+    description:
+      "Free TDEE calculator using Mifflin–St Jeor BMR, five activity levels and maintain, lose or gain calorie targets with suggested protein, carbs and fat.",
+    category: "calculators",
+    icon: "calculator",
+    route: "/tools/tdee-calculator",
+    featured: false,
+    new: true,
+    keywords: [
+      "tdee calculator",
+      "free tdee calculator",
+      "bmr calculator",
+      "daily calorie calculator",
+      "maintenance calories calculator",
+      "weight loss calorie calculator",
+      "total daily energy expenditure",
+      "mifflin st jeor",
+    ],
+    status: "available",
+    metaTitle: "Free TDEE Calculator – Daily Calorie Needs & BMR",
+    relatedSlugs: ["age-calculator", "unit-converter", "percentage-calculator", "tip-calculator", "savings-goal-calculator"],
+  },
   ...extraTools,
 ];
 

@@ -217,6 +217,8 @@ export const toolQuickAnswers: Record<string, string> = {
     "Find the first year a child reaches the entry age by the cutoff date, then add the years of school minus one. With age 5 by September 1 and 13 years, a child born August 20, 2020 graduates in June 2038.",
   "unemployment-benefits-calculator":
     "Most states base weekly unemployment pay on your highest-earning quarter, divided by a set figure and capped. This estimate covers only CA, NY, TX and FL, with official sources; the state agency decides the real amount.",
+  "tdee-calculator":
+    "A TDEE calculator estimates daily calorie burn from age, sex, height, weight and activity. This one uses Mifflin–St Jeor for BMR, multiplies by an activity factor, then shows maintain, lose and gain targets with suggested macros.",
   ...extraToolQuickAnswers,
 };
 

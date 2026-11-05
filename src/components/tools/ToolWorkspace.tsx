@@ -122,6 +122,7 @@ const workspaces: Record<string, ComponentType> = {
   "average-calculator": lazyTool(async () => (await import("./workspace/AverageCalculatorTool")).AverageCalculatorTool),
   "significant-figures-calculator": lazyTool(async () => (await import("./workspace/SignificantFiguresCalculatorTool")).SignificantFiguresCalculatorTool),
   "secret-santa-generator": lazyTool(async () => (await import("./workspace/SecretSantaGeneratorTool")).SecretSantaGeneratorTool),
+  "tdee-calculator": lazyTool(async () => (await import("./workspace/TdeeCalculatorTool")).TdeeCalculatorTool),
   "youtube-banner-maker": lazyTool(async () => (await import("./workspace/YoutubeBannerMakerTool")).YoutubeBannerMakerTool),
   "partial-pressure-calculator": lazyTool(async () => (await import("./workspace/PartialPressureCalculatorTool")).PartialPressureCalculatorTool),
   "fantasy-point-calculator": lazyTool(async () => (await import("./workspace/FantasyPointCalculatorTool")).FantasyPointCalculatorTool),
