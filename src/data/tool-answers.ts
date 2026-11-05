@@ -219,6 +219,8 @@ export const toolQuickAnswers: Record<string, string> = {
     "Most states base weekly unemployment pay on your highest-earning quarter, divided by a set figure and capped. This estimate covers only CA, NY, TX and FL, with official sources; the state agency decides the real amount.",
   "tdee-calculator":
     "A TDEE calculator estimates daily calorie burn from age, sex, height, weight and activity. This one uses Mifflin–St Jeor for BMR, multiplies by an activity factor, then shows maintain, lose and gain targets with suggested macros.",
+  "alma-ai-nutrition-coach":
+    "Alma is a free AI nutrition coach and food tracker: calculate daily calories, BMR and TDEE, log meals in your browser, monitor protein, macros and micronutrients, and get educational coaching without a paywall.",
   ...extraToolQuickAnswers,
 };
 

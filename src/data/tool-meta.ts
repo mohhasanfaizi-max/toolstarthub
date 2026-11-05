@@ -165,5 +165,7 @@ export const toolMetaDescriptions: Record<string, string> = {
     "Estimate weekly unemployment benefits and claim totals for California, New York, Texas and Florida using each state's official formula, limits and sources.",
   "tdee-calculator":
     "Free TDEE calculator: estimate daily calorie needs with Mifflin-St Jeor BMR, activity level, and maintain, lose or gain targets plus macros.",
+  "alma-ai-nutrition-coach":
+    "Use Alma, your AI Nutrition Coach and Food Tracker, to calculate daily calories, track food, monitor protein, macros and micronutrients online.",
 
 };

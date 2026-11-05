@@ -94,6 +94,7 @@ export const guideDates: Record<string, GuideDates> = {
   "graduation-calculator-by-birthday": { published: "2026-11-02T08:00:00Z", modified: "2026-11-02T08:00:00Z" },
   "unemployment-benefits-calculator": { published: "2026-11-02T08:00:00Z", modified: "2026-11-02T08:00:00Z" },
   "tdee-calculator": { published: "2026-11-05T16:00:00Z", modified: "2026-11-05T16:00:00Z" },
+  "alma-ai-nutrition-coach": { published: "2026-11-05T17:30:00Z", modified: "2026-11-05T17:30:00Z" },
 };
 
 export function getGuideDates(

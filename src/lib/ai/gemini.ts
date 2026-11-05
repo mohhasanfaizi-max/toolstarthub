@@ -60,6 +60,25 @@ export async function generateGeminiText(prompt: string, tool: AiToolId): Promis
   return text;
 }
 
+/** Freeform text for tools that are not in the shared AI_TOOLS list. */
+export async function generateGeminiFreeform(prompt: string, maxOutputTokens: number): Promise<string> {
+  if (!geminiConfigured()) {
+    throw new Error("AI is not configured.");
+  }
+  const ai = client();
+  const response = await ai.models.generateContent({
+    model: geminiModelName(),
+    contents: prompt,
+    config: {
+      maxOutputTokens,
+      thinkingConfig: { thinkingLevel: ThinkingLevel.MINIMAL },
+    },
+  });
+  const text = response.text?.trim() ?? "";
+  if (!text) throw new Error("The AI service returned an empty result.");
+  return text;
+}
+
 /** Structured JSON from the same Gemini client, model, and key as the other AI tools. */
 export async function generateGeminiJsonText(prompt: string, schema: Schema, maxOutputTokens: number): Promise<string> {
   const ai = client();

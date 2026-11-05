@@ -1723,7 +1723,36 @@ export const tools: Tool[] = [
     metaTitle: "Free TDEE Calculator – Daily Calorie Needs & BMR",
     relatedSlugs: ["age-calculator", "unit-converter", "percentage-calculator", "tip-calculator", "savings-goal-calculator"],
   },
+  {
+    slug: "alma-ai-nutrition-coach",
+    name: "Alma: AI Nutrition Coach & Food Tracker – Free Nutrition Calculations",
+    description:
+      "Use Alma, your AI Nutrition Coach and Food Tracker, to calculate daily calories, track food, monitor protein, macros and micronutrients, and explore free nutrition calculations online.",
+    category: "calculators",
+    icon: "calculator",
+    route: "/tools/alma-ai-nutrition-coach",
+    featured: false,
+    new: true,
+    keywords: [
+      "alma",
+      "alma nutrition",
+      "ai nutrition coach",
+      "ai nutrition calculator",
+      "nutrition calculator",
+      "free nutrition calculator",
+      "food tracker",
+      "food tracking website",
+      "calorie counter",
+      "daily calorie tracker",
+      "macro calculator",
+      "micronutrient tracker",
+    ],
+    status: "available",
+    metaTitle: "Alma: AI Nutrition Coach & Food Tracker – Free Nutrition Calculator",
+    relatedSlugs: ["tdee-calculator", "age-calculator", "unit-converter", "percentage-calculator", "date-difference-calculator"],
+  },
   ...extraTools,
+
 ];
 
 export function getToolBySlug(slug: string): Tool | undefined {
