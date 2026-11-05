@@ -6325,5 +6325,317 @@ export const extraGuideFaqs: Record<string, GuideFaq[]> = {
       answer:
         "Yes when rates and budget allow; run new payment numbers before closing costs lock you in.",
     }
+  ],
+  "cumulative-gpa-vs-semester-gpa": [
+    {
+      question: "How do I combine old credits with a new semester in the calculator?",
+      answer:
+        "Enter prior quality points and credit hours, then add the new term’s courses so the cumulative result updates.",
+    },
+    {
+      question: "Why can’t I just average four semester GPAs?",
+      answer:
+        "Semesters with different credit loads must be credit-weighted; a straight average of GPAs is usually wrong.",
+    },
+    {
+      question: "What is quality points in GPA math?",
+      answer:
+        "Each course’s grade points times its credit hours; cumulative GPA is total quality points over total credits.",
+    },
+    {
+      question: "How does a light elective term affect cumulative GPA?",
+      answer:
+        "Fewer credits move the cumulative number less than a heavy term with the same semester GPA.",
+    },
+    {
+      question: "Can retaken courses replace old grades in cumulative GPA?",
+      answer:
+        "Policies differ by school—some replace, some average; follow your registrar’s rule, not a generic tool default.",
+    },
+    {
+      question: "Do transfer credits always enter my cumulative GPA?",
+      answer:
+        "Often credits transfer without grade points; check whether your school includes them in GPA.",
+    },
+    {
+      question: "How do I project the GPA I need next term?",
+      answer:
+        "Enter current cumulative totals and planned credits, then test grade scenarios until the target appears.",
+    },
+    {
+      question: "Is weighted high-school GPA the same as college cumulative GPA?",
+      answer:
+        "No—high-school weighting and college 4.0 scales differ; do not mix them in one average.",
+    },
+    {
+      question: "What if my school uses a 4.3 scale for A+?",
+      answer:
+        "Select the matching scale in the calculator so A+ is not understated as 4.0.",
+    },
+    {
+      question: "Should scholarships look at semester or cumulative GPA?",
+      answer:
+        "Many renew on cumulative GPA; read each award’s term-versus-cumulative requirement.",
+    }
+  ],
+  "how-many-working-days-in-2027": [
+    {
+      question: "How do I count 2027 working days with the business-days tool?",
+      answer:
+        "Set the year or date range to 2027, add holiday dates you observe, and read the weekday total minus holidays.",
+    },
+    {
+      question: "Which federal holidays fall in 2027?",
+      answer:
+        "Use the year’s official list—including observances when a holiday shifts from a weekend—and enter those dates.",
+    },
+    {
+      question: "Do I exclude Saturdays and Sundays automatically?",
+      answer:
+        "Business-day mode typically skips weekends; confirm the tool’s weekend setting matches your workplace.",
+    },
+    {
+      question: "How should companies that close on Christmas Eve adjust the count?",
+      answer:
+        "Add December 24 as an extra holiday if your policy gives that day off.",
+    },
+    {
+      question: "Can I get a monthly working-day breakdown for 2027?",
+      answer:
+        "Run each month as its own range, or filter the year view if the calculator shows monthly totals.",
+    },
+    {
+      question: "What if my team works Sunday–Thursday?",
+      answer:
+        "Weekend definitions change—adjust which days count as non-working before trusting the total.",
+    },
+    {
+      question: "How do observed Monday holidays affect July 4th week?",
+      answer:
+        "When the holiday is observed on Monday, that Monday drops from working days even if July 4 is Sunday.",
+    },
+    {
+      question: "Should contractors use federal holidays?",
+      answer:
+        "Only if the contract says so; otherwise enter the client’s holiday calendar.",
+    },
+    {
+      question: "How accurate is a count without local state holidays?",
+      answer:
+        "Federal-only counts miss state or company days; add every extra closure you truly observe.",
+    },
+    {
+      question: "Can I reuse the 2027 list for payroll accruals?",
+      answer:
+        "Yes as a planning input—still align with HR’s official calendar before locking policies.",
+    }
+  ],
+  "how-to-calculate-a-discount": [
+    {
+      question: "How do I apply a percent off and then see the savings amount?",
+      answer:
+        "Enter the original price and discount percent; read both the final price and the money saved.",
+    },
+    {
+      question: "How should stacked coupon discounts be applied?",
+      answer:
+        "Apply them in the order the store states—usually one after another on the reduced price, not added percents.",
+    },
+    {
+      question: "Can I calculate the pre-discount price from a sale tag?",
+      answer:
+        "Yes—enter the sale price and percent off, then solve backward for the original when the tool supports it.",
+    },
+    {
+      question: "Does sales tax change the discount percent?",
+      answer:
+        "Tax is usually added after the discounted price; the percent off still refers to the pre-tax item price unless noted.",
+    },
+    {
+      question: "How do I compare 25% off versus $20 off?",
+      answer:
+        "Run both against the same original price and pick the lower final price.",
+    },
+    {
+      question: "What is a quick mental check for 15% off?",
+      answer:
+        "Take 10% then half of that 10% and add them; subtract the sum from the original.",
+    },
+    {
+      question: "How do member-only prices fit in?",
+      answer:
+        "Treat the member price as another discount scenario and compare it to the public sale percent.",
+    },
+    {
+      question: "Why might online and in-store finals differ?",
+      answer:
+        "Rounding, tax jurisdiction, or excluded fees can change the receipt even with the same listed percent.",
+    },
+    {
+      question: "Can I include shipping in the discount base?",
+      answer:
+        "Only if the promotion says so; most item discounts exclude shipping.",
+    },
+    {
+      question: "How do I handle a discount cap like “up to $50 off”?",
+      answer:
+        "Compute the percent savings, then clamp the dollar savings at the cap before subtracting.",
+    }
+  ],
+  "how-to-calculate-weighted-average": [
+    {
+      question: "How do I enter values and weights in a weighted average?",
+      answer:
+        "List each value with its weight, multiply, sum those products, then divide by the sum of weights.",
+    },
+    {
+      question: "What if my weights are percentages that total 100?",
+      answer:
+        "Convert them to decimals or use 100 as the total weight; both approaches match if applied consistently.",
+    },
+    {
+      question: "How do course credits act as weights in GPA?",
+      answer:
+        "Each grade’s points are weighted by credit hours, which is a classic weighted average.",
+    },
+    {
+      question: "Why can a weighted average sit outside the simple mean of two groups?",
+      answer:
+        "Larger groups pull harder; combining group means needs the original sizes as weights.",
+    },
+    {
+      question: "Can weights be greater than one?",
+      answer:
+        "Yes—weights are relative. Only the ratios matter, not a 0–1 limit.",
+    },
+    {
+      question: "How do I find the missing score to hit a target average?",
+      answer:
+        "Algebraically solve for the unknown value given remaining weight, or trial values in the calculator.",
+    },
+    {
+      question: "What happens with a zero weight?",
+      answer:
+        "That item contributes nothing; ensure you did not mean a missing mandatory component.",
+    },
+    {
+      question: "Should survey Likert scores use weighted averages?",
+      answer:
+        "They can if response options carry numeric weights; document the coding.",
+    },
+    {
+      question: "How do I weight returns in a simple portfolio example?",
+      answer:
+        "Weight each asset’s return by its portfolio share, then sum the weighted returns.",
+    },
+    {
+      question: "Can negative weights appear?",
+      answer:
+        "Rare in schoolwork; in finance they can mean short positions—know the context before using them.",
+    }
+  ],
+  "how-to-change-text-case": [
+    {
+      question: "How do I convert a paragraph to sentence case cleanly?",
+      answer:
+        "Paste the text, choose Sentence case, then fix proper nouns the converter cannot know.",
+    },
+    {
+      question: "When should I use Title Case versus sentence case?",
+      answer:
+        "Title Case fits headlines and book titles; sentence case fits ordinary body sentences.",
+    },
+    {
+      question: "How do I turn a phrase into kebab-case for a slug?",
+      answer:
+        "Choose kebab-case or lowercase-with-hyphens so spaces become hyphens and letters go lowercase.",
+    },
+    {
+      question: "Will ALL CAPS pasted from a PDF normalize?",
+      answer:
+        "Yes—run lower case or sentence case, then restore acronyms that should stay uppercase.",
+    },
+    {
+      question: "Can I convert programming identifiers between cases?",
+      answer:
+        "Use camelCase, PascalCase, or snake_case modes when offered; verify reserved words afterward.",
+    },
+    {
+      question: "Do emoji and symbols change in case conversion?",
+      answer:
+        "They stay as-is; only alphabetic characters shift case.",
+    },
+    {
+      question: "How should I handle brand names like iPhone?",
+      answer:
+        "Re-apply the official capitalization after bulk conversion.",
+    },
+    {
+      question: "Is there a risk converting code comments in bulk?",
+      answer:
+        "Yes—identifiers inside comments might change; convert prose separately from code.",
+    },
+    {
+      question: "Can I keep intentional mid-word capitals?",
+      answer:
+        "Most converters will alter them; protect those tokens before running Title Case.",
+    },
+    {
+      question: "Does line-wrapping in the editor mean case changed?",
+      answer:
+        "No—wrapping is display only; check the actual characters after conversion.",
+    }
+  ],
+  "how-to-convert-html-to-markdown": [
+    {
+      question: "How do I convert an HTML snippet into Markdown on this page?",
+      answer:
+        "Paste the HTML, run convert, then copy the Markdown and spot-check headings, links, and lists.",
+    },
+    {
+      question: "Will semantic tags like article or section become Markdown?",
+      answer:
+        "They usually unwrap to their text and inner Markdown; there is no single Markdown twin for every HTML5 sectioning tag.",
+    },
+    {
+      question: "How are images represented after conversion?",
+      answer:
+        "img tags typically become Markdown image syntax with alt text and the src URL when both are present.",
+    },
+    {
+      question: "What happens to inline styles and classes?",
+      answer:
+        "Most converters drop class and style attributes because plain Markdown cannot express them.",
+    },
+    {
+      question: "Can I keep a raw HTML table if Markdown tables look wrong?",
+      answer:
+        "Some pipelines allow embedded HTML tables; otherwise simplify the table before converting.",
+    },
+    {
+      question: "Why did my headings shift levels?",
+      answer:
+        "Browsers and converters map h1–h6 to # through ######; nested section markup can look like a level jump.",
+    },
+    {
+      question: "Are definition lists supported?",
+      answer:
+        "Basic Markdown has no standard definition-list syntax; those tags may flatten to paragraphs.",
+    },
+    {
+      question: "How do blockquotes convert?",
+      answer:
+        "blockquote content usually becomes lines prefixed with > in Markdown.",
+    },
+    {
+      question: "Will JavaScript-rendered HTML convert correctly?",
+      answer:
+        "Only the HTML you paste is converted—copy the post-render DOM if the source page builds content with scripts.",
+    },
+    {
+      question: "Is the HTML uploaded during conversion?",
+      answer:
+        "Conversion is meant to run in the browser session; keep sensitive markup offline if needed.",
+    }
   ]
 };

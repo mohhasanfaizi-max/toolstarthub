@@ -90,7 +90,7 @@ export function runCpsTestChecks(assert: Assert): void {
   assert(tool && tool.route === "/tools/cps-test" && tool.status === "available", "CPS Test is registered");
   assert(tools[tools.length - 1]?.slug === "cps-test", "CPS Test is appended after the original tools");
   assert(getNewTools().some((item) => item.slug === "cps-test"), "CPS Test is in Recently added");
-  assert(getToolContent("cps-test")?.faqs.length === 6, "CPS Test has six FAQs");
+  assert(getToolContent("cps-test")?.faqs.length === 20, "CPS Test has twenty FAQs");
   assert(toolQuickAnswers["cps-test"], "CPS Test has a quick answer");
   assert(searchTools("cps test")[0]?.slug === "cps-test", "cps test search ranks CPS Test first");
   assert(searchTools("click speed test").some((item) => item.slug === "cps-test"), "click speed test search");

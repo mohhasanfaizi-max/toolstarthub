@@ -6384,5 +6384,437 @@ export const extraToolFaqs: Record<string, ToolFaq[]> = {
       answer:
         "Copy the English draft into your CMS or notes; refreshing can clear the form.",
     }
+  ],
+  "cps-test": [
+    {
+      question: "How do I start a clicks-per-second test on this page?",
+      answer:
+        "Click start when ready, click as fast as you can for the timed window, then read your CPS score when it ends.",
+    },
+    {
+      question: "How long is a typical CPS timing window?",
+      answer:
+        "Many tests use one to five seconds; shorter windows favor burst speed, longer ones reward consistency.",
+    },
+    {
+      question: "Does mouse vs trackpad change my CPS?",
+      answer:
+        "Yes—devices and switch feel differ. Compare scores only on the same setup.",
+    },
+    {
+      question: "What is jitter clicking in simple terms?",
+      answer:
+        "A technique that vibrates the hand to trigger rapid clicks; it is harder on wrists and not required here.",
+    },
+    {
+      question: "What is butterfly clicking?",
+      answer:
+        "Alternating two fingers on the same button to raise click rate; practice carefully to avoid strain.",
+    },
+    {
+      question: "Can I pause mid-test?",
+      answer:
+        "Usually the timer runs straight through; restart if you need a clean attempt.",
+    },
+    {
+      question: "Why did my score drop on a longer test?",
+      answer:
+        "Fatigue and missed clicks lower average CPS as the window grows.",
+    },
+    {
+      question: "Does the tool count right-clicks or only left?",
+      answer:
+        "Most CPS tests count the primary button you use in the click area—follow the on-page instructions.",
+    },
+    {
+      question: "Is there a cooldown between runs?",
+      answer:
+        "You can usually retry immediately; rest if your hand feels tired.",
+    },
+    {
+      question: "Can I use this for gaming warm-ups?",
+      answer:
+        "Yes as a short warm-up metric; in-game performance still depends on aim and settings.",
+    },
+    {
+      question: "Will browser lag lower my score?",
+      answer:
+        "Heavy tabs or low FPS can miss click events; close extras for a fairer reading.",
+    },
+    {
+      question: "How should beginners improve without injury?",
+      answer:
+        "Use relaxed form, short sessions, and stop if you feel pain—speed can wait.",
+    },
+    {
+      question: "Do touchscreens support CPS tests?",
+      answer:
+        "If the page accepts tap events, yes; results still differ from a mouse.",
+    },
+    {
+      question: "Are high scores saved to a leaderboard?",
+      answer:
+        "This page focuses on your local result unless a share feature is clearly offered.",
+    }
+  ],
+  "paycheck-estimator": [
+    {
+      question: "How do I estimate take-home from a salary amount?",
+      answer:
+        "Enter gross pay, pay frequency, and withholding assumptions, then read the estimated net.",
+    },
+    {
+      question: "Should I enter annual salary or per-paycheck gross?",
+      answer:
+        "Match the field labels—annual figures are split by frequency; per-period gross is used as entered.",
+    },
+    {
+      question: "How do pre-tax deductions change the estimate?",
+      answer:
+        "They reduce taxable wages before withholding, which can raise take-home versus the same post-tax cut.",
+    },
+    {
+      question: "What belongs in post-tax deductions?",
+      answer:
+        "Items taken after tax, such as certain benefits or garnishments, which lower net without changing taxable wages the same way.",
+    },
+    {
+      question: "Can I model biweekly versus monthly pay?",
+      answer:
+        "Yes—switch frequency so the same annual pay produces the matching per-check estimate.",
+    },
+    {
+      question: "Why is this not a substitute for payroll software?",
+      answer:
+        "It uses simplified withholding percent inputs, not full IRS tables, state rules, or employer configs.",
+    },
+    {
+      question: "How do I approximate a raise’s effect on net pay?",
+      answer:
+        "Update gross pay and compare the new net; adjust withholding if your real W-4 would change.",
+    },
+    {
+      question: "What if I have multiple jobs?",
+      answer:
+        "Estimate each paycheck separately or combine gross carefully; overlapping withholding is easy to mis-model.",
+    },
+    {
+      question: "Do bonuses need a different withholding percent?",
+      answer:
+        "Often yes in real payroll; raise the percent temporarily if you want a cautious bonus estimate.",
+    },
+    {
+      question: "Can I include employer benefits value?",
+      answer:
+        "Focus on cash pay here; non-cash benefits usually sit outside a simple take-home estimate.",
+    },
+    {
+      question: "How accurate are state tax guesses?",
+      answer:
+        "Only as good as the percent you enter—look up your situation or use official estimators for filing.",
+    },
+    {
+      question: "Will changing filing status appear here?",
+      answer:
+        "Only indirectly via the withholding percent you choose; the tool is not a full W-4 worksheet.",
+    },
+    {
+      question: "Can hourly workers use this?",
+      answer:
+        "Convert expected hours times rate into gross for the period, then run the estimate.",
+    },
+    {
+      question: "Are results stored after I leave?",
+      answer:
+        "Treat numbers as session-only; copy anything you need into your own notes.",
+    }
+  ],
+  "rent-vs-buy-calculator": [
+    {
+      question: "What inputs matter most in a rent-versus-buy comparison?",
+      answer:
+        "Home price, down payment, rate, term, rent, and how long you expect to stay usually move the result most.",
+    },
+    {
+      question: "How should I treat closing costs?",
+      answer:
+        "Include them in buying costs so early years are not understated versus renting.",
+    },
+    {
+      question: "Does the tool assume I invest the down payment if I rent?",
+      answer:
+        "Many comparisons credit an opportunity return on money not tied up in a house—read the on-page assumptions.",
+    },
+    {
+      question: "How do property taxes affect the buy side?",
+      answer:
+        "Higher taxes raise ownership cost each year and can tip longer stays toward renting if prices are flat.",
+    },
+    {
+      question: "Should HOA fees be included?",
+      answer:
+        "Yes when you would pay them—add them with other ownership costs for a fair match to rent.",
+    },
+    {
+      question: "What does break-even year mean here?",
+      answer:
+        "It is the stay length where buying’s cumulative cost crosses renting under your assumptions—not a promise.",
+    },
+    {
+      question: "How do I model rising rent?",
+      answer:
+        "Enter a rent growth rate if available so later years reflect likely increases.",
+    },
+    {
+      question: "Can maintenance be zero on the buy side?",
+      answer:
+        "Unrealistic for most homes; include a yearly upkeep percent or dollar amount.",
+    },
+    {
+      question: "What if I plan to sell before the loan ends?",
+      answer:
+        "Shorten the comparison horizon and include selling costs so equity gains are not overstated.",
+    },
+    {
+      question: "How sensitive is the result to interest rates?",
+      answer:
+        "Small rate changes can shift payments a lot—try a higher and lower rate to see the spread.",
+    },
+    {
+      question: "Does the calculator include tax deductions for mortgage interest?",
+      answer:
+        "Only if that option is present; many simple models ignore itemized tax effects.",
+    },
+    {
+      question: "How should first-time buyers use the output?",
+      answer:
+        "As a planning sketch—confirm preapproval numbers and local costs before deciding.",
+    },
+    {
+      question: "Can I compare a condo to renting a similar unit?",
+      answer:
+        "Yes—use the condo price and fees against rent for a like-for-like unit type.",
+    },
+    {
+      question: "Why might buying look better on paper but feel worse monthly?",
+      answer:
+        "Cash-flow differs from long-run net worth; check both payment comfort and the horizon result.",
+    }
+  ],
+  "robots-txt-generator": [
+    {
+      question: "How do I allow all crawlers with a simple robots.txt?",
+      answer:
+        "Use a User-agent: * group with Allow: / or omit Disallow rules that block the whole site.",
+    },
+    {
+      question: "How do I block an entire site from crawlers?",
+      answer:
+        "Add Disallow: / under the relevant user-agent—confirm you truly want that before publishing.",
+    },
+    {
+      question: "Can I disallow only an admin folder?",
+      answer:
+        "Yes—set Disallow to that path while leaving the rest of the site allowed.",
+    },
+    {
+      question: "Where should Sitemap lines go?",
+      answer:
+        "Add absolute sitemap URLs, typically near the end of the file after user-agent groups.",
+    },
+    {
+      question: "Do I need a separate group per bot?",
+      answer:
+        "Only when rules differ; otherwise one * group keeps the file simple.",
+    },
+    {
+      question: "Will this file force Google to obey instantly?",
+      answer:
+        "No—crawlers fetch on their schedule, and some non-compliant bots ignore robots.txt.",
+    },
+    {
+      question: "How do Allow and Disallow interact?",
+      answer:
+        "More specific rules often win depending on the crawler; test important paths in Search Console when unsure.",
+    },
+    {
+      question: "Can comments appear in robots.txt?",
+      answer:
+        "Yes—lines starting with # are comments and are ignored by crawlers.",
+    },
+    {
+      question: "Should staging sites block indexing this way?",
+      answer:
+        "Disallow can help, but authentication or noindex headers are stronger for private staging.",
+    },
+    {
+      question: "What path format should I type?",
+      answer:
+        "Start paths with / and match your real URL paths; blank paths are ignored by this generator.",
+    },
+    {
+      question: "Does robots.txt hide pages from users?",
+      answer:
+        "No—it only advises crawlers; URLs can still be fetched if guessed or linked.",
+    },
+    {
+      question: "How do I download the finished file?",
+      answer:
+        "Copy the generated text into a robots.txt at your site root, or use the download control if shown.",
+    },
+    {
+      question: "Can I list multiple sitemaps?",
+      answer:
+        "Yes—add one Sitemap line per XML sitemap URL you publish.",
+    },
+    {
+      question: "Is a crawl-delay line supported everywhere?",
+      answer:
+        "Crawl-delay is non-standard and ignored by major search engines; prefer rate controls in their tools.",
+    }
+  ],
+  "roman-numeral-converter": [
+    {
+      question: "How do I convert Arabic numbers into Roman numerals here?",
+      answer:
+        "Enter a whole number in range, convert, and copy the Roman result.",
+    },
+    {
+      question: "How do I convert Roman numerals back to digits?",
+      answer:
+        "Paste a valid numeral string and run the reverse conversion to see the integer.",
+    },
+    {
+      question: "Why are subtractive pairs like IV and IX used?",
+      answer:
+        "Standard form places a smaller value before a larger one to subtract, keeping numerals shorter.",
+    },
+    {
+      question: "Why is writing 99 as IC rejected by standard rules?",
+      answer:
+        "Classic Roman numerals use XCIX for 99; IC is not accepted in the usual teaching form.",
+    },
+    {
+      question: "What is the usual upper limit for conversion?",
+      answer:
+        "Many tools stop at 3999 because standard letters do not include a single glyph for 5000.",
+    },
+    {
+      question: "Can I paste roman numerals in lowercase letters?",
+      answer:
+        "Many converters normalize lowercase input to uppercase before validating the standard form.",
+    },
+    {
+      question: "Can I convert dates on clock faces that use IIII?",
+      answer:
+        "Clock tradition may show IIII, but strict converters expect IV for four.",
+    },
+    {
+      question: "How are larger numbers with overlines handled?",
+      answer:
+        "Vinculum notation for thousands-of-thousands is usually out of scope for basic converters.",
+    },
+    {
+      question: "Will spaces inside a numeral cause errors?",
+      answer:
+        "Yes—remove spaces and invalid characters before converting.",
+    },
+    {
+      question: "Can this help with outline numbering in documents?",
+      answer:
+        "Yes for small integers; paste each section number you need rather than full documents.",
+    },
+    {
+      question: "Why did an empty input fail?",
+      answer:
+        "There is nothing to convert—enter digits or a numeral first.",
+    },
+    {
+      question: "Do fractions or decimals convert?",
+      answer:
+        "No—Roman numerals here represent whole numbers only.",
+    },
+    {
+      question: "Is there only one correct numeral for each value?",
+      answer:
+        "Standard canonical forms are preferred; archaic variants may be rejected.",
+    },
+    {
+      question: "Can teachers use this for worksheets?",
+      answer:
+        "Yes for checking practice answers; students should still show the mapping rules.",
+    }
+  ],
+  "significant-figures-calculator": [
+    {
+      question: "How do I count significant figures for a decimal like 0.00450?",
+      answer:
+        "Leading zeros after the point are not significant; trailing zeros after a nonzero digit are, so 0.00450 has three.",
+    },
+    {
+      question: "How do I round a value to a chosen number of significant figures?",
+      answer:
+        "Enter the number, pick the target count, and apply the rounded result the tool shows.",
+    },
+    {
+      question: "Why use scientific notation for whole numbers ending in zeros?",
+      answer:
+        "It clarifies whether trailing zeros are significant, unlike a bare 1200.",
+    },
+    {
+      question: "How does multiplication limit significant figures?",
+      answer:
+        "The product should carry the fewest significant figures present among the factors.",
+    },
+    {
+      question: "How does addition limit decimal places?",
+      answer:
+        "The sum follows the least precise decimal place among the addends.",
+    },
+    {
+      question: "Can I paste lab measurements with units?",
+      answer:
+        "Enter the numeric part only; keep units in your notebook separately.",
+    },
+    {
+      question: "What happens if I ask for more significant figures than the input has?",
+      answer:
+        "You cannot create precision; the tool should not invent extra nonzero digits.",
+    },
+    {
+      question: "Are exact conversion factors treated as infinite precision?",
+      answer:
+        "In coursework, exact defined constants often are; follow your instructor’s rule.",
+    },
+    {
+      question: "How should I report chemistry titration results?",
+      answer:
+        "Match instrument precision and the significant-figure rules your lab manual states.",
+    },
+    {
+      question: "Does the calculator store my homework values?",
+      answer:
+        "Values stay in the browser session; copy final answers into your report yourself.",
+    },
+    {
+      question: "Can I check intermediate steps before final rounding?",
+      answer:
+        "Keep guard digits while calculating, then round once for the reported answer when that is the policy.",
+    },
+    {
+      question: "Why might two textbooks disagree on 100’s significant figures?",
+      answer:
+        "Ambiguous trailing zeros; scientific notation removes the ambiguity.",
+    },
+    {
+      question: "Is truncation acceptable instead of rounding?",
+      answer:
+        "Truncation biases results; standard coursework expects proper rounding.",
+    },
+    {
+      question: "How do I enter numbers in e-notation?",
+      answer:
+        "Use forms like 1.25e3 if the field accepts them, matching scientific notation inputs.",
+    }
   ]
 };
