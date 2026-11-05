@@ -6949,5 +6949,317 @@ export const extraGuideFaqs: Record<string, GuideFaq[]> = {
       answer:
         "Text is preserved as written; typographic quotes remain characters in the HTML output.",
     }
+  ],
+  "how-to-minify-css": [
+    {
+      question: "Should I minify CSS before or after Autoprefixer?",
+      answer:
+        "Run Autoprefixer on readable CSS first, then minify the prefixed output for production.",
+    },
+    {
+      question: "Can minification break CSS custom properties?",
+      answer:
+        "Values inside var() stay intact; problems usually come from earlier hand edits, not whitespace removal.",
+    },
+    {
+      question: "How do source maps relate to minified CSS?",
+      answer:
+        "Build tools can emit CSS maps; this paste minifier focuses on compressed text without maps.",
+    },
+    {
+      question: "Is it safe to minify print-only stylesheets?",
+      answer:
+        "Yes—same rules apply; keep media queries intact so print styles still target correctly.",
+    },
+    {
+      question: "Will @import URLs be inlined?",
+      answer:
+        "No—imports remain references; bundlers handle inlining separately.",
+    },
+    {
+      question: "Can I minify Tailwind’s generated CSS?",
+      answer:
+        "Yes after the utility build; do not hand-minify Tailwind source configs.",
+    },
+    {
+      question: "Why keep a non-minified copy in git?",
+      answer:
+        "Readable CSS is easier to review; ship minified artifacts from CI instead of editing them.",
+    },
+    {
+      question: "Do comments with /*! license */ survive?",
+      answer:
+        "Some pipelines preserve bang comments; assume this quick minify may strip them unless noted.",
+    },
+    {
+      question: "How much smaller will gzip make it afterward?",
+      answer:
+        "Minify first, then gzip/brotli on the server—both layers stack for transfer size.",
+    },
+    {
+      question: "Can nested CSS from modern browsers be minified?",
+      answer:
+        "If your syntax is valid nested CSS, minifiers that understand it will compress safely; invalid nesting fails earlier.",
+    }
+  ],
+  "how-to-minify-html": [
+    {
+      question: "Should I minify server-rendered templates or static output?",
+      answer:
+        "Prefer minifying the final HTML response or build output so template logic stays readable.",
+    },
+    {
+      question: "Can minification affect accessibility attributes?",
+      answer:
+        "Valid attributes remain; avoid aggressive optional-tag removal if your tooling is unsure.",
+    },
+    {
+      question: "How do conditional IE comments behave?",
+      answer:
+        "Legacy conditional comments are uncommon now; many minifiers strip ordinary comments including them.",
+    },
+    {
+      question: "Is pretty-printed HTML bad for SEO?",
+      answer:
+        "Search engines care about content, not indentation; minify for speed, not ranking tricks.",
+    },
+    {
+      question: "Will it reorder my attributes?",
+      answer:
+        "Most simple minifiers only remove whitespace; attribute order usually stays the same.",
+    },
+    {
+      question: "Can I minify email HTML?",
+      answer:
+        "Be careful—email clients are fragile. Test thoroughly or use an email-safe minifier profile.",
+    },
+    {
+      question: "Does removing whitespace break inline SVG?",
+      answer:
+        "SVG can be sensitive to spaces in text nodes; preview rendered output after minifying.",
+    },
+    {
+      question: "Should JSON-LD script blocks be minified?",
+      answer:
+        "You can compact JSON inside script tags, but keep it valid JSON so rich results still parse.",
+    },
+    {
+      question: "How do I compare before-and-after sizes fairly?",
+      answer:
+        "Compare UTF-8 byte lengths of the full documents, then re-check transferred size with compression on.",
+    },
+    {
+      question: "Can HTML minification replace image optimization?",
+      answer:
+        "No—it only shrinks markup. Compress media separately for real gains.",
+    }
+  ],
+  "how-to-convert-text-to-pdf": [
+    {
+      question: "Can I set custom margins for printed text?",
+      answer:
+        "Use the margin controls if offered; otherwise expect sensible default page margins around the body text.",
+    },
+    {
+      question: "How do line wraps differ from my editor?",
+      answer:
+        "PDF width and font size drive wrapping—preview a page before trusting exact line breaks.",
+    },
+    {
+      question: "Will tabs expand like in a code editor?",
+      answer:
+        "Tabs may become spaces or stay narrow; convert code to spaces first for predictable alignment.",
+    },
+    {
+      question: "Can I add a header on every page?",
+      answer:
+        "If header fields exist, fill them; otherwise the body title may appear only on the first page.",
+    },
+    {
+      question: "Does dark-mode text color affect the PDF?",
+      answer:
+        "Exported PDFs usually use dark text on white regardless of the site theme.",
+    },
+    {
+      question: "How should I handle very long paragraphs?",
+      answer:
+        "They wrap automatically; insert blank lines yourself when you need visual breaks.",
+    },
+    {
+      question: "Is copy-paste from the PDF lossless?",
+      answer:
+        "Text PDFs usually allow copying, though ligatures or odd fonts can occasionally alter characters.",
+    },
+    {
+      question: "Can I choose landscape orientation?",
+      answer:
+        "Pick landscape when the control is available; otherwise the default portrait page is used.",
+    },
+    {
+      question: "What happens to emoji in the PDF?",
+      answer:
+        "If the embedded font lacks glyphs, emoji may become boxes—stick to supported characters when fidelity matters.",
+    },
+    {
+      question: "Are downloads stored on ToolStarHub servers?",
+      answer:
+        "Generation is meant to stay in your browser session; keep sensitive drafts offline if required.",
+    }
+  ],
+  "json-vs-xml-vs-yaml": [
+    {
+      question: "When is XML still the better choice?",
+      answer:
+        "Choose XML for document-centric data, mixed content, or ecosystems that already standardize on schemas and namespaces.",
+    },
+    {
+      question: "Why do APIs prefer JSON over YAML?",
+      answer:
+        "JSON parses unambiguously in browsers and has broad first-class support; YAML’s indentation is better for humans editing configs.",
+    },
+    {
+      question: "Can XML attributes replace nested elements?",
+      answer:
+        "Attributes suit simple scalars; nested elements fit repeated or complex structures—style guides differ by schema.",
+    },
+    {
+      question: "How do I migrate a YAML config to JSON?",
+      answer:
+        "Parse YAML with a trusted library, then serialize JSON—watch duplicate keys and unquoted special values.",
+    },
+    {
+      question: "Is binary JSON (BSON) interchangeable with JSON?",
+      answer:
+        "No—BSON adds types and is not plain text JSON; convert explicitly when crossing systems.",
+    },
+    {
+      question: "Do XML namespaces work in JSON?",
+      answer:
+        "JSON has no native namespaces; encode them as property naming conventions if you must map across.",
+    },
+    {
+      question: "Why is YAML sensitive to whitespace errors?",
+      answer:
+        "Indentation defines structure; a one-space slip can nest keys incorrectly without a loud syntax error.",
+    },
+    {
+      question: "Can I validate YAML with a JSON Schema?",
+      answer:
+        "Some toolchains allow it after conversion; native YAML schema efforts exist but JSON Schema is more common.",
+    },
+    {
+      question: "Which format supports streaming large payloads best?",
+      answer:
+        "JSON and XML both have streaming parsers; YAML is usually loaded as a whole document.",
+    },
+    {
+      question: "Should I pretty-print JSON in git repos?",
+      answer:
+        "Pretty-printed JSON improves diffs; minify only for wire transfer if size matters.",
+    }
+  ],
+  "md5-vs-sha-256": [
+    {
+      question: "Why do download pages still show MD5 sums?",
+      answer:
+        "Legacy habit and speed—prefer SHA-256 when both are published, especially for security-sensitive files.",
+    },
+    {
+      question: "Can I truncate a SHA-256 digest safely?",
+      answer:
+        "Shorter prefixes raise collision risk; keep the full hex string for verification.",
+    },
+    {
+      question: "Does hashing encrypt my file?",
+      answer:
+        "No—hashes are one-way fingerprints. Anyone can recompute them from the same bytes.",
+    },
+    {
+      question: "How do salted passwords relate to SHA-256?",
+      answer:
+        "Password storage needs slow KDFs (bcrypt, scrypt, Argon2), not a bare SHA-256 of the password.",
+    },
+    {
+      question: "What is a rainbow table in this context?",
+      answer:
+        "Precomputed hash lookups for common inputs; salts and slow hashing defeat them.",
+    },
+    {
+      question: "Is SHA-512 always stronger than SHA-256?",
+      answer:
+        "SHA-512 has a larger digest; for most file integrity checks SHA-256 is already standard and sufficient.",
+    },
+    {
+      question: "Can hardware acceleration change the hash value?",
+      answer:
+        "No—correct implementations must match the same digest regardless of CPU instructions used.",
+    },
+    {
+      question: "How should I compare two digests visually?",
+      answer:
+        "Compare full strings case-insensitively; do not stop at the first few hex characters.",
+    },
+    {
+      question: "Does zip compression alter a file’s hash?",
+      answer:
+        "Yes if bytes change. Hash the exact artifact you distribute, not an unrelated archive layout.",
+    },
+    {
+      question: "Why might Git show a different checksum concept?",
+      answer:
+        "Git object IDs hash content with headers; they are not raw MD5/SHA-256 of the working-tree file alone.",
+    }
+  ],
+  "regex-cheat-sheet-email-phone-url": [
+    {
+      question: "Should I validate email only with regex on the server?",
+      answer:
+        "Use regex as a first pass, then send a confirmation message—RFC-complete email regex is impractical.",
+    },
+    {
+      question: "How do I allow optional country codes in phones?",
+      answer:
+        "Make the +country segment optional and constrain digit lengths per your market’s rules.",
+    },
+    {
+      question: "Why do URL patterns accidentally match markdown links?",
+      answer:
+        "Trailing punctuation and parentheses confuse naive patterns—trim common wrappers after the match.",
+    },
+    {
+      question: "Can I ban disposable email domains with regex alone?",
+      answer:
+        "Regex cannot keep up with domain lists; maintain an allow/deny list separately.",
+    },
+    {
+      question: "What flags help multiline phone lists?",
+      answer:
+        "Use multiline mode with ^ and $ per line, or split lines before testing each number.",
+    },
+    {
+      question: "How do internationalized domain names affect URL regex?",
+      answer:
+        "IDNs may appear as punycode; decide whether to allow Unicode host labels explicitly.",
+    },
+    {
+      question: "Is \\d safe for phone digits in all locales?",
+      answer:
+        "\\d may match more than ASCII 0–9 in Unicode modes—use [0-9] when you need ASCII only.",
+    },
+    {
+      question: "Should capture groups extract the TLD from URLs?",
+      answer:
+        "You can, but maintaining TLD lists is brittle; prefer a real URL parser when available.",
+    },
+    {
+      question: "How do I test patterns without pasting production data?",
+      answer:
+        "Use synthetic examples that cover edge cases—plus addresses, extensions, and long query strings.",
+    },
+    {
+      question: "Can possessive quantifiers speed up email checks?",
+      answer:
+        "They can reduce backtracking in some engines, but clarity and tests matter more than micro-tweaks.",
+    }
   ]
 };

@@ -7243,5 +7243,367 @@ export const extraToolFaqs: Record<string, ToolFaq[]> = {
       answer:
         "Judge payments against take-home cash so the budget stays realistic.",
     }
+  ],
+  "percentage-calculator": [
+    {
+      question: "How do I reverse a percentage to find the original number?",
+      answer:
+        "Divide the known amount by the percent as a decimal (for example 80 ÷ 0.2) to recover the base before the percent was applied.",
+    },
+    {
+      question: "What is a percentage increase versus a markup?",
+      answer:
+        "Both raise a number by a percent; retail markup often starts from cost, while “increase by” can apply to any baseline you choose.",
+    },
+    {
+      question: "Can I calculate successive discounts with this tool?",
+      answer:
+        "Apply each discount to the new amount in order—do not add the percents and subtract once.",
+    },
+    {
+      question: "How do tip percentages relate to the bill?",
+      answer:
+        "Enter the bill as the base and the tip rate as the percent to see the tip amount and optionally the total.",
+    },
+    {
+      question: "Why is 10% of 50 not the same as 50% of 10?",
+      answer:
+        "Order matters for “percent of”: 0.10×50 equals 5, while 0.50×10 also equals 5 here, but other pairs diverge—always name the base clearly.",
+    },
+    {
+      question: "How do I express a ratio as a percent?",
+      answer:
+        "Divide the part by the whole, then multiply by 100 to get the percentage.",
+    },
+    {
+      question: "Can negative percentages make sense?",
+      answer:
+        "Yes for decreases or losses—interpret the sign as direction relative to the base you entered.",
+    },
+    {
+      question: "How precise are the decimal results?",
+      answer:
+        "Results use ordinary floating math; round to cents or whole percents when reporting money or grades.",
+    },
+    {
+      question: "What if I need parts per million instead of percent?",
+      answer:
+        "Convert: 1% = 10,000 ppm. This calculator stays in percent terms.",
+    },
+    {
+      question: "How should teachers weight exam percents?",
+      answer:
+        "Convert each score to points with its weight, then combine—simple averaging of percents ignores different weights.",
+    },
+    {
+      question: "Does the tool handle percent-of-percent chains?",
+      answer:
+        "Run each step separately on the updated value so compounding stays correct.",
+    },
+    {
+      question: "Can I use it for tax-exclusive to tax-inclusive prices?",
+      answer:
+        "To add tax, increase by the rate; to remove tax from a gross price, divide by (1 + rate).",
+    },
+    {
+      question: "Why did my spreadsheet disagree by a cent?",
+      answer:
+        "Rounding mode and intermediate precision differ; match banker’s vs half-up rules when reconciling.",
+    }
+  ],
+  "css-gradient-generator": [
+    {
+      question: "How many color stops can I add?",
+      answer:
+        "Add several stops along the gradient line; keep transitions smooth by spacing stops intentionally.",
+    },
+    {
+      question: "What angle should I use for a top-to-bottom fade?",
+      answer:
+        "180deg (or “to bottom”) runs from the top edge downward in standard CSS linear gradients.",
+    },
+    {
+      question: "Can I copy CSS that works in older browsers?",
+      answer:
+        "Modern linear-gradient syntax is widely supported; keep a solid fallback background color for rare legacy cases.",
+    },
+    {
+      question: "How do I make a repeating stripe pattern?",
+      answer:
+        "Use repeating-linear-gradient with short color stops so the pattern tiles across the element.",
+    },
+    {
+      question: "Does the preview match production pixels exactly?",
+      answer:
+        "Browsers rasterize similarly, but anti-aliasing and color profiles can cause tiny differences.",
+    },
+    {
+      question: "Can I animate a gradient angle?",
+      answer:
+        "Animating background-position or custom properties is more reliable than tweening complex gradient strings.",
+    },
+    {
+      question: "How do conic gradients differ from radial ones?",
+      answer:
+        "Conic sweeps around a center like a pie; radial expands outward from a center point.",
+    },
+    {
+      question: "Should gradients live in CSS or as PNG assets?",
+      answer:
+        "Pure CSS scales crisply and stays tiny; use images when you need noise, photos, or complex art.",
+    },
+    {
+      question: "Can I use hex and rgba stops together?",
+      answer:
+        "Yes—mix notations freely as long as each stop is a valid CSS color.",
+    },
+    {
+      question: "How do I soft-blend into a transparent overlay?",
+      answer:
+        "End with a stop that uses alpha 0 so content underneath shows through.",
+    },
+    {
+      question: "Will the generated CSS work inside SVG fill?",
+      answer:
+        "SVG often needs its own gradient elements; paste CSS gradients into HTML/CSS backgrounds instead.",
+    },
+    {
+      question: "Can I export only the background-image line?",
+      answer:
+        "Copy the gradient function and drop it into any background or background-image declaration you already have.",
+    }
+  ],
+  "home-affordability-calculator": [
+    {
+      question: "Should I use gross or net income in the fields?",
+      answer:
+        "Lenders usually look at gross income for DTI, while your budget should still respect take-home cash.",
+    },
+    {
+      question: "How do HOA fees change the affordable price?",
+      answer:
+        "Monthly HOA counts like housing cost—higher fees leave less room for principal and interest.",
+    },
+    {
+      question: "What interest rate should I assume?",
+      answer:
+        "Use a rate close to current quotes for your credit tier; small rate changes move price a lot.",
+    },
+    {
+      question: "Does a 15-year term raise or lower the price I can afford?",
+      answer:
+        "Shorter terms mean higher monthly payments, so the affordable purchase price usually drops.",
+    },
+    {
+      question: "How should bonuses factor into income?",
+      answer:
+        "Lenders may average or discount variable pay; enter only income you can document sustainably.",
+    },
+    {
+      question: "Can I model a larger down payment from gifts?",
+      answer:
+        "Yes—raise the down payment input; confirm gift-letter rules with your lender.",
+    },
+    {
+      question: "Why do online estimates disagree with a preapproval?",
+      answer:
+        "Preapproval uses credit, reserves, and underwriting overlays this simple DTI model cannot see.",
+    },
+    {
+      question: "Should closing costs reduce affordability?",
+      answer:
+        "If paid in cash, keep them out of the loan; if rolled in, they raise the amount financed.",
+    },
+    {
+      question: "How do student loans affect the calculation?",
+      answer:
+        "Count the monthly student payment in other debts so DTI stays honest.",
+    },
+    {
+      question: "Is renting cheaper even when I “can afford” a house?",
+      answer:
+        "Affordability is not the same as wealth-building; compare total ownership costs to rent separately.",
+    },
+    {
+      question: "What maintenance percentage should I budget?",
+      answer:
+        "Many planners use about 1% of home value per year as a rough maintenance reserve.",
+    },
+    {
+      question: "Can I run scenarios for two incomes?",
+      answer:
+        "Sum qualifying incomes, then stress-test with one income removed for caution.",
+    }
+  ],
+  "fantasy-point-calculator": [
+    {
+      question: "How do I score a player who switched teams midweek?",
+      answer:
+        "Use the stats from the match you are scoring; team identity does not change the arithmetic.",
+    },
+    {
+      question: "Can I save multiple scoring templates?",
+      answer:
+        "Custom rules often stay in local storage for this browser—export notes if you need the same sheet elsewhere.",
+    },
+    {
+      question: "Do assists and goals ever double-count?",
+      answer:
+        "Only if your league’s sheet awards both; enter each category as your rules define.",
+    },
+    {
+      question: "How should I handle voided or postponed matches?",
+      answer:
+        "Leave those stats at zero until official results post, then recalculate.",
+    },
+    {
+      question: "Can decimal scoring use half points?",
+      answer:
+        "Yes—enter fractional values when your league awards 0.5 for categories like shots or tackles.",
+    },
+    {
+      question: "Does the tool know bench versus starting lineup?",
+      answer:
+        "You choose which players to enter; it does not read official lineups automatically.",
+    },
+    {
+      question: "How do I compare two scoring systems quickly?",
+      answer:
+        "Run the same raw stats through each rule set and note the total difference.",
+    },
+    {
+      question: "Are defensive points sport-agnostic?",
+      answer:
+        "Labels are generic—map your league’s tackle, rebound, or wicket categories onto the fields you edit.",
+    },
+    {
+      question: "What if a league caps points for a category?",
+      answer:
+        "Apply the cap manually before or after entry so the total respects the rulebook.",
+    },
+    {
+      question: "Can I use it for season-long projections?",
+      answer:
+        "It totals the stats you type; projections need your own assumed counting stats as inputs.",
+    },
+    {
+      question: "Does it sync with league APIs?",
+      answer:
+        "No—paste or type stats yourself so private leagues stay offline.",
+    }
+  ],
+  "graduation-calculator-by-birthday": [
+    {
+      question: "How do redshirting decisions change the output?",
+      answer:
+        "Delaying kindergarten shifts every later graduation year forward; adjust the start year to match the delay.",
+    },
+    {
+      question: "Should I use the school’s published cutoff or the state default?",
+      answer:
+        "Prefer the district or school cutoff when they publish one; state defaults are only a fallback.",
+    },
+    {
+      question: "Can summer birthdays land in different cohorts by district?",
+      answer:
+        "Yes—cutoff month differences move July/August children between class years.",
+    },
+    {
+      question: "Does the tool assume a 12-year K–12 path?",
+      answer:
+        "Typical US paths are modeled; confirm if your system uses middle-year structures or repeating grades.",
+    },
+    {
+      question: "How do grade skips affect graduation year?",
+      answer:
+        "Skipping a grade usually advances graduation by one year—shift the result accordingly.",
+    },
+    {
+      question: "What if my child attended school abroad first?",
+      answer:
+        "Map their age to the local entry grade, then project forward with the new system’s cutoffs.",
+    },
+    {
+      question: "Are GED or early-college paths covered?",
+      answer:
+        "No—those alternate timelines need counselor guidance beyond birthday arithmetic.",
+    },
+    {
+      question: "Can I estimate college class year from the same birthday?",
+      answer:
+        "Add four years after high-school graduation for a standard bachelor’s path, knowing transfers vary.",
+    },
+    {
+      question: "Why might twins have different labels in rare cases?",
+      answer:
+        "Identical birthdays share cohorts; different preschool delayed starts are a family choice, not the calculator.",
+    },
+    {
+      question: "Does the academic-year label include summer school?",
+      answer:
+        "Labels mark the school-year span; summer sessions do not usually change the cohort year alone.",
+    },
+    {
+      question: "How should move-in mid-year transfers be handled?",
+      answer:
+        "Ask the new school which cohort they place the student in—policy beats a generic birthday rule.",
+    }
+  ],
+  "partial-pressure-calculator": [
+    {
+      question: "How do I convert mmHg results to kPa?",
+      answer:
+        "Divide mmHg by 7.5006 for an approximate kPa value, or switch the tool’s unit before calculating.",
+    },
+    {
+      question: "Can I mix mole fractions that do not sum to 1?",
+      answer:
+        "They should sum to 1 for a complete mixture; fix composition first if the total drifts.",
+    },
+    {
+      question: "When is the ideal-gas mode appropriate?",
+      answer:
+        "Use it for dilute gases near ordinary temperatures and pressures; dense or polar gases need corrections.",
+    },
+    {
+      question: "How does water vapor affect dry-gas partial pressures?",
+      answer:
+        "Subtract vapor pressure from total pressure when you need dry-gas mole fractions.",
+    },
+    {
+      question: "Can I back-calculate mole fraction from a known partial pressure?",
+      answer:
+        "Divide the partial pressure by the total pressure when Dalton’s law applies.",
+    },
+    {
+      question: "Why did raising temperature change the ideal-gas result?",
+      answer:
+        "Ideal-gas mode uses PV=nRT relationships—temperature shifts computed pressures when amount and volume are fixed.",
+    },
+    {
+      question: "Do I enter gauge or absolute pressure?",
+      answer:
+        "Dalton’s law needs absolute total pressure; convert gauge readings by adding atmospheric pressure.",
+    },
+    {
+      question: "How many decimal places should lab reports keep?",
+      answer:
+        "Match your instrument precision; avoid false accuracy beyond the measured total pressure.",
+    },
+    {
+      question: "Is volume percent the same as mole percent for ideal gases?",
+      answer:
+        "Yes under ideal-gas assumptions at the same T and P; real gases can deviate.",
+    },
+    {
+      question: "Can dissolved gases in liquids use this tool?",
+      answer:
+        "No—Henry’s law and solubilities differ from gas-mixture partial pressures.",
+    },
+    {
+      question: "What if one component is a condensable vapor?",
+      answer:
+        "Watch saturation limits; condensation means the simple gas-mixture model no longer holds.",
+    }
   ]
 };
