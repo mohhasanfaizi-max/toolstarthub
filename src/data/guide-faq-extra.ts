@@ -5039,5 +5039,467 @@ export const extraGuideFaqs: Record<string, GuideFaq[]> = {
       answer:
         "The matching on-site tool is designed to convert in the browser session.",
     }
+  ],
+  "how-to-convert-units": [
+    {
+      question: "How do I convert meters to feet on this page?",
+      answer:
+        "Enter the meter value, choose meters→feet, and read the result.",
+    },
+    {
+      question: "How do temperature conversions differ from length?",
+      answer:
+        "Temperature uses offset formulas (C↔F↔K), not simple multiply-by factors.",
+    },
+    {
+      question: "Can I convert kilometers to miles for a road trip?",
+      answer:
+        "Yes—enter km and select miles as the target unit.",
+    },
+    {
+      question: "Why do some conversions show many decimals?",
+      answer:
+        "Factors are exact or high-precision; round to the digits your task needs.",
+    },
+    {
+      question: "How do I convert pounds to kilograms for a recipe?",
+      answer:
+        "Enter pounds, choose kg, and use the output in your ingredient list.",
+    },
+    {
+      question: "Are imperial and US liquid gallons the same?",
+      answer:
+        "No—clarify which gallon you need; converters may label them separately.",
+    },
+    {
+      question: "Can I chain conversions through a middle unit?",
+      answer:
+        "Usually unnecessary—pick the direct pair when available.",
+    },
+    {
+      question: "How should scientists treat significant figures?",
+      answer:
+        "Round to match input precision rather than copying every decimal digit.",
+    },
+    {
+      question: "Is nautical mile the same as a statute mile?",
+      answer:
+        "No—nautical miles are longer; choose the correct mile type.",
+    },
+    {
+      question: "How do I convert square meters to square feet?",
+      answer:
+        "Use area mode if offered; do not apply a linear factor to area by mistake.",
+    },
+    {
+      question: "Can I convert bits and bytes here?",
+      answer:
+        "Only if data-size units are listed; otherwise use a dedicated data converter.",
+    },
+    {
+      question: "Why might two converters disagree slightly?",
+      answer:
+        "Rounding rules or deprecated factors; prefer standards-based constants.",
+    },
+    {
+      question: "How do cooking volume conversions work?",
+      answer:
+        "Cup/tablespoon factors assume standard US measures unless labeled otherwise.",
+    },
+    {
+      question: "Should I convert currency with a unit tool?",
+      answer:
+        "No—currency needs live rates; use a FX source instead.",
+    },
+    {
+      question: "Does unit conversion upload my numbers?",
+      answer:
+        "Math on this page is meant to stay in the browser session.",
+    }
+  ],
+  "how-to-count-characters": [
+    {
+      question: "How do I check a draft against a character limit?",
+      answer:
+        "Paste the text and read the character total (and spaces option if shown).",
+    },
+    {
+      question: "Do punctuation marks add to the character count?",
+      answer:
+        "Yes—periods, commas, and symbols each count as characters.",
+    },
+    {
+      question: "How should I count for SMS-length planning?",
+      answer:
+        "Use the character total and remember multi-segment SMS rules for long texts.",
+    },
+    {
+      question: "Can I count characters without spaces?",
+      answer:
+        "If the tool offers a no-spaces metric, toggle it; otherwise remove spaces first.",
+    },
+    {
+      question: "Why do some platforms count links differently?",
+      answer:
+        "Social networks may shorten URLs; the raw paste count can differ from their UI.",
+    },
+    {
+      question: "How do emojis affect platform limits?",
+      answer:
+        "Many systems treat an emoji as more than one code unit—check the platform’s rule.",
+    },
+    {
+      question: "Is a newline one character or two?",
+      answer:
+        "It depends on LF vs CRLF in the paste; normalize breaks if you need a strict count.",
+    },
+    {
+      question: "How can writers hit an exact SEO title length?",
+      answer:
+        "Paste candidates and trim until the counter matches your target band.",
+    },
+    {
+      question: "Do leading and trailing spaces count?",
+      answer:
+        "Yes unless you trim first—trim when those spaces will not be published.",
+    },
+    {
+      question: "How does this differ from a word count?",
+      answer:
+        "Character count tallies symbols; word count groups alphanumeric tokens.",
+    },
+    {
+      question: "Can I count only the visible on-screen text?",
+      answer:
+        "Paste just that span; avoid including hidden template fields.",
+    },
+    {
+      question: "Why might Word and this counter disagree?",
+      answer:
+        "Different rules for hyphens, emojis, or breaks—compare settings, not just totals.",
+    },
+    {
+      question: "Is there a maximum paste size for counting?",
+      answer:
+        "Huge pastes may slow the tab; count long books in chapters if needed.",
+    },
+    {
+      question: "How do I count characters in a PDF?",
+      answer:
+        "Copy the text out first; PDFs are not counted as binary here.",
+    },
+    {
+      question: "Does character counting upload my draft?",
+      answer:
+        "Counting on this page is intended to stay in the browser session.",
+    }
+  ],
+  "how-to-create-a-utm-url": [
+    {
+      question: "How do I build a campaign link with UTM tags?",
+      answer:
+        "Enter the base URL plus source, medium, and campaign, then copy the tagged link.",
+    },
+    {
+      question: "What is utm_source typically used for?",
+      answer:
+        "It names the platform or referrer (newsletter, twitter, partner).",
+    },
+    {
+      question: "What should I put in utm_medium?",
+      answer:
+        "The channel type such as email, cpc, social, or affiliate.",
+    },
+    {
+      question: "Is utm_campaign required for every link?",
+      answer:
+        "Strongly recommended so reports group by initiative; some stacks require it.",
+    },
+    {
+      question: "Can I add utm_content and utm_term too?",
+      answer:
+        "Yes—content differentiates creatives; term is often for paid keywords.",
+    },
+    {
+      question: "How do spaces in campaign names get encoded?",
+      answer:
+        "They become %20 or + in the query string—prefer hyphens in values.",
+    },
+    {
+      question: "Will UTM tags break my existing query string?",
+      answer:
+        "A good builder merges carefully; avoid duplicating the same UTM keys.",
+    },
+    {
+      question: "Should UTM values be lowercase?",
+      answer:
+        "Lowercase helps reporting consistency; avoid mixed-case duplicates.",
+    },
+    {
+      question: "Do UTM parameters affect SEO rankings directly?",
+      answer:
+        "They are for analytics; use consistent canonical URLs to avoid duplicate-content confusion.",
+    },
+    {
+      question: "Can I tag links inside QR codes?",
+      answer:
+        "Yes—build the UTM URL first, then encode that full URL in the QR.",
+    },
+    {
+      question: "How do I keep vanity paths while tagging?",
+      answer:
+        "Tag the final destination URL, or tag a short link that redirects there.",
+    },
+    {
+      question: "What happens if I forget https:// on the base URL?",
+      answer:
+        "Add a valid scheme so clicks resolve; many builders prepend https:// when missing.",
+    },
+    {
+      question: "Should internal nav links get UTM tags?",
+      answer:
+        "Usually no—UTMs are for external campaigns, not every in-site click.",
+    },
+    {
+      question: "How do I verify a tagged URL before sending?",
+      answer:
+        "Open it and confirm the landing page plus query params in the address bar.",
+    },
+    {
+      question: "Does the UTM builder send my campaign names to a tracker?",
+      answer:
+        "Building on this page is meant to stay local; your analytics tool records visits later when people click.",
+    }
+  ],
+  "how-to-estimate-fuel-cost": [
+    {
+      question: "How do I estimate gasoline cost for a planned drive?",
+      answer:
+        "Enter distance, vehicle efficiency (mpg or L/100km), and fuel price per unit.",
+    },
+    {
+      question: "Should I use tank average mpg or the dashboard instant reading?",
+      answer:
+        "Use a realistic average for the trip type (city/highway mix), not a momentary spike.",
+    },
+    {
+      question: "How do I convert a round trip into the distance field?",
+      answer:
+        "Double the one-way miles/km, or run the estimate twice and add.",
+    },
+    {
+      question: "Can I compare hybrid versus gas car costs?",
+      answer:
+        "Run the same distance and fuel price with each vehicle’s efficiency.",
+    },
+    {
+      question: "What fuel price should travelers use?",
+      answer:
+        "Use a local station average along the route, not an outdated home price.",
+    },
+    {
+      question: "How does roof cargo change fuel use?",
+      answer:
+        "It often worsens efficiency—lower the mpg input to reflect real drag.",
+    },
+    {
+      question: "Can I estimate cost per kilometer as well?",
+      answer:
+        "Divide total fuel cost by distance after the estimate.",
+    },
+    {
+      question: "Do tolls and parking belong in this fuel math?",
+      answer:
+        "No—add them separately as trip budget lines.",
+    },
+    {
+      question: "How accurate are sticker mpg figures?",
+      answer:
+        "They are lab estimates; real-world driving is often less efficient.",
+    },
+    {
+      question: "What if I only know liters used on a past trip?",
+      answer:
+        "Cost ≈ liters × price; efficiency ≈ liters per distance for future forecasts.",
+    },
+    {
+      question: "Should electric drivers use this gas tool?",
+      answer:
+        "Not for kWh charging—use an electricity trip-cost calculator instead.",
+    },
+    {
+      question: "How do headwinds or mountains affect the estimate?",
+      answer:
+        "Efficiency drops—pad distance cost or reduce mpg for tough routes.",
+    },
+    {
+      question: "Can I plan multi-leg trips with different prices?",
+      answer:
+        "Estimate each leg with its distance and local price, then sum.",
+    },
+    {
+      question: "Why might my receipt disagree with the forecast?",
+      answer:
+        "Different price, detours, idle time, or HVAC load vs the assumed mpg.",
+    },
+    {
+      question: "Does the fuel estimator upload my trip details?",
+      answer:
+        "Calculation on this page is meant to stay in the browser session.",
+    }
+  ],
+  "how-to-generate-a-password": [
+    {
+      question: "How do I create a unique login secret for a new account?",
+      answer:
+        "Generate a long random password, copy it into a password manager, then save the account there.",
+    },
+    {
+      question: "Why prefer a manager over a notebook?",
+      answer:
+        "Managers encrypt many credentials, autofill accurately, and reduce reuse.",
+    },
+    {
+      question: "Should every account get a different password?",
+      answer:
+        "Yes—reuse lets one breach unlock others.",
+    },
+    {
+      question: "How do character classes improve strength?",
+      answer:
+        "Mixing upper, lower, digits, and symbols expands the search space when length is fixed.",
+    },
+    {
+      question: "When is a long passphrase better than symbols?",
+      answer:
+        "When you must type from memory; random words can be long yet memorable.",
+    },
+    {
+      question: "How do I handle sites that ban symbols?",
+      answer:
+        "Generate with letters/digits only at maximum allowed length and enable 2FA.",
+    },
+    {
+      question: "What is a practical minimum length today?",
+      answer:
+        "At least 12–16 characters when the site allows; longer is better.",
+    },
+    {
+      question: "Should I change passwords on a fixed calendar?",
+      answer:
+        "Change after suspected compromise or shared exposure; arbitrary monthly resets are outdated advice for strong unique passwords.",
+    },
+    {
+      question: "How do I recover if I forget a generated password?",
+      answer:
+        "Use the manager’s vault or the site’s reset flow—do not recycle an old password.",
+    },
+    {
+      question: "Are browser-saved passwords okay?",
+      answer:
+        "Built-in managers are fine if the device is locked; dedicated managers help across devices.",
+    },
+    {
+      question: "How should teams share access without Slack pasting?",
+      answer:
+        "Use shared vault items with permissions and auditing.",
+    },
+    {
+      question: "Does “password1” style variation help?",
+      answer:
+        "No—predictable patterns fall quickly; use true randomness.",
+    },
+    {
+      question: "Can I generate offline instead of in a tab?",
+      answer:
+        "Yes—local managers and OS tools avoid browser surfaces for ultra-sensitive use.",
+    },
+    {
+      question: "What role does two-factor authentication play?",
+      answer:
+        "2FA limits damage if a password leaks; enable it wherever available.",
+    },
+    {
+      question: "Does generating passwords on this page store them?",
+      answer:
+        "Generation is intended to stay in the session; save results only in your manager.",
+    }
+  ],
+  "how-to-hash-text": [
+    {
+      question: "How do I fingerprint a string with SHA-256?",
+      answer:
+        "Paste the text, select SHA-256, and copy the hex digest for comparison or storage of the fingerprint.",
+    },
+    {
+      question: "Why can’t I decrypt a hash back to text?",
+      answer:
+        "Hashes are one-way; only brute-force or dictionary guessing can try to find an input.",
+    },
+    {
+      question: "When should I prefer SHA-256 over older digests?",
+      answer:
+        "For new integrity checks and signatures; avoid MD5/SHA-1 for security uses.",
+    },
+    {
+      question: "How do checksums protect downloaded files?",
+      answer:
+        "Publish the digest with the file; recompute locally and compare before trusting the bits.",
+    },
+    {
+      question: "Is hashing equal to locking a file with a password?",
+      answer:
+        "No—encryption protects confidentiality; hashing verifies integrity or derives keys.",
+    },
+    {
+      question: "Why does changing one character rewrite the whole digest?",
+      answer:
+        "Avalanche effect—good hashes spread tiny input changes across the output.",
+    },
+    {
+      question: "Can I hash binary files the same way as text?",
+      answer:
+        "Yes with a file-capable hasher; this text tool is for string inputs.",
+    },
+    {
+      question: "Should API secrets be stored as bare hashes?",
+      answer:
+        "Use specialized secret storage or KDFs; a fast hash alone is not enough for passwords.",
+    },
+    {
+      question: "What is a salt in password hashing?",
+      answer:
+        "Random per-password data that stops precomputed rainbow tables.",
+    },
+    {
+      question: "How do developers compare hashes safely?",
+      answer:
+        "Use constant-time compare helpers so timing leaks less information.",
+    },
+    {
+      question: "Can two different texts share a digest?",
+      answer:
+        "Collisions are theoretically possible; strong algorithms make them impractical to find.",
+    },
+    {
+      question: "Why show a hash for empty input?",
+      answer:
+        "The empty string has a defined digest—clear the field if you did not mean to hash.",
+    },
+    {
+      question: "Is hex the only way to display a digest?",
+      answer:
+        "Hex is common; Base64 is also used in some protocols.",
+    },
+    {
+      question: "How does HMAC differ from a plain hash?",
+      answer:
+        "HMAC mixes a secret key so only key holders can authenticate the message.",
+    },
+    {
+      question: "Does hashing text on this page upload it?",
+      answer:
+        "Hashing is meant to run in the browser session.",
+    }
   ]
 };

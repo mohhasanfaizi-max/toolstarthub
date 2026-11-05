@@ -630,7 +630,81 @@ export const extraToolFaqs: Record<string, ToolFaq[]> = {
       answer:
         "Keep it short, lowercase, and descriptive, with words separated by hyphens. Avoid dates or filler words if the page may be updated later.",
     },
-  ],
+    {
+      question: "How do I turn a post title into a URL slug?",
+      answer:
+        "Paste the title, generate, then copy the hyphenated lowercase slug into your CMS.",
+    },
+    {
+      question: "Should dates go inside the slug?",
+      answer:
+        "Optional—dates help uniqueness but make URLs longer; many blogs omit them.",
+    },
+    {
+      question: "How do I handle stop words like “the” and “and”?",
+      answer:
+        "Some generators drop them; keep them if they carry meaning for the topic.",
+    },
+    {
+      question: "Can I edit the slug after generating it?",
+      answer:
+        "Yes—shorten or clarify before publishing; changing later can break links.",
+    },
+    {
+      question: "What characters are usually stripped from slugs?",
+      answer:
+        "Punctuation, symbols, and emoji are removed or replaced; letters/numbers/hyphens remain.",
+    },
+    {
+      question: "How do non-Latin titles become slugs?",
+      answer:
+        "Depending on settings they transliterate, percent-encode, or keep Unicode—match your CMS.",
+    },
+    {
+      question: "Why prefer hyphens over spaces or underscores?",
+      answer:
+        "Hyphens are the web convention search engines and humans read easily.",
+    },
+    {
+      question: "How long is too long for a slug?",
+      answer:
+        "Keep roughly under 50–60 characters when you can; front-load important words.",
+    },
+    {
+      question: "Should product SKUs appear in the slug?",
+      answer:
+        "Only if users search that way; otherwise prefer readable names.",
+    },
+    {
+      question: "Can two articles accidentally share one slug?",
+      answer:
+        "Yes—CMSs usually enforce uniqueness; append a short suffix if needed.",
+    },
+    {
+      question: "How do I slugify a headline with a colon or dash?",
+      answer:
+        "Colons become separators or disappear; avoid double hyphens in the final path.",
+    },
+    {
+      question: "Is a slug the full URL?",
+      answer:
+        "No—it is the path segment after your domain (and maybe category folders).",
+    },
+    {
+      question: "Should I include keyword stuffing in slugs?",
+      answer:
+        "No—one clear phrase beats a long chain of repeated keywords.",
+    },
+    {
+      question: "How do redirects relate to slug changes?",
+      answer:
+        "If you rename a live slug, add a 301 from the old path so links keep working.",
+    },
+    {
+      question: "Does slug generation upload my title?",
+      answer:
+        "Generation on this page is intended to stay in the browser session.",
+    }],
   "hex-to-rgb": [
     {
       question: "How do I convert a hex color to RGB?",
@@ -1132,7 +1206,81 @@ export const extraToolFaqs: Record<string, ToolFaq[]> = {
       answer:
         "Yes, but keep strong contrast, with a dark pattern on a light background, so cameras can still read it. Test the code before you print it.",
     },
-  ],
+    {
+      question: "How do I create a QR code for a website URL?",
+      answer:
+        "Paste the HTTPS link, choose size and error correction, then download the PNG or SVG.",
+    },
+    {
+      question: "When should I pick a higher error-correction level?",
+      answer:
+        "Use higher levels when the code will be small, printed roughly, or partly covered by a logo.",
+    },
+    {
+      question: "Can I encode plain text instead of a link?",
+      answer:
+        "Yes—switch to text mode for short notes, codes, or instructions.",
+    },
+    {
+      question: "How do I make a contact QR from name and phone?",
+      answer:
+        "Fill the vCard/contact fields, generate, and test the scan on a phone before printing.",
+    },
+    {
+      question: "Will a logo in the center still scan?",
+      answer:
+        "Often yes at high error correction with enough quiet zone—always test real devices.",
+    },
+    {
+      question: "How large should a printed QR be on a flyer?",
+      answer:
+        "Aim for at least ~2 cm (about 0.8 in) square for phone cameras in good light.",
+    },
+    {
+      question: "Can I use brand colors for modules and background?",
+      answer:
+        "Yes if contrast stays strong; light modules on light backgrounds fail to scan.",
+    },
+    {
+      question: "What is the quiet zone around a QR code?",
+      answer:
+        "The blank margin that must stay clear of text or graphics so scanners can lock on.",
+    },
+    {
+      question: "Should marketing use static or dynamic codes?",
+      answer:
+        "Static is simple and offline-friendly; dynamic (via a redirect service) helps if the destination may change.",
+    },
+    {
+      question: "How do I test a Wi-Fi QR before guests arrive?",
+      answer:
+        "Scan with a second phone on cellular data off to confirm network join works.",
+    },
+    {
+      question: "Can QR codes store very long URLs?",
+      answer:
+        "They can, but dense codes scan poorly—prefer short links when possible.",
+    },
+    {
+      question: "Do matte and glossy prints scan differently?",
+      answer:
+        "Glare on glossy stock can block reads; matte usually scans more reliably.",
+    },
+    {
+      question: "How should event badges use QR codes?",
+      answer:
+        "Print large enough, keep contrast high, and place away from fold lines.",
+    },
+    {
+      question: "What file format is best for print vendors?",
+      answer:
+        "SVG or high-resolution PNG; avoid tiny compressed JPEGs.",
+    },
+    {
+      question: "Does generating a QR upload my Wi-Fi password?",
+      answer:
+        "Generation on this page is meant to stay in the browser session.",
+    }],
   "random-number-generator": [
     {
       question: "How do I pick a random number between 1 and 10?",
@@ -1144,7 +1292,81 @@ export const extraToolFaqs: Record<string, ToolFaq[]> = {
       answer:
         "Turn on unique mode. It works for integers, and the count cannot be larger than the number of values in the range.",
     },
-  ],
+    {
+      question: "How do I pick one random integer inside a min–max range?",
+      answer:
+        "Enter the inclusive bounds, generate, and copy the result for your draw or game.",
+    },
+    {
+      question: "Can I draw several unique numbers for a raffle?",
+      answer:
+        "Enable unique/no-repeat mode, set how many picks you need, then generate the set.",
+    },
+    {
+      question: "When is allowing duplicates the right choice?",
+      answer:
+        "Dice-like rolls and with-replacement sampling; use unique mode for raffles without replacement.",
+    },
+    {
+      question: "How do I generate a random number for a classroom picker?",
+      answer:
+        "Set the range to your roster size (or map names to numbers) and generate fairly in front of the class.",
+    },
+    {
+      question: "Are browser random draws suitable for high-stakes lotteries?",
+      answer:
+        "No—use certified drawing processes for money or legal lotteries.",
+    },
+    {
+      question: "Can I set the same minimum and maximum?",
+      answer:
+        "That only yields that single value; widen the range if you need variety.",
+    },
+    {
+      question: "How do negative bounds work?",
+      answer:
+        "Min can be below zero; the tool picks uniformly across the inclusive integer range.",
+    },
+    {
+      question: "What if I need a random decimal between 0 and 1?",
+      answer:
+        "Use a decimal mode if offered, or scale an integer draw—avoid claiming crypto security.",
+    },
+    {
+      question: "How should streamers show a fair giveaway pick?",
+      answer:
+        "Show the range and result on screen, and consider recording the draw.",
+    },
+    {
+      question: "Does refreshing change the last number automatically?",
+      answer:
+        "Only a new generate action should; do not treat a stale field as a fresh draw.",
+    },
+    {
+      question: "Can I exclude a number that already won?",
+      answer:
+        "Narrow the range or switch to unique multi-draw so winners are not reused.",
+    },
+    {
+      question: "How do apps differ from this page for randomness?",
+      answer:
+        "OS APIs may offer stronger CSPRNG options; this page is for everyday casual picks.",
+    },
+    {
+      question: "What range is too wide for a quick UI draw?",
+      answer:
+        "Extremely huge spans can be awkward to display—keep bounds practical for your use case.",
+    },
+    {
+      question: "Should I seed the generator for reproducible drills?",
+      answer:
+        "Only if a seed option exists and you need repeatable classroom demos; unseeded is fine for casual use.",
+    },
+    {
+      question: "Does picking a number upload my range settings?",
+      answer:
+        "Generation is intended to stay in the browser session.",
+    }],
   "pdf-to-text": [
     {
       question: "How do I copy text from a PDF?",
@@ -1646,7 +1868,81 @@ export const extraToolFaqs: Record<string, ToolFaq[]> = {
       answer:
         "A negative prompt lists things that should stay out of the image, such as text, extra fingers, or blur. Not every image model reads one.",
     },
-  ],
+    {
+      question: "How do I structure subject, style, and lighting in one prompt?",
+      answer:
+        "Lead with the subject, then style, lighting, and composition so the model prioritizes what matters most.",
+    },
+    {
+      question: "Should I put camera angle near the start or the end?",
+      answer:
+        "Put framing early if angle is critical; bury optional flourishes later so they do not override the subject.",
+    },
+    {
+      question: "How can I ask for photorealism without looking plastic?",
+      answer:
+        "Mention natural skin texture, soft light, and real-world lens cues instead of only “8k ultra realistic.”",
+    },
+    {
+      question: "When should I use short prompts versus long ones?",
+      answer:
+        "Short prompts explore ideas; longer ones lock details once you know what works.",
+    },
+    {
+      question: "How do I keep text out of the generated scene?",
+      answer:
+        "Say “no text, no watermark, no logos” in the negative prompt and avoid quoting signs in the main prompt.",
+    },
+    {
+      question: "Can I specify a color palette for brand work?",
+      answer:
+        "Yes—name hex-inspired colors or palette words (muted teal, warm sand) so outputs stay on-brand.",
+    },
+    {
+      question: "How do I request a plain studio background?",
+      answer:
+        "Say “seamless studio backdrop” or “solid light-gray background” and ban busy scenes in the negative prompt.",
+    },
+    {
+      question: "What belongs in a reusable prompt checklist?",
+      answer:
+        "Subject, action, setting, style, lighting, lens/framing, and a short negative list.",
+    },
+    {
+      question: "How should teams share winning prompts?",
+      answer:
+        "Store templates with variables (subject, color) in a shared doc so results stay consistent.",
+    },
+    {
+      question: "Does adding “award-winning” usually help?",
+      answer:
+        "Rarely—prefer concrete visual terms over vague praise words.",
+    },
+    {
+      question: "How do I describe materials like glass or metal clearly?",
+      answer:
+        "Name the material and its finish (brushed aluminum, frosted glass) plus how light hits it.",
+    },
+    {
+      question: "Can I combine illustration and photo styles?",
+      answer:
+        "Yes, but pick a dominant style; mixed cues can confuse the model.",
+    },
+    {
+      question: "Why might hands look wrong even with a careful prompt?",
+      answer:
+        "Hands are a known weak spot—simplify poses or crop tighter when quality matters.",
+    },
+    {
+      question: "Should NSFW filters change how I write prompts?",
+      answer:
+        "Follow each model’s policy; avoid prohibited content rather than trying to jailbreak wording.",
+    },
+    {
+      question: "Does this prompt builder render the final image?",
+      answer:
+        "It helps you write the prompt; you paste it into your chosen image model separately.",
+    }],
   "prompt-to-video": [
     {
       question: "How do I write a prompt for an AI video?",
@@ -1658,7 +1954,81 @@ export const extraToolFaqs: Record<string, ToolFaq[]> = {
       answer:
         "The output is plain text, so you can paste it into any text-to-video tool. Each model follows camera and timing directions in its own way.",
     },
-  ],
+    {
+      question: "How do I describe motion so clips feel intentional?",
+      answer:
+        "State subject action, camera move, and pacing (slow push-in, quick pan) in plain language.",
+    },
+    {
+      question: "Should one prompt cover the whole story or one shot?",
+      answer:
+        "One shot per prompt is clearer; chain shots with a short storyboard for longer narratives.",
+    },
+    {
+      question: "How do I keep lighting consistent across cuts?",
+      answer:
+        "Repeat the same time-of-day and light quality words in every shot prompt.",
+    },
+    {
+      question: "Can I specify duration inside the prompt text?",
+      answer:
+        "Some models honor “5-second clip”; others use UI duration—follow the model’s controls.",
+    },
+    {
+      question: "How do I reduce flicker between frames?",
+      answer:
+        "Ask for stable lighting and smooth motion; avoid rapid style changes mid-prompt.",
+    },
+    {
+      question: "What camera verbs work well for AI video?",
+      answer:
+        "Dolly, tracking shot, orbit, handheld, and static tripod are clearer than vague “cinematic.”",
+    },
+    {
+      question: "How should sound be handled in a video prompt?",
+      answer:
+        "Describe diegetic sounds only if the model supports audio; otherwise plan sound in post.",
+    },
+    {
+      question: "Can I adapt a still-image prompt into a video prompt?",
+      answer:
+        "Reuse subject and style, then add motion and camera direction the still prompt lacked.",
+    },
+    {
+      question: "How do I avoid morphing faces mid-clip?",
+      answer:
+        "Keep identity cues short and consistent; avoid conflicting age/hair descriptions.",
+    },
+    {
+      question: "Should I mention resolution and fps every time?",
+      answer:
+        "If the UI sets them, skip; if not, state target fps and resolution once.",
+    },
+    {
+      question: "How do product demos differ from narrative clips?",
+      answer:
+        "Demos emphasize clear product motion and readable labels; narratives emphasize emotion and beats.",
+    },
+    {
+      question: "What is a useful negative list for video?",
+      answer:
+        "No text overlays, no watermark, no jumpy cuts, no extra limbs—adjust per model.",
+    },
+    {
+      question: "How do I iterate after a weak first render?",
+      answer:
+        "Change one variable (motion, lens, or lighting) per retry so you learn what worked.",
+    },
+    {
+      question: "Can prompts request specific transitions?",
+      answer:
+        "Some models ignore transition words; cut in an editor when precision matters.",
+    },
+    {
+      question: "Does this page generate the video file for me?",
+      answer:
+        "It helps you craft the prompt; generation happens in your video model or app.",
+    }],
   "ai-article-detector": [
     {
       question: "Are AI detectors accurate?",
@@ -1854,7 +2224,81 @@ export const extraToolFaqs: Record<string, ToolFaq[]> = {
       answer:
         "Divide the total by 1 plus the rate as a decimal. A $54 total at 8% tax is 54 ÷ 1.08 = $50 before tax.",
     },
-  ],
+    {
+      question: "How do I compute total price after adding sales tax?",
+      answer:
+        "Enter the net price and tax rate percent; add the tax amount to get the gross total.",
+    },
+    {
+      question: "How do I back out the pre-tax amount from a receipt total?",
+      answer:
+        "Divide the gross by (1 + rate as a decimal) to recover the net price.",
+    },
+    {
+      question: "Why must I type the rate myself?",
+      answer:
+        "Rates vary by location and product; the calculator does not look up jurisdictions.",
+    },
+    {
+      question: "Can I use the tool for restaurant checks before tip?",
+      answer:
+        "Yes for tax on the meal; add tip separately unless local rules differ.",
+    },
+    {
+      question: "How do multi-item carts usually apply tax?",
+      answer:
+        "Many registers tax the discounted subtotal; match your POS policy for line vs order rounding.",
+    },
+    {
+      question: "What rate do I use for mixed taxable and exempt items?",
+      answer:
+        "Split the cart—tax only the taxable lines at the correct rate.",
+    },
+    {
+      question: "Is sales tax the same as VAT inclusive pricing?",
+      answer:
+        "No—VAT is often embedded; this tool models add-on sales tax common in the US.",
+    },
+    {
+      question: "How should invoices show tax for clients?",
+      answer:
+        "List net, rate, tax amount, and gross so the charge is transparent.",
+    },
+    {
+      question: "Can I calculate tax on shipping alone?",
+      answer:
+        "If shipping is taxable where you sell, run shipping as its own amount at that rate.",
+    },
+    {
+      question: "What if my city and state stack different rates?",
+      answer:
+        "Enter the combined rate your locality requires, or calculate each layer if bases differ.",
+    },
+    {
+      question: "How do coupons change the taxable base?",
+      answer:
+        "Often tax applies after store coupons; marketplace rules vary—follow your nexus guidance.",
+    },
+    {
+      question: "Should I round tax to two decimal places?",
+      answer:
+        "Yes for currency; follow your ledger’s rounding (per line vs on subtotal).",
+    },
+    {
+      question: "Can digital goods need a different rate?",
+      answer:
+        "Sometimes—product taxability differs; confirm before using a general merchandise rate.",
+    },
+    {
+      question: "How do I sanity-check an 8.25% example?",
+      answer:
+        "Tax ≈ price × 0.0825; total ≈ price × 1.0825.",
+    },
+    {
+      question: "Does sales-tax math leave the browser?",
+      answer:
+        "Calculation on this page is meant to stay in the session.",
+    }],
   "date-difference-calculator": [
     {
       question: "How do I count the days between two dates?",
