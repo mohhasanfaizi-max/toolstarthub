@@ -54,7 +54,81 @@ export const extraToolFaqs: Record<string, ToolFaq[]> = {
       answer:
         "They are naming styles used in code. camelCase joins words with capitals (myVariableName), snake_case uses underscores (my_variable_name), and kebab-case uses hyphens (my-variable-name).",
     },
-  ],
+    {
+      question: "How do I switch a paragraph between title case and sentence case?",
+      answer:
+        "Paste the text, pick the target case, and copy the result. Review brand names that need fixed capitals.",
+    },
+    {
+      question: "How do camelCase, snake_case, and kebab-case differ in practice?",
+      answer:
+        "camelCase joins words with capitals (myVar), snake_case uses underscores (my_var), kebab-case uses hyphens (my-var).",
+    },
+    {
+      question: "When is kebab-case preferred?",
+      answer:
+        "URL slugs and many CSS class names favor hyphens. Avoid spaces in those contexts.",
+    },
+    {
+      question: "Does sentence case keep the pronoun I capital?",
+      answer:
+        "English sentence case should keep I capitalized even mid-sentence. Spot-check after conversion.",
+    },
+    {
+      question: "How are digits and punctuation treated?",
+      answer:
+        "They usually stay in place while letters change case. Separators in identifiers may be rewritten by some modes.",
+    },
+    {
+      question: "Can camelCase identifiers become snake_case?",
+      answer:
+        "Yes when an identifier mode is available—it splits on capitals then joins with underscores.",
+    },
+    {
+      question: "Why might a brand name lose its capitals in Title Case?",
+      answer:
+        "Naive title casers treat every word alike. Re-apply brand spelling manually after conversion.",
+    },
+    {
+      question: "Do paragraph line breaks survive conversion?",
+      answer:
+        "Typically yes. If a mode collapses whitespace, paste back into a structured editor afterward.",
+    },
+    {
+      question: "Is there a practical limit on paste size?",
+      answer:
+        "Very large pastes can slow the tab. Convert chapter-sized chunks when needed.",
+    },
+    {
+      question: "How well does conversion work outside English?",
+      answer:
+        "Letter casing rules differ by locale. Results are best for simple Latin scripts; review other languages carefully.",
+    },
+    {
+      question: "What is PascalCase versus camelCase?",
+      answer:
+        "PascalCase capitalizes the first letter of every word including the first (MyVar); camelCase leaves the first word lower (myVar).",
+    },
+    {
+      question: "Should constant names use SCREAMING_SNAKE_CASE?",
+      answer:
+        "Many style guides do for constants. Convert then confirm your project’s lint rules.",
+    },
+    {
+      question: "Will converting case change meaning in German or Turkish?",
+      answer:
+        "Possibly—those languages have casing rules a simple converter may miss. Have a native reader verify.",
+    },
+    {
+      question: "Can I lowercase an entire document for comparison?",
+      answer:
+        "Yes—lowercase both sides before a diff when you want case-insensitive comparison.",
+    },
+    {
+      question: "Is my text uploaded during conversion?",
+      answer:
+        "Case changes run in the browser; nothing is kept as a server-side document store.",
+    }],
   "lorem-ipsum-generator": [
     {
       question: "What does lorem ipsum mean?",
@@ -114,7 +188,81 @@ export const extraToolFaqs: Record<string, ToolFaq[]> = {
       answer:
         "Every 3 bytes become 4 characters, so Base64 output is about one third larger than the input.",
     },
-  ],
+    {
+      question: "How do I encode text to Base64 in the browser?",
+      answer:
+        "Paste or type the text, run encode, and copy the result. Decode the same way when you need the original back.",
+    },
+    {
+      question: "When is Base64 better than shipping raw bytes?",
+      answer:
+        "When a transport only allows text—data URLs, some JSON fields, or legacy APIs—not as a security control.",
+    },
+    {
+      question: "Which characters show up in standard Base64?",
+      answer:
+        "A–Z, a–z, 0–9, plus, and slash, with = padding. URL-safe variants swap some symbols.",
+    },
+    {
+      question: "Why does encoded text end with equals signs?",
+      answer:
+        "Padding marks incomplete final byte groups. Decoders expect them for standard Base64.",
+    },
+    {
+      question: "Is encoding with Base64 a form of encryption?",
+      answer:
+        "No. Anyone can decode it. Use real encryption when confidentiality matters.",
+    },
+    {
+      question: "Can I protect a password by Base64-encoding it?",
+      answer:
+        "No. It only obscures bytes. Hash or encrypt passwords with proper algorithms instead.",
+    },
+    {
+      question: "Why does the encoded string grow versus the input?",
+      answer:
+        "Every 3 bytes become 4 characters—about a 33% size increase before padding.",
+    },
+    {
+      question: "Will spaces or line wraps break decoding?",
+      answer:
+        "Often yes. Paste clean Base64 without wraps unless your decoder tolerates them.",
+    },
+    {
+      question: "What does a Base64 data URL look like?",
+      answer:
+        "A URL that embeds file bytes as Base64 after a media-type prefix, useful for small inline assets.",
+    },
+    {
+      question: "How does UTF-8 change the encoded result?",
+      answer:
+        "Non-ASCII characters become multi-byte UTF-8 first, so the Base64 differs from Latin-1 assumptions.",
+    },
+    {
+      question: "What happens if the Base64 string is invalid?",
+      answer:
+        "Decode fails or yields garbage. Check alphabet, padding, and accidental truncation.",
+    },
+    {
+      question: "Do JWT parts use Base64?",
+      answer:
+        "Yes—JWT parts are Base64URL encodings of JSON and signatures, not encryption by themselves.",
+    },
+    {
+      question: "Should large payloads be compressed before encoding?",
+      answer:
+        "For large payloads, compress then encode to shrink the text form. Tiny strings rarely benefit.",
+    },
+    {
+      question: "How large a string can I encode here?",
+      answer:
+        "Stay within browser memory comfort. Extremely large pastes may slow the tab.",
+    },
+    {
+      question: "Does encoding leave my machine?",
+      answer:
+        "Encoding and decoding run locally in the page session.",
+    }],
   "uuid-generator": [
     {
       question: "What is a UUID v4?",
@@ -450,7 +598,81 @@ export const extraToolFaqs: Record<string, ToolFaq[]> = {
       answer:
         "Yes. The result is plain text you can paste into any chat assistant. Different models may still answer the same prompt differently.",
     },
-  ],
+    {
+      question: "How do I turn a vague topic into a usable AI prompt?",
+      answer:
+        "Enter the topic, add audience and format constraints, then copy the structured prompt into your model of choice.",
+    },
+    {
+      question: "What belongs in a strong prompt besides the topic?",
+      answer:
+        "Goal, audience, tone, length, must-include facts, and what to avoid. Specificity beats adjectives.",
+    },
+    {
+      question: "Will the generated prompt work in ChatGPT, Gemini, or Claude?",
+      answer:
+        "Yes—prompts are plain text. Paste into any chat model and adjust for that product’s quirks.",
+    },
+    {
+      question: "Should I include examples inside the prompt?",
+      answer:
+        "Few-shot examples help when format is strict (JSON, tables). Keep them short and representative.",
+    },
+    {
+      question: "Does this page call an AI model by itself?",
+      answer:
+        "Preset assembly is local; any Generate with AI control follows the availability and privacy note on the page.",
+    },
+    {
+      question: "How long should a finished prompt be?",
+      answer:
+        "Long enough to constrain the task, short enough to skim. Cut fluff that does not change the output.",
+    },
+    {
+      question: "How do system instructions differ from the user ask?",
+      answer:
+        "System instructions set role and rules; user prompts state the task. Many UIs merge them into one box.",
+    },
+    {
+      question: "How do I ask for JSON or a table?",
+      answer:
+        "State the schema or column list explicitly and forbid extra commentary when you need clean parseable output.",
+    },
+    {
+      question: "Why do vague adjectives hurt results?",
+      answer:
+        "Words like “engaging” leave the model guessing. Replace them with measurable requirements.",
+    },
+    {
+      question: "Can I reuse one template across tasks?",
+      answer:
+        "Yes—keep slots for topic, audience, and constraints. Fill slots per task instead of rewriting from scratch.",
+    },
+    {
+      question: "How do I keep secrets out of prompts?",
+      answer:
+        "Omit secrets and PII. Use placeholders, then fill real values in a private environment.",
+    },
+    {
+      question: "What does chaining several prompts mean?",
+      answer:
+        "Running focused prompts in sequence—outline, then draft, then edit—often beats one giant ask.",
+    },
+    {
+      question: "Is it useful to list things the model should avoid?",
+      answer:
+        "Brief negative constraints help (“no hype”, “no medical advice”). Prefer positive specs when possible.",
+    },
+    {
+      question: "How do I debug a prompt that got worse?",
+      answer:
+        "Diff recent changes, remove conflicting instructions, and test one variable at a time.",
+    },
+    {
+      question: "When should I stop tweaking and edit the draft?",
+      answer:
+        "When further prompt edits only shuffle wording. Finish polish in a normal editor.",
+    }],
   "prompt-to-image": [
     {
       question: "How do I write a good image prompt?",
@@ -486,7 +708,81 @@ export const extraToolFaqs: Record<string, ToolFaq[]> = {
       answer:
         "It reports sentence length, how varied the vocabulary is, and repeated phrases, so you can see where a draft sounds flat or repetitive.",
     },
-  ],
+    {
+      question: "How do writing-pattern checks work on a draft?",
+      answer:
+        "They look for statistical regularities common in model output—even pacing, stock transitions, and low burstiness—not a proof of authorship.",
+    },
+    {
+      question: "Why avoid treating the result as a percentage score?",
+      answer:
+        "A single percent implies false precision. Pattern notes are more honest than a fake certainty number.",
+    },
+    {
+      question: "Can careful human writing look even to a checker?",
+      answer:
+        "Yes. Formal reports and edited marketing copy can trigger similar signals. Use results as a review prompt, not a verdict.",
+    },
+    {
+      question: "What should I do if patterns look AI-like?",
+      answer:
+        "Rewrite transitions, vary sentence length, and add specific details only you know. Then re-check.",
+    },
+    {
+      question: "Does analyzing text upload my draft?",
+      answer:
+        "Local checks stay in the browser; any optional AI analyze step follows the on-page privacy note.",
+    },
+    {
+      question: "Are detector scores enough for school discipline cases?",
+      answer:
+        "No tool is definitive. Institutions should combine process evidence with human review, not detectors alone.",
+    },
+    {
+      question: "Which cues does this page highlight in a draft?",
+      answer:
+        "Things like repetitive openers, uniform paragraph length, and generic phrasing—signals to investigate, not proof.",
+    },
+    {
+      question: "Can I check one paragraph at a time?",
+      answer:
+        "Yes. Smaller samples can show which sections feel most templated.",
+    },
+    {
+      question: "Will heavy editing after AI drafting clear all signals?",
+      answer:
+        "Often it reduces them, but some structure can remain. Human judgment still matters.",
+    },
+    {
+      question: "Should I paste confidential client text into a checker?",
+      answer:
+        "Prefer not to. Use sample or redacted text when exploring patterns.",
+    },
+    {
+      question: "Do code blocks affect the reading?",
+      answer:
+        "Mixed content can skew cues. Check prose separately from code when possible.",
+    },
+    {
+      question: "Is a human label a guarantee of authorship?",
+      answer:
+        "No. Labels are heuristic. Treat them as coaching, not certification.",
+    },
+    {
+      question: "How is this different from a plagiarism checker?",
+      answer:
+        "Plagiarism tools match known sources. Pattern checks estimate style regularity without claiming a source match.",
+    },
+    {
+      question: "Can multiple languages be analyzed the same way?",
+      answer:
+        "Support varies. English-centric heuristics may misread other languages.",
+    },
+    {
+      question: "What is a healthy workflow after a flag?",
+      answer:
+        "Revise for voice and specifics, cite sources, and keep drafts that show your process.",
+    }],
   "ai-article-compressor": [
     {
       question: "How do I shorten an article without losing meaning?",
@@ -498,7 +794,81 @@ export const extraToolFaqs: Record<string, ToolFaq[]> = {
       answer:
         "Light only swaps wordy phrases. Medium also drops repeats. Strong can skip sentences that start the same way, so check it more carefully.",
     },
-  ],
+    {
+      question: "How do I shorten a long draft while keeping the point?",
+      answer:
+        "Paste the article, pick a compression level, and review the shorter version for missing facts before you publish.",
+    },
+    {
+      question: "Which compression strength should I try first?",
+      answer:
+        "Begin with a light pass for polish, then try a stronger level only if you still need fewer words.",
+    },
+    {
+      question: "Will compression remove citations and quotes?",
+      answer:
+        "Aggressive modes may drop or shorten them. Re-check sources and restore quotes you must keep.",
+    },
+    {
+      question: "Can I compress one section instead of the whole piece?",
+      answer:
+        "Yes—paste only that section, compress, then splice it back into the full draft.",
+    },
+    {
+      question: "Does a shorter draft always read better?",
+      answer:
+        "Not always. Over-compression can sound abrupt. Prefer clarity over the lowest word count.",
+    },
+    {
+      question: "Will detectors treat compressed text as human-written?",
+      answer:
+        "No reliable guarantee. Compression changes length and phrasing, not authorship proof.",
+    },
+    {
+      question: "How should I handle technical terms during compression?",
+      answer:
+        "Skim the output for jargon that was dropped or altered. Put critical terms back manually.",
+    },
+    {
+      question: "Is there a word-count target I should aim for?",
+      answer:
+        "Match the channel limit (newsletter, abstract, social). Compress iteratively until you hit it without losing claims.",
+    },
+    {
+      question: "Can bullet lists survive compression?",
+      answer:
+        "Often they flatten into paragraphs. Reformat lists afterward if structure matters.",
+    },
+    {
+      question: "Does the tool invent new facts to fill gaps?",
+      answer:
+        "It should not invent research. Still verify every number and name against your source draft.",
+    },
+    {
+      question: "What if the compressed version changes my tone?",
+      answer:
+        "Edit a few sentences by hand after compression, or try a milder level.",
+    },
+    {
+      question: "Should I compress before or after editing for SEO?",
+      answer:
+        "Usually edit structure and keywords first, then compress so SEO phrases are less likely to vanish.",
+    },
+    {
+      question: "Can I use it on translated text?",
+      answer:
+        "Yes, but meaning drift risk rises. Have a bilingual reader check the result.",
+    },
+    {
+      question: "How large an article can I paste?",
+      answer:
+        "Stay within the on-page limit. Split very long pieces into chapters if needed.",
+    },
+    {
+      question: "Is the compressed text stored after I leave?",
+      answer:
+        "It stays in the page session only unless you copy it elsewhere.",
+    }],
   "tip-calculator": [
     {
       question: "How do I calculate a 20% tip?",
@@ -570,7 +940,81 @@ export const extraToolFaqs: Record<string, ToolFaq[]> = {
       answer:
         "Yes. Every real line break starts a new numbered line, including empty lines and a trailing empty line at the end.",
     },
-  ],
+    {
+      question: "How do I number every line in a pasted draft?",
+      answer:
+        "Paste the text, choose a starting number if needed, and copy the numbered output. Use it for reviews, scripts, or shared logs.",
+    },
+    {
+      question: "What separator appears between the number and the text?",
+      answer:
+        "Most modes use a period, colon, or tab. Pick one that will not confuse later sorting or code indentation.",
+    },
+    {
+      question: "Do blank lines receive numbers too?",
+      answer:
+        "Yes when empty-line numbering is on. Turn it off if blank lines should stay unmarked.",
+    },
+    {
+      question: "Can I start numbering at a value other than 1?",
+      answer:
+        "Yes—set the start index (including 0) before copying. Useful for appendices or continued sections.",
+    },
+    {
+      question: "Will numbering break indented code?",
+      answer:
+        "Numbers sit before the line content. Indentation on the rest of the line stays, but some parsers may treat the prefix as part of the text.",
+    },
+    {
+      question: "How do I strip numbers I already added?",
+      answer:
+        "Remove the leading digits and separator with find-and-replace, or paste into a clean editor and re-export without numbers.",
+    },
+    {
+      question: "Is zero-padding like 01, 02 available?",
+      answer:
+        "Depends on the mode. If padding is off, numbers stay unpadded—add padding yourself if your style guide requires it.",
+    },
+    {
+      question: "Can numbering cover just part of a longer paste?",
+      answer:
+        "Number the whole paste, then keep the range you need, or split the selection into its own paste first.",
+    },
+    {
+      question: "Do CRLF and LF endings change how many lines I get?",
+      answer:
+        "The tool splits on the breaks it recognizes. Normalize endings first if counts look off across machines.",
+    },
+    {
+      question: "Why number lines before a peer review?",
+      answer:
+        "Reviewers can cite line numbers instead of quoting long passages. It speeds comments in email or chat.",
+    },
+    {
+      question: "Does adding numbers alter UTF-8 characters?",
+      answer:
+        "No—only prefixes are added. Characters in the body stay the same.",
+    },
+    {
+      question: "Can numbering restart after each heading?",
+      answer:
+        "Not automatically. Split by section, number each block from 1, then recombine.",
+    },
+    {
+      question: "Is this the same as a word processor line gutter?",
+      answer:
+        "No. Gutter numbers are display-only. This writes numbers into the text itself.",
+    },
+    {
+      question: "What happens to spaces at the end of a line?",
+      answer:
+        "They usually remain after the number prefix. Trim if your downstream parser is strict.",
+    },
+    {
+      question: "Are my drafts uploaded when I number lines?",
+      answer:
+        "Numbering runs in the browser session; nothing is stored as a permanent server copy.",
+    }],
   "json-to-csv": [
     {
       question: "How do I open JSON in Excel?",

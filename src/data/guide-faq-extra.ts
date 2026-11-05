@@ -3126,5 +3126,497 @@ export const extraGuideFaqs: Record<string, GuideFaq[]> = {
       answer:
         "Generate in a manager, never reuse, enable MFA, and only use online raters on throwaway test strings when possible.",
     }
+  ],
+  "how-to-find-dominant-colors": [
+    {
+      question: "How do I extract the main colors from a photo?",
+      answer:
+        "Upload the image, choose how many colors to return, and copy the hex values you want for a palette or brand board.",
+    },
+    {
+      question: "Why might a small accent color be missing from the list?",
+      answer:
+        "Dominant-color tools rank by area and clustering. Tiny accents can fall below the cutoff—raise the color count or sample a crop.",
+    },
+    {
+      question: "What does each percentage next to a color mean?",
+      answer:
+        "It estimates how much of the image that cluster covers. Treat it as approximate, not a lab measurement.",
+    },
+    {
+      question: "Which image file types usually open?",
+      answer:
+        "Common web formats like JPEG, PNG, and WebP. Very large RAW files may need an export first.",
+    },
+    {
+      question: "Can I copy hex codes into CSS from the result?",
+      answer:
+        "Yes—paste the hex into stylesheets, design tokens, or a contrast checker next.",
+    },
+    {
+      question: "How many colors should I request for a logo?",
+      answer:
+        "Start with 3–5. Logos are simple; too many clusters add noise.",
+    },
+    {
+      question: "Does lighting affect the dominant palette?",
+      answer:
+        "Strongly. Shadows and filters shift clusters. Sample a neutrally lit crop when brand accuracy matters.",
+    },
+    {
+      question: "Will compression artifacts invent odd colors?",
+      answer:
+        "Heavy JPEG artifacts can. Prefer a cleaner source image when possible.",
+    },
+    {
+      question: "Can I analyze a screenshot of a UI?",
+      answer:
+        "Yes—useful for matching an existing interface palette quickly.",
+    },
+    {
+      question: "How do transparent PNGs behave?",
+      answer:
+        "Transparent pixels are usually ignored or treated as a backdrop depending on the analyzer. Check whether a checkerboard shows through.",
+    },
+    {
+      question: "Should I flatten layered design files first?",
+      answer:
+        "Export a flat PNG or JPEG. Layered source files are not typical inputs.",
+    },
+    {
+      question: "Can two similar blues merge into one swatch?",
+      answer:
+        "Clustering often merges near colors. Increase the requested count or crop to the region you care about.",
+    },
+    {
+      question: "Is this a replacement for a spectrophotometer?",
+      answer:
+        "No. It is a fast web approximation for design work, not print lab calibration.",
+    },
+    {
+      question: "How do I build a palette for slides from a photo?",
+      answer:
+        "Pull 3–4 dominant hexes, check contrast for text, then lock them as theme colors.",
+    },
+    {
+      question: "Does the analyzer store my uploads?",
+      answer:
+        "Processing is meant for the session; download what you need before closing the tab.",
+    },
+    {
+      question: "What if the photo is mostly grayscale?",
+      answer:
+        "You may get a short list of grays. Add a colorful crop if you need accent suggestions.",
+    }
+  ],
+  "how-to-read-a-cron-expression": [
+    {
+      question: "How do I read a five-field cron schedule at a glance?",
+      answer:
+        "Map minute, hour, day-of-month, month, and day-of-week left to right. Asterisks mean “every” for that field.",
+    },
+    {
+      question: "What does an asterisk mean in each field?",
+      answer:
+        "It matches every valid value—every minute, every hour, and so on—within that field’s range.",
+    },
+    {
+      question: "How do I limit a cron job to Monday through Friday?",
+      answer:
+        "Set the day-of-week field to 1-5 (or MON-FRI where names are allowed) and keep other fields as needed.",
+    },
+    {
+      question: "How do day-of-month and day-of-week fields interact?",
+      answer:
+        "Both constrain the calendar day. Some schedulers OR them when both are set—read your engine’s docs carefully.",
+    },
+    {
+      question: "What does a step such as */15 mean in a field?",
+      answer:
+        "They mean every N units starting from the field’s minimum—for minutes, */15 is :00, :15, :30, :45.",
+    },
+    {
+      question: "Why avoid scheduling everything at midnight?",
+      answer:
+        "Many jobs collide at 00:00, causing load spikes. Stagger off-peak minutes when you can.",
+    },
+    {
+      question: "Which timezone does a crontab schedule follow?",
+      answer:
+        "It uses the host timezone unless the platform documents UTC. Confirm before trusting “9 AM” labels.",
+    },
+    {
+      question: "Can I test a cron expression before deploying?",
+      answer:
+        "Yes—use a generator or explainer, then dry-run in staging. Watch the first few live fires.",
+    },
+    {
+      question: "How are comma lists and hyphen ranges written in cron?",
+      answer:
+        "Lists use commas (1,15); ranges use hyphens (1-5). You can combine them with steps where supported.",
+    },
+    {
+      question: "Why was a six-field expression rejected?",
+      answer:
+        "Classic Unix cron has five fields; a leading seconds field is non-standard. Match the dialect your runner expects.",
+    },
+    {
+      question: "What happens if a job runs longer than its interval?",
+      answer:
+        "Overlapping runs can pile up. Use locks or skip-if-running flags in the job wrapper.",
+    },
+    {
+      question: "Where else do cron-like schedules show up besides crontab?",
+      answer:
+        "No—CI schedulers, Kubernetes CronJobs, and cloud schedulers reuse similar syntax with small dialect differences.",
+    },
+    {
+      question: "Where should secrets live if a job is launched by cron?",
+      answer:
+        "No. Load secrets from the environment or a vault so process lists and logs do not leak them.",
+    },
+    {
+      question: "What five-field pattern fires daily at 09:00?",
+      answer:
+        "Use 0 9 * * * for minute 0 of hour 9 every day, then confirm timezone.",
+    },
+    {
+      question: "What does Sunday as 7 mean versus 0?",
+      answer:
+        "Some dialects allow both 0 and 7 for Sunday. Prefer the form your scheduler documents.",
+    },
+    {
+      question: "Does installing a crontab change anything until the daemon reloads?",
+      answer:
+        "The cron daemon picks up crontab edits on its schedule. Verify with a harmless test job.",
+    }
+  ],
+  "how-to-read-a-unix-timestamp": [
+    {
+      question: "How do I convert a Unix timestamp to a readable date?",
+      answer:
+        "Paste the number into a converter, confirm seconds versus milliseconds, and read the local or UTC breakdown.",
+    },
+    {
+      question: "What is the Unix epoch?",
+      answer:
+        "It is 1970-01-01T00:00:00Z—the zero point for Unix time counting.",
+    },
+    {
+      question: "How can I tell seconds from milliseconds?",
+      answer:
+        "Second stamps are ~10 digits today; millisecond stamps are ~13. Reusing the same digits in the wrong unit lands centuries off.",
+    },
+    {
+      question: "Does converting a timestamp change the instant?",
+      answer:
+        "No. You only change how the same instant is displayed across time zones.",
+    },
+    {
+      question: "Why do seconds and milliseconds disagree when I reuse digits?",
+      answer:
+        "Interpreting a 13-digit value as seconds shoots far into the future. Match the unit the API documented.",
+    },
+    {
+      question: "What inputs are usually rejected?",
+      answer:
+        "Non-numeric text, empty values, or numbers outside the supported range.",
+    },
+    {
+      question: "Should logs store UTC or local time?",
+      answer:
+        "Store UTC (or Unix seconds) and render local time in the UI to avoid DST ambiguity.",
+    },
+    {
+      question: "How do leap seconds affect Unix time?",
+      answer:
+        "Most systems smear or ignore leap seconds. Do not expect civil leap-second exactness from Unix stamps.",
+    },
+    {
+      question: "Can I convert ISO-8601 strings the other way?",
+      answer:
+        "Yes—parsers turn ISO strings into timestamps. Keep the offset (Z or ±HH:MM) intact.",
+    },
+    {
+      question: "Why might two machines show different local clocks for one stamp?",
+      answer:
+        "Time zone settings differ. The underlying UTC instant is the same.",
+    },
+    {
+      question: "What is a negative Unix timestamp?",
+      answer:
+        "It counts seconds before 1970. Support varies—confirm before relying on it.",
+    },
+    {
+      question: "Do databases store timestamps as integers?",
+      answer:
+        "Often as epoch seconds/millis or as typed timestamp columns. Know which your schema uses.",
+    },
+    {
+      question: "How do I compare two events across time zones?",
+      answer:
+        "Compare their UTC instants or Unix values, not their wall-clock strings.",
+    },
+    {
+      question: "Why does “today at midnight” jump after DST changes?",
+      answer:
+        "Local midnight is not a fixed UTC offset year-round in DST regions.",
+    },
+    {
+      question: "Can spreadsheets corrupt large millisecond values?",
+      answer:
+        "Yes—precision limits can round them. Keep stamps as text or use proper date types.",
+    },
+    {
+      question: "Is the converter storing the times I paste?",
+      answer:
+        "Conversion stays in the page session for your review.",
+    }
+  ],
+  "how-to-rewrite-stock-phrasing": [
+    {
+      question: "How do I soften AI-sounding stock phrases in a draft?",
+      answer:
+        "Paste the text, run a humanize or rewrite pass, then manually restore any precise claims the pass blurred.",
+    },
+    {
+      question: "Will a rewrite button make the draft pass every AI detector?",
+      answer:
+        "No. Detectors disagree and evolve. Aim for clearer human voice, not evasion.",
+    },
+    {
+      question: "When should I rewrite myself instead of using a helper?",
+      answer:
+        "When the topic needs your lived detail, confidential nuance, or a voice only you can supply.",
+    },
+    {
+      question: "Why might the next sentence start lowercase after a rewrite?",
+      answer:
+        "Some passes break sentence boundaries. Capitalize and fix punctuation in a quick proofread.",
+    },
+    {
+      question: "Does a repeated sentence always get removed?",
+      answer:
+        "Not always. Deduplicate obvious loops yourself if the tool leaves them.",
+    },
+    {
+      question: "Can I rewrite stock phrasing in just one paragraph?",
+      answer:
+        "Yes—process that paragraph alone so the rest of the structure stays untouched.",
+    },
+    {
+      question: "Might a rewrite pass alter product names or specs?",
+      answer:
+        "It might. Lock product names and specs in a quick pass afterward.",
+    },
+    {
+      question: "Does a softened draft count as original authorship?",
+      answer:
+        "No. It is an edit of existing prose. You remain responsible for accuracy and attribution.",
+    },
+    {
+      question: "Why does a rewrite sometimes sound flatter?",
+      answer:
+        "Smoothing hedges can remove energy. Add concrete examples back in.",
+    },
+    {
+      question: "Does a second rewrite pass usually help?",
+      answer:
+        "Often it just drifts. Prefer one pass plus manual edits.",
+    },
+    {
+      question: "Can the helper invent facts I never wrote?",
+      answer:
+        "It should not, but verify every number and proper noun.",
+    },
+    {
+      question: "Should quoted citations be left alone during a rewrite?",
+      answer:
+        "Leave quotations intact. Rewrite surrounding prose only.",
+    },
+    {
+      question: "How does softening AI cadence differ from paraphrasing?",
+      answer:
+        "Paraphrase aims for new wording of the same meaning; humanize targets stock AI cadence. Overlap exists.",
+    },
+    {
+      question: "Does the same workflow work for emails and LinkedIn posts?",
+      answer:
+        "Yes for tone cleanup. Keep personal details you alone would know.",
+    },
+    {
+      question: "How can I soften stock phrasing without an online helper?",
+      answer:
+        "Read aloud, cut filler transitions, and swap generic claims for specifics from your notes.",
+    },
+    {
+      question: "Does the draft get kept after I close the tab?",
+      answer:
+        "Keep your own copy. Do not rely on the page as long-term storage.",
+    }
+  ],
+  "how-to-shorten-an-article": [
+    {
+      question: "How do I cut word count without dropping the thesis?",
+      answer:
+        "Compress in stages, then check that every key claim and citation still appears before you publish.",
+    },
+    {
+      question: "Does using Shorten article upload my draft?",
+      answer:
+        "Follow the privacy note on the page—local passes stay put; optional AI shorten may send text to a model.",
+    },
+    {
+      question: "Will a shorter version always keep every fact?",
+      answer:
+        "No. Aggressive compression can omit details. Diff against the original for must-keep facts.",
+    },
+    {
+      question: "Is the article saved on a server after shortening?",
+      answer:
+        "Treat the session as temporary. Copy the result into your CMS or files.",
+    },
+    {
+      question: "Should I shorten before or after peer review?",
+      answer:
+        "Review for accuracy first, then shorten so reviewers see the full evidence trail.",
+    },
+    {
+      question: "How do I preserve headings while cutting fluff?",
+      answer:
+        "Keep the outline, compress paragraph bodies, and restore any heading that vanished.",
+    },
+    {
+      question: "Can I set a hard maximum word count?",
+      answer:
+        "Use channel limits as targets. Iterate compression levels until you are under the cap.",
+    },
+    {
+      question: "What if the short version changes my conclusion?",
+      answer:
+        "Reject that output. Re-run milder compression or edit by hand to restore the conclusion.",
+    },
+    {
+      question: "Do figures and captions survive compression?",
+      answer:
+        "Caption text may shrink or vanish. Reattach captions from the source draft.",
+    },
+    {
+      question: "Is shortening the same as summarizing for executives?",
+      answer:
+        "Related but not identical. Executive summaries may reorder priorities; compression usually keeps sequence.",
+    },
+    {
+      question: "How should quotes be handled when cutting length?",
+      answer:
+        "Keep short essential quotes; paraphrase the rest with attribution.",
+    },
+    {
+      question: "Can SEO keyword density fall too far?",
+      answer:
+        "Yes. After compressing, reintroduce primary phrases naturally where missing.",
+    },
+    {
+      question: "What is a safe workflow for newsroom edits?",
+      answer:
+        "Compress → fact-check → legal/quote check → headline pass.",
+    },
+    {
+      question: "Does bullet-heavy content compress cleanly?",
+      answer:
+        "Lists may merge into prose. Rebuild bullets if scannability matters.",
+    },
+    {
+      question: "Should I tell readers the piece was shortened?",
+      answer:
+        "For transparency in some formats (abridged), yes. For routine edits, usually unnecessary.",
+    },
+    {
+      question: "How do I compare the long and short drafts quickly?",
+      answer:
+        "Use a text diff tool side by side, focusing on deleted numbers and names.",
+    }
+  ],
+  "how-to-turn-a-word-document-into-a-pdf": [
+    {
+      question: "How do I convert a Word file to PDF in the browser?",
+      answer:
+        "Choose the .docx, wait for conversion, then download the PDF and spot-check layout before sharing.",
+    },
+    {
+      question: "What happens to tables during conversion?",
+      answer:
+        "Tables usually carry over, but column widths can shift. Complex nested tables need a visual check.",
+    },
+    {
+      question: "What happens to pictures in the document?",
+      answer:
+        "Images embed in the PDF when conversion succeeds. Very large images may increase file size.",
+    },
+    {
+      question: "Why do some glyphs turn into replacement characters?",
+      answer:
+        "Missing fonts or encoding issues can substitute glyphs. Embed fonts in Word or use common Unicode fonts.",
+    },
+    {
+      question: "Do hard page breaks in Word become new PDF pages?",
+      answer:
+        "Hard page breaks typically do. Soft layout differences can still move content across pages.",
+    },
+    {
+      question: "How close will the PDF layout be to Word?",
+      answer:
+        "Close for simple docs; exact pixel parity is not guaranteed across engines.",
+    },
+    {
+      question: "How well do legacy .doc files convert compared with .docx?",
+      answer:
+        "Support is weaker for legacy .doc. Re-save as .docx when conversion fails.",
+    },
+    {
+      question: "Will the PDF carry the fonts my document used?",
+      answer:
+        "Depends on the converter. If text looks substituted, embed fonts before converting.",
+    },
+    {
+      question: "Is batch conversion of many Word files supported?",
+      answer:
+        "Batch support varies. Convert one-by-one when quality checks matter.",
+    },
+    {
+      question: "Do I need a desktop Word install for browser conversion?",
+      answer:
+        "Browser converters do not require a local Word install.",
+    },
+    {
+      question: "What happens to comments and tracked changes?",
+      answer:
+        "Often they are omitted or flattened. Accept or reject changes in Word first if you need a clean PDF.",
+    },
+    {
+      question: "Can this flow add a PDF open password?",
+      answer:
+        "If the tool lacks that control, protect the PDF in a dedicated PDF utility afterward.",
+    },
+    {
+      question: "Why might the PDF file size differ from the Word file?",
+      answer:
+        "Image recompression and font embedding change size either way.",
+    },
+    {
+      question: "Will headers and footers still appear after converting?",
+      answer:
+        "Usually yes, but margins can differ. Check first and last pages.",
+    },
+    {
+      question: "Is the PDF a good place for further deep edits?",
+      answer:
+        "PDFs are poorer for deep edits. Keep the Word source as the master.",
+    },
+    {
+      question: "What should I try when Word-to-PDF conversion fails?",
+      answer:
+        "Re-export a simpler .docx, remove broken fields, or split a huge file, then try again.",
+    }
   ]
 };
