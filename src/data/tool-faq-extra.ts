@@ -7756,5 +7756,17 @@ export const extraToolFaqs: Record<string, ToolFaq[]> = {
       answer:
         "Have each person draw on their own device, or send sealed messages so only recipients see targets.",
     }
-  ]
+  ],
+  "tdee-calculator": [
+    {
+      question: "Do step counts alone set my activity level?",
+      answer:
+        "Steps help, but TDEE activity multipliers also reflect job movement, training, and NEAT—not only a pedometer total.",
+    },
+    {
+      question: "Should I eat back calories burned in a workout?",
+      answer:
+        "Usually no if you already picked an activity level that includes training; adding tracker burns on top often overestimates.",
+    }
+  ],
 };
