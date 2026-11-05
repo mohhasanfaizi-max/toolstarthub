@@ -2393,5 +2393,442 @@ export const extraToolFaqs: Record<string, ToolFaq[]> = {
       answer:
         "Use the calculator to set a budget range, then get a Loan Estimate for fees, escrow, and underwriting rules a webpage cannot know.",
     }
+  ],
+  "url-parser": [
+    {
+      question: "What parts of a URL does a parser show?",
+      answer:
+        "A typical breakdown lists the protocol, host, port when present, path, query string, and fragment. Seeing each piece separately makes debugging redirects and tracking parameters easier.",
+    },
+    {
+      question: "How do I read query parameters from a link?",
+      answer:
+        "Paste the full URL and inspect the query section. Each key and value pair is listed so you can spot duplicates, empty values, or encoding issues.",
+    },
+    {
+      question: "What is the difference between a path and a query string?",
+      answer:
+        "The path points to a resource on the host, such as /tools/url-parser. The query string starts after ? and carries extra parameters the page or API can read.",
+    },
+    {
+      question: "Why does the fragment not go to the server in many apps?",
+      answer:
+        "The #fragment is mainly for the browser. Many servers never receive it, so analytics that rely on hashes need client-side handling.",
+    },
+    {
+      question: "Can I parse URLs that use international domain names?",
+      answer:
+        "Yes when the browser or parser supports punycode hosts. If a hostname looks like xn--, it is the ASCII form of an internationalized domain.",
+    },
+    {
+      question: "What does percent-encoding in a URL mean?",
+      answer:
+        "Special characters are written as % followed by hex so the link stays valid. A space may appear as %20; decoding shows the readable character again.",
+    },
+    {
+      question: "How do I check a UTM campaign link?",
+      answer:
+        "Paste the tagged URL and read utm_source, utm_medium, and utm_campaign in the query list. Fix typos there before you share the link widely.",
+    },
+    {
+      question: "Why was my relative path rejected?",
+      answer:
+        "Parsers that expect an absolute URL need a scheme and host. Add https:// and the domain, or use a tool mode that accepts relative paths if available.",
+    },
+    {
+      question: "Do ports appear for https links?",
+      answer:
+        "Port 443 is the default for https and is often omitted. A non-default port shows explicitly after the host.",
+    },
+    {
+      question: "Can two query keys with the same name both appear?",
+      answer:
+        "Yes. Some APIs repeat keys; the parser should surface each occurrence so you do not assume only the last value matters.",
+    },
+    {
+      question: "Is username:password in a URL still common?",
+      answer:
+        "Embedded credentials are discouraged and often stripped by browsers. Prefer proper auth headers or login flows instead of user:pass@host links.",
+    },
+    {
+      question: "How is this different from decoding a single parameter?",
+      answer:
+        "A URL parser splits the whole link. A percent-decoder focuses on one encoded string without requiring a full absolute URL.",
+    },
+    {
+      question: "Will parsing change the original link?",
+      answer:
+        "Inspection tools show structure without rewriting your clipboard unless you copy a rebuilt URL. The source string stays intact until you edit it.",
+    },
+    {
+      question: "Why do marketing links look so long?",
+      answer:
+        "Trackers append many query parameters. Parsing helps you separate the destination path from the tracking clutter.",
+    },
+    {
+      question: "Are pasted URLs uploaded to finish parsing?",
+      answer:
+        "This page parses in the browser. Nothing needs a server round-trip just to list host, path, and query parts.",
+    }
+  ],
+  "age-calculator": [
+    {
+      question: "How do I calculate age in years, months, and days?",
+      answer:
+        "Enter the birth date and the as-of date. The calculator counts completed years, then leftover months and days using calendar rules rather than a flat 365-day year.",
+    },
+    {
+      question: "Can I find age on a specific past date?",
+      answer:
+        "Yes. Set the second date to that day to see how old someone was then. Useful for historical records and eligibility checks.",
+    },
+    {
+      question: "Why do leap years change total days?",
+      answer:
+        "February 29 adds an extra day in leap years, so the day count between two dates is not years × 365. The tool accounts for those calendar days.",
+    },
+    {
+      question: "How is age calculated for a February 29 birthday?",
+      answer:
+        "Conventions vary by country and policy. Many tools treat non-leap years as February 28 or March 1 for the anniversary; read the on-page note for this calculator’s rule.",
+    },
+    {
+      question: "Can parents use this for school cutoff ages?",
+      answer:
+        "Yes as a planning aid. Always confirm the school’s official cutoff date and local rules, which may differ from a general age count.",
+    },
+    {
+      question: "Does the calculator include the end date as a full day?",
+      answer:
+        "Age usually counts completed time up to the as-of date. A birthday on the as-of date typically means that year has just been completed.",
+    },
+    {
+      question: "Why is my result one day off from another site?",
+      answer:
+        "Time zones, inclusive counting, and leap-day policies differ. Match both dates and the leap-day rule before comparing.",
+    },
+    {
+      question: "Can I calculate age for pets the same way?",
+      answer:
+        "Chronological age uses the same date math. Pet “human year” charts are separate marketing formulas, not calendar age.",
+    },
+    {
+      question: "Is time of day required?",
+      answer:
+        "Most age tools use whole calendar dates. Hours and minutes rarely matter unless a policy defines age at a precise instant.",
+    },
+    {
+      question: "How do I check retirement or benefit eligibility age?",
+      answer:
+        "Compute chronological age here, then apply the program’s age rules and required documents. Eligibility is legal, not just arithmetic.",
+    },
+    {
+      question: "What if I only know the birth year?",
+      answer:
+        "You need at least a month and day for exact age. With only a year you can estimate a range, not an exact years-months-days result.",
+    },
+    {
+      question: "Can future as-of dates show upcoming age?",
+      answer:
+        "Yes when the tool allows future dates. That helps plan birthdays and age-gated events ahead of time.",
+    },
+    {
+      question: "Does DST affect age in days?",
+      answer:
+        "Not for date-only calculators. Daylight saving changes clock time, not the calendar date difference.",
+    },
+    {
+      question: "Are birth dates stored after I calculate?",
+      answer:
+        "Values stay in the browser session for the calculation. Clear the fields if the dates are sensitive.",
+    }
+  ],
+  "credit-card-payoff-calculator": [
+    {
+      question: "How do I estimate months to pay off a credit card?",
+      answer:
+        "Enter the balance, APR, and the fixed amount you can pay each month. The calculator projects how balances shrink until the card reaches zero.",
+    },
+    {
+      question: "What monthly payment clears a card in a set time?",
+      answer:
+        "Choose a target payoff horizon when the tool supports it, or raise the payment until the schedule fits your deadline. Higher payments cut months and interest.",
+    },
+    {
+      question: "Why is the minimum payment a trap?",
+      answer:
+        "Minimums are often a small percent of the balance plus interest, so payoff can stretch for years. Paying more than the minimum is what shortens the schedule.",
+    },
+    {
+      question: "Does APR compounding change the estimate?",
+      answer:
+        "Card issuers may use daily periodic rates. A monthly model is a close planning estimate, not a statement replica.",
+    },
+    {
+      question: "How do new purchases affect payoff plans?",
+      answer:
+        "New charges raise the balance and interest. Freeze discretionary spending on that card while you follow a payoff schedule.",
+    },
+    {
+      question: "Should I include fees in the balance?",
+      answer:
+        "Start from the current statement balance that interest will apply to. Add known pending fees if you want a conservative plan.",
+    },
+    {
+      question: "What if I only pay interest each month?",
+      answer:
+        "The principal barely moves and payoff never arrives. The calculator shows why fixed principal-chipping payments matter.",
+    },
+    {
+      question: "Can I model a 0% intro APR period?",
+      answer:
+        "Approximate by using 0% for the promo months, then switch to the go-to rate for the remaining balance. Watch the promo end date on your card.",
+    },
+    {
+      question: "How much interest will I pay overall?",
+      answer:
+        "Sum of interest across the projected months. Compare that total with a faster payment plan to see savings.",
+    },
+    {
+      question: "Is biweekly credit card payment better?",
+      answer:
+        "Paying half twice a month can reduce average balance slightly if the issuer posts promptly. Confirm posting rules on your account.",
+    },
+    {
+      question: "How do balance transfers change the math?",
+      answer:
+        "A lower transfer APR can cut interest, but transfer fees add to principal. Model fee plus new rate before you move a balance.",
+    },
+    {
+      question: "Why do payoff dates slip in real life?",
+      answer:
+        "Missed payments, late fees, and new purchases extend the schedule. Recalculate whenever the balance or payment changes.",
+    },
+    {
+      question: "Can I pay off multiple cards with this tool?",
+      answer:
+        "Model one card at a time, or move to a debt payoff tool that ranks several balances. Keep each APR accurate.",
+    },
+    {
+      question: "When should I call the issuer instead?",
+      answer:
+        "For hardship plans, disputed charges, or exact payoff quotes. Online estimates guide budgets; servicers give official figures.",
+    }
+  ],
+  "debt-payoff-calculator": [
+    {
+      question: "How do I choose between avalanche and snowball?",
+      answer:
+        "Avalanche targets the highest APR first to minimize interest. Snowball clears the smallest balance first for quick wins. Pick the method you will stick with.",
+    },
+    {
+      question: "What inputs does a multi-debt payoff plan need?",
+      answer:
+        "Each debt’s balance, APR, and minimum payment, plus any extra monthly amount you can apply above the minimums.",
+    },
+    {
+      question: "How is the extra payment applied each month?",
+      answer:
+        "Minimums go to every debt; the extra hits the current target debt. When that debt is gone, its minimum rolls into the next target.",
+    },
+    {
+      question: "Will avalanche always cost less interest?",
+      answer:
+        "Usually yes if you follow it consistently. Snowball can still win in practice when motivation keeps you paying.",
+    },
+    {
+      question: "Can I include student loans and cards together?",
+      answer:
+        "Yes for planning if rates and minimums are accurate. Federal loan programs may have separate repayment rules worth reading alongside the math.",
+    },
+    {
+      question: "What if a debt has a 0% promotional rate?",
+      answer:
+        "Keep it in the list with the promo APR and end date in mind. Redirect extras before the rate jumps if the balance will remain.",
+    },
+    {
+      question: "How do I estimate total interest across all debts?",
+      answer:
+        "Run the schedule for your chosen method and sum interest lines. Compare avalanche versus snowball totals before you commit.",
+    },
+    {
+      question: "Should I pause investing to pay debt faster?",
+      answer:
+        "That depends on rates, employer matches, and risk tolerance. The calculator shows payoff speed; a planner helps with the tradeoff.",
+    },
+    {
+      question: "What happens when I add a new loan mid-plan?",
+      answer:
+        "Recalculate with the new balance and minimum. Old timelines no longer apply once the debt stack changes.",
+    },
+    {
+      question: "Can settlement offers be modeled here?",
+      answer:
+        "Not precisely. Settlements change principal and credit outcomes outside simple amortization. Use lender paperwork for those scenarios.",
+    },
+    {
+      question: "How large should my emergency fund be while paying debt?",
+      answer:
+        "Many advisors keep a small cash buffer so a flat tire does not reload the cards. Exact size is personal.",
+    },
+    {
+      question: "Do minimum payments change as balances fall?",
+      answer:
+        "Issuers often recompute minimums. Using today’s minimums is a common estimate; update when statements change.",
+    },
+    {
+      question: "Is paying every two weeks the same as monthly extra?",
+      answer:
+        "Not always. Align the model with how your paycheck and due dates actually land so cash flow stays realistic.",
+    },
+    {
+      question: "When is talking to a nonprofit credit counselor useful?",
+      answer:
+        "When interest feels unmanageable or you’re juggling collections. A counselor can review options a spreadsheet cannot.",
+    }
+  ],
+  "fuel-cost-calculator": [
+    {
+      question: "How do I estimate gas cost for a road trip?",
+      answer:
+        "Enter distance, your vehicle’s fuel economy, and the price per gallon or liter. The tool multiplies fuel needed by price to estimate cost.",
+    },
+    {
+      question: "Should I use MPG or L/100 km?",
+      answer:
+        "Match the unit to your region and owner’s manual. Mixing units without converting will skew the cost.",
+    },
+    {
+      question: "How do I handle a round trip?",
+      answer:
+        "Double the one-way distance, or enter each leg if economy differs. Returning with a loaded car may use slightly more fuel.",
+    },
+    {
+      question: "Does city versus highway MPG matter?",
+      answer:
+        "Yes. Use a blended figure that matches your route, or run two estimates and weight them by miles in each condition.",
+    },
+    {
+      question: "Can I compare two cars on the same trip?",
+      answer:
+        "Run the calculator once per vehicle with each MPG and the same distance and fuel price. The difference is your comparison.",
+    },
+    {
+      question: "What fuel price should I type?",
+      answer:
+        "Use a recent local average or the station you expect to visit. Prices change daily, so refresh before a long trip.",
+    },
+    {
+      question: "How do I estimate cost per mile?",
+      answer:
+        "Divide total fuel cost by distance. That figure helps compare driving with other transport modes.",
+    },
+    {
+      question: "Does idling or traffic show up in the estimate?",
+      answer:
+        "Simple distance ÷ economy models miss heavy idle time. Add a buffer for congested cities.",
+    },
+    {
+      question: "Can electric vehicles use this fuel tool?",
+      answer:
+        "Not for kWh charging math. Use an EV cost estimator with electricity rates instead of gasoline price.",
+    },
+    {
+      question: "How accurate is manufacturer MPG?",
+      answer:
+        "Window-sticker values are standardized tests. Real drivers often see lower MPG; use your trip computer when possible.",
+    },
+    {
+      question: "What if I only know fuel cost for a past fill?",
+      answer:
+        "Divide that cost by miles since the last fill for a real cost-per-mile, then scale to the new distance.",
+    },
+    {
+      question: "Do rooftop cargo boxes change the result?",
+      answer:
+        "They hurt highway MPG. Lower the economy input a few percent if you drive with extra drag.",
+    },
+    {
+      question: "Can I include oil and tires in trip cost?",
+      answer:
+        "This calculator focuses on fuel. Add maintenance and tolls separately for a full trip budget.",
+    },
+    {
+      question: "Are my trip distances uploaded?",
+      answer:
+        "No. Distance and price stay in the browser for the estimate.",
+    }
+  ],
+  "gpa-calculator": [
+    {
+      question: "How do I calculate a semester GPA?",
+      answer:
+        "Enter each course’s grade and credit hours. The tool weights grade points by credits and divides by total credits.",
+    },
+    {
+      question: "What is the difference between GPA and weighted GPA?",
+      answer:
+        "Some schools add extra points for honors or AP classes. Confirm whether your calculator mode matches your transcript scale.",
+    },
+    {
+      question: "Can I mix letter grades and percentages?",
+      answer:
+        "Only if you convert them with your school’s official map first. Do not invent conversions that your registrar does not use.",
+    },
+    {
+      question: "How do failed courses affect GPA?",
+      answer:
+        "An F usually contributes zero grade points while still counting credits attempted, which lowers the average. Retake policies vary by school.",
+    },
+    {
+      question: "What is cumulative GPA versus term GPA?",
+      answer:
+        "Term GPA covers one semester. Cumulative GPA folds all graded credits to date. Enter prior totals carefully when combining.",
+    },
+    {
+      question: "Do pass/fail classes count in GPA?",
+      answer:
+        "Often they count toward earned credits but not the GPA average. Follow your catalog; omit them if they are excluded.",
+    },
+    {
+      question: "How many decimal places do schools report?",
+      answer:
+        "Many show two or three decimals and have their own rounding rules. Use the registrar’s number for official applications.",
+    },
+    {
+      question: "Can I project GPA if I earn an A next term?",
+      answer:
+        "Yes by adding planned courses with expected grades to your current totals. Treat it as a forecast, not a promise.",
+    },
+    {
+      question: "What if credits are listed as units or hours?",
+      answer:
+        "Use whatever numeric weight your school uses consistently. Mixing quarter and semester hours without conversion will distort GPA.",
+    },
+    {
+      question: "Does this match every international scale?",
+      answer:
+        "No. Scales differ widely. Convert only with an official credential-evaluation method when applying across systems.",
+    },
+    {
+      question: "How do I fix a typo that skews the result?",
+      answer:
+        "Recheck each grade and credit field. A single wrong credit hour can move GPA more than one letter grade change.",
+    },
+    {
+      question: "Should repeated courses replace old grades?",
+      answer:
+        "Only when school policy says so. Some replace, some average both. Model the policy you actually have.",
+    },
+    {
+      question: "Can high school GPA use the same tool?",
+      answer:
+        "Yes if the letter-to-point map matches. Weighted high school scales need the weighted mode or manual points.",
+    },
+    {
+      question: "Are my grades stored on a server?",
+      answer:
+        "They remain in the browser for the session. Clear the form when you finish if privacy matters.",
+    }
   ]
 };

@@ -2142,5 +2142,497 @@ export const extraGuideFaqs: Record<string, GuideFaq[]> = {
       answer:
         "Set min 1 and max 100 in integer mode and click once. Repeat only if your rules allow redraws.",
     }
+  ],
+  "how-to-read-a-url": [
+    {
+      question: "How do I break a long link into readable parts?",
+      answer:
+        "Paste it into a URL parser to see scheme, host, path, query keys, and fragment separately. That view beats scanning one dense string.",
+    },
+    {
+      question: "What should I check first when a link looks suspicious?",
+      answer:
+        "Confirm the host spelling and the path. Lookalikes in the domain are a common phishing trick before any query parameters matter.",
+    },
+    {
+      question: "How do tracking parameters show up in a URL?",
+      answer:
+        "They appear after ? as key=value pairs such as utm_source. Parsing lists them so you can strip or keep them intentionally.",
+    },
+    {
+      question: "Why might two links that look alike behave differently?",
+      answer:
+        "A single query flag or trailing slash can change server routing. Compare parsed components side by side.",
+    },
+    {
+      question: "What is a URL scheme?",
+      answer:
+        "It is the leading protocol such as https: or mailto:. It tells the browser how to handle the rest of the string.",
+    },
+    {
+      question: "When is a port number important?",
+      answer:
+        "Non-default ports point to alternate services on the same host. Missing a required port can hit the wrong app.",
+    },
+    {
+      question: "How do I explain query strings to a teammate?",
+      answer:
+        "Describe them as optional instructions after the path. Parsing demos make the metaphor concrete in a meeting.",
+    },
+    {
+      question: "Can a fragment open a section on the page?",
+      answer:
+        "Yes, ids after # often scroll to a heading. They usually stay client-side and may not appear in server logs.",
+    },
+    {
+      question: "Why do shared links from apps look encoded?",
+      answer:
+        "Apps percent-encode spaces and punctuation for safety. Decoding those segments restores readable titles.",
+    },
+    {
+      question: "How should writers shorten links for print?",
+      answer:
+        "Prefer a clean canonical path without personal tokens. Parsing helps you spot session ids you must not print.",
+    },
+    {
+      question: "What does a data: or javascript: scheme imply?",
+      answer:
+        "Those are special schemes, not normal websites. Treat unexpected schemes as unsafe in untrusted content.",
+    },
+    {
+      question: "How do CDNs affect the path you see?",
+      answer:
+        "Paths may include cache-busting hashes or image transforms. Parsing separates host branding from path noise.",
+    },
+    {
+      question: "Is reading a URL the same as visiting it?",
+      answer:
+        "No. Parsing inspects the string locally. Visiting sends a request and can trigger tracking.",
+    },
+    {
+      question: "How can support teams use URL parsing?",
+      answer:
+        "Ask customers for the full link, parse it, and verify environment hosts or ticket ids without clicking blindly.",
+    },
+    {
+      question: "What belongs in documentation about links?",
+      answer:
+        "Document required query keys and example hosts. Pair docs with a parser so examples stay honest.",
+    },
+    {
+      question: "When should I rebuild a URL instead of editing by hand?",
+      answer:
+        "When encoding errors keep appearing. Change fields in a structured editor, then copy the rebuilt link.",
+    }
+  ],
+  "how-to-check-an-open-graph-preview": [
+    {
+      question: "How do I preview how a link will look when shared?",
+      answer:
+        "Use an Open Graph preview tool with a public https URL. It reads og tags and shows title, description, and image fields platforms expect.",
+    },
+    {
+      question: "Why must the page be publicly reachable?",
+      answer:
+        "Crawlers on the internet cannot see localhost or private VPNs. Deploy a staging host that allows the preview fetch.",
+    },
+    {
+      question: "What tags should I verify for a clean card?",
+      answer:
+        "Check og:title, og:description, og:image, and og:url at minimum. Add og:type when the platform docs recommend it.",
+    },
+    {
+      question: "How do I fix a stale Facebook share image?",
+      answer:
+        "Update the og:image, confirm the new file is live, then use the platform’s debugger refresh so caches drop the old asset.",
+    },
+    {
+      question: "Why is my preview image cropped oddly?",
+      answer:
+        "Platforms expect roughly 1.91:1 for large link cards. Provide a large enough image with safe margins around the focal point.",
+    },
+    {
+      question: "Can meta descriptions replace og:description?",
+      answer:
+        "Some platforms fall back, but matching both keeps search snippets and share cards aligned. Prefer an explicit og:description.",
+    },
+    {
+      question: "What if the title looks fine in HTML but wrong on share?",
+      answer:
+        "A crawler may be reading outdated HTML or a different locale URL. Confirm the exact URL you paste into the previewer.",
+    },
+    {
+      question: "Do query parameters create separate previews?",
+      answer:
+        "They can if the server returns different og tags per query. Canonicalize when you want one card for many tracking URLs.",
+    },
+    {
+      question: "How long should I wait after publishing new tags?",
+      answer:
+        "CDN and platform caches vary from minutes to days. Recheck after a hard refresh in the official debugger.",
+    },
+    {
+      question: "Why did the preview time out?",
+      answer:
+        "Slow servers, blocking bot rules, or geographic firewalls can stop the fetch. Allow reputable crawlers and speed up TTFB.",
+    },
+    {
+      question: "Is Open Graph enough for X or LinkedIn?",
+      answer:
+        "Open Graph covers many cases; some networks also read their own tags. Still start with solid og basics.",
+    },
+    {
+      question: "Can client-rendered apps expose og tags?",
+      answer:
+        "Only if the HTML response includes them or a prerender layer injects them. Pure client inserts often miss crawlers.",
+    },
+    {
+      question: "How do I QA several language versions?",
+      answer:
+        "Preview each localized URL. Titles and images should match that language’s content, not the default locale.",
+    },
+    {
+      question: "What does a missing image look like in practice?",
+      answer:
+        "Shares show a blank or generic thumbnail. Users skip those links more often, so treat missing og:image as a release blocker.",
+    },
+    {
+      question: "Should every blog post define og:type article?",
+      answer:
+        "It helps some platforms classify content. Follow the network’s current documentation for article versus website.",
+    },
+    {
+      question: "How is checking a preview different from editing meta tags?",
+      answer:
+        "Tag editors help you write markup; preview tools validate what crawlers actually receive on the live URL.",
+    }
+  ],
+  "how-to-check-color-contrast": [
+    {
+      question: "How do I test text contrast for accessibility?",
+      answer:
+        "Pick the text color and the background color in a contrast checker and read the ratio against WCAG AA and AAA thresholds.",
+    },
+    {
+      question: "What ratio should body text meet?",
+      answer:
+        "WCAG AA generally expects at least 4.5:1 for normal text and 3:1 for large text. AAA is stricter at 7:1 for normal text.",
+    },
+    {
+      question: "What counts as large text for contrast rules?",
+      answer:
+        "Roughly 18pt regular or 14pt bold text qualifies as large under WCAG guidance. Confirm with the current WCAG definitions you follow.",
+    },
+    {
+      question: "How do I fix a failing color pair?",
+      answer:
+        "Darken the text, lighten the background, or both until the ratio passes. Recheck hover and disabled states too.",
+    },
+    {
+      question: "Do links need their own contrast check?",
+      answer:
+        "Yes against the background, and they also need a non-color cue such as underline when color alone marks them as links.",
+    },
+    {
+      question: "Can I rely on brand guidelines alone?",
+      answer:
+        "Brand palettes still have to pass on real UI backgrounds. Check each usage rather than assuming a hex is safe everywhere.",
+    },
+    {
+      question: "How does opacity affect contrast?",
+      answer:
+        "Semi-transparent text blends with whatever sits behind it. Sample the effective on-screen color, not only the raw hex.",
+    },
+    {
+      question: "Should charts and data visualizations meet the same ratios?",
+      answer:
+        "Critical labels should. Some non-text graphics use additional patterns because color alone is not enough.",
+    },
+    {
+      question: "Does a gradient background complicate the test?",
+      answer:
+        "Yes. Test against the lightest and darkest areas the text crosses, or place text on a solid scrim.",
+    },
+    {
+      question: "Can icons use lower contrast than text?",
+      answer:
+        "UI component guidance often allows 3:1 for non-text contrast. Text inside icons still follows text thresholds.",
+    },
+    {
+      question: "How do dark mode themes change the workflow?",
+      answer:
+        "Retest every pair in both themes. A pass in light mode can fail when backgrounds invert.",
+    },
+    {
+      question: "Is automated CSS scanning enough?",
+      answer:
+        "It helps catch many issues, but manual checks still matter for images, overlays, and canvas text.",
+    },
+    {
+      question: "Why do similar grey pairs fail?",
+      answer:
+        "Low luminance difference yields a low ratio even when hues look related. Increase separation rather than tweaking hue alone.",
+    },
+    {
+      question: "What color formats can I paste into checkers?",
+      answer:
+        "Hex and RGB are common; some tools accept HSL. Convert consistently so teammates compare the same values.",
+    },
+    {
+      question: "Does passing one control mean the page is accessible?",
+      answer:
+        "No. Contrast is one requirement among structure, keyboard use, and more. Treat a pass as necessary, not complete.",
+    },
+    {
+      question: "How often should design systems recheck contrast?",
+      answer:
+        "Whenever tokens change. A single palette update can invalidate dozens of components.",
+    }
+  ],
+  "how-to-convert-text-to-morse-code": [
+    {
+      question: "How do I convert English text into Morse code?",
+      answer:
+        "Type or paste the phrase into a Morse tool, then copy the dots and dashes it produces. Letters become standard International Morse sequences.",
+    },
+    {
+      question: "How are letters and words separated in Morse?",
+      answer:
+        "Letter gaps are shorter pauses; words are often shown with a slash or wider gap in text form. Follow the separator the tool documents.",
+    },
+    {
+      question: "Can Morse tools translate code back into letters?",
+      answer:
+        "Many offer decode as well as encode. Paste well-spaced Morse and correct any malformed sequences the decoder rejects.",
+    },
+    {
+      question: "Does punctuation have Morse equivalents?",
+      answer:
+        "Common marks do, but support varies. Unsupported characters are usually skipped or flagged rather than guessed.",
+    },
+    {
+      question: "Is Morse case-sensitive?",
+      answer:
+        "No. Encoding typically uppercases letters first so “hello” and “HELLO” produce the same code.",
+    },
+    {
+      question: "How was Morse used historically?",
+      answer:
+        "Operators sent it over telegraph wires and radio. Learning the patterns still helps amateur radio and classroom demos.",
+    },
+    {
+      question: "Can I practice listening, not only reading?",
+      answer:
+        "Use an audio trainer that beeps dit and dah lengths. Visual dots alone build recognition slower for on-air use.",
+    },
+    {
+      question: "What speed should beginners start at?",
+      answer:
+        "Start slow enough to hear distinct dits and dahs, then increase. Rushing early creates bad habits.",
+    },
+    {
+      question: "Are numbers included in International Morse?",
+      answer:
+        "Yes, digits 0–9 have standard patterns. Mixed call signs rely on both letters and numbers.",
+    },
+    {
+      question: "Why do some charts show different symbols?",
+      answer:
+        "American Morse and other variants differ. Stick to International Morse unless a niche context requires otherwise.",
+    },
+    {
+      question: "Can I Morse-encode passwords for fun?",
+      answer:
+        "You can, but it is not encryption. Anyone with a chart can read it.",
+    },
+    {
+      question: "How do I share Morse in plain text chats?",
+      answer:
+        "Copy the dot-dash string with clear word separators. Avoid fonts that merge punctuation oddly.",
+    },
+    {
+      question: "What mistakes break decoding?",
+      answer:
+        "Missing spaces between letters or using the wrong dash character confuses parsers. Keep spacing consistent.",
+    },
+    {
+      question: "Is learning Morse still required for licenses?",
+      answer:
+        "Many modern amateur licenses dropped Morse tests, but the skill remains useful and popular as a hobby.",
+    },
+    {
+      question: "How long are typical dit and dah lengths?",
+      answer:
+        "A dah lasts about three dits, with standard gaps between elements, letters, and words in timing rules.",
+    },
+    {
+      question: "Should classrooms grade exact spacing?",
+      answer:
+        "Yes for decode accuracy. Teach separators explicitly so students do not run words together.",
+    }
+  ],
+  "how-to-escape-html": [
+    {
+      question: "How do I escape HTML so tags show as text?",
+      answer:
+        "Run the markup through an HTML encoder that turns characters like <, >, and & into entities. Paste the result where you need literal code samples.",
+    },
+    {
+      question: "When should I encode HTML instead of sanitizing it?",
+      answer:
+        "Encode when you want to display source code safely. Sanitize or strip when you must allow limited HTML rendering from untrusted users.",
+    },
+    {
+      question: "Why is encoding & required before other entities?",
+      answer:
+        "Ampersands start entities. Leaving them raw can break parsing or create unintended sequences in the middle of text.",
+    },
+    {
+      question: "What is the difference between encoding and minifying?",
+      answer:
+        "Encoding changes characters into entities for safe display. Minifying removes whitespace and shortens code without entity-escaping content.",
+    },
+    {
+      question: "Can I decode entities back to markup?",
+      answer:
+        "Yes with a decoder that understands named and numeric entities. Only decode content you trust before rendering.",
+    },
+    {
+      question: "How do blogs safely show code snippets?",
+      answer:
+        "Escape the snippet, then place it inside a code block styled by CSS. That prevents the browser from executing sample tags.",
+    },
+    {
+      question: "Do quotes need encoding inside attributes?",
+      answer:
+        "Yes when the value is wrapped in the same quote style. Attribute-safe encoding prevents breaking out of the attribute.",
+    },
+    {
+      question: "Is escaping enough to stop all XSS?",
+      answer:
+        "Context-aware escaping is a major control, but apps also need CSP, careful APIs, and safe frameworks. Do not rely on one replace call alone.",
+    },
+    {
+      question: "What entities appear most often?",
+      answer:
+        "&lt; &gt; &amp; &quot; and &#39; cover many cases. Rich text may need more named entities.",
+    },
+    {
+      question: "Should I escape entire HTML documents for email?",
+      answer:
+        "Email clients differ. Prefer tested templates and escape user-supplied fragments rather than double-encoding whole messages.",
+    },
+    {
+      question: "How do Markdown and HTML escaping interact?",
+      answer:
+        "Markdown processors may still pass raw HTML. Escape or disable raw HTML when untrusted authors contribute.",
+    },
+    {
+      question: "Can browsers show entities without decoding?",
+      answer:
+        "In normal HTML they decode for display. Inside <pre> or after encoding, you can make the entity text visible.",
+    },
+    {
+      question: "Why did my decoder reject a string?",
+      answer:
+        "Broken numeric entities or truncated sequences fail parsers. Fix the entity syntax and try again.",
+    },
+    {
+      question: "Is this the same as URL encoding?",
+      answer:
+        "No. URL encoding uses percent-codes for links. HTML escaping uses entities for markup safety.",
+    },
+    {
+      question: "How should teams review escaped content?",
+      answer:
+        "Check that samples still teach the right tags after escaping, and that production pages never accidentally double-escape readable copy.",
+    },
+    {
+      question: "When is a visual editor safer than manual escaping?",
+      answer:
+        "When non-developers publish often. Editors that escape on insert reduce copy-paste mistakes.",
+    }
+  ],
+  "how-to-find-and-replace-text": [
+    {
+      question: "How do I replace a word everywhere in a document?",
+      answer:
+        "Paste the text into a find-and-replace tool, enter the target word and its replacement, choose replace-all, then copy the result back.",
+    },
+    {
+      question: "When should I use regular expressions for replace?",
+      answer:
+        "Use regex when patterns vary, such as phone formats or repeated whitespace. Prefer plain text replace for simple fixed words.",
+    },
+    {
+      question: "How do I delete every match instead of replacing?",
+      answer:
+        "Leave the replacement empty if the tool treats that as deletion, or replace with a single space when you need spacing preserved.",
+    },
+    {
+      question: "Why does replacing “cat” also change “catalog”?",
+      answer:
+        "Substring matches alter “cat” inside “catalog”. Enable whole-word matching when available, or tighten the pattern.",
+    },
+    {
+      question: "Should I replace case-sensitively?",
+      answer:
+        "Yes when capitalization carries meaning. Case-insensitive mode catches Title Case and lowercase together but can over-match.",
+    },
+    {
+      question: "How can I replace only the first occurrence?",
+      answer:
+        "Choose a first-only mode if offered, or replace manually once. Blind replace-all is risky in legal text.",
+    },
+    {
+      question: "What is a safe workflow for large files?",
+      answer:
+        "Work on a copy, run replace, spot-check critical sections, then overwrite the original. Keep version history.",
+    },
+    {
+      question: "Can find-and-replace fix inconsistent spelling?",
+      answer:
+        "Yes for known variants. Maintain a short checklist of brand spellings so teammates apply the same map.",
+    },
+    {
+      question: "How do line breaks affect matching?",
+      answer:
+        "Some patterns do not cross lines unless you enable multiline modes. Normalize breaks first when cleaning pasted email.",
+    },
+    {
+      question: "Is browser find-and-replace enough for code?",
+      answer:
+        "Editors with project-wide search are safer for repos. A webpage tool suits one-off clipboard cleanup.",
+    },
+    {
+      question: "How do I avoid breaking URLs while replacing?",
+      answer:
+        "Include surrounding punctuation in tests, or exclude http regions with careful regex. Preview before all-replace.",
+    },
+    {
+      question: "What does a rejected input usually mean?",
+      answer:
+        "Empty find strings or invalid regex syntax are common causes. Fix the pattern and retry.",
+    },
+    {
+      question: "Can I replace across many files at once here?",
+      answer:
+        "This guide focuses on one text blob. Use an IDE or sed-like workflow for trees of files.",
+    },
+    {
+      question: "How should translators use replace tools?",
+      answer:
+        "Replace glossary terms consistently, but review gendered or context-sensitive words manually.",
+    },
+    {
+      question: "Does replace change formatting marks?",
+      answer:
+        "Plain-text tools ignore rich formatting. Paste back into a word processor carefully if styles matter.",
+    },
+    {
+      question: "When is manual editing better than replace-all?",
+      answer:
+        "When matches need human judgment, such as names that collide with common words. Search, then decide case by case.",
+    }
   ]
 };
