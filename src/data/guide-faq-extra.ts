@@ -2634,5 +2634,497 @@ export const extraGuideFaqs: Record<string, GuideFaq[]> = {
       answer:
         "When matches need human judgment, such as names that collide with common words. Search, then decide case by case.",
     }
+  ],
+  "how-to-turn-a-number-into-words": [
+    {
+      question: "How do I write a number in words for a form?",
+      answer:
+        "Type the digits into a number-to-words tool and copy the phrase it returns. Proofread hyphens and “hundred” placement before submitting.",
+    },
+    {
+      question: "When do legal documents require amounts in words?",
+      answer:
+        "Checks and some contracts use words to deter alterations. Follow the exact template your bank or counsel provides.",
+    },
+    {
+      question: "How should I handle cents on a check?",
+      answer:
+        "Many people write dollars in words and cents as a fraction over 100. Confirm local banking custom.",
+    },
+    {
+      question: "Why do American and British wordings differ?",
+      answer:
+        "UK English often inserts “and” (two hundred and five). U.S. forms frequently omit it. Match the audience.",
+    },
+    {
+      question: "Can I convert phone numbers to words?",
+      answer:
+        "Not usefully—phone numbers are digit strings, not quantities. Keep them numeric.",
+    },
+    {
+      question: "What is a safe maximum for automated wording?",
+      answer:
+        "Stay inside the converter’s documented range. Beyond that, wording rules and overflow errors become likely.",
+    },
+    {
+      question: "How do teachers check student conversions?",
+      answer:
+        "Compare against a trusted key and watch place-value mistakes around teens and tens.",
+    },
+    {
+      question: "Should I hyphenate twenty-one?",
+      answer:
+        "Yes in standard American style for twenty-one through ninety-nine when used as compound numbers.",
+    },
+    {
+      question: "Can words be converted back to digits reliably?",
+      answer:
+        "Only with a careful parser and unambiguous input. Prefer keeping the original digits beside the words.",
+    },
+    {
+      question: "How do I write years like 2026 in words?",
+      answer:
+        "Styles vary (two thousand twenty-six versus twenty twenty-six). Pick one style guide and stay consistent.",
+    },
+    {
+      question: "Do leading zeros in codes get spoken?",
+      answer:
+        "Quantity converters drop them. For codes, read each digit aloud instead of using number-to-words.",
+    },
+    {
+      question: "Is this helpful for accessibility subtitles?",
+      answer:
+        "Sometimes, when a voiceover must speak amounts. Keep digits on screen too for skimmers.",
+    },
+    {
+      question: "What about roman numerals?",
+      answer:
+        "Use a roman converter instead. Number-to-words targets English phrases, not XIV-style output.",
+    },
+    {
+      question: "How should finance teams QA converter output?",
+      answer:
+        "Spot-check boundaries (19/20, 99/100, 999/1000) and negative or decimal cases your process allows.",
+    },
+    {
+      question: "Can I batch-convert a column of numbers?",
+      answer:
+        "Spreadsheet formulas or scripts scale better. The web tool suits one-off amounts.",
+    },
+    {
+      question: "Why keep digits even after writing words?",
+      answer:
+        "Digits reduce ambiguity in machine systems; words help humans catch tampering. Using both is common on checks.",
+    }
+  ],
+  "what-a-paycheck-estimate-includes": [
+    {
+      question: "What pieces make up a paycheck estimate?",
+      answer:
+        "Start with gross pay, then subtract estimated tax withholding and deductions. The remainder is an approximate net or take-home figure.",
+    },
+    {
+      question: "How is gross pay different from net pay?",
+      answer:
+        "Gross is before taxes and deductions. Net is what you receive after those amounts are taken out.",
+    },
+    {
+      question: "What are pre-tax deductions examples?",
+      answer:
+        "Common ones include traditional 401(k) contributions and some insurance premiums. They reduce taxable wages in many systems.",
+    },
+    {
+      question: "What are post-tax deductions?",
+      answer:
+        "Items taken after tax withholding, such as Roth contributions or certain garnishments, depending on the plan.",
+    },
+    {
+      question: "Why is an online estimate not a tax filing?",
+      answer:
+        "Filings use annual forms, credits, and jurisdiction rules a simple paycheck model cannot know. Treat the result as planning only.",
+    },
+    {
+      question: "How does pay frequency change each check?",
+      answer:
+        "Weekly, biweekly, semimonthly, and monthly splits divide annual pay differently. Enter the frequency that matches your job.",
+    },
+    {
+      question: "Should overtime be in the estimate?",
+      answer:
+        "Include expected overtime in gross when you want a realistic check. Irregular OT makes month-to-month net swing.",
+    },
+    {
+      question: "How do benefits affect take-home pay?",
+      answer:
+        "Employer benefits may not leave your check, but employee-paid premiums do. Model the employee share as a deduction.",
+    },
+    {
+      question: "What withholding percent should I try first?",
+      answer:
+        "Use a conservative placeholder until you have a W-4-style projection. Adjust after you see real paystubs.",
+    },
+    {
+      question: "Can bonuses be estimated the same way?",
+      answer:
+        "Bonus withholding can use flat supplemental rates. A regular paycheck model may under- or over-estimate a bonus check.",
+    },
+    {
+      question: "Why do two paycheck tools disagree?",
+      answer:
+        "State taxes, local levies, and FICA assumptions differ. Compare line items, not only the final net.",
+    },
+    {
+      question: "How should freelancers read these estimates?",
+      answer:
+        "Freelancers often lack wage withholding. Use self-employment tax planning instead of employee paycheck defaults.",
+    },
+    {
+      question: "What if deductions are unknown?",
+      answer:
+        "Run a gross-only scenario first, then add known deductions one at a time so you see each impact.",
+    },
+    {
+      question: "Does filing status belong in a simple estimator?",
+      answer:
+        "Full tax engines ask for it. Lightweight percent-based tools skip it and are correspondingly rougher.",
+    },
+    {
+      question: "How often should I revisit the estimate?",
+      answer:
+        "After raises, benefit changes, or new W-4 elections. Old assumptions drift quickly.",
+    },
+    {
+      question: "When do I need a tax professional?",
+      answer:
+        "For multi-state work, equity compensation, or complex credits. Estimators cannot replace personalized advice.",
+    }
+  ],
+  "how-to-find-the-mean-median-and-mode": [
+    {
+      question: "How do I calculate the mean of a list?",
+      answer:
+        "Add the numbers and divide by how many there are. An average calculator can do the arithmetic after you paste the list.",
+    },
+    {
+      question: "When is the median better than the mean?",
+      answer:
+        "When outliers pull the mean—like one huge salary in a small sample. The median mid-point stays more typical.",
+    },
+    {
+      question: "What is the mode in a data set?",
+      answer:
+        "The value that appears most often. Some lists have no mode, one mode, or several modes that tie.",
+    },
+    {
+      question: "How do I find the median of an even-sized list?",
+      answer:
+        "Sort the numbers, then average the two middle values. That pair’s mean becomes the median.",
+    },
+    {
+      question: "Can I paste numbers with commas?",
+      answer:
+        "Most list tools accept commas, spaces, or new lines. Avoid thousand separators that look like extra numbers.",
+    },
+    {
+      question: "What is a bimodal distribution?",
+      answer:
+        "A set with two different values tied for most frequent. Report both modes rather than forcing a single answer.",
+    },
+    {
+      question: "Do negative numbers work in averages?",
+      answer:
+        "Yes. Signs are part of the values. A mean can be negative when negatives dominate.",
+    },
+    {
+      question: "How should teachers introduce these three measures?",
+      answer:
+        "Start with a tiny list students can compute by hand, then show how outliers move mean more than median.",
+    },
+    {
+      question: "Can I average percentages directly?",
+      answer:
+        "Only when each percentage shares the same base. Different sample sizes need a weighted approach.",
+    },
+    {
+      question: "What happens if I include blank lines?",
+      answer:
+        "Skip empties so they do not count as zeros unless you truly mean zero values.",
+    },
+    {
+      question: "How many numbers can I average at once?",
+      answer:
+        "Enough for browser memory; enormous pastes may lag. Sample or summarize upstream if needed.",
+    },
+    {
+      question: "Is the mean always between min and max?",
+      answer:
+        "For ordinary arithmetic means of real numbers, yes. Other “averages” like RMS can behave differently.",
+    },
+    {
+      question: "When does a list have no mode at all?",
+      answer:
+        "When every value appears once. Say “no mode” instead of picking arbitrarily.",
+    },
+    {
+      question: "How do weighted averages differ?",
+      answer:
+        "Each value is multiplied by a weight before dividing by total weight. Use them for credits or unequal group sizes.",
+    },
+    {
+      question: "Why did 1,000 split into two numbers?",
+      answer:
+        "A comma thousand separator can be read as a list break. Remove grouping commas before pasting.",
+    },
+    {
+      question: "How are these measures used day to day?",
+      answer:
+        "Means for typical cost, medians for home prices, modes for most common shoe size—pick the measure that answers your question.",
+    }
+  ],
+  "how-to-generate-lorem-ipsum": [
+    {
+      question: "How do I generate placeholder text for a mockup?",
+      answer:
+        "Open a lorem ipsum generator, choose paragraphs or words, then copy the result into your layout. Replace it with real copy before launch.",
+    },
+    {
+      question: "Why do designers use lorem ipsum?",
+      answer:
+        "It looks like readable prose without distracting reviewers with draft messaging. Layout, type, and spacing stay the focus.",
+    },
+    {
+      question: "Should placeholder text start with the classic phrase?",
+      answer:
+        "Many generators begin with “Lorem ipsum dolor sit amet…”. You can trim the opening if your component needs a shorter headline.",
+    },
+    {
+      question: "How much placeholder text is too much?",
+      answer:
+        "Generate only what the mock needs. Huge dumps slow reviews and hide spacing issues in small components.",
+    },
+    {
+      question: "Can I use real draft copy instead?",
+      answer:
+        "Yes, and it often improves stakeholder feedback. Lorem is a stand-in when real copy is not ready.",
+    },
+    {
+      question: "Does lorem ipsum affect SEO if left live?",
+      answer:
+        "Published placeholder text looks unprofessional and can waste crawl budget. Never ship it on production pages.",
+    },
+    {
+      question: "How do I generate a single sentence?",
+      answer:
+        "Request a small word count or one sentence mode if available, then trim manually for headlines.",
+    },
+    {
+      question: "Is lorem ipsum Latin that means something coherent?",
+      answer:
+        "It is scrambled classical Latin used as filler. Do not treat it as a meaningful translation.",
+    },
+    {
+      question: "Can developers seed tests with lorem?",
+      answer:
+        "Yes for UI tests that need text length variety. Prefer fixtures with known lengths for assertions.",
+    },
+    {
+      question: "What is the difference between words and paragraphs mode?",
+      answer:
+        "Words mode targets a count; paragraphs mode wraps filler into blocks. Pick based on whether you need article-like spacing.",
+    },
+    {
+      question: "Should accessibility reviews use lorem?",
+      answer:
+        "Use real language when testing screen readers. Lorem hides pronunciation and localization issues.",
+    },
+    {
+      question: "How do I avoid repeating the same paragraph?",
+      answer:
+        "Increase variety settings or regenerate. Some tools cycle a fixed pool—spot-check for obvious loops.",
+    },
+    {
+      question: "Can I localize placeholder text?",
+      answer:
+        "Use language-specific filler when testing non-English layouts so line breaks match target scripts.",
+    },
+    {
+      question: "Why set a maximum length in generators?",
+      answer:
+        "To keep browser tabs responsive and discourage dumping megabytes of filler into design files.",
+    },
+    {
+      question: "Is counting characters the same as generating lorem?",
+      answer:
+        "No. Character counters measure your real text; generators invent filler. Use both at different stages.",
+    },
+    {
+      question: "When should I delete placeholder strings from code?",
+      answer:
+        "Before merge to production branches. Search the repo for “Lorem ipsum” as a release checklist item.",
+    }
+  ],
+  "how-to-make-a-simple-favicon": [
+    {
+      question: "How do I create a basic favicon for a website?",
+      answer:
+        "Make a simple square icon—letter, logo mark, or color block—export PNG or ICO sizes, then link them in your site’s head.",
+    },
+    {
+      question: "What size should I export first?",
+      answer:
+        "32×32 is a common tab size; also offer 16×16 and a larger apple-touch icon. Start from a clean square master.",
+    },
+    {
+      question: "Which HTML tags load a favicon?",
+      answer:
+        "Use rel=\"icon\" for the browser tab file and rel=\"apple-touch-icon\" for home-screen icons. Paths must match deployed files.",
+    },
+    {
+      question: "Why is my new favicon not updating?",
+      answer:
+        "Browsers cache favicons aggressively. Hard-refresh, try a private window, or bump the file name/query string.",
+    },
+    {
+      question: "Should a favicon be detailed?",
+      answer:
+        "No. Tiny sizes hide fine detail. Bold shapes and high contrast read better than full logos.",
+    },
+    {
+      question: "Can I use a transparent background?",
+      answer:
+        "Yes for PNGs. Test on both light and dark browser chrome so the mark stays visible.",
+    },
+    {
+      question: "Do I need an ICO and a PNG?",
+      answer:
+        "Modern browsers accept PNG icons; ICO still helps older environments. Shipping both is a safe default.",
+    },
+    {
+      question: "How do I make a letter favicon quickly?",
+      answer:
+        "Pick a brand color, place one uppercase letter centered, and export square PNGs. Keep padding so the glyph does not clip.",
+    },
+    {
+      question: "Should the favicon match the Open Graph image?",
+      answer:
+        "They should feel related, but OG images are large marketing cards. Do not shrink a busy OG art into a 16px icon.",
+    },
+    {
+      question: "Can emoji be a favicon?",
+      answer:
+        "Some setups allow it, but rendering differs by OS. A designed PNG is more consistent.",
+    },
+    {
+      question: "What about dark-mode favicons?",
+      answer:
+        "Optional. If your mark disappears on dark UI, provide a variant or add a light halo.",
+    },
+    {
+      question: "How many sizes are enough for most sites?",
+      answer:
+        "A small set covering tab, taskbar, and touch icons covers typical needs without an icon sprawl.",
+    },
+    {
+      question: "Does a generator upload my logo?",
+      answer:
+        "Prefer tools that process in-browser. Check the privacy note before dropping sensitive brand files.",
+    },
+    {
+      question: "Why does the favicon form reject some hex colors?",
+      answer:
+        "Colors need a valid hex such as #3366ff. Shorthand must still parse; stray text fails validation.",
+    },
+    {
+      question: "Can staging and production use different icons?",
+      answer:
+        "Yes—distinct favicons help teammates see which environment they have open.",
+    },
+    {
+      question: "Do search engines show favicons?",
+      answer:
+        "Many result layouts can show a site icon. Keep the file reachable and up to date for branding in SERPs.",
+    }
+  ],
+  "how-to-rate-a-password": [
+    {
+      question: "How can I check whether a password is strong enough?",
+      answer:
+        "Paste it into a strength checker that estimates length, character variety, and patterns. Use the rating as guidance, then store the password in a manager.",
+    },
+    {
+      question: "What does entropy in bits mean for passwords?",
+      answer:
+        "It is a rough measure of unpredictability. Higher bits generally mean harder guessing, but real attacks also use leak lists.",
+    },
+    {
+      question: "Why do short digit PINs score poorly?",
+      answer:
+        "There are few combinations, so they fall quickly to guessing. Prefer longer passphrases for important accounts.",
+    },
+    {
+      question: "Is a longer password always better?",
+      answer:
+        "Length helps, but predictable phrases still fail. Randomness and uniqueness across sites matter as much as length.",
+    },
+    {
+      question: "Should every password include symbols?",
+      answer:
+        "Symbols can grow the character set, yet a long random passphrase can beat a short symbol salad. Follow site rules without reusing old tricks.",
+    },
+    {
+      question: "How is rating different from generating a password?",
+      answer:
+        "Generators create new secrets. Raters critique one you already typed. Use generation for new accounts and rating to audit old ones.",
+    },
+    {
+      question: "Can strength tools see my password later?",
+      answer:
+        "Choose checkers that run locally and clear when you leave. Avoid pasting production passwords into untrusted sites.",
+    },
+    {
+      question: "Why might two strength meters disagree?",
+      answer:
+        "They weigh patterns, dictionaries, and entropy differently. Treat any “strong” label as advisory.",
+    },
+    {
+      question: "Do composition rules guarantee safety?",
+      answer:
+        "Requiring one uppercase and one number does not stop “Password1!”. Aim for unique, high-entropy secrets.",
+    },
+    {
+      question: "Are passphrases scored like passwords?",
+      answer:
+        "Good meters reward length from multiple words. Avoid famous quotes and song lyrics.",
+    },
+    {
+      question: "Should I reuse a strong password?",
+      answer:
+        "No. A leak on one site would expose the others. Use a manager to keep unique passwords.",
+    },
+    {
+      question: "When is it time to change a password right away?",
+      answer:
+        "After a breach notice, phishing, or shared-device exposure. Update the manager entry and enable MFA.",
+    },
+    {
+      question: "Can substitutions like @ for a fool checkers?",
+      answer:
+        "Often those patterns are in dictionaries. Randomness beats clever substitutions.",
+    },
+    {
+      question: "How do spaces affect a score?",
+      answer:
+        "Spaces can enlarge the set for passphrases. They do not help if the phrase itself is common.",
+    },
+    {
+      question: "Is “Strong” enough for banking?",
+      answer:
+        "Use a unique strong password plus multi-factor authentication. Strength alone is not a complete control.",
+    },
+    {
+      question: "What is a practical workflow for better passwords?",
+      answer:
+        "Generate in a manager, never reuse, enable MFA, and only use online raters on throwaway test strings when possible.",
+    }
   ]
 };

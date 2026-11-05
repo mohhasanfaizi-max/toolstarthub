@@ -2830,5 +2830,437 @@ export const extraToolFaqs: Record<string, ToolFaq[]> = {
       answer:
         "They remain in the browser for the session. Clear the form when you finish if privacy matters.",
     }
+  ],
+  "aspect-ratio-calculator": [
+    {
+      question: "What is a common aspect ratio for YouTube videos?",
+      answer:
+        "16:9 is the standard widescreen ratio for most YouTube uploads and TV. Older 4:3 content still appears, but 16:9 is the default planning size.",
+    },
+    {
+      question: "How do I get a 1:1 square crop size?",
+      answer:
+        "Set the ratio to 1:1 and enter the width you want; the height matches. Useful for profile images and many social posts.",
+    },
+    {
+      question: "Can I solve for width when I know height and ratio?",
+      answer:
+        "Yes. Enter the known side and the ratio pair, then read the missing side the calculator returns.",
+    },
+    {
+      question: "What ratio should I use for Instagram Stories?",
+      answer:
+        "9:16 vertical is the usual full-screen story and Reel frame. Confirm current platform docs if you need safe margins.",
+    },
+    {
+      question: "Does aspect ratio change file size by itself?",
+      answer:
+        "No. Ratio is shape, not megabytes. Pixel count and compression decide file size after you resize.",
+    },
+    {
+      question: "How do filmmakers talk about 2.39:1?",
+      answer:
+        "It is a wide cinema scope ratio. You can enter 2.39 and 1 as the ratio sides to plan letterboxing.",
+    },
+    {
+      question: "Why do phones show black bars on some videos?",
+      answer:
+        "The video’s ratio does not match the screen. Letterboxing or pillarboxing fills the unused edges.",
+    },
+    {
+      question: "Can I use ratios with three numbers like 16:9:1?",
+      answer:
+        "This tool expects two sides. Reduce multi-part specs to width:height before entering them.",
+    },
+    {
+      question: "How precise should decimal sides be?",
+      answer:
+        "Two or three decimals are usually enough for layout. Extreme precision rarely changes visible crop decisions.",
+    },
+    {
+      question: "Is DPI the same as aspect ratio?",
+      answer:
+        "No. DPI is print resolution. Aspect ratio is only the relationship between width and height.",
+    },
+    {
+      question: "How do I match a photo to a frame ratio?",
+      answer:
+        "Compute the frame’s ratio, then crop the photo to that shape so it prints without stretching.",
+    },
+    {
+      question: "What happens if I swap width and height?",
+      answer:
+        "You invert the orientation—landscape becomes portrait. Enter sides in the order that matches the orientation you want.",
+    },
+    {
+      question: "Can this replace an image resizer?",
+      answer:
+        "It only does the math. Use a resizer or cropper afterward to change actual pixels.",
+    },
+    {
+      question: "Are ratio inputs stored after I leave?",
+      answer:
+        "They stay in the browser for the session. Nothing is sent just to compute the missing side.",
+    }
+  ],
+  "business-days-calculator": [
+    {
+      question: "How does a business-day counter treat weekdays only?",
+      answer:
+        "Enter the start and end dates and choose whether weekends count. The tool skips Saturday and Sunday by default in Western calendars.",
+    },
+    {
+      question: "Do holidays get removed automatically?",
+      answer:
+        "Only if you supply them or the tool has a holiday list enabled. An empty holiday list means only weekends are skipped.",
+    },
+    {
+      question: "Is the start date included in the count?",
+      answer:
+        "Inclusive and exclusive modes differ. Match the convention in your contract—many SLAs define business days carefully.",
+    },
+    {
+      question: "Can I count business days for shipping ETA?",
+      answer:
+        "Yes. Carriers often quote transit in business days. Still watch order cut-off times on the calendar clock.",
+    },
+    {
+      question: "How do regional weekends change the result?",
+      answer:
+        "Some regions treat Friday–Saturday as weekend. Only custom weekend settings capture that; the default assumes Sat–Sun.",
+    },
+    {
+      question: "What if my end date falls on a holiday?",
+      answer:
+        "Policies either move to the next business day or exclude that day. Align the tool with the written rule you must follow.",
+    },
+    {
+      question: "Can HR use this for leave requests?",
+      answer:
+        "As a draft count, yes. Final leave balances follow the employee handbook, which may count calendar days instead.",
+    },
+    {
+      question: "Why do two business-day tools disagree?",
+      answer:
+        "Inclusive ends, holiday calendars, and timezone date boundaries cause off-by-one results. Compare settings, not just outputs.",
+    },
+    {
+      question: "How far ahead can I project?",
+      answer:
+        "As far as the date fields allow. Long spans still need updated holiday lists each year.",
+    },
+    {
+      question: "Does this know bank holidays in my country?",
+      answer:
+        "Not unless configured. Add national holidays manually for legal or banking deadlines.",
+    },
+    {
+      question: "Can I exclude company shutdown weeks?",
+      answer:
+        "Treat those dates like holidays in the exclusion list so they do not count as working days.",
+    },
+    {
+      question: "Is today day zero or day one?",
+      answer:
+        "It depends on whether you count remaining days until a deadline or elapsed days since a start. Read the mode labels.",
+    },
+    {
+      question: "How should contracts define business days?",
+      answer:
+        "Spell out weekend days, holiday calendars, and time-of-day cutoffs. Ambiguous definitions create disputes a calculator cannot settle.",
+    },
+    {
+      question: "Are the dates I enter uploaded?",
+      answer:
+        "No. Counting runs in the browser for the session.",
+    }
+  ],
+  "hourly-wage-calculator": [
+    {
+      question: "How many hours per week should I assume for a salary?",
+      answer:
+        "Forty hours is a common full-time assumption in the U.S. Use your real scheduled hours if you work a different standard week.",
+    },
+    {
+      question: "How do I estimate yearly pay from an hourly rate?",
+      answer:
+        "Multiply hourly rate × hours per week × weeks per year. Many planners use 52 weeks; unpaid time off may call for fewer weeks.",
+    },
+    {
+      question: "How is time-and-a-half overtime modeled?",
+      answer:
+        "Overtime hours are often paid at 1.5× the regular rate. Enter overtime hours separately when the tool supports that field.",
+    },
+    {
+      question: "Does this show take-home pay after taxes?",
+      answer:
+        "No. It converts between hourly and salary figures before tax. Use a paycheck estimator for withholding.",
+    },
+    {
+      question: "What weeks-per-year value fits teachers?",
+      answer:
+        "Academic contracts may pay over fewer duty weeks. Use the weeks your contract actually covers, not a generic 52.",
+    },
+    {
+      question: "Can I compare two job offers with different units?",
+      answer:
+        "Convert both to annual or both to hourly with the same hours and weeks assumptions, then compare apples to apples.",
+    },
+    {
+      question: "How do bonuses change the conversion?",
+      answer:
+        "Add expected bonus into annual pay before dividing into an hourly equivalent if you want a fully loaded rate.",
+    },
+    {
+      question: "Should contractors use the same hours assumption?",
+      answer:
+        "Contractors often bill fewer guaranteed hours and cover benefits themselves. Inflating hours can understate the needed rate.",
+    },
+    {
+      question: "What about double-time holidays?",
+      answer:
+        "Some workplaces pay 2× on holidays. Model those hours at the higher multiplier when estimating a paycheck period.",
+    },
+    {
+      question: "Is salary divided by 2,080 always right?",
+      answer:
+        "2,080 is 40×52. It is a rule of thumb, not law. Shift work and part-time schedules need custom hours.",
+    },
+    {
+      question: "How do unpaid lunch breaks affect hourly math?",
+      answer:
+        "If you are unpaid for lunch, do not count those hours as worked when converting salary to an hourly rate.",
+    },
+    {
+      question: "Can I reverse a job posting that only lists salary?",
+      answer:
+        "Yes—divide by your assumed annual hours to see an implied hourly rate for budgeting.",
+    },
+    {
+      question: "Do tips belong in base hourly conversion?",
+      answer:
+        "Keep base wage and tips separate unless you intentionally want a blended earning rate.",
+    },
+    {
+      question: "Are wage numbers stored on a server?",
+      answer:
+        "They remain in the browser session for the conversion.",
+    }
+  ],
+  "json-formatter": [
+    {
+      question: "How do I pretty-print JSON in the browser?",
+      answer:
+        "Paste the JSON, run format, and copy the indented result. Pretty printing adds whitespace so objects and arrays are easier to read.",
+    },
+    {
+      question: "How do I minify JSON for an API payload?",
+      answer:
+        "Use the minify action to strip unnecessary whitespace while keeping valid structure. Smaller payloads transfer faster.",
+    },
+    {
+      question: "Why is my JSON invalid?",
+      answer:
+        "Trailing commas, single quotes, or unquoted keys are common issues. The validator points near the first syntax error.",
+    },
+    {
+      question: "Can I format JSON5 or JavaScript objects?",
+      answer:
+        "Strict JSON forbids comments and trailing commas. Convert those features away before a standard formatter will accept the text.",
+    },
+    {
+      question: "Does sorting keys change meaning?",
+      answer:
+        "For most APIs, key order does not matter. Sorted keys help humans diff two payloads visually.",
+    },
+    {
+      question: "How large a file can I paste?",
+      answer:
+        "Browser memory sets a practical limit. Extremely large documents may freeze the tab—split them or use a desktop editor.",
+    },
+    {
+      question: "Is formatted JSON the same data as minified JSON?",
+      answer:
+        "Yes when both parse successfully. Only whitespace and optional key ordering differ.",
+    },
+    {
+      question: "Can I validate without changing indentation?",
+      answer:
+        "Use validate-only when available. It checks syntax without rewriting your paste.",
+    },
+    {
+      question: "What about UTF-8 characters in strings?",
+      answer:
+        "JSON supports Unicode escapes and literal UTF-8 in strings. Keep the file encoding consistent with your API.",
+    },
+    {
+      question: "Why did escape sequences look wrong after format?",
+      answer:
+        "Formatters preserve string contents; if escapes were already wrong, pretty printing will not invent correct ones.",
+    },
+    {
+      question: "How do I compare two JSON responses?",
+      answer:
+        "Format both, then diff in an editor. Minified one-liners hide structural changes.",
+    },
+    {
+      question: "Can comments survive formatting?",
+      answer:
+        "Standard JSON has no comments. They must be removed or the parse fails.",
+    },
+    {
+      question: "Is this safe for secrets in JSON?",
+      answer:
+        "Treat pasted tokens like production secrets. Clear the box when finished; prefer redacted samples.",
+    },
+    {
+      question: "Does formatting upload my payload?",
+      answer:
+        "No. Parsing and formatting run locally in the page.",
+    }
+  ],
+  "morse-code": [
+    {
+      question: "How do I decode Morse back into English?",
+      answer:
+        "Paste a well-spaced Morse string into decode mode. Letter gaps and word separators must be consistent or the parser will reject pieces.",
+    },
+    {
+      question: "What character separates Morse words on this tool?",
+      answer:
+        "A slash is commonly used between words in text form. Match the separator shown in the tool’s examples.",
+    },
+    {
+      question: "Can I encode numbers in Morse?",
+      answer:
+        "Yes. Digits 0–9 have standard International Morse patterns and mix freely with letters in call signs.",
+    },
+    {
+      question: "Why is my Morse rejected as malformed?",
+      answer:
+        "Too many dots in a row or missing letter spaces usually cause rejection. Fix spacing before decoding again.",
+    },
+    {
+      question: "Is American Morse supported?",
+      answer:
+        "This page targets International Morse. American Morse differs and will not round-trip cleanly here.",
+    },
+    {
+      question: "Can I practice with prosigns?",
+      answer:
+        "Some procedural signs exist for radio. Support varies; stick to letters and digits when learning the basics.",
+    },
+    {
+      question: "Does the tool play audio tones?",
+      answer:
+        "Visual encode/decode is the focus here. Use a dedicated audio trainer if you need dit-dah sound practice.",
+    },
+    {
+      question: "How should beginners write Morse in chat?",
+      answer:
+        "Use dots and dashes with clear spaces. Avoid fancy Unicode dashes that parsers do not recognize.",
+    },
+    {
+      question: "Can Morse hide a password securely?",
+      answer:
+        "No. It is an encoding, not encryption. Anyone with a chart can read it.",
+    },
+    {
+      question: "Why do lowercase and uppercase match?",
+      answer:
+        "Morse has no case. Input is normalized so “sos” and “SOS” encode the same.",
+    },
+    {
+      question: "What punctuation is commonly supported?",
+      answer:
+        "Period, comma, and question mark appear in many charts. Unsupported marks are skipped or flagged.",
+    },
+    {
+      question: "How do I share homework answers in Morse?",
+      answer:
+        "Encode, copy the string, and keep separators intact. Teachers should publish which chart they grade against.",
+    },
+    {
+      question: "Is learning Morse still useful?",
+      answer:
+        "Amateur radio, accessibility hobbies, and history classes still use it even when licenses no longer require a test.",
+    },
+    {
+      question: "Are my Morse strings uploaded?",
+      answer:
+        "Encoding and decoding stay in the browser.",
+    }
+  ],
+  "number-to-words": [
+    {
+      question: "How do I convert a check amount into words?",
+      answer:
+        "Enter the number and copy the words onto the check’s amount line. Follow your bank’s rules for cents and the word “only” if required.",
+    },
+    {
+      question: "Which English style does the tool use?",
+      answer:
+        "It follows a common American-style wording for whole numbers. Hyphenation of tens may differ slightly from UK style guides.",
+    },
+    {
+      question: "Can I convert negative numbers?",
+      answer:
+        "Support depends on the tool mode. Accounting documents often write negatives specially—confirm before relying on the output.",
+    },
+    {
+      question: "What about very large numbers with many zeros?",
+      answer:
+        "Stay inside the documented range. Extremely large values may be rejected to keep wording accurate.",
+    },
+    {
+      question: "How are hundreds and thousands joined?",
+      answer:
+        "Standard English inserts words like hundred and thousand at place boundaries. Read the full phrase before copying.",
+    },
+    {
+      question: "Will ordinal words like 21st work?",
+      answer:
+        "This converter targets cardinal numbers (twenty-one), not ordinals (twenty-first). Add ordinal endings manually if needed.",
+    },
+    {
+      question: "Can I use it for invoice line items?",
+      answer:
+        "Yes for clarity in some locales. Pair digits and words when fraud resistance matters.",
+    },
+    {
+      question: "Why did leading zeros disappear?",
+      answer:
+        "Numeric value ignores decorative leading zeros. Format codes or IDs that need zeros should stay as text elsewhere.",
+    },
+    {
+      question: "Does it spell currency names?",
+      answer:
+        "Usually it spells the number only. Add “dollars” or your currency name yourself unless a money mode exists.",
+    },
+    {
+      question: "How do decimals appear in words?",
+      answer:
+        "Some modes say “point” then digits; others require separate major/minor units. Check the sample output for your mode.",
+    },
+    {
+      question: "Is British “and” before tens included?",
+      answer:
+        "American wording often omits “and” (two hundred five). Expect style differences versus UK legal writing.",
+    },
+    {
+      question: "Can classrooms use this for place-value drills?",
+      answer:
+        "Yes—students convert both directions when a reverse mode exists, then compare with the answer key.",
+    },
+    {
+      question: "What if my locale uses spaces as thousand separators?",
+      answer:
+        "Enter a plain number without grouping marks, or strip spaces first so parsing stays unambiguous.",
+    },
+    {
+      question: "Are numbers stored after conversion?",
+      answer:
+        "They remain in the page session only.",
+    }
   ]
 };
