@@ -4,6 +4,8 @@ import { guideDates } from "../../data/guide-dates.ts";
 import { guideMetaDescriptions } from "../../data/guide-meta.ts";
 import { getToolContent } from "../../data/tool-content.ts";
 import { extraToolFaqs } from "../../data/tool-faq-extra.ts";
+import { extraGuideFaqs } from "../../data/guide-faq-extra.ts";
+import { getGuideContent } from "../../data/guide-content.ts";
 import { toolMetaDescriptions } from "../../data/tool-meta.ts";
 import { getToolBySlug } from "../../data/tools.ts";
 import { bannedPhraseIssues, collectText, markdownFormattingIssues } from "../content-style.ts";
@@ -51,9 +53,21 @@ export function runSeoContentChecks(assert: Assert) {
     assert(content, `tool-faq-extra: ${slug} is a tool with content`);
     const questions = content.faqs.map((faq) => faq.question.toLowerCase());
     assert(new Set(questions).size === questions.length, `tool-faq-extra: ${slug} has no duplicate questions`);
-    assert(content.faqs.length <= 8, `tool-faq-extra: ${slug} keeps the FAQ to 8 questions or fewer`);
+    assert(content.faqs.length <= 20, `tool-faq-extra: ${slug} keeps the FAQ to 20 questions or fewer`);
     const blob = collectText(faqs).join("\n");
     assert(!markdownFormattingIssues(blob), `tool-faq-extra: ${slug} ${markdownFormattingIssues(blob) ?? ""}`);
     assert(!bannedPhraseIssues(blob), `tool-faq-extra: ${slug} ${bannedPhraseIssues(blob) ?? ""}`);
   }
+
+  for (const [slug, faqs] of Object.entries(extraGuideFaqs)) {
+    const content = getGuideContent(slug);
+    assert(content, `guide-faq-extra: ${slug} is a guide with content`);
+    const questions = content.faqs.map((faq) => faq.question.toLowerCase());
+    assert(new Set(questions).size === questions.length, `guide-faq-extra: ${slug} has no duplicate questions`);
+    assert(content.faqs.length <= 20, `guide-faq-extra: ${slug} keeps the FAQ to 20 questions or fewer`);
+    const blob = collectText(faqs).join("\n");
+    assert(!markdownFormattingIssues(blob), `guide-faq-extra: ${slug} ${markdownFormattingIssues(blob) ?? ""}`);
+    assert(!bannedPhraseIssues(blob), `guide-faq-extra: ${slug} ${bannedPhraseIssues(blob) ?? ""}`);
+  }
 }
+

@@ -619,4 +619,332 @@ export const extraToolFaqs: Record<string, ToolFaq[]> = {
         "Not on its own. Password storage should use a slow, salted algorithm such as bcrypt, scrypt, or Argon2, because plain SHA-256 can be guessed very quickly.",
     },
   ],
+  "javascript-minifier": [
+    {
+      question: "How do I minify JavaScript online?",
+      answer:
+        "Paste valid JavaScript into the minifier, press Minify, then copy the shorter output. The source is parsed with Terser in the browser and is not executed.",
+    },
+    {
+      question: "Does minifying JavaScript make it run faster?",
+      answer:
+        "It mainly reduces download size by removing whitespace and shortening names. Runtime speed is usually unchanged unless the smaller file loads noticeably sooner.",
+    },
+    {
+      question: "Will TypeScript minify here?",
+      answer:
+        "No. TypeScript syntax is rejected with a parser error. Compile or strip types to plain JavaScript first.",
+    },
+    {
+      question: "What is mangling in a minifier?",
+      answer:
+        "Mangling renames local variables to shorter identifiers where it is safe. It is part of how Terser shrinks the file after parsing.",
+    },
+    {
+      question: "Can minification break my code?",
+      answer:
+        "It can if the code relies on Function.toString(), dynamic property names that were renamed, or invalid syntax the parser cannot read. Test the output before you deploy.",
+    },
+    {
+      question: "Does this tool evaluate my expressions while minifying?",
+      answer:
+        "Constant-expression evaluation is turned off here so user expressions are not run during the minify pass.",
+    },
+    {
+      question: "How large a script can I paste?",
+      answer:
+        "Very large files are rejected so the tab stays responsive. Split bundles or minify during your build for multi-megabyte inputs.",
+    },
+    {
+      question: "Is source-map generation included?",
+      answer:
+        "No. This page returns minified text only. Generate source maps in your bundler when you need them.",
+    },
+    {
+      question: "Should I minify code I still edit by hand?",
+      answer:
+        "Keep a readable source file for editing. Minify only the copy you ship to browsers.",
+    },
+    {
+      question: "What happens on a syntax error?",
+      answer:
+        "You see a parser error instead of output. The tool does not attempt to repair broken JavaScript.",
+    },
+    {
+      question: "Does minifying remove console.log calls?",
+      answer:
+        "Not by default on this page. Dropping console calls is a separate compress option in some build pipelines.",
+    },
+    {
+      question: "Can I minify ES modules with import and export?",
+      answer:
+        "Modern syntax the parser understands can minify. If the parser version rejects a newer feature, compile that feature down first.",
+    },
+    {
+      question: "Is the original formatting recoverable?",
+      answer:
+        "No. Minification discards whitespace and comments. Keep the original file under version control.",
+    },
+    {
+      question: "Why use a parser instead of deleting spaces myself?",
+      answer:
+        "Blind find-and-replace can break strings and regexes. A parser knows where whitespace is safe to remove.",
+    },
+    {
+      question: "Does minify change license comments?",
+      answer:
+        "Important license banners may be stripped unless a build tool is configured to keep them. Check the output when a license header must remain.",
+    },
+    {
+      question: "Is my JavaScript uploaded for minification?",
+      answer:
+        "No. Terser runs in this tab. The source is not posted to a server or saved in local storage.",
+    },
+  ],
+  "color-contrast-checker": [
+    {
+      question: "How do I check color contrast for accessibility?",
+      answer:
+        "Enter a foreground color and a background color, then read the contrast ratio and the AA/AAA marks for normal and large text. The math follows WCAG 2 relative luminance.",
+    },
+    {
+      question: "What contrast ratio do I need for body text?",
+      answer:
+        "WCAG AA needs at least 4.5:1 for normal text. AAA needs 7:1. Large text has lower thresholds of 3:1 for AA and 4.5:1 for AAA.",
+    },
+    {
+      question: "What counts as large text in WCAG?",
+      answer:
+        "Large text is at least 18 point regular or 14 point bold, roughly 24px regular or 18.66px bold. The checker reports large-text results separately from normal text.",
+    },
+    {
+      question: "Does a pass mean the whole page is accessible?",
+      answer:
+        "No. Contrast is only one requirement. Focus order, labels, keyboard use, and motion settings still matter.",
+    },
+    {
+      question: "Can I test a gradient background?",
+      answer:
+        "The ratio uses two solid colors. For a gradient, test text against the lightest and darkest stops that sit behind the letters.",
+    },
+    {
+      question: "Why is black on white 21:1?",
+      answer:
+        "That is the maximum contrast between pure black and pure white in the WCAG formula. No pair of sRGB colors scores higher.",
+    },
+    {
+      question: "Do link colors need their own check?",
+      answer:
+        "Yes. Check link text against the page background, and check visited or hover styles if they change the color.",
+    },
+    {
+      question: "How do I fix a failing pair?",
+      answer:
+        "Darken the text, lighten the background, or both, then recheck. Small HEX tweaks near the threshold often recover a pass.",
+    },
+    {
+      question: "Does opacity change the ratio?",
+      answer:
+        "The checker uses the solid colors you enter. If the real UI blends with a layer behind, sample the blended result or test the effective colors.",
+    },
+    {
+      question: "Are brand colors exempt from contrast rules?",
+      answer:
+        "No. Brand guidelines still need a readable pair for text. Keep a darker or lighter brand variant for body copy when the primary swatch fails.",
+    },
+    {
+      question: "Can icons use a lower ratio?",
+      answer:
+        "UI component contrast guidance differs from text. When an icon carries meaning without a text label, aim for clear contrast against its background.",
+    },
+    {
+      question: "Does the tool read colors from my CSS file?",
+      answer:
+        "No. You paste or pick the two colors. It does not crawl a stylesheet.",
+    },
+    {
+      question: "What color formats are accepted?",
+      answer:
+        "HEX values and the picker are the usual inputs. A color the parser rejects produces no ratio until you correct it.",
+    },
+    {
+      question: "Should charts use the same thresholds?",
+      answer:
+        "Text on charts should still meet text contrast. Adjacent data colors also need enough separation so viewers can tell series apart.",
+    },
+    {
+      question: "Is contrast checking done on a server?",
+      answer:
+        "No. The calculation runs in the browser from the two colors you provide.",
+    },
+    {
+      question: "Why did two similar greys fail?",
+      answer:
+        "Low luminance difference yields a low ratio. Pairs such as #777 on #999 often fall well under 4.5:1 for normal text.",
+    },
+  ],
+  "box-shadow-generator": [
+    {
+      question: "How do I create a CSS box-shadow?",
+      answer:
+        "Adjust offset, blur, spread, color, and opacity in the generator, then copy the box-shadow declaration into your stylesheet. The preview uses the same values.",
+    },
+    {
+      question: "What does blur radius do?",
+      answer:
+        "Blur softens the edge of the shadow. Zero blur makes a hard edge; larger blur makes a softer, wider falloff.",
+    },
+    {
+      question: "What does spread radius do?",
+      answer:
+        "Spread grows or shrinks the shadow before blur is applied. Positive spread expands it; negative spread pulls it in.",
+    },
+    {
+      question: "How do horizontal and vertical offsets work?",
+      answer:
+        "Positive X moves the shadow right; positive Y moves it down. Negative values move it left or up.",
+    },
+    {
+      question: "When should I use an inset shadow?",
+      answer:
+        "Use inset for pressed buttons, wells, or inner highlights. The shadow draws inside the box instead of outside.",
+    },
+    {
+      question: "Can this generator build multiple layered shadows?",
+      answer:
+        "It writes one shadow at a time. Copy each layer and join them with commas in CSS if you need a stack.",
+    },
+    {
+      question: "Why are my values whole pixels?",
+      answer:
+        "Offsets, blur, and spread are rounded to whole pixels in the copied CSS so the declaration stays tidy and predictable.",
+    },
+    {
+      question: "How do I make a soft card shadow?",
+      answer:
+        "Start with a small Y offset, a large blur, slight spread, and low opacity, such as 0 8px 24px with about 20% opacity.",
+    },
+    {
+      question: "Does box-shadow affect layout size?",
+      answer:
+        "No. Shadows paint outside the box and do not change the element's width or height in normal flow.",
+    },
+    {
+      question: "Can I animate a box-shadow?",
+      answer:
+        "Yes, with CSS transitions or animations on the box-shadow property. Prefer animating opacity or elevation tokens when performance matters.",
+    },
+    {
+      question: "How is opacity applied in the output?",
+      answer:
+        "Opacity is built into the color as RGBA in the copied rule, matching the preview.",
+    },
+    {
+      question: "Will a shadow follow border-radius?",
+      answer:
+        "Yes. The shadow follows the curve of the box's border radius in modern browsers.",
+    },
+    {
+      question: "What color should a neutral shadow use?",
+      answer:
+        "A dark blue-grey at low opacity often looks more natural than pure black. Adjust to match the page background.",
+    },
+    {
+      question: "Does the preview match every element on my site?",
+      answer:
+        "The preview is a sample box. Font size, width, and neighboring elements on your page can change how strong the shadow feels.",
+    },
+    {
+      question: "Is the CSS uploaded when I copy it?",
+      answer:
+        "No. Generation stays in the browser. Copying only writes to your clipboard when you choose.",
+    },
+    {
+      question: "How do I remove a shadow later?",
+      answer:
+        "Set box-shadow: none; on the element, or remove the declaration from the rule.",
+    },
+  ],
+  "word-to-pdf": [
+    {
+      question: "How do I convert a Word document to PDF in the browser?",
+      answer:
+        "Choose a .docx file, start the conversion, then download the PDF. The file is processed in the browser and is not uploaded to Tools Star Hub for storage.",
+    },
+    {
+      question: "Does .doc (old Word) work the same as .docx?",
+      answer:
+        "The tool expects modern .docx. An older .doc file is often rejected. Open it in Word or LibreOffice and save as .docx first.",
+    },
+    {
+      question: "Will the PDF match my Word layout exactly?",
+      answer:
+        "Complex layouts, unusual fonts, and embedded objects may shift. Review the PDF after conversion when pixel-perfect print layout matters.",
+    },
+    {
+      question: "Are fonts embedded in the PDF?",
+      answer:
+        "Embedding depends on what the converter can access in the browser. Missing fonts may fall back to substitutes and change line breaks.",
+    },
+    {
+      question: "Can I convert several Word files at once?",
+      answer:
+        "Convert one document at a time on this page. Batch conversion belongs in a desktop app or a dedicated batch service.",
+    },
+    {
+      question: "Does conversion need Microsoft Word installed?",
+      answer:
+        "No. The browser-based converter does not require the Word desktop app.",
+    },
+    {
+      question: "What happens to images inside the document?",
+      answer:
+        "Images included in the .docx are carried into the PDF when the converter can read them. Very large images may be resampled.",
+    },
+    {
+      question: "Are comments and tracked changes kept?",
+      answer:
+        "Conversion focuses on the document body. Review comments and tracked changes in Word before you convert if you need a clean deliverable.",
+    },
+    {
+      question: "Can I password-protect the PDF here?",
+      answer:
+        "This page converts to a standard PDF download. Add a password in a PDF editor afterward if you need one.",
+    },
+    {
+      question: "Is my document stored on a server?",
+      answer:
+        "No. The Word file is not kept on Tools Star Hub after you convert. Work stays in the browser session.",
+    },
+    {
+      question: "Why is the PDF larger or smaller than the .docx?",
+      answer:
+        "PDF and Word package images and fonts differently. Size alone does not mean pages were dropped.",
+    },
+    {
+      question: "Do headers and footers survive conversion?",
+      answer:
+        "They usually appear when the converter supports them. Check the first and last pages after download.",
+    },
+    {
+      question: "Can I edit the PDF after converting?",
+      answer:
+        "You can open it in a PDF editor. For major text edits, change the Word source and convert again.",
+    },
+    {
+      question: "What if conversion fails?",
+      answer:
+        "Try re-saving the file as .docx, remove unusual add-ins content, and convert again. A corrupted archive inside the .docx will also fail.",
+    },
+    {
+      question: "Does this tool print the document?",
+      answer:
+        "It builds a PDF file for download. Printing is optional afterward from your PDF viewer.",
+    },
+    {
+      question: "Is there a page limit?",
+      answer:
+        "Very large documents may hit browser memory limits. Split huge files or convert on the desktop if the tab runs out of memory.",
+    },
+  ],
 };

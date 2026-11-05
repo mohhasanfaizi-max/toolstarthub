@@ -60,7 +60,7 @@ export const financeGuideContent: Record<string, GuideContent> = {
     ],
     faqs: [
       {
-        question: "What is compound interest?",
+        question: "How is compound interest different from simple interest?",
         answer:
           "It is growth applied to the current balance, so earlier growth can be included in later periods. This calculator does that month by month from the rate and frequency you enter.",
       },

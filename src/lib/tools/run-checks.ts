@@ -189,9 +189,11 @@ import {
   DEFAULT_GUIDE_FAQ_MAX,
   DEFAULT_GUIDE_FAQ_MIN,
   RAISED_GUIDE_FAQ_MAX,
+  TARGET_GUIDE_FAQ_MAX,
   guideFaqCountIsAllowed,
   resolveGuideFaqMax,
 } from "../content/guide-faq-validation.ts";
+import { extraGuideFaqs } from "../../data/guide-faq-extra.ts";
 
 function assert(condition: unknown, message: string): asserts condition {
   if (!condition) {
@@ -2428,33 +2430,43 @@ assert(guideFaqCountIsAllowed(5), "An ordinary guide with 5 FAQs passes");
 assert(!guideFaqCountIsAllowed(6), "An ordinary guide with 6 FAQs fails");
 assert(
   guideFaqCountIsAllowed(10, { faqMax: RAISED_GUIDE_FAQ_MAX }),
-  "The image-compression guide with 10 FAQs passes",
+  "A guide with faqMax 10 and 10 FAQs passes",
 );
 assert(
   !guideFaqCountIsAllowed(11, { faqMax: RAISED_GUIDE_FAQ_MAX }),
-  "The image-compression guide with 11 FAQs fails",
+  "A guide with faqMax 10 and 11 FAQs fails",
+);
+assert(
+  guideFaqCountIsAllowed(20, { faqMax: TARGET_GUIDE_FAQ_MAX }),
+  "A guide with faqMax 20 and 20 FAQs passes",
+);
+assert(
+  !guideFaqCountIsAllowed(21, { faqMax: TARGET_GUIDE_FAQ_MAX }),
+  "A guide with faqMax 20 and 21 FAQs fails",
 );
 
 const raisedFaqGuides = guides.filter((guide) => getGuideContent(guide.slug)?.faqMax != null);
-const approvedRaisedFaqSlugs = new Set([
+const approvedRaised10Slugs = new Set([
   "how-to-compress-an-image-without-losing-quality",
   ...TOOL_GUIDE_SLUGS,
 ]);
+const approvedRaised20Slugs = new Set(Object.keys(extraGuideFaqs));
 assert(
   raisedFaqGuides.some((guide) => guide.slug === "how-to-compress-an-image-without-losing-quality"),
   "The image-compression guide raises the FAQ maximum",
 );
 assert(
-  raisedFaqGuides.every((guide) => approvedRaisedFaqSlugs.has(guide.slug)),
-  "Only the image-compression guide and the tool guides raise the FAQ maximum",
-);
-assert(
-  raisedFaqGuides.every((guide) => resolveGuideFaqMax(getGuideContent(guide.slug)!) === RAISED_GUIDE_FAQ_MAX),
-  "Raised guide FAQ maximum is 10",
+  raisedFaqGuides.every((guide) => {
+    const max = resolveGuideFaqMax(getGuideContent(guide.slug)!);
+    if (max === TARGET_GUIDE_FAQ_MAX) return approvedRaised20Slugs.has(guide.slug);
+    if (max === RAISED_GUIDE_FAQ_MAX) return approvedRaised10Slugs.has(guide.slug);
+    return false;
+  }),
+  "Only approved guides raise the FAQ maximum to 10 or 20",
 );
 assert(
   guides
-    .filter((guide) => !approvedRaisedFaqSlugs.has(guide.slug))
+    .filter((guide) => !approvedRaised10Slugs.has(guide.slug) && !approvedRaised20Slugs.has(guide.slug))
     .every((guide) => resolveGuideFaqMax(getGuideContent(guide.slug)!) === DEFAULT_GUIDE_FAQ_MAX),
   "No other guide receives a higher FAQ allowance",
 );
@@ -2468,13 +2480,6 @@ for (const slug of TOOL_GUIDE_SLUGS) {
     getGuidesForTool(article.toolSlug).some((guide) => guide.slug === slug),
     `${slug} is returned for ${article.toolSlug}`,
   );
-  const toolQuestions = new Set(
-    (getToolContent(article.toolSlug)?.faqs ?? []).map((faq) => faq.question.trim().toLowerCase()),
-  );
-  assert(
-    content.faqs.every((faq) => !toolQuestions.has(faq.question.trim().toLowerCase())),
-    `${slug} FAQs do not repeat the tool page FAQs`,
-  );
   const words = collectText(content).join(" ").split(/\s+/).filter(Boolean).length;
   assert(words >= 1500 && words <= 2100, `${slug} tool guide is 1,500–2,000 words (${words})`);
 }
@@ -2482,6 +2487,20 @@ const toolGuideQuestions = TOOL_GUIDE_SLUGS.flatMap((slug) =>
   getGuideContent(slug)!.faqs.map((faq) => faq.question.trim().toLowerCase()),
 );
 assert(new Set(toolGuideQuestions).size === toolGuideQuestions.length, "Tool guide FAQ questions are unique");
+
+for (const guide of guides) {
+  const article = getArticleBySlug(guide.slug);
+  const content = getGuideContent(guide.slug);
+  if (!article?.toolSlug || !content) continue;
+  const toolQuestions = new Set(
+    (getToolContent(article.toolSlug)?.faqs ?? []).map((faq) => faq.question.trim().toLowerCase()),
+  );
+  const overlap = content.faqs.filter((faq) => toolQuestions.has(faq.question.trim().toLowerCase()));
+  assert(
+    overlap.length === 0,
+    `${guide.slug} FAQs do not repeat the tool page FAQs (${overlap.map((faq) => faq.question).join("; ")})`,
+  );
+}
 
 const sitemapPaths = new Set([
   "/",

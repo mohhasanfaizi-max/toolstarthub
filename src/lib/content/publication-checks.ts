@@ -1,6 +1,7 @@
 import { TOOL_GUIDE_SLUGS } from "../../data/tool-guides/index.ts";
 import { articlePath, articles, getArticleBySlug } from "../../data/articles.ts";
 import { getGuideContent } from "../../data/guide-content.ts";
+import { guideFaqCountIsAllowed, resolveGuideFaqMax } from "./guide-faq-validation.ts";
 import { getGuidesForTool, getPublicArticles, getPublicGuides, getRelatedPublicArticles } from "../../data/guides.ts";
 import { getToolBySlug } from "../../data/tools.ts";
 import { siteConfig } from "../site.ts";
@@ -135,7 +136,10 @@ export function runPublicationChecks(assert: (condition: unknown, message: strin
       `${slug} is a published guide on its tool page`,
     );
     assert(article?.content && article.content.length > 500, `${slug} has a written body`);
-    assert(article?.faq && article.faq.length >= 3 && article.faq.length <= 5, `${slug} has 3 to 5 FAQs`);
+    assert(
+      article?.faq && guideFaqCountIsAllowed(article.faq.length, body ?? {}),
+      `${slug} has 3 to ${resolveGuideFaqMax(body ?? {})} FAQs`,
+    );
     assert(body && body.faqs.length === article?.faq.length, `${slug} FAQ text is the visible guide FAQ`);
     assert(!article?.publishAt && !article?.publishedAt, `${slug} has no publication date`);
   }

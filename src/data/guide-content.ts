@@ -1,4 +1,6 @@
 import type { GuideFaqMax } from "../lib/content/guide-faq-validation.ts";
+import { TARGET_GUIDE_FAQ_MAX } from "../lib/content/guide-faq-validation.ts";
+import { extraGuideFaqs } from "./guide-faq-extra.ts";
 import { financeGuideContent } from "./finance-guide-content.ts";
 import { extraGuideContent, type GuideSection } from "./extra-guide-content.ts";
 import { getFreeDigitalToolsGuideContent } from "./free-digital-tools-guide.ts";
@@ -21,7 +23,7 @@ export type GuideContent = {
   /** Optional question-style sections (with tables) shown after the intro. */
   sections?: GuideSection[];
   faqs: GuideFaq[];
-  /** Raises the FAQ maximum from 5. The only supported override is 10. */
+  /** Raises the FAQ maximum from 5. Supported overrides are 10 and 20. */
   faqMax?: GuideFaqMax;
   cta: {
     before: string;
@@ -1768,7 +1770,7 @@ export const guideContent: Record<string, GuideContent> = {
         answer: "Overtime hours per week times the hourly rate times the multiplier times the weeks per year. Five hours at 20 with a 1.5 multiplier for 52 weeks is 7,800.",
       },
       {
-        question: "Does this include taxes?",
+        question: "Are payroll taxes part of the hourly estimate?",
         answer: "No. The totals are before taxes and other deductions.",
       },
     ],
@@ -2547,7 +2549,7 @@ export const guideContent: Record<string, GuideContent> = {
     ],
     faqs: [
       {
-        question: "Can I stack several shadows?",
+        question: "How do I layer more than one box-shadow?",
         answer: "This page writes one. Combine copied values yourself if you need more than one layer.",
       },
       {
@@ -2555,7 +2557,7 @@ export const guideContent: Record<string, GuideContent> = {
         answer: "Offsets, blur, and spread are rounded to whole pixels in the copied CSS.",
       },
       {
-        question: "Does inset change the color?",
+        question: "What does the inset keyword change on a shadow?",
         answer: "No. It only draws the shadow inside the box.",
       },
       {
@@ -3519,7 +3521,7 @@ export const guideContent: Record<string, GuideContent> = {
     ],
     faqs: [
       {
-        question: "Why is there no picture?",
+        question: "Why does the image-prompt page not show a rendered picture?",
         answer: "Neither button is connected to an image API. Gemini returns text.",
       },
       {
@@ -3570,7 +3572,7 @@ export const guideContent: Record<string, GuideContent> = {
     ],
     faqs: [
       {
-        question: "Can I download a video from this page?",
+        question: "Does this guide export a finished video file?",
         answer: "No. Both buttons return words. You paste the prompt into a video tool if you want a clip.",
       },
       {
@@ -4564,10 +4566,13 @@ export function getGuideContent(slug: string): GuideContent | undefined {
   if (!base) return undefined;
   const extraAlso = guideExtraAlsoSee[slug];
   const sources = guideSources[slug];
-  if (!extraAlso && !sources) return base;
+  const extraFaqs = extraGuideFaqs[slug];
+  if (!extraAlso && !sources && !extraFaqs) return base;
   return {
     ...base,
     alsoSee: extraAlso ? [...(base.alsoSee ?? []), ...extraAlso] : base.alsoSee,
     sources: sources ?? base.sources,
+    faqs: extraFaqs ? [...base.faqs, ...extraFaqs] : base.faqs,
+    faqMax: extraFaqs ? TARGET_GUIDE_FAQ_MAX : base.faqMax,
   };
 }

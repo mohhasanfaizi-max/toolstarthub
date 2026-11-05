@@ -191,7 +191,7 @@ export const significantFiguresGuide: GuideContent = {
   ],
   faqs: [
     {
-      question: "How many significant figures does 150 have?",
+      question: "How should you count significant figures in 150?",
       answer:
         "2 or 3. 150 has no decimal point, so the final zero may be a placeholder. 1.5 × 10² has two significant figures. 1.50 × 10² has three. The calculator lists both and does not choose.",
     },
