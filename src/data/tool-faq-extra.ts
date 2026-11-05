@@ -1440,4 +1440,496 @@ export const extraToolFaqs: Record<string, ToolFaq[]> = {
         "Yes—zip uploads, Docker build contexts, or misconfigured CI can still include them. Keep a separate deploy allowlist when secrets are nearby.",
     },
   ],
+  "image-to-pdf": [
+    {
+      question: "How do I convert images to a PDF in the browser?",
+      answer:
+        "Add one or more JPG, PNG, or similar files, set page size and fit options, then download the PDF. The pages follow the order you arranged in the list.",
+    },
+    {
+      question: "Which image formats can become a PDF?",
+      answer:
+        "Common formats such as JPG, PNG, and WebP usually work. If a format fails, convert it to JPG or PNG first, then build the PDF.",
+    },
+    {
+      question: "Can I rearrange pages before downloading?",
+      answer:
+        "Yes when the tool shows a sortable list. Drag images into the order you want so the PDF matches that sequence.",
+    },
+    {
+      question: "What is the difference between fit and fill on a page?",
+      answer:
+        "Fit keeps the whole image visible and may leave margins. Fill covers the page and may crop edges. Pick fit for documents and fill for full-bleed photos.",
+    },
+    {
+      question: "Will large photos be downscaled in the PDF?",
+      answer:
+        "Very large images may be resized so the file stays manageable. Check the tool note under the preview if a size limit applied.",
+    },
+    {
+      question: "Does PNG transparency stay transparent in the PDF?",
+      answer:
+        "Transparency is often flattened onto a white background in simple converters. Export a JPG with a background if you need a guaranteed opaque page.",
+    },
+    {
+      question: "Can I mix portrait and landscape images?",
+      answer:
+        "Yes. Each image becomes its own page with its orientation unless you force a single page size that rotates or letterboxes content.",
+    },
+    {
+      question: "Is Image to PDF the same as scanning a paper document?",
+      answer:
+        "No. This builds a PDF from existing image files. A scanner creates those images first; you can still combine phone photos of pages here afterward.",
+    },
+    {
+      question: "How many photos can one PDF hold before the browser struggles?",
+      answer:
+        "Browser memory sets a practical ceiling. Dozens of phone photos usually work; hundreds of high-resolution shots may need several smaller PDFs.",
+    },
+    {
+      question: "What page sizes are typical for photo PDFs?",
+      answer:
+        "A4 and Letter are common for printing. Square or custom sizes help photo books; match the size your printer or client expects.",
+    },
+    {
+      question: "Will text inside a photo be selectable in the PDF?",
+      answer:
+        "Not by default. A photo of text is still an image. You need OCR in another tool if you want searchable text.",
+    },
+    {
+      question: "Can I password-protect the PDF this page creates?",
+      answer:
+        "This converter focuses on building pages from images. Add a password later in a PDF editor if you need one.",
+    },
+    {
+      question: "Why is my PDF much larger than the photos?",
+      answer:
+        "Uncompressed embedding and high pixel counts inflate size. Compress the PDF afterward or shrink images before conversion.",
+    },
+    {
+      question: "Do EXIF camera details stay in the PDF?",
+      answer:
+        "Many converters strip or ignore photo metadata when embedding. Do not rely on this flow to preserve EXIF.",
+    },
+    {
+      question: "Can I convert a single screenshot to PDF?",
+      answer:
+        "Yes. Upload one image and download a one-page PDF—useful for receipts and error messages you need to archive.",
+    },
+    {
+      question: "Are my photos uploaded to convert them?",
+      answer:
+        "This tool is designed to work in the browser with your files. Prefer non-sensitive images if you are unsure about any network path on your device.",
+    }
+  ],
+  "loan-calculator": [
+    {
+      question: "What inputs does a loan payment calculator need?",
+      answer:
+        "Principal, annual interest rate, and term length are the core fields. Some pages also take fees or extra payments to refine the schedule.",
+    },
+    {
+      question: "How does a longer term change my monthly payment?",
+      answer:
+        "Spreading the same principal over more months lowers the payment but usually raises total interest. Compare both payment and lifetime interest before choosing.",
+    },
+    {
+      question: "What is amortization in plain language?",
+      answer:
+        "It is the schedule that splits each payment into interest and principal. Early payments are interest-heavy; later ones retire more principal.",
+    },
+    {
+      question: "Does this calculator include taxes and insurance?",
+      answer:
+        "Most simple loan calculators show principal and interest only. Mortgages often need separate tax and insurance estimates for a full PITI figure.",
+    },
+    {
+      question: "How do extra payments affect payoff?",
+      answer:
+        "Extra principal shortens the term and cuts interest if the lender applies it correctly. Confirm there is no prepayment penalty on your contract.",
+    },
+    {
+      question: "What is the difference between fixed and variable rates?",
+      answer:
+        "Fixed rates stay the same for the term. Variable rates can move with an index, so the payment estimate here is only a snapshot at today’s rate.",
+    },
+    {
+      question: "Should I enter APR or the nominal interest rate?",
+      answer:
+        "Use the rate the tool’s label asks for. APR folds in some fees for comparison shopping; the amortization formula often uses the note rate.",
+    },
+    {
+      question: "Can I model a zero-interest loan?",
+      answer:
+        "Yes when the rate field accepts 0. The payment is then principal divided by the number of months, aside from any separate fees.",
+    },
+    {
+      question: "Why does the first month’s interest look large?",
+      answer:
+        "Interest is charged on the full starting balance. As principal falls, the interest portion of each fixed payment shrinks.",
+    },
+    {
+      question: "How accurate is an online loan estimate?",
+      answer:
+        "It is a planning figure, not a lender quote. Origination fees, credit-based pricing, and escrow can change what you actually pay.",
+    },
+    {
+      question: "Can I use this for auto loans and personal loans?",
+      answer:
+        "Yes for standard amortizing loans. Dealer add-ons, balloon payments, or interest-only periods need a different model.",
+    },
+    {
+      question: "What happens if I round the payment up?",
+      answer:
+        "Paying a few dollars more each month accelerates principal reduction. Recalculate the payoff date after you pick a rounded amount.",
+    },
+    {
+      question: "Does biweekly payment scheduling change the math?",
+      answer:
+        "Biweekly plans can create thirteen “monthly” equivalents per year. Convert carefully so you do not understate how much you send annually.",
+    },
+    {
+      question: "How do loan fees change the monthly payment?",
+      answer:
+        "Fees added to principal raise the amount financed and the payment. Fees paid in cash at closing may not change the monthly figure.",
+    },
+    {
+      question: "Is a lower payment always better?",
+      answer:
+        "Not if it comes from a much longer term with far more interest. Balance cash-flow comfort against total cost.",
+    },
+    {
+      question: "When should I talk to a lender instead of a calculator?",
+      answer:
+        "When credit issues, cosigners, variable income, or special programs apply. Underwriting rules beat generic formulas.",
+    }
+  ],
+  "meta-tag-generator": [
+    {
+      question: "What are meta tags used for?",
+      answer:
+        "They describe a page to browsers and crawlers—title, description, robots rules, and social preview fields. Good tags help snippets and link previews look intentional.",
+    },
+    {
+      question: "How long should a meta description be?",
+      answer:
+        "Aim for about 150–160 characters so search snippets are less likely to truncate. Write for humans first; packing keywords alone rarely helps.",
+    },
+    {
+      question: "Should the HTML title match the visible page heading?",
+      answer:
+        "They can share wording, but they are different elements. The title sits in the document head for tabs and search results, while the H1 is the on-page heading readers see.",
+    },
+    {
+      question: "What does a canonical meta or link tag do?",
+      answer:
+        "It points crawlers at the preferred URL when similar pages exist. Use it to consolidate signals on the main version of the content.",
+    },
+    {
+      question: "Should every page have unique meta tags?",
+      answer:
+        "Yes whenever possible. Duplicate titles and descriptions make snippets harder to tell apart and can look careless in search results.",
+    },
+    {
+      question: "What robots values are common?",
+      answer:
+        "`index, follow` is the default-friendly choice. `noindex` keeps a page out of search results; use it for thank-you pages and thin admin screens.",
+    },
+    {
+      question: "Do Open Graph tags replace standard meta description?",
+      answer:
+        "No. OG tags mainly drive social previews. Keep both a normal description and `og:title` / `og:description` when you care about shares.",
+    },
+    {
+      question: "Can I generate Twitter Card tags here too?",
+      answer:
+        "Many generators output Twitter fields alongside Open Graph. Confirm the card type your site actually supports before pasting.",
+    },
+    {
+      question: "Why was a character rejected in my title?",
+      answer:
+        "Some fields disallow raw characters that must be escaped in HTML, or they enforce length limits. Encode ampersands and keep titles concise.",
+    },
+    {
+      question: "Does generating tags publish them to my site?",
+      answer:
+        "No. The tool writes markup for you to paste into your theme, CMS, or SEO plugin. Nothing goes live until you deploy that HTML.",
+    },
+    {
+      question: "Should brand name go at the start or end of the title?",
+      answer:
+        "Often at the end after a separator so the unique page topic appears first in truncated tabs. Test how your brand looks in a real SERP preview.",
+    },
+    {
+      question: "Are meta keywords still useful for Google?",
+      answer:
+        "Mainstream search engines have long ignored meta keywords for ranking. Focus on title, description, and clear on-page content instead.",
+    },
+    {
+      question: "What is og:url for?",
+      answer:
+        "It declares the canonical social URL for the share. Keep it absolute (https) so platforms do not guess the wrong path.",
+    },
+    {
+      question: "Can multilingual sites use different meta per language?",
+      answer:
+        "Yes. Each language URL should carry its own title and description, plus proper `hreflang` elsewhere in the head.",
+    },
+    {
+      question: "How do I preview tags after installing them?",
+      answer:
+        "Use an Open Graph debugger or this site’s preview tool on the live URL. Cache delays mean you may need a scrape refresh.",
+    },
+    {
+      question: "Should thin utility pages get noindex?",
+      answer:
+        "Often yes for login walls, cart steps, and filtered faceted URLs that create duplicates. Keep indexable pages to ones you want ranking.",
+    }
+  ],
+  "open-graph-preview": [
+    {
+      question: "What does an Open Graph preview show?",
+      answer:
+        "It reads OG and related meta tags to approximate how a link card may appear—title, description, and image. Platforms can still override or crop differently.",
+    },
+    {
+      question: "Why do I need a public URL for the preview?",
+      answer:
+        "The checker fetches the page like a social crawler would. Localhost and private IPs are blocked because remote fetchers cannot reach them.",
+    },
+    {
+      question: "What if my preview image is wrong?",
+      answer:
+        "Confirm `og:image` is absolute, publicly reachable, and large enough. Then refresh the platform’s cache after you fix the tag.",
+    },
+    {
+      question: "Does the preview download my whole website?",
+      answer:
+        "It requests the URL you enter to read head tags, not to mirror the site. Still avoid pasting non-public staging links that expose secrets.",
+    },
+    {
+      question: "Why did the check time out?",
+      answer:
+        "Slow servers, blocked bots, or network filters can prevent a timely response. Retry later or test headers with a simpler static page.",
+    },
+    {
+      question: "Is Open Graph only for Facebook?",
+      answer:
+        "OG started at Facebook but many apps reuse the same tags. LinkedIn, Slack, and others read similar fields with their own quirks.",
+    },
+    {
+      question: "What size should og:image be for a clean card?",
+      answer:
+        "A landscape image around 1200×630 (about 1.91:1) is a widely compatible target. Avoid tiny images that platforms reject.",
+    },
+    {
+      question: "Can HTTPS pages still fail the preview?",
+      answer:
+        "Yes—certificate problems, bot walls, or missing tags still break cards. View source and confirm the OG tags are in the initial HTML.",
+    },
+    {
+      question: "Do query parameters change the preview?",
+      answer:
+        "If the server returns different meta for different query strings, cards can diverge. Prefer clean canonical URLs for sharing.",
+    },
+    {
+      question: "Why is the title truncated on mobile shares?",
+      answer:
+        "Apps reserve limited space. Keep `og:title` concise so the important words survive cropping.",
+    },
+    {
+      question: "Should og:description match the meta description?",
+      answer:
+        "They can match, but you may tune OG copy for social tone while keeping the search description more factual.",
+    },
+    {
+      question: "How do I force Facebook to refresh a card?",
+      answer:
+        "Use Meta’s Sharing Debugger scrape tool after you update tags. Other platforms have their own clear-cache endpoints.",
+    },
+    {
+      question: "Can JavaScript-injected meta tags be read?",
+      answer:
+        "Many crawlers only see the first HTML response. Put critical OG tags in server-rendered HTML, not only in client-side scripts.",
+    },
+    {
+      question: "What does a missing og:image look like?",
+      answer:
+        "Platforms may pick a random on-page image or show a blank card. Explicit `og:image` tags prevent that surprise.",
+    },
+    {
+      question: "Is this preview identical to Instagram or X?",
+      answer:
+        "No. Each network crops and styles cards differently. Treat this as a diagnostic for tags, not a pixel-perfect mock of every app.",
+    },
+    {
+      question: "Do I need og:type on every page?",
+      answer:
+        "Setting `website` or `article` helps consumers classify the object. It is small markup with clearer intent for scrapers.",
+    }
+  ],
+  "password-strength-checker": [
+    {
+      question: "How does a password strength checker score a password?",
+      answer:
+        "It estimates entropy from length and character variety, then labels weak through strong. It does not prove a password is unguessable in the real world.",
+    },
+    {
+      question: "Is a longer password always stronger?",
+      answer:
+        "Length helps a lot, especially with random words or characters. A long but predictable phrase can still be weak if it is famous or personal.",
+    },
+    {
+      question: "Why are digits-only passwords rated poorly?",
+      answer:
+        "Ten digits give a tiny character pool. Attackers try numeric patterns quickly, so short PINs fail most strength rubrics.",
+    },
+    {
+      question: "Does this tool check Have I Been Pwned or leak lists?",
+      answer:
+        "Not unless a page explicitly says it queries an online breach API. Local scoring alone does not know whether your password already leaked.",
+    },
+    {
+      question: "Should I include symbols in every password?",
+      answer:
+        "Symbols expand the search space when the password is otherwise random. A long passphrase of unrelated words can also be strong without dense symbols.",
+    },
+    {
+      question: "What is password entropy in bits?",
+      answer:
+        "It is a rough measure of how many guesses a random attacker might need. Higher bits generally mean harder brute force, assuming true randomness.",
+    },
+    {
+      question: "Is “Strong” enough for a bank login?",
+      answer:
+        "Use a unique password or passphrase plus multi-factor authentication. Strength labels are guidance, not a substitute for MFA.",
+    },
+    {
+      question: "Why does adding a space change the score?",
+      answer:
+        "Spaces count as another character class in some pools, raising entropy slightly. More important is overall length and unpredictability.",
+    },
+    {
+      question: "Can the checker see my password after I leave?",
+      answer:
+        "This page is built to rate what you type locally. Still avoid entering production passwords on shared computers.",
+    },
+    {
+      question: "How is strength checking different from generating a password?",
+      answer:
+        "Checking rates a candidate you already chose. A generator creates a fresh random secret so you are not reusing old patterns.",
+    },
+    {
+      question: "Are password tips the same for passphrases?",
+      answer:
+        "Passphrases rely on several unrelated words and enough length. Avoid famous quotes and keyboard walks even if the phrase is long.",
+    },
+    {
+      question: "Why might two checkers disagree?",
+      answer:
+        "They use different dictionaries, entropy models, and banned-list heuristics. Treat disagreement as a signal to lengthen or randomize further.",
+    },
+    {
+      question: "Should I reuse a strong password across sites?",
+      answer:
+        "No. A leak on one site would expose the others. Use a password manager to store unique secrets.",
+    },
+    {
+      question: "Do composition rules like “one uppercase” guarantee strength?",
+      answer:
+        "Mandatory patterns can make passwords predictable. Modern guidance favors length and uniqueness over rigid complexity theater.",
+    },
+    {
+      question: "Can common substitutions like @ for a fool checkers?",
+      answer:
+        "Often those tricks are in attacker dictionaries. Randomness beats leetspeak on a weak base word.",
+    },
+    {
+      question: "When should I change a password immediately?",
+      answer:
+        "Change it after a breach notice, phishing, or shared-device exposure—even if the checker still called it strong.",
+    }
+  ],
+  "pdf-compressor": [
+    {
+      question: "How do I compress a PDF for email?",
+      answer:
+        "Open the file in the compressor, choose a compression level, and download the smaller result. Then confirm it is under your mail host’s attachment limit.",
+    },
+    {
+      question: "Will compressing a PDF always reduce quality?",
+      answer:
+        "Image-heavy PDFs may lose some visual fidelity at stronger settings. Text-based PDFs often shrink with little visible change when streams are optimized.",
+    },
+    {
+      question: "Why did my PDF barely get smaller?",
+      answer:
+        "It may already be optimized, or mostly text with little redundant data. Scanned photo pages shrink more than digitally created text PDFs.",
+    },
+    {
+      question: "Is PDF compression lossless?",
+      answer:
+        "It depends on the mode. Some optimizations preserve content exactly; stronger modes recompress images and are lossy. Read the option label before you choose.",
+    },
+    {
+      question: "Will text stay searchable after compression?",
+      answer:
+        "Often yes if the tool keeps the text layer. Extreme image flattening can turn pages into pictures and remove searchability.",
+    },
+    {
+      question: "What is a good size target for Gmail attachments?",
+      answer:
+        "Stay comfortably under the common 25 MB cap, including encoding overhead. When still too large, split the PDF or share a link instead.",
+    },
+    {
+      question: "Can I compress a password-protected PDF?",
+      answer:
+        "Usually you must unlock it first. Protected files block rewriting until the password is supplied in a tool that supports it.",
+    },
+    {
+      question: "Should I split or compress a huge PDF?",
+      answer:
+        "Try compression first for email. Split by sections when recipients only need part of the document or when compression plateaus.",
+    },
+    {
+      question: "Why is the output sometimes larger?",
+      answer:
+        "Re-encoding can add overhead if images were already tiny or if metadata grew. Keep the original when that happens.",
+    },
+    {
+      question: "How large a PDF can the browser open?",
+      answer:
+        "Memory limits vary by device. Very large scanned books may fail in-tab; try fewer pages or a desktop app then.",
+    },
+    {
+      question: "Does compression remove PDF metadata?",
+      answer:
+        "Not always. Use a metadata tool if you need authors, titles, or hidden fields cleared separately.",
+    },
+    {
+      question: "Is compressing the same as converting to PDF/A?",
+      answer:
+        "No. PDF/A is an archival standard with stricter rules. Compression only aims to reduce bytes.",
+    },
+    {
+      question: "Can I compress PDFs made from phone photos?",
+      answer:
+        "Yes, and they often shrink a lot because camera images are large. Lower image quality settings help when readability remains acceptable.",
+    },
+    {
+      question: "Will forms and annotations survive compression?",
+      answer:
+        "Simple optimizers keep them; aggressive rewrite modes might not. Spot-check interactive fields after compressing.",
+    },
+    {
+      question: "How many times should I recompress the same file?",
+      answer:
+        "Once is usually enough. Repeated lossy passes can degrade scans without much more size savings.",
+    },
+    {
+      question: "Are my PDF files uploaded to compress them?",
+      answer:
+        "This compressor is built for in-browser processing. Avoid highly sensitive files on shared devices regardless of the path.",
+    }
+  ]
 };

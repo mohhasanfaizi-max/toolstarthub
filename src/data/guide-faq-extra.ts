@@ -1159,4 +1159,496 @@ export const extraGuideFaqs: Record<string, GuideFaq[]> = {
         "Yes. It is a wider theatrical shape. When you adapt that footage for 16:9 screens you must crop or pad.",
     },
   ],
+  "how-to-calculate-square-footage": [
+    {
+      question: "How do I calculate square footage of a room?",
+      answer:
+        "Multiply length by width for a rectangular room using the same units. Convert inches to feet first so you do not mix measurements.",
+    },
+    {
+      question: "How do I measure an L-shaped room?",
+      answer:
+        "Split it into two rectangles, compute each area, then add them. Sketch the shape so you do not double-count the overlapping strip.",
+    },
+    {
+      question: "Should I use interior or exterior wall measurements?",
+      answer:
+        "For flooring, measure the floor space inside the walls. For some building estimates, exterior dimensions are specified—follow the project brief.",
+    },
+    {
+      question: "How do I convert square meters to square feet?",
+      answer:
+        "Multiply square meters by about 10.764. The calculator can apply the factor so you avoid hand-rounding errors.",
+    },
+    {
+      question: "Do closets count in apartment square footage?",
+      answer:
+        "Listing practices vary by market. Measure them separately so you can include or exclude them depending on the rule you were given.",
+    },
+    {
+      question: "How accurate is a phone measure app for square feet?",
+      answer:
+        "Good enough for rough planning, not always for contracts. Recheck critical walls with a tape before ordering materials.",
+    },
+    {
+      question: "How much flooring waste should I add?",
+      answer:
+        "Many installers add five to ten percent for cuts and mistakes. Complex patterns or diagonal layouts may need more.",
+    },
+    {
+      question: "Can I calculate square footage from a blueprint scale?",
+      answer:
+        "Yes if you trust the scale bar. Convert scaled lengths to real feet, then multiply. Verify one known dimension on site when possible.",
+    },
+    {
+      question: "What if a room has a bay window or niche?",
+      answer:
+        "Treat bumps as extra rectangles or triangles and add their area. Ignoring them under-orders flooring.",
+    },
+    {
+      question: "How do I find square footage of a triangle section?",
+      answer:
+        "Use one-half base times height for right or clear triangular regions. Add that to the rectangular parts of the floor plan.",
+    },
+    {
+      question: "Is ceiling height part of square footage?",
+      answer:
+        "No. Square footage is area, not volume. Height matters for paint volume or HVAC, which use cubic measurements.",
+    },
+    {
+      question: "How should real-estate listings treat unfinished space?",
+      answer:
+        "Unfinished basements and garages are often listed separately from finished living area. Keep those totals distinct in your notes.",
+    },
+    {
+      question: "Can I sum rooms to match the unit’s listed size?",
+      answer:
+        "Sometimes common areas or wall thickness explain gaps. A small difference is normal; large gaps deserve a remeasure.",
+    },
+    {
+      question: "Do I measure in inches then convert, or in decimal feet?",
+      answer:
+        "Either works if you stay consistent. Many people measure feet plus inches, convert each length to decimal feet, then multiply.",
+    },
+    {
+      question: "How is square footage used for material estimates?",
+      answer:
+        "Flooring, tile, and sod are sold by area. Your total square feet—plus waste—drives how many boxes or pallets to buy.",
+    },
+    {
+      question: "When is a professional measurement worth it?",
+      answer:
+        "Before expensive custom flooring, legal disputes, or appraisals. A laser measure from a pro reduces costly ordering mistakes.",
+    }
+  ],
+  "how-to-compare-renting-and-buying": [
+    {
+      question: "How do I compare renting versus buying a home?",
+      answer:
+        "Add expected rent over your stay, then compare it with purchase costs: down payment opportunity cost, mortgage interest, taxes, insurance, fees, and maintenance, minus equity built.",
+    },
+    {
+      question: "What is total rent in a rent-vs-buy comparison?",
+      answer:
+        "It is the sum of monthly rent payments across the years you model, sometimes with assumed rent increases. It is the cash you will not get back as equity.",
+    },
+    {
+      question: "Does a rising home value automatically mean buying wins?",
+      answer:
+        "Not always. High transaction costs, interest, and short ownership periods can erase appreciation gains. Run the timeline you actually expect to stay.",
+    },
+    {
+      question: "Are property taxes included automatically?",
+      answer:
+        "Only if you enter them. Many simple comparisons need you to add tax, insurance, and HOA assumptions yourself.",
+    },
+    {
+      question: "How do closing costs affect the buy side?",
+      answer:
+        "They are cash at purchase and again at sale. Short stays make those frictions more painful relative to renting.",
+    },
+    {
+      question: "What opportunity cost should I apply to a down payment?",
+      answer:
+        "Imagine that cash invested elsewhere at a conservative return. Buying ties it up in home equity, which matters in a fair comparison.",
+    },
+    {
+      question: "Should maintenance be a percent of home value?",
+      answer:
+        "A common planning rule is about one percent of value per year, adjusted for age of the home. New builds may need less at first; old homes more.",
+    },
+    {
+      question: "How do I treat security deposits on the rent side?",
+      answer:
+        "Deposits are usually refundable and therefore not pure cost, aside from time value or deductions. Do not count them like rent unless they are non-refundable.",
+    },
+    {
+      question: "What role does the length of stay play?",
+      answer:
+        "The longer you stay, the more fixed purchase costs can be amortized. Moving in under a few years often favors renting in break-even charts.",
+    },
+    {
+      question: "Can I include landlord flexibility as a dollar amount?",
+      answer:
+        "Hard quantitatively, but you can note job-move flexibility as a qualitative factor when the numeric gap is small.",
+    },
+    {
+      question: "How should I model rent increases?",
+      answer:
+        "Pick a modest annual percent and sensitivity-test higher and lower. Optimistic flat rent can bias the chart toward renting.",
+    },
+    {
+      question: "Do mortgage principal payments count as a cost?",
+      answer:
+        "Principal builds equity, so many models treat it as savings rather than pure expense. Interest, tax, and fees remain costs.",
+    },
+    {
+      question: "What if I pay cash for the house?",
+      answer:
+        "You avoid interest but still face taxes, insurance, maintenance, and the opportunity cost of that large cash outlay.",
+    },
+    {
+      question: "How do HOA fees change the comparison?",
+      answer:
+        "Add them to ownership cash flows every month. High HOAs can erase the gap that looked favorable for buying.",
+    },
+    {
+      question: "Should investment property rules use this calculator?",
+      answer:
+        "This framing is for a primary residence lifestyle choice. Investment deals need rent income, vacancy, and different tax treatment.",
+    },
+    {
+      question: "When are non-financial factors decisive?",
+      answer:
+        "When numbers are close. Schools, stability, customization, and landlord risk can reasonably override a small modeled gap.",
+    }
+  ],
+  "how-to-convert-csv-to-json": [
+    {
+      question: "How do I convert CSV to JSON online?",
+      answer:
+        "Paste or upload the CSV, confirm the delimiter and header row, then export JSON as an array of objects or nested structure depending on the tool mode.",
+    },
+    {
+      question: "Why must commas inside quotes stay in one field?",
+      answer:
+        "CSV rules treat quoted commas as part of the value, not as separators. A correct parser keeps “Smith, Jane” as a single cell.",
+    },
+    {
+      question: "How are double quotes escaped inside a CSV cell?",
+      answer:
+        "Standard CSV doubles them—`\"\"` inside a quoted field means one literal quote. Broken escaping is a top cause of shifted columns.",
+    },
+    {
+      question: "What does an empty cell become in JSON?",
+      answer:
+        "Often an empty string, sometimes `null`, depending on the converter. Check the option so downstream code gets the type it expects.",
+    },
+    {
+      question: "What if a closing quote is missing?",
+      answer:
+        "Parsers may merge following lines into one field or throw an error. Fix the source CSV before trusting the JSON.",
+    },
+    {
+      question: "Should the first row always be treated as headers?",
+      answer:
+        "When it contains column names, yes—those names become JSON keys. If the file has no header, enable auto keys like `column1`.",
+    },
+    {
+      question: "Can I convert TSV the same way?",
+      answer:
+        "Yes if you set the delimiter to tab. Forcing comma mode on a tab file will smash all columns into one.",
+    },
+    {
+      question: "How do I keep leading zeros in ZIP codes?",
+      answer:
+        "Quote those cells or force text types. Bare numbers in JSON drop leading zeros unless stored as strings.",
+    },
+    {
+      question: "Is JSON smaller than CSV for the same data?",
+      answer:
+        "Often larger because keys repeat on every object. CSV is denser; JSON is usually easier for APIs and nested data.",
+    },
+    {
+      question: "Can nested JSON be created from flat CSV?",
+      answer:
+        "Only with naming conventions or a mapping step. A plain converter emits flat objects unless you post-process.",
+    },
+    {
+      question: "What character encoding should I use?",
+      answer:
+        "UTF-8 avoids mojibake for non-English text. Re-export from the spreadsheet as UTF-8 CSV if accents look wrong.",
+    },
+    {
+      question: "How large a CSV can a browser convert?",
+      answer:
+        "Megabyte-scale files are usually fine; multi-hundred-megabyte sheets belong in a script or database import.",
+    },
+    {
+      question: "Why do row counts differ after conversion?",
+      answer:
+        "Skipped blank lines, malformed quotes, or header handling can drop or merge rows. Diff the counts before shipping.",
+    },
+    {
+      question: "Should dates stay as strings in JSON?",
+      answer:
+        "Storing ISO strings is safest across languages. Converting to epoch numbers is fine when every consumer agrees.",
+    },
+    {
+      question: "Can I convert JSON back to CSV?",
+      answer:
+        "Yes with a complementary tool, but nested objects need flattening rules. Round-trips may not be perfectly symmetric.",
+    },
+    {
+      question: "Is my spreadsheet data uploaded to convert?",
+      answer:
+        "Browser converters can keep data on-device. Still avoid pasting regulated personal data on shared computers.",
+    }
+  ],
+  "how-to-convert-roman-numerals": [
+    {
+      question: "How do I convert Roman numerals to numbers?",
+      answer:
+        "Enter the Roman string and the tool maps symbols like I, V, X, L, C, D, and M with subtractive pairs such as IV and IX to a decimal value.",
+    },
+    {
+      question: "Why is 4 written as IV instead of IIII?",
+      answer:
+        "Standard Roman numeral rules use subtractive notation for 4 and 9 variants. Clocks sometimes show IIII for style, but converters expect IV.",
+    },
+    {
+      question: "What is the usual maximum for online Roman converters?",
+      answer:
+        "Many educational tools cap around 3,999 (MMMCMXCIX) because classic notation lacks a standard overline mode for larger values.",
+    },
+    {
+      question: "What does XVI equal in decimal?",
+      answer:
+        "XVI is 16: X for ten plus V for five plus I for one. Reading left to right with additive and subtractive rules yields the decimal total.",
+    },
+    {
+      question: "Can I convert Arabic numbers to Roman numerals too?",
+      answer:
+        "Most converters work both ways. Enter a decimal to see the canonical Roman form using standard subtractive rules.",
+    },
+    {
+      question: "Are lowercase Roman numerals accepted?",
+      answer:
+        "Often yes—they are normalized to uppercase. Prefer uppercase in formal outlines and legal clauses.",
+    },
+    {
+      question: "Why was my numeral rejected as invalid?",
+      answer:
+        "Out-of-order symbols, four identical letters in a row where rules forbid them, or unknown characters trigger errors. Fix the spelling and retry.",
+    },
+    {
+      question: "How do subtractive pairs work?",
+      answer:
+        "A smaller unit before a larger one means subtraction: IX is 9, XL is 40, CD is 400. Only specific pairs are allowed in standard form.",
+    },
+    {
+      question: "Do Roman numerals use zero?",
+      answer:
+        "Classical Roman numerals have no zero symbol. Year and outline systems simply start at I.",
+    },
+    {
+      question: "Where are Roman numerals still used today?",
+      answer:
+        "Book prefaces, monarch names, clock faces, film sequels, and outline numbering still use them for tradition and style.",
+    },
+    {
+      question: "Can I write numbers as English words in the same tool?",
+      answer:
+        "Not in a pure Roman converter. Use a number-to-words tool if you need “fourteen” instead of XIV.",
+    },
+    {
+      question: "Is IC a valid way to write 99?",
+      answer:
+        "No under standard rules. Ninety-nine is XCIX. Arbitrary subtractive shortcuts are rejected by strict converters.",
+    },
+    {
+      question: "How do I teach kids Roman numerals quickly?",
+      answer:
+        "Memorize I, V, X, L, C values first, then practice additive strings like VIII before introducing subtractive IV and IX.",
+    },
+    {
+      question: "Why do copyright years on films use Roman numerals?",
+      answer:
+        "Tradition and aesthetics. Converters help viewers decode MCM-style years without memorizing every combination.",
+    },
+    {
+      question: "Can Unicode Roman characters confuse a converter?",
+      answer:
+        "Sometimes. Prefer plain ASCII I and V letters. Special Unicode numeral code points may not match the parser’s alphabet.",
+    },
+    {
+      question: "Are Roman numerals case-sensitive for meaning?",
+      answer:
+        "Meaning does not change with case, but style guides pick one. Academic outlines often use lowercase for sub-lists.",
+    }
+  ],
+  "how-to-convert-salary-to-hourly": [
+    {
+      question: "How do I convert salary to an hourly rate?",
+      answer:
+        "Divide annual salary by the hours you work in a year—often 2,080 for 40 hours × 52 weeks. Adjust the hour count if your schedule differs.",
+    },
+    {
+      question: "How do I turn an hourly wage into an annual salary?",
+      answer:
+        "Multiply the hourly rate by hours per week, then by weeks worked per year. Include paid time off only if you want a fully loaded figure.",
+    },
+    {
+      question: "How many hours is a standard full-time year?",
+      answer:
+        "2,080 hours is the common 40×52 assumption. Some people use 1,920 or similar after unpaid time off—state your assumption beside the number.",
+    },
+    {
+      question: "How is overtime counted in these estimates?",
+      answer:
+        "Basic converters use straight time only. Overtime at 1.5× needs a separate calculation on those hours.",
+    },
+    {
+      question: "Do hourly conversions include income tax withholding?",
+      answer:
+        "Usually not. Gross salary-to-hourly math ignores income tax, FICA, and benefits. Net pay requires a paycheck estimator.",
+    },
+    {
+      question: "Should salaried exempt workers still compute an hourly equivalent?",
+      answer:
+        "Yes for budgeting comparisons and side-gig pricing. Legal overtime eligibility is a separate labor-law question.",
+    },
+    {
+      question: "How do I handle a 9/80 or compressed schedule?",
+      answer:
+        "Use your actual hours paid per pay period, annualized. Do not assume five 8-hour days if that is not your roster.",
+    },
+    {
+      question: "Can I convert monthly salary to hourly?",
+      answer:
+        "Multiply monthly pay by 12 to annualize, then divide by annual hours. Or divide monthly pay by hours worked that month for a rough spot rate.",
+    },
+    {
+      question: "What about bonuses and commissions?",
+      answer:
+        "Add expected variable pay to the annual figure before dividing if you want an all-in hourly equivalent. Keep base and variable visible separately for clarity.",
+    },
+    {
+      question: "How should contractors price versus salary equivalents?",
+      answer:
+        "Contract rates often need to cover benefits, taxes, and downtime. A straight salary-to-hourly split understates a healthy contractor rate.",
+    },
+    {
+      question: "Does paid vacation change the divisor?",
+      answer:
+        "If you are paid while off, many people still use 2,080. If unpaid leave is common, reduce hours so the hourly figure stays honest.",
+    },
+    {
+      question: "How do I compare two job offers fairly?",
+      answer:
+        "Convert both to the same hourly or annual basis, then subtract commute costs and benefits differences—not just the headline wage.",
+    },
+    {
+      question: "Why do job boards show different hourly conversions?",
+      answer:
+        "They may assume different weekly hours or include estimated tips. Read the footnote before comparing.",
+    },
+    {
+      question: "Can I estimate daily rates from salary?",
+      answer:
+        "Divide annual pay by workdays in your year (often ~260 on a 5-day calendar). Confirm holidays and PTO policies.",
+    },
+    {
+      question: "Is the hourly figure what appears on a paycheck?",
+      answer:
+        "Not necessarily. Withholding and benefit deductions lower net pay. Use gross conversions for offer math unless labeled net.",
+    },
+    {
+      question: "When is salary-to-hourly conversion misleading?",
+      answer:
+        "When hours are highly variable, on-call, or tipped. Track real hours for a few weeks before relying on the equivalent rate.",
+    }
+  ],
+  "how-to-count-business-days": [
+    {
+      question: "How do I count business days between two dates?",
+      answer:
+        "Exclude weekends and any holidays you mark, then count the remaining weekdays in the range. Confirm whether the end date is inclusive.",
+    },
+    {
+      question: "Does a holiday count as a business day?",
+      answer:
+        "No when you add it to the holiday list. Regional holidays differ, so customize the calendar for your country or company.",
+    },
+    {
+      question: "What counts as a weekend in the calculator?",
+      answer:
+        "Typically Saturday and Sunday. Some Middle East schedules differ; use a tool that supports your weekend definition if needed.",
+    },
+    {
+      question: "Does the end date count in the total?",
+      answer:
+        "It depends on the mode—inclusive versus exclusive end. Shipping and SLA policies should state which convention they use.",
+    },
+    {
+      question: "How is this different from calendar day difference?",
+      answer:
+        "Calendar difference counts every day including weekends. Business-day counts skip non-working days for operations timelines.",
+    },
+    {
+      question: "Can I count business days across months and years?",
+      answer:
+        "Yes. The counter walks each day in the span, so month length and year boundaries are handled automatically.",
+    },
+    {
+      question: "How do half-days or partial shutdowns work?",
+      answer:
+        "Most simple counters are all-or-nothing per date. Model a half-day as a custom note; do not expect fractional business days unless the tool supports them.",
+    },
+    {
+      question: "Should federal holidays match my company calendar?",
+      answer:
+        "Not always. Banks, schools, and private firms close on different sets. Load the calendar your SLA actually follows.",
+    },
+    {
+      question: "How do I find a date that is N business days after today?",
+      answer:
+        "Use add/subtract business-day mode rather than span count. Start from today and step forward skipping weekends and holidays.",
+    },
+    {
+      question: "Do time zones affect business-day counts?",
+      answer:
+        "Date-only counts use calendar dates. If a deadline is timestamped, convert to the working timezone before choosing the date boundary.",
+    },
+    {
+      question: "Can I exclude only Sundays but keep Saturdays?",
+      answer:
+        "Only if the tool lets you customize weekends. Default Western calendars drop both weekend days.",
+    },
+    {
+      question: "Why do two business-day tools disagree by one?",
+      answer:
+        "Inclusive end dates, holiday lists, or treating today as day zero cause off-by-one results. Align those settings.",
+    },
+    {
+      question: "How are business days used in shipping estimates?",
+      answer:
+        "Carriers quote transit in business days so weekends do not look like travel time. Order cutoffs still depend on the ship-by clock.",
+    },
+    {
+      question: "Can I count business days for HR leave policies?",
+      answer:
+        "Yes, but follow the employee handbook. Some policies count calendar days for leave even when operations use business days.",
+    },
+    {
+      question: "What if my holiday list is empty?",
+      answer:
+        "Then only weekends are skipped. Add holidays before relying on the number for legal or customer deadlines.",
+    },
+    {
+      question: "Is today included when I count from today to Friday?",
+      answer:
+        "Inclusive modes include both ends; exclusive modes may drop one. Pick the convention your contract language uses.",
+    }
+  ]
 };
