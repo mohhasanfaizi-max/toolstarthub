@@ -1921,5 +1921,477 @@ export const extraToolFaqs: Record<string, ToolFaq[]> = {
       answer:
         "Once is usually enough. Repeated lossy passes can degrade scans without much more size savings.",
     }
+  ],
+  "qr-code-scanner": [
+    {
+      question: "How do I scan a QR code from an image file?",
+      answer:
+        "Choose the image that contains the code, wait for the decoder to finish, then open or copy the result. A sharp, well-lit crop of just the square usually works better than a busy full-page photo.",
+    },
+    {
+      question: "Can I scan a QR code with my phone camera in the browser?",
+      answer:
+        "Yes on phones that allow camera access in the tab. Grant permission when asked, point the camera at the code, and keep the square steady until the payload appears.",
+    },
+    {
+      question: "Why won’t my QR code scan?",
+      answer:
+        "Blur, glare, low contrast, a bent print, or a cropped corner are the usual causes. Retake the photo closer, flatten the paper, and avoid reflections on glossy screens.",
+    },
+    {
+      question: "What kinds of QR payloads can this tool read?",
+      answer:
+        "Most codes carry a URL, plain text, Wi-Fi setup, or contact data. The scanner shows the raw string so you can decide whether to open a link or copy the text.",
+    },
+    {
+      question: "Is scanning a QR code safe?",
+      answer:
+        "Treat unknown codes like unknown links. Read the decoded URL before you open it, and skip short links you do not trust. The scanner itself only decodes; it does not visit the site for you.",
+    },
+    {
+      question: "Do I need an app store QR reader?",
+      answer:
+        "Not for a one-off scan. A browser tool is enough when you already have a photo or can use the phone camera in the tab. Dedicated apps help if you scan many codes every day.",
+    },
+    {
+      question: "Can damaged or partially covered codes still work?",
+      answer:
+        "QR codes include error correction, so a small stain or corner loss may still decode. Large tears or missing finder squares usually fail and need a cleaner capture.",
+    },
+    {
+      question: "What resolution should my photo have?",
+      answer:
+        "Enough pixels for the modules to stay distinct. A modern phone photo is fine; a tiny thumbnail or heavy compression that blurs black and white squares is not.",
+    },
+    {
+      question: "Does the scanner work offline after the page loads?",
+      answer:
+        "Decoding runs in the browser once scripts are ready. Camera or file access still needs the device permissions you already granted, but the image is not uploaded to finish a scan.",
+    },
+    {
+      question: "Why did it find text that is not a website?",
+      answer:
+        "Many codes store plain text, phone numbers, or Wi-Fi credentials instead of https links. Copy the string and use it in the right place rather than forcing it into a browser address bar.",
+    },
+    {
+      question: "Can I scan several codes from one photo?",
+      answer:
+        "If more than one code is visible, the tool reports what it finds in that frame. Cropping to a single square is the surest way to control which payload you get.",
+    },
+    {
+      question: "How is a QR code different from a barcode?",
+      answer:
+        "Classic barcodes are usually one-dimensional lines for product SKUs. QR codes are two-dimensional squares that hold longer strings such as URLs or contact cards.",
+    },
+    {
+      question: "Will dark mode or a colored QR still scan?",
+      answer:
+        "High-contrast dark modules on a light background scan most reliably. Low-contrast brand colors or inverted designs often need a higher-contrast reprint.",
+    },
+    {
+      question: "Does printing size matter?",
+      answer:
+        "Yes. Tiny prints on glossy stickers can fail when the camera cannot resolve each module. Larger prints with quiet space around the square scan more consistently.",
+    },
+    {
+      question: "What should I do after a successful scan?",
+      answer:
+        "Copy the payload, verify the destination, then open it only if it matches what you expect. For Wi-Fi or contact codes, paste into the matching settings screen instead of a browser.",
+    }
+  ],
+  "text-repeater": [
+    {
+      question: "How do I repeat a word or sentence many times?",
+      answer:
+        "Paste the text, set how many copies you want, choose a separator such as a newline or comma, then generate and copy the result. The tool joins the copies in order without changing the original wording.",
+    },
+    {
+      question: "What separator should I use between repeats?",
+      answer:
+        "Use a newline when each copy should sit on its own row, a comma or space for inline lists, and a custom string when you need a tag between items. Empty separators mash copies together with no gap.",
+    },
+    {
+      question: "Is there a maximum repeat count?",
+      answer:
+        "Very large counts can freeze the tab because the joined string grows in memory. Start with a modest number, copy what you need, and increase only if the browser stays responsive.",
+    },
+    {
+      question: "Can I repeat multi-line blocks?",
+      answer:
+        "Yes. Paste the whole block as the source text. Each repeat includes every line you pasted, then the separator you chose is inserted between those full copies.",
+    },
+    {
+      question: "Does repeating change spaces inside my text?",
+      answer:
+        "No. Characters inside each copy stay as you typed them. Only the separator between copies is added by the tool.",
+    },
+    {
+      question: "How is this different from lorem ipsum?",
+      answer:
+        "Lorem ipsum invents placeholder Latin. The repeater duplicates the exact string you supply, which is better for test data, stress tests, and patterned lists.",
+    },
+    {
+      question: "Can I build a numbered list with the repeater?",
+      answer:
+        "Not automatically. Repeat the line first, then number the lines in another tool, or include the number inside the source text if every copy should share the same label.",
+    },
+    {
+      question: "Why would a form reject a huge repeated string?",
+      answer:
+        "Many forms cap length. If paste fails, lower the count or split the output across fields. The repeater does not enforce remote form limits.",
+    },
+    {
+      question: "Does the tool trim my text before repeating?",
+      answer:
+        "It keeps leading and trailing spaces inside the source unless you remove them yourself. Trim first if you do not want padded copies.",
+    },
+    {
+      question: "Can I repeat emoji or non-English text?",
+      answer:
+        "Yes. Unicode characters repeat the same way as Latin letters. Confirm the destination app accepts the characters after you paste.",
+    },
+    {
+      question: "Is repeating useful for load testing?",
+      answer:
+        "Developers sometimes paste long repeated strings into inputs to check truncation and performance. Keep counts reasonable so the browser tab remains usable.",
+    },
+    {
+      question: "What happens if the count is zero?",
+      answer:
+        "A zero or empty count should yield no copies. Use at least 1 when you want the original text once in the output box.",
+    },
+    {
+      question: "Can separators include tabs?",
+      answer:
+        "If the UI allows a custom separator, a tab character works for spreadsheet-friendly columns. Otherwise repeat with newlines and split later.",
+    },
+    {
+      question: "Will HTML tags inside the text be escaped?",
+      answer:
+        "The repeater treats tags as plain characters. Paste carefully into rich editors that might interpret markup after you copy the result.",
+    },
+    {
+      question: "How do I stop mid-generation if the count is too high?",
+      answer:
+        "Cancel or refresh the tab if the page becomes unresponsive. Choose a smaller count next time and build the list in chunks.",
+    },
+    {
+      question: "Does the repeater store my phrases?",
+      answer:
+        "No. Work stays in the page session for the copy you generate. Clear the box when you finish if the text is sensitive.",
+    }
+  ],
+  "time-calculator": [
+    {
+      question: "How do I add hours and minutes together?",
+      answer:
+        "Enter each duration, choose add, and read the normalized total. Minutes at 60 or more roll into hours so the result stays in a readable hours-and-minutes form.",
+    },
+    {
+      question: "How do I subtract one time length from another?",
+      answer:
+        "Put the larger duration first when you expect a positive remainder, then subtract. Negative results mean the second length was longer than the first.",
+    },
+    {
+      question: "Can I mix hours, minutes, and seconds?",
+      answer:
+        "Use the fields the calculator exposes for each unit. Convert awkward values into the supported units first if a field is missing.",
+    },
+    {
+      question: "How do I convert minutes into hours?",
+      answer:
+        "Divide total minutes by 60 for whole hours and keep the remainder as minutes. The calculator does that normalization when totals spill past 59 minutes.",
+    },
+    {
+      question: "Is this a clock for time zones?",
+      answer:
+        "No. It adds and subtracts durations. For clock times across cities, use a time zone converter instead.",
+    },
+    {
+      question: "Can I calculate a work shift length?",
+      answer:
+        "Yes for simple elapsed duration when you already know the hours and minutes worked. It does not punch a start clock or apply break rules by itself.",
+    },
+    {
+      question: "What if I only know decimal hours?",
+      answer:
+        "Convert decimal hours to minutes first (multiply the fraction by 60), then enter hours and minutes. Example: 1.5 hours is 1 hour 30 minutes.",
+    },
+    {
+      question: "Does the calculator handle days?",
+      answer:
+        "When totals grow past 24 hours, some modes show extra hours rather than calendar days. Split into days manually if you need day counts.",
+    },
+    {
+      question: "Why do two time tools disagree?",
+      answer:
+        "Rounding, whether seconds are kept, and whether negatives are allowed differ by product. Match unit precision before comparing.",
+    },
+    {
+      question: "Can I add a list of lap times?",
+      answer:
+        "Add them one after another or sum offline then enter the combined hours and minutes. There is no separate lap table on this page.",
+    },
+    {
+      question: "Is overtime math included?",
+      answer:
+        "No payroll rules are applied. Compute the raw duration here, then apply overtime multipliers in your payroll sheet.",
+    },
+    {
+      question: "How precise are the results?",
+      answer:
+        "Results follow whole minutes or seconds based on the inputs you type. Fractional seconds are not the focus of this simple duration tool.",
+    },
+    {
+      question: "Can I use it for cooking timers?",
+      answer:
+        "Yes for summing prep and cook blocks. It will not ring an alarm; copy the total into a separate timer app if you need a countdown.",
+    },
+    {
+      question: "What does a negative duration mean?",
+      answer:
+        "It means you subtracted a longer span from a shorter one. Swap the operands or treat the absolute value as the shortfall.",
+    },
+    {
+      question: "Does daylight saving change duration math?",
+      answer:
+        "Duration addition ignores civil clock jumps. DST matters for wall-clock schedules, not for pure hour-minute arithmetic.",
+    },
+    {
+      question: "Are my duration numbers stored?",
+      answer:
+        "They stay in the browser for the session. Nothing is sent to finish the add or subtract.",
+    }
+  ],
+  "image-to-text": [
+    {
+      question: "How does image-to-text OCR work in the browser?",
+      answer:
+        "The page loads a recognition engine, reads pixels from your image locally when possible, and proposes plain text you can copy. Quality depends on sharpness, contrast, and language support.",
+    },
+    {
+      question: "What image formats work best for OCR?",
+      answer:
+        "PNG and JPEG photos of flat documents work well. Extremely compressed social-media screenshots and skewed phone photos need a straighter, sharper retake.",
+    },
+    {
+      question: "How can I improve OCR accuracy?",
+      answer:
+        "Use even lighting, avoid shadows, fill the frame with the text, and crop distractions. Higher contrast black text on white usually beats colorful backgrounds.",
+    },
+    {
+      question: "Does OCR keep the original layout?",
+      answer:
+        "Most browser OCR returns a reading-order text stream, not a perfect page layout. Expect to reapply columns or tables after you paste.",
+    },
+    {
+      question: "Can it read handwriting?",
+      answer:
+        "Printed text is far more reliable. Neat handwriting sometimes works; cursive and faint pencil often fail and should be typed instead.",
+    },
+    {
+      question: "Is my photo uploaded for OCR?",
+      answer:
+        "This tool is designed to process in the browser after model files load. Prefer a clear local file and check the on-page privacy note if you need a strict offline guarantee.",
+    },
+    {
+      question: "Why are some letters swapped?",
+      answer:
+        "Similar shapes such as O/0 and I/l confuse OCR. Proofread numbers and names carefully before you rely on the text.",
+    },
+    {
+      question: "Can I OCR a PDF with this tool?",
+      answer:
+        "This page expects an image. Convert PDF pages to images first, or use a dedicated PDF text tool when the file already contains a text layer.",
+    },
+    {
+      question: "Does rotation matter?",
+      answer:
+        "Upside-down or sideways pages often fail. Rotate the image upright before running OCR.",
+    },
+    {
+      question: "How large can the image be?",
+      answer:
+        "Very large photos may be resized for memory limits. If text becomes soft after resize, crop to the paragraph you need and run again.",
+    },
+    {
+      question: "Can OCR extract text from screenshots of apps?",
+      answer:
+        "Yes when fonts are clear. UI chrome, icons, and overlapping windows reduce accuracy, so crop to the text region.",
+    },
+    {
+      question: "What languages can it recognize?",
+      answer:
+        "Support depends on the loaded language data. English is the common default; other languages need matching trained data on the page.",
+    },
+    {
+      question: "Is OCR the same as a live camera translator?",
+      answer:
+        "OCR copies text from a still image. Live translation apps add continuous camera frames and machine translation on top.",
+    },
+    {
+      question: "Should I compress the image before OCR?",
+      answer:
+        "Mild compression is fine. Heavy compression that blurs edges hurts recognition more than it helps upload size.",
+    },
+    {
+      question: "What should I do with the extracted text?",
+      answer:
+        "Copy it into your editor, fix mistakes, then save. Sensitive documents should be cleared from the page when you finish.",
+    }
+  ],
+  "jwt-decoder": [
+    {
+      question: "What are the three parts of a JWT?",
+      answer:
+        "A typical JWT has a header, a payload, and a signature, separated by dots. Each of the first two parts is Base64URL-encoded JSON when the token is well formed.",
+    },
+    {
+      question: "How do I decode a JWT without verifying it?",
+      answer:
+        "Paste the token into the decoder to read the header and payload claims. Decoding alone does not prove the signature is valid or that you should trust the token.",
+    },
+    {
+      question: "What is the difference between decoding and verifying a JWT?",
+      answer:
+        "Decoding shows the claims. Verifying checks the signature with a secret or public key so you know the token was not altered. This page focuses on readable decode output.",
+    },
+    {
+      question: "What does the alg header mean?",
+      answer:
+        "It names the signing algorithm the issuer intended, such as HS256 or RS256. Treat unexpected alg values as a red flag before you accept a token in production code.",
+    },
+    {
+      question: "Can I edit claims inside a JWT here?",
+      answer:
+        "The decoder is for inspection. Changing claims requires resigning with a key you control; unsigned edits will fail verification on any serious API.",
+    },
+    {
+      question: "Why do expiration times look like large numbers?",
+      answer:
+        "JWT timestamps are usually Unix seconds. Convert them with a timestamp tool to see local date and time.",
+    },
+    {
+      question: "Is it safe to paste production JWTs?",
+      answer:
+        "Avoid pasting live session tokens into any shared screen. Prefer expired fixtures or redacted samples when you only need to understand structure.",
+    },
+    {
+      question: "What if the token has only two segments?",
+      answer:
+        "Some unsigned or incomplete strings lack a signature section. The tool may still show readable parts, but such tokens should not be treated as authenticated.",
+    },
+    {
+      question: "Do spaces or line breaks break a JWT?",
+      answer:
+        "Yes. Paste the compact three-part string without wrapping spaces. Copy carefully from logs that insert breaks.",
+    },
+    {
+      question: "What are common JWT claims?",
+      answer:
+        "iss, sub, aud, exp, nbf, and iat appear often. Custom claims vary by issuer; read your API docs for meanings.",
+    },
+    {
+      question: "Can a JWT carry roles or permissions?",
+      answer:
+        "Yes as custom claims, but size and privacy matter. Do not stuff secrets into payloads because anyone who can decode can read them.",
+    },
+    {
+      question: "Why is Base64URL used instead of plain Base64?",
+      answer:
+        "URL-safe alphabets avoid + and / characters that break query strings. Padding rules also differ slightly from classic Base64.",
+    },
+    {
+      question: "Does decoding require the signing secret?",
+      answer:
+        "No. The header and payload are only encoded, not encrypted, in a standard signed JWT. The secret is required to verify, not to read.",
+    },
+    {
+      question: "What does kid mean in the header?",
+      answer:
+        "Key ID hints which key from a JWKS set should verify the signature. It does not by itself authenticate the token.",
+    },
+    {
+      question: "How should developers use this decoder day to day?",
+      answer:
+        "Paste a failing token, confirm exp and aud, and compare claims with API expectations before digging into signature code.",
+    }
+  ],
+  "mortgage-calculator": [
+    {
+      question: "How do I estimate a monthly mortgage payment?",
+      answer:
+        "Enter the loan amount after down payment, the interest rate, and the term in years. The calculator applies standard amortization to estimate principal and interest for each month.",
+    },
+    {
+      question: "Does this mortgage estimate include taxes and insurance?",
+      answer:
+        "Many simple calculators show principal and interest only. Add property tax, insurance, and HOA dues separately if you need a full housing budget.",
+    },
+    {
+      question: "How does a larger down payment change the payment?",
+      answer:
+        "It lowers the amount financed, which lowers principal and interest. It can also avoid private mortgage insurance when you reach the lender’s equity threshold.",
+    },
+    {
+      question: "What loan term should I model first?",
+      answer:
+        "Thirty-year fixed loans are a common U.S. starting point; fifteen-year terms raise the monthly payment but cut total interest. Compare both with the same rate assumptions.",
+    },
+    {
+      question: "How do extra principal payments help?",
+      answer:
+        "Extra amounts reduce the balance sooner, so less interest accrues over the life of the loan. Confirm your lender applies prepayments to principal.",
+    },
+    {
+      question: "Is APR the same as the interest rate I should type?",
+      answer:
+        "APR includes certain fees annualized. For amortization of the note rate, use the loan’s interest rate unless your worksheet says otherwise.",
+    },
+    {
+      question: "Can I model an adjustable-rate mortgage here?",
+      answer:
+        "This page is built around a fixed-rate style payment. ARM estimates need rate-cap assumptions a basic fixed calculator does not include.",
+    },
+    {
+      question: "Why is the first month mostly interest?",
+      answer:
+        "Early amortization schedules apply more of each payment to interest because the balance is highest. The principal share grows later in the term.",
+    },
+    {
+      question: "How accurate is an online mortgage estimate?",
+      answer:
+        "It is a planning figure, not a lender commitment. Quotes vary with credit, points, escrow, and underwriting.",
+    },
+    {
+      question: "What is PMI and when does it appear?",
+      answer:
+        "Private mortgage insurance often applies when the down payment is small. It raises the monthly cost until you reach the required equity.",
+    },
+    {
+      question: "Can I use this for investment property loans?",
+      answer:
+        "You can explore principal and interest with the same math, but investment rates, reserves, and tax treatment differ. Talk with a lender for investment quotes.",
+    },
+    {
+      question: "How do discount points affect the payment?",
+      answer:
+        "Buying points lowers the rate and usually the payment, in exchange for cash at closing. Run the calculator at both rates to compare.",
+    },
+    {
+      question: "What happens if I round the payment up?",
+      answer:
+        "Paying a little extra each month acts like a small prepayment and can shorten the schedule. Confirm the servicer allocates the surplus to principal.",
+    },
+    {
+      question: "Does biweekly mortgage payment change the math?",
+      answer:
+        "Twenty-six half-payments per year equal thirteen full payments, which can cut interest if the servicer applies them that way. Ask before relying on a biweekly plan.",
+    },
+    {
+      question: "When should I talk to a mortgage lender?",
+      answer:
+        "Use the calculator to set a budget range, then get a Loan Estimate for fees, escrow, and underwriting rules a webpage cannot know.",
+    }
   ]
 };

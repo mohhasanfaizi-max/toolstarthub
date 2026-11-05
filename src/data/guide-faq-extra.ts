@@ -1650,5 +1650,497 @@ export const extraGuideFaqs: Record<string, GuideFaq[]> = {
       answer:
         "Inclusive modes include both ends; exclusive modes may drop one. Pick the convention your contract language uses.",
     }
+  ],
+  "how-to-repeat-a-word-or-line": [
+    {
+      question: "How many times can I safely duplicate a phrase?",
+      answer:
+        "Stay within what your browser can hold in memory. Thousands of short lines are usually fine; millions of long paragraphs can freeze the tab, so build large lists in batches.",
+    },
+    {
+      question: "Should I put a newline or a comma between copies?",
+      answer:
+        "Newlines create a vertical list. Commas or spaces keep copies on one line for CSV-like strings. Match the format the next app expects.",
+    },
+    {
+      question: "Can I duplicate a whole paragraph for testing?",
+      answer:
+        "Yes. Paste the paragraph as the source, set the count, and generate. Each copy includes the full paragraph text you supplied.",
+    },
+    {
+      question: "Why duplicate text instead of typing it again?",
+      answer:
+        "Duplication keeps spelling identical across test cases and saves time when you need long filler that still matches a real phrase.",
+    },
+    {
+      question: "Does duplication help with UI overflow checks?",
+      answer:
+        "Developers often paste repeated strings to see whether labels truncate or wrap. Use realistic character sets, not only “asdf”.",
+    },
+    {
+      question: "How do I avoid mangling markdown when repeating?",
+      answer:
+        "Repeat plain lines, then wrap the block in markdown fences afterward. Repeating already-fenced blocks can nest backticks incorrectly.",
+    },
+    {
+      question: "Can I create a chorus line for lyrics this way?",
+      answer:
+        "Yes for identical refrain lines. Numbering verses still needs a separate pass if each line must differ.",
+    },
+    {
+      question: "What if my destination strips repeated characters?",
+      answer:
+        "Some filters collapse runs of the same character. Insert varied separators or slight differences if a spam filter eats the paste.",
+    },
+    {
+      question: "Is repeating a secure way to make passwords?",
+      answer:
+        "No. Repeated phrases are easy to guess. Use a password generator for secrets.",
+    },
+    {
+      question: "How do I share only part of a long repeated output?",
+      answer:
+        "Generate, then select the slice you need in the result box before copying. Lower the count next time to avoid excess.",
+    },
+    {
+      question: "Can spreadsheets import newline-separated repeats?",
+      answer:
+        "Yes. Paste into a column when each copy sits on its own line. Use a comma separator when you need a single cell list.",
+    },
+    {
+      question: "Does the guide replace the Text Repeater tool?",
+      answer:
+        "No. The guide explains when and how to duplicate strings; the tool performs the join with your count and separator.",
+    },
+    {
+      question: "Why might mobile keyboards struggle with huge pastes?",
+      answer:
+        "Mobile browsers have tighter memory and clipboard limits. Prefer smaller counts on phones.",
+    },
+    {
+      question: "Can I repeat lines that already include numbers?",
+      answer:
+        "Yes, but every copy will share the same numbers. Renumber afterward if each row must be unique.",
+    },
+    {
+      question: "How should teachers use repeated lines?",
+      answer:
+        "For handwriting practice sheets or identical prompt lines. Avoid accidental plagiarism tasks that ask students to submit unchanged filler.",
+    },
+    {
+      question: "What is a practical upper bound for classroom use?",
+      answer:
+        "A few dozen lines usually suffice for worksheets. Larger dumps belong in files students download, not in a chat box.",
+    }
+  ],
+  "how-to-read-text-from-a-photo": [
+    {
+      question: "How do I turn a photo of a page into editable text?",
+      answer:
+        "Open the Image to Text tool, choose a sharp photo of the page, run recognition, then copy the text into your editor and fix mistakes.",
+    },
+    {
+      question: "Why crop before running OCR on a photo?",
+      answer:
+        "Cropping removes hands, tables, and wallpaper that confuse the engine. A tight crop around the paragraph usually raises accuracy.",
+    },
+    {
+      question: "What lighting works best for document photos?",
+      answer:
+        "Diffuse daylight or evenly lit indoor light without glare. Harsh flash on glossy paper creates hotspots that hide letters.",
+    },
+    {
+      question: "Can phone screenshots be read the same way?",
+      answer:
+        "Yes when the font is clear. Crop out status bars and overlapping windows so the engine focuses on the words.",
+    },
+    {
+      question: "How do I handle a curved book page?",
+      answer:
+        "Flatten the book as much as possible or photograph one flatter half at a time. Strong curves warp characters and lower accuracy.",
+    },
+    {
+      question: "Should I convert HEIC photos first?",
+      answer:
+        "If the tool rejects HEIC, export JPEG or PNG from your phone photos app, then retry. Widely supported formats avoid decoder surprises.",
+    },
+    {
+      question: "Why are numbers in tables often wrong?",
+      answer:
+        "Thin rules and dense grids confuse OCR. Crop each cell region or retype critical figures after a first pass.",
+    },
+    {
+      question: "Can I OCR text from a whiteboard photo?",
+      answer:
+        "Sometimes, when marker contrast is strong and the board is square to the camera. Smudged or low-contrast writing often fails.",
+    },
+    {
+      question: "Is OCR allowed on copyrighted pages?",
+      answer:
+        "Owning a photo does not grant unlimited rights to redistribute the text. Use extracts under fair personal study rules and cite sources when publishing.",
+    },
+    {
+      question: "How do I OCR multiple pages quickly?",
+      answer:
+        "Process one clear image at a time, or convert a multi-page PDF with a PDF text workflow when a text layer already exists.",
+    },
+    {
+      question: "What proofreading checklist should I use?",
+      answer:
+        "Check names, totals, punctuation, and lookalike characters. Read the output aloud for short passages when accuracy matters.",
+    },
+    {
+      question: "Does higher megapixels always help?",
+      answer:
+        "Only if the text is sharp. A blurry 12 MP shot loses to a smaller but crisp crop.",
+    },
+    {
+      question: "Can colored text on colored backgrounds be read?",
+      answer:
+        "Low contrast pairs struggle. Increase contrast in a photo editor or print to black-on-white before OCR.",
+    },
+    {
+      question: "How is this different from typing the page?",
+      answer:
+        "OCR is faster for long clear print. Typing wins for short notes, messy handwriting, or when every character must be perfect on the first try.",
+    },
+    {
+      question: "Where should I store sensitive OCR results?",
+      answer:
+        "In your own documents with appropriate access controls. Clear the browser tool when finished if the photo showed private data.",
+    },
+    {
+      question: "Do I need an internet connection after models load?",
+      answer:
+        "Recognition can continue locally depending on the tool build. Keep the tab open so model files stay available during the run.",
+    }
+  ],
+  "how-to-read-a-jwt": [
+    {
+      question: "How do I inspect claims inside a JSON Web Token?",
+      answer:
+        "Paste the compact token into a JWT decoder to view the header and payload JSON. Confirm timestamps and audience before you debug an API failure.",
+    },
+    {
+      question: "Why should I never treat decode as login success?",
+      answer:
+        "Anyone can decode the payload of a standard signed JWT. Only a successful signature check with the right key proves authenticity.",
+    },
+    {
+      question: "How do I read the exp claim in human time?",
+      answer:
+        "Copy the Unix seconds value into a timestamp converter to see the local expiration moment. Compare it with the server clock that rejected the call.",
+    },
+    {
+      question: "What should I look for in the header first?",
+      answer:
+        "Check alg and kid. Unexpected algorithms or missing key ids often explain verification failures in libraries.",
+    },
+    {
+      question: "Can payloads contain private personal data?",
+      answer:
+        "They can, and anyone who obtains the token can read those claims. Prefer opaque identifiers over raw emails or secrets inside JWTs.",
+    },
+    {
+      question: "How do line-wrapped tokens from email break parsers?",
+      answer:
+        "Extra spaces or newlines invalidate Base64URL segments. Rejoin into a single three-part string before decoding.",
+    },
+    {
+      question: "What does an invalid token character usually mean?",
+      answer:
+        "You may have copied a bearer prefix, quotes, or a truncated log line. Strip “Bearer ” and paste only the JWT itself.",
+    },
+    {
+      question: "How do nbf and iat differ from exp?",
+      answer:
+        "iat is issued-at, nbf is not-before, and exp is expiration. A token used too early or too late fails even when the signature is fine.",
+    },
+    {
+      question: "Should product managers read JWTs in support tickets?",
+      answer:
+        "Only with redaction. Live access tokens can be replayed. Prefer screenshots of non-secret claims or expired fixtures.",
+    },
+    {
+      question: "What is a nested JWT?",
+      answer:
+        "Some systems put another token string inside a claim. Decode outer then inner layers carefully and keep track of which signature applies.",
+    },
+    {
+      question: "How do I compare two tokens quickly?",
+      answer:
+        "Decode both and diff the JSON claims. Matching kids with different payloads can reveal refresh versus access tokens.",
+    },
+    {
+      question: "Why might aud validation fail after a migrate?",
+      answer:
+        "APIs often expect an exact audience string. Old tokens minted for a previous API identifier will decode but still be rejected.",
+    },
+    {
+      question: "Is encrypted JWE the same as a signed JWT?",
+      answer:
+        "No. JWE encrypts payload contents; a signed JWT only signs readable claims. This how-to targets signed JWT inspection.",
+    },
+    {
+      question: "What tools pair well with JWT reading?",
+      answer:
+        "A Base64 helper for odd segments and a JSON formatter for prettier claims both help when a library output is messy.",
+    },
+    {
+      question: "How should engineers document a failing token?",
+      answer:
+        "Record alg, kid, aud, exp, and error message—not the raw signature—in tickets whenever possible.",
+    },
+    {
+      question: "When is building a custom debugger worth it?",
+      answer:
+        "When your team inspects tokens daily with custom claims. For occasional support, a trusted browser decoder is enough.",
+    }
+  ],
+  "how-to-click-faster": [
+    {
+      question: "How can I raise my clicks per second score?",
+      answer:
+        "Relax your hand, use a consistent rhythm, and practice short timed runs. Warm up with slower accurate clicks before chasing peak CPS.",
+    },
+    {
+      question: "Does mouse polling rate affect CPS tests?",
+      answer:
+        "Higher polling can feel snappier, but technique and fatigue matter more for most people. Update firmware only from the maker’s site.",
+    },
+    {
+      question: "Should I practice on a trackpad or a mouse?",
+      answer:
+        "Practice on the device you will use in games or drills. Trackpad CPS and mouse CPS are different skills.",
+    },
+    {
+      question: "How long should a CPS practice session last?",
+      answer:
+        "Short sets of 5–10 seconds with rests beat long grinding sessions that inflame wrists. Stop if you feel pain.",
+    },
+    {
+      question: "Is dragging the mouse while clicking helpful?",
+      answer:
+        "Some jitter styles move slightly between clicks. Excessive movement can miss targets in real games even if a blank CPS pad scores high.",
+    },
+    {
+      question: "Can keyboard bindings replace rapid clicking?",
+      answer:
+        "For some titles, yes—ability keys matter more than raw CPS. Check whether the game counts mouse CPS for the action you care about.",
+    },
+    {
+      question: "Why do scores drop after the first second?",
+      answer:
+        "Burst speed fades as muscles tire. Train endurance with slightly longer runs once short bursts are consistent.",
+    },
+    {
+      question: "Do browser CPS tests match in-game click registration?",
+      answer:
+        "Not always. Games add their own input pipelines and anti-cheat rules. Use the test as practice, not as a guarantee.",
+    },
+    {
+      question: "How do I avoid cheating accusations while training?",
+      answer:
+        "Skip hardware macros and software click spammers in online games that ban them. Practice legal techniques only.",
+    },
+    {
+      question: "What desk setup helps sustained clicking?",
+      answer:
+        "A stable mousepad, forearm support, and a sensor that does not stutter on the surface reduce missed inputs.",
+    },
+    {
+      question: "Should beginners learn butterfly clicking first?",
+      answer:
+        "Master clean single clicks first. Advanced alternating-finger methods come after you can click without tension.",
+    },
+    {
+      question: "Can warm hands change results?",
+      answer:
+        "Cold stiff fingers slow down. A short warm-up improves comfort more than any settings tweak.",
+    },
+    {
+      question: "How do I track progress over a week?",
+      answer:
+        "Record best and average scores for the same test length each day. Compare like with like rather than mixing 1-second and 10-second modes.",
+    },
+    {
+      question: "Is a lighter mouse switch always better?",
+      answer:
+        "Lighter switches can raise raw CPS but may increase accidental clicks. Prefer what you can control under game pressure.",
+    },
+    {
+      question: "Do mobile tap tests translate to PC CPS?",
+      answer:
+        "Touch tapping trains different muscles. Use them for phone games; use a mouse test for PC aim.",
+    },
+    {
+      question: "When should I see a clinician about wrist pain?",
+      answer:
+        "If pain, numbness, or lingering soreness appears, rest and seek medical advice. No high score is worth an injury.",
+    }
+  ],
+  "how-to-estimate-a-car-loan-payment": [
+    {
+      question: "What numbers do I need before estimating a car payment?",
+      answer:
+        "Start with the negotiated price, trade-in equity, cash down payment, expected rate, and term in months. Add fees the dealer itemizes when you want a closer estimate.",
+    },
+    {
+      question: "How does term length change a car loan payment?",
+      answer:
+        "Longer terms lower the monthly amount but usually raise total interest. Shorter terms cost more each month and less overall if the rate is similar.",
+    },
+    {
+      question: "Should I include extended warranties in the loan amount?",
+      answer:
+        "If you finance them, yes—they increase the amount financed and the payment. Paying products in cash keeps the loan smaller.",
+    },
+    {
+      question: "How do credit scores influence the rate I should model?",
+      answer:
+        "Stronger credit usually receives lower APR offers. Model a conservative rate until a lender gives a real quote.",
+    },
+    {
+      question: "What is gap insurance doing to my monthly cost?",
+      answer:
+        "When financed, gap adds to principal. It does not change the interest formula beyond the higher balance.",
+    },
+    {
+      question: "Can I estimate payments before visiting a dealer?",
+      answer:
+        "Yes. Use an auto loan calculator with a realistic price and rate band so you shop with a budget ceiling.",
+    },
+    {
+      question: "How should trade-in equity be applied?",
+      answer:
+        "Positive equity reduces the amount you finance; negative equity can be rolled into the new loan and raise the payment. Confirm both numbers in writing.",
+    },
+    {
+      question: "Do promotional zero-interest offers change the workflow?",
+      answer:
+        "Enter 0% only when you truly qualify. Many ads exclude lower credit tiers or require short terms.",
+    },
+    {
+      question: "Why is the out-the-door price better than the sticker?",
+      answer:
+        "Taxes, documentation fees, and add-ons sit on top of MSRP. Financing the out-the-door figure avoids an undercounted payment.",
+    },
+    {
+      question: "How often should I recalculate during negotiation?",
+      answer:
+        "Every time price, term, or rate changes. Small print changes can swing the monthly number more than shoppers expect.",
+    },
+    {
+      question: "Is leasing estimated the same way as buying?",
+      answer:
+        "No. Leases use residual value and money factor math. Use a loan estimator only when you plan to finance a purchase.",
+    },
+    {
+      question: "What payment-to-income guideline do advisors mention?",
+      answer:
+        "Rules of thumb vary; many coaches suggest keeping total car costs modest relative to take-home pay. Pick a number you can sustain with insurance and fuel.",
+    },
+    {
+      question: "How do balloon payments affect the monthly figure?",
+      answer:
+        "Some contracts lower monthly dues by leaving a large final amount due. Model that balloon explicitly so the low payment does not surprise you later.",
+    },
+    {
+      question: "Can I prepay a car loan without recalculating from scratch?",
+      answer:
+        "Extra principal shortens the schedule; ask the servicer for an updated payoff. Online estimators approximate the effect if you lower the balance and remaining term.",
+    },
+    {
+      question: "Why might dealer and bank quotes disagree?",
+      answer:
+        "Markup on buy rates, fee packaging, and required products differ. Compare APRs and total amount financed line by line.",
+    },
+    {
+      question: "When is paying cash better than financing?",
+      answer:
+        "When you can buy without draining emergency savings and when loan interest exceeds what that cash would earn elsewhere. Run both paths with real numbers.",
+    }
+  ],
+  "how-to-generate-a-random-number": [
+    {
+      question: "How do I pick a random integer in a range?",
+      answer:
+        "Set the minimum and maximum, choose integer mode, then generate. Confirm whether both ends are included before you rely on the draw.",
+    },
+    {
+      question: "When should I allow duplicate random numbers?",
+      answer:
+        "Allow duplicates for independent rolls such as damage dice. Demand unique values when sampling without replacement, like raffle winners.",
+    },
+    {
+      question: "How do I draw several random numbers at once?",
+      answer:
+        "Set the count of results if the tool supports lists, or generate repeatedly while recording outputs. Unique mode must have a range large enough for the count.",
+    },
+    {
+      question: "Is a browser random number good for lotteries?",
+      answer:
+        "Casual games are fine. High-stakes or cryptographic needs require a CSPRNG and audited process, not a toy spinner.",
+    },
+    {
+      question: "Can I generate random decimals?",
+      answer:
+        "Yes when the tool offers a decimal mode. Unique constraints are harder with dense fractional ranges, so many UIs limit uniqueness to integers.",
+    },
+    {
+      question: "How do teachers use classroom random picks?",
+      answer:
+        "Set the range to roster size, draw unique indexes, and map numbers to names. Publish the method so students trust fairness.",
+    },
+    {
+      question: "Why reroll if the UI looks stuck on one value?",
+      answer:
+        "True randomness can repeat. If uniqueness was required, enable that mode instead of assuming a bug.",
+    },
+    {
+      question: "Should seed values be used?",
+      answer:
+        "Seeds help reproduce a sequence for tests. Leave seeds off when you want unpredictable classroom or game draws.",
+    },
+    {
+      question: "How is a random number different from a UUID?",
+      answer:
+        "A random integer is a small numeric draw. A UUID is a longer identifier meant for uniqueness across systems, not a 1–10 pick.",
+    },
+    {
+      question: "Can I favor some numbers over others?",
+      answer:
+        "A uniform generator should not bias outcomes. Weighted picks need a different algorithm than a flat min–max draw.",
+    },
+    {
+      question: "What range limits are practical on the web?",
+      answer:
+        "Stay within what the UI documents. Extreme bounds can overflow display formatting even when math still works.",
+    },
+    {
+      question: "How do I share a draw so others can verify it?",
+      answer:
+        "Screenshot the inputs and result, or use a seeded generator everyone can rerun. Agree on rules before the draw.",
+    },
+    {
+      question: "Are animated number wheels more random?",
+      answer:
+        "Animation is cosmetic. Randomness comes from the underlying generator, not the spinning graphic.",
+    },
+    {
+      question: "Can spreadsheets replace a web random tool?",
+      answer:
+        "Yes with RAND or RANDBETWEEN. Spreadsheet recalculation habits differ, so freeze values when you need a fixed draw.",
+    },
+    {
+      question: "What should I avoid when picking winners?",
+      answer:
+        "Do not silently exclude participants after seeing the number. Document eligibility before generating.",
+    },
+    {
+      question: "How do I generate a random number between 1 and 100 quickly?",
+      answer:
+        "Set min 1 and max 100 in integer mode and click once. Repeat only if your rules allow redraws.",
+    }
   ]
 };

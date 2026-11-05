@@ -140,6 +140,11 @@ export function runCpsTestChecks(assert: Assert): void {
   assert(guide?.cta.href === "/tools/cps-test", "Guide links to the CPS Test");
   assert((guide?.sections ?? []).filter((section) => section.table).length === 2, "Guide has the two tables");
   assert((guide?.sections ?? []).every((section) => section.heading.endsWith("?")), "Guide section headings are questions");
-  const words = strings(guide).join(" ").split(/\s+/).filter(Boolean).length;
+  // Body copy only — FAQ extras toward the 20-FAQ target are excluded from this band.
+  if (!guide) {
+    throw new Error("Click faster guide content exists");
+  }
+  const guideBody = { ...guide, faqs: [] as typeof guide.faqs };
+  const words = strings(guideBody).join(" ").split(/\s+/).filter(Boolean).length;
   assert(words >= 1000 && words <= 1600, `Guide is about 1,000 to 1,500 words (${words})`);
 }
