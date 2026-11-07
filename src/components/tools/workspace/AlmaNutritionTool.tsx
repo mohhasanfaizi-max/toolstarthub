@@ -248,14 +248,14 @@ export function AlmaNutritionTool() {
           const data = (await response.json()) as { success?: boolean; foods?: FoodItem[]; error?: string };
           if (!response.ok || !data.success) {
             setOffFoods([]);
-            setOffNote(data.error || "Packaged-food search is unavailable. Sample foods and custom entry still work.");
+            setOffNote(data.error || "Packaged-food search is temporarily unavailable. Sample foods and custom entry still work; try packaged-food search again later.");
             return;
           }
           setOffFoods(data.foods ?? []);
           setOffNote(data.foods && data.foods.length > 0 ? "Open Food Facts results are labelled separately from sample foods." : "No packaged-food matches. Try sample foods or a custom entry.");
         } catch {
           setOffFoods([]);
-          setOffNote("Packaged-food search is unavailable. Sample foods and custom entry still work.");
+          setOffNote("Packaged-food search is temporarily unavailable. Sample foods and custom entry still work; try packaged-food search again later.");
         }
       })();
     }, 400);
@@ -1065,7 +1065,7 @@ export function AlmaNutritionTool() {
           </div>
           <div className="rounded-2xl border border-amber-200/80 p-3">
             <p className="text-sm font-medium text-foreground">Packaged foods (Open Food Facts)</p>
-            <p className="mt-1 text-xs text-muted-foreground">{packagedNote || "Type at least two letters to search community nutrition data. Results are listed per 100 g unless the product says otherwise."}</p>
+            <p role="status" className="mt-1 text-xs text-muted-foreground">{packagedNote || "Type at least two letters to search community nutrition data. Results are listed per 100 g unless the product says otherwise."}</p>
             <ul className="mt-3 max-h-48 space-y-2 overflow-auto">
               {packagedFoods.map((food) => (
                 <li key={food.id} className="flex flex-wrap items-center justify-between gap-2 rounded-xl bg-background px-3 py-2 text-sm">
