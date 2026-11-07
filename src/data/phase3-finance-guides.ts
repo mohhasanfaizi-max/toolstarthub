@@ -363,14 +363,14 @@ export const phase3FinanceGuides: Record<string, GuideContent> = {
     intro:
       "A standard loan payment spreads the principal and interest over a fixed number of months. On this calculator, $10,000 at 6% for 5 years, with no fee, has a monthly payment of $193.33, 60 payments, $1,599.68 of interest, and $11,599.68 paid in all. The first month is $50.00 of interest and $143.33 of principal, leaving $9,856.67. A $1,200 loan at 0% for 12 months is $100 a month and $0 interest. The fee is added to the total cost and is not financed into the payment.",
     why:
-      "The payment is not the rate times the balance once. Early months are mostly interest because the balance is still large. Later months apply more of the same payment to principal. Seeing the first month and the lifetime interest keeps a quoted payment from hiding the cost. This is the formula on the page. A lender can add fees or a different schedule.",
+      "The payment is not the rate times the balance once. The interest share of early payments depends on the rate and term; it is higher at higher rates and over longer terms. It is not necessarily most of the payment: this 6% five-year example pays $50.00 toward interest and $143.33 toward principal in month 1. Later months apply more of the same payment to principal. Seeing the first month and the lifetime interest keeps a quoted payment from hiding the cost. This is the formula on the page. A lender can add fees or a different schedule.",
     stepsHeading: "How a loan payment is calculated",
     sections: [
       {
         id: "formula",
         heading: "What formula produces the payment?",
         paragraphs: [
-          "When the annual rate is above 0, the monthly rate is the annual percent divided by 100 and then by 12. The payment is principal times that monthly rate times (1 plus the monthly rate) to the power of the number of months, divided by that same power minus 1. The page rounds the payment to cents. For $10,000 at 6% over 60 months, that payment is $193.33.",
+          "When the annual rate is above 0, the monthly rate is the annual percent divided by 100 and then by 12. The payment is principal times that monthly rate times (1 plus the monthly rate) to the power of the number of months, divided by that same power minus 1. The schedule retains the unrounded payment internally and displays amounts to cents, so multiplying the displayed payment by the term can differ slightly from the displayed total. For $10,000 at 6% over 60 months, that payment is $193.33.",
           "A 0% rate skips the interest formula. The payment is the principal divided by the number of months. $1,200 over 12 months is $100, the interest is $0, and the total paid is $1,200.",
         ],
       },

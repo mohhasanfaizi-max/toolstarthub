@@ -4576,7 +4576,7 @@ export const extraToolFaqs: Record<string, ToolFaq[]> = {
     {
       question: "What is amortization in plain language?",
       answer:
-        "It is the schedule that splits each payment into interest and principal. Early payments are interest-heavy; later ones retire more principal.",
+        "It is the schedule that splits each payment into interest and principal. The early interest share depends on the rate and term, and is higher at higher rates and longer terms; it is not always most of the payment. As the balance falls, later payments put more toward principal.",
     },
     {
       question: "Does this calculator include taxes and insurance?",
