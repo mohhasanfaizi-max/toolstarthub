@@ -1256,9 +1256,11 @@ export function AlmaNutritionTool() {
       {tab === "coach" ? (
         <div className="mt-6 space-y-4">
           <p className="text-sm leading-6 text-muted-foreground">
-            Ask about calories, protein, meal balance or micronutrients. If this site has an AI service configured, Alma sends
-            your question and a short summary of today&apos;s log to the server (keys never appear in the browser). Otherwise you
-            get a clearly labelled educational rule-based coach. Neither option is medical advice.
+            Ask about calories, protein, meal balance or micronutrients. Each question sends your question, saved targets,
+            selected diary day&apos;s calorie and macro totals, food-entry count, water intake and food names to this site.
+            When configured, Gemini receives your question and a summary (including up to eight food names).
+            Otherwise, or if AI fails, the server returns a labelled educational rule-based reply.
+            Avoid sensitive details. Neither option is medical advice; see the privacy policy for the exact fields.
           </p>
           <div className="flex flex-wrap gap-2">
             {COACH_PROMPTS.map((prompt) => (
@@ -1302,8 +1304,9 @@ export function AlmaNutritionTool() {
 
       <ToolPrivacyNote>
         Your food diary, meal plans, grocery list and calculator targets are saved in this browser with localStorage. Tools Star
-        Hub does not create an Alma account or store that diary on a server. Asking the coach sends your question to this
-        website so it can reply; packaged-food search queries go to Open Food Facts.
+        Hub does not create an Alma account or store that diary on a server. Asking the coach sends your question and selected diary day&apos;s
+        nutrition context to this website; when configured, Gemini receives a summary to reply.
+        Packaged-food search queries go through this site to Open Food Facts.
       </ToolPrivacyNote>
     </ToolPanel>
   );

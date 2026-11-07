@@ -33,7 +33,7 @@ export default function PrivacyPage() {
       />
       <div className="mt-8 max-w-3xl space-y-5 text-base leading-7 text-muted-foreground">
         <p>
-          Last updated: <time dateTime="2026-10-19">19 October 2026</time>.
+          Last updated: <time dateTime="2026-11-07">7 November 2026</time>.
         </p>
         <p>
           {siteConfig.name} has no user accounts, no payment system, and no
@@ -51,8 +51,62 @@ export default function PrivacyPage() {
           sends the page URL you enter to this site. The site requests that
           public page, reads the title and share tags, and does not save the
           page. We do not put passwords,
-          uploaded files, PDF contents, private text, or QR payloads into page
-          URLs or local storage.
+          uploaded files, PDF contents, private text, or QR payloads into page URLs. Alma explicitly saves the
+          nutrition information described below in local storage.
+        </p>
+
+        <h2 className="pt-4 text-xl font-semibold tracking-tight text-foreground">
+          Alma nutrition data: saved locally, shared only when you use online features
+        </h2>
+        <p>
+          Alma saves one localStorage record, <code>toolstarhub-alma-v1</code>,
+          in this browser. It contains your saved calorie and macro targets,
+          BMR and TDEE results, custom foods and their nutrition values,
+          dated food entries (including portions and available nutrients), water logs,
+          dated meal plans and their ingredients, and grocery items with checked status.
+          There is no Alma account or diary database in the application code.
+          The diary is not automatically uploaded as a whole. Clear this site&apos;s
+          browser storage to remove the saved record; doing so also removes your
+          saved plans and targets. Calculator body inputs and coach conversation
+          history are not written to this record by the current interface.
+        </p>
+        <p>
+          Asking the coach, including choosing a suggested question, always sends
+          a request to <code>/api/alma/coach</code> on this site, even when a
+          rule-based reply is used. The request contains <code>question</code> and
+          a <code>context</code> object for the selected diary date: <code>calorieTarget</code>,
+          <code>consumedCalories</code>, <code>protein</code>, <code>carbs</code>,
+          <code>fat</code>, <code>proteinTarget</code>, <code>carbTarget</code>,
+          <code>fatTarget</code>, <code>bmr</code>, <code>tdee</code>,
+          <code>mealCount</code>, <code>waterMl</code> and <code>topFoods</code>
+          (the logged food names). Unset optional values are omitted. This is
+          nutrition information, not just an anonymous question; avoid putting
+          sensitive personal or medical details in a question or food name.
+        </p>
+        <p>
+          When Gemini is configured, the server sends your question and a
+          plain-language summary to Google&apos;s Gemini service. The summary
+          includes consumed calories and a saved calorie target when present;
+          protein and its target, carbohydrate and fat totals when available;
+          BMR and TDEE when both are present; the food-entry count; positive
+          water intake; and up to the first eight food names. The server accepts
+          at most twelve names before building that summary. Carb and fat targets
+          are received by this site but are not currently included in the Gemini
+          summary. The selected date, full diary, meal plans, grocery list and
+          conversation history are not included automatically. Text you type in
+          the question is included, so it can disclose more than these fields.
+          If Gemini is not configured or its request fails, the server uses a
+          labelled rule-based reply; a failed AI attempt may already have sent data.
+        </p>
+        <p>
+          Packaged-food searches are separate: after you type at least two
+          characters, the search terms go through <code>/api/alma/foods</code>
+          to Open Food Facts, not to Gemini. Sample-food lookup and custom-food
+          entry do not require that search to succeed. The coach route does not
+          write questions or diary context to an application database. This is
+          not a guarantee about hosting logs or Google&apos;s retention or data
+          use. Provider treatment depends on the account tier and applicable
+          terms; check those terms before sharing sensitive information.
         </p>
 
         <h2 className="pt-4 text-xl font-semibold tracking-tight text-foreground">

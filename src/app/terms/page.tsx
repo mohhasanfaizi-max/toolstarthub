@@ -46,7 +46,12 @@ export default function TermsPage() {
           explains those limits.
         </p>
         <p>
-          Files and text you put into a tool are processed in your browser.
+          Most tools process files and text in your browser; online features have
+          exceptions. Alma saves nutrition records in this browser. Using its
+          coach sends your question and selected diary summary to this site and,
+          when configured, a summary to Gemini. Packaged-food searches send search
+          terms through this site to Open Food Facts. Review the privacy policy
+          before sharing nutrition or other sensitive information.
           You keep that material. Do not submit information you are not allowed
           to use. The site’s own pages, names, and layout stay with{" "}
           {siteConfig.name}.

@@ -157,7 +157,7 @@ export const almaNutritionContent: ToolContent = {
         heading: "How food tracking supports healthy eating habits",
         paragraphs: [
           "Food tracking supports healthy eating habits when it is used as feedback rather than as a scoreboard. Seeing that weekday lunches are short on plants, or that snacks explain most of an overage, is more useful than labelling a food “bad.” A weekly view matters more than a single evening. Water logging, even as a simple 250 ml counter, reminds you that beverages are part of the day too.",
-          "Tracking can become unhelpful if it fuels anxiety or rigid rules. Alma is optional, private and local: you can clear a conversation, skip a day or stop logging without losing access to the calculators. If food recording starts to feel compulsive, that is a signal to step back and, if needed, speak with a qualified professional—not a signal to track harder.",
+          "Tracking can become unhelpful if it fuels anxiety or rigid rules. Alma’s diary is saved locally; its optional coach shares a question and diary summary as described in the privacy policy: you can clear a conversation, skip a day or stop logging without losing access to the calculators. If food recording starts to feel compulsive, that is a signal to step back and, if needed, speak with a qualified professional—not a signal to track harder.",
         ],
       },
       {
