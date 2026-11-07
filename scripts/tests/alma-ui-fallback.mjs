@@ -33,10 +33,11 @@ const windowStub = { setTimeout, clearTimeout, localStorage: {
   getItem: key => storage.get(key) ?? null,
   setItem: (key, value) => storage.set(key, value),
 } };
-let searches = 0; let coachPayload;
+let searches = 0; let coachPayload; let packagedResults;
 const fetchStub = async (url, options) => {
   if (String(url).startsWith("/api/alma/foods")) {
     searches++;
+    if (packagedResults) return Response.json({ success: true, foods: packagedResults });
     return Response.json({ success: false, error: "Packaged-food search is temporarily unavailable. Sample foods and custom entry still work; try packaged-food search again later." }, { status: 502 });
   }
   assert.equal(url, "/api/alma/coach"); coachPayload = JSON.parse(options.body);
@@ -122,3 +123,26 @@ const allFields = ["calorieTarget", "consumedCalories", "protein", "carbs", "fat
 assert.deepEqual(Object.keys(coachPayload.context).sort(), allFields.sort());
 assert.deepEqual(Object.keys(coachPayload).sort(), ["context", "question"]);
 console.log("PASS: with saved calculator results, coach JSON includes exactly the 13 documented context fields");
+
+// New packaged results must use their mapped gram basis; ml needs density.
+const { mapOffProduct } = load("src/lib/tools/alma-off.ts");
+packagedResults = [mapOffProduct({ code: "portion-test", product_name: "Packaged portion test", serving_size: "15g", nutriments: { "energy-kcal_100g": 500, proteins_100g: 10, carbohydrates_100g: 60, fat_100g: 20 } }, 0)];
+button("Food Tracker").props.onClick(); render();
+input("alma-search", "Packaged portion"); await flush();
+const portionChoice = () => nodes(tree).find(n => n?.props?.legend === "Portion unit");
+portionChoice().props.onChange("ml"); render();
+input("alma-servings", "15");
+const packageButton = () => {
+  const item = nodes(tree).find(n => n?.type === "li" && /Packaged portion test/.test(text(n)) && nodes(n).some(x => x?.props?.onClick));
+  assert(item); return nodes(item).find(n => n?.props?.onClick);
+};
+const beforeMl = storage.get("toolstarhub-alma-v1");
+packageButton().props.onClick(); render(); await flush();
+assert.match(text(tree), /millilitres need a verified density/);
+assert.equal(storage.get("toolstarhub-alma-v1"), beforeMl);
+portionChoice().props.onChange("serving"); render(); input("alma-servings", "2");
+packageButton().props.onClick(); render(); await flush();
+saved = JSON.parse(storage.get("toolstarhub-alma-v1"));
+const portion = Object.values(saved.days).flatMap(day => day.meals.breakfast).find(food => food.name === "Packaged portion test");
+assert(portion); assert.equal(portion.grams, 30); assert.equal(portion.calories, 150); assert.equal(portion.protein, 3);
+console.log("PASS: real UI Add callback rejects packaged ml without modifying storage; 2 x 15g servings log 30g and 150 kcal");
