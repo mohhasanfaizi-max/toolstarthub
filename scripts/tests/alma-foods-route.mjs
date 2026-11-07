@@ -33,8 +33,15 @@ try {
   assert.equal(response.status, 502); assert.equal(calls, 2);
   assert(Date.now() - start >= 300, "retry must have backoff");
   assert.notEqual(signals[0], signals[1]);
-  assert.match((await response.json()).error, /Sample foods and custom entry still work/);
+  const failed = await response.json();
+  assert.match(failed.error, /Sample foods and custom entry still work/);
+  assert.equal(failed.reason, "upstream_http_error"); assert.equal(failed.upstreamStatus, 503);
   console.log("PASS: repeated 503 => exactly two attempts, backoff, fresh signals, useful 502");
+
+  mock(() => new Response("busy", { status: 503, headers: { "Retry-After": "60" } }));
+  response = await GET(request()); assert.equal(response.status, 502); assert.equal(calls, 1);
+  assert.equal((await response.json()).upstreamStatus, 503);
+  console.log("PASS: 503 with Retry-After is not immediately retried");
 
   mock((call) => call === 1 ? new Response("down", { status: 502 }) : Response.json({ products: [product] }));
   response = await GET(request()); assert.equal(response.status, 200); assert.equal(calls, 2);
@@ -44,16 +51,21 @@ try {
   for (const status of [400, 403, 429]) {
     mock(() => new Response("rejected", { status }));
     response = await GET(request()); assert.equal(response.status, 502); assert.equal(calls, 1);
+    const data = await response.json();
+    assert.equal(data.upstreamStatus, status);
+    assert.equal(data.reason, status === 429 ? "upstream_rate_limited" : "upstream_http_error");
   }
   console.log("PASS: upstream 400/403/429 not retried");
 
   mock(() => { throw new TypeError("network failure"); });
   response = await GET(request()); assert.equal(response.status, 502); assert.equal(calls, 2);
-  console.log("PASS: network failure => bounded retry");
+  assert.equal((await response.json()).reason, "upstream_network_error");
+  console.log("PASS: network failure => bounded retry and distinct diagnostic reason");
 
   mock(() => new Response("not JSON"));
   response = await GET(request()); assert.equal(response.status, 502); assert.equal(calls, 2);
-  console.log("PASS: unreadable JSON => bounded retry");
+  assert.equal((await response.json()).reason, "upstream_invalid_response");
+  console.log("PASS: unreadable JSON => bounded retry and distinct diagnostic reason");
 
   mock(() => Response.json({ products: [] }));
   response = await GET(request()); assert.equal(response.status, 200); assert.equal(calls, 1);
@@ -68,6 +80,7 @@ try {
   const elapsed = Date.now() - start;
   assert(elapsed >= 12000 && elapsed < 16000, `timeout bound: ${elapsed}ms`);
   assert(signals.every((signal) => signal.aborted));
+  assert.equal((await response.json()).reason, "upstream_timeout");
   console.log(`PASS: hung upstream aborted twice at 6s, total ${elapsed}ms including backoff`);
 
   mock(() => { throw new Error("must not fetch"); });

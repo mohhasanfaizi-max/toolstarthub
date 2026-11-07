@@ -207,6 +207,9 @@ export function AlmaNutritionTool() {
   const [query, setQuery] = useState("");
   const [offFoods, setOffFoods] = useState<FoodItem[]>([]);
   const [offNote, setOffNote] = useState("");
+  const [offSearch, setOffSearch] = useState<{ query: string }>();
+  const [offResultQuery, setOffResultQuery] = useState("");
+  const [offLoading, setOffLoading] = useState(false);
   const [servings, setServings] = useState("1");
   const [unit, setUnit] = useState<ServingUnit>("serving");
   const [entryError, setEntryError] = useState("");
@@ -236,31 +239,44 @@ export function AlmaNutritionTool() {
     if (ready) saveState(state);
   }, [ready, state]);
 
+  // OFF explicitly disallows search-as-you-type. Sample foods remain instant;
+  // only the button or Enter submits a packaged-food request.
   useEffect(() => {
-    const needle = query.trim();
-    if (needle.length < 2) {
-      return;
-    }
-    const handle = window.setTimeout(() => {
-      void (async () => {
-        try {
-          const response = await fetch(`/api/alma/foods?q=${encodeURIComponent(needle)}`);
-          const data = (await response.json()) as { success?: boolean; foods?: FoodItem[]; error?: string };
-          if (!response.ok || !data.success) {
-            setOffFoods([]);
-            setOffNote(data.error || "Packaged-food search is temporarily unavailable. Sample foods and custom entry still work; try packaged-food search again later.");
-            return;
-          }
-          setOffFoods(data.foods ?? []);
-          setOffNote(data.foods && data.foods.length > 0 ? "Open Food Facts results are labelled separately from sample foods." : "No packaged-food matches. Try sample foods or a custom entry.");
-        } catch {
+    if (!offSearch) return;
+    const controller = new AbortController();
+    let active = true;
+    void (async () => {
+      try {
+        const response = await fetch(`/api/alma/foods?q=${encodeURIComponent(offSearch.query)}`, { signal: controller.signal });
+        const data = (await response.json()) as { success?: boolean; foods?: FoodItem[]; error?: string };
+        if (!active) return;
+        if (!response.ok || !data.success) {
           setOffFoods([]);
-          setOffNote("Packaged-food search is temporarily unavailable. Sample foods and custom entry still work; try packaged-food search again later.");
+          setOffNote(data.error || "Packaged-food search is temporarily unavailable. Sample foods and custom entry still work; try packaged-food search again later.");
+          return;
         }
-      })();
-    }, 400);
-    return () => window.clearTimeout(handle);
-  }, [query]);
+        setOffFoods(data.foods ?? []);
+        setOffNote(data.foods && data.foods.length > 0 ? "Open Food Facts results are labelled separately from sample foods." : "No packaged-food matches. Try sample foods or a custom entry.");
+      } catch {
+        if (!active) return;
+        setOffFoods([]);
+        setOffNote("Packaged-food search is temporarily unavailable. Sample foods and custom entry still work; try packaged-food search again later.");
+      } finally {
+        if (active) setOffLoading(false);
+      }
+    })();
+    return () => { active = false; controller.abort(); };
+  }, [offSearch]);
+
+  function searchPackagedFoods() {
+    const needle = query.trim();
+    if (offLoading || needle.length < 2 || needle.length > 80) return;
+    setOffFoods([]);
+    setOffResultQuery(needle);
+    setOffNote("Searching Open Food Facts…");
+    setOffLoading(true);
+    setOffSearch({ query: needle });
+  }
 
   const updateState = useCallback((updater: (current: AlmaState) => AlmaState) => {
     setState((current) => updater(current));
@@ -272,8 +288,9 @@ export function AlmaNutritionTool() {
   const remaining = typeof calorieTarget === "number" ? calorieTarget - todayTotals.calories : undefined;
 
   const sampleHits = useMemo(() => searchSampleFoods(query, state.customFoods), [query, state.customFoods]);
-  const packagedFoods = query.trim().length < 2 ? [] : offFoods;
-  const packagedNote = query.trim().length < 2 ? "" : offNote;
+  const showingSearch = query.trim().length >= 2 && query.trim() === offResultQuery;
+  const packagedFoods = showingSearch ? offFoods : [];
+  const packagedNote = showingSearch ? offNote : "";
 
   function switchUnits(next: UnitSystem) {
     if (next === units) return;
@@ -1035,7 +1052,12 @@ export function AlmaNutritionTool() {
           </div>
           <div className="grid gap-4 sm:grid-cols-3">
             <ToolField id="alma-search" label="Search foods">
-              <input id="alma-search" value={query} onChange={(event) => setQuery(event.target.value)} placeholder="Chicken, banana, yogurt…" className={toolControlClass} />
+              <input id="alma-search" value={query} maxLength={80} onChange={(event) => setQuery(event.target.value)} onKeyDown={(event) => {
+                if (event.key === "Enter" && !event.nativeEvent.isComposing) {
+                  event.preventDefault();
+                  searchPackagedFoods();
+                }
+              }} placeholder="Chicken, banana, yogurt…" className={toolControlClass} />
             </ToolField>
             <ToolField id="alma-servings" label={unit === "serving" ? "Servings" : unit === "g" ? "Grams" : "Millilitres"}>
               <input id="alma-servings" inputMode="decimal" value={servings} onChange={(event) => setServings(event.target.value)} className={toolControlClass} />
@@ -1074,7 +1096,9 @@ export function AlmaNutritionTool() {
           <div className="rounded-2xl border border-amber-200/80 p-3">
             <p className="text-sm font-medium text-foreground">Packaged foods (Open Food Facts)</p>
             <p className="mt-1 text-xs text-muted-foreground">Drinks measured by volume aren&apos;t included. Use sample foods or custom entry for drinks.</p>
-            <p role="status" className="mt-1 text-xs text-muted-foreground">{packagedNote || "Type at least two letters to search community nutrition data. Results use the displayed gram portion (or 100 g when no gram serving is available). Check the package label."}</p>
+            <p className="mt-1 text-xs text-muted-foreground">Sample foods filter as you type. For packaged foods, enter at least two letters, then select Search packaged foods.</p>
+            <Button type="button" variant="secondary" disabled={offLoading || query.trim().length < 2 || query.trim().length > 80} onClick={searchPackagedFoods}>Search packaged foods</Button>
+            <p role="status" className="mt-1 text-xs text-muted-foreground">{packagedNote || "Results use the displayed gram portion (or 100 g when no gram serving is available). Check the package label."}</p>
             <ul className="mt-3 max-h-48 space-y-2 overflow-auto">
               {packagedFoods.map((food) => (
                 <li key={food.id} className="flex flex-wrap items-center justify-between gap-2 rounded-xl bg-background px-3 py-2 text-sm">

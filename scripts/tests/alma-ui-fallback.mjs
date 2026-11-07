@@ -10,7 +10,7 @@ import vm from "node:vm";
 import ts from "typescript";
 import React from "react";
 const nativeRequire = createRequire(import.meta.url);
-const slots = []; const dependencies = []; const effects = [];
+const slots = []; const dependencies = []; const effects = []; const cleanups = [];
 let cursor = 0;
 const hooks = {
   ...React,
@@ -22,7 +22,7 @@ const hooks = {
   useEffect(effect, deps) {
     const i = cursor++;
     if (!dependencies[i] || deps.some((value, j) => value !== dependencies[i][j])) {
-      dependencies[i] = deps; effects.push(effect);
+      dependencies[i] = deps; effects.push(() => { cleanups[i]?.(); cleanups[i] = effect(); });
     }
   },
   useMemo(fn) { cursor++; return fn(); },
@@ -64,7 +64,7 @@ function load(file) {
     }
     return nativeRequire(spec);
   };
-  vm.runInNewContext(output, { require: req, module: loadedModule, exports: loadedModule.exports, window: windowStub, fetch: fetchStub, console, setTimeout, clearTimeout, crypto: globalThis.crypto, Date, Intl, navigator: {} }, { filename: file });
+  vm.runInNewContext(output, { require: req, module: loadedModule, exports: loadedModule.exports, window: windowStub, fetch: fetchStub, console, setTimeout, clearTimeout, crypto: globalThis.crypto, Date, Intl, navigator: {}, AbortController }, { filename: file });
   return loadedModule.exports;
 }
 const { AlmaNutritionTool } = load("src/components/tools/workspace/AlmaNutritionTool.tsx");
@@ -88,8 +88,20 @@ render(); await flush(); await flush();
 button("Food Tracker").props.onClick(); render();
 const drinksNotice = "Drinks measured by volume aren't included. Use sample foods or custom entry for drinks.";
 assert(text(tree).includes(drinksNotice), "drink notice visible before search");
+assert.equal(button("Search packaged foods").props.disabled, true);
+input("alma-search", "b"); await flush();
+input("alma-search", "ba"); await flush();
 input("alma-search", "banana"); await flush();
-assert.equal(searches, 1);
+assert.equal(searches, 0, "typing must never call OFF, even after the old debounce interval");
+assert.match(text(tree), /Banana/i, "sample foods still filter without a request");
+assert.equal(button("Search packaged foods").props.disabled, false);
+button("Search packaged foods").props.onClick(); render();
+assert.equal(button("Search packaged foods").props.disabled, true, "prevent parallel submissions");
+button("Search packaged foods").props.onClick(); render();
+await flush();
+assert.equal(searches, 1, "a submitted search creates only one request");
+assert.equal(button("Search packaged foods").props.disabled, false);
+console.log("PASS: typing does not contact OFF; explicit search submits once and disables duplicate in-flight submissions");
 assert.match(text(tree), /Sample foods and custom entry still work/);
 assert(text(tree).includes(drinksNotice), "drink notice remains visible with failure status");
 assert.match(text(tree), /Banana/i);
@@ -132,6 +144,13 @@ const { mapOffProduct } = load("src/lib/tools/alma-off.ts");
 packagedResults = [mapOffProduct({ code: "portion-test", product_name: "Packaged portion test", serving_size: "15g", nutriments: { "energy-kcal_100g": 500, proteins_100g: 10, carbohydrates_100g: 60, fat_100g: 20 } }, 0)];
 button("Food Tracker").props.onClick(); render();
 input("alma-search", "Packaged portion"); await flush();
+assert.equal(searches, 1, "editing the query must not request or show stale packaged results");
+assert(!text(tree).includes("Packaged portion test"));
+const searchInput = nodes(tree).find(n => n?.props?.id === "alma-search" && n.props.onKeyDown);
+let prevented = false;
+searchInput.props.onKeyDown({ key: "Enter", nativeEvent: { isComposing: false }, preventDefault() { prevented = true; } });
+assert(prevented); render(); await flush();
+assert.equal(searches, 2, "Enter submits a single packaged-food search");
 assert(text(tree).includes(drinksNotice), "drink notice remains visible with successful results");
 const portionChoice = () => nodes(tree).find(n => n?.props?.legend === "Portion unit");
 portionChoice().props.onChange("ml"); render();

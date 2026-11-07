@@ -27,10 +27,13 @@ export async function GET(request: Request): Promise<Response> {
   off.searchParams.set("json", "1");
   off.searchParams.set("page_size", "12");
 
+  let reason = "upstream_unavailable";
+  let upstreamStatus: number | undefined;
   for (let attempt = 0; attempt < 2; attempt += 1) {
     const controller = new AbortController();
     const timeout = setTimeout(() => controller.abort(), OFF_TIMEOUT_MS);
     let retry = false;
+    let readingBody = false;
     try {
       const response = await fetch(off, {
         headers: {
@@ -44,8 +47,13 @@ export async function GET(request: Request): Promise<Response> {
         // Release the response body before another attempt. Do not retry rate
         // limits or other client errors; the caller can search again later.
         await response.body?.cancel();
-        retry = response.status >= 500 && attempt === 0;
+        upstreamStatus = response.status;
+        reason = response.status === 429 ? "upstream_rate_limited" : "upstream_http_error";
+        // An upstream Retry-After is a request to back off, not to send our
+        // immediate retry. Keep the response bounded and let the user try later.
+        retry = response.status >= 500 && !response.headers.has("Retry-After") && attempt === 0;
       } else {
+        readingBody = true;
         const data = (await response.json()) as { products?: OffProduct[] };
         const foods = (data.products ?? [])
           .map((product, index) => mapOffProduct(product, index))
@@ -56,6 +64,8 @@ export async function GET(request: Request): Promise<Response> {
     } catch {
       // Network errors, timeouts and unreadable upstream JSON can be transient.
       // This is resilience, not evidence of the cause of the observed 502.
+      upstreamStatus = undefined;
+      reason = controller.signal.aborted ? "upstream_timeout" : readingBody ? "upstream_invalid_response" : "upstream_network_error";
       retry = attempt === 0;
     } finally {
       clearTimeout(timeout);
@@ -63,5 +73,5 @@ export async function GET(request: Request): Promise<Response> {
     if (!retry) break;
     await new Promise((resolve) => setTimeout(resolve, OFF_RETRY_BACKOFF_MS));
   }
-  return Response.json({ success: false, error: SEARCH_UNAVAILABLE }, { status: 502 });
+  return Response.json({ success: false, error: SEARCH_UNAVAILABLE, reason, upstreamStatus }, { status: 502 });
 }
