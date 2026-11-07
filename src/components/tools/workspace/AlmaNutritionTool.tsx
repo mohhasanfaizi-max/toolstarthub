@@ -1073,7 +1073,8 @@ export function AlmaNutritionTool() {
           </div>
           <div className="rounded-2xl border border-amber-200/80 p-3">
             <p className="text-sm font-medium text-foreground">Packaged foods (Open Food Facts)</p>
-            <p role="status" className="mt-1 text-xs text-muted-foreground">{packagedNote || "Type at least two letters to search community nutrition data. Results use the displayed gram portion (or 100 g when no gram serving is available). Volume-based products are excluded; check the package label."}</p>
+            <p className="mt-1 text-xs text-muted-foreground">Drinks measured by volume aren&apos;t included. Use sample foods or custom entry for drinks.</p>
+            <p role="status" className="mt-1 text-xs text-muted-foreground">{packagedNote || "Type at least two letters to search community nutrition data. Results use the displayed gram portion (or 100 g when no gram serving is available). Check the package label."}</p>
             <ul className="mt-3 max-h-48 space-y-2 overflow-auto">
               {packagedFoods.map((food) => (
                 <li key={food.id} className="flex flex-wrap items-center justify-between gap-2 rounded-xl bg-background px-3 py-2 text-sm">

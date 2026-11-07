@@ -86,9 +86,12 @@ async function flush() {
 }
 render(); await flush(); await flush();
 button("Food Tracker").props.onClick(); render();
+const drinksNotice = "Drinks measured by volume aren't included. Use sample foods or custom entry for drinks.";
+assert(text(tree).includes(drinksNotice), "drink notice visible before search");
 input("alma-search", "banana"); await flush();
 assert.equal(searches, 1);
 assert.match(text(tree), /Sample foods and custom entry still work/);
+assert(text(tree).includes(drinksNotice), "drink notice remains visible with failure status");
 assert.match(text(tree), /Banana/i);
 // Select the real sample-food Add callback under the matching item.
 const bananaItem = nodes(tree).find(n => n?.type === "li" && /banana/i.test(text(n)) && nodes(n).some(x => x?.props?.onClick));
@@ -129,6 +132,7 @@ const { mapOffProduct } = load("src/lib/tools/alma-off.ts");
 packagedResults = [mapOffProduct({ code: "portion-test", product_name: "Packaged portion test", serving_size: "15g", nutriments: { "energy-kcal_100g": 500, proteins_100g: 10, carbohydrates_100g: 60, fat_100g: 20 } }, 0)];
 button("Food Tracker").props.onClick(); render();
 input("alma-search", "Packaged portion"); await flush();
+assert(text(tree).includes(drinksNotice), "drink notice remains visible with successful results");
 const portionChoice = () => nodes(tree).find(n => n?.props?.legend === "Portion unit");
 portionChoice().props.onChange("ml"); render();
 input("alma-servings", "15");
@@ -146,3 +150,5 @@ saved = JSON.parse(storage.get("toolstarhub-alma-v1"));
 const portion = Object.values(saved.days).flatMap(day => day.meals.breakfast).find(food => food.name === "Packaged portion test");
 assert(portion); assert.equal(portion.grams, 30); assert.equal(portion.calories, 150); assert.equal(portion.protein, 3);
 console.log("PASS: real UI Add callback rejects packaged ml without modifying storage; 2 x 15g servings log 30g and 150 kcal");
+
+console.log("PASS: plain-language drinks exclusion and sample/custom alternatives stay visible before search, on failure and with results");
