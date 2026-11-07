@@ -144,12 +144,12 @@ export const en = {
   toolsPage: {
     title: "All Tools",
     description:
-      "Search, filter by category, or reopen a recent or favorite tool. New tools appear here as they are added.",
+      "Search, filter by category, or reopen a recent or favorite tool. New tools appear here as they are added. Alma saves nutrition records in your browser; its optional coach sends your question and selected diary summary through this site to Gemini when configured, and packaged-food searches go to Open Food Facts.",
   },
   categoriesPage: {
     title: "Categories",
     description: "Choose a category to find the right tool faster.",
-    body: "Calculators handle everyday numbers. Text tools count and clean writing. Developer tools format, encode, and minify. Image tools also include PDF tasks such as merging, splitting, and extracting text. SEO and utilities cover campaign links, slugs, QR codes, and passwords. AI tools build prompts and shorten drafts in the browser, and their AI buttons send the text you enter to Google's Gemini model to generate a result. Every other tool runs in your browser.",
+    body: "Calculators handle everyday numbers. Text tools count and clean writing. Developer tools format, encode, and minify. Image tools also include PDF tasks such as merging, splitting, and extracting text. SEO and utilities cover campaign links, slugs, QR codes, and passwords. AI tools build prompts and shorten drafts in the browser, and their AI buttons send the text you enter to Google's Gemini model to generate a result. Alma saves nutrition records locally, but its coach sends a question and selected diary summary through this site to Gemini when configured. Packaged-food searches go through this site to Open Food Facts; Open Graph preview also fetches a public URL through this site. See each tool’s privacy note for its data flow.",
   },
   category: {
     cardCount: plural({ one: "{count} tool", other: "{count} tools" }),

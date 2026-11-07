@@ -4240,9 +4240,9 @@ export const extraGuideFaqs: Record<string, GuideFaq[]> = {
         "Yes by setting rate to 0; payment then splits principal evenly across months.",
     },
     {
-      question: "Why does early interest take most of each payment?",
+      question: "Does early interest always take most of each payment?",
       answer:
-        "Interest is charged on the current balance, which is highest at the start.",
+        "No. Interest is charged on the remaining balance, but its share of the payment depends on the rate and term. Higher rates and longer terms increase that share. On $10,000 at 6% over 60 months, the first $193.33 payment covers $50.00 interest and $143.33 principal, so principal is the larger part.",
     },
     {
       question: "How trustworthy is a web loan payment sketch?",

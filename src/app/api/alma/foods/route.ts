@@ -3,6 +3,13 @@ import type { FoodItem } from "@/lib/tools/alma-foods";
 
 export const runtime = "nodejs";
 
+// Bound each attempt, including reading the JSON body. Retry a transient failure
+// once, not a 4xx rejection (especially 429), to avoid amplifying upstream limits.
+const OFF_TIMEOUT_MS = 6_000;
+const OFF_RETRY_BACKOFF_MS = 350;
+const SEARCH_UNAVAILABLE =
+  "Packaged-food search is temporarily unavailable. Sample foods and custom entry still work; try packaged-food search again later.";
+
 const OFF_MICROS: Partial<Record<MicroId, string>> = {
   vitaminA: "vitamin-a_100g",
   vitaminB1: "vitamin-b1_100g",
@@ -91,24 +98,41 @@ export async function GET(request: Request): Promise<Response> {
   off.searchParams.set("json", "1");
   off.searchParams.set("page_size", "12");
 
-  try {
-    const response = await fetch(off, {
-      headers: {
-        "User-Agent": "AlmaNutritionCoach/1.0 (https://www.toolstarhub.com)",
-        Accept: "application/json",
-      },
-      next: { revalidate: 0 },
-    });
-    if (!response.ok) {
-      return Response.json({ success: false, error: "The Open Food Facts search is unavailable right now. Use sample foods or a custom entry." }, { status: 502 });
+  for (let attempt = 0; attempt < 2; attempt += 1) {
+    const controller = new AbortController();
+    const timeout = setTimeout(() => controller.abort(), OFF_TIMEOUT_MS);
+    let retry = false;
+    try {
+      const response = await fetch(off, {
+        headers: {
+          "User-Agent": "AlmaNutritionCoach/1.0 (https://www.toolstarhub.com)",
+          Accept: "application/json",
+        },
+        next: { revalidate: 0 },
+        signal: controller.signal,
+      });
+      if (!response.ok) {
+        // Release the response body before another attempt. Do not retry rate
+        // limits or other client errors; the caller can search again later.
+        await response.body?.cancel();
+        retry = response.status >= 500 && attempt === 0;
+      } else {
+        const data = (await response.json()) as { products?: OffProduct[] };
+        const foods = (data.products ?? [])
+          .map((product, index) => mapProduct(product, index))
+          .filter((item): item is FoodItem => item !== null)
+          .slice(0, 12);
+        return Response.json({ success: true, foods, source: "open-food-facts" });
+      }
+    } catch {
+      // Network errors, timeouts and unreadable upstream JSON can be transient.
+      // This is resilience, not evidence of the cause of the observed 502.
+      retry = attempt === 0;
+    } finally {
+      clearTimeout(timeout);
     }
-    const data = (await response.json()) as { products?: OffProduct[] };
-    const foods = (data.products ?? [])
-      .map((product, index) => mapProduct(product, index))
-      .filter((item): item is FoodItem => item !== null)
-      .slice(0, 12);
-    return Response.json({ success: true, foods, source: "open-food-facts" });
-  } catch {
-    return Response.json({ success: false, error: "The packaged-food search could not be completed. Use sample foods or enter a custom food from a label." }, { status: 502 });
+    if (!retry) break;
+    await new Promise((resolve) => setTimeout(resolve, OFF_RETRY_BACKOFF_MS));
   }
+  return Response.json({ success: false, error: SEARCH_UNAVAILABLE }, { status: 502 });
 }

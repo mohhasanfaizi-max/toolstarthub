@@ -25,7 +25,9 @@ export function ToolPrivacyNote({
   const [before, after] = t.see.split("{link}");
   return (
     <p className="mt-6 max-w-3xl text-sm leading-6 text-muted-foreground">
-      {urduNews
+      {slug === "alma-ai-nutrition-coach"
+        ? "Alma saves diary entries, custom foods, water logs, meal plans, groceries and nutrition targets in this browser (toolstarhub-alma-v1). Asking the coach sends your question and the selected diary day's nutrition summary through this site; when configured, Gemini receives a summary for its reply. Packaged-food search sends your search terms through this site to Open Food Facts."
+        : urduNews
         ? t.urduNews
         : humanizer
           ? t.humanizer

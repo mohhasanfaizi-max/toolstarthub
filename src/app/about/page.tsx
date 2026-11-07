@@ -59,7 +59,12 @@ export default function AboutPage() {
           uploaded to our server. The exceptions are the AI buttons on AI
           tools, which send the text you enter to Google&apos;s Gemini model to
           generate a result, and the Open Graph preview, which sends the URL
-          you enter to this site. Where a tool has limits, the tool page says
+          you enter to this site. Alma saves a local food diary, custom foods,
+          water logs, nutrition targets, meal plans and groceries. Asking its coach
+          sends your question and selected diary summary to this site; when
+          configured, Gemini receives a summary to generate a reply. Packaged-food
+          search terms go through this site to Open Food Facts. See the privacy
+          policy for the exact data flow. Where a tool has limits, the tool page says
           so. If you accept analytics cookies, page visits are measured with
           Google Analytics. That measurement does not include the files or text
           you put into a tool.
