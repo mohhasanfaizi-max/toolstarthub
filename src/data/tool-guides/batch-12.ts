@@ -1030,8 +1030,8 @@ const proteinPerDay: ToolGuide = {
         href: "https://fdc.nal.usda.gov/",
       },
       {
-        label: "FDA – How to Understand and Use the Nutrition Facts Label",
-        href: "https://www.fda.gov/food/nutrition-facts-label/how-understand-and-use-nutrition-facts-label",
+        label: "FDA – Serving Size on the Nutrition Facts Label",
+        href: "https://www.fda.gov/food/nutrition-facts-label/serving-size-nutrition-facts-label",
       },
     ],
   },
@@ -1293,8 +1293,8 @@ const calorieDeficit: ToolGuide = {
         href: "https://www.dietaryguidelines.gov/",
       },
       {
-        label: "FDA – Nutrition Facts Label",
-        href: "https://www.fda.gov/food/nutrition-facts-label/how-understand-and-use-nutrition-facts-label",
+        label: "FDA – Serving Size on the Nutrition Facts Label",
+        href: "https://www.fda.gov/food/nutrition-facts-label/serving-size-nutrition-facts-label",
       },
     ],
   },
