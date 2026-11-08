@@ -105,7 +105,11 @@ export default function PrivacyPage() {
           to Open Food Facts, not to Gemini. The search terms are sent in that
           background request&apos;s URL (<code>/api/alma/foods?q=…</code>), so they may
           be recorded in our hosting provider&apos;s standard request logs; don&apos;t
-          type personal information into the search. Sample-food lookup and custom-food
+          type personal information into the search. If you open the optional review of
+          old packaged-food entries, the stored barcode of each entry being reviewed
+          is sent through <code>/api/alma/product</code> to Open Food Facts to read
+          that product&apos;s serving size; nothing else from your diary is sent, and
+          a backup of your diary is kept only in this browser. Sample-food lookup and custom-food
           entry do not require that search to succeed. The coach route does not
           write questions or diary context to an application database. This is
           not a guarantee about hosting logs or Google&apos;s retention or data
