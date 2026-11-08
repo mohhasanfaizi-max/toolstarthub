@@ -20,6 +20,11 @@ export const MEAL_TYPES: { id: MealType; label: string }[] = [
 
 export const STORAGE_KEY = "toolstarhub-alma-v1";
 
+// "g" (default, also for older data with no basis) means amounts are grams.
+// "ml" is only set for packaged products whose Open Food Facts data is per 100 ml;
+// those are never converted to grams because no density is known.
+export type NutritionBasis = "g" | "ml";
+
 export type FoodItem = {
   id: string;
   name: string;
@@ -34,6 +39,11 @@ export type FoodItem = {
   micros?: MicroMap;
   source: FoodSource;
   sourceNote: string;
+  basis?: NutritionBasis;
+  /** ml-basis only: the ml quantity the nutrient values above describe. */
+  baseMl?: number;
+  /** ml-basis only: label serving size in ml, when the label gives one in ml. */
+  servingMl?: number;
 };
 
 export type DiaryEntry = {
@@ -51,6 +61,10 @@ export type DiaryEntry = {
   fiber?: number;
   micros?: MicroMap;
   source: FoodSource;
+  /** Added for entries saved after per-100 ml support. Absent on older entries. */
+  basis?: NutritionBasis;
+  /** ml-basis entries only: logged volume in ml. */
+  ml?: number;
 };
 
 export type DayLog = {
@@ -433,21 +447,39 @@ export function searchSampleFoods(query: string, extra: FoodItem[] = []): FoodIt
   }).slice(0, 25);
 }
 
+export function mlUnitError(food: FoodItem, unit: ServingUnit): string | null {
+  if (food.basis !== "ml") return null;
+  if (unit === "g") {
+    return "This product's nutrition is per 100 ml. Choose Millilitres (or Servings when the label gives a serving in ml). Alma does not convert millilitres to grams without a verified density.";
+  }
+  if (unit === "serving" && !(food.servingMl && food.servingMl > 0)) {
+    return "This product has no serving size in millilitres. Enter the amount in Millilitres.";
+  }
+  return null;
+}
+
 export function scaleFood(food: FoodItem, servings: number, unit: ServingUnit): Omit<DiaryEntry, "id" | "meal"> {
+  const mlBasis = food.basis === "ml";
+  const baseMl = food.baseMl && food.baseMl > 0 ? food.baseMl : 100;
   let factor = servings;
-  if (unit === "g" || unit === "ml") {
+  if (mlBasis) {
+    if (unit === "ml") factor = servings / baseMl;
+    else if (unit === "serving" && food.servingMl && food.servingMl > 0) factor = (servings * food.servingMl) / baseMl;
+    else factor = 0;
+  } else if (unit === "g" || unit === "ml") {
     factor = food.servingGrams > 0 ? servings / food.servingGrams : 0;
   }
   if (!Number.isFinite(factor) || factor <= 0) {
     factor = 0;
   }
-  const grams = roundTo(food.servingGrams * factor, 1);
+  const grams = mlBasis ? 0 : roundTo(food.servingGrams * factor, 1);
   return {
     foodId: food.id,
     name: food.name,
     servings,
     unit,
     grams,
+    ...(mlBasis ? { ml: roundTo(baseMl * factor, 1) } : {}),
     calories: roundTo(food.calories * factor, 1),
     protein: roundTo(food.protein * factor, 1),
     carbs: roundTo(food.carbs * factor, 1),
@@ -455,6 +487,7 @@ export function scaleFood(food: FoodItem, servings: number, unit: ServingUnit): 
     fiber: food.fiber !== undefined ? roundTo(food.fiber * factor, 1) : undefined,
     micros: scaleMicros(food.micros, factor),
     source: food.source,
+    basis: mlBasis ? "ml" : "g",
   };
 }
 
