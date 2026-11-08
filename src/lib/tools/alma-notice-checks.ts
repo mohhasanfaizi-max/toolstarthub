@@ -25,6 +25,8 @@ export function runAlmaNoticeChecks() {
   assert.equal(hasOffServingEntries(stateWith([entry("sample", "serving")])), false);
   assert.equal(hasOffServingEntries(stateWith([entry("custom", "serving")])), false);
   assert.equal(hasOffServingEntries(stateWith([entry("open-food-facts", "serving")])), true);
+  assert.equal(hasOffServingEntries(stateWith([{ ...entry("open-food-facts", "serving"), basis: "g" }])), false, "new entries with a basis are current");
+  assert.equal(hasOffServingEntries(stateWith([{ ...entry("open-food-facts", "serving"), basis: "ml", ml: 330 }])), false);
   assert.equal(hasOffServingEntries({ days: { bad: null, worse: { meals: { breakfast: "x" } } } } as never), false);
 
   const storage = memoryStorage();
