@@ -11,6 +11,7 @@ import { runTdeeChecks } from "./tdee-checks.ts";
 import { runAlmaChecks } from "./alma-checks.ts";
 import { runAlmaNoticeChecks } from "./alma-notice-checks.ts";
 import { runAlmaOffChecks } from "./alma-off-checks.ts";
+import { runAlmaOldFixChecks } from "./alma-oldfix-checks.ts";
 import { runSeoContentChecks } from "../content/seo-checks.ts";
 import { roundTo } from "./numbers.ts";
 import { calculateCompoundInterest } from "./compound-interest.ts";
@@ -2616,6 +2617,7 @@ runTdeeChecks();
 runAlmaChecks();
 runAlmaNoticeChecks();
 runAlmaOffChecks();
+runAlmaOldFixChecks();
 runBannerChecks(assert);
 runSeoContentChecks(assert);
 
