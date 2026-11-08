@@ -43,5 +43,7 @@ yarn-error.log*
 
 # cloudflare / opennext
 .open-next
+.cf-export
+dist
 .wrangler
 .dev.vars
