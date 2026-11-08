@@ -4032,7 +4032,7 @@ export const extraToolFaqs: Record<string, ToolFaq[]> = {
     {
       question: "How long can the pasted text be?",
       answer:
-        "Browser tools usually work best on a few hundred to a few thousand words at a time. Very long articles may need chunking so the rewrite stays coherent.",
+        "Up to 4,000 characters, counted after leading and trailing spaces are trimmed. That is roughly 600–700 words of typical English, not thousands of words. Both the phrase-list rewrite and Humanize with AI reject longer text, and the phrase-list rewrite also needs at least 12 words. Split a longer article into sections under 4,000 characters and rewrite them one at a time.",
     },
     {
       question: "Does the tool store my draft after I leave the page?",
@@ -4566,7 +4566,7 @@ export const extraToolFaqs: Record<string, ToolFaq[]> = {
     {
       question: "What inputs does a loan payment calculator need?",
       answer:
-        "Principal, annual interest rate, and term length are the core fields. Some pages also take fees or extra payments to refine the schedule.",
+        "Principal, annual interest rate, and term length (in years or months) are the core fields. This calculator also takes an optional upfront fee, which is added to total cost only. It does not take extra payments.",
     },
     {
       question: "How does a longer term change my monthly payment?",
@@ -4586,7 +4586,7 @@ export const extraToolFaqs: Record<string, ToolFaq[]> = {
     {
       question: "How do extra payments affect payoff?",
       answer:
-        "Extra principal shortens the term and cuts interest if the lender applies it correctly. Confirm there is no prepayment penalty on your contract.",
+        "Extra principal shortens the term and cuts interest if the lender applies it to principal. This calculator does not model extra payments: its schedule assumes the same payment every month. Ask your lender for a revised payoff schedule, and confirm there is no prepayment penalty on your contract.",
     },
     {
       question: "What is the difference between fixed and variable rates?",
@@ -4621,17 +4621,17 @@ export const extraToolFaqs: Record<string, ToolFaq[]> = {
     {
       question: "What happens if I round the payment up?",
       answer:
-        "Paying a few dollars more each month accelerates principal reduction. Recalculate the payoff date after you pick a rounded amount.",
+        "Paying a few dollars more each month accelerates principal reduction. This calculator cannot show the new payoff date because it does not accept a custom payment, so use your lender's payoff figures or a schedule built with the higher amount.",
     },
     {
       question: "Does biweekly payment scheduling change the math?",
       answer:
-        "Biweekly plans can create thirteen “monthly” equivalents per year. Convert carefully so you do not understate how much you send annually.",
+        "Biweekly plans can create thirteen “monthly” equivalents per year. This calculator only models monthly payments, so it does not show biweekly savings. Confirm with your lender how biweekly payments are applied.",
     },
     {
       question: "How do loan fees change the monthly payment?",
       answer:
-        "Fees added to principal raise the amount financed and the payment. Fees paid in cash at closing may not change the monthly figure.",
+        "On this calculator, the optional fee is not financed: it raises the total cost but leaves the monthly payment unchanged. If your lender rolls a fee into the loan, add it to the loan amount instead, and the payment will rise.",
     },
     {
       question: "Is a lower payment always better?",
