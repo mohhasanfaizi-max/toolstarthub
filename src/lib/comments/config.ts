@@ -1,6 +1,6 @@
 // Comments are enabled only when a database URL is configured.
 export function databaseUrl(): string | undefined {
-  return process.env.DATABASE_URL || process.env.POSTGRES_URL || undefined;
+  return process.env.DATABASE_URL || process.env.POSTGRES_URL || process.env.STORAGE_DATABASE_URL || process.env.STORAGE_POSTGRES_URL || undefined;
 }
 
 export function commentsEnabled(): boolean {
