@@ -4032,7 +4032,7 @@ export const extraToolFaqs: Record<string, ToolFaq[]> = {
     {
       question: "How long can the pasted text be?",
       answer:
-        "Browser tools usually work best on a few hundred to a few thousand words at a time. Very long articles may need chunking so the rewrite stays coherent.",
+        "Up to 4,000 characters, counted after leading and trailing spaces are trimmed. That is roughly 600–700 words of typical English, not thousands of words. Both the phrase-list rewrite and Humanize with AI reject longer text, and the phrase-list rewrite also needs at least 12 words. Split a longer article into sections under 4,000 characters and rewrite them one at a time.",
     },
     {
       question: "Does the tool store my draft after I leave the page?",
