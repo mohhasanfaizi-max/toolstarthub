@@ -220,3 +220,28 @@ if (process.argv[2]) writeFileSync(process.argv[2], pdf);
 console.log(
   "PASS: paint engine, example 9.8142 -> 9.81, all seven projects, room clamping, coverage/coats/waste, exact unit constants, six currencies, invalid inputs, exhaustive optimizer oracle and actual PDF generation",
 );
+
+// Preserve Ali’s exact FAQ wording/order; schema is checked against rendered text.
+import { paintContent } from "../../src/data/paint-content.ts";
+assert.deepEqual(paintContent.faqs.map(({ question }) => question), [
+  "How much paint do I need for a 10x10 room?",
+  "How do I calculate paint for four walls?",
+  "How many litres of paint do I need per square metre?",
+  "How much paint is needed for two coats?",
+  "How much paint does one gallon cover?",
+  "Should I subtract doors and windows?",
+  "How much exterior paint do I need?",
+  "How do I calculate ceiling paint?",
+  "What is the difference between interior and exterior paint?",
+  "How much paint wastage should I allow?",
+  "What is the coverage of Dulux paint?",
+  "What is Dulux Weathershield used for?",
+  "Where can I find a Dulux colour chart?",
+  "What is Dulux Painters White?",
+  "What is EasyClean paint?"
+]);
+assert.equal((320 * 0.09290304 * 2 / 10 * 1.1).toFixed(2), "6.54");
+assert.match(paintContent.faqs[0].answer, /8 ft walls/);
+assert.match(paintContent.faqs[0].answer, /6\.54 L/);
+assert.match(paintContent.faqs[10].answer, /not Dulux specifications/);
+console.log("PASS: exact fifteen owner FAQ questions/order and explicit 10x10-room arithmetic/assumptions");

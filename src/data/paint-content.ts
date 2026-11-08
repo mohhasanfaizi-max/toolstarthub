@@ -19,79 +19,64 @@ export const paintContent: ToolContent = {
     "Coverage defaults and colours are estimates. No brand affiliation or retailer availability is implied. Primer, labour, preparation and equipment are not included. Different products and colours need separate purchase plans.",
   faqs: [
     {
-      question: "How much paint do I need?",
-      answer:
-        "Net area × coats ÷ coverage gives litres before waste. Add your chosen waste percentage, then choose actual available containers covering the unrounded amount.",
+      question: "How much paint do I need for a 10x10 room?",
+      answer: "Assuming a 10 ft × 10 ft room with 8 ft walls, no openings and no ceiling, four walls total 320 ft² (29.73 m²). At an estimated 10 m²/L, two coats plus 10% wastage require 6.54 L before rounding up to available containers. Replace these assumptions with your measurements and product coverage.",
     },
     {
-      question: "How do I calculate wall area?",
-      answer:
-        "Multiply width by height and quantity. Enter unequal walls separately; a rectangular room uses 2 × (length + width) × height.",
+      question: "How do I calculate paint for four walls?",
+      answer: "For a rectangular room, wall area is 2 × (length + width) × height. Subtract unpainted openings once, multiply by coats, divide by per-coat coverage, then add wastage. Enter unequal walls separately.",
+    },
+    {
+      question: "How many litres of paint do I need per square metre?",
+      answer: "Divide 1 by the product’s coverage in m²/L to get litres per m² for one coat. At this tool’s editable estimate of 10 m²/L, that is 0.1 L per m² per coat, before wastage. Actual product coverage varies.",
+    },
+    {
+      question: "How much paint is needed for two coats?",
+      answer: "Multiply net paintable area by 2, divide by the product’s per-coat coverage, then apply your wastage allowance. For 44.61 m² at 10 m²/L, two coats need 8.922 L before waste, or 9.8142 L with 10% waste, displayed as 9.81 L.",
+    },
+    {
+      question: "How much paint does one gallon cover?",
+      answer: "Coverage depends on the product and surface. This tool’s editable 350 ft²/US gal estimate is per coat, so one US gallon covers 175 ft² with two coats before wastage. A US gallon is 3.785411784 L; an Imperial gallon is 4.54609 L, so do not interchange them.",
     },
     {
       question: "Should I subtract doors and windows?",
-      answer:
-        "Subtract openings you will not paint, once each. Doors and Windows project mode instead adds the faces you intend to paint.",
+      answer: "Subtract openings you will not paint, once each. Do not deduct a door or frame you are painting as part of that surface. Doors and Windows project mode instead adds the faces you intend to paint.",
     },
     {
-      question: "How much paint do I need for a room?",
-      answer:
-        "Enter room length, width and height, deduct its openings and choose whether to include its ceiling. Four walls are counted once.",
-    },
-    {
-      question: "Can I calculate several rooms together?",
-      answer:
-        "Yes. Multiple Rooms shows each room and a combined estimate. Only combine rooms using the same paint and colour; otherwise calculate separate purchase plans.",
+      question: "How much exterior paint do I need?",
+      answer: "Measure the exterior surfaces, split irregular shapes into measured sections and subtract unpainted openings. Multiply net area by coats, divide by the chosen exterior product’s coverage and add wastage. Rough or porous surfaces may change coverage; use the product’s instructions.",
     },
     {
       question: "How do I calculate ceiling paint?",
-      answer:
-        "Choose Ceiling and enter length and width. For a sloped ceiling use the actual sloped surface dimensions, or split it into measured pieces.",
+      answer: "Multiply ceiling length by width, then multiply by coats, divide by coverage and add wastage. Choose Ceiling mode, or include the ceiling once in a room estimate. Measure sloped ceilings along their actual surface rather than using floor dimensions.",
     },
     {
-      question: "Is two coats always enough?",
-      answer:
-        "No. Two is the default estimate. Use the product's instructions and the surface/colour change to choose the number of coats; custom whole-number counts up to 100 are supported.",
+      question: "What is the difference between interior and exterior paint?",
+      answer: "Interior products are intended for indoor surfaces; exterior products are designed for specified outdoor exposure. Suitability, preparation and finishes vary by formulation. Choose a product labelled for your surface and location rather than treating the two as interchangeable.",
     },
     {
-      question: "What coverage should I use?",
-      answer:
-        "Use per-coat coverage for the actual product and surface. The editable 10 m²/L and 350 ft²/US gal defaults are different planning estimates, not branded specifications.",
+      question: "How much paint wastage should I allow?",
+      answer: "The calculator offers 0%, 5%, 10% and 15%, with 10% selected initially. These are planning allowances, not guarantees. Choose based on your application method, surface, touch-up needs and product guidance.",
     },
     {
-      question: "How much wastage should I allow?",
-      answer:
-        "Compare the offered 0%, 5%, 10% and 15% allowances. The default is 10%; choose a realistic value for your application method and project rather than treating it as a guarantee.",
+      question: "What is the coverage of Dulux paint?",
+      answer: "There is no single coverage figure for all Dulux paints. Check the exact regional product’s label or technical data sheet for per-coat coverage and surface conditions. This calculator’s 10 m²/L and 350 ft²/US gal defaults are independent estimates, not Dulux specifications.",
     },
     {
-      question: "Are US and Imperial gallons the same?",
-      answer:
-        "No. One US gallon is 3.785411784 litres; one Imperial gallon is 4.54609 litres. Choose the correct output and price basis.",
+      question: "What is Dulux Weathershield used for?",
+      answer: "Dulux’s UK Weathershield range includes exterior products for specified surfaces, including masonry and wood or metal. Choose the formulation intended for your surface and follow its preparation and application instructions; not every Weathershield product suits every exterior material.",
     },
     {
-      question: "Does the cost include labour or primer?",
-      answer:
-        "No. Cost covers paint volume or the fully priced selected containers. Labour, primer, preparation and equipment are excluded; enter quotes in the selected currency.",
+      question: "Where can I find a Dulux colour chart?",
+      answer: "Use the official Dulux website or an authorized retailer for your country to find the relevant colour chart or physical colour card. Regional names and codes may differ. Confirm your choice with a physical sample; screen colours and this explorer’s approximate HEX values are not reliable paint matches.",
     },
     {
-      question: "How are containers recommended?",
-      answer:
-        "Only checked sizes are considered. The optimizer minimizes excess first, then cost if all selected sizes are priced, then container count. It does not check retailer availability and supports up to 5,000 L.",
+      question: "What is Dulux Painters White?",
+      answer: "Dulux Painters White is a requested name in this explorer, not a verified regional product or colour-code identification. Its displayed HEX is only an editable approximation. Confirm the exact name, code, finish and availability with your regional Dulux colour card or retailer before ordering.",
     },
     {
-      question: "Are these official Dulux HEX colours?",
-      answer:
-        "No. All explorer HEX values are editable editorial approximations. Even the verified reference 81YY 87/031 has no official HEX match supplied here. Verify using regional cards and physical samples.",
-    },
-    {
-      question: "Can I download, copy or print the estimate?",
-      answer:
-        "Yes. Calculate first to unlock Copy Results, a generated PDF and a print window. Clipboard or popup permissions can block an action; selectable results text remains available.",
-    },
-    {
-      question: "Does the calculator save my room measurements?",
-      answer:
-        "No. Paint measurements and estimates stay in this tab; this tool does not upload them or write them to localStorage. Closing or reloading the tab clears them.",
+      question: "What is EasyClean paint?",
+      answer: "Dulux Arabia describes EasyClean as a washable interior emulsion. Check the exact product sold in your region for suitable surfaces, preparation, cleaning instructions and coverage. The name alone does not establish a universal coverage rate or performance guarantee.",
     },
   ],
   article: {
