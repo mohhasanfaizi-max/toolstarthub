@@ -9,6 +9,15 @@ import type { Tool } from "./types.ts";
  */
 export const extraTools: Tool[] = [
   {
+    slug: "paint-calculator", name: "Paint Calculator",
+    description: "Estimate paint for walls, rooms and ceilings with editable coverage, coats, waste, prices and container sizes. Explore approximate colours and export your plan.",
+    category: "calculators", icon: "calculator", route: "/tools/paint-calculator",
+    featured: false, new: true, status: "available",
+    keywords: ["paint calculator", "how much paint", "wall paint", "room paint", "paint coverage", "ceiling paint", "paint cost"],
+    metaTitle: "Free Paint Calculator – Calculate Paint Needed for Walls, Rooms & Ceilings",
+    relatedSlugs: ["square-footage-calculator", "unit-converter", "percentage-calculator", "sales-tax-calculator"],
+  },
+  {
     slug: "urdu-news-translator",
     name: "Urdu News Translator",
     description:

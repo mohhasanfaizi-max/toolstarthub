@@ -1,3 +1,4 @@
+import { paintContent } from "./paint-content.ts";
 import { cssGradientContent } from "./css-gradient-content.ts";
 import { aiToolContent } from "./ai-tool-content.ts";
 import { extraToolContent } from "./extra-tool-content.ts";
@@ -2056,6 +2057,7 @@ export const toolContent: Record<string, ToolContent> = {
 
 export function getToolContent(slug: string): ToolContent | undefined {
   const content =
+    (slug === "paint-calculator" ? paintContent : undefined) ??
     priorityToolContent[slug] ??
     toolContent[slug] ??
     aiToolContent[slug] ??

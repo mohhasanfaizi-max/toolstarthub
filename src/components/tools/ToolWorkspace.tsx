@@ -109,6 +109,7 @@ const workspaces: Record<string, ComponentType> = {
   "fuel-cost-calculator": lazyTool(async () => (await import("./workspace/FuelCostCalculatorTool")).FuelCostCalculatorTool),
   "business-days-calculator": lazyTool(async () => (await import("./workspace/BusinessDaysCalculatorTool")).BusinessDaysCalculatorTool),
   "gpa-calculator": lazyTool(async () => (await import("./workspace/GpaCalculatorTool")).GpaCalculatorTool),
+  "paint-calculator": lazyTool(async () => (await import("./workspace/PaintCalculatorTool")).PaintCalculatorTool),
   "square-footage-calculator": lazyTool(async () => (await import("./workspace/SquareFootageCalculatorTool")).SquareFootageCalculatorTool),
   "number-to-words": lazyTool(async () => (await import("./workspace/NumberToWordsTool")).NumberToWordsTool),
   "time-zone-converter": lazyTool(async () => (await import("./workspace/TimeZoneConverterTool")).TimeZoneConverterTool),

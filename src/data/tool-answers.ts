@@ -1,6 +1,7 @@
 import { extraToolQuickAnswers } from "./extra-tool-content.ts";
 
 export const toolQuickAnswers: Record<string, string> = {
+  "paint-calculator": "Estimate paint from net surface area, coats, coverage and wastage. Choose actual available containers, compare paint-only cost and export the itemized plan; colour previews are approximate, not official matches.",
   "percentage-calculator":
     "A percentage calculator helps you find percentages, percentage changes, and related values without doing the arithmetic by hand.",
   "percentage-change-calculator":

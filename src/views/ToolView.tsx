@@ -106,7 +106,18 @@ export function ToolView({ locale, slug }: { locale: Locale; slug: string }) {
         ? getToolQuickAnswer(tool.slug, tool.name, tool.description)
         : null);
 
-  const learnMore = english ? (
+  // Paint has a separate guide-cluster plan, not newly published guides. Link
+  // only to these verified measurement references, without unrelated category
+  // articles or a second batch of generic FAQ previews.
+  const learnMore = english && slug === "paint-calculator" ? (
+    <section aria-labelledby="paint-planning-guides" className="mt-12 rounded-2xl border border-[#C9A227] bg-[#FBF8EC] p-5 text-[#17233F]">
+      <h2 id="paint-planning-guides" className="text-xl font-semibold">Helpful planning guides</h2>
+      <ul className="mt-3 space-y-3 text-sm">
+        <li><Link className="font-semibold underline underline-offset-2" href="/guides/how-to-calculate-square-footage">How to calculate square footage</Link> — check floor and surface measurements.</li>
+        <li><Link className="font-semibold underline underline-offset-2" href="/guides/how-to-convert-units">How to convert units</Link> — keep measurement units consistent.</li>
+      </ul>
+    </section>
+  ) : english ? (
     <ToolLearnMore
       tool={englishTool}
       topic={englishTool.name}
@@ -174,7 +185,7 @@ export function ToolView({ locale, slug }: { locale: Locale; slug: string }) {
         </div>
         <div className="mt-3 flex items-start justify-between gap-3">
           <h1 className="min-w-0 break-words hyphens-auto text-3xl font-semibold tracking-tight text-foreground sm:text-4xl">
-            {tool.name}
+            {english && slug === "paint-calculator" ? "Free Paint Calculator – How Much Paint Do I Need?" : tool.name}
           </h1>
           <FavoriteButton slug={tool.slug} name={tool.name} />
         </div>
