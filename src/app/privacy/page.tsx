@@ -59,11 +59,14 @@ export default function PrivacyPage() {
           Alma nutrition data: saved locally, shared only when you use online features
         </h2>
         <p>
-          Alma saves one localStorage record, <code>toolstarhub-alma-v1</code>,
+          Alma&apos;s main localStorage record, <code>toolstarhub-alma-v1</code>, is saved
           in this browser. It contains your saved calorie and macro targets,
           BMR and TDEE results, custom foods and their nutrition values,
           dated food entries (including portions and available nutrients), water logs,
           dated meal plans and their ingredients, and grocery items with checked status.
+          Two small extra keys may also be saved: <code>toolstarhub-alma-notice-v1</code>
+          if you dismiss the old-entries notice, and <code>toolstarhub-alma-backup-v1</code>,
+          a full copy of that record made just before you accept an old-entries fix.
           There is no Alma account or diary database in the application code.
           The diary is not automatically uploaded as a whole. Clear this site&apos;s
           browser storage to remove the saved record; doing so also removes your
@@ -105,7 +108,11 @@ export default function PrivacyPage() {
           to Open Food Facts, not to Gemini. The search terms are sent in that
           background request&apos;s URL (<code>/api/alma/foods?q=…</code>), so they may
           be recorded in our hosting provider&apos;s standard request logs; don&apos;t
-          type personal information into the search. Sample-food lookup and custom-food
+          type personal information into the search. If you open the optional review of
+          old packaged-food entries, the stored barcode of each entry being reviewed
+          is sent through <code>/api/alma/product</code> to Open Food Facts to read
+          that product&apos;s serving size; nothing else from your diary is sent, and
+          a backup of your diary is kept only in this browser. Sample-food lookup and custom-food
           entry do not require that search to succeed. The coach route does not
           write questions or diary context to an application database. This is
           not a guarantee about hosting logs or Google&apos;s retention or data
