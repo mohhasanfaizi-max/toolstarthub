@@ -1,6 +1,6 @@
 "use client";
 
-import { useCallback, useEffect, useMemo, useState } from "react";
+import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import { Button } from "@/components/ui/Button";
 import { CopyButton } from "@/components/tools/CopyButton";
 import { Icon } from "@/components/icons/Icon";
@@ -15,6 +15,8 @@ import {
   toolControlClass,
 } from "@/components/tools/ToolForm";
 import { formatNumber } from "@/lib/tools/numbers";
+import { AlmaOldEntriesReview } from "@/components/tools/workspace/AlmaOldEntriesReview";
+import { listCandidates } from "@/lib/tools/alma-oldfix";
 import { ALMA_OLD_ENTRIES_NOTICE, dismissNotice, shouldShowOldEntriesNotice } from "@/lib/tools/alma-notice";
 import {
   ACTIVITY_MULTIPLIERS,
@@ -54,6 +56,7 @@ import {
   groceryFromPlan,
   lastNDates,
   loadState,
+  STORAGE_KEY,
   newId,
   plannedFromTemplate,
   saveState,
@@ -205,6 +208,8 @@ export function AlmaNutritionTool() {
   const [state, setState] = useState<AlmaState>(defaultState);
   const [ready, setReady] = useState(false);
   const [showOldNotice, setShowOldNotice] = useState(false);
+  const [reviewOpen, setReviewOpen] = useState(false);
+  const skipNextSave = useRef(false);
   const [date, setDate] = useState(todayIso);
   const [meal, setMeal] = useState<MealType>("breakfast");
   const [query, setQuery] = useState("");
@@ -239,7 +244,13 @@ export function AlmaNutritionTool() {
   }, []);
 
   useEffect(() => {
-    if (ready) saveState(state);
+    if (!ready) return;
+    if (skipNextSave.current) {
+      // Undo wrote the exact backup string; don't re-serialize over it.
+      skipNextSave.current = false;
+      return;
+    }
+    saveState(state);
   }, [ready, state]);
 
   // One-time, read-only notice about packaged-food servings saved before the
@@ -254,6 +265,21 @@ export function AlmaNutritionTool() {
     return () => window.clearTimeout(id);
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [ready]);
+
+  function restoreBackup(raw: string) {
+    try {
+      window.localStorage.setItem(STORAGE_KEY, raw);
+    } catch {
+      return;
+    }
+    skipNextSave.current = true;
+    setState(loadState());
+  }
+
+  function openReview() {
+    setTab("tracker");
+    setReviewOpen(true);
+  }
 
   function dismissOldNotice() {
     let storage: Storage | undefined;
@@ -1103,12 +1129,34 @@ export function AlmaNutritionTool() {
               <p className="flex-1">{ALMA_OLD_ENTRIES_NOTICE}</p>
               <button
                 type="button"
+                onClick={openReview}
+                className="shrink-0 rounded-full bg-emerald-700 px-3 py-1 text-xs font-medium text-white hover:bg-emerald-800 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-600 focus-visible:ring-offset-2"
+              >
+                Review old entries
+              </button>
+              <button
+                type="button"
                 onClick={dismissOldNotice}
                 className="shrink-0 rounded-full border border-emerald-700 px-3 py-1 text-xs font-medium text-emerald-800 hover:bg-emerald-50 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-600 focus-visible:ring-offset-2 dark:border-emerald-400 dark:text-emerald-200 dark:hover:bg-emerald-950"
               >
                 Dismiss<span className="sr-only"> packaged-food servings notice</span>
               </button>
             </div>
+          ) : null}
+          {reviewOpen ? (
+            <AlmaOldEntriesReview
+              state={state}
+              onApply={(next) => setState(next)}
+              onRestore={restoreBackup}
+              onClose={() => setReviewOpen(false)}
+            />
+          ) : ready && listCandidates(state).length > 0 ? (
+            <p className="text-xs text-muted-foreground">
+              Older packaged-food servings found.{" "}
+              <button type="button" onClick={openReview} className="font-medium text-emerald-800 underline underline-offset-2 hover:text-emerald-900 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-600 dark:text-emerald-200">
+                Review old packaged-food entries
+              </button>
+            </p>
           ) : null}
           <div className="grid gap-4 sm:grid-cols-2">
             <ToolField id="alma-date" label="Diary date">
