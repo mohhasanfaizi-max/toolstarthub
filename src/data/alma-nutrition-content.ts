@@ -291,7 +291,7 @@ export const almaNutritionContent: ToolContent = {
     {
       question: "Which vitamins and minerals does Alma show reference values for?",
       answer:
-        "The Micronutrient Calculator lists general adult reference values for vitamin A, the B vitamins including B12, vitamin C, vitamin D, vitamin E, vitamin K, calcium, iron, magnesium, zinc, potassium, sodium and folate, adjusted for sex and age where public reference figures differ. These are population references, not personal targets; for medical monitoring, rely on a clinician, not a website.",
+        "The Micronutrient Calculator lists general adult reference values for vitamin A, vitamins B1, B2, B3, B6 and B12, vitamin C, vitamin D, vitamin E, vitamin K, calcium, iron, magnesium, zinc, potassium, sodium and folate, adjusted for sex and age where public reference figures differ. These are population references, not personal targets; for medical monitoring, rely on a clinician, not a website.",
     },
     {
       question: "Is online food tracking free?",
