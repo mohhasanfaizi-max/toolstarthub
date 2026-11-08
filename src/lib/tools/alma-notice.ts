@@ -1,8 +1,10 @@
 import type { AlmaState, DiaryEntry } from "./alma-foods.ts";
 
-// Stored diary entries carry no version or timestamp, so entries saved before the
-// 7 Nov 2026 serving-basis fix cannot be told apart reliably. The notice therefore
-// shows when any Open Food Facts entry logged by "serving" exists. Read-only: this
+// Older stored entries carry no version or timestamp, so entries saved before the
+// 7 Nov 2026 serving-basis fix cannot be told apart from later ones without a
+// basis field. Entries saved after per-100 ml support carry `basis`, so they are
+// known to be current and are ignored; any other Open Food Facts entry logged by
+// "serving" shows the notice. Read-only: this
 // module never changes the diary.
 export const ALMA_NOTICE_KEY = "toolstarhub-alma-notice-v1";
 
@@ -19,7 +21,7 @@ export function hasOffServingEntries(state: Pick<AlmaState, "days"> | null | und
     if (!meals || typeof meals !== "object") continue;
     for (const entries of Object.values(meals) as unknown[]) {
       if (!Array.isArray(entries)) continue;
-      if ((entries as DiaryEntry[]).some((entry) => entry?.source === "open-food-facts" && entry?.unit === "serving")) {
+      if ((entries as DiaryEntry[]).some((entry) => entry?.source === "open-food-facts" && entry?.unit === "serving" && !entry?.basis)) {
         return true;
       }
     }
