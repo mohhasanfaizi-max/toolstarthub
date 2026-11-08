@@ -23,6 +23,7 @@ const NO_HOWTO_SLUGS = new Set([
 
 // Search titles used verbatim, without the site-name template.
 const ABSOLUTE_TITLES: Record<string, string> = {
+  "paint-calculator": "Free Paint Calculator – Calculate Paint Needed for Walls, Rooms & Ceilings",
   "significant-figures-calculator": "Significant Figures Calculator & Sig Fig Counter | Tools Star Hub",
   "secret-santa-generator": "Free Secret Santa Generator – Random Gift Exchange Draw",
   "tdee-calculator": "Free TDEE Calculator – Daily Calorie Needs & BMR",

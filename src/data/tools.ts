@@ -1348,7 +1348,7 @@ export const tools: Tool[] = [
     keywords: ["square footage", "room area", "square meters"],
     status: "available",
     metaTitle: "Square Footage Calculator — Room Area in Feet or Meters",
-    relatedSlugs: ["unit-converter", "percentage-calculator", "gpa-calculator"],
+    relatedSlugs: ["unit-converter", "percentage-calculator", "gpa-calculator", "paint-calculator"],
   },
   {
     slug: "number-to-words",

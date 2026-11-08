@@ -6,6 +6,7 @@
  * language keep the tool's own description.
  */
 export const toolMetaDescriptions: Record<string, string> = {
+  "paint-calculator": "Use our free Paint Calculator to estimate paint needed for walls, ceilings, rooms and exterior surfaces. Calculate coverage, coats, wastage and cost instantly.",
   "percentage-calculator":
     "Free percentage calculator: find X% of a number, what percent one number is of another, and percent increase or decrease, with the formula shown.",
   "word-counter":
