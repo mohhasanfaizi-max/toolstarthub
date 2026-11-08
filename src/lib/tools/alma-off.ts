@@ -47,7 +47,9 @@ const MASS_TEXT = /\d\s*(?:g|grams?|kg|mg)\b/i;
 
 function isVolumeBased(product: OffProduct): boolean {
   const units = [product.serving_quantity_unit, product.product_quantity_unit];
-  return units.some((unit) => VOLUME_UNIT.test(unit?.trim() ?? "")) || VOLUME_TEXT.test(product.serving_size ?? "");
+  return units.some((unit) => VOLUME_UNIT.test(unit?.trim() ?? "")) ||
+    VOLUME_TEXT.test(product.serving_size ?? "") ||
+    product.nutrition_data_per?.trim().toLowerCase() === "100ml";
 }
 
 // Exact unit conversions between volume units only (no density involved).
@@ -87,7 +89,9 @@ export function detectOffBasis(product: OffProduct): OffBasis {
     return { basis: "unknown", reason: "unrecognised unit" };
   }
   const per = product.nutrition_data_per?.trim().toLowerCase();
-  if (per && per !== "100g" && per !== "serving") {
+  // Seen live: "100ml" on a milk (3252210390014); "100g" on a 330 ml cola (5449000000996),
+  // whose _100g values OFF documents as per 100 ml for liquids.
+  if (per && per !== "100g" && per !== "100ml" && per !== "serving") {
     return { basis: "unknown", reason: "unrecognised nutrition_data_per" };
   }
   const quantityUnit = product.serving_quantity_unit?.trim().toLowerCase();
