@@ -1,3 +1,4 @@
+import Link from "next/link";
 import { Container } from "@/components/ui/Container";
 import { PageHeader } from "@/components/ui/PageHeader";
 import { Breadcrumbs } from "@/components/seo/Breadcrumbs";
@@ -118,6 +119,24 @@ export default function PrivacyPage() {
           not a guarantee about hosting logs or Google&apos;s retention or data
           use. Provider treatment depends on the account tier and applicable
           terms; check those terms before sharing sensitive information.
+        </p>
+
+        <h2 className="pt-4 text-xl font-semibold tracking-tight text-foreground">
+          Tool comments and feedback
+        </h2>
+        <p>
+          If you post a comment at the end of a tool page, we store the tool
+          name, the name you enter, your optional helpfulness rating, your
+          comment, the time it was posted, and a one-way keyed hash of your IP
+          address in our own database. The hash is used only to limit repeated
+          posting; your raw IP address is not stored. Comments are held for
+          review and appear publicly, with the name you entered, only after we
+          approve them. We may remove any comment. To have your comment removed,
+          ask through the <Link href="/contact" className="underline underline-offset-2">contact page</Link>
+          {" "}and tell us the tool, the name you used and roughly when you posted.
+          Comment requests also pass through our hosting provider and may appear
+          in its standard request logs. Visitors who only read comments are not
+          given a cookie; only the site owner&apos;s admin sign-in uses one.
         </p>
 
         <h2 className="pt-4 text-xl font-semibold tracking-tight text-foreground">

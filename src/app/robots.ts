@@ -38,7 +38,7 @@ const welcomedCrawlers = [
 
 // Search result and favorites views (/tools?q=…, /tools?view=…) and API
 // endpoints are not pages worth indexing.
-const disallow = ["/tools?", "/api/"];
+const disallow = ["/tools?", "/api/", "/admin"];
 
 export default function robots(): MetadataRoute.Robots {
   const canonicalHost = new URL(siteConfig.url).host;
