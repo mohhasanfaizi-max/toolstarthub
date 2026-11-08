@@ -15,6 +15,7 @@ import {
   toolControlClass,
 } from "@/components/tools/ToolForm";
 import { formatNumber } from "@/lib/tools/numbers";
+import { ALMA_OLD_ENTRIES_NOTICE, dismissNotice, shouldShowOldEntriesNotice } from "@/lib/tools/alma-notice";
 import {
   ACTIVITY_MULTIPLIERS,
   DEFICIT_OPTIONS,
@@ -202,6 +203,7 @@ export function AlmaNutritionTool() {
   const [shareNote, setShareNote] = useState("");
   const [state, setState] = useState<AlmaState>(defaultState);
   const [ready, setReady] = useState(false);
+  const [showOldNotice, setShowOldNotice] = useState(false);
   const [date, setDate] = useState(todayIso);
   const [meal, setMeal] = useState<MealType>("breakfast");
   const [query, setQuery] = useState("");
@@ -238,6 +240,26 @@ export function AlmaNutritionTool() {
   useEffect(() => {
     if (ready) saveState(state);
   }, [ready, state]);
+
+  // One-time, read-only notice about packaged-food servings saved before the
+  // wave-2 fix. Checked once after the stored diary loads; never edits it.
+  useEffect(() => {
+    if (!ready) return;
+    const id = window.setTimeout(() => {
+      let storage: Storage | undefined;
+      try { storage = window.localStorage; } catch { storage = undefined; }
+      setShowOldNotice(shouldShowOldEntriesNotice(state, storage));
+    }, 0);
+    return () => window.clearTimeout(id);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [ready]);
+
+  function dismissOldNotice() {
+    let storage: Storage | undefined;
+    try { storage = window.localStorage; } catch { storage = undefined; }
+    dismissNotice(storage);
+    setShowOldNotice(false);
+  }
 
   // OFF explicitly disallows search-as-you-type. Sample foods remain instant;
   // only the button or Enter submits a packaged-food request.
@@ -1037,6 +1059,18 @@ export function AlmaNutritionTool() {
 
       {tab === "tracker" ? (
         <div className="mt-6 space-y-5">
+          {showOldNotice ? (
+            <div role="status" className="flex items-start gap-3 rounded-2xl border border-amber-300 bg-amber-50/80 px-4 py-3 text-sm text-amber-900 dark:border-amber-800 dark:bg-amber-950/30 dark:text-amber-100">
+              <p className="flex-1">{ALMA_OLD_ENTRIES_NOTICE}</p>
+              <button
+                type="button"
+                onClick={dismissOldNotice}
+                className="shrink-0 rounded-full border border-emerald-700 px-3 py-1 text-xs font-medium text-emerald-800 hover:bg-emerald-50 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-600 focus-visible:ring-offset-2 dark:border-emerald-400 dark:text-emerald-200 dark:hover:bg-emerald-950"
+              >
+                Dismiss<span className="sr-only"> packaged-food servings notice</span>
+              </button>
+            </div>
+          ) : null}
           <div className="grid gap-4 sm:grid-cols-2">
             <ToolField id="alma-date" label="Diary date">
               <input id="alma-date" type="date" value={date} onChange={(event) => setDate(event.target.value || todayIso())} className={toolControlClass} />

@@ -9,6 +9,7 @@ import { runBannerChecks, runFiveToolsChecks } from "./five-tools-checks.ts";
 import { runSecretSantaChecks } from "./secret-santa-checks.ts";
 import { runTdeeChecks } from "./tdee-checks.ts";
 import { runAlmaChecks } from "./alma-checks.ts";
+import { runAlmaNoticeChecks } from "./alma-notice-checks.ts";
 import { runSeoContentChecks } from "../content/seo-checks.ts";
 import { roundTo } from "./numbers.ts";
 import { calculateCompoundInterest } from "./compound-interest.ts";
@@ -2612,6 +2613,7 @@ runFiveToolsChecks(assert);
 runSecretSantaChecks(assert);
 runTdeeChecks();
 runAlmaChecks();
+runAlmaNoticeChecks();
 runBannerChecks(assert);
 runSeoContentChecks(assert);
 
