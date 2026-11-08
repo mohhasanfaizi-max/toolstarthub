@@ -57,6 +57,7 @@ import {
   newId,
   plannedFromTemplate,
   saveState,
+  mlUnitError,
   scaleFood,
   searchSampleFoods,
   substitutionsFor,
@@ -463,7 +464,12 @@ export function AlmaNutritionTool() {
       setEntryError("Enter a serving greater than 0.");
       return;
     }
-    if (food.source === "open-food-facts" && unit === "ml") {
+    const mlError = mlUnitError(food, unit);
+    if (mlError) {
+      setEntryError(mlError);
+      return;
+    }
+    if (food.source === "open-food-facts" && food.basis !== "ml" && unit === "ml") {
       setEntryError("Packaged-food portions use grams. Choose Grams or Servings; millilitres need a verified density.");
       return;
     }
@@ -481,6 +487,39 @@ export function AlmaNutritionTool() {
   function saveEditedEntry(entry: DiaryEntry, nextServings: number) {
     if (!Number.isFinite(nextServings) || nextServings <= 0) {
       setEntryError("Enter a serving greater than 0.");
+      return;
+    }
+    if (entry.basis === "ml") {
+      // ml-basis entries scale linearly from their own stored values; no grams involved.
+      const perUnit = entry.servings > 0 ? 1 / entry.servings : 0;
+      const ml = entry.ml ?? 0;
+      const mlFood: FoodItem = {
+        id: entry.foodId,
+        name: entry.name,
+        servingLabel: `${ml} ml`,
+        servingGrams: 0,
+        calories: entry.calories,
+        protein: entry.protein,
+        carbs: entry.carbs,
+        fat: entry.fat,
+        fiber: entry.fiber,
+        micros: entry.micros,
+        source: entry.source,
+        sourceNote: "",
+        basis: "ml",
+        baseMl: ml > 0 ? ml : 100,
+        servingMl: entry.unit === "serving" && ml > 0 ? ml * perUnit : undefined,
+      };
+      const fixed = scaleFood(mlFood, nextServings, entry.unit);
+      mutateDay((current) => ({
+        ...current,
+        meals: {
+          ...current.meals,
+          [entry.meal]: current.meals[entry.meal].map((item) => (item.id === entry.id ? { ...item, ...fixed, id: item.id, meal: item.meal } : item)),
+        },
+      }));
+      setEditingId(undefined);
+      setEntryError("");
       return;
     }
     const food =
@@ -1129,10 +1168,10 @@ export function AlmaNutritionTool() {
           </div>
           <div className="rounded-2xl border border-amber-200/80 p-3">
             <p className="text-sm font-medium text-foreground">Packaged foods (Open Food Facts)</p>
-            <p className="mt-1 text-xs text-muted-foreground">Drinks measured by volume aren&apos;t included. Use sample foods or custom entry for drinks.</p>
+            <p className="mt-1 text-xs text-muted-foreground">Drinks labelled per 100 ml are listed in millilitres and logged in Millilitres or ml Servings, never converted to grams. Products whose basis is unclear aren&apos;t included; use sample foods or custom entry for those.</p>
             <p className="mt-1 text-xs text-muted-foreground">Sample foods filter as you type. For packaged foods, enter at least two letters, then select Search packaged foods.</p>
             <Button type="button" variant="secondary" disabled={offLoading || query.trim().length < 2 || query.trim().length > 80} onClick={searchPackagedFoods}>Search packaged foods</Button>
-            <p role="status" className="mt-1 text-xs text-muted-foreground">{packagedNote || "Results use the displayed gram portion (or 100 g when no gram serving is available). Check the package label."}</p>
+            <p role="status" className="mt-1 text-xs text-muted-foreground">{packagedNote || "Results use the displayed gram or millilitre portion (or 100 g / 100 ml when the label gives no serving). Check the package label."}</p>
             <ul className="mt-3 max-h-48 space-y-2 overflow-auto">
               {packagedFoods.map((food) => (
                 <li key={food.id} className="flex flex-wrap items-center justify-between gap-2 rounded-xl bg-background px-3 py-2 text-sm">
