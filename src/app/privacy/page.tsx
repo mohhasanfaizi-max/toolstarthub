@@ -99,8 +99,9 @@ export default function PrivacyPage() {
           labelled rule-based reply; a failed AI attempt may already have sent data.
         </p>
         <p>
-          Packaged-food searches are separate: after you type at least two
-          characters, the search terms go through <code>/api/alma/foods</code>
+          Packaged-food searches are separate: only when you press the search
+          button or Enter with at least two characters typed (not as you type),
+          the search terms go through <code>/api/alma/foods</code>
           to Open Food Facts, not to Gemini. Sample-food lookup and custom-food
           entry do not require that search to succeed. The coach route does not
           write questions or diary context to an application database. This is
