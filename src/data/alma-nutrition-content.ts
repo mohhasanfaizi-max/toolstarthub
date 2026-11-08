@@ -72,7 +72,7 @@ export const almaNutritionContent: ToolContent = {
         heading: "What is a food tracking website?",
         paragraphs: [
           "A food tracking website, sometimes called an online food tracker, meal tracker website or food diary, is a page where you record what you eat and see running totals. Unlike a paper journal, it can convert servings into calories and macros as soon as you add an item. Unlike many mobile nutrition apps, a website can run in a browser tab without forcing a download.",
-          "Alma’s tracker is organized the way most people already think about a day: breakfast, lunch, dinner and snacks. You search a food, choose a meal, enter servings, grams or millilitres, and add it. You can edit the amount later or delete the row. Daily and weekly history stays on the Dashboard so a Tuesday that ran high does not erase a more typical week.",
+          "Alma’s tracker is organized the way most people already think about a day: breakfast, lunch, dinner and snacks. You search a food, choose a meal, enter servings or grams (millilitres for sample and custom foods only), and add it. You can edit the amount later or delete the row. Daily and weekly history stays on the Dashboard so a Tuesday that ran high does not erase a more typical week.",
         ],
       },
       {
@@ -221,7 +221,7 @@ export const almaNutritionContent: ToolContent = {
     {
       question: "How do I track my daily food intake?",
       answer:
-        "Open the Food Tracker, choose a date and meal, search sample foods or packaged products, or add a custom food with calories, protein, carbohydrate and fat from a label. Set servings, grams or millilitres, then add the item. Millilitres are currently counted as if 1 ml weighed 1 g, which is close for water-like drinks but not for oils, syrups or thick liquids—enter grams for those. You can edit or delete entries later. Totals appear on the dashboard.",
+        "Open the Food Tracker, choose a date and meal, search sample foods or packaged products, or add a custom food with calories, protein, carbohydrate and fat from a label. Set servings or grams, then add the item. Millilitres are available only for sample and custom foods, where 1 ml is counted as 1 g—close for water-like drinks but not for oils, syrups or thick liquids, so enter grams for those. Packaged products from Open Food Facts take grams or servings only, and products labelled by volume (such as most bottled drinks) are left out of packaged-food search; use a sample food or a custom entry for them. You can edit or delete entries later. Totals appear on the dashboard.",
     },
     {
       question: "How do I calculate protein requirements?",
