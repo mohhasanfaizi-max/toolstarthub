@@ -231,7 +231,7 @@ export const almaNutritionContent: ToolContent = {
     {
       question: "How can I track micronutrients?",
       answer:
-        "Log foods that include labelled vitamin and mineral data (some sample foods, some Open Food Facts listings, or custom amounts from a label). The Micronutrient Calculator compares those running totals with general adult reference values. A blank cell means the log has no labelled amount, not that intake was zero.",
+        "Log foods that already carry vitamin and mineral data: some sample foods and some Open Food Facts listings. Custom foods only take calories, protein, carbohydrate and fat, so vitamins and minerals from a label you type in are not tracked. The Micronutrient Calculator compares those running totals with general adult reference values. A blank cell means the log has no labelled amount, not that intake was zero.",
     },
     {
       question: "Why are micronutrients important?",
