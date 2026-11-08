@@ -59,7 +59,7 @@ export default function PrivacyPage() {
           Alma nutrition data: saved locally, shared only when you use online features
         </h2>
         <p>
-          AlmaAlma saves one localStorage record, <code>toolstarhub-alma-v1</code>,apos;s main localStorage record, <code>toolstarhub-alma-v1</code>, is saved
+          Alma&apos;s main localStorage record, <code>toolstarhub-alma-v1</code>, is saved
           in this browser. It contains your saved calorie and macro targets,
           BMR and TDEE results, custom foods and their nutrition values,
           dated food entries (including portions and available nutrients), water logs,
