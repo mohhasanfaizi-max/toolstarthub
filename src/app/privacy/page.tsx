@@ -64,6 +64,9 @@ export default function PrivacyPage() {
           BMR and TDEE results, custom foods and their nutrition values,
           dated food entries (including portions and available nutrients), water logs,
           dated meal plans and their ingredients, and grocery items with checked status.
+          Two small extra keys may also be saved: <code>toolstarhub-alma-notice-v1</code>
+          if you dismiss the old-entries notice, and <code>toolstarhub-alma-backup-v1</code>,
+          a full copy of that record made just before you accept an old-entries fix.
           There is no Alma account or diary database in the application code.
           The diary is not automatically uploaded as a whole. Clear this site&apos;s
           browser storage to remove the saved record; doing so also removes your
