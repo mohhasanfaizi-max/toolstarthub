@@ -51,7 +51,7 @@ export default function PrivacyPage() {
           sends the page URL you enter to this site. The site requests that
           public page, reads the title and share tags, and does not save the
           page. We do not put passwords,
-          uploaded files, PDF contents, private text, or QR payloads into page URLs. Alma explicitly saves the
+          uploaded files, PDF contents, private text, or QR payloads into the address of the page you visit. The one exception is Alma&apos;s packaged-food search, described below. Alma explicitly saves the
           nutrition information described below in local storage.
         </p>
 
@@ -102,7 +102,10 @@ export default function PrivacyPage() {
           Packaged-food searches are separate: only when you press the search
           button or Enter with at least two characters typed (not as you type),
           the search terms go through <code>/api/alma/foods</code>
-          to Open Food Facts, not to Gemini. Sample-food lookup and custom-food
+          to Open Food Facts, not to Gemini. The search terms are sent in that
+          background request&apos;s URL (<code>/api/alma/foods?q=…</code>), so they may
+          be recorded in our hosting provider&apos;s standard request logs; don&apos;t
+          type personal information into the search. Sample-food lookup and custom-food
           entry do not require that search to succeed. The coach route does not
           write questions or diary context to an application database. This is
           not a guarantee about hosting logs or Google&apos;s retention or data
