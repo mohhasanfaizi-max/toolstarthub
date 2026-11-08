@@ -10,6 +10,7 @@ export const runtime = "nodejs";
 // timeouts and network errors are retried, once, after a short backoff.
 const SAL_TIMEOUT_MS = 5_000;
 const ENRICH_TIMEOUT_MS = 3_000;
+const ENRICH_BUDGET_MS = 3_500;
 const LEGACY_TIMEOUT_MS = 6_000;
 const RETRY_BACKOFF_MS = 350;
 const HEADERS = { "User-Agent": "AlmaNutritionCoach/1.0 (https://www.toolstarhub.com)", Accept: "application/json" };
@@ -83,7 +84,9 @@ async function enrich(products: OffProduct[]): Promise<OffProduct[]> {
     } else todo.push(code);
   }
   let stop = false;
-  for (let i = 0; i < todo.length && !stop; i += 4) {
+  const started = Date.now();
+  // Overall budget: don't start another batch after ENRICH_BUDGET_MS.
+  for (let i = 0; i < todo.length && !stop && Date.now() - started < ENRICH_BUDGET_MS; i += 4) {
     await Promise.all(todo.slice(i, i + 4).map(async (code) => {
       const url = new URL(`https://world.openfoodfacts.org/api/v2/product/${code}.json`);
       url.searchParams.set("fields", ENRICH_FIELDS);
