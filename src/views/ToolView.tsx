@@ -1,3 +1,4 @@
+import { ToolComments } from "@/components/comments/ToolComments";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { Container } from "@/components/ui/Container";
@@ -259,6 +260,7 @@ export function ToolView({ locale, slug }: { locale: Locale; slug: string }) {
       {relatedGuides.length > 0 ? (
         <RelatedGuides guides={relatedGuides} />
       ) : null}
+      <ToolComments tool={tool.slug} />
     </Container>
   );
 }
