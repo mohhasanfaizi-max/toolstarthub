@@ -128,7 +128,7 @@ export const almaNutritionContent: ToolContent = {
       {
         heading: "How to Track Micronutrients",
         paragraphs: [
-          "How to track micronutrients is more fiddly than tracking calories, because many homemade meals and generic listings do not include a full vitamin panel. Alma approaches the problem in three honest layers. Sample foods include micronutrients only where widely published USDA-style values are available—for example potassium in a banana, vitamin C in an orange, or vitamin K and folate in spinach. Open Food Facts may include extra nutrients when a packaged product listed them. Custom foods let you type amounts from a label if they are printed.",
+          "How to track micronutrients is more fiddly than tracking calories, because many homemade meals and generic listings do not include a full vitamin panel. Alma approaches the problem in three honest layers. Sample foods include micronutrients only where widely published USDA-style values are available—for example potassium in a banana, vitamin C in an orange, or vitamin K and folate in spinach. Open Food Facts may include extra nutrients when a packaged product listed them. Custom foods are different: the custom form only takes a name, calories, protein, carbohydrate and fat, so vitamins and minerals printed on a label cannot be entered and are not counted.",
           "The Micronutrient Calculator then places today’s labelled totals next to general adult references that vary with sex and age where the public DRI figures do. Coverage percentages are only as complete as the foods that carried data. A blank cell means “this log does not have a labelled amount,” not “you consumed zero.” That distinction is essential for nutrient deficiency awareness without turning a website into a diagnostic tool.",
         ],
       },
@@ -221,7 +221,7 @@ export const almaNutritionContent: ToolContent = {
     {
       question: "How do I track my daily food intake?",
       answer:
-        "Open the Food Tracker, choose a date and meal, search sample foods or packaged products, or add a custom food from a label. Set servings, grams or millilitres, then add the item. You can edit or delete entries later. Totals appear on the dashboard.",
+        "Open the Food Tracker, choose a date and meal, search sample foods or packaged products, or add a custom food with calories, protein, carbohydrate and fat from a label. Set servings, grams or millilitres, then add the item. Millilitres are currently counted as if 1 ml weighed 1 g, which is close for water-like drinks but not for oils, syrups or thick liquids—enter grams for those. You can edit or delete entries later. Totals appear on the dashboard.",
     },
     {
       question: "How do I calculate protein requirements?",
@@ -289,9 +289,9 @@ export const almaNutritionContent: ToolContent = {
         "BMR is estimated resting energy—the calories used at complete rest. TDEE multiplies BMR by an activity factor so daily movement and training are included. Meal planning usually uses TDEE. Eating only at BMR while living an active life is a steep cut for many people.",
     },
     {
-      question: "How can I monitor vitamins and minerals?",
+      question: "Which vitamins and minerals does Alma show reference values for?",
       answer:
-        "Use the Micronutrient Calculator together with logged foods that carry vitamin and mineral data. Compare today’s labelled totals with general adult references for nutrients such as vitamin C, iron, calcium and folate. For personal medical monitoring, rely on a clinician, not a website.",
+        "The Micronutrient Calculator lists general adult reference values for vitamin A, vitamins B1, B2, B3, B6 and B12, vitamin C, vitamin D, vitamin E, vitamin K, calcium, iron, magnesium, zinc, potassium, sodium and folate, adjusted for sex and age where public reference figures differ. These are population references, not personal targets; for medical monitoring, rely on a clinician, not a website.",
     },
     {
       question: "Is online food tracking free?",

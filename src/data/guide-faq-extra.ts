@@ -4222,7 +4222,7 @@ export const extraGuideFaqs: Record<string, GuideFaq[]> = {
     {
       question: "How do voluntary extra payments change payoff timing?",
       answer:
-        "Extra principal cuts interest and can shorten the term; confirm the lender applies it to principal.",
+        "Extra principal cuts interest and can shorten the term; confirm the lender applies it to principal. The linked loan calculator does not model extra payments—its schedule assumes the same payment every month—so ask your lender for a revised payoff schedule.",
     },
     {
       question: "How do fixed-rate and variable-rate loans differ?",
@@ -4257,17 +4257,17 @@ export const extraGuideFaqs: Record<string, GuideFaq[]> = {
     {
       question: "What if I deliberately round each payment upward?",
       answer:
-        "You may finish slightly early and pay a bit less interest; the last payment adjusts.",
+        "You may finish slightly early and pay a bit less interest; the last payment adjusts. The linked loan calculator does not accept a custom payment amount, so it cannot show that earlier payoff date.",
     },
     {
       question: "Does paying every other week change total interest?",
       answer:
-        "Paying half more often can equal an extra monthly payment per year—model it explicitly.",
+        "Paying half the monthly amount every two weeks adds up to about one extra monthly payment per year, which can lower total interest if the lender applies each payment on receipt. The linked loan calculator models monthly payments only, so confirm biweekly savings with your lender.",
     },
     {
       question: "How do financed origination fees show up in the payment?",
       answer:
-        "If financed into principal they raise the balance; if paid upfront they may not change P&I.",
+        "If financed into principal they raise the balance and the payment; if paid upfront they may not change P&I. The linked loan calculator treats its optional fee as paid upfront: it adds to total cost, not the monthly payment. To model a financed fee there, add it to the loan amount.",
     }
   ],
   "how-a-mortgage-payment-is-estimated": [
