@@ -8,7 +8,10 @@
     "start": "next start",
     "lint": "eslint",
     "check:tools": "node --experimental-strip-types src/lib/tools/run-checks.ts",
-    "verify:production": "node scripts/verify-production.mjs"
+    "verify:production": "node scripts/verify-production.mjs",
+    "cf:build": "opennextjs-cloudflare build",
+    "cf:preview": "opennextjs-cloudflare build && opennextjs-cloudflare preview",
+    "cf:deploy": "opennextjs-cloudflare build && opennextjs-cloudflare deploy"
   },
   "engines": {
     "node": ">=20.9.0"
@@ -17,7 +20,7 @@
     "@google/genai": "^2.24.0",
     "jsqr": "^1.4.0",
     "mammoth": "^1.12.3",
-    "next": "16.3.8",
+    "next": "^16.4.5",
     "pdf-lib": "^1.17.1",
     "pdfjs-dist": "^6.3.289",
     "postgres": "^3.4.9",
@@ -28,14 +31,21 @@
     "tesseract.js": "^7.0.0"
   },
   "devDependencies": {
+    "@opennextjs/cloudflare": "^1.20.16",
     "@tailwindcss/postcss": "^4",
     "@types/node": "^20",
     "@types/qrcode": "^1.5.6",
     "@types/react": "^19",
     "@types/react-dom": "^19",
     "eslint": "^9",
-    "eslint-config-next": "16.3.8",
+    "eslint-config-next": "^16.4.5",
     "tailwindcss": "^4",
-    "typescript": "^5"
+    "typescript": "^5",
+    "wrangler": "^4.158.0"
+  },
+  "allowScripts": {
+    "workerd@1.20261104.1": true,
+    "esbuild@0.28.2": true,
+    "sharp@0.35.5": true
   }
 }

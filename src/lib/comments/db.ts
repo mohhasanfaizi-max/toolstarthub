@@ -8,12 +8,17 @@ export type AdminComment = PublicComment & { toolSlug: string; status: CommentSt
 type Sql = ReturnType<typeof postgres>;
 let client: Sql | null = null;
 let ready: Promise<void> | null = null;
+const onWorkers = typeof navigator !== "undefined" && navigator.userAgent === "Cloudflare-Workers";
 
 function sql(): Sql | null {
   const url = databaseUrl();
   if (!url) return null;
   // prepare:false keeps this compatible with Neon's pooled (PgBouncer) URL.
-  client ??= postgres(url, { max: 1, prepare: false, idle_timeout: 20, connect_timeout: 10 });
+  const options = { max: 1, prepare: false, idle_timeout: 20, connect_timeout: 10 };
+  // Cloudflare Workers cannot reuse a socket opened by another request, so
+  // there each call gets its own short-lived client.
+  if (onWorkers) return postgres(url, { ...options, idle_timeout: 2 });
+  client ??= postgres(url, options);
   return client;
 }
 
