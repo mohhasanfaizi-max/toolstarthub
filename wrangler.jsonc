@@ -1,0 +1,20 @@
+{
+  // Cloudflare Workers (free plan): static export + a small API Worker.
+  // Build first with `npm run cf:build` (writes dist/cloudflare/static).
+  "$schema": "node_modules/wrangler/config-schema.json",
+  "name": "toolstarhub",
+  "main": "cloudflare/worker.ts",
+  "compatibility_date": "2026-11-01",
+  "compatibility_flags": ["nodejs_compat"],
+  "assets": {
+    "directory": "dist/cloudflare/static",
+    "binding": "ASSETS",
+    "html_handling": "drop-trailing-slash",
+    "not_found_handling": "404-page",
+    // Only these paths run the Worker; everything else is a free static request.
+    "run_worker_first": ["/api/*", "/admin/*", "/tools", "/*/tools"]
+  },
+  // Keep variables set in the Cloudflare dashboard when deploying.
+  "keep_vars": true,
+  "observability": { "enabled": true }
+}

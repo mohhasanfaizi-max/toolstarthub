@@ -1,7 +1,6 @@
-import { readFile } from "node:fs/promises";
-import { join } from "node:path";
 import { ImageResponse } from "next/og";
 import type { CategorySlug } from "@/data/types";
+import { interBoldBase64 } from "@/lib/og/inter-bold-font";
 import { OgGlyph, type OgIconName } from "@/lib/og-icons";
 import { PRODUCTION_DOMAIN, siteConfig } from "@/lib/site";
 
@@ -36,9 +35,7 @@ const INK = "#071422";
 let fontData: Promise<ArrayBuffer> | undefined;
 
 function loadInterBold(): Promise<ArrayBuffer> {
-  fontData ??= readFile(join(process.cwd(), "src/lib/og/Inter-Bold.ttf")).then((buf) => {
-    return buf.buffer.slice(buf.byteOffset, buf.byteOffset + buf.byteLength) as ArrayBuffer;
-  });
+  fontData ??= Promise.resolve(Uint8Array.from(atob(interBoldBase64), (c) => c.charCodeAt(0)).buffer);
   return fontData;
 }
 
