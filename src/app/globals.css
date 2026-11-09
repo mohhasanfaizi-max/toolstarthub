@@ -3,18 +3,18 @@
 @custom-variant dark (&:where([data-theme="dark"], [data-theme="dark"] *));
 
 :root {
-  --background: #ffffff;
-  --foreground: #0b1f3a;
-  --muted: #f4f7fb;
+  --background: #f3f7fc;
+  --foreground: #1e2a4a;
+  --muted: #eaf1f9;
   --muted-foreground: #5a6b80;
   --accent: #2563eb;
   --accent-foreground: #ffffff;
   --accent-soft: #eff5ff;
-  --border: #e6eef6;
+  --border: #d9e6f4;
   --card: #ffffff;
   --ring: #2563eb;
   --header: #ffffff;
-  --footer: #0b1f3a;
+  --footer: #1e2a4a;
   --footer-foreground: #e8eef6;
   color-scheme: light;
 }
@@ -51,8 +51,8 @@
   --color-footer: var(--footer);
   --color-footer-foreground: var(--footer-foreground);
   --font-sans:
-    "Segoe UI", system-ui, -apple-system, BlinkMacSystemFont, "Helvetica Neue",
-    Arial, sans-serif;
+    var(--font-plus-jakarta), "Segoe UI", system-ui, -apple-system,
+    BlinkMacSystemFont, "Helvetica Neue", Arial, sans-serif;
 }
 
 @layer base {

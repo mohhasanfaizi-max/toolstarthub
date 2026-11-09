@@ -5,6 +5,10 @@ import { Badge } from "@/components/ui/Badge";
 import { Icon } from "@/components/icons/Icon";
 import { FavoriteButton } from "@/components/tools/FavoriteButton";
 import type { Tool } from "@/data/types";
+import {
+  getCategoryAccent,
+  toolHighlightBullets,
+} from "@/lib/category-accents";
 import { useI18n } from "@/i18n/client";
 import { cn } from "@/lib/cn";
 
@@ -25,11 +29,16 @@ export function ToolCard({
 }: ToolCardProps) {
   const { messages } = useI18n();
   const categoryName = messages.categoryNames[tool.category];
+  const accent = getCategoryAccent(tool.category);
+  const highlights = toolHighlightBullets(tool);
 
   return (
     <article
       className={cn(
-        "group relative flex h-full flex-col rounded-2xl border border-border bg-card shadow-[0_1px_2px_rgb(15_39_68/0.04),0_8px_24px_rgb(15_39_68/0.05)] transition-colors hover:border-accent/30 hover:bg-accent-soft/40",
+        "group relative flex h-full flex-col rounded-[1.15rem] border bg-card shadow-[0_1px_2px_rgb(15_39_68/0.04),0_10px_28px_rgb(15_39_68/0.06)] transition-[border-color,background-color,box-shadow,transform] duration-200",
+        accent.border,
+        accent.hover,
+        "hover:-translate-y-0.5 hover:shadow-[0_1px_2px_rgb(15_39_68/0.04),0_16px_36px_rgb(15_39_68/0.09)] motion-reduce:hover:translate-y-0",
         className,
       )}
     >
@@ -42,13 +51,19 @@ export function ToolCard({
       >
         <span
           className={cn(
-            "flex size-11 items-center justify-center rounded-xl bg-accent-soft text-accent",
+            "flex size-11 items-center justify-center rounded-[0.85rem]",
+            accent.tile,
             showAction && "transition-transform group-hover:-translate-y-0.5",
           )}
         >
           <Icon name={tool.icon} className="size-5" />
         </span>
-        <Heading className="mt-4 text-base font-semibold text-foreground">
+        <Heading
+          className={cn(
+            "mt-4 text-base font-bold tracking-tight",
+            accent.title,
+          )}
+        >
           {tool.name}
         </Heading>
         <div className="mt-2 flex flex-wrap items-center gap-2">
@@ -58,8 +73,24 @@ export function ToolCard({
         <p className="mt-3 flex-1 text-sm leading-6 text-muted-foreground">
           {tool.description}
         </p>
+        {highlights.length > 0 ? (
+          <ul className="mt-3 space-y-1.5">
+            {highlights.map((item) => (
+              <li
+                key={item}
+                className="flex items-start gap-2 text-xs leading-5 text-[#3d4f66] dark:text-muted-foreground"
+              >
+                <Icon
+                  name="check"
+                  className={cn("mt-0.5 size-3.5 shrink-0", accent.check)}
+                />
+                <span>{item}</span>
+              </li>
+            ))}
+          </ul>
+        ) : null}
         {showAction ? (
-          <span className="mt-5 inline-flex items-center gap-1 text-sm font-medium text-accent">
+          <span className="mt-5 inline-flex w-fit items-center gap-1.5 rounded-full bg-accent px-4 py-2 text-sm font-semibold text-accent-foreground shadow-sm transition-transform group-hover:translate-y-[-1px]">
             {messages.card.openTool}
             <Icon
               name="arrow-right"
