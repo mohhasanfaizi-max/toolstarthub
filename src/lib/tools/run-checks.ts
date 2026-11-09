@@ -2200,7 +2200,7 @@ assert(paintSmoke.ok && Math.abs(paintSmoke.litres - 9.8142) < 1e-9 && paintSmok
 assert(getToolContent("paint-calculator")?.faqs.length === 15, "Paint has fifteen dedicated FAQs without padding");
 
 assert(tools.length === 111, "Registry has 111 tools (Paint Calculator in draft)");
-assert(new Set(tools.map((tool) => tool.slug)).size === 112, "Tool slugs are unique");
+assert(new Set(tools.map((tool) => tool.slug)).size === 111, "Tool slugs are unique");
 assert(getNewTools().length === 4, "Homepage recently added stays at 4 tools");
 assert(
   tools.every((tool) => tool.status === "available"),
