@@ -145,29 +145,27 @@ export function Hero({ locale = "en" }: { locale?: Locale }) {
               role="group"
               aria-label={siteConfig.name}
             >
-              <div className="grid grid-cols-2 lg:grid-cols-4">
+              {/* 2×2 keeps labels readable in the left column at 1280–1440. */}
+              <div className="grid grid-cols-2">
                 {stats.map((stat, index) => (
                   <div
                     key={`${stat.value}-${stat.label}`}
                     className={cn(
-                      "flex items-center gap-2.5 px-3 py-3 sm:px-3.5",
+                      "flex items-center gap-2.5 px-3 py-3 sm:gap-3 sm:px-4",
                       index % 2 === 1 &&
                         "border-s border-[#e2ebf7] dark:border-[#243044]",
                       index >= 2 &&
                         "border-t border-[#e2ebf7] dark:border-[#243044]",
-                      "lg:border-t-0",
-                      index > 0 &&
-                        "lg:border-s lg:border-[#e2ebf7] dark:lg:border-[#243044]",
                     )}
                   >
                     <span className="flex size-9 shrink-0 items-center justify-center rounded-xl bg-accent text-white shadow-sm">
                       <Icon name={stat.icon} className="size-4 text-white" />
                     </span>
-                    <div className="min-w-0 text-start">
+                    <div className="min-w-0 text-start [overflow-wrap:normal] [word-break:normal] hyphens-none">
                       <p className="text-sm font-extrabold leading-snug tracking-tight text-[#1e2a4a] dark:text-foreground">
                         {stat.value}
                       </p>
-                      <p className="text-[11px] font-medium leading-snug text-[#6b7c90] dark:text-muted-foreground">
+                      <p className="line-clamp-2 text-[11px] font-medium leading-snug text-[#6b7c90] dark:text-muted-foreground sm:text-xs">
                         {stat.label}
                       </p>
                     </div>

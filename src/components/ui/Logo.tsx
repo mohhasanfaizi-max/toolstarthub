@@ -36,7 +36,7 @@ export function Logo({
       <span
         className={cn(
           "whitespace-nowrap font-semibold tracking-tight max-[359px]:sr-only",
-          compact ? "text-sm xl:text-[0.9375rem]" : "text-lg",
+          compact ? "text-sm" : "text-lg",
         )}
       >
         {siteConfig.name}
