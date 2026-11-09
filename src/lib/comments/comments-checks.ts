@@ -55,7 +55,7 @@ export function runCommentsChecks() {
   assert.notEqual(h, hashIp("203.0.113.7", "other"));
   assert.ok(!h.includes("203"));
 
-  // Without env, comments are disabled (section shows "Comments coming soon").
+  // Without env, comments are disabled (UI hides the section until configured).
   const saved = { a: process.env.DATABASE_URL, b: process.env.POSTGRES_URL };
   delete process.env.DATABASE_URL;
   delete process.env.POSTGRES_URL;
