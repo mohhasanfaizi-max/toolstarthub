@@ -81,6 +81,11 @@ lines.push("/*", ...securityHeaders.map((h) => `  ${h.key}: ${h.value}`), "");
 for (const rule of cacheRules) lines.push(rule.source, ...rule.headers.map((h) => `  ${h.key}: ${h.value}`), "");
 // Build-hashed Next.js files are immutable (same as next start / Vercel).
 lines.push("/_next/static/*", "  Cache-Control: public, max-age=31536000, immutable", "");
+// Force HTML shells to revalidate (extensionless routes from the static export).
+for (const route of ["/", "/tools", "/categories", "/guides", "/about", "/contact", "/privacy", "/terms", "/disclaimer"]) {
+  lines.push(route, "  Cache-Control: public, max-age=0, must-revalidate, no-cache", "");
+}
+
 // Metadata images are exported without a file extension; keep their PNG type.
 for (const name of ["opengraph-image", "twitter-image"]) {
   for (const prefix of ["", "/:a", "/:a/:b"]) lines.push(`${prefix}/${name}`, "  Content-Type: image/png", "");
