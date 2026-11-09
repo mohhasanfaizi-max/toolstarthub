@@ -7,7 +7,7 @@ import type { Tool } from "./types.ts";
  * `tools`, so search, categories, related tools, the sitemap and the
  * share images pick them up automatically.
  */
-export const extraTools: Tool[] = 
+export const extraTools: Tool[] = [
   {
     slug: "urdu-news-translator",
     name: "Urdu News Translator",
