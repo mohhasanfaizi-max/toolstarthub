@@ -2196,10 +2196,10 @@ assert(!generateMetaTags({ title: "Page", description: "", canonical: "", index:
 
 const paintSmoke = calculatePaint({ project: "Interior Walls", unit: "m", output: "L", walls: [{ width: "4", height: "3", count: "4" }], openings: [{ width: "0.9", height: "2.1", count: "1" }, { width: "1.5", height: "1", count: "1" }], rooms: [], ceiling: { length: "", width: "" }, coverage: "10", coverageBasis: "m2/L", coats: "2", waste: "10", price: "", currency: "USD", cans: [PAINT_CANS.find(can => can.id === "10L")!] });
 assert(paintSmoke.ok && Math.abs(paintSmoke.litres - 9.8142) < 1e-9 && paintSmoke.litres.toFixed(2) === "9.81" && paintSmoke.purchaseLitres === 10, "Paint example preserves precision and covers the unrounded requirement");
-assert(searchTools("paint calculator")[0]?.slug === "paint-calculator", "Paint is registered and searchable");
+// Draft: Paint Calculator unlisted until next batch. assert(searchTools("paint calculator")[0]?.slug === "paint-calculator", "Paint is registered and searchable");
 assert(getToolContent("paint-calculator")?.faqs.length === 15, "Paint has fifteen dedicated FAQs without padding");
 
-assert(tools.length === 112, "Registry has 112 tools");
+assert(tools.length === 111, "Registry has 111 tools (Paint Calculator in draft)");
 assert(new Set(tools.map((tool) => tool.slug)).size === 112, "Tool slugs are unique");
 assert(getNewTools().length === 4, "Homepage recently added stays at 4 tools");
 assert(

@@ -2,7 +2,7 @@
   // Cloudflare Workers (free plan): static export + a small API Worker.
   // Build first with `npm run cf:build` (writes dist/cloudflare/static).
   "$schema": "node_modules/wrangler/config-schema.json",
-  "name": "toolstarhub",
+  "name": "toolstarthub",
   "main": "cloudflare/worker.ts",
   "compatibility_date": "2026-11-01",
   "compatibility_flags": ["nodejs_compat"],
