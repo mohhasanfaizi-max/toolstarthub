@@ -42,6 +42,26 @@ export const securityHeaders = [
 
 /** Long-lived cache rules for static folders. */
 export const cacheRules = [
+  // HTML must revalidate so deploys never leave browsers on stale markup
+  // that points at removed /_next/static/*.css hashes (unstyled page).
+  {
+    source: "/",
+    headers: [
+      {
+        key: "Cache-Control",
+        value: "public, max-age=0, must-revalidate, no-cache",
+      },
+    ],
+  },
+  {
+    source: "/*.html",
+    headers: [
+      {
+        key: "Cache-Control",
+        value: "public, max-age=0, must-revalidate, no-cache",
+      },
+    ],
+  },
   {
     source: "/tesseract/*",
     headers: [
