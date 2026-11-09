@@ -1,4 +1,5 @@
 import { Suspense } from "react";
+import { Plus_Jakarta_Sans } from "next/font/google";
 import { ConsentManager } from "@/components/analytics/ConsentManager";
 import { GoogleAnalyticsRouteChange } from "@/components/analytics/GoogleAnalyticsRouteChange";
 import { Footer } from "@/components/layout/Footer";
@@ -8,6 +9,24 @@ import { I18nProvider } from "@/i18n/client";
 import { localeInfo, type Locale } from "@/i18n/config";
 import { getMessages } from "@/i18n/server";
 import { consentDefaultsScript } from "@/lib/consent";
+import { cn } from "@/lib/cn";
+
+const plusJakarta = Plus_Jakarta_Sans({
+  subsets: ["latin", "latin-ext"],
+  display: "swap",
+  variable: "--font-plus-jakarta",
+  // Match the previous system stack so swap does not jump layout.
+  fallback: [
+    "Segoe UI",
+    "system-ui",
+    "-apple-system",
+    "BlinkMacSystemFont",
+    "Helvetica Neue",
+    "Arial",
+    "sans-serif",
+  ],
+  adjustFontFallback: true,
+});
 
 const themeScript = `(function(){try{var t=localStorage.getItem("tsh-theme");var d=t==="dark"||(t!=="light"&&window.matchMedia("(prefers-color-scheme: dark)").matches);document.documentElement.setAttribute("data-theme",d?"dark":"light");}catch(e){}})();`;
 
@@ -28,8 +47,19 @@ export function SiteDocument({
   const info = localeInfo[locale];
 
   return (
-    <html lang={info.tag} dir={info.dir} suppressHydrationWarning>
-      <body className="flex min-h-full flex-col antialiased">
+    <html
+      lang={info.tag}
+      dir={info.dir}
+      className={plusJakarta.variable}
+      suppressHydrationWarning
+    >
+      <body
+        className={cn(
+          "flex min-h-full flex-col antialiased",
+          // Latin locales use Plus Jakarta; ar/ur keep the Arabic stack in CSS.
+          info.dir === "ltr" ? plusJakarta.className : null,
+        )}
+      >
         <script dangerouslySetInnerHTML={{ __html: themeScript }} />
         <script dangerouslySetInnerHTML={{ __html: consentDefaultsScript }} />
         <I18nProvider locale={locale} messages={messages.client}>

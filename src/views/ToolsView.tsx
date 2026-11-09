@@ -11,6 +11,8 @@ import { getMessages, getTools } from "@/i18n/server";
 import { breadcrumbJsonLd, createPageMetadata } from "@/lib/seo";
 import { collectionPageJsonLd } from "@/lib/structured-data";
 import { toolsIndexMetaDescription } from "@/data/page-meta";
+import { categories } from "@/data/categories";
+import { ToolsStatsStrip } from "@/components/tools/ToolsStatsStrip";
 
 type SearchParams = Record<string, string | string[] | undefined>;
 
@@ -74,6 +76,11 @@ export function ToolsView({ locale }: { locale: Locale }) {
         className="mt-6"
         title={messages.toolsPage.title}
         description={messages.toolsPage.description}
+      />
+      <ToolsStatsStrip
+        locale={locale}
+        toolCount={tools.length}
+        categoryCount={categories.length}
       />
       <div className="mt-8">
         <Suspense fallback={<ToolsFallback tools={tools} />}>

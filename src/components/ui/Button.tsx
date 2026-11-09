@@ -6,7 +6,7 @@ type ButtonSize = "sm" | "md" | "lg";
 
 const variantClasses: Record<ButtonVariant, string> = {
   primary:
-    "bg-accent text-accent-foreground shadow-sm hover:bg-accent/90",
+    "bg-accent text-accent-foreground shadow-[0_8px_20px_rgb(37_99_235/0.28)] hover:bg-accent/90",
   secondary:
     "border border-border bg-card text-foreground hover:bg-muted",
   ghost: "text-foreground hover:bg-muted",
@@ -19,7 +19,7 @@ const sizeClasses: Record<ButtonSize, string> = {
 };
 
 const baseClasses =
-  "inline-flex items-center justify-center gap-2 rounded-xl font-medium transition-colors focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-ring disabled:pointer-events-none disabled:opacity-50";
+  "inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-full font-semibold transition-colors focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-ring disabled:pointer-events-none disabled:opacity-50";
 
 type CommonProps = {
   variant?: ButtonVariant;
