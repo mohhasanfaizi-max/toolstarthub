@@ -38,7 +38,11 @@ export function Header({ locale = "en" }: { locale?: Locale }) {
           <div
             className={locale === "en" ? "hidden lg:block" : "hidden xl:block"}
           >
-            <Button href={localizePath("/tools", locale)} size="sm">
+            <Button
+              href={localizePath("/tools", locale)}
+              size="sm"
+              className="shrink-0 whitespace-nowrap px-3"
+            >
               {messages.client.nav.exploreTools}
             </Button>
           </div>

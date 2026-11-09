@@ -15,7 +15,7 @@ export function PageHeader({
 }: PageHeaderProps) {
   return (
     <header className={cn("max-w-2xl", className)}>
-      <h1 className="text-3xl font-semibold tracking-tight text-foreground sm:text-4xl">
+      <h1 className="text-3xl font-extrabold tracking-tight text-[#1e2a4a] sm:text-4xl dark:text-foreground">
         {title}
       </h1>
       {description ? (
