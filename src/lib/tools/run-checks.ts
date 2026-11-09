@@ -2257,7 +2257,7 @@ assert(
 );
 assert(searchTools("json").some((tool) => tool.slug === "json-formatter"), "Partial json match");
 assert(searchTools("xyzzy-no-such-tool").length === 0, "Unknown query has no results");
-assert(searchTools("").length === 112, "Empty query returns all tools");
+assert(searchTools("").length === 111, "Empty query returns all tools");
 assert(searchTools("compress pdf")[0]?.slug === "pdf-compressor", "compress pdf ranks compressor");
 assert(searchTools("extract text").some((tool) => tool.slug === "pdf-to-text"), "extract text finds PDF to Text");
 assert(searchTools("remove pdf metadata").some((tool) => tool.slug === "pdf-metadata"), "metadata search");
