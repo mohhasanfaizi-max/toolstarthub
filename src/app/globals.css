@@ -222,3 +222,55 @@
     transform: none;
   }
 }
+
+
+/* Header wordmark — Ali's gradient text (fallback solid blue when clip unsupported). */
+.gradient-text {
+  color: #2563eb;
+  font-family:
+    system-ui,
+    -apple-system,
+    "Segoe UI",
+    Roboto,
+    Arial,
+    sans-serif;
+  font-size: 24px;
+  font-weight: 800;
+  line-height: 1.1;
+  text-align: start;
+  white-space: nowrap;
+}
+
+.gradient-text--compact {
+  font-size: 20px;
+}
+
+@media (min-width: 390px) {
+  .gradient-text--compact {
+    font-size: 22px;
+  }
+}
+
+@media (min-width: 640px) {
+  .gradient-text--compact {
+    font-size: 24px;
+  }
+}
+
+@supports ((-webkit-background-clip: text) or (background-clip: text)) {
+  .gradient-text {
+    background-image: conic-gradient(
+      from 205deg at 34% 24%,
+      #2563eb 0%,
+      #2563eb 40%,
+      #f59e0b 40%,
+      #f59e0b 70%,
+      #10b981 70%,
+      #10b981 100%
+    );
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    color: transparent;
+  }
+}
