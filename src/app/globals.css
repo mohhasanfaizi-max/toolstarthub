@@ -119,11 +119,41 @@
   background-color: var(--background);
   background-image:
     radial-gradient(
-      ellipse 72% 48% at 50% -8%,
-      color-mix(in srgb, var(--accent) 14%, transparent),
-      transparent 68%
+      ellipse 70% 55% at 18% 0%,
+      color-mix(in srgb, var(--accent) 18%, transparent),
+      transparent 62%
     ),
-    linear-gradient(180deg, var(--muted) 0%, var(--background) 72%);
+    radial-gradient(
+      ellipse 55% 45% at 92% 12%,
+      color-mix(in srgb, #7c3aed 12%, transparent),
+      transparent 60%
+    ),
+    linear-gradient(180deg, #eaf2fb 0%, var(--background) 78%);
+}
+
+.home-hero-dots {
+  background-image: radial-gradient(
+    circle,
+    color-mix(in srgb, var(--accent) 28%, transparent) 1px,
+    transparent 1.5px
+  );
+  background-size: 18px 18px;
+  mask-image: linear-gradient(180deg, #000 0%, transparent 85%);
+}
+
+[data-theme="dark"] .home-hero {
+  background-image:
+    radial-gradient(
+      ellipse 70% 55% at 18% 0%,
+      color-mix(in srgb, var(--accent) 22%, transparent),
+      transparent 62%
+    ),
+    radial-gradient(
+      ellipse 55% 45% at 92% 12%,
+      color-mix(in srgb, #7c3aed 16%, transparent),
+      transparent 60%
+    ),
+    linear-gradient(180deg, #0f172a 0%, var(--background) 78%);
 }
 
 .home-card {
