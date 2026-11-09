@@ -1,19 +1,16 @@
-import Link from "next/link";
-import { HeroVisual } from "@/components/home/HeroVisual";
+import { HeroAside } from "@/components/home/HeroAside";
 import { ToolSearch } from "@/components/tools/ToolSearch";
 import { Button } from "@/components/ui/Button";
 import { Container } from "@/components/ui/Container";
 import { Icon } from "@/components/icons/Icon";
-import { categories } from "@/data/categories";
-import { tools } from "@/data/tools";
-import { getCategoryAccent } from "@/lib/category-accents";
+import { getToolsByCategory, tools } from "@/data/tools";
 import {
   formatMessage,
   formatNumber,
   localizePath,
   type Locale,
 } from "@/i18n/config";
-import { getMessages, getTool } from "@/i18n/server";
+import { getCategories, getMessages, getTool } from "@/i18n/server";
 import { siteConfig } from "@/lib/site";
 import { cn } from "@/lib/cn";
 
@@ -36,6 +33,8 @@ const valuableSlugs = [
   "qr-code-generator",
   "utm-builder",
 ] as const;
+
+const featuredSlug = "urdu-news-translator";
 
 const englishAudience =
   "For freelancers, students, digital marketers and news writers";
@@ -60,28 +59,35 @@ export function Hero({ locale = "en" }: { locale?: Locale }) {
   const messages = getMessages(locale);
   const t = messages.home;
   const slugs = locale === "en" ? valuableSlugs : popularSlugs;
-  const popular = slugs.flatMap((slug) => {
+
+  const resolved = slugs.flatMap((slug) => {
     const tool = getTool(slug, locale);
-    return tool
-      ? [
-          {
-            href: tool.route,
-            label: tool.name,
-            icon: tool.icon,
-            category: tool.category,
-          },
-        ]
-      : [];
+    return tool ? [tool] : [];
   });
 
+  const featured =
+    getTool(featuredSlug, locale) ??
+    resolved[0] ??
+    getTool("percentage-calculator", locale);
+
+  const gridTools = resolved
+    .filter((tool) => tool.slug !== featured?.slug)
+    .slice(0, 6);
+
+  const categoryItems = getCategories(locale).map((category) => ({
+    category,
+    count: getToolsByCategory(category.slug).length,
+  }));
+
   const toolCount = tools.length;
-  const categoryCount = categories.length;
-  const toolsWord = (
-    (toolCount === 1 ? messages.category.cardCount.one : undefined) ??
-    messages.category.cardCount.other
-  )
-    .replace("{count}", "")
-    .trim() || (toolCount === 1 ? "tool" : "tools");
+  const categoryCount = categoryItems.length;
+  const toolsWord =
+    (
+      (toolCount === 1 ? messages.category.cardCount.one : undefined) ??
+      messages.category.cardCount.other
+    )
+      .replace("{count}", "")
+      .trim() || (toolCount === 1 ? "tool" : "tools");
 
   const stats = [
     {
@@ -117,8 +123,8 @@ export function Hero({ locale = "en" }: { locale?: Locale }) {
       </div>
 
       <Container className="relative py-12 sm:py-16 lg:py-20">
-        <div className="grid items-center gap-10 lg:grid-cols-[minmax(0,1.15fr)_minmax(0,0.85fr)] lg:gap-12 xl:gap-16">
-          <div className="home-enter mx-auto w-full max-w-2xl text-center lg:mx-0 lg:max-w-none lg:text-start">
+        <div className="grid items-stretch gap-8 lg:grid-cols-[minmax(0,1.05fr)_minmax(0,0.95fr)] lg:gap-10 xl:gap-12">
+          <div className="home-enter flex w-full max-w-2xl flex-col text-center lg:mx-0 lg:max-w-none lg:text-start mx-auto">
             <p className="text-sm font-semibold tracking-wide text-accent">
               {siteConfig.name}
             </p>
@@ -134,7 +140,6 @@ export function Hero({ locale = "en" }: { locale?: Locale }) {
               </p>
             ) : null}
 
-            {/* Real facts strip — registry counts + existing trust truths */}
             <div
               className="mt-7 overflow-hidden rounded-[20px] border border-[#cfe0f8] bg-white/80 p-1.5 shadow-[0_1px_2px_rgb(15_39_68/0.04),0_12px_28px_rgb(15_39_68/0.06)] backdrop-blur-sm dark:border-[#1e3a8a]/70 dark:bg-[#101827]/80"
               role="group"
@@ -151,7 +156,8 @@ export function Hero({ locale = "en" }: { locale?: Locale }) {
                       index >= 2 &&
                         "border-t border-[#e2ebf7] dark:border-[#243044]",
                       "lg:border-t-0",
-                      index > 0 && "lg:border-s lg:border-[#e2ebf7] dark:lg:border-[#243044]",
+                      index > 0 &&
+                        "lg:border-s lg:border-[#e2ebf7] dark:lg:border-[#243044]",
                     )}
                   >
                     <span className="flex size-9 shrink-0 items-center justify-center rounded-xl bg-accent text-white shadow-sm">
@@ -173,46 +179,6 @@ export function Hero({ locale = "en" }: { locale?: Locale }) {
             <div className="home-search mt-7 text-start">
               <ToolSearch variant="hero" />
             </div>
-
-            {popular.length > 0 ? (
-              <div className="mt-6">
-                <p className="text-sm font-semibold text-foreground">
-                  {t.popularLabel}
-                </p>
-                <ul className="mt-3 flex flex-wrap items-center justify-center gap-2 lg:justify-start">
-                  {popular.map((item) => {
-                    const accent = getCategoryAccent(item.category);
-                    return (
-                      <li key={item.href}>
-                        <Link
-                          href={item.href}
-                          className={cn(
-                            "inline-flex max-w-full items-center gap-2 rounded-full border px-2.5 py-1.5 text-sm font-medium transition-colors",
-                            accent.card,
-                            accent.border,
-                            accent.title,
-                            "hover:brightness-[0.98] dark:hover:brightness-110",
-                          )}
-                        >
-                          <span
-                            className={cn(
-                              "flex size-6 shrink-0 items-center justify-center rounded-md text-white",
-                              accent.tile,
-                            )}
-                          >
-                            <Icon
-                              name={item.icon}
-                              className="size-3.5 text-white"
-                            />
-                          </span>
-                          <span className="truncate">{item.label}</span>
-                        </Link>
-                      </li>
-                    );
-                  })}
-                </ul>
-              </div>
-            ) : null}
 
             <div className="mt-7 flex flex-col items-stretch justify-center gap-3 sm:flex-row sm:flex-wrap sm:items-center lg:justify-start">
               <Button
@@ -250,12 +216,33 @@ export function Hero({ locale = "en" }: { locale?: Locale }) {
                 </li>
               ))}
             </ul>
+
+            {/* Mobile: featured tool only, below CTAs — keeps LCP light */}
+            {featured ? (
+              <div className="mt-8 lg:hidden">
+                <HeroAside
+                  locale={locale}
+                  featured={featured}
+                  gridTools={[]}
+                  categoryItems={[]}
+                  featuredOnly
+                />
+              </div>
+            ) : null}
           </div>
 
-          {/* Desktop decorative hub — hidden on small screens for LCP/weight */}
-          <div className="relative hidden lg:block" aria-hidden="true">
-            <HeroVisual />
-          </div>
+          {/* Desktop RHS: dense real tools column, top-aligned with left */}
+          {featured ? (
+            <div className="relative hidden min-h-0 lg:flex lg:flex-col">
+              <HeroAside
+                locale={locale}
+                featured={featured}
+                gridTools={gridTools}
+                categoryItems={categoryItems}
+                className="flex-1"
+              />
+            </div>
+          ) : null}
         </div>
       </Container>
     </section>

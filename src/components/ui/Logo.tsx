@@ -21,7 +21,7 @@ export function Logo({
     <Link
       href={href}
       className={cn(
-        "inline-flex items-center gap-2.5 rounded-lg",
+        "inline-flex items-center gap-2 rounded-lg",
         inverted ? "text-white" : "text-foreground",
         className,
       )}
@@ -35,8 +35,8 @@ export function Logo({
       </span>
       <span
         className={cn(
-          "whitespace-nowrap font-semibold tracking-tight max-[359px]:sr-only xl:max-[1399px]:sr-only",
-          compact ? "text-base" : "text-lg",
+          "whitespace-nowrap font-semibold tracking-tight max-[359px]:sr-only",
+          compact ? "text-sm xl:text-[0.9375rem]" : "text-lg",
         )}
       >
         {siteConfig.name}
