@@ -17,7 +17,7 @@ export function Header({ locale = "en" }: { locale?: Locale }) {
     <header className="sticky top-0 z-50 border-b border-border bg-header/95 backdrop-blur-sm">
       <Container
         fullWidth
-        className="grid h-16 grid-cols-[auto_1fr_auto] items-center gap-2 sm:gap-3 xl:grid-cols-[1fr_auto_1fr]"
+        className="grid h-16 grid-cols-[auto_1fr_auto] items-center gap-3 sm:gap-4 xl:grid-cols-[auto_minmax(0,1fr)_auto] xl:gap-6"
       >
         <Logo
           compact

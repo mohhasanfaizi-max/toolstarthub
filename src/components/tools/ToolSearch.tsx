@@ -132,7 +132,7 @@ export function ToolSearch({
       ref={containerRef}
       className={cn(
         "relative w-full",
-        isHero && "mx-auto w-full max-w-[44rem]",
+        isHero && "w-full max-w-[44rem] lg:max-w-none",
       )}
     >
       <form
@@ -150,11 +150,11 @@ export function ToolSearch({
           className={cn(
             "flex items-center gap-2 rounded-2xl border bg-card shadow-sm",
             isHero
-              ? "border-border px-4 py-4 sm:px-5 sm:py-5"
+              ? "border-[#cfe0f8] px-3 py-2.5 ps-4 sm:px-4 sm:py-3 dark:border-[#1e3a8a]/70"
               : "border-border px-3 py-2",
           )}
         >
-          <Icon name="search" className="size-5 text-muted-foreground" />
+          <Icon name="search" className="size-5 shrink-0 text-muted-foreground" />
           <input
             id={inputId}
             name="q"
@@ -198,6 +198,16 @@ export function ToolSearch({
               aria-label={t.clear}
             >
               <Icon name="close" className="size-4" />
+            </button>
+          ) : null}
+          {isHero ? (
+            <button
+              type="submit"
+              className="inline-flex shrink-0 items-center justify-center gap-1.5 rounded-full bg-accent px-4 py-2.5 text-sm font-semibold whitespace-nowrap text-accent-foreground shadow-[0_8px_20px_rgb(37_99_235/0.28)] transition-colors hover:bg-accent/90 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-ring"
+              aria-label={t.label}
+            >
+              <Icon name="search" className="size-4 text-white" />
+              <span className="hidden sm:inline">{t.label.split(" ")[0]}</span>
             </button>
           ) : null}
         </div>

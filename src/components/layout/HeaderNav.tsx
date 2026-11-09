@@ -19,15 +19,15 @@ export function HeaderNav({ locale = "en" }: { locale?: Locale }) {
 
   return (
     <nav
-      className="hidden max-w-full overflow-x-auto xl:block [scrollbar-width:none]"
+      className="hidden max-w-full overflow-x-auto xl:block xl:ps-1 [scrollbar-width:none]"
       aria-label={messages.header.primaryNav}
     >
-      <ul className="flex items-center gap-1">
+      <ul className="flex items-center gap-0.5">
         {links.map((link) => (
           <li key={link.href}>
             <Link
               href={localizePath(link.href, locale)}
-              className="inline-flex whitespace-nowrap rounded-lg px-2.5 py-2 text-sm font-medium text-muted-foreground hover:bg-muted hover:text-foreground min-[1400px]:px-3"
+              className="inline-flex whitespace-nowrap rounded-lg px-2 py-2 text-sm font-medium text-muted-foreground hover:bg-muted hover:text-foreground min-[1400px]:px-2.5"
             >
               {link.label}
             </Link>

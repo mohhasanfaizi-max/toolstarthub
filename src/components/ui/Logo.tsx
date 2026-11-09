@@ -35,7 +35,7 @@ export function Logo({
       </span>
       <span
         className={cn(
-          "whitespace-nowrap font-semibold tracking-tight max-[359px]:sr-only",
+          "whitespace-nowrap font-semibold tracking-tight max-[359px]:sr-only xl:max-[1399px]:sr-only",
           compact ? "text-base" : "text-lg",
         )}
       >

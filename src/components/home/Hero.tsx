@@ -1,10 +1,21 @@
 import Link from "next/link";
+import { HeroVisual } from "@/components/home/HeroVisual";
 import { ToolSearch } from "@/components/tools/ToolSearch";
+import { Button } from "@/components/ui/Button";
 import { Container } from "@/components/ui/Container";
 import { Icon } from "@/components/icons/Icon";
-import { formatMessage, type Locale } from "@/i18n/config";
+import { categories } from "@/data/categories";
+import { tools } from "@/data/tools";
+import { getCategoryAccent } from "@/lib/category-accents";
+import {
+  formatMessage,
+  formatNumber,
+  localizePath,
+  type Locale,
+} from "@/i18n/config";
 import { getMessages, getTool } from "@/i18n/server";
 import { siteConfig } from "@/lib/site";
+import { cn } from "@/lib/cn";
 
 const popularSlugs = [
   "pdf-to-jpg",
@@ -29,61 +40,222 @@ const valuableSlugs = [
 const englishAudience =
   "For freelancers, students, digital marketers and news writers";
 
+function HeroHeading({ text }: { text: string }) {
+  // Keep exact English H1 wording; accent only the middle word visually.
+  if (text === "Free Digital Tools") {
+    return (
+      <>
+        Free{" "}
+        <span className="bg-[linear-gradient(90deg,#2563eb_0%,#7c3aed_55%,#db2777_100%)] bg-clip-text text-transparent">
+          Digital
+        </span>{" "}
+        Tools
+      </>
+    );
+  }
+  return text;
+}
+
 export function Hero({ locale = "en" }: { locale?: Locale }) {
-  const t = getMessages(locale).home;
+  const messages = getMessages(locale);
+  const t = messages.home;
   const slugs = locale === "en" ? valuableSlugs : popularSlugs;
   const popular = slugs.flatMap((slug) => {
     const tool = getTool(slug, locale);
-    return tool ? [{ href: tool.route, label: tool.name }] : [];
+    return tool
+      ? [
+          {
+            href: tool.route,
+            label: tool.name,
+            icon: tool.icon,
+            category: tool.category,
+          },
+        ]
+      : [];
   });
 
+  const toolCount = tools.length;
+  const categoryCount = categories.length;
+  const toolsWord = (
+    (toolCount === 1 ? messages.category.cardCount.one : undefined) ??
+    messages.category.cardCount.other
+  )
+    .replace("{count}", "")
+    .trim() || (toolCount === 1 ? "tool" : "tools");
+
+  const stats = [
+    {
+      icon: "bolt" as const,
+      value: formatNumber(locale, toolCount),
+      label: toolsWord,
+    },
+    {
+      icon: "menu" as const,
+      value: formatNumber(locale, categoryCount),
+      label: messages.footer.categories,
+    },
+    {
+      icon: "gift" as const,
+      value: t.trust[0],
+      label: t.trust[1],
+    },
+    {
+      icon: "shield" as const,
+      value: t.trust[2],
+      label: t.trust[3],
+    },
+  ];
+
   return (
-    <section className="home-hero border-b border-border">
-      <Container className="py-12 sm:py-16 lg:py-20">
-        <div className="home-enter mx-auto max-w-3xl text-center">
-          <p className="text-sm font-medium text-accent">{siteConfig.name}</p>
-          <h1 className="mx-auto mt-3 max-w-full text-balance text-[2rem] font-bold leading-[1.15] tracking-tight text-foreground sm:text-[2.375rem] md:text-[2.75rem] lg:text-5xl xl:text-6xl">
-            {t.h1}
-          </h1>
-          <p className="mx-auto mt-4 max-w-xl text-base leading-7 text-muted-foreground sm:text-lg">
-            {formatMessage(t.intro, { name: siteConfig.name })}
-          </p>
-          {locale === "en" ? (
-            <p className="mx-auto mt-3 max-w-xl text-balance text-sm font-medium leading-6 text-foreground sm:text-base">
-              {englishAudience}
+    <section className="home-hero relative overflow-hidden border-b border-border">
+      {/* CSS-only décor: soft blobs + light dot grid (hidden from AT) */}
+      <div aria-hidden="true" className="pointer-events-none absolute inset-0">
+        <div className="home-hero-dots absolute inset-0 opacity-[0.55] dark:opacity-20" />
+        <div className="absolute -start-16 top-10 size-56 rounded-full bg-[#bfdbfe]/45 blur-3xl dark:bg-[#1e3a8a]/35" />
+        <div className="absolute -end-10 top-24 size-64 rounded-full bg-[#ddd6fe]/40 blur-3xl dark:bg-[#4c1d95]/30" />
+        <div className="absolute bottom-0 start-1/3 size-72 rounded-full bg-[#bbf7d0]/30 blur-3xl dark:bg-[#14532d]/25" />
+      </div>
+
+      <Container className="relative py-12 sm:py-16 lg:py-20">
+        <div className="grid items-center gap-10 lg:grid-cols-[minmax(0,1.15fr)_minmax(0,0.85fr)] lg:gap-12 xl:gap-16">
+          <div className="home-enter mx-auto w-full max-w-2xl text-center lg:mx-0 lg:max-w-none lg:text-start">
+            <p className="text-sm font-semibold tracking-wide text-accent">
+              {siteConfig.name}
             </p>
-          ) : null}
-          <div className="home-search mt-8 text-start">
-            <ToolSearch variant="hero" />
-          </div>
-          {popular.length > 0 ? (
-            <div className="mt-5 flex w-full min-w-0 flex-wrap items-center justify-center gap-x-2 gap-y-2 text-sm">
-              <span className="font-medium text-foreground">
-                {t.popularLabel}
-              </span>
-              {popular.map((item) => (
-                <Link
-                  key={item.href}
-                  href={item.href}
-                  className="rounded-lg px-2.5 py-1.5 text-muted-foreground hover:bg-card hover:text-foreground"
-                >
-                  {item.label}
-                </Link>
-              ))}
+            <h1 className="mx-auto mt-3 max-w-full text-balance text-[2.125rem] font-extrabold leading-[1.12] tracking-tight text-[#1e2a4a] sm:text-[2.5rem] md:text-[2.875rem] lg:mx-0 lg:text-5xl xl:text-6xl dark:text-foreground">
+              <HeroHeading text={t.h1} />
+            </h1>
+            <p className="mx-auto mt-4 max-w-xl text-base leading-7 text-muted-foreground sm:text-lg lg:mx-0">
+              {formatMessage(t.intro, { name: siteConfig.name })}
+            </p>
+            {locale === "en" ? (
+              <p className="mx-auto mt-3 max-w-xl text-balance text-sm font-medium leading-6 text-foreground sm:text-base lg:mx-0">
+                {englishAudience}
+              </p>
+            ) : null}
+
+            {/* Real facts strip — registry counts + existing trust truths */}
+            <div
+              className="mt-7 overflow-hidden rounded-[20px] border border-[#cfe0f8] bg-white/80 p-1.5 shadow-[0_1px_2px_rgb(15_39_68/0.04),0_12px_28px_rgb(15_39_68/0.06)] backdrop-blur-sm dark:border-[#1e3a8a]/70 dark:bg-[#101827]/80"
+              role="group"
+              aria-label={siteConfig.name}
+            >
+              <div className="grid grid-cols-2 lg:grid-cols-4">
+                {stats.map((stat, index) => (
+                  <div
+                    key={`${stat.value}-${stat.label}`}
+                    className={cn(
+                      "flex items-center gap-2.5 px-3 py-3 sm:px-3.5",
+                      index % 2 === 1 &&
+                        "border-s border-[#e2ebf7] dark:border-[#243044]",
+                      index >= 2 &&
+                        "border-t border-[#e2ebf7] dark:border-[#243044]",
+                      "lg:border-t-0",
+                      index > 0 && "lg:border-s lg:border-[#e2ebf7] dark:lg:border-[#243044]",
+                    )}
+                  >
+                    <span className="flex size-9 shrink-0 items-center justify-center rounded-xl bg-accent text-white shadow-sm">
+                      <Icon name={stat.icon} className="size-4 text-white" />
+                    </span>
+                    <div className="min-w-0 text-start">
+                      <p className="text-sm font-extrabold leading-snug tracking-tight text-[#1e2a4a] dark:text-foreground">
+                        {stat.value}
+                      </p>
+                      <p className="text-[11px] font-medium leading-snug text-[#6b7c90] dark:text-muted-foreground">
+                        {stat.label}
+                      </p>
+                    </div>
+                  </div>
+                ))}
+              </div>
             </div>
-          ) : null}
-          <ul className="mt-6 flex flex-wrap items-center justify-center gap-x-5 gap-y-2 text-sm text-muted-foreground">
-            {t.trust.map((item) => (
-              <li key={item} className="inline-flex items-center gap-1.5">
+
+            <div className="home-search mt-7 text-start">
+              <ToolSearch variant="hero" />
+            </div>
+
+            {popular.length > 0 ? (
+              <div className="mt-6">
+                <p className="text-sm font-semibold text-foreground">
+                  {t.popularLabel}
+                </p>
+                <ul className="mt-3 flex flex-wrap items-center justify-center gap-2 lg:justify-start">
+                  {popular.map((item) => {
+                    const accent = getCategoryAccent(item.category);
+                    return (
+                      <li key={item.href}>
+                        <Link
+                          href={item.href}
+                          className={cn(
+                            "inline-flex max-w-full items-center gap-2 rounded-full border px-2.5 py-1.5 text-sm font-medium transition-colors",
+                            accent.card,
+                            accent.border,
+                            accent.title,
+                            "hover:brightness-[0.98] dark:hover:brightness-110",
+                          )}
+                        >
+                          <span
+                            className={cn(
+                              "flex size-6 shrink-0 items-center justify-center rounded-md text-white",
+                              accent.tile,
+                            )}
+                          >
+                            <Icon
+                              name={item.icon}
+                              className="size-3.5 text-white"
+                            />
+                          </span>
+                          <span className="truncate">{item.label}</span>
+                        </Link>
+                      </li>
+                    );
+                  })}
+                </ul>
+              </div>
+            ) : null}
+
+            <div className="mt-7 flex flex-col items-stretch justify-center gap-3 sm:flex-row sm:flex-wrap sm:items-center lg:justify-start">
+              <Button
+                href={localizePath("/tools", locale)}
+                size="lg"
+                className="home-btn"
+              >
+                {t.ctaPrimary}
                 <Icon
-                  name="check"
-                  className="size-4 text-accent"
-                  aria-hidden="true"
+                  name="arrow-right"
+                  className="size-4 rtl:-scale-x-100"
                 />
-                {item}
-              </li>
-            ))}
-          </ul>
+              </Button>
+              <Button
+                href={localizePath("/guides", locale)}
+                variant="secondary"
+                size="lg"
+                className="home-btn"
+              >
+                {t.allGuides}
+              </Button>
+            </div>
+
+            <ul className="mt-6 flex flex-wrap items-center justify-center gap-x-5 gap-y-2 text-sm text-muted-foreground lg:justify-start">
+              {t.trust.map((item) => (
+                <li key={item} className="inline-flex items-center gap-1.5">
+                  <span className="flex size-4 items-center justify-center rounded-full bg-accent text-white">
+                    <Icon
+                      name="check"
+                      className="size-2.5 text-white"
+                      aria-hidden="true"
+                    />
+                  </span>
+                  {item}
+                </li>
+              ))}
+            </ul>
+          </div>
+
+          {/* Desktop decorative hub — hidden on small screens for LCP/weight */}
+          <div className="relative hidden lg:block" aria-hidden="true">
+            <HeroVisual />
+          </div>
         </div>
       </Container>
     </section>
