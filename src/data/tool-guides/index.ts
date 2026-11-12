@@ -14,12 +14,13 @@ import { batch11Guides } from "./batch-11.ts";
 import { batch12Guides } from "./batch-12.ts";
 import { batch13Guides } from "./batch-13.ts";
 import { batch14Guides } from "./batch-14.ts";
+import { batch15Guides } from "./batch-15.ts";
 
 /** One tool guide: the article record plus the visible guide body. */
 export type ToolGuide = { article: Article; content: GuideContent };
 
 /** Guides written for tools that had no guide of their own (10 FAQs each). */
-export const toolGuides: ToolGuide[] = [...batch1Guides, ...batch2Guides, ...batch3Guides, ...batch4Guides, ...batch5Guides, ...batch6Guides, ...batch7Guides, ...batch8Guides, ...batch9Guides, ...batch10Guides, ...batch11Guides, ...batch12Guides, ...batch13Guides, ...batch14Guides];
+export const toolGuides: ToolGuide[] = [...batch1Guides, ...batch2Guides, ...batch3Guides, ...batch4Guides, ...batch5Guides, ...batch6Guides, ...batch7Guides, ...batch8Guides, ...batch9Guides, ...batch10Guides, ...batch11Guides, ...batch12Guides, ...batch13Guides, ...batch14Guides, ...batch15Guides];
 
 export const toolGuideArticles: Article[] = toolGuides.map((guide) => guide.article);
 
