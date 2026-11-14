@@ -20,7 +20,7 @@ import {
  *   export const INDEX_TRANSLATIONS = { es: true };
  */
 export const INDEX_TRANSLATIONS: false | Partial<Record<PrefixedLocale, boolean>> =
-  false;
+  { es: true };
 
 /** English is always indexable. A prefixed locale is indexable only when the flag allows it. */
 export function isTranslationIndexable(locale: Locale): boolean {
