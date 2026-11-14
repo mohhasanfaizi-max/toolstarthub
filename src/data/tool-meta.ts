@@ -44,7 +44,7 @@ export const toolMetaDescriptions: Record<string, string> = {
   "javascript-minifier":
     "Free JavaScript minifier: shrink JS code in your browser with a parser-based pass that removes whitespace and comments. The code is never executed.",
   "password-generator":
-    "Free strong password generator: create random passwords 8 to 64 characters long with letters, numbers, and symbols, using crypto.getRandomValues.",
+    "Create secure random passwords or passphrases in your browser, plus a free printable password log. Not a password manager. Nothing is stored or uploaded.",
   "pdf-merger":
     "Free PDF merger: combine 2 to 10 PDF files in the order you choose and download one document. Merging happens in your browser, with no upload.",
   "pdf-page-counter":

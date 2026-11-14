@@ -29,6 +29,7 @@ const ABSOLUTE_TITLES: Record<string, string> = {
   "tdee-calculator": "Free TDEE Calculator – Daily Calorie Needs & BMR",
   "alma-ai-nutrition-coach": "Alma: AI Nutrition Coach & Food Tracker – Free Nutrition Calculator",
   "css-gradient-generator": "Free CSS Gradient Generator – Linear, Radial & Conic | ToolStarHub",
+  "password-generator": "Free Password Generator – Secure Passwords & Password Log Template",
 };
 
 export async function generateMetadata({

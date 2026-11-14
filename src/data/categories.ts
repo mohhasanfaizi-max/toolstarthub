@@ -128,13 +128,13 @@ export const categories: Category[] = [
   {
     slug: "seo-utilities",
     name: "SEO & Utilities",
-    description: "Links, slugs, QR codes, and passwords",
+    description: "Links, slugs, QR codes, passwords, and privacy tools",
     shortDescription:
-      "Build UTM links and slugs, create or scan QR codes, and generate passwords.",
+      "Build UTM links and slugs, create or scan QR codes, and generate secure passwords.",
     icon: "search",
     route: "/categories/seo-utilities",
     intro:
-      "These utilities build a link, a slug, a QR code, or a password on the page. The UTM builder adds utm_source, utm_medium, and utm_campaign, plus optional term and content. A blank field is left off the link. Existing query parameters stay. The page does not record a visit and does not shorten the address. The slug tool turns a title into a URL piece. The QR Code Generator encodes text or a URL of up to 1,200 characters as a 320 pixel PNG.",
+      "These utilities build a link, a slug, a QR code, or a secure password on the page. The UTM builder adds utm_source, utm_medium, and utm_campaign, plus optional term and content. A blank field is left off the link. Existing query parameters stay. The page does not record a visit and does not shorten the address. The slug tool turns a title into a URL piece. The QR Code Generator encodes text or a URL of up to 1,200 characters as a 320 pixel PNG.",
     audience:
       "QR Code Generator Pro adds Wi-Fi, email, phone, SMS, and contact layouts, and it can change colors. The basic generator does not. The scanner reads the first QR code from the camera or from a PNG or JPG, and it does not open a link until you press Open link. The password generator uses the browser’s cryptographic random values and shows the string on the page. It is not a password manager, and it does not store the password.",
     startingSlugs: [

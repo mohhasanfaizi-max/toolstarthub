@@ -61,7 +61,7 @@ export const toolQuickAnswers: Record<string, string> = {
   "javascript-minifier":
     "A JavaScript minifier shrinks JS source in the browser using Terser, without sending code to a server.",
   "password-generator":
-    "A password generator builds random passwords from character sets you choose, using a cryptographic RNG.",
+    "A password generator creates a random password or passphrase on your device. This page also offers a blank password log template; it is not a password manager or encrypted vault.",
   "image-to-pdf":
     "Image to PDF places JPG, PNG or WebP images onto PDF pages in your browser, then downloads the file.",
   "pdf-merger":
