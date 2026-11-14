@@ -1234,41 +1234,110 @@ export const toolContent: Record<string, ToolContent> = {
   },
   "password-generator": {
     about:
-      "Generate a password from 8 to 64 characters, using the character types you choose. Use it when a new account needs a mixed string you have not reused. The strength label estimates from length and set size, and it does not check whether a site was breached.",
+      "Create a strong random password or a memorable passphrase in your browser, then copy it or move it to your phone with an optional QR code. You can also download a CSV password template or print a blank password book. Generation uses crypto.getRandomValues and stays on this device. This page is a password tool, not a password manager, encrypted vault, or offline password app.",
     howTo: [
-      "Choose a length from 8 to 64 and the character types you want.",
-      "Optionally exclude ambiguous characters such as O, 0, I, l and 1.",
-      "Press Generate, then copy the password. Nothing is stored.",
+      "Choose a random password or a memorable passphrase.",
+      "Set the length or word count, then choose character types or passphrase options.",
+      "Press Generate, review the strength meter, and copy the result into a reputable password manager.",
+      "Optionally download the CSV password log or print a password book, and fill in site, username, hint, date changed, 2FA, and notes—not the live password if the file might be shared.",
     ],
     examples: [
       {
         title: "16 mixed characters",
-        body: "A 16-character password that includes upper, lower, numbers and symbols has a large character space. The strength label is an estimate from length and set size.",
+        body: "A 16-character password with upper and lower case letters, numbers, and symbols has a large character space. The strength label is an estimate from length and set size.",
       },
       {
-        title: "Letters only",
-        body: "Turning off numbers and symbols shrinks the set. The generator still requires at least one selected type.",
+        title: "Six-word passphrase",
+        body: "A six-word passphrase drawn from the 2,048-word list is usually easier to type than a long symbol string, with about 66 bits of estimated entropy before any extra digit.",
+      },
+      {
+        title: "Offline password log",
+        body: "Download the CSV template and open it in Excel or Google Sheets, or print the password book. Record a hint rather than the live password, especially in a cloud spreadsheet.",
       },
     ],
     explanation:
-      "Each character is chosen with crypto.getRandomValues(), not Math.random(). The generator includes at least one character from every selected set, then fills the rest from the combined set using unbiased sampling. The strength label (Short / Moderate / Strong) is estimated from length × log2(set size). It is not a guarantee against guessing, reuse, or a leaked site.",
+      "Random passwords pick each character with crypto.getRandomValues(), not Math.random(). The generator includes at least one character from every selected set, then fills the rest from the combined set using unbiased sampling. Passphrases pick words from a 2,048-word list and can add hyphens or a final digit. The strength label (Short / Moderate / Strong) is estimated from length × log2(pool size) for characters, or from word count × log2(2,048) for passphrases. It is not a guarantee against guessing, reuse, phishing, or a leaked site.",
+    features: [
+      "Random passwords from 8 to 64 characters, with optional symbols and no look-alike characters.",
+      "Memorable passphrases of 4 to 10 words from a 2,048-word list.",
+      "A visible strength and entropy meter.",
+      "Optional client-side QR code for transferring a password to your phone.",
+      "Free CSV password spreadsheet and printable password book templates, generated on this device.",
+    ],
+    tips: [
+      "Use a different password or passphrase for every account, and turn on 2FA where the site offers it.",
+      "Save the result in a reputable password manager when you can. That is safer than a spreadsheet or a paper list.",
+      "If you keep an offline password log, store a hint, not the live password, and keep the file private.",
+      "Treat a QR code like the password itself. Do not screenshot it or leave it on a shared screen.",
+    ],
     limitations:
-      "Length has to be a whole number from 8 to 64, and at least one character type must stay on. The strength label estimates from length and set size. It does not check reuse, phishing, or a breached site. Ambiguous characters can be left out; the rest of the symbol list is fixed.",
+      "Length has to be a whole number from 8 to 64, and a passphrase uses 4 to 10 words. At least one character type must stay on for a random password. The strength label estimates from length and pool size. It does not check reuse, phishing, or a breached site. This page does not store logins, sync a vault, or encrypt a file for you. Ambiguous characters can be left out; the rest of the symbol list is fixed.",
+    sections: [
+      {
+        heading: "This is not a password manager",
+        paragraphs: [
+          "People often search for a password manager, password vault, password keeper, or account tracker when they really need two things: a strong new password, and a place to keep track of accounts. This tool can create the password and give you a blank log. It cannot replace a manager that encrypts and autofills logins.",
+        ],
+      },
+      {
+        heading: "Spreadsheets, Google Sheets, and paper books",
+        paragraphs: [
+          "A password spreadsheet or Excel template can help you list sites, usernames, hints, and 2FA status. A shared Google Sheet, email, or chat is a poor place for live passwords. Prefer hints, keep the file offline or tightly shared, and use a manager for the actual secrets.",
+        ],
+      },
+    ],
+    article: {
+      title: "How to create secure passwords and organise your accounts",
+      intro:
+        "A good login starts with a unique secret you have not used before. This guide covers how the generator and passphrase mode work, how to store the result, and how a password book or spreadsheet can sit beside a password manager without pretending to be one.",
+      sections: [
+        {
+          heading: "Create a strong password or passphrase",
+          paragraphs: [
+            "For most sites, a random string of 16 or more characters with mixed types is a solid default. If a form is painful to type into, a six-word passphrase is often easier and still strong when the words are chosen at random. Avoid keyboard walks and personal details. Check an existing password with the [Password Strength Checker](/tools/password-strength-checker).",
+          ],
+        },
+        {
+          heading: "Password storage and cyber security basics",
+          paragraphs: [
+            "Cyber security for everyday logins is mostly habit: unique passwords, 2FA, and a single place you trust to keep them. A reputable password manager or encrypted vault is built for that. A digital download or password list is only a template. It does not encrypt itself and it is not an offline password app.",
+          ],
+        },
+        {
+          heading: "Using a password log, tracker, or organizer",
+          paragraphs: [
+            "If you want a login organizer, account and password list, or password tracker, use the CSV or printable book on this page. Fill in the site, username, hint, date changed, 2FA, and notes. Keep recovery codes offline. Do not treat a cloud spreadsheet as a vault.",
+          ],
+        },
+        {
+          heading: "QR codes and moving a password to your phone",
+          paragraphs: [
+            "The optional QR code on this page encodes the password on your device so you can scan it once. Anyone who sees the image can read the secret. You can also paste the text into the [QR Code Generator](/tools/qr-code-generator). Delete the image when you are done.",
+          ],
+        },
+        {
+          heading: "Related Tools Star Hub tools",
+          paragraphs: [
+            "After you generate a password, the [Password Strength Checker](/tools/password-strength-checker) rates a string you already have, the [QR Code Generator](/tools/qr-code-generator) encodes any short text, and the [Hash Generator](/tools/hash-generator) can fingerprint text. None of those tools store a password vault.",
+          ],
+        },
+      ],
+    },
     faqs: [
       {
         question: "Is the Password Generator free?",
         answer:
-          "Yes. Generating a password from 8 to 64 characters is free, and no account is required.",
+          "Yes. Creating a password or passphrase, downloading the CSV template, and printing the password book are free, and no account is required.",
       },
       {
         question: "Are passwords saved?",
         answer:
-          "No. They are not stored, logged, put in the URL, or written to localStorage. Copy the value if you need it.",
+          "No. They are not stored, logged, put in the URL, or written to localStorage. Copy the value into a password manager if you need it later.",
       },
       {
         question: "Does Strong mean unhackable?",
         answer:
-          "No. The meter is an estimate from length and character-set size. It does not account for reuse, phishing, or a compromised service.",
+          "No. The meter is an estimate from length and the size of the random pool. It does not account for reuse, phishing, or a compromised service.",
       },
     ],
   },

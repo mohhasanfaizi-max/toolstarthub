@@ -1438,100 +1438,89 @@ export const extraToolFaqs: Record<string, ToolFaq[]> = {
     }],
   "password-generator": [
     {
-      question: "How long should a password be?",
+      question: "Is this page a password manager or password vault?",
       answer:
-        "Longer is stronger. Many security guides suggest at least 12 to 16 characters for important accounts, with a different password for each site.",
+        "No. It generates a password or passphrase and a blank log template. It does not store, sync, autofill, or encrypt a vault. Use a reputable password manager for day-to-day password storage.",
     },
     {
-      question: "Is it safe to use an online password generator?",
+      question: "Can I open the password log in Google Sheets or Excel?",
       answer:
-        "This one creates the password in your browser with crypto.getRandomValues and does not send or store it. Save it in a password manager rather than in a note.",
+        "Yes. The CSV file is a password template you can open in Excel, Google Sheets, or another spreadsheet. Keep it private and record a hint rather than the live password, especially if the sheet might be shared.",
     },
     {
-      question: "How do I create a strong random password here?",
+      question: "What should I write in the password hint column?",
       answer:
-        "Set length and character classes, generate, then copy into a password manager—not a chat log.",
+        "Write something that helps you find the entry in your manager, such as a short label or the date you last changed it. Avoid writing the full password in a file that could be emailed or synced.",
     },
     {
-      question: "Should I include symbols in every password?",
+      question: "Is a printed password book safe to carry?",
       answer:
-        "Symbols raise entropy when the site allows them. Skip only if a form rejects them.",
+        "A paper password book is an offline login tracker, not an encrypted vault. Keep it in a locked place. Do not write live passwords in a book you carry, and keep recovery codes separate if you can.",
     },
     {
-      question: "How do I avoid look-alike characters?",
+      question: "How does passphrase mode pick its words?",
       answer:
-        "Enable an “exclude ambiguous” option (0/O, 1/l/I) when you must read the password aloud.",
+        "It draws each word at random from a 2,048-word list using crypto.getRandomValues. You can choose 4 to 10 words, a space or hyphen between them, optional capital letters, and an optional digit at the end.",
     },
     {
-      question: "Can I generate a passphrase of random words instead?",
+      question: "How is the strength meter calculated?",
       answer:
-        "Use a passphrase mode if offered; otherwise prefer a long random character string.",
+        "For a random password it uses length times log2 of the character-pool size. For a passphrase it uses the word count times log2 of 2,048, plus a little more if you add a digit. Below 50 bits is Short, below 80 is Moderate, and 80 or more is Strong.",
     },
     {
-      question: "How many passwords can I mint in one sitting?",
+      question: "Should I scan a password QR code in a public place?",
       answer:
-        "Generate as needed, but store them in a manager rather than a notes file.",
+        "Avoid that if other people can see the screen. The QR code contains the password itself. Generate it on your device, scan it once, then close or delete the image.",
     },
     {
-      question: "Is a longer password always stronger?",
+      question: "How is this different from the Password Strength Checker?",
       answer:
-        "Length helps a lot when the characters stay unpredictable—avoid keyboard walks.",
+        "This page creates a new password or passphrase. The Password Strength Checker rates a string you already have. It does not generate a new secret.",
     },
     {
-      question: "Should I reuse a generated password on two sites?",
+      question: "Can I import the CSV into a password manager?",
       answer:
-        "Never reuse. Create a unique password per account.",
+        "Most managers want a file that includes the live password. This template leaves that column out on purpose, so you would still copy each secret from this page into the manager yourself.",
     },
     {
-      question: "What length works for most modern sites?",
+      question: "Does Tools Star Hub keep a copy of the password book I print?",
       answer:
-        "Sixteen or more characters with mixed classes is a solid default when allowed.",
+        "No. The print view is built in your browser and opened in a new window. Nothing is uploaded.",
     },
     {
-      question: "Can the generator guarantee a digit and a symbol?",
+      question: "Why is there no password column in the template?",
       answer:
-        "Many tools force at least one of each selected class—check the options.",
+        "A password list with live secrets is risky in a spreadsheet or a digital download you might share. The template is a login organizer for site, username, hint, date changed, 2FA, and notes.",
     },
     {
-      question: "How should I store the result safely?",
+      question: "Can I use this as an offline password app?",
       answer:
-        "Paste into a reputable password manager and enable its autofill; do not email it.",
+        "No. After the page loads you can generate passwords without sending them to a server, but this is still a web page, not an installed offline password app or encrypted vault.",
     },
     {
-      question: "Does refreshing the page create a new password?",
+      question: "How do I move a password to my phone without email?",
       answer:
-        "A new generate click does; do not rely on reload alone if the field still shows the old value.",
+        "Use the QR button on this page, or paste the text into the QR Code Generator, then scan it on your phone. Do not send the password by email or chat.",
     },
     {
-      question: "Are pronounceable passwords weaker?",
+      question: "Is a 12-character password still enough?",
       answer:
-        "They can be if the pattern is guessable—prefer fully random when security matters most.",
+        "Twelve mixed characters can be acceptable for some sites, but 16 or more is a safer default when the form allows it. A six-word passphrase is another strong option when typing is awkward.",
     },
     {
-      question: "What if a site caps password length at 12?",
+      question: "What happens if I turn off numbers and symbols?",
       answer:
-        "Use the maximum allowed with full character variety, and enable 2FA.",
+        "The password is built only from the sets you leave on, and the estimated entropy falls because the pool is smaller. At least one set must stay selected.",
     },
     {
-      question: "Should shared team accounts use one generated password?",
+      question: "Should I keep recovery codes in the same spreadsheet?",
       answer:
-        "Prefer a shared vault entry with audit logging over a password pasted in Slack.",
+        "It is safer to store recovery codes offline or in your password manager, not in the same cloud sheet as a password list. If that file leaks, both the login map and the backup codes would be exposed.",
     },
     {
-      question: "Does generating a password upload it somewhere?",
+      question: "Can I generate more than one password at a time?",
       answer:
-        "Generation on this page is intended to stay in the browser session.",
-    }],
-  "pdf-merger": [
-    {
-      question: "How do I combine PDF files into one?",
-      answer:
-        "Add two or more PDFs, put them in the order you want, then merge and download the single combined file.",
-    },
-    {
-      question: "Does merging PDFs reduce quality?",
-      answer:
-        "No. Pages are copied into the new file as they are, so text and images are not re-compressed.",
+        "The form creates one password or passphrase each time you press Generate. Press it again for a new value. Copy each result into your manager or log before you generate the next one.",
     },
   ],
   "pdf-splitter": [

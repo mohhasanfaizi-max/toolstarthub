@@ -1,6 +1,12 @@
+import { PASSPHRASE_WORDS } from "./passphrase-words.ts";
+
 export const PASSWORD_MIN = 8;
 export const PASSWORD_MAX = 64;
 export const PASSWORD_DEFAULT = 16;
+export const PASSPHRASE_MIN_WORDS = 4;
+export const PASSPHRASE_MAX_WORDS = 10;
+export const PASSPHRASE_DEFAULT_WORDS = 6;
+export const PASSPHRASE_WORDLIST_SIZE = PASSPHRASE_WORDS.length;
 
 export type PasswordOptions = {
   length: number;
@@ -100,6 +106,71 @@ export function generatePassword(options: PasswordOptions): PasswordResult {
     bits,
     strengthLabel: bits < 50 ? "Short" : bits < 80 ? "Moderate" : "Strong",
   };
+}
+
+
+export type PassphraseOptions = {
+  words: number;
+  separator: " " | "-";
+  capitalize: boolean;
+  addNumber: boolean;
+};
+
+export function parsePassphraseWordCount(
+  raw: string,
+): { ok: true; value: number } | { ok: false; error: string } {
+  const trimmed = raw.trim();
+  if (trimmed === "") {
+    return { ok: false, error: "Enter how many words to use." };
+  }
+  const value = Number(trimmed);
+  if (!Number.isInteger(value)) {
+    return { ok: false, error: "Word count must be a whole number." };
+  }
+  if (value < PASSPHRASE_MIN_WORDS || value > PASSPHRASE_MAX_WORDS) {
+    return {
+      ok: false,
+      error: `Choose a word count from ${PASSPHRASE_MIN_WORDS} to ${PASSPHRASE_MAX_WORDS}.`,
+    };
+  }
+  return { ok: true, value };
+}
+
+export function generatePassphrase(options: PassphraseOptions): PasswordResult {
+  if (
+    options.words < PASSPHRASE_MIN_WORDS ||
+    options.words > PASSPHRASE_MAX_WORDS
+  ) {
+    return {
+      ok: false,
+      error: `Choose a word count from ${PASSPHRASE_MIN_WORDS} to ${PASSPHRASE_MAX_WORDS}.`,
+    };
+  }
+  if (PASSPHRASE_WORDS.length !== 2048) {
+    return { ok: false, error: "Passphrase word list is not available." };
+  }
+  const picked: string[] = [];
+  for (let index = 0; index < options.words; index += 1) {
+    const word = PASSPHRASE_WORDS[randomInt(PASSPHRASE_WORDS.length)] ?? "";
+    picked.push(options.capitalize ? capitalizeWord(word) : word);
+  }
+  let phrase = picked.join(options.separator);
+  let bits = options.words * Math.log2(PASSPHRASE_WORDS.length);
+  if (options.addNumber) {
+    phrase += String(randomInt(10));
+    bits += Math.log2(10);
+  }
+  return {
+    ok: true,
+    password: phrase,
+    charsetSize: PASSPHRASE_WORDS.length,
+    bits,
+    strengthLabel: bits < 50 ? "Short" : bits < 80 ? "Moderate" : "Strong",
+  };
+}
+
+function capitalizeWord(word: string): string {
+  return word ? word[0].toUpperCase() + word.slice(1) : word;
 }
 
 function filterAmbiguous(source: string, exclude: boolean): string {

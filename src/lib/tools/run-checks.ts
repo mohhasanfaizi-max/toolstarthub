@@ -88,10 +88,15 @@ import { minifyJavaScript } from "./javascript-minify.ts";
 import { formatJson, minifyJson, validateJson } from "./json.ts";
 import { generateLorem } from "./lorem.ts";
 import { minifyStats } from "./minify-stats.ts";
+import { passwordLogCsvTemplate, PASSWORD_LOG_COLUMNS } from "./password-log.ts";
 import {
   generatePassword,
+  generatePassphrase,
   parsePasswordLength,
+  parsePassphraseWordCount,
   PASSWORD_MAX,
+  PASSPHRASE_MAX_WORDS,
+  PASSPHRASE_WORDLIST_SIZE,
 } from "./password.ts";
 import { looksLikePdf, parsePageSelection, pdfScaleForPage, validatePdfBytes, validatePdfFile } from "./pdf.ts";
 import { calculatePercentage } from "./percentage.ts";
@@ -655,6 +660,36 @@ const password = generatePassword({
 assert(password.ok && password.password.length === 16, "Password length is 16");
 assert(password.ok && !/[O0Il1]/.test(password.password), "Ambiguous password characters excluded");
 assert(password.ok && password.charsetSize > 0, "Password charset size is reported");
+
+assert(!parsePassphraseWordCount("3").ok, "Short passphrase word count should fail");
+assert(!parsePassphraseWordCount(String(PASSPHRASE_MAX_WORDS + 1)).ok, "Long passphrase word count should fail");
+assert(PASSPHRASE_WORDLIST_SIZE === 2048, "Passphrase word list has 2,048 words");
+const passphrase = generatePassphrase({
+  words: 6,
+  separator: "-",
+  capitalize: false,
+  addNumber: false,
+});
+assert(passphrase.ok && passphrase.password.split("-").length === 6, "Passphrase has six words");
+assert(passphrase.ok && Math.round(passphrase.bits) === 66, "Six-word passphrase is about 66 bits");
+const passphraseDigit = generatePassphrase({
+  words: 6,
+  separator: " ",
+  capitalize: true,
+  addNumber: true,
+});
+assert(passphraseDigit.ok && /\d$/.test(passphraseDigit.password), "Passphrase can end with a digit");
+
+const logCsv = passwordLogCsvTemplate();
+assert(logCsv.startsWith("\uFEFF"), "Password log CSV starts with a UTF-8 BOM");
+assert(
+  PASSWORD_LOG_COLUMNS.every((column) => logCsv.includes(column)),
+  "Password log CSV includes the template columns",
+);
+assert(
+  !PASSWORD_LOG_COLUMNS.some((column) => column.toLowerCase() === "password"),
+  "Password log template has no live-password column",
+);
 
 const jsMin = await minifyJavaScript(`function greet(name) {
   const message = "Hello, " + name;

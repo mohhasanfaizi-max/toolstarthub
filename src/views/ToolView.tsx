@@ -9,6 +9,7 @@ import { AdSlot } from "@/components/ads/AdSlot";
 import { RelatedGuides } from "@/components/guides/RelatedGuides";
 import { RelatedTools } from "@/components/tools/RelatedTools";
 import { ToolLearnMore } from "@/components/tools/ToolLearnMore";
+import { PasswordStorageGuide } from "@/components/tools/PasswordStorageGuide";
 import { FavoriteButton } from "@/components/tools/FavoriteButton";
 import { RecentTracker } from "@/components/tools/RecentTracker";
 import { ToolDetails, getFaqsForTool } from "@/components/tools/ToolDetails";
@@ -119,11 +120,14 @@ export function ToolView({ locale, slug }: { locale: Locale; slug: string }) {
       </ul>
     </section>
   ) : english ? (
-    <ToolLearnMore
-      tool={englishTool}
-      topic={englishTool.name}
-      relatedToolSlugs={relatedTools.map((r) => r.slug)}
-    />
+    <>
+      {slug === "password-generator" ? <PasswordStorageGuide /> : null}
+      <ToolLearnMore
+        tool={englishTool}
+        topic={englishTool.name}
+        relatedToolSlugs={relatedTools.map((r) => r.slug)}
+      />
+    </>
   ) : null;
 
   return (
@@ -186,7 +190,11 @@ export function ToolView({ locale, slug }: { locale: Locale; slug: string }) {
         </div>
         <div className="mt-3 flex items-start justify-between gap-3">
           <h1 className="min-w-0 break-words hyphens-auto text-3xl font-semibold tracking-tight text-foreground sm:text-4xl">
-            {english && slug === "paint-calculator" ? "Free Paint Calculator – How Much Paint Do I Need?" : tool.name}
+            {english && slug === "paint-calculator"
+              ? "Free Paint Calculator – How Much Paint Do I Need?"
+              : english && slug === "password-generator"
+                ? "Free Password Generator — Secure Passwords & Offline Password Log"
+                : tool.name}
           </h1>
           <FavoriteButton slug={tool.slug} name={tool.name} />
         </div>
