@@ -225,7 +225,7 @@ export function ToolDetails({
       {beforeFaq}
       <FaqList
         items={faqs}
-        heading={content?.article ? "Frequently Asked Questions" : labels.faq}
+        heading={content?.article && labels.faq === englishLabels.faq ? "Frequently Asked Questions" : labels.faq}
       />
     </>
   );
