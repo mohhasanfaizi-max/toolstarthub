@@ -25,6 +25,8 @@ type PageMetadataInput = {
   hreflang?: boolean;
   /** noindex but keep following links (pages whose content is not translated yet). */
   noIndexFollow?: boolean;
+  /** Locales to list in hreflang. Defaults to every indexable locale. */
+  alternateLocales?: Locale[];
 };
 
 /**
@@ -34,13 +36,13 @@ type PageMetadataInput = {
  */
 export function languageAlternates(
   path: string,
+  locales: Locale[] = indexableLocales(),
 ): Record<string, string> | undefined {
-  const indexable = indexableLocales();
-  if (indexable.length < 2) {
+  if (locales.length < 2) {
     return undefined;
   }
   const languages: Record<string, string> = {};
-  for (const locale of indexable) {
+  for (const locale of locales) {
     languages[localeInfo[locale].tag] = absoluteUrl(localizePath(path, locale));
   }
   languages["x-default"] = absoluteUrl(localizePath(path, defaultLocale));
@@ -83,6 +85,7 @@ export function createPageMetadata({
   locale = defaultLocale,
   hreflang = false,
   noIndexFollow = false,
+  alternateLocales,
 }: PageMetadataInput): Metadata {
   const url = absoluteUrl(localizePath(path, locale));
   const ogImage = pageImage
@@ -96,7 +99,7 @@ export function createPageMetadata({
   const translationHidden = !isTranslationIndexable(locale);
   const languages =
     hreflang && !noIndex && !noIndexFollow && !translationHidden
-      ? languageAlternates(path)
+      ? languageAlternates(path, alternateLocales)
       : undefined;
 
   return {

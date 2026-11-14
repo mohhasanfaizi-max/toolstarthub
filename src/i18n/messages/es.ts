@@ -127,7 +127,7 @@ const messages: Messages = {
       "Herramientas online rápidas, gratuitas y fáciles de usar para cálculos, texto, desarrollo, imágenes, SEO y tareas cotidianas. Sin registro.",
     toolsTitle: "Todas las herramientas",
     toolsDescription:
-      "Explora herramientas online gratuitas para cálculos, texto, desarrollo, imágenes, SEO y tareas cotidianas.",
+      "Explora herramientas online gratuitas para cálculos, texto, desarrollo, imágenes, SEO y tareas cotidianas. Sin registro.",
     categoriesTitle: "Categorías",
     categoriesDescription:
       "Explora Tools Star Hub por categoría: calculadoras, herramientas de texto, para desarrolladores, de imagen y PDF, utilidades SEO y herramientas de IA.",

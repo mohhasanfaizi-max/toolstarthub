@@ -24,8 +24,8 @@ import { ToolTextProvider } from "@/i18n/tool-text";
 import {
   getToolPageTranslation,
   getToolText,
+  indexableLocalesForTool,
   isToolPageIndexable,
-  isToolTranslatedEverywhere,
 } from "@/i18n/tool-pages/server";
 import {
   getCategory,
@@ -56,14 +56,17 @@ export function toolMetadata(locale: Locale, slug: string) {
   const englishRoute = getToolBySlug(slug)?.route ?? `/tools/${slug}`;
   const indexable = isToolPageIndexable(locale, slug);
   const localizedPage = getLocalizedToolPage(slug, locale);
+  const pageTranslation = getToolPageTranslation(slug, locale);
+  const toolLocales = indexableLocalesForTool(slug);
   return createPageMetadata({
     title: localizedPage?.metaTitle ?? tool.metaTitle ?? tool.name,
-    description: tool.description,
+    description: pageTranslation?.metaDescription ?? tool.description,
     path: englishRoute,
     keywords: tool.keywords,
     locale,
-    // Alternates only once every language has the full tool page.
-    hreflang: indexable && isToolTranslatedEverywhere(slug),
+    // List only locales that already have a complete, indexable page.
+    hreflang: indexable && toolLocales.length > 1,
+    alternateLocales: toolLocales,
     noIndexFollow: !indexable,
     shareImage: {
       route: englishRoute,
@@ -119,15 +122,23 @@ export function ToolView({ locale, slug }: { locale: Locale; slug: string }) {
         <li><Link className="font-semibold underline underline-offset-2" href="/guides/how-to-convert-units">How to convert units</Link> — keep measurement units consistent.</li>
       </ul>
     </section>
-  ) : english ? (
+  ) : slug === "password-generator" && (english || locale === "es") ? (
     <>
-      {slug === "password-generator" ? <PasswordStorageGuide /> : null}
-      <ToolLearnMore
-        tool={englishTool}
-        topic={englishTool.name}
-        relatedToolSlugs={relatedTools.map((r) => r.slug)}
-      />
+      <PasswordStorageGuide locale={locale} />
+      {english ? (
+        <ToolLearnMore
+          tool={englishTool}
+          topic={englishTool.name}
+          relatedToolSlugs={relatedTools.map((r) => r.slug)}
+        />
+      ) : null}
     </>
+  ) : english ? (
+    <ToolLearnMore
+      tool={englishTool}
+      topic={englishTool.name}
+      relatedToolSlugs={relatedTools.map((r) => r.slug)}
+    />
   ) : null;
 
   return (
