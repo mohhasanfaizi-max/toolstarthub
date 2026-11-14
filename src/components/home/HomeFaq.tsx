@@ -4,12 +4,45 @@ import { Section } from "@/components/ui/Section";
 import { categories } from "@/data/categories";
 import { getPublicGuides } from "@/data/guides";
 import { tools } from "@/data/tools";
+import type { Locale } from "@/i18n/config";
 import { faqJsonLd } from "@/lib/seo";
 import { siteConfig, siteContact } from "@/lib/site";
 
-/** Direct answers about the site itself (English homepage only). */
-export function getHomeFaqs(now = new Date()) {
+/** Direct answers about the site itself. */
+export function getHomeFaqs(now = new Date(), locale: Locale = "en") {
   const guideCount = getPublicGuides(now).length;
+  if (locale === "es") {
+    return [
+      {
+        question: `¿Qué es ${siteConfig.name}?`,
+        answer: `${siteConfig.name} es un sitio web gratuito con ${tools.length} herramientas online en ${categories.length} categorías: calculadoras, herramientas de texto, para desarrolladores, de imagen y PDF, utilidades SEO y herramientas de IA. También incluye ${guideCount} guías paso a paso, redactadas en inglés, que explican el método detrás de las herramientas.`,
+      },
+      {
+        question: `¿${siteConfig.name} es gratis?`,
+        answer:
+          "Sí. Todas las herramientas son gratuitas. No hay registro, ni cuenta, ni sistema de pago.",
+      },
+      {
+        question: "¿Se suben mis archivos o mi texto?",
+        answer:
+          "La mayoría de las herramientas funcionan en tu navegador, así que los archivos y el texto pegado se quedan en tu dispositivo. Las excepciones son los botones de IA, que envían el texto que escribes al modelo Gemini de Google, y la vista previa de Open Graph, que envía la URL a este sitio. Cada página indica cómo trata los datos.",
+      },
+      {
+        question: "¿Las herramientas funcionan en el móvil?",
+        answer:
+          "Sí. Las páginas están pensadas para el navegador del teléfono y para el ordenador. Los archivos grandes pueden ir más lentos en un móvil porque el trabajo se hace en el dispositivo.",
+      },
+      {
+        question: "¿En qué idiomas está disponible el sitio?",
+        answer:
+          "El sitio está disponible en inglés y en otras 14 lenguas, entre ellas el español, el portugués, el francés, el alemán, el árabe, el urdu, el hindi, el japonés y el coreano. Las guías están redactadas en inglés.",
+      },
+      {
+        question: "¿Cómo informo de un resultado incorrecto o propongo una herramienta?",
+        answer: `Escribe a ${siteContact.email} o usa la página de contacto. Incluye el nombre de la herramienta, lo que introdujiste y lo que esperabas ver.`,
+      },
+    ];
+  }
   return [
     {
       question: `What is ${siteConfig.name}?`,
@@ -42,13 +75,16 @@ export function getHomeFaqs(now = new Date()) {
   ];
 }
 
-export function HomeFaq() {
-  const faqs = getHomeFaqs();
+export function HomeFaq({ locale = "en" }: { locale?: Locale }) {
+  const faqs = getHomeFaqs(new Date(), locale);
   return (
     <Section className="!pt-0">
       <JsonLd data={faqJsonLd(faqs)} />
       <div className="max-w-3xl">
-        <FaqList items={faqs} heading="Frequently asked questions" />
+        <FaqList
+          items={faqs}
+          heading={locale === "es" ? "Preguntas frecuentes" : "Frequently asked questions"}
+        />
       </div>
     </Section>
   );

@@ -8,7 +8,7 @@ import {
 } from "./index";
 import type { ToolPageTranslation } from "./types";
 import { hasLocalizedToolPage } from "@/i18n/localized-tool-content";
-import { locales } from "@/i18n/config";
+import { indexableLocales } from "@/i18n/indexing";
 
 /** True when the tool page is fully translated into `locale` (English always is). */
 export function isToolPageIndexable(locale: Locale, slug: string): boolean {
@@ -21,16 +21,14 @@ export function isToolPageIndexable(locale: Locale, slug: string): boolean {
   );
 }
 
-/** True when every language has the full tool page (hreflang + sitemap alternates). */
+/** True when every currently indexable language has the full tool page. */
 export function isToolTranslatedEverywhere(slug: string): boolean {
-  const category = getToolBySlug(slug)?.category;
-  if (category && translatedToolCategories.includes(category)) {
-    return true;
-  }
-  // Tools that ship their own page translations (e.g. CPS Test).
-  return locales.every(
-    (locale) => locale === "en" || hasLocalizedToolPage(slug, locale),
-  );
+  return indexableLocales().every((locale) => isToolPageIndexable(locale, slug));
+}
+
+/** Indexable locales that already have a complete page for this tool. */
+export function indexableLocalesForTool(slug: string) {
+  return indexableLocales().filter((locale) => isToolPageIndexable(locale, slug));
 }
 
 export function getToolPageTranslation(

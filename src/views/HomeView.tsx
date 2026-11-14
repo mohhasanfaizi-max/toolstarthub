@@ -45,8 +45,8 @@ export function HomeView({ locale }: { locale: Locale }) {
       {/* Guides are English-only for now (Part 2). */}
       {locale === "en" ? <HelpfulGuides /> : null}
       <Pricing locale={locale} />
-      {/* Site FAQ (FAQPage) is English-only, like the guides. */}
-      {locale === "en" ? <HomeFaq /> : null}
+      {/* Guides stay English-only. The site FAQ is translated for indexable locales. */}
+      {locale === "en" || locale === "es" ? <HomeFaq locale={locale} /> : null}
       <FinalCTA locale={locale} />
       {locale === "en" ? <HomeIntro /> : null}
     </>

@@ -29,7 +29,7 @@ import {
   createPageMetadata,
   itemListJsonLd,
 } from "@/lib/seo";
-import { categoryMetaDescriptions } from "@/data/page-meta";
+import { categoryMetaDescriptions, categoryMetaDescriptionsEs } from "@/data/page-meta";
 
 export function categoryStaticParams() {
   return categories.map((category) => ({ slug: category.slug }));
@@ -47,7 +47,9 @@ export function categoryMetadata(locale: Locale, slug: string) {
     description:
       locale === "en"
         ? categoryMetaDescriptions[category.slug]
-        : category.shortDescription,
+        : locale === "es"
+          ? categoryMetaDescriptionsEs[category.slug]
+          : category.shortDescription,
     path: englishRoute,
     locale,
     hreflang: true,

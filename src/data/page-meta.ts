@@ -23,3 +23,19 @@ export const categoryMetaDescriptions: Record<CategorySlug, string> = {
 /** English description for the All Tools page. */
 export const toolsIndexMetaDescription =
   "Browse every free online tool on Tools Star Hub: calculators, text and developer tools, image and PDF tools, SEO and privacy utilities, and AI tools. No signup.";
+
+/** Spanish search-result descriptions for category pages once /es is indexable. */
+export const categoryMetaDescriptionsEs: Record<CategorySlug, string> = {
+  calculators:
+    "Calculadoras online gratuitas para porcentajes, descuentos, edad, fechas, préstamos, hipotecas, ahorro, sueldo, GPA, superficie y conversiones. Sin registro.",
+  "text-tools":
+    "Herramientas de texto online gratuitas: cuenta palabras y caracteres, cambia mayúsculas, compara textos, quita duplicados y saltos de línea y convierte números.",
+  "developer-tools":
+    "Herramientas gratis para desarrolladores: formatea JSON, codifica Base64 y URL, minifica HTML, CSS y JS, prueba regex, decodifica JWT y crea expresiones cron.",
+  "image-tools":
+    "Herramientas de imagen y PDF en tu navegador: comprime, redimensiona, recorta y convierte imágenes, y une, divide o convierte PDF sin subir archivos.",
+  "seo-utilities":
+    "Utilidades SEO gratuitas: crea enlaces UTM, slugs y metaetiquetas, genera o escanea códigos QR, crea contraseñas seguras y mide la velocidad de clic (CPS).",
+  "ai-tools":
+    "Herramientas de escritura con IA: crea prompts para texto, imagen y vídeo, analiza la escritura y acorta o reescribe un borrador, en el navegador o con Gemini.",
+};

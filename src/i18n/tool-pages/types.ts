@@ -11,6 +11,8 @@ export type ToolPageTranslation = {
   ui: ToolTextDictionary;
   /** Optional short note shown above the workspace (e.g. English-only output). */
   note?: string;
+  /** Search-result description, 110–160 characters, used on indexable locales. */
+  metaDescription?: string;
 };
 
 export type ToolPageTranslations = Record<string, ToolPageTranslation>;
