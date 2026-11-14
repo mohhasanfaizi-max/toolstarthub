@@ -101,6 +101,7 @@ const tools: ToolTranslations = {
   "favicon-generator": ["Generador de favicon", "Dibuja una letra o un color sólido como iconos PNG de 16, 32 y 180 píxeles, además de un ICO con los dos tamaños menores."],
   "meta-tag-generator": ["Generador de metaetiquetas", "Escribe etiquetas title, description, robots, canonical, Open Graph y Twitter en HTML. No se consulta ninguna página en línea."],
   "open-graph-preview": ["Vista previa Open Graph", "Comprueba el título, la descripción, la imagen y la tarjeta de Twitter de una página pública. La URL se envía a este sitio; las direcciones privadas y locales se rechazan."],
+  "secret-santa-generator": ["Generador de amigo invisible", "Organiza un sorteo de amigo invisible en tu navegador, con exclusiones y mensajes privados. Los nombres no se envían a un servidor."],
 };
 
 export default tools;
