@@ -83,6 +83,76 @@ const page: LocalizedToolPage = {
         answer:
           "No. La prueba funciona en esta pestaña del navegador. Los récords se guardan solo en el almacenamiento local de este navegador, y Borrar récords los elimina.",
       },
+      {
+        question: "¿Cómo empiezo un test de clics por segundo en esta página?",
+        answer:
+          "Pulsa iniciar cuando estés listo, haz clic lo más rápido que puedas durante el tiempo medido y lee tu puntuación de CPS al terminar.",
+      },
+      {
+        question: "¿Cuánto suele durar la ventana de un test de CPS?",
+        answer:
+          "Muchas pruebas usan de uno a cinco segundos; las ventanas cortas premian la velocidad de ráfaga y las largas, la constancia.",
+      },
+      {
+        question: "¿Un ratón y un trackpad cambian mi CPS?",
+        answer:
+          "Sí: los dispositivos y el tacto del clic no son iguales. Compara las puntuaciones solo con la misma configuración.",
+      },
+      {
+        question: "¿Qué es el jitter clicking, en pocas palabras?",
+        answer:
+          "Es una técnica que hace vibrar la mano para provocar clics rápidos; cansa más las muñecas y no es obligatorio aquí.",
+      },
+      {
+        question: "¿Qué es el butterfly clicking?",
+        answer:
+          "Alternar dos dedos sobre el mismo botón para subir la cadencia de clics; practícalo con cuidado para no forzar la mano.",
+      },
+      {
+        question: "¿Puedo pausar a mitad de la prueba?",
+        answer:
+          "Lo habitual es que el temporizador siga hasta el final; reinicia si necesitas un intento limpio.",
+      },
+      {
+        question: "¿Por qué baja mi puntuación en una prueba más larga?",
+        answer:
+          "El cansancio y los clics fallidos bajan el CPS medio a medida que se alarga la ventana.",
+      },
+      {
+        question: "¿La herramienta cuenta los clics derechos o solo los izquierdos?",
+        answer:
+          "La mayoría de los tests de CPS cuentan el botón principal que usas en el área de clic: sigue las instrucciones de la página.",
+      },
+      {
+        question: "¿Hay una espera entre intentos?",
+        answer:
+          "Suele poder repetirse al momento; descansa si la mano se siente cansada.",
+      },
+      {
+        question: "¿Puedo usarlo para calentar antes de jugar?",
+        answer:
+          "Sí, como una métrica corta de calentamiento; el rendimiento en el juego sigue dependiendo de la puntería y de los ajustes.",
+      },
+      {
+        question: "¿El retraso del navegador bajará mi puntuación?",
+        answer:
+          "Las pestañas pesadas o unos FPS bajos pueden perder eventos de clic; cierra lo que sobre para una lectura más justa.",
+      },
+      {
+        question: "¿Cómo deberían mejorar los principiantes sin lesionarse?",
+        answer:
+          "Usa una postura relajada, sesiones cortas y para si sientes dolor: la velocidad puede esperar.",
+      },
+      {
+        question: "¿Las pantallas táctiles admiten tests de CPS?",
+        answer:
+          "Si la página acepta toques, sí; los resultados igual difieren de los de un ratón.",
+      },
+      {
+        question: "¿Las puntuaciones altas se guardan en una clasificación?",
+        answer:
+          "Esta página se centra en tu resultado local, salvo que ofrezca con claridad una función para compartir.",
+      },
     ],
   },
 };

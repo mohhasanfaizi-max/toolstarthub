@@ -7,18 +7,32 @@ import {
   translatedToolCategories,
 } from "./index";
 import type { ToolPageTranslation } from "./types";
-import { hasLocalizedToolPage } from "@/i18n/localized-tool-content";
+import { getLocalizedToolPage } from "@/i18n/localized-tool-content";
 import { indexableLocales } from "@/i18n/indexing";
+import { getFaqsForTool } from "@/components/tools/ToolDetails";
+import type { ToolContent } from "@/data/tool-content";
+
+/** True when localized FAQs match the English count, including the shared mobile FAQ. */
+function hasFaqParity(slug: string, content: ToolContent): boolean {
+  const englishCount = getFaqsForTool(slug, slug).length;
+  const localizedCount = getFaqsForTool(slug, slug, content).length;
+  return englishCount > 0 && localizedCount === englishCount;
+}
 
 /** True when the tool page is fully translated into `locale` (English always is). */
 export function isToolPageIndexable(locale: Locale, slug: string): boolean {
   if (locale === "en") {
     return true;
   }
-  return (
-    getToolPageTranslation(slug, locale) !== undefined ||
-    hasLocalizedToolPage(slug, locale)
-  );
+  const page = getToolPageTranslation(slug, locale);
+  if (page?.content) {
+    return hasFaqParity(slug, page.content);
+  }
+  const localized = getLocalizedToolPage(slug, locale);
+  if (localized?.content) {
+    return hasFaqParity(slug, localized.content);
+  }
+  return false;
 }
 
 /** True when every currently indexable language has the full tool page. */
