@@ -58,6 +58,7 @@ import aitools_hi from "./ai-tools/hi";
 import aitools_ur from "./ai-tools/ur";
 import aitools_ja from "./ai-tools/ja";
 import aitools_ko from "./ai-tools/ko";
+import calculators_es from "./calculators/es";
 
 export const commonToolText: Partial<Record<Locale, ToolTextDictionary>> = {
   "pt-br": common_ptbr,
@@ -80,7 +81,7 @@ export const toolPageTranslations: Partial<Record<Locale, ToolPageTranslations>>
   "pt-br": { ...texttools_ptbr, ...seoutilities_ptbr, ...aitools_ptbr },
   "nl": { ...texttools_nl, ...seoutilities_nl, ...aitools_nl },
   "ar": { ...texttools_ar, ...seoutilities_ar, ...aitools_ar },
-  "es": { ...texttools_es, ...seoutilities_es, ...aitools_es },
+  "es": { ...texttools_es, ...seoutilities_es, ...aitools_es, ...calculators_es },
   "fr": { ...texttools_fr, ...seoutilities_fr, ...aitools_fr },
   "id": { ...texttools_id, ...seoutilities_id, ...aitools_id },
   "de": { ...texttools_de, ...seoutilities_de, ...aitools_de },
@@ -94,4 +95,4 @@ export const toolPageTranslations: Partial<Record<Locale, ToolPageTranslations>>
 };
 
 /** Categories whose tool pages are translated in every language. */
-export const translatedToolCategories: readonly string[] = ["text-tools", "seo-utilities", "ai-tools"];
+export const translatedToolCategories: readonly string[] = ["text-tools", "seo-utilities", "ai-tools", "calculators"];
