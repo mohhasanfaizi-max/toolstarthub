@@ -73,6 +73,8 @@ export function CodeOutputWithCopy({
         rows={Math.min(Math.max(lines, 2), 16)}
         wrap="off"
         spellCheck={false}
+        lang="en"
+        dir="ltr"
         className="mt-2 block w-full resize-y rounded-2xl border border-border bg-accent-soft p-4 font-mono text-sm leading-6 text-foreground"
       />
       <div className="mt-3 flex flex-wrap items-center gap-3">
