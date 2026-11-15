@@ -104,6 +104,13 @@ const tools: ToolTranslations = {
   "meta-tag-generator": ["Generador de metaetiquetas", "Escribe etiquetas title, description, robots, canonical, Open Graph y Twitter en HTML. No se consulta ninguna página en línea."],
   "open-graph-preview": ["Vista previa Open Graph", "Comprueba el título, la descripción, la imagen y la tarjeta de Twitter de una página pública. La URL se envía a este sitio; las direcciones privadas y locales se rechazan."],
   "secret-santa-generator": ["Generador de amigo invisible", "Organiza un sorteo de amigo invisible en tu navegador, con exclusiones y mensajes privados. Los nombres no se envían a un servidor."],
+  "significant-figures-calculator": ["Calculadora y contador de cifras significativas", "Cuenta cifras significativas, redondea a la precisión que indiques, convierte a notación científica y opera con las reglas de cifras significativas."],
+  "partial-pressure-calculator": ["Calculadora de presión parcial", "Calcula presiones parciales con la ley de Dalton a partir de fracciones molares, mezclas o el gas ideal, y convierte entre atm, kPa, Pa, bar y mmHg."],
+  "fantasy-point-calculator": ["Calculadora de puntos de fantasy", "Calcula puntos de fantasy de críquet, fútbol y baloncesto a partir de las estadísticas del partido, con reglas editables guardadas en tu navegador."],
+  "graduation-calculator-by-birthday": ["Calculadora de graduación por fecha de nacimiento", "Estima el inicio escolar y el año de graduación desde la fecha de nacimiento, con la edad de ingreso, la fecha límite, el calendario y los años de estudio."],
+  "tdee-calculator": ["Calculadora TDEE: calcula tus calorías diarias", "Calculadora TDEE gratuita con BMR Mifflin–St Jeor, cinco niveles de actividad y metas de calorías para mantener, perder o ganar peso, con macros sugeridos."],
+  "alma-ai-nutrition-coach": ["Alma: coach de nutrición con IA y registro de alimentos", "Calcula calorías diarias, registra alimentos y controla proteínas, macros y micronutrientes con Alma, tu coach de nutrición con IA gratuito."],
 };
+
 
 export default tools;
