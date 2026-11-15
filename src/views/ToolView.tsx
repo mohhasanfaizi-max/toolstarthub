@@ -141,6 +141,13 @@ export function ToolView({ locale, slug }: { locale: Locale; slug: string }) {
     />
   ) : null;
 
+  const workspaceHasTranslatedUi = Boolean(
+    (translation?.ui && Object.keys(translation.ui).length > 0) ||
+      localizedPage,
+  );
+  const workspaceLocalized =
+    fullContent && (localeInfo[locale].dir !== "rtl" || workspaceHasTranslatedUi);
+
   return (
     <Container className="py-10 sm:py-14">
       <RecentTracker slug={tool.slug} />
@@ -236,11 +243,13 @@ export function ToolView({ locale, slug }: { locale: Locale; slug: string }) {
           {translation.note}
         </p>
       ) : null}
-      {/* Untranslated workspaces keep English labels, so mark them as English. */}
+      {/* Untranslated workspaces keep English labels, so mark them as English.
+          In RTL locales this also applies when page copy is complete but the
+          form UI is still English (for example Secret Santa). */}
       <div
         className="mt-8"
-        lang={fullContent ? localeInfo[locale].tag : "en"}
-        dir={fullContent ? localeInfo[locale].dir : "ltr"}
+        lang={workspaceLocalized ? localeInfo[locale].tag : "en"}
+        dir={workspaceLocalized ? localeInfo[locale].dir : "ltr"}
       >
         <ToolTextProvider dict={getToolText(slug, locale)}>
           <ToolWorkspace tool={tool} />
