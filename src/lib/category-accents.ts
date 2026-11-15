@@ -123,6 +123,15 @@ function overlapsName(phrase: string, nameTokens: Set<string>): boolean {
   return overlap === tokens.length;
 }
 
+function isMostlyLatin(value: string): boolean {
+  const letters = Array.from(value).filter((ch) => /\p{L}/u.test(ch));
+  if (letters.length === 0) {
+    return true;
+  }
+  const latin = letters.filter((ch) => /\p{Script=Latin}/u.test(ch)).length;
+  return latin / letters.length >= 0.7;
+}
+
 function isUsefulPhrase(phrase: string, nameTokens: Set<string>): boolean {
   const cleaned = phrase.trim();
   const words = cleaned.split(/\s+/).filter(Boolean);
@@ -156,9 +165,12 @@ export function toolHighlightBullets(tool: Tool, limit = 3): string[] {
     out.push(titleCase(raw));
   };
 
-  for (const raw of tool.keywords) {
-    push(raw);
-    if (out.length >= limit) break;
+  // English keyword chips do not belong on a translated tool card.
+  if (isMostlyLatin(tool.name)) {
+    for (const raw of tool.keywords) {
+      push(raw);
+      if (out.length >= limit) break;
+    }
   }
 
   if (out.length < 2) {

@@ -17,10 +17,10 @@ import {
  * locale to `true`. Locales absent from the map stay noindex. English is
  * always indexed and is not listed here.
  *
- *   export const INDEX_TRANSLATIONS = { es: true };
+ *   export const INDEX_TRANSLATIONS = { es: true, ar: true };
  */
 export const INDEX_TRANSLATIONS: false | Partial<Record<PrefixedLocale, boolean>> =
-  { es: true };
+  { es: true, ar: true };
 
 /** English is always indexable. A prefixed locale is indexable only when the flag allows it. */
 export function isTranslationIndexable(locale: Locale): boolean {

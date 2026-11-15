@@ -24,6 +24,10 @@ import {
   getToolsInCategory,
 } from "@/i18n/server";
 import {
+  indexableLocalesForCategory,
+  isCategoryPageIndexable,
+} from "@/i18n/tool-pages/server";
+import {
   absoluteUrl,
   breadcrumbJsonLd,
   createPageMetadata,
@@ -42,6 +46,8 @@ export function categoryMetadata(locale: Locale, slug: string) {
   }
   const t = getMessages(locale).meta;
   const englishRoute = `/categories/${category.slug}`;
+  const indexable = isCategoryPageIndexable(locale, category.slug);
+  const categoryLocales = indexableLocalesForCategory(category.slug);
   return createPageMetadata({
     title: formatMessage(t.categoryTitle, { name: category.name }),
     description:
@@ -54,7 +60,9 @@ export function categoryMetadata(locale: Locale, slug: string) {
             : category.shortDescription,
     path: englishRoute,
     locale,
-    hreflang: true,
+    hreflang: indexable && categoryLocales.length > 1,
+    noIndexFollow: !indexable,
+    alternateLocales: categoryLocales,
     // Share images are generated once per page in English and reused.
     shareImage: {
       route: englishRoute,

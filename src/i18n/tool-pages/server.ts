@@ -1,4 +1,4 @@
-import { getToolBySlug } from "@/data/tools";
+import { getToolBySlug, tools } from "@/data/tools";
 import type { Locale } from "@/i18n/config";
 import type { ToolTextDictionary } from "@/i18n/tool-text";
 import {
@@ -43,6 +43,25 @@ export function isToolTranslatedEverywhere(slug: string): boolean {
 /** Indexable locales that already have a complete page for this tool. */
 export function indexableLocalesForTool(slug: string) {
   return indexableLocales().filter((locale) => isToolPageIndexable(locale, slug));
+}
+
+/** True when every available tool in the category has FAQ parity in `locale`. */
+export function isCategoryPageIndexable(locale: Locale, slug: string): boolean {
+  if (locale === "en") {
+    return true;
+  }
+  const inCategory = tools.filter((tool) => tool.category === slug);
+  if (inCategory.length === 0) {
+    return false;
+  }
+  return inCategory.every((tool) => isToolPageIndexable(locale, tool.slug));
+}
+
+/** Indexable locales that already have a complete category page. */
+export function indexableLocalesForCategory(slug: string) {
+  return indexableLocales().filter((locale) =>
+    isCategoryPageIndexable(locale, slug),
+  );
 }
 
 export function getToolPageTranslation(

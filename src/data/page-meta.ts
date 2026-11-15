@@ -40,7 +40,7 @@ export const categoryMetaDescriptionsEs: Record<CategorySlug, string> = {
     "Herramientas de escritura con IA: crea prompts para texto, imagen y vídeo, analiza la escritura y acorta o reescribe un borrador, en el navegador o con Gemini.",
 };
 
-/** Arabic search-result descriptions for category pages. /ar stays noindex until later stages. */
+/** Arabic search-result descriptions for category pages. Incomplete categories stay noindex until their tools reach FAQ parity. */
 export const categoryMetaDescriptionsAr: Record<CategorySlug, string> = {
   calculators:
     "حاسبات مجانية على الإنترنت للنسب والخصومات والعمر والتواريخ والقروض والرهن والادخار والأجر والمعدل التراكمي والمساحة والتحويلات. بدون تسجيل.",
