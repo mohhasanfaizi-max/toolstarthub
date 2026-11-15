@@ -101,6 +101,7 @@ const tools: ToolTranslations = {
   "gitignore-generator": ["Generador de .gitignore", "Crea el texto de .gitignore con plantillas para Node, Next.js, archivos de entorno y más, además de tus propios patrones."],
   "cron-expression-generator": ["Generador de expresiones cron", "Crea una expresión cron de cinco campos o explica una existente. El domingo es 0. No se aceptan nombres de meses ni de días."],
   "favicon-generator": ["Generador de favicon", "Dibuja una letra o un color sólido como iconos PNG de 16, 32 y 180 píxeles, además de un ICO con los dos tamaños menores."],
+  "youtube-banner-maker": ["Creador de banners de YouTube", "Diseña la imagen de canal de YouTube de 2560 × 1440 en tu navegador, con 15 plantillas, texto, logotipos, formas, degradados, capas y una guía de zona segura, y exporta PNG o JPG de menos de 6 MB."],
   "meta-tag-generator": ["Generador de metaetiquetas", "Escribe etiquetas title, description, robots, canonical, Open Graph y Twitter en HTML. No se consulta ninguna página en línea."],
   "open-graph-preview": ["Vista previa Open Graph", "Comprueba el título, la descripción, la imagen y la tarjeta de Twitter de una página pública. La URL se envía a este sitio; las direcciones privadas y locales se rechazan."],
   "secret-santa-generator": ["Generador de amigo invisible", "Organiza un sorteo de amigo invisible en tu navegador, con exclusiones y mensajes privados. Los nombres no se envían a un servidor."],
