@@ -117,7 +117,14 @@ export function runCpsTestChecks(assert: Assert): void {
     assert(placeholders(ui.bestFor) === placeholders(cpsUi.en.bestFor), `${locale} best label keeps placeholders`);
     assert(ui.seconds.includes("{n}") && ui.scaleBelow.includes("{max}") && ui.scaleFrom.includes("{min}"), `${locale} unit placeholders`);
     const page = cpsTestPages[locale];
-    assert(page.content.howTo.length === 4 && page.content.faqs.length === 6, `${locale} CPS page has how-to and FAQ`);
+    const englishHowTo = cpsTestPages.en.content.howTo.length;
+    const englishCoreFaqs = cpsTestPages.en.content.faqs.length;
+    const englishFullFaqs = getToolContent("cps-test")?.faqs.length ?? englishCoreFaqs;
+    assert(page.content.howTo.length === englishHowTo, `${locale} CPS how-to matches English`);
+    assert(
+      page.content.faqs.length === englishCoreFaqs || page.content.faqs.length === englishFullFaqs,
+      `${locale} CPS FAQs match the English core or the full English set`,
+    );
     assert(page.content.features.length === 6 && page.content.examples.length === 2, `${locale} CPS page has features and examples`);
     assert(page.headings.disclaimer.includes("{link}"), `${locale} disclaimer keeps {link}`);
     assert(strings(page).every((text) => text.trim().length > 0), `${locale} CPS page text is not empty`);

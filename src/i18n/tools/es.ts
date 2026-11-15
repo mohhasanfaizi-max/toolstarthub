@@ -82,6 +82,7 @@ const tools: ToolTranslations = {
   "paycheck-estimator": ["Estimador de sueldo neto", "Estima el sueldo neto a partir del bruto y de las deducciones antes de impuestos, retenciones y deducciones después de impuestos que indiques."],
   "rent-vs-buy-calculator": ["Calculadora de alquilar o comprar", "Compara el alquiler estimado con el coste estimado y el patrimonio de comprar durante el periodo que elijas."],
   "fuel-cost-calculator": ["Calculadora de coste de combustible", "Estima el combustible consumido y el coste de un viaje según la distancia, el consumo y el precio que indiques."],
+  "unemployment-benefits-calculator": ["Calculadora de prestaciones por desempleo", "Estima el subsidio semanal y el total de la solicitud en California, Nueva York, Texas y Florida, con la fórmula y las fuentes de cada estado."],
   "business-days-calculator": ["Calculadora de días hábiles", "Cuenta los días laborables entre dos fechas y excluye las fechas que indiques."],
   "gpa-calculator": ["Calculadora de GPA", "Calcula un GPA ponderado por créditos a partir de notas con letra o puntos en la escala habitual de 4,0."],
   "square-footage-calculator": ["Calculadora de superficie", "Multiplica el largo por el ancho de cada habitación y suma las habitaciones. Resultados en pies cuadrados y metros cuadrados. Mide rectángulos, no armarios ni triángulos."],
