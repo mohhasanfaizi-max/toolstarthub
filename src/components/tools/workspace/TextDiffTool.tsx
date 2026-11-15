@@ -130,7 +130,7 @@ export function TextDiffTool() {
                       key={`${hunk.kind}-${index}`}
                       className={`rounded-xl border px-3 py-2 font-mono text-sm whitespace-pre-wrap break-words ${hunkClass(hunk.kind)}`}
                     >
-                      <span className="mr-2 font-sans text-xs font-semibold uppercase tracking-wide">
+                      <span className="me-2 font-sans text-xs font-semibold uppercase tracking-wide">
                         {tx(hunk.kind === "add" ? "Added" : hunk.kind === "remove" ? "Removed" : "Unchanged")}
                       </span>
                       {hunk.text}

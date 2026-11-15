@@ -39,3 +39,19 @@ export const categoryMetaDescriptionsEs: Record<CategorySlug, string> = {
   "ai-tools":
     "Herramientas de escritura con IA: crea prompts para texto, imagen y vídeo, analiza la escritura y acorta o reescribe un borrador, en el navegador o con Gemini.",
 };
+
+/** Arabic search-result descriptions for category pages. /ar stays noindex until later stages. */
+export const categoryMetaDescriptionsAr: Record<CategorySlug, string> = {
+  calculators:
+    "حاسبات مجانية على الإنترنت للنسب والخصومات والعمر والتواريخ والقروض والرهن والادخار والأجر والمعدل التراكمي والمساحة والتحويلات. بدون تسجيل.",
+  "text-tools":
+    "أدوات نص مجانية على الإنترنت: عدّ الكلمات والأحرف، وتغيير حالة الأحرف، ومقارنة النصوص، وحذف التكرار وفواصل الأسطر، وتحويل الأرقام.",
+  "developer-tools":
+    "أدوات مطورين مجانية في متصفحك: تنسيق JSON، وترميز Base64 والروابط، وتصغير HTML وCSS وJS، واختبار التعبير النمطي، وفك JWT، وبناء تعابير cron.",
+  "image-tools":
+    "أدوات صور وPDF تعمل في متصفحك: اضغط الصور وغيّر حجمها واقطعها وحوّلها، وادمج ملفات PDF أو قسّمها أو اضغطها أو حوّلها دون رفعها.",
+  "seo-utilities":
+    "أدوات سيو وخصوصية مجانية: أنشئ روابط UTM والشرائح والوسوم الوصفية، وولّد رموز QR أو امسحها، وأنشئ كلمات مرور آمنة، واختبر سرعة النقر (CPS).",
+  "ai-tools":
+    "أدوات كتابة بالذكاء الاصطناعي: أنشئ أوامر للنص والصورة والفيديو، وراجع أنماط الكتابة، واختصر مسودة أو أعد صياغتها، في المتصفح أو مع Gemini.",
+};
