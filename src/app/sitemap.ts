@@ -3,8 +3,12 @@ import { categories } from "@/data/categories";
 import { getPublicGuides } from "@/data/guides";
 import { tools } from "@/data/tools";
 import { localizePath } from "@/i18n/config";
+import type { Locale } from "@/i18n/config";
 import { indexableLocales } from "@/i18n/indexing";
-import { isToolTranslatedEverywhere } from "@/i18n/tool-pages/server";
+import {
+  indexableLocalesForCategory,
+  indexableLocalesForTool,
+} from "@/i18n/tool-pages/server";
 import { absoluteUrl, languageAlternates } from "@/lib/seo";
 import { siteConfig } from "@/lib/site";
 
@@ -27,17 +31,26 @@ const localizedRoutes = new Set(["", "/tools", "/categories"]);
 
 type Entry = MetadataRoute.Sitemap[number];
 
+/** One entry per listed language, with hreflang limited to those languages. */
+function localizedEntriesFor(
+  path: string,
+  base: Omit<Entry, "url" | "alternates">,
+  locales: Locale[],
+): Entry[] {
+  const languages = languageAlternates(path || "/", locales);
+  return locales.map((locale) => ({
+    ...base,
+    url: absoluteUrl(localizePath(path || "/", locale)),
+    ...(languages ? { alternates: { languages } } : {}),
+  }));
+}
+
 /** One entry per indexable language. Noindex translations are left out. */
 function localizedEntries(
   path: string,
   base: Omit<Entry, "url" | "alternates">,
 ): Entry[] {
-  const languages = languageAlternates(path || "/");
-  return indexableLocales().map((locale) => ({
-    ...base,
-    url: absoluteUrl(localizePath(path || "/", locale)),
-    ...(languages ? { alternates: { languages } } : {}),
-  }));
+  return localizedEntriesFor(path, base, indexableLocales());
 }
 
 export default function sitemap(): MetadataRoute.Sitemap {
@@ -53,24 +66,21 @@ export default function sitemap(): MetadataRoute.Sitemap {
       : [{ url: `${siteConfig.url}${path}`, ...base }];
   });
 
-  // Tool pages are listed in every language once the whole tool page is
-  // translated; until then only the English page is listed.
+  // List a tool in every indexable language that already has a complete page.
+  // Incomplete translations stay out, and other finished languages stay in.
   const toolPages: MetadataRoute.Sitemap = tools.flatMap((tool) => {
     const base = {
       changeFrequency: "monthly" as const,
       priority: tool.featured ? 0.8 : 0.6,
     };
-    if (isToolTranslatedEverywhere(tool.slug)) {
-      return localizedEntries(tool.route, base);
-    }
-    return [{ url: `${siteConfig.url}${tool.route}`, ...base }];
+    return localizedEntriesFor(tool.route, base, indexableLocalesForTool(tool.slug));
   });
 
   const categoryPages: MetadataRoute.Sitemap = categories.flatMap((category) =>
-    localizedEntries(category.route, {
+    localizedEntriesFor(category.route, {
       changeFrequency: "weekly",
       priority: 0.7,
-    }),
+    }, indexableLocalesForCategory(category.slug)),
   );
 
   const guidePages: MetadataRoute.Sitemap = getPublicGuides(new Date()).map(

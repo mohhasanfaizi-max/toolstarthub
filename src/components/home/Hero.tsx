@@ -5,7 +5,6 @@ import { Container } from "@/components/ui/Container";
 import { Icon } from "@/components/icons/Icon";
 import { getToolsByCategory, tools } from "@/data/tools";
 import {
-  formatMessage,
   formatNumber,
   localizePath,
   type Locale,
@@ -132,7 +131,14 @@ export function Hero({ locale = "en" }: { locale?: Locale }) {
               <HeroHeading text={t.h1} />
             </h1>
             <p className="mx-auto mt-4 max-w-xl text-base leading-7 text-muted-foreground sm:text-lg lg:mx-0">
-              {formatMessage(t.intro, { name: siteConfig.name })}
+              {t.intro.split("{name}").map((part, index) => (
+                <span key={index}>
+                  {index > 0 ? (
+                    <span className="whitespace-nowrap">{siteConfig.name}</span>
+                  ) : null}
+                  {part}
+                </span>
+              ))}
             </p>
             {locale === "en" ? (
               <p className="mx-auto mt-3 max-w-xl text-balance text-sm font-medium leading-6 text-foreground sm:text-base lg:mx-0">
