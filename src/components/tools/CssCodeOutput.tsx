@@ -11,6 +11,8 @@ export function CssCodeOutput({ css }: { css: string }) {
         tabIndex={0}
         role="region"
         aria-label="Generated CSS"
+        lang="en"
+        dir="ltr"
         className="overflow-x-auto rounded-2xl bg-accent-soft p-4 font-mono text-sm text-foreground"
       >
         {css}
