@@ -111,7 +111,7 @@ export function HomeFaq({ locale = "en" }: { locale?: Locale }) {
   const faqs = getHomeFaqs(new Date(), locale);
   return (
     <Section className="!pt-0">
-      <JsonLd data={faqJsonLd(faqs)} />
+      <JsonLd data={faqJsonLd(faqs, locale)} />
       <div className="max-w-3xl">
         <FaqList
           items={faqs}
