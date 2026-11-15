@@ -43,6 +43,38 @@ export function getHomeFaqs(now = new Date(), locale: Locale = "en") {
       },
     ];
   }
+  if (locale === "ar") {
+    return [
+      {
+        question: `ما هو ${siteConfig.name}؟`,
+        answer: `${siteConfig.name} موقع مجاني يضم ${tools.length} أداة على الإنترنت في ${categories.length} فئات: الحاسبات، وأدوات النصوص، وأدوات المطورين، وأدوات الصور وPDF، وأدوات السيو المساعدة، وأدوات الذكاء الاصطناعي. ويضم أيضًا ${guideCount} دليلًا خطوة بخطوة، مكتوبة بالإنجليزية، تشرح المنهج وراء الأدوات.`,
+      },
+      {
+        question: `هل ${siteConfig.name} مجاني؟`,
+        answer:
+          "نعم. كل الأدوات مجانية. لا تسجيل ولا حساب ولا نظام دفع.",
+      },
+      {
+        question: "هل تُرفع ملفاتي أو نصي؟",
+        answer:
+          "تعمل معظم الأدوات في متصفحك، لذا تبقى الملفات والنص الملصق على جهازك. الاستثناءات هي أزرار الذكاء الاصطناعي التي ترسل النص الذي تدخله إلى نموذج Gemini من Google، ومعاينة Open Graph التي ترسل الرابط إلى هذا الموقع. وتوضح كل صفحة كيف تعامل البيانات.",
+      },
+      {
+        question: "هل تعمل الأدوات على الهاتف؟",
+        answer:
+          "نعم. الصفحات مصممة لمتصفح الهاتف وللحاسوب. وقد تكون الملفات الكبيرة أبطأ على الهاتف لأن العمل يتم على الجهاز.",
+      },
+      {
+        question: "بأي لغات يتوفر الموقع؟",
+        answer:
+          "الموقع متوفر بالإنجليزية و14 لغة أخرى، منها الإسبانية والبرتغالية والفرنسية والألمانية والعربية والأردية والهندية واليابانية والكورية. والأدلة مكتوبة بالإنجليزية.",
+      },
+      {
+        question: "كيف أبلّغ عن نتيجة خاطئة أو أقترح أداة؟",
+        answer: `راسل ${siteContact.email} أو استخدم صفحة الاتصال. اذكر اسم الأداة وما أدخلته وما كنت تتوقع رؤيته.`,
+      },
+    ];
+  }
   return [
     {
       question: `What is ${siteConfig.name}?`,
@@ -83,7 +115,7 @@ export function HomeFaq({ locale = "en" }: { locale?: Locale }) {
       <div className="max-w-3xl">
         <FaqList
           items={faqs}
-          heading={locale === "es" ? "Preguntas frecuentes" : "Frequently asked questions"}
+          heading={locale === "es" ? "Preguntas frecuentes" : locale === "ar" ? "الأسئلة الشائعة" : "Frequently asked questions"}
         />
       </div>
     </Section>

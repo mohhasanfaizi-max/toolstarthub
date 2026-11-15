@@ -124,7 +124,7 @@ export function Hero({ locale = "en" }: { locale?: Locale }) {
 
       <Container className="relative py-12 sm:py-16 lg:py-20">
         <div className="grid items-stretch gap-8 lg:grid-cols-[minmax(0,1.05fr)_minmax(0,0.95fr)] lg:gap-10 xl:gap-12">
-          <div className="home-enter flex w-full max-w-2xl flex-col text-center lg:mx-0 lg:max-w-none lg:text-start mx-auto">
+          <div className="home-enter mx-auto flex w-full min-w-0 max-w-2xl flex-col text-center lg:mx-0 lg:max-w-none lg:text-start">
             <p className="text-sm font-semibold tracking-wide text-accent">
               {siteConfig.name}
             </p>

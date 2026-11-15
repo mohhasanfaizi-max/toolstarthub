@@ -141,8 +141,8 @@ export function ToolComments({ tool }: { tool: string }) {
                 <li key={c.id} className="rounded-2xl border border-border bg-background p-4 text-sm">
                   <p className="font-medium text-foreground">
                     {c.name}
-                    {c.rating ? <span className="ml-2 text-amber-700 dark:text-amber-300" aria-label={`Rated ${c.rating} of 5`}>{"★".repeat(c.rating)}{"☆".repeat(5 - c.rating)}</span> : null}
-                    <span className="ml-2 text-xs font-normal text-muted-foreground"><time dateTime={c.createdAt}>{new Date(c.createdAt).toLocaleDateString()}</time></span>
+                    {c.rating ? <span className="ms-2 text-amber-700 dark:text-amber-300" aria-label={`Rated ${c.rating} of 5`}>{"★".repeat(c.rating)}{"☆".repeat(5 - c.rating)}</span> : null}
+                    <span className="ms-2 text-xs font-normal text-muted-foreground"><time dateTime={c.createdAt}>{new Date(c.createdAt).toLocaleDateString()}</time></span>
                   </p>
                   <p className="mt-2 whitespace-pre-wrap break-words text-foreground">{c.body}</p>
                 </li>
