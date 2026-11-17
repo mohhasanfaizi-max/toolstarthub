@@ -11,7 +11,7 @@ const unemployment: ToolGuide = {
     secondaryKeywords: ["weekly benefit amount", "base period wages", "high quarter wages", "how much unemployment will i get", "maximum unemployment benefit"],
     toolSlug: "unemployment-benefits-calculator",
     siblingToolSlugs: ["paycheck-estimator", "hourly-wage-calculator", "savings-goal-calculator"],
-    metaTitle: "Estimate Unemployment Benefits: CA, NY, TX and FL",
+    metaTitle: "Estimate Unemployment Benefits: CA, NY, TX, FL",
     metaDescription:
       "Estimate a weekly unemployment benefit, claim total and number of weeks from four quarters of wages, using the published rules for CA, NY, TX and FL.",
     excerpt:
@@ -153,7 +153,7 @@ const santa: ToolGuide = {
     secondaryKeywords: ["secret santa name draw", "secret santa exclusions", "secret santa with couples", "printable secret santa cards", "gift exchange organizer"],
     toolSlug: "secret-santa-generator",
     siblingToolSlugs: ["random-number-generator", "qr-code-generator", "password-generator"],
-    metaTitle: "How to Draw Names for Secret Santa with Exclusions",
+    metaTitle: "How to Draw Secret Santa Names with Exclusions",
     metaDescription:
       "Draw Secret Santa names for 3 to 200 people, block couples with one-way or mutual rules, set a budget, and reveal, copy or print each card privately.",
     excerpt:

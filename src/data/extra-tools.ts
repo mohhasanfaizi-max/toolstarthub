@@ -26,7 +26,7 @@ export const extraTools: Tool[] = [
       "news translation",
     ],
     status: "available",
-    metaTitle: "Urdu News Translator — English Drafts from Urdu News",
+    metaTitle: "Urdu News Translator — English Drafts from Urdu",
     relatedSlugs: ["ai-article-compressor", "ai-text-humanizer", "word-counter", "ai-prompt-generator"],
   },
   {

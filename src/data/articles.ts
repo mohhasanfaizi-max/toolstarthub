@@ -151,7 +151,7 @@ const publishedGuides: Article[] = [
     status: "PUBLISHED",
     metaTitle: "How to Create a UTM URL",
     metaDescription:
-      "Add utm_source, utm_medium, and utm_campaign to a destination URL so analytics can tell campaigns apart.",
+      "Add utm_source, utm_medium, and utm_campaign to a destination URL so GA4 and other analytics can tell campaigns apart. Term and content tags stay optional.",
     excerpt:
       "Add utm_source, utm_medium, and utm_campaign to a destination URL so analytics can tell campaigns apart.",
     content: null,
@@ -174,7 +174,7 @@ const publishedGuides: Article[] = [
     status: "PUBLISHED",
     metaTitle: "How to Calculate Age",
     metaDescription:
-      "Count age in years, months, and days from a date of birth using the civil calendar, including leap days.",
+      "Count age in completed years, months, and days from a date of birth using the civil calendar, including leap days, without treating the result as a legal age.",
     excerpt:
       "Count age in years, months, and days from a date of birth using the civil calendar, including leap days.",
     content: null,
@@ -197,7 +197,7 @@ const publishedGuides: Article[] = [
     status: "PUBLISHED",
     metaTitle: "How to Work with PDFs in Your Browser",
     metaDescription:
-      "Compress a PDF, extract text, check metadata, or merge pages in the browser without uploading the file.",
+      "Compress a PDF, extract text, check metadata, or merge pages in the browser without uploading the file. Password-protected PDFs are called out as a limit.",
     excerpt:
       "Compress a PDF, extract text, check metadata, or merge pages in the browser without uploading the file.",
     content: null,
@@ -220,7 +220,7 @@ const publishedGuides: Article[] = [
     status: "PUBLISHED",
     metaTitle: "How to Clean and Compare Text",
     metaDescription:
-      "Remove duplicate lines, tidy whitespace, sort a list, and compare two drafts locally in the browser.",
+      "Remove duplicate lines, tidy whitespace, sort a list, and compare two drafts locally in the browser. The text you paste is not uploaded to a server.",
     excerpt:
       "Remove duplicate lines, tidy whitespace, sort a list, and compare two drafts locally in the browser.",
     content: null,
@@ -319,7 +319,7 @@ const publishedGuides: Article[] = [
     status: "PUBLISHED",
     metaTitle: "How to Add Sales Tax to a Price",
     metaDescription:
-      "Multiply a pre-tax price by the tax rate you type, round the tax to cents, and add it to the price.",
+      "Multiply a pre-tax price by the tax rate you type, round the tax to cents, and add it to the price to get the total you would pay at the register.",
     excerpt:
       "Multiply a pre-tax price by the tax rate you type, round the tax to cents, and add it to the price.",
     content: null,
@@ -365,7 +365,7 @@ const publishedGuides: Article[] = [
     status: "PUBLISHED",
     metaTitle: "How to Count the Days Between Two Dates",
     metaDescription:
-      "Count midnights between two dates, then read weeks and a calendar span in years, months, and days.",
+      "Count midnights between two dates, then read the same span as weeks and as years, months, and days on the civil calendar, without treating it as an age.",
     excerpt:
       "Count midnights between two dates, then read weeks and a calendar span in years, months, and days.",
     content: null,
@@ -388,7 +388,7 @@ const publishedGuides: Article[] = [
     status: "PUBLISHED",
     metaTitle: "How to Count Characters in a Text",
     metaDescription:
-      "Count Unicode characters, including spaces, plus a total without spaces, words, and lines.",
+      "Count Unicode characters, including spaces, plus a total without spaces, words, and lines. The count runs on the text you paste and stays in your browser.",
     excerpt:
       "Count Unicode characters, including spaces, plus a total without spaces, words, and lines.",
     content: null,
@@ -411,7 +411,7 @@ const publishedGuides: Article[] = [
     status: "PUBLISHED",
     metaTitle: "How to Pick a Color and Copy HEX, RGB, or HSL",
     metaDescription:
-      "Choose one opaque color with the browser color control and copy it as HEX, RGB, or HSL.",
+      "Choose one opaque color with the browser color control and copy it as HEX, RGB, or HSL. The picker does not store a palette on a server.",
     excerpt:
       "Choose one opaque color with the browser color control and copy it as HEX, RGB, or HSL.",
     content: null,
@@ -434,7 +434,7 @@ const publishedGuides: Article[] = [
     status: "PUBLISHED",
     metaTitle: "How to List the Dominant Colors in an Image",
     metaDescription:
-      "Sample a JPG, PNG, or WebP and list 3 to 10 colors with each color's share of the sampled pixels.",
+      "Sample a JPG, PNG, or WebP in your browser and list 3 to 10 approximate colors with each color's share of the sampled pixels. The file is not uploaded.",
     excerpt:
       "Sample a JPG, PNG, or WebP and list 3 to 10 colors with each color's share of the sampled pixels.",
     content: null,
@@ -455,9 +455,9 @@ const publishedGuides: Article[] = [
     cluster: "qr-code-scanner",
     articleType: "overview",
     status: "PUBLISHED",
-    metaTitle: "How to Read a QR Code from the Camera or an Image",
+    metaTitle: "How to Read a QR Code from Camera or Image",
     metaDescription:
-      "Decode one QR code from the camera or from a PNG or JPG, then open a link only after you read it.",
+      "Decode one QR code from the camera or from a PNG or JPG in your browser, then read the payload first and open a link only after you choose to.",
     excerpt:
       "Decode one QR code from the camera or from a PNG or JPG, then open a link only after you read it.",
     content: null,
@@ -480,7 +480,7 @@ const publishedGuides: Article[] = [
     status: "PUBLISHED",
     metaTitle: "How to Generate a Random Number",
     metaDescription:
-      "Draw 1 to 200 integers or decimals between a minimum and a maximum. Unique mode works for integers only.",
+      "Draw 1 to 200 integers or decimals between a minimum and a maximum you type. Unique mode works for integers only and will not repeat a value in that draw.",
     excerpt:
       "Draw 1 to 200 integers or decimals between a minimum and a maximum. Unique mode works for integers only.",
     content: null,
@@ -503,7 +503,7 @@ const publishedGuides: Article[] = [
     status: "PUBLISHED",
     metaTitle: "How to Estimate a Fuel Cost",
     metaDescription:
-      "Divide distance by fuel economy, then multiply by the price and the number of trips.",
+      "Divide distance by fuel economy, then multiply by the price per unit and the number of trips. The result is an estimate from the figures you enter, not a quote.",
     excerpt:
       "Divide distance by fuel economy, then multiply by the price and the number of trips.",
     content: null,
@@ -526,7 +526,7 @@ const publishedGuides: Article[] = [
     status: "PUBLISHED",
     metaTitle: "How to Calculate an Aspect Ratio",
     metaDescription:
-      "Divide width and height by their greatest common divisor, or find the missing side from a ratio.",
+      "Divide width and height by their greatest common divisor to simplify a ratio, or enter one side and the ratio to find the missing side in whole pixels.",
     excerpt:
       "Divide width and height by their greatest common divisor, or find the missing side from a ratio.",
     content: null,
@@ -549,7 +549,7 @@ const publishedGuides: Article[] = [
     status: "PUBLISHED",
     metaTitle: "How to Percent-Encode a URL Value",
     metaDescription:
-      "Encode a URL component with encodeURIComponent, or decode a percent-encoded string back to text.",
+      "Encode a URL component with encodeURIComponent, or decode a percent-encoded string back to text. This is for one value, not a full URL normalizer.",
     excerpt:
       "Encode a URL component with encodeURIComponent, or decode a percent-encoded string back to text.",
     content: null,
@@ -572,7 +572,7 @@ const publishedGuides: Article[] = [
     status: "PUBLISHED",
     metaTitle: "How to Read a Unix Timestamp",
     metaDescription:
-      "Turn seconds or milliseconds since 1970-01-01 UTC into a UTC date, or turn a UTC date back into a timestamp.",
+      "Turn seconds or milliseconds since 1970-01-01 UTC into a UTC date, or turn a UTC date back into a timestamp. Local time zones are not applied automatically.",
     excerpt:
       "Turn seconds or milliseconds since 1970-01-01 UTC into a UTC date, or turn a UTC date back into a timestamp.",
     content: null,
@@ -618,7 +618,7 @@ const publishedGuides: Article[] = [
     status: "PUBLISHED",
     metaTitle: "How to Check Contrast Between Two Colors",
     metaDescription:
-      "Compare two solid colors and read the WCAG 2 ratio, including AA and AAA for normal and large text.",
+      "Compare two solid colors and read the WCAG 2 contrast ratio, including AA and AAA thresholds for normal text, large text, and non-text interface graphics.",
     excerpt:
       "Compare two solid colors and read the WCAG 2 ratio, including AA and AAA for normal and large text.",
     content: null,
@@ -664,7 +664,7 @@ const publishedGuides: Article[] = [
     status: "PUBLISHED",
     metaTitle: "How to Write One CSS Box Shadow",
     metaDescription:
-      "Set one offset, blur, spread, color, and opacity, then copy a single box-shadow declaration.",
+      "Set one offset, blur, spread, color, and opacity, then copy a single box-shadow declaration to paste into a stylesheet. Multiple shadows are not stacked here.",
     excerpt:
       "Set one offset, blur, spread, color, and opacity, then copy a single box-shadow declaration.",
     content: null,
@@ -687,7 +687,7 @@ const publishedGuides: Article[] = [
     status: "PUBLISHED",
     metaTitle: "How to Turn a JSON Array into CSV",
     metaDescription:
-      "Turn a JSON array of objects into CSV. The first row is the keys, and commas inside cells are quoted.",
+      "Turn a JSON array of objects into CSV. The first row lists the keys, commas inside cells are quoted, and the conversion stays in your browser.",
     excerpt:
       "Turn a JSON array of objects into CSV. The first row is the keys, and commas inside cells are quoted.",
     content: null,
@@ -710,7 +710,7 @@ const publishedGuides: Article[] = [
     status: "PUBLISHED",
     metaTitle: "How to Turn CSV into JSON",
     metaDescription:
-      "Use the first CSV row as keys and turn each following row into a JSON object.",
+      "Use the first CSV row as object keys and turn each following row into a JSON object. The conversion runs in your browser and does not upload the file.",
     excerpt:
       "Use the first CSV row as keys and turn each following row into a JSON object.",
     content: null,
@@ -733,7 +733,7 @@ const publishedGuides: Article[] = [
     status: "PUBLISHED",
     metaTitle: "How to Test a Regular Expression",
     metaDescription:
-      "Run a JavaScript regular expression on sample text and read each match, its index, and its capture groups.",
+      "Run a JavaScript regular expression on sample text and read each match, its index, and its capture groups. The test stays in your browser.",
     excerpt:
       "Run a JavaScript regular expression on sample text and read each match, its index, and its capture groups.",
     content: null,
@@ -754,9 +754,9 @@ const publishedGuides: Article[] = [
     cluster: "hash-generator",
     articleType: "overview",
     status: "PUBLISHED",
-    metaTitle: "How to Hash Text with SHA-256, SHA-384, or SHA-512",
+    metaTitle: "How to Hash Text with SHA-256, SHA-384, SHA-512",
     metaDescription:
-      "Hash pasted text with SHA-256, SHA-384, or SHA-512. The hex is a fingerprint, not a way back to the text.",
+      "Hash pasted text with SHA-256, SHA-384, or SHA-512 in your browser. The hex string is a fingerprint of that text, not a way to recover the original.",
     excerpt:
       "Hash pasted text with SHA-256, SHA-384, or SHA-512. The hex is a fingerprint, not a way back to the text.",
     content: null,
@@ -779,7 +779,7 @@ const publishedGuides: Article[] = [
     status: "PUBLISHED",
     metaTitle: "How to Generate Lorem Ipsum",
     metaDescription:
-      "Generate 1 to 20 placeholder paragraphs, 1 to 50 sentences, or 1 to 500 words of lorem ipsum.",
+      "Generate 1 to 20 placeholder paragraphs, 1 to 50 sentences, or 1 to 500 words of lorem ipsum in your browser. The text is dummy copy, not a translation.",
     excerpt:
       "Generate 1 to 20 placeholder paragraphs, 1 to 50 sentences, or 1 to 500 words of lorem ipsum.",
     content: null,
@@ -802,7 +802,7 @@ const publishedGuides: Article[] = [
     status: "PUBLISHED",
     metaTitle: "How to Find and Replace Text",
     metaDescription:
-      "Replace the first exact match or every match. Case can be ignored. This is not a regular expression.",
+      "Replace the first exact match or every match in the text you paste. Case can be ignored. This is a literal search, not a regular expression.",
     excerpt:
       "Replace the first exact match or every match. Case can be ignored. This is not a regular expression.",
     content: null,
@@ -825,7 +825,7 @@ const publishedGuides: Article[] = [
     status: "PUBLISHED",
     metaTitle: "How to Remove Line Breaks",
     metaDescription:
-      "Turn line breaks into spaces, delete them, or keep a blank line between paragraphs.",
+      "Turn line breaks into spaces, delete them, or keep a blank line between paragraphs. The change applies to the text you paste and stays in your browser.",
     excerpt:
       "Turn line breaks into spaces, delete them, or keep a blank line between paragraphs.",
     content: null,
@@ -848,7 +848,7 @@ const publishedGuides: Article[] = [
     status: "PUBLISHED",
     metaTitle: "How to Add Line Numbers",
     metaDescription:
-      "Put a starting number and a separator in front of each line without changing the line text.",
+      "Put a starting number and a separator in front of each line, without changing the line text itself. Numbering happens in your browser, not on a server.",
     excerpt:
       "Put a starting number and a separator in front of each line without changing the line text.",
     content: null,
@@ -871,7 +871,7 @@ const publishedGuides: Article[] = [
     status: "PUBLISHED",
     metaTitle: "How to Turn a Number into Words",
     metaDescription:
-      "Write a whole number from zero through 999,999,999 in English words, or parse a simple phrase back to digits.",
+      "Write a whole number from zero through 999,999,999 in English words, or parse a simple phrase back to digits. Decimals and currency are not handled.",
     excerpt:
       "Write a whole number from zero through 999,999,999 in English words, or parse a simple phrase back to digits.",
     content: null,
@@ -894,7 +894,7 @@ const publishedGuides: Article[] = [
     status: "PUBLISHED",
     metaTitle: "How to Convert Text to Morse Code",
     metaDescription:
-      "Convert A to Z and 0 to 9 into Morse dots and dashes, or turn that code back into text.",
+      "Convert A to Z and 0 to 9 into Morse dots and dashes, or turn that code back into text. Spacing and prosigns beyond this basic set are not invented.",
     excerpt:
       "Convert A to Z and 0 to 9 into Morse dots and dashes, or turn that code back into text.",
     content: null,
@@ -917,7 +917,7 @@ const publishedGuides: Article[] = [
     status: "PUBLISHED",
     metaTitle: "How to Convert Numbers and Roman Numerals",
     metaDescription:
-      "Convert 1 to 3999 into standard Roman numerals, or a valid numeral back into a number.",
+      "Convert a whole number from 1 to 3999 into standard Roman numerals, or parse a valid numeral back into a number. Archaic or informal forms are not used.",
     excerpt:
       "Convert 1 to 3999 into standard Roman numerals, or a valid numeral back into a number.",
     content: null,
@@ -961,7 +961,7 @@ const publishedGuides: Article[] = [
     cluster: "ai-prompt-generator",
     articleType: "overview",
     status: "PUBLISHED",
-    metaTitle: "How to Build a Prompt, and When That Text Leaves the Browser",
+    metaTitle: "How to Build an AI Prompt, and When It Is Sent",
     metaDescription:
       "Generate prompt stays in the browser. Generate with AI sends topic, goal, and the other listed fields to Gemini.",
     excerpt:
@@ -984,7 +984,7 @@ const publishedGuides: Article[] = [
     cluster: "prompt-to-video",
     articleType: "overview",
     status: "PUBLISHED",
-    metaTitle: "How to Write a Video Prompt Without Rendering a Clip",
+    metaTitle: "How to Write a Video Prompt Without Rendering",
     metaDescription:
       "Build prompt writes a shot in the browser. Generate with AI sends the shot fields to Gemini and returns text, not a video.",
     excerpt:
@@ -1007,7 +1007,7 @@ const publishedGuides: Article[] = [
     cluster: "ai-article-compressor",
     articleType: "overview",
     status: "PUBLISHED",
-    metaTitle: "How to Shorten an Article in the Browser or with Gemini",
+    metaTitle: "How to Shorten an Article in Your Browser",
     metaDescription:
       "Shorten article edits the draft in the browser. Compress with AI sends the article and the selected setting to Gemini.",
     excerpt:
@@ -1060,7 +1060,7 @@ const publishedGuides: Article[] = [
     status: "PUBLISHED",
     metaTitle: "How to Read a Cron Expression",
     metaDescription:
-      "Read a five-field cron expression. When both day fields are set, cron matches either day, not both.",
+      "Read a five-field cron expression in plain language. When both day-of-month and day-of-week fields are set, cron matches either day, not both at once.",
     excerpt:
       "Read a five-field cron expression. When both day fields are set, cron matches either day, not both.",
     content: null,
@@ -1111,7 +1111,7 @@ const publishedGuides: Article[] = [
     status: "PUBLISHED",
     metaTitle: "How to Find the Mean, Median, and Mode",
     metaDescription:
-      "Find the mean, median, and mode of a comma-separated list. 1, 2, 3, 4 has a mean of 2.5 and no mode.",
+      "Find the mean, median, and mode of a comma-separated list of numbers. For example, 1, 2, 3, 4 has a mean of 2.5 and no mode because no value repeats.",
     excerpt:
       "Find the mean, median, and mode of a comma-separated list. 1, 2, 3, 4 has a mean of 2.5 and no mode.",
     content: null,
@@ -1180,7 +1180,7 @@ const publishedGuides: Article[] = [
     status: "PUBLISHED",
     metaTitle: "How to Make a Simple Favicon",
     metaDescription:
-      "Draw PNG icons at 16, 32, and 180 pixels. The ICO file holds the 16 and 32 pixel images only.",
+      "Draw PNG icons at 16, 32, and 180 pixels from a simple design. The ICO file holds the 16 and 32 pixel images only and is built in your browser.",
     excerpt:
       "Draw PNG icons at 16, 32, and 180 pixels. The ICO file holds the 16 and 32 pixel images only.",
     content: null,
@@ -1308,6 +1308,7 @@ const publishedGuides: Article[] = [
 
 type QueueInput = {
   title: string;
+  metaTitle?: string;
   slug: string;
   primaryKeyword: string;
   secondaryKeywords: string[];
@@ -1356,7 +1357,7 @@ const queue: QueueInput[] = [
     siblingToolSlugs: ["loan-calculator"],
     cluster: "mortgage-calculator",
     category: "calculators",
-    metaDescription: "A mortgage estimate starts from home price and down payment, then can add tax, insurance, HOA, and PMI.",
+    metaDescription: "A mortgage payment estimate starts from the home price and down payment, then can add property tax, insurance, HOA fees, and PMI when you fill in those fields.",
     relatedTools: ["mortgage-calculator", "loan-calculator"],
     relatedArticles: ["how-a-loan-payment-is-calculated"],
   },
@@ -1395,7 +1396,7 @@ const queue: QueueInput[] = [
     siblingToolSlugs: ["mortgage-calculator", "home-affordability-calculator"],
     cluster: "rent-vs-buy-calculator",
     category: "calculators",
-    metaDescription: "How to compare an estimated rent cost with an estimated buying cost for the same period.",
+    metaDescription: "Compare an estimated rent cost with an estimated buying cost for the same period, using the figures you enter rather than a live market or mortgage quote.",
     relatedTools: ["rent-vs-buy-calculator", "mortgage-calculator", "home-affordability-calculator"],
     relatedArticles: ["how-a-mortgage-payment-is-estimated"],
   },
@@ -1408,7 +1409,7 @@ const queue: QueueInput[] = [
     siblingToolSlugs: ["credit-card-payoff-calculator"],
     cluster: "debt-payoff-calculator",
     category: "calculators",
-    metaDescription: "How a payoff timeline is estimated when more than one debt is being paid down.",
+    metaDescription: "See how a payoff timeline is estimated when more than one debt is being paid down, using the balances, rates, and payments you enter, not a credit report.",
     relatedTools: ["debt-payoff-calculator", "credit-card-payoff-calculator", "loan-calculator"],
     relatedArticles: ["how-long-to-pay-off-a-credit-card"],
   },
@@ -1434,7 +1435,7 @@ const queue: QueueInput[] = [
     siblingToolSlugs: ["compound-interest-calculator"],
     cluster: "savings-goal-calculator",
     category: "calculators",
-    metaDescription: "At 0% interest, divide the gap between the target and what you have saved by the number of deposits.",
+    metaDescription: "At 0% interest, divide the gap between your savings target and what you have already saved by the number of deposits you still plan to make.",
     relatedTools: ["savings-goal-calculator", "compound-interest-calculator", "hourly-wage-calculator"],
     relatedArticles: ["how-compound-interest-works"],
   },
@@ -1447,7 +1448,7 @@ const queue: QueueInput[] = [
     siblingToolSlugs: ["paycheck-estimator"],
     cluster: "hourly-wage-calculator",
     category: "calculators",
-    metaDescription: "How a yearly or weekly salary converts to an hourly rate, including overtime hours.",
+    metaDescription: "See how a yearly or weekly salary converts to an hourly rate, including overtime hours when you enter them, using the hours-per-week figure you type.",
     relatedTools: ["hourly-wage-calculator", "paycheck-estimator", "tip-calculator"],
     relatedArticles: ["what-a-paycheck-estimate-includes"],
   },
@@ -1460,7 +1461,7 @@ const queue: QueueInput[] = [
     siblingToolSlugs: ["hourly-wage-calculator"],
     cluster: "paycheck-estimator",
     category: "calculators",
-    metaDescription: "What this paycheck estimate includes, and which taxes and deductions it does not calculate.",
+    metaDescription: "See what this paycheck estimate includes, such as gross pay and withholding you enter, and which taxes and deductions it does not calculate automatically.",
     relatedTools: ["paycheck-estimator", "hourly-wage-calculator", "sales-tax-calculator"],
     relatedArticles: ["how-to-convert-salary-to-hourly"],
   },
@@ -1486,7 +1487,7 @@ const queue: QueueInput[] = [
     siblingToolSlugs: ["unit-converter"],
     cluster: "square-footage-calculator",
     category: "calculators",
-    metaDescription: "How to calculate room area in square feet or square meters from length and width.",
+    metaDescription: "Calculate room area in square feet or square meters from length and width. Add more than one rectangle when a floor plan is made of simple shapes.",
     relatedTools: ["square-footage-calculator", "unit-converter", "aspect-ratio-calculator"],
     relatedArticles: [],
   },
@@ -1499,7 +1500,7 @@ const queue: QueueInput[] = [
     siblingToolSlugs: ["date-difference-calculator"],
     cluster: "business-days-calculator",
     category: "calculators",
-    metaDescription: "How weekdays between two dates are counted, without treating that span as an age.",
+    metaDescription: "Count weekdays between two dates, skipping Saturday and Sunday. The span is a day count only and is not treated as an age or a legal working-day calendar.",
     relatedTools: ["business-days-calculator", "date-difference-calculator", "age-calculator"],
     relatedArticles: [],
   },
@@ -1512,7 +1513,7 @@ const queue: QueueInput[] = [
     siblingToolSlugs: ["url-encoder", "jwt-decoder"],
     cluster: "base64-encoder",
     category: "developer-tools",
-    metaDescription: "Encode text to Base64 after UTF-8, or decode it back. The result is not encryption.",
+    metaDescription: "Encode text to Base64 after UTF-8, or decode Base64 back to text, in your browser. The result is an encoding, not encryption, and it is not a secret.",
     relatedTools: ["base64-encoder", "url-encoder", "hash-generator", "jwt-decoder"],
     relatedArticles: ["how-to-read-a-jwt"],
   },
@@ -1525,12 +1526,13 @@ const queue: QueueInput[] = [
     siblingToolSlugs: ["hash-generator", "password-generator"],
     cluster: "uuid-generator",
     category: "developer-tools",
-    metaDescription: "Generate 1 to 100 random UUID version 4 values. They are not sequential keys or passwords.",
+    metaDescription: "Generate 1 to 100 random UUID version 4 values in your browser. They are random identifiers, not sequential keys, passwords, or proof of uniqueness on a server.",
     relatedTools: ["uuid-generator", "hash-generator", "password-generator", "base64-encoder"],
     relatedArticles: [],
   },
   {
     title: "How to Read a JWT Without Treating It as Verified",
+    metaTitle: "How to Read a JWT (This Does Not Verify It)",
     slug: "how-to-read-a-jwt",
     primaryKeyword: "jwt decoder",
     secondaryKeywords: ["decode jwt", "json web token"],
@@ -1538,7 +1540,7 @@ const queue: QueueInput[] = [
     siblingToolSlugs: ["base64-encoder", "json-formatter"],
     cluster: "jwt-decoder",
     category: "developer-tools",
-    metaDescription: "How to read a JWT header and payload, and why that does not verify the signature.",
+    metaDescription: "Read a JWT header and payload in your browser and see why decoding those parts does not verify the signature or prove that the token is trustworthy.",
     relatedTools: ["jwt-decoder", "base64-encoder", "json-formatter"],
     relatedArticles: ["what-is-base64"],
   },
@@ -1551,7 +1553,7 @@ const queue: QueueInput[] = [
     siblingToolSlugs: ["url-parser"],
     cluster: "robots-txt-generator",
     category: "seo-utilities",
-    metaDescription: "What a robots.txt file tells crawlers, and why generating the text does not publish it.",
+    metaDescription: "See what a robots.txt file tells crawlers, and why generating the text in your browser does not publish it to your site until you upload the file yourself.",
     relatedTools: ["robots-txt-generator", "url-parser"],
     relatedArticles: [],
   },
@@ -1564,12 +1566,13 @@ const queue: QueueInput[] = [
     siblingToolSlugs: ["utm-builder", "url-encoder"],
     cluster: "url-parser",
     category: "seo-utilities",
-    metaDescription: "How to read a URL's protocol, host, path, and query without encoding or tagging it.",
+    metaDescription: "Read a URL's protocol, host, path, query, and hash in your browser, without encoding, shortening, or tagging the address you paste.",
     relatedTools: ["url-parser", "utm-builder", "url-encoder"],
     relatedArticles: ["how-to-create-a-utm-url"],
   },
   {
     title: "How to Write an Image Prompt Without Creating an Image",
+    metaTitle: "How to Write an Image Prompt (No Image Created)",
     slug: "how-to-write-an-image-prompt",
     primaryKeyword: "image prompt",
     secondaryKeywords: ["text to image prompt", "scene description"],
@@ -1577,7 +1580,7 @@ const queue: QueueInput[] = [
     siblingToolSlugs: ["ai-prompt-generator", "prompt-to-video"],
     cluster: "prompt-to-image",
     category: "ai-tools",
-    metaDescription: "Build prompt stays in the browser and does not render an image. Generate with AI sends the brief to Gemini.",
+    metaDescription: "Build an image prompt that stays in the browser and does not render an image. Choosing Generate with AI sends that brief to Gemini to draft the wording.",
     relatedTools: ["prompt-to-image", "ai-prompt-generator", "prompt-to-video"],
     relatedArticles: [],
   },
@@ -1603,7 +1606,7 @@ const queue: QueueInput[] = [
     siblingToolSlugs: ["timestamp-converter", "date-difference-calculator"],
     cluster: "time-zone-converter",
     category: "developer-tools",
-    metaDescription: "How to convert the same instant between two time zones, without turning it into a Unix timestamp.",
+    metaDescription: "Convert the same instant between two time zones using IANA zone names, without turning the result into a Unix timestamp or changing the underlying moment.",
     relatedTools: ["time-zone-converter", "timestamp-converter", "date-difference-calculator"],
     relatedArticles: [],
   },
@@ -1648,7 +1651,7 @@ const queuedArticles: Article[] = queue.map((item, queueIndex) => {
     cluster: item.cluster,
     articleType: "supporting" as const,
     status: publishedQueueSlugs.has(item.slug) ? "PUBLISHED" : "DRAFT",
-    metaTitle: item.title,
+    metaTitle: item.metaTitle ?? item.title,
     metaDescription: item.metaDescription,
     excerpt: item.metaDescription,
     content: body ? flattenGuideContent(body) : null,

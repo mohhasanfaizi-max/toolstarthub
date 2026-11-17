@@ -13,7 +13,7 @@ const guidesDescription =
   "Free how-to guides that answer one task each: percentages, dates, loans, image and PDF files, JSON, regex, URLs, colors, and more, with a tool to try it.";
 
 export const metadata = createPageMetadata({
-  title: "How-To Guides for Calculators, Text, Images and Code",
+  title: "How-To Guides for Calculators, Images and Code",
   description: guidesDescription,
   path: "/guides",
   shareImage: { route: "/guides", alt: "Helpful Guides" },

@@ -11,7 +11,7 @@ const qrPro: ToolGuide = {
     secondaryKeywords: ["wifi qr code", "vcard qr code", "email qr code", "sms qr code", "qr code colors and error correction"],
     toolSlug: "qr-code-generator-pro",
     siblingToolSlugs: ["qr-code-generator", "color-contrast-checker", "image-to-pdf"],
-    metaTitle: "How to Make a Custom QR Code: Wi-Fi, vCard, Colours",
+    metaTitle: "How to Make a Custom QR Code: Wi-Fi and vCard",
     metaDescription:
       "Create QR codes for Wi-Fi, contacts, email, phone and SMS with custom colours, size, quiet zone and error correction. Download a PNG made in your browser.",
     excerpt:
@@ -180,7 +180,7 @@ const pdfToText: ToolGuide = {
     secondaryKeywords: ["extract text from pdf", "pdf to txt", "copy text from pdf", "pdf text extractor online", "scanned pdf text"],
     toolSlug: "pdf-to-text",
     siblingToolSlugs: ["image-to-text", "pdf-splitter", "pdf-page-counter"],
-    metaTitle: "PDF to Text: How to Copy Text Out of a PDF Locally",
+    metaTitle: "PDF to Text: Copy Text Out of a PDF Locally",
     metaDescription:
       "Pull selectable text out of a PDF page by page, copy it or save a .txt file. Learn page ranges, why scans come out empty, and how layout is handled.",
     excerpt:
@@ -340,7 +340,7 @@ const pdfMetadata: ToolGuide = {
     secondaryKeywords: ["view pdf metadata", "pdf author field", "pdf properties", "clear pdf title and author", "pdf metadata viewer"],
     toolSlug: "pdf-metadata",
     siblingToolSlugs: ["pdf-page-counter", "pdf-compressor", "pdf-to-text"],
-    metaTitle: "How to View and Remove PDF Metadata (Author, Title)",
+    metaTitle: "How to View and Remove PDF Metadata Locally",
     metaDescription:
       "See a PDF's title, author, keywords, creator, producer and dates, then download a copy with those fields cleared. What it removes and what it cannot.",
     excerpt:
@@ -510,7 +510,7 @@ const textToPdf: ToolGuide = {
     secondaryKeywords: ["convert txt to pdf", "plain text to pdf", "make a pdf from text", "notes to pdf", "text file to pdf online"],
     toolSlug: "text-to-pdf",
     siblingToolSlugs: ["word-to-pdf", "pdf-merger", "word-counter"],
-    metaTitle: "How to Convert Text to PDF: Page Size, Font & Margins",
+    metaTitle: "How to Convert Text to PDF: Page Size and Font",
     metaDescription:
       "Paste plain text, add a title, pick A4 or Letter, margins, font size, line spacing and page numbers, then download a PDF. What happens to special characters.",
     excerpt:
@@ -684,7 +684,7 @@ const mdToHtml: ToolGuide = {
     secondaryKeywords: ["convert markdown to html", "md to html", "markdown table to html", "markdown converter", "markdown code block html"],
     toolSlug: "markdown-to-html",
     siblingToolSlugs: ["html-to-markdown", "html-minifier", "html-encoder"],
-    metaTitle: "How to Convert Markdown to HTML: Syntax & Safe Links",
+    metaTitle: "How to Convert Markdown to HTML: Syntax Tips",
     metaDescription:
       "Turn Markdown into HTML: headings, lists, tables, code, links and images. See which syntax is supported, how links are filtered and why raw HTML is escaped.",
     excerpt:
@@ -872,7 +872,7 @@ const htmlToMd: ToolGuide = {
     secondaryKeywords: ["convert html to markdown", "html to md", "web page to markdown", "html table to markdown", "html converter for docs"],
     toolSlug: "html-to-markdown",
     siblingToolSlugs: ["markdown-to-html", "html-encoder", "find-and-replace"],
-    metaTitle: "How to Convert HTML to Markdown: Tags, Tables & Limits",
+    metaTitle: "How to Convert HTML to Markdown: Tags and Tables",
     metaDescription:
       "Paste HTML and get Markdown: headings, links, images, lists, code, quotes and tables. See which tags are dropped and what to tidy afterwards.",
     excerpt:

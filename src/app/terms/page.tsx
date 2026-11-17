@@ -7,7 +7,7 @@ import { breadcrumbJsonLd, createPageMetadata } from "@/lib/seo";
 import { siteConfig, siteContact } from "@/lib/site";
 
 export const metadata = createPageMetadata({
-  title: "Terms of Use",
+  title: "Terms of Use for Free Browser Tools",
   description: `Terms of use for ${siteConfig.name}: free browser tools with no account, how your files and text are handled, and what use of the site is not allowed.`,
   path: "/terms",
   shareImage: { route: "/terms", alt: `Terms of Use — ${siteConfig.name}` },

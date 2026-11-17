@@ -22,7 +22,7 @@ export const tools: Tool[] = [
       "calculator",
     ],
     status: "available",
-    metaTitle: "Percentage Calculator – Calculate Percentages Online",
+    metaTitle: "Percentage Calculator — Find Percents Online",
     relatedSlugs: [
       "percentage-change-calculator",
       "discount-calculator",
@@ -46,7 +46,7 @@ export const tools: Tool[] = [
       "growth",
     ],
     status: "available",
-    metaTitle: "Percentage Change Calculator – Increase and Decrease",
+    metaTitle: "Percentage Change Calculator — Increase/Decrease",
     relatedSlugs: [
       "percentage-calculator",
       "discount-calculator",
@@ -145,7 +145,7 @@ export const tools: Tool[] = [
       "title case",
     ],
     status: "available",
-    metaTitle: "Case Converter — Change Text Case in Your Browser",
+    metaTitle: "Case Converter — Change Text Case Online",
     relatedSlugs: ["word-counter", "line-sorter", "duplicate-line-remover"],
   },
   {
@@ -160,7 +160,7 @@ export const tools: Tool[] = [
     new: false,
     keywords: ["lorem ipsum", "placeholder text", "dummy text", "generator"],
     status: "available",
-    metaTitle: "Lorem Ipsum Generator — Placeholder Text in Your Browser",
+    metaTitle: "Lorem Ipsum Generator — Placeholder Text",
     relatedSlugs: ["word-counter", "character-counter", "case-converter"],
   },
   {
@@ -174,7 +174,7 @@ export const tools: Tool[] = [
     new: false,
     keywords: ["json", "format", "pretty print", "validate", "minify"],
     status: "available",
-    metaTitle: "JSON Formatter – Validate, Pretty-Print and Minify",
+    metaTitle: "JSON Formatter — Validate and Beautify JSON",
     relatedSlugs: [
       "javascript-minifier",
       "base64-encoder",
@@ -194,7 +194,7 @@ export const tools: Tool[] = [
     new: false,
     keywords: ["compress image", "jpg", "png", "optimize", "file size"],
     status: "available",
-    metaTitle: "Image Compressor — Reduce Image Size in Your Browser",
+    metaTitle: "Image Compressor — Compress JPG, PNG, WebP",
     relatedSlugs: ["image-resizer", "image-cropper", "image-converter"],
   },
   {
@@ -209,7 +209,7 @@ export const tools: Tool[] = [
     new: false,
     keywords: ["resize image", "change dimensions", "width", "height", "scale"],
     status: "available",
-    metaTitle: "Image Resizer — Resize Images Online in Your Browser",
+    metaTitle: "Image Resizer — Resize Images in Your Browser",
     relatedSlugs: ["image-compressor", "image-cropper", "image-converter"],
   },
   {
@@ -298,7 +298,7 @@ export const tools: Tool[] = [
     new: false,
     keywords: ["unix timestamp", "epoch", "milliseconds", "utc", "iso 8601"],
     status: "available",
-    metaTitle: "Unix Timestamp Converter — Seconds, Milliseconds and Dates",
+    metaTitle: "Unix Timestamp Converter — Seconds and Dates",
     relatedSlugs: ["json-formatter", "uuid-generator", "age-calculator"],
   },
   {
@@ -312,7 +312,7 @@ export const tools: Tool[] = [
     new: false,
     keywords: ["utm", "campaign", "url builder", "tracking", "seo"],
     status: "available",
-    metaTitle: "UTM Builder – Create Campaign URLs",
+    metaTitle: "UTM Builder — GA4 Campaign URL Generator",
     relatedSlugs: [
       "slug-generator",
       "qr-code-generator",
@@ -365,7 +365,7 @@ export const tools: Tool[] = [
     new: false,
     keywords: ["pdf", "jpg", "convert", "pages", "image"],
     status: "available",
-    metaTitle: "PDF to JPG — Convert PDF Pages in Your Browser",
+    metaTitle: "PDF to JPG Converter — Pages in Your Browser",
     relatedSlugs: ["pdf-compressor", "pdf-to-text", "pdf-merger", "pdf-splitter", "image-to-pdf", "pdf-metadata"],
   },
   {
@@ -410,7 +410,7 @@ export const tools: Tool[] = [
     new: false,
     keywords: ["qr code", "generator", "url", "barcode", "png"],
     status: "available",
-    metaTitle: "QR Code Generator — Create QR Codes in Your Browser",
+    metaTitle: "QR Code Generator — Create QR Codes Online",
     relatedSlugs: ["qr-code-generator-pro", "qr-code-scanner", "utm-builder"],
   },
   {
@@ -455,7 +455,7 @@ export const tools: Tool[] = [
     new: false,
     keywords: ["html minify", "compress html", "remove whitespace", "html"],
     status: "available",
-    metaTitle: "HTML Minifier — Conservative Minify in Your Browser",
+    metaTitle: "HTML Minifier — Minify HTML in Your Browser",
     relatedSlugs: ["html-to-markdown", "markdown-to-html", "css-minifier", "html-encoder"],
   },
   {
@@ -470,7 +470,7 @@ export const tools: Tool[] = [
     new: false,
     keywords: ["css minify", "compress css", "stylesheet", "minifier"],
     status: "available",
-    metaTitle: "CSS Minifier — Minify Stylesheets in Your Browser",
+    metaTitle: "CSS Minifier — Minify CSS in Your Browser",
     relatedSlugs: ["css-gradient-generator", "box-shadow-generator", "html-minifier"],
   },
   {
@@ -485,7 +485,7 @@ export const tools: Tool[] = [
     new: false,
     keywords: ["javascript minify", "js minify", "compress js", "terser"],
     status: "available",
-    metaTitle: "JavaScript Minifier — Parse and Minify in Your Browser",
+    metaTitle: "JavaScript Minifier — Minify JS Locally",
     relatedSlugs: ["css-minifier", "html-minifier", "json-formatter"],
   },
   {
@@ -500,7 +500,7 @@ export const tools: Tool[] = [
     new: false,
     keywords: ["password generator", "secure passwords", "password", "passphrase", "password log", "password book", "offline password", "password tool"],
     status: "available",
-    metaTitle: "Password Generator — Secure Passwords and an Offline Password Log",
+    metaTitle: "Free Password Generator — Random Passwords",
     relatedSlugs: ["password-strength-checker", "qr-code-generator", "hash-generator"],
   },
   {
@@ -515,7 +515,7 @@ export const tools: Tool[] = [
     new: false,
     keywords: ["image to pdf", "jpg", "png", "convert", "pages"],
     status: "available",
-    metaTitle: "Image to PDF — Convert JPG and PNG in Your Browser",
+    metaTitle: "Image to PDF — Convert JPG and PNG Locally",
     relatedSlugs: ["text-to-pdf", "pdf-merger", "pdf-to-jpg", "image-converter"],
   },
   {
@@ -575,7 +575,7 @@ export const tools: Tool[] = [
     new: false,
     keywords: ["dominant colors", "color palette", "hex", "image colors"],
     status: "available",
-    metaTitle: "Image Color Analyzer — Approximate Dominant Colors",
+    metaTitle: "Image Color Analyzer — Dominant Colors",
     relatedSlugs: ["color-picker", "hex-to-rgb", "color-contrast-checker"],
   },
   {
@@ -598,7 +598,7 @@ export const tools: Tool[] = [
       "color",
     ],
     status: "available",
-    metaTitle: "Color Contrast Checker – Check WCAG Contrast Ratio",
+    metaTitle: "Color Contrast Checker — WCAG Contrast Ratio",
     relatedSlugs: ["hex-to-rgb", "color-picker", "css-gradient-generator", "image-color-analyzer", "box-shadow-generator"],
   },
   {
@@ -622,7 +622,7 @@ export const tools: Tool[] = [
       "color",
     ],
     status: "available",
-    metaTitle: "CSS Gradient Generator — Linear, Radial, Conic and Text",
+    metaTitle: "CSS Gradient Generator — Linear, Radial, Conic",
     relatedSlugs: ["box-shadow-generator", "css-minifier", "color-picker", "hex-to-rgb", "color-contrast-checker"],
   },
   {
@@ -652,7 +652,7 @@ export const tools: Tool[] = [
     new: false,
     keywords: ["qr code", "wifi qr", "vcard", "email qr", "sms"],
     status: "available",
-    metaTitle: "QR Code Generator Pro — Wi-Fi, Email and Contact QR",
+    metaTitle: "QR Code Generator Pro — Wi-Fi, Email, vCard",
     relatedSlugs: ["qr-code-generator", "qr-code-scanner", "utm-builder"],
   },
   {
@@ -745,7 +745,7 @@ export const tools: Tool[] = [
       "document properties",
     ],
     status: "available",
-    metaTitle: "PDF Metadata Viewer / Remover — Inspect Info Fields Locally",
+    metaTitle: "PDF Metadata Viewer — Inspect Info Locally",
     relatedSlugs: ["pdf-page-counter", "pdf-compressor", "pdf-to-text", "pdf-splitter"],
   },
   {
@@ -766,7 +766,7 @@ export const tools: Tool[] = [
       "document",
     ],
     status: "available",
-    metaTitle: "Text to PDF — Create a PDF from Text in Your Browser",
+    metaTitle: "Text to PDF — Create a PDF in Your Browser",
     relatedSlugs: ["image-to-pdf", "pdf-merger", "word-counter", "markdown-to-html"],
   },
   {
@@ -865,7 +865,7 @@ export const tools: Tool[] = [
       "list cleanup",
     ],
     status: "available",
-    metaTitle: "Duplicate Line Remover — Keep Unique Lines Locally",
+    metaTitle: "Duplicate Line Remover — Keep Unique Lines",
     relatedSlugs: ["whitespace-remover", "line-sorter", "word-counter", "text-diff"],
   },
   {
@@ -922,7 +922,7 @@ export const tools: Tool[] = [
     new: false,
     keywords: ["prompt builder", "prompt generator", "writing prompt", "instructions"],
     status: "available",
-    metaTitle: "AI Prompt Generator — Build a Prompt in Your Browser",
+    metaTitle: "AI Prompt Generator — Build Prompts Locally",
     relatedSlugs: ["prompt-to-image", "prompt-to-video", "ai-article-compressor", "word-counter"],
   },
   {
@@ -937,7 +937,7 @@ export const tools: Tool[] = [
     new: false,
     keywords: ["image prompt", "text to image prompt", "scene description"],
     status: "available",
-    metaTitle: "Prompt to Image Generator — Write an Image Prompt",
+    metaTitle: "Prompt to Image Generator — Write a Prompt",
     relatedSlugs: ["ai-prompt-generator", "prompt-to-video", "image-compressor", "ai-article-compressor"],
   },
   {
@@ -1025,7 +1025,7 @@ export const tools: Tool[] = [
     new: false,
     keywords: ["sales tax", "tax amount", "price plus tax", "tax rate"],
     status: "available",
-    metaTitle: "Sales Tax Calculator — Tax Amount and Final Price",
+    metaTitle: "Sales Tax Calculator — Tax and Final Price",
     relatedSlugs: ["tip-calculator", "discount-calculator", "percentage-calculator", "percentage-change-calculator"],
   },
   {
@@ -1039,7 +1039,7 @@ export const tools: Tool[] = [
     new: false,
     keywords: ["date difference", "days between dates", "weeks between dates"],
     status: "available",
-    metaTitle: "Date Difference Calculator — Days Between Two Dates",
+    metaTitle: "Date Difference Calculator — Days Between Dates",
     relatedSlugs: ["age-calculator", "tip-calculator", "unit-converter", "sales-tax-calculator"],
   },
   {
@@ -1179,7 +1179,7 @@ export const tools: Tool[] = [
     new: false,
     keywords: ["mortgage payment", "home loan payment", "extra mortgage payment"],
     status: "available",
-    metaTitle: "Mortgage Calculator — Payment, Housing Cost, and Payoff",
+    metaTitle: "Mortgage Calculator — Payment and Payoff",
     relatedSlugs: ["loan-calculator", "compound-interest-calculator", "percentage-calculator", "sales-tax-calculator"],
   },
   {
@@ -1193,7 +1193,7 @@ export const tools: Tool[] = [
     new: false,
     keywords: ["auto loan calculator", "car loan payment", "vehicle loan payment"],
     status: "available",
-    metaTitle: "Auto Loan Calculator — Car Payment, Tax, and Trade-In",
+    metaTitle: "Auto Loan Calculator — Car Payment and Tax",
     relatedSlugs: ["loan-calculator", "mortgage-calculator", "sales-tax-calculator", "percentage-calculator"],
   },
   {
@@ -1207,7 +1207,7 @@ export const tools: Tool[] = [
     new: false,
     keywords: ["home affordability", "how much house can I afford", "house buying budget"],
     status: "available",
-    metaTitle: "Home Affordability Calculator — Price from Income",
+    metaTitle: "Home Affordability Calculator — Price by Income",
     relatedSlugs: ["mortgage-calculator", "loan-calculator", "percentage-calculator", "compound-interest-calculator"],
   },
   {
@@ -1235,7 +1235,7 @@ export const tools: Tool[] = [
     new: false,
     keywords: ["credit card payoff", "card interest payoff", "how long to pay off a card"],
     status: "available",
-    metaTitle: "Credit Card Payoff Calculator — Time and Interest",
+    metaTitle: "Credit Card Payoff Calculator — Time & Interest",
     relatedSlugs: ["debt-payoff-calculator", "loan-calculator", "compound-interest-calculator", "percentage-calculator"],
   },
   {
@@ -1249,7 +1249,7 @@ export const tools: Tool[] = [
     new: false,
     keywords: ["savings goal calculator", "monthly savings amount", "savings target"],
     status: "available",
-    metaTitle: "Savings Goal Calculator — How Much to Save Each Period",
+    metaTitle: "Savings Goal Calculator — Amount per Period",
     relatedSlugs: ["compound-interest-calculator", "percentage-calculator", "debt-payoff-calculator", "loan-calculator"],
   },
   {
@@ -1263,7 +1263,7 @@ export const tools: Tool[] = [
     new: false,
     keywords: ["hourly wage", "salary to hourly", "overtime pay"],
     status: "available",
-    metaTitle: "Hourly Wage Calculator — Salary, Weekly Pay, and Overtime",
+    metaTitle: "Hourly Wage Calculator — Salary and Overtime",
     relatedSlugs: ["paycheck-estimator", "tip-calculator", "sales-tax-calculator", "percentage-calculator"],
   },
   {
@@ -1277,7 +1277,7 @@ export const tools: Tool[] = [
     new: false,
     keywords: ["paycheck estimator", "take-home pay", "net pay"],
     status: "available",
-    metaTitle: "Paycheck Estimator — Gross Pay, Withholding, and Net Pay",
+    metaTitle: "Paycheck Estimator — Gross, Tax, and Net Pay",
     relatedSlugs: ["hourly-wage-calculator", "sales-tax-calculator", "percentage-calculator", "tip-calculator"],
   },
   {
@@ -1291,7 +1291,7 @@ export const tools: Tool[] = [
     new: false,
     keywords: ["rent vs buy", "cost of renting", "cost of buying"],
     status: "available",
-    metaTitle: "Rent vs Buy Calculator — Estimated Rent and Buying Cost",
+    metaTitle: "Rent vs Buy Calculator — Rent and Buying Cost",
     relatedSlugs: ["mortgage-calculator", "home-affordability-calculator", "loan-calculator", "percentage-calculator"],
   },
   {
@@ -1319,7 +1319,7 @@ export const tools: Tool[] = [
     new: false,
     keywords: ["business days", "weekdays between dates", "working days"],
     status: "available",
-    metaTitle: "Business Days Calculator — Weekdays Between Two Dates",
+    metaTitle: "Business Days Calculator — Weekdays in a Range",
     relatedSlugs: ["date-difference-calculator", "age-calculator", "hourly-wage-calculator"],
   },
   {
@@ -1333,7 +1333,7 @@ export const tools: Tool[] = [
     new: false,
     keywords: ["gpa calculator", "grade point average", "credit weighted gpa"],
     status: "available",
-    metaTitle: "GPA Calculator — Credit-Weighted Grade Point Average",
+    metaTitle: "GPA Calculator — Credit-Weighted Grade Average",
     relatedSlugs: ["percentage-calculator", "percentage-change-calculator", "unit-converter"],
   },
   {
@@ -1347,7 +1347,7 @@ export const tools: Tool[] = [
     new: false,
     keywords: ["square footage", "room area", "square meters"],
     status: "available",
-    metaTitle: "Square Footage Calculator — Room Area in Feet or Meters",
+    metaTitle: "Square Footage Calculator — Room Area (ft or m)",
     relatedSlugs: ["unit-converter", "percentage-calculator", "gpa-calculator"],
   },
   {
@@ -1361,7 +1361,7 @@ export const tools: Tool[] = [
     new: false,
     keywords: ["number to words", "words to number", "write a number in words"],
     status: "available",
-    metaTitle: "Number to Words Converter — Whole Numbers Through Millions",
+    metaTitle: "Number to Words Converter — Up to 999,999,999",
     relatedSlugs: ["case-converter", "word-counter", "character-counter"],
   },
   {
@@ -1389,7 +1389,7 @@ export const tools: Tool[] = [
     new: false,
     keywords: ["url parser", "query parameters", "parse a link"],
     status: "available",
-    metaTitle: "URL Parser — Protocol, Host, Path, and Query Parameters",
+    metaTitle: "URL Parser — Protocol, Host, Path, and Query",
     relatedSlugs: ["utm-builder", "url-encoder", "slug-generator"],
   },
   {
@@ -1403,7 +1403,7 @@ export const tools: Tool[] = [
     new: false,
     keywords: ["morse code translator", "text to morse", "morse to text"],
     status: "available",
-    metaTitle: "Morse Code Translator — Text and Morse for A-Z and 0-9",
+    metaTitle: "Morse Code Translator — Text to Morse and Back",
     relatedSlugs: ["case-converter", "number-to-words", "character-counter"],
   },
   {
@@ -1431,7 +1431,7 @@ export const tools: Tool[] = [
     new: false,
     keywords: ["aspect ratio calculator", "16:9 dimensions", "width and height ratio"],
     status: "available",
-    metaTitle: "Aspect Ratio Calculator — Simplify a Size or Find a Side",
+    metaTitle: "Aspect Ratio Calculator — Simplify or Find Sides",
     relatedSlugs: ["unit-converter", "percentage-calculator", "square-footage-calculator"],
   },
   {
@@ -1459,7 +1459,7 @@ export const tools: Tool[] = [
     new: false,
     keywords: ["robots.txt generator", "robots txt", "user-agent rules"],
     status: "available",
-    metaTitle: "Robots.txt Generator — Allow, Disallow, and Sitemap Rules",
+    metaTitle: "Robots.txt Generator — Allow, Disallow, Sitemaps",
     relatedSlugs: ["url-parser", "utm-builder", "slug-generator"],
   },
   {
@@ -1473,7 +1473,7 @@ export const tools: Tool[] = [
     new: false,
     keywords: ["time calculator", "add hours and minutes", "subtract minutes"],
     status: "available",
-    metaTitle: "Time Calculator — Add or Subtract Hours and Minutes",
+    metaTitle: "Time Calculator — Add or Subtract Hours",
     relatedSlugs: ["date-difference-calculator", "time-zone-converter", "timestamp-converter"],
   },
   {
@@ -1515,7 +1515,7 @@ export const tools: Tool[] = [
     new: false,
     keywords: ["password strength checker", "password entropy", "password rating"],
     status: "available",
-    metaTitle: "Password Strength Checker — Rate a Password in the Browser",
+    metaTitle: "Password Strength Checker — Rate a Password",
     relatedSlugs: ["password-generator", "hash-generator", "uuid-generator"],
   },
   {
@@ -1529,7 +1529,7 @@ export const tools: Tool[] = [
     new: false,
     keywords: ["gitignore generator", "gitignore template", "node gitignore"],
     status: "available",
-    metaTitle: ".gitignore Generator — Node, Next.js, and Custom Patterns",
+    metaTitle: ".gitignore Generator — Node, Next.js, Custom",
     relatedSlugs: ["robots-txt-generator", "json-formatter", "hash-generator"],
   },
   {
@@ -1543,7 +1543,7 @@ export const tools: Tool[] = [
     new: false,
     keywords: ["cron expression generator", "cron explainer", "five field cron"],
     status: "available",
-    metaTitle: "Cron Expression Generator — Build or Explain Five Fields",
+    metaTitle: "Cron Expression Generator — Build or Explain",
     relatedSlugs: ["timestamp-converter", "time-zone-converter", "robots-txt-generator"],
   },
   {
@@ -1571,7 +1571,7 @@ export const tools: Tool[] = [
     new: false,
     keywords: ["meta tag generator", "open graph tags", "title description html"],
     status: "available",
-    metaTitle: "Meta Tag Generator — Title, Description, and Social Tags",
+    metaTitle: "Meta Tag Generator — Title, Description, Social",
     relatedSlugs: ["robots-txt-generator", "utm-builder", "html-encoder"],
   },
   {
@@ -1651,7 +1651,7 @@ export const tools: Tool[] = [
     new: true,
     keywords: ["fantasy point calculator", "fantasy cricket points", "fantasy football points", "fantasy basketball points", "fantasy scoring"],
     status: "available",
-    metaTitle: "Fantasy Point Calculator – Cricket, Football, NBA",
+    metaTitle: "Fantasy Point Calculator — Cricket, NFL and NBA",
     relatedSlugs: ["percentage-calculator", "average-calculator", "date-difference-calculator"],
   },
   {
@@ -1681,7 +1681,7 @@ export const tools: Tool[] = [
     new: true,
     keywords: ["unemployment benefits calculator", "unemployment calculator", "weekly benefit amount", "california unemployment calculator", "texas unemployment calculator"],
     status: "available",
-    metaTitle: "Unemployment Benefits Calculator – CA, NY, TX, FL",
+    metaTitle: "Unemployment Benefits Calculator — CA NY TX FL",
     relatedSlugs: ["paycheck-estimator", "hourly-wage-calculator", "savings-goal-calculator", "loan-calculator"],
   },
   {
@@ -1748,7 +1748,7 @@ export const tools: Tool[] = [
       "micronutrient tracker",
     ],
     status: "available",
-    metaTitle: "Alma: AI Nutrition Coach & Food Tracker – Free Nutrition Calculator",
+    metaTitle: "Alma AI Nutrition Coach and Food Tracker",
     relatedSlugs: ["tdee-calculator", "age-calculator", "unit-converter", "percentage-calculator", "date-difference-calculator"],
   },
   ...extraTools,

@@ -34,7 +34,7 @@ export const en = {
     tagline: "Free Digital Tools for Work, Study, and News — Tools Star Hub",
     description:
       "Free digital tools for freelancers, students, digital marketers, and news writers. Convert PDFs, compress images, count words, and build links. No account.",
-    toolsTitle: "All Tools",
+    toolsTitle: "Free Online Tools Directory",
     toolsDescription:
       "Browse free online tools for calculations, text, developers, images, SEO and everyday tasks.",
     categoriesTitle: "Categories",

@@ -1,6 +1,6 @@
 # Tool comments — setup for Ali
 
-Comments stay switched off ("Comments coming soon") until a database is connected.
+Comments stay switched off (the tool page shows a contact link) until a database is connected.
 Nothing breaks without it.
 
 ## Which Vercel project

@@ -11,7 +11,7 @@ const htmlMinifier: ToolGuide = {
     secondaryKeywords: ["html minifier online", "remove html comments", "compress html whitespace", "reduce html file size", "minified html pre tag"],
     toolSlug: "html-minifier",
     siblingToolSlugs: ["css-minifier", "javascript-minifier", "html-encoder"],
-    metaTitle: "How to Minify HTML: Comments, Whitespace and Safe Tags",
+    metaTitle: "How to Minify HTML: Comments and Whitespace",
     metaDescription:
       "How to minify HTML: strip comments and collapse whitespace while pre, textarea, script and style stay intact. What it saves and how to test the result.",
     excerpt:
@@ -152,7 +152,7 @@ const cssMinifier: ToolGuide = {
     secondaryKeywords: ["css minifier online", "compress css", "remove css comments", "reduce stylesheet size", "minified css calc spaces"],
     toolSlug: "css-minifier",
     siblingToolSlugs: ["html-minifier", "javascript-minifier", "css-gradient-generator"],
-    metaTitle: "How to Minify CSS: Comments, Spaces and calc() Safety",
+    metaTitle: "How to Minify CSS: Comments, Spaces, calc()",
     metaDescription:
       "Remove CSS comments and needless spaces while strings, url() values and calc() operators stay safe. What changes, what does not, and how to check the result.",
     excerpt:
@@ -316,7 +316,7 @@ const jsMinifier: ToolGuide = {
     secondaryKeywords: ["javascript minifier online", "terser online", "compress js", "shorten variable names js", "reduce js file size"],
     toolSlug: "javascript-minifier",
     siblingToolSlugs: ["html-minifier", "css-minifier", "json-formatter"],
-    metaTitle: "How to Minify JavaScript: Terser, Mangling and Safety",
+    metaTitle: "How to Minify JavaScript: Terser and Safety",
     metaDescription:
       "Minify JavaScript with Terser in your browser: comments removed, local names shortened, top-level names kept. What changes, what stays and how to test it.",
     excerpt:
@@ -485,7 +485,7 @@ const imageToPdf: ToolGuide = {
     secondaryKeywords: ["jpg to pdf", "png to pdf", "combine images into pdf", "image to pdf a4", "photos to pdf online"],
     toolSlug: "image-to-pdf",
     siblingToolSlugs: ["pdf-merger", "image-compressor", "image-resizer"],
-    metaTitle: "How to Convert Images to PDF: JPG, PNG, A4 or Letter",
+    metaTitle: "How to Convert Images to PDF: JPG, PNG and Size",
     metaDescription:
       "Turn up to 20 JPG or PNG images into one PDF in your browser. Choose A4, Letter or original size, orientation, margins and fit, then download images.pdf.",
     excerpt:
@@ -643,7 +643,7 @@ const pdfMerger: ToolGuide = {
     secondaryKeywords: ["combine pdf files", "pdf merger online", "join pdfs", "merge pdf in browser", "reorder pdf files before merging"],
     toolSlug: "pdf-merger",
     siblingToolSlugs: ["pdf-splitter", "image-to-pdf", "pdf-compressor"],
-    metaTitle: "How to Merge PDF Files: Order, Limits and Privacy",
+    metaTitle: "How to Merge PDF Files: Order, Limits, Privacy",
     metaDescription:
       "Combine 2 to 10 PDF files into one merged.pdf in your browser. Set the order, check the page and size limits, and learn what to do with locked PDFs.",
     excerpt:
@@ -826,7 +826,7 @@ const pdfSplitter: ToolGuide = {
     secondaryKeywords: ["extract pdf pages", "pdf splitter online", "split pdf by page range", "remove pages from pdf", "reorder pdf pages"],
     toolSlug: "pdf-splitter",
     siblingToolSlugs: ["pdf-merger", "pdf-page-counter", "pdf-to-jpg"],
-    metaTitle: "How to Split a PDF: Page Ranges and Extracting Pages",
+    metaTitle: "How to Split a PDF: Page Ranges and Extracts",
     metaDescription:
       "Extract pages from a PDF with ranges like 1-3,5,8-10 or by ticking pages. Learn how ordering works, the limits, and how to save split.pdf privately.",
     excerpt:
