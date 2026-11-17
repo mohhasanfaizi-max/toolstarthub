@@ -26,9 +26,9 @@ import type { Tool } from "@/data/types";
 import { collectText } from "@/lib/content-style";
 import { absoluteUrl, breadcrumbJsonLd, createPageMetadata, faqJsonLd } from "@/lib/seo";
 import {
-  EDITORIAL_TEAM_NAME,
   guideArticleJsonLd,
   howToJsonLd,
+  SITE_OPERATOR_NAME,
 } from "@/lib/structured-data";
 
 export const dynamic = "force-dynamic";
@@ -63,15 +63,13 @@ export async function generateMetadata({
   return {
     ...base,
     ...(catalogGuide ? { title: { absolute: FREE_DIGITAL_TOOLS_META_TITLE } } : {}),
-    authors: catalogGuide
-      ? [{ name: "Ali Ahmed", url: absoluteUrl("/about") }]
-      : [{ name: EDITORIAL_TEAM_NAME, url: absoluteUrl("/about#editorial-team") }],
+    authors: [{ name: SITE_OPERATOR_NAME, url: absoluteUrl("/about") }],
     openGraph: {
       ...base.openGraph,
       type: "article",
       ...(dates.published ? { publishedTime: dates.published } : {}),
       ...(dates.modified ? { modifiedTime: dates.modified } : {}),
-      authors: [absoluteUrl(catalogGuide ? "/about" : "/about#editorial-team")],
+      authors: [absoluteUrl("/about")],
       ...(category && !catalogGuide ? { section: category.name } : {}),
     },
   };

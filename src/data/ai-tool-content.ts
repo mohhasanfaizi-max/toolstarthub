@@ -190,7 +190,7 @@ export const aiToolContent: Record<string, ToolContent> = {
     faqs: [
       {
         question: "Can this tell if text was written by AI?",
-        answer: "No. It cannot do that with certainty. Pattern checks produce false positives and false negatives. The result is a description of the draft, not a verdict.",
+        answer: "No. It cannot do that with certainty. The check is probabilistic: pattern checks produce false positives and false negatives. The result is a description of the draft, not a verdict, and it should not be used as the sole proof of misconduct.",
       },
       {
         question: "Why is there no percentage score?",
@@ -241,7 +241,7 @@ export const aiToolContent: Record<string, ToolContent> = {
     faqs: [
       {
         question: "Will the shorter text bypass an AI detector?",
-        answer: "No. The tool does not try to do that, and it does not claim the result will look like a particular kind of author.",
+        answer: "No. The tool does not try to do that, and it does not claim the result will look like a particular kind of author. Use it responsibly, respect your school or workplace academic integrity policy, and check the result before you use it.",
       },
       {
         question: "Does it keep my meaning?",
@@ -297,7 +297,7 @@ export const aiToolContent: Record<string, ToolContent> = {
       },
       {
         question: "Will this bypass an AI detector?",
-        answer: "No. The tool does not try to do that, and it does not claim the result will look like a particular kind of author.",
+        answer: "No. The tool does not try to do that, and it does not claim the result will look like a particular kind of author. Use it responsibly, respect your school or workplace academic integrity policy, and check the result before you use it.",
       },
       {
         question: "Does it keep my meaning?",

@@ -5,11 +5,17 @@ export type UtmFields = {
   campaign: string;
   term: string;
   content: string;
+  id?: string;
+  sourcePlatform?: string;
+  creativeFormat?: string;
+  marketingTactic?: string;
 };
 
 export type UtmResult =
   | { ok: true; url: string }
   | { ok: false; error: string };
+
+const MAX_UTM_VALUE = 200;
 
 function normalizeUrl(raw: string): URL | null {
   const trimmed = raw.trim();
@@ -32,6 +38,20 @@ function normalizeUrl(raw: string): URL | null {
   return null;
 }
 
+function readUtmValue(raw: string | undefined, field: string): { ok: true; value: string } | { ok: false; error: string } {
+  const trimmed = (raw ?? "").trim();
+  if (trimmed === "") {
+    return { ok: true, value: "" };
+  }
+  if (trimmed.length > MAX_UTM_VALUE) {
+    return { ok: false, error: `Enter a shorter ${field}.` };
+  }
+  if (/[\u0000-\u001F\u007F]/.test(trimmed)) {
+    return { ok: false, error: `The ${field} cannot include line breaks or other control characters.` };
+  }
+  return { ok: true, value: trimmed };
+}
+
 export function buildUtmUrl(fields: UtmFields): UtmResult {
   const url = normalizeUrl(fields.url);
 
@@ -45,18 +65,23 @@ export function buildUtmUrl(fields: UtmFields): UtmResult {
     };
   }
 
-  const utm: Array<[string, string]> = [
-    ["utm_source", fields.source],
-    ["utm_medium", fields.medium],
-    ["utm_campaign", fields.campaign],
-    ["utm_term", fields.term],
-    ["utm_content", fields.content],
+  const utm: Array<[string, string | undefined, string]> = [
+    ["utm_source", fields.source, "campaign source"],
+    ["utm_medium", fields.medium, "campaign medium"],
+    ["utm_campaign", fields.campaign, "campaign name"],
+    ["utm_term", fields.term, "campaign term"],
+    ["utm_content", fields.content, "campaign content"],
+    ["utm_id", fields.id, "campaign ID"],
+    ["utm_source_platform", fields.sourcePlatform, "source platform"],
+    ["utm_creative_format", fields.creativeFormat, "creative format"],
+    ["utm_marketing_tactic", fields.marketingTactic, "marketing tactic"],
   ];
 
-  for (const [key, value] of utm) {
-    const trimmed = value.trim();
-    if (trimmed) {
-      url.searchParams.set(key, trimmed);
+  for (const [key, raw, field] of utm) {
+    const parsed = readUtmValue(raw, field);
+    if (!parsed.ok) return parsed;
+    if (parsed.value) {
+      url.searchParams.set(key, parsed.value);
     }
   }
 

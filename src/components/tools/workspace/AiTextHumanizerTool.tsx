@@ -36,6 +36,9 @@ export function AiTextHumanizerTool() {
   return (
     <ToolPanel>
       <p className="text-sm leading-6 text-muted-foreground">{tx("Rewrite text uses a fixed phrase list in your browser. Humanize with AI sends the text to Google's Gemini API through ToolStarHub and returns a rewritten draft. The text is not stored. Check the result before you use it. Neither result is a way to hide how a draft was written.")}</p>
+      <aside className="mt-4 rounded-lg border border-border bg-muted/30 px-4 py-3 text-sm leading-6 text-muted-foreground" data-testid="ai-humanizer-integrity">
+        {tx("Use this tool responsibly. It is not a way to hide how a draft was written. Respect your school or workplace academic integrity policy, and check the result before you use it.")}
+      </aside>
       <div className="mt-4">
         <ToolField id="humanize-text" label={tx("Draft")}>
           <textarea id="humanize-text" value={text} onChange={(event) => setText(event.target.value)} rows={10} className={`${toolControlClass} min-h-40 resize-y`} />

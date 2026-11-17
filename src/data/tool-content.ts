@@ -406,10 +406,10 @@ export const toolContent: Record<string, ToolContent> = {
   },
   "utm-builder": {
     about:
-      "Add utm_source, utm_medium, and utm_campaign to a link, plus optional term and content. Marketers labeling a campaign link use it before the URL goes into an ad or an email. A blank field is left off the link, and this page does not record a visit or shorten the address.",
+      "Add utm_source, utm_medium, and utm_campaign to a link, plus optional utm_id, term, content, and a few GA4 campaign fields. Marketers labeling a campaign link use it before the URL goes into an ad or an email. A blank field is left off the link, and this page does not record a visit or shorten the address.",
     howTo: [
       "Enter the website URL, with or without https://.",
-      "Fill in source, medium and campaign. Term and content are optional.",
+      "Fill in source, medium and campaign. Campaign ID, term, content, and the extra GA4 fields are optional.",
       "Copy the generated URL. Existing query parameters on the original link are kept.",
     ],
     examples: [
@@ -423,9 +423,9 @@ export const toolContent: Record<string, ToolContent> = {
       },
     ],
     explanation:
-      "UTM parameters tell analytics tools where a visit came from. utm_source is the platform, utm_medium is the channel, and utm_campaign is the name of the promotion. utm_term and utm_content are optional. Values are URL-encoded so spaces and special characters stay valid.",
+      "UTM parameters tell analytics tools where a visit came from. utm_source is the platform, utm_medium is the channel, and utm_campaign is the name of the promotion. utm_id is an optional campaign ID, useful when you import campaign data. utm_term, utm_content, utm_source_platform, utm_creative_format, and utm_marketing_tactic are also optional. Google currently says the last two are not reported in Analytics properties. Values are URL-encoded so spaces and special characters stay valid.",
     limitations:
-      "A blank source, medium, or campaign is left off the link instead of being written as an empty parameter. The page does not shorten the address, and it does not record a visit. Text that is not a website URL is rejected.",
+      "A blank field, including an optional campaign ID, is left off the link instead of being written as an empty parameter. The page does not shorten the address, and it does not record a visit. Text that is not a website URL is rejected. Official Google documentation is linked on the calculator.",
     faqs: [
       {
         question: "Is the UTM Builder free?",

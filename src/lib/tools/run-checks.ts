@@ -425,6 +425,66 @@ const badUrl = buildUtmUrl({
 });
 assert(!badUrl.ok, "Invalid URL should fail");
 
+const utmWithId = buildUtmUrl({
+  url: "https://example.com/",
+  source: "google",
+  medium: "cpc",
+  campaign: "sale",
+  term: "",
+  content: "",
+  id: "abc.123",
+});
+assert(
+  utmWithId.ok &&
+    utmWithId.url ===
+      "https://example.com/?utm_source=google&utm_medium=cpc&utm_campaign=sale&utm_id=abc.123",
+  "Optional utm_id is appended and encoded on the campaign URL",
+);
+
+const utmIdSpaces = buildUtmUrl({
+  url: "https://example.com/",
+  source: "google",
+  medium: "cpc",
+  campaign: "sale",
+  term: "",
+  content: "",
+  id: "spring launch",
+});
+assert(
+  utmIdSpaces.ok && utmIdSpaces.url.includes("utm_id=spring+launch"),
+  "Spaces in utm_id are encoded",
+);
+
+const utmWithoutOptional = buildUtmUrl({
+  url: "https://example.com/",
+  source: "google",
+  medium: "cpc",
+  campaign: "sale",
+  term: "",
+  content: "",
+  id: "",
+  sourcePlatform: "",
+  creativeFormat: "",
+  marketingTactic: "",
+});
+assert(
+  utm.ok && utmWithoutOptional.ok && utmWithoutOptional.url === utm.url,
+  "Empty optional UTM fields leave the original campaign URL unchanged",
+);
+
+assert(
+  !buildUtmUrl({
+    url: "https://example.com/",
+    source: "google",
+    medium: "cpc",
+    campaign: "sale",
+    term: "",
+    content: "",
+    id: "x".repeat(201),
+  }).ok,
+  "An oversized utm_id is rejected",
+);
+
 assert(
   validateImageFile(null).ok === false,
   "Empty image selection should fail",

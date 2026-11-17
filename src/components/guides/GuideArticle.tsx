@@ -60,7 +60,7 @@ export function GuideArticle({
       <p className="mt-3 text-sm text-muted-foreground">
         By{" "}
         <Link href="/about#editorial-team" className="font-medium text-foreground hover:underline">
-          Tools Star Hub Editorial Team
+          Ali Ahmed
         </Link>
         {published ? (
           <>

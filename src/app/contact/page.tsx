@@ -8,11 +8,15 @@ import { Button } from "@/components/ui/Button";
 import { Container } from "@/components/ui/Container";
 import type { IconName } from "@/data/types";
 import { breadcrumbJsonLd, createPageMetadata, faqJsonLd } from "@/lib/seo";
+import { contactPageJsonLd } from "@/lib/structured-data";
 import { getPublicContactEmail, siteConfig, siteContact } from "@/lib/site";
 
 const pageTitle = "Contact Tools Star Hub | Online Tools Support";
 const pageDescription =
   "Contact Tools Star Hub for questions, feedback, tool issues, and suggestions. Reach us by email or phone.";
+
+const LAST_UPDATED = "2026-11-17";
+const LAST_UPDATED_DISPLAY = "17 November 2026";
 
 const relatedPages = [
   { href: "/tools", label: "Tools" },
@@ -82,6 +86,7 @@ export default function ContactPage() {
         ])}
       />
       <JsonLd data={faqJsonLd(contactFaqs)} />
+      <JsonLd data={contactPageJsonLd({ description: pageDescription, dateModified: LAST_UPDATED })} />
 
       <section className="border-b border-border bg-[linear-gradient(180deg,#f7faff_0%,#ffffff_72%)] dark:bg-[linear-gradient(180deg,#121a2b_0%,#0b1220_78%)]">
         <Container className="py-8 sm:py-12">
@@ -114,6 +119,9 @@ export default function ContactPage() {
               . Send a tool problem, a suggestion, feedback, or a general question.
               Include the page, what you did, and what you expected. We read{" "}
               {email} and reply by email.
+            </p>
+            <p className="mt-3 text-sm text-muted-foreground">
+              Last updated: <time dateTime={LAST_UPDATED}>{LAST_UPDATED_DISPLAY}</time>
             </p>
           </div>
         </Container>
@@ -175,6 +183,24 @@ export default function ContactPage() {
             </div>
           </article>
         </div>
+
+        <section className="mt-12" aria-labelledby="report-heading">
+          <h2
+            id="report-heading"
+            className="text-2xl font-semibold tracking-tight text-foreground"
+          >
+            How to report an error
+          </h2>
+          <p className="mt-4 max-w-3xl text-base leading-7 text-muted-foreground">
+            For a tool problem or a mistake on a guide, email{" "}
+            <a href={`mailto:${email}`} className="font-medium text-accent underline-offset-2 hover:underline">
+              {email}
+            </a>
+            . Include the page address, what you entered or read, and what you expected.
+            Confirmed mistakes are corrected on the page. This is an independent site run by Ali Ahmed;
+            there is no published company registration or office address.
+          </p>
+        </section>
 
         <section className="mt-12" aria-labelledby="help-heading">
           <h2
