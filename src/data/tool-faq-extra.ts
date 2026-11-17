@@ -2098,12 +2098,12 @@ export const extraToolFaqs: Record<string, ToolFaq[]> = {
     {
       question: "How do I create a QR code for a website URL?",
       answer:
-        "You can paste a URL here among the other types, then download a PNG. For a simple URL or plain-text PNG with no color or type form, use the [QR Code Generator](/tools/qr-code-generator).",
+        "You can paste a URL here among the other types, then download a PNG or an SVG. For a simple URL or plain-text code with no color, logo, or type form, use the [QR Code Generator](/tools/qr-code-generator).",
     },
     {
       question: "When should I pick a higher error-correction level?",
       answer:
-        "Use a higher level when the code will be small or printed roughly. This page does not place a logo on the code. Always test a print at the final size.",
+        "Use a higher level when the code will be small or printed roughly. If you add a logo, this page raises error correction to H (about 30%) for you. Always test-scan the result, and test a print at the final size.",
     },
     {
       question: "Can I encode plain text instead of a link?",
@@ -2118,7 +2118,7 @@ export const extraToolFaqs: Record<string, ToolFaq[]> = {
     {
       question: "Will a logo in the center still scan?",
       answer:
-        "This page does not add a logo to the code. It downloads a PNG of the pattern itself. A logo would have to be added in a design tool, and you would need to test that the result still scans.",
+        "It often will if the logo stays small. This page can place a logo you choose in the center, limited to under 20% of the code, and it raises error correction to H. A busy or oversized logo can still fail. Test-scan the result with a phone before you print or share it. The logo stays on your device.",
     },
     {
       question: "How large should a printed QR be on a flyer?",
@@ -2163,7 +2163,7 @@ export const extraToolFaqs: Record<string, ToolFaq[]> = {
     {
       question: "What file format is best for print vendors?",
       answer:
-        "This page downloads a PNG only, not SVG. Send the PNG, and ask the printer not to compress it as a small JPEG. Test a proof at the final size before a large run.",
+        "Download the SVG for print, because it is a true vector of the modules and stays sharp at any size. A PNG is better for screens and for many web uses. If you send a PNG, ask the printer not to compress it as a small JPEG. Test a proof at the final size before a large run. A logo in the SVG is embedded as an image, so the modules stay vector.",
     },
     {
       question: "Does generating a QR upload my Wi-Fi password?",
@@ -7500,7 +7500,7 @@ export const extraToolFaqs: Record<string, ToolFaq[]> = {
     {
       question: "Can I put a logo in the center?",
       answer:
-        "This basic generator focuses on clean static codes; logo overlays need higher error correction and a design tool.",
+        "Not on this page. The basic generator downloads the pattern only, as a PNG or an SVG. For an optional center logo, use [QR Code Generator Pro](/tools/qr-code-generator-pro). Always test-scan a logo code before you print it.",
     },
     {
       question: "What happens if I paste a very long URL?",
@@ -7525,7 +7525,7 @@ export const extraToolFaqs: Record<string, ToolFaq[]> = {
     {
       question: "Is SVG available for the download?",
       answer:
-        "This page exports a PNG suited for screens and most print jobs; use a vector tool if you need SVG.",
+        "Yes. After you generate the code, you can download a PNG for screens or an SVG, which is a true vector of the modules, for print or resizing.",
     },
     {
       question: "Can I batch-create many codes at once?",

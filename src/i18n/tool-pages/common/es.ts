@@ -34,6 +34,7 @@ const data: ToolTextDictionary = {
   "One of the options is too long.": "Una de las opciones es demasiado larga.",
   "Text or URL": "Texto o URL",
   "Download PNG": "Descargar PNG",
+  "Download SVG": "Descargar SVG",
   "That content could not be turned into a QR code. Try shorter text.": "No se pudo convertir ese contenido en un código QR. Prueba con un texto más corto.",
   "Generating…": "Generando…",
   "Enter text or a URL to encode.": "Escribe un texto o una URL para codificar.",

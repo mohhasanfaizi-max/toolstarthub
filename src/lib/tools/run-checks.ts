@@ -102,6 +102,7 @@ import { looksLikePdf, parsePageRange, parsePageSelection, pdfScaleForPage, pdfS
 import { calculatePercentage } from "./percentage.ts";
 import { calculatePercentageChange } from "./percentage-change.ts";
 import { looksLikeUrl, validateQrText } from "./qr.ts";
+import { runQrRenderChecks } from "./qr-render-checks.ts";
 import { slugify } from "./slug.ts";
 import { getTextStats } from "./text-stats.ts";
 import {
@@ -671,6 +672,7 @@ assert(pdfScaleForPage(10000, 10000, 1.5) < 1.5, "Huge pages should downscale");
 assert(!validateQrText("").ok, "Empty QR text should fail");
 assert(!validateQrText("a".repeat(1201)).ok, "Overlong QR text should fail");
 assert(validateQrText("https://example.com").ok, "URL QR text");
+runQrRenderChecks();
 assert(looksLikeUrl("https://example.com"), "https looks like a URL");
 assert(!looksLikeUrl("javascript:alert(1)"), "javascript: is not treated as a link");
 assert(!looksLikeUrl("not a url"), "plain text is not a URL");

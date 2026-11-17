@@ -32,7 +32,7 @@ export const toolMetaDescriptions: Record<string, string> = {
   "color-picker":
     "Free online color picker: choose a color with the browser color control or type a hex code, then copy it as HEX, RGB, or HSL for CSS.",
   "qr-code-generator":
-    "Free QR code generator for a URL or plain text: create a static PNG in your browser with no signup, no tracking redirect, and no expiry.",
+    "Free QR code generator for a URL or plain text: download a PNG or SVG in your browser with no signup, no tracking redirect, and no expiry.",
   "qr-code-scanner":
     "Free online QR code scanner: read a QR code with your camera or from an uploaded image, see the decoded text, and open links only after you check.",
   "html-encoder":
@@ -58,7 +58,7 @@ export const toolMetaDescriptions: Record<string, string> = {
   "box-shadow-generator":
     "Free CSS box-shadow generator: adjust offset, blur, spread, color, and opacity with a live preview, then copy the box-shadow declaration.",
   "qr-code-generator-pro":
-    "Free QR code generator for Wi-Fi, vCard, email, phone, and SMS, with custom colors and a PNG download. For a simple URL, use the basic generator.",
+    "Free QR code generator for Wi-Fi, vCard, email, phone, and SMS, with colors, an optional logo, and PNG or SVG. For a simple URL, use the basic generator.",
   "random-number-generator":
     "Free random number generator: draw random integers or decimals between a minimum and a maximum, with unique no-repeat draws, using a secure random source.",
   "pdf-compressor":
