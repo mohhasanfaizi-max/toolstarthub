@@ -254,16 +254,16 @@ const data: ToolPageTranslations = {
   "qr-code-generator": {
     "answer": "Un generador de códigos QR convierte un texto o una URL en una imagen QR descargable, creada en tu dispositivo.",
     "content": {
-      "about": "El generador de códigos QR crea un PNG a partir de texto plano o de una URL, de hasta 1.200 caracteres. Úsalo para un enlace corto o una nota breve que alguien deba escanear. El texto se guarda en el propio patrón. No hay un servicio de redirección. Los formatos de Wi-Fi, correo, teléfono, SMS y contacto están en QR Code Generator Pro. Una cadena larga hace un código más denso, y algunas cámaras no lo leen.",
+      "about": "El generador de códigos QR crea un código a partir de texto plano o de una URL, de hasta 1.200 caracteres, y puedes descargarlo como PNG o como SVG. Úsalo para un enlace corto o una nota breve que alguien deba escanear. El texto se guarda en el propio patrón. No hay un servicio de redirección. Los formatos de Wi-Fi, correo, teléfono, SMS y contacto, incluido un logotipo opcional, están en QR Code Generator Pro. Una cadena larga hace un código más denso, y algunas cámaras no lo leen.",
       "howTo": [
         "Pega un texto o una URL completa. Incluye https:// cuando sea un enlace web. La página recorta los espacios de los extremos.",
         "Pulsa Generar. Aparece una vista previa de 320 píxeles de ancho, con un patrón oscuro sobre un fondo blanco.",
-        "Descarga el PNG. Pulsa Restablecer si necesitas otro código. Un cuadro vacío, o más de 1.200 caracteres, muestra un error y borra la vista previa."
+        "Descarga un PNG para pantallas, o un SVG si necesitas un vector real de los módulos. Pulsa Restablecer si necesitas otro código. Un cuadro vacío, o más de 1.200 caracteres, muestra un error y borra la vista previa."
       ],
       "examples": [
         {
           "title": "Un sitio web corto",
-          "body": "Introduce https://example.com y pulsa Generar. La página recorta los espacios de alrededor y codifica esa dirección exacta. Un teléfono que escanea el PNG abre esa URL si la cámara la trata como un enlace. El código es un PNG con corrección de errores de nivel M, un margen de silencio de 2 módulos y un ancho de 320 píxeles. El color oscuro es #0b1f3a y el claro es #ffffff."
+          "body": "Introduce https://example.com y pulsa Generar. La página recorta los espacios de alrededor y codifica esa dirección exacta. Un teléfono que escanea el código abre esa URL si la cámara la trata como un enlace. La vista previa tiene 320 píxeles de ancho, con corrección de errores de nivel M y un margen de silencio de 2 módulos. Puedes descargar un PNG o un SVG. El color oscuro es #0b1f3a y el claro es #ffffff."
         },
         {
           "title": "Texto plano",
@@ -274,12 +274,12 @@ const data: ToolPageTranslations = {
           "body": "1.200 caracteres se aceptan. 1.201 caracteres se rechazan antes de dibujar un código. El mensaje es: Keep QR content to 1200 characters so the code stays readable. Acorta el texto, o pon el texto largo en una página y codifica la URL de esa página."
         }
       ],
-      "explanation": "Un código QR es una matriz de módulos oscuros y claros. Esta página lo construye en el navegador con una biblioteca del cliente. Generar no envía el texto a un servicio de QR. La corrección de errores de nivel M puede recuperar una cantidad moderada de daño. No hace fiable una impresión diminuta o de bajo contraste. La descarga es un PNG de la vista previa.",
-      "limitations": "Se codifica texto plano o una URL, y el texto debe tener 1.200 caracteres o menos después de recortar. Un valor vacío se rechaza. Los formatos de Wi-Fi, correo, teléfono, SMS y contacto están en QR Code Generator Pro. La imagen es un PNG de 320 píxeles con corrección de errores de nivel M. Una cadena larga hace un patrón denso que algunas cámaras no leen. La página no rastrea los escaneos.",
+      "explanation": "Un código QR es una matriz de módulos oscuros y claros. Esta página lo construye en el navegador con una biblioteca del cliente. Generar no envía el texto a un servicio de QR. La corrección de errores de nivel M puede recuperar una cantidad moderada de daño. No hace fiable una impresión diminuta o de bajo contraste. Puedes descargar un PNG de la vista previa, o un SVG dibujado como un vector real de los módulos.",
+      "limitations": "Se codifica texto plano o una URL, y el texto debe tener 1.200 caracteres o menos después de recortar. Un valor vacío se rechaza. Los formatos de Wi-Fi, correo, teléfono, SMS y contacto, incluido un logotipo opcional, están en QR Code Generator Pro. La vista previa tiene 320 píxeles de ancho con corrección de errores de nivel M, y puedes descargar un PNG o un SVG. Una cadena larga hace un patrón denso que algunas cámaras no leen. La página no rastrea los escaneos ni añade un logotipo.",
       "tips": [
         "Incluye https:// en los enlaces web. Un dominio suelto puede mostrarse como texto en lugar de abrirse como un sitio.",
         "Prefiere una URL corta a un párrafo largo. Lo que hace fallar a las cámaras es la densidad, no solo el tope de 1.200.",
-        "Deja el margen de silencio. El generador ya añade un margen de 2 módulos. Recortar el PNG puede quitarlo.",
+        "Deja el margen de silencio. El generador ya añade un margen de 2 módulos. Recortar la imagen puede quitarlo.",
         "Usa el escáner de este sitio, o la cámara de tu teléfono, antes de publicar la imagen."
       ],
       "sections": [
@@ -300,7 +300,7 @@ const data: ToolPageTranslations = {
         {
           "heading": "El código no caduca aquí",
           "paragraphs": [
-            "No hay una cuenta ni un servidor de enlaces cortos detrás del PNG. El patrón sigue funcionando mientras un escáner pueda leerlo y, en el caso de una URL, mientras esa dirección siga respondiendo. Si cambias la página de esa dirección, el código antiguo sigue apuntando a la misma dirección.",
+            "No hay una cuenta ni un servidor de enlaces cortos detrás del archivo. El patrón sigue funcionando mientras un escáner pueda leerlo y, en el caso de una URL, mientras esa dirección siga respondiendo. Si cambias la página de esa dirección, el código antiguo sigue apuntando a la misma dirección.",
             "Prueba con un teléfono antes de imprimir un montón de etiquetas. La vista previa de esta página no es una prueba de escaneo."
           ]
         },
@@ -314,7 +314,7 @@ const data: ToolPageTranslations = {
       "faqs": [
         {
           "question": "¿Cómo hago un código QR para un sitio web?",
-          "answer": "Pega la dirección completa, incluido https://, pulsa Generar y descarga el PNG. https://example.com se codifica como esa URL. Pruébalo con la cámara de un teléfono antes de imprimirlo."
+          "answer": "Pega la dirección completa, incluido https://, pulsa Generar y descarga un PNG o un SVG. https://example.com se codifica como esa URL. Pruébalo con la cámara de un teléfono antes de imprimirlo."
         },
         {
           "question": "¿Cuánto puede medir el texto?",
@@ -350,7 +350,7 @@ const data: ToolPageTranslations = {
         },
         {
           "question": "¿Puedo poner un logotipo en el centro?",
-          "answer": "Este generador básico se centra en códigos estáticos limpios; superponer un logotipo exige más corrección de errores y una herramienta de diseño."
+          "answer": "No en esta página. El generador básico descarga solo el patrón, como PNG o como SVG. Para un logotipo opcional en el centro, usa [QR Code Generator Pro](/tools/qr-code-generator-pro). Prueba siempre el escaneo de un código con logotipo antes de imprimirlo."
         },
         {
           "question": "¿Qué ocurre si pego una URL muy larga?",
@@ -370,7 +370,7 @@ const data: ToolPageTranslations = {
         },
         {
           "question": "¿Hay SVG en la descarga?",
-          "answer": "Esta página exporta un PNG adecuado para pantallas y para la mayoría de los trabajos de impresión; usa una herramienta vectorial si necesitas SVG."
+          "answer": "Sí. Después de generar el código puedes descargar un PNG para pantallas o un SVG, que es un vector real de los módulos, para imprimir o cambiar el tamaño."
         },
         {
           "question": "¿Puedo crear muchos códigos a la vez?",
@@ -394,7 +394,7 @@ const data: ToolPageTranslations = {
         }
       ]
     },
-    "metaDescription": "Crea un código QR en PNG a partir de una URL o un texto, en tu navegador. Para Wi-Fi, vCard, correo o SMS, usa el generador Pro. Nada se sube.",
+    "metaDescription": "Crea un código QR en PNG o SVG a partir de una URL o un texto, en tu navegador. Para Wi-Fi, vCard, correo o SMS, usa el generador Pro. Nada se sube.",
     "ui": {
       "The QR code is created in your browser. Keep content reasonably short.": "El código QR se crea en tu navegador. Mantén el contenido razonablemente corto.",
       "QR code for {0}": "Código QR para {0}",
@@ -765,7 +765,7 @@ const data: ToolPageTranslations = {
       "howTo": [
         "Elige un tipo: texto/URL, Wi-Fi, correo, teléfono, SMS o contacto.",
         "Completa los campos de ese tipo. Los valores no válidos se rechazan antes de dibujar un código.",
-        "Si quieres, cambia los colores, el tamaño, la zona de silencio y la corrección de errores, y luego genera y descarga un PNG."
+        "Si quieres, cambia los colores, el tamaño, la zona de silencio y la corrección de errores, añade un logotipo, y luego genera y descarga un PNG o un SVG."
       ],
       "examples": [
         {
@@ -802,11 +802,11 @@ const data: ToolPageTranslations = {
         },
         {
           "question": "¿Cómo creo un código QR para la URL de un sitio?",
-          "answer": "Puedes pegar una URL aquí, entre los demás tipos, y descargar un PNG. Para un PNG simple de URL o texto, sin formulario de tipo ni colores, usa el [Generador de códigos QR](/tools/qr-code-generator)."
+          "answer": "Puedes pegar una URL aquí, entre los demás tipos, y descargar un PNG o un SVG. Para un código simple de URL o texto, sin color, logotipo ni formulario de tipo, usa el [Generador de códigos QR](/tools/qr-code-generator)."
         },
         {
           "question": "¿Cuándo debo elegir un nivel más alto de corrección de errores?",
-          "answer": "Usa un nivel más alto cuando el código vaya a ser pequeño o se imprima de forma tosca. Esta página no coloca un logotipo en el código. Prueba siempre una impresión al tamaño final."
+          "answer": "Usa un nivel más alto cuando el código vaya a ser pequeño o se imprima de forma tosca. Si añades un logotipo, esta página sube la corrección de errores a H (unos 30 %) por ti. Prueba siempre el escaneo y una impresión al tamaño final."
         },
         {
           "question": "¿Puedo codificar texto plano en lugar de un enlace?",
@@ -818,7 +818,7 @@ const data: ToolPageTranslations = {
         },
         {
           "question": "¿Un logotipo en el centro se sigue escaneando?",
-          "answer": "Esta página no añade un logotipo al código. Descarga un PNG del patrón. Un logotipo tendría que añadirse en una herramienta de diseño, y habría que comprobar que el resultado se sigue escaneando."
+          "answer": "A menudo sí, si el logotipo se mantiene pequeño. Esta página puede colocar en el centro un logotipo que tú eliges, limitado a menos del 20 % del código, y sube la corrección de errores a H. Un logotipo recargado o demasiado grande puede fallar. Prueba el escaneo con un teléfono antes de imprimir o compartir. El logotipo se queda en tu dispositivo."
         },
         {
           "question": "¿Qué tan grande debería ser un QR impreso en un folleto?",
@@ -854,7 +854,7 @@ const data: ToolPageTranslations = {
         },
         {
           "question": "¿Qué formato de archivo es mejor para un taller de impresión?",
-          "answer": "Esta página solo descarga un PNG, no un SVG. Envía el PNG y pide que no lo compriman como un JPEG pequeño. Prueba una impresión al tamaño final."
+          "answer": "Descarga el SVG para imprimir, porque es un vector real de los módulos y sigue nítido a cualquier tamaño. Un PNG es mejor para pantallas y para muchos usos en la web. Si envías un PNG, pide que no lo compriman como un JPEG pequeño. Prueba una impresión al tamaño final. Un logotipo en el SVG se incrusta como imagen, así que los módulos siguen siendo vectoriales."
         },
         {
           "question": "¿Generar un QR sube mi contraseña de Wi-Fi?",
@@ -862,7 +862,7 @@ const data: ToolPageTranslations = {
         }
       ]
     },
-    "metaDescription": "Crea códigos QR de Wi-Fi, vCard, correo, teléfono o SMS, con colores y PNG, en tu navegador. Para una URL simple, usa el generador básico.",
+    "metaDescription": "Crea códigos QR de Wi-Fi, vCard, correo, teléfono o SMS, con colores, un logotipo opcional, y PNG o SVG, en tu navegador. Para una URL simple, usa el generador básico.",
     "ui": {
       "QR type": "Tipo de QR",
       "Network name (SSID)": "Nombre de la red (SSID)",
@@ -883,7 +883,7 @@ const data: ToolPageTranslations = {
       "Quiet zone": "Zona de silencio",
       "Error correction": "Corrección de errores",
       "Generated QR code": "Código QR generado",
-      "The QR code is generated in your browser. Wi-Fi passwords and other fields are not stored or sent to a server.": "El código QR se genera en tu navegador. Las contraseñas de Wi-Fi y los demás campos no se guardan ni se envían a un servidor.",
+      "The QR code is generated in your browser. Wi-Fi passwords, logos, and other fields are not stored or sent to a server.": "El código QR se genera en tu navegador. Las contraseñas de Wi-Fi, los logotipos y los demás campos no se almacenan ni se envían a un servidor.",
       "Foreground and background colors need to be different.": "Los colores de primer plano y de fondo deben ser distintos.",
       "Text / URL": "Texto / URL",
       "Wi-Fi": "Wi-Fi",
@@ -897,7 +897,14 @@ const data: ToolPageTranslations = {
       "Enter the Wi-Fi password, or choose no password.": "Escribe la contraseña del Wi-Fi o elige Sin contraseña.",
       "Enter a valid email address.": "Escribe un correo electrónico válido.",
       "Enter a phone number, with digits and optional + ( ).": "Escribe un número de teléfono con dígitos y + ( ) opcionales.",
-      "Enter a first or last name for the contact.": "Escribe un nombre o apellido para el contacto."
+      "Enter a first or last name for the contact.": "Escribe un nombre o apellido para el contacto.",
+      "Logo (optional)": "Logotipo (opcional)",
+      "Add a square PNG, JPG, or WebP. It stays on this device. Error correction is raised to H, and the logo is limited to about 20% of the code.": "Añade un PNG, JPG o WebP cuadrado. Se queda en este dispositivo. La corrección de errores sube a H, y el logotipo, con un margen claro, se limita a menos del 20 % del código.",
+      "A logo covers part of the code, so always test-scan the result with a phone before you print or share it.": "Un logotipo cubre parte del código, así que prueba siempre el escaneo con un teléfono antes de imprimirlo o compartirlo.",
+      "Error correction is set to H while a logo is present.": "La corrección de errores se fija en H mientras hay un logotipo.",
+      "The logo must be a PNG, JPG, or WebP under 1 MB.": "El logotipo debe ser un PNG, JPG o WebP de menos de 1 MB.",
+      "That logo could not be opened.": "No se pudo abrir ese logotipo.",
+      "Remove logo": "Quitar el logotipo"
     }
   },
   "url-parser": {

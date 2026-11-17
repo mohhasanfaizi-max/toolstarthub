@@ -1,7 +1,6 @@
 "use client";
 
-import { useState } from "react";
-import QRCode from "qrcode";
+import { useRef, useState } from "react";
 import { Button } from "@/components/ui/Button";
 import { ColorInput } from "@/components/tools/ColorInput";
 import { DownloadButton } from "@/components/tools/DownloadButton";
@@ -17,12 +16,58 @@ import {
 } from "@/components/tools/ToolForm";
 import { parseCssColor } from "@/lib/tools/color";
 import { encodeQrPayload, type QrKind } from "@/lib/tools/qr-payload";
+import {
+  QR_LOGO_MAX_BYTES,
+  QR_LOGO_TYPES,
+  canvasToPngBlob,
+  createQrMatrix,
+  effectiveQrEcc,
+  isWellFormedSvg,
+  paintQrToCanvas,
+  qrMatrixToSvg,
+  svgToBlob,
+} from "@/lib/tools/qr-render";
 import { useTx } from "@/i18n/tool-text";
 
 type Ecc = "L" | "M" | "Q" | "H";
 
+type LogoState = {
+  name: string;
+  dataUrl: string;
+  image: HTMLImageElement;
+};
+
+function isAllowedLogo(file: File): boolean {
+  return (
+    file.size <= QR_LOGO_MAX_BYTES &&
+    (QR_LOGO_TYPES as readonly string[]).includes(file.type)
+  );
+}
+
+function loadImage(dataUrl: string): Promise<HTMLImageElement> {
+  return new Promise((resolve, reject) => {
+    const image = new Image();
+    image.onload = () => resolve(image);
+    image.onerror = () => reject(new Error("logo-load"));
+    image.src = dataUrl;
+  });
+}
+
+function readFileAsDataUrl(file: File): Promise<string> {
+  return new Promise((resolve, reject) => {
+    const reader = new FileReader();
+    reader.onload = () => {
+      if (typeof reader.result === "string") resolve(reader.result);
+      else reject(new Error("logo-read"));
+    };
+    reader.onerror = () => reject(new Error("logo-read"));
+    reader.readAsDataURL(file);
+  });
+}
+
 export function QrCodeGeneratorProTool() {
   const tx = useTx();
+  const logoInputRef = useRef<HTMLInputElement>(null);
   const [kind, setKind] = useState<QrKind>("text");
   const [text, setText] = useState("");
   const [ssid, setSsid] = useState("");
@@ -40,10 +85,41 @@ export function QrCodeGeneratorProTool() {
   const [size, setSize] = useState(320);
   const [margin, setMargin] = useState(2);
   const [ecc, setEcc] = useState<Ecc>("M");
+  const [logo, setLogo] = useState<LogoState | null>(null);
   const [dataUrl, setDataUrl] = useState("");
-  const [blob, setBlob] = useState<Blob | null>(null);
+  const [pngBlob, setPngBlob] = useState<Blob | null>(null);
+  const [svgBlob, setSvgBlob] = useState<Blob | null>(null);
   const [error, setError] = useState("");
   const [busy, setBusy] = useState(false);
+
+  function clearPreview() {
+    setDataUrl("");
+    setPngBlob(null);
+    setSvgBlob(null);
+  }
+
+  async function onLogoChange(file: File | undefined) {
+    if (!file) {
+      setLogo(null);
+      return;
+    }
+    if (!isAllowedLogo(file)) {
+      setError("The logo must be a PNG, JPG, or WebP under 1 MB.");
+      setLogo(null);
+      if (logoInputRef.current) logoInputRef.current.value = "";
+      return;
+    }
+    try {
+      const url = await readFileAsDataUrl(file);
+      const image = await loadImage(url);
+      setLogo({ name: file.name, dataUrl: url, image });
+      setError("");
+    } catch {
+      setError("That logo could not be opened.");
+      setLogo(null);
+      if (logoInputRef.current) logoInputRef.current.value = "";
+    }
+  }
 
   async function generate() {
     const payload = encodeQrPayload({
@@ -62,8 +138,7 @@ export function QrCodeGeneratorProTool() {
     });
     if (!payload.ok) {
       setError(payload.error);
-      setDataUrl("");
-      setBlob(null);
+      clearPreview();
       return;
     }
 
@@ -85,19 +160,30 @@ export function QrCodeGeneratorProTool() {
     setBusy(true);
     setError("");
     try {
-      const url = await QRCode.toDataURL(payload.text, {
-        errorCorrectionLevel: ecc,
+      const usedEcc = effectiveQrEcc(ecc, Boolean(logo));
+      const renderOptions = {
         margin,
         width: size,
-        color: { dark: fg.color.hex, light: bg.color.hex },
-      });
+        dark: fg.color.hex,
+        light: bg.color.hex,
+      };
+      const modules = createQrMatrix(payload.text, usedEcc);
+      const svg = qrMatrixToSvg(modules, renderOptions, logo?.dataUrl);
+      if (!isWellFormedSvg(svg)) {
+        throw new Error("invalid-svg");
+      }
+      const canvas = document.createElement("canvas");
+      paintQrToCanvas(canvas, modules, renderOptions, logo?.image ?? null);
+      const [png, url] = await Promise.all([
+        canvasToPngBlob(canvas),
+        Promise.resolve(canvas.toDataURL("image/png")),
+      ]);
       setDataUrl(url);
-      const response = await fetch(url);
-      setBlob(await response.blob());
+      setPngBlob(png);
+      setSvgBlob(svgToBlob(svg));
     } catch {
       setError("That content could not be turned into a QR code. Try shorter text.");
-      setDataUrl("");
-      setBlob(null);
+      clearPreview();
     } finally {
       setBusy(false);
     }
@@ -121,8 +207,9 @@ export function QrCodeGeneratorProTool() {
     setSize(320);
     setMargin(2);
     setEcc("M");
-    setDataUrl("");
-    setBlob(null);
+    setLogo(null);
+    if (logoInputRef.current) logoInputRef.current.value = "";
+    clearPreview();
     setError("");
   }
 
@@ -134,12 +221,12 @@ export function QrCodeGeneratorProTool() {
         value={kind}
         onChange={setKind}
         options={[
-          { id: "text", label: "Text / URL" },
-          { id: "wifi", label: "Wi-Fi" },
-          { id: "email", label: "Email" },
-          { id: "phone", label: "Phone" },
-          { id: "sms", label: "SMS" },
-          { id: "vcard", label: "Contact" },
+          { id: "text", label: tx("Text / URL") },
+          { id: "wifi", label: tx("Wi-Fi") },
+          { id: "email", label: tx("Email") },
+          { id: "phone", label: tx("Phone") },
+          { id: "sms", label: tx("SMS") },
+          { id: "vcard", label: tx("Contact") },
         ]}
         columns="grid gap-2 sm:grid-cols-3"
       />
@@ -169,9 +256,9 @@ export function QrCodeGeneratorProTool() {
               value={security}
               onChange={setSecurity}
               options={[
-                { id: "WPA", label: "WPA/WPA2" },
-                { id: "WEP", label: "WEP" },
-                { id: "nopass", label: "No password" },
+                { id: "WPA", label: tx("WPA/WPA2") },
+                { id: "WEP", label: tx("WEP") },
+                { id: "nopass", label: tx("No password") },
               ]}
               columns="grid gap-2 sm:grid-cols-3"
             />
@@ -251,7 +338,7 @@ export function QrCodeGeneratorProTool() {
         <ToolChoiceGroup
           legend={tx("Error correction")}
           name="qr-ecc"
-          value={ecc}
+          value={logo ? "H" : ecc}
           onChange={setEcc}
           options={[
             { id: "L", label: "L (7%)" },
@@ -259,16 +346,56 @@ export function QrCodeGeneratorProTool() {
             { id: "Q", label: "Q (25%)" },
             { id: "H", label: "H (30%)" },
           ]}
-          columns="grid gap-2 sm:grid-cols-4"
+        columns="grid gap-2 sm:grid-cols-4"
         />
+        {logo ? (
+          <p className="mt-2 text-sm text-muted-foreground">{tx("Error correction is set to H while a logo is present.")}</p>
+        ) : null}
       </div>
+
+      <ToolField
+        id="qr-logo"
+        label={tx("Logo (optional)")}
+        hint={tx("Add a square PNG, JPG, or WebP. It stays on this device. Error correction is raised to H, and the logo is limited to about 20% of the code.")}
+      >
+        <input
+          id="qr-logo"
+          ref={logoInputRef}
+          type="file"
+          accept="image/png,image/jpeg,image/webp"
+          data-testid="qr-logo"
+          className={toolControlClass}
+          onChange={(event) => void onLogoChange(event.target.files?.[0])}
+        />
+        {logo ? (
+          <div className="mt-2 flex flex-wrap items-center gap-3 text-sm text-muted-foreground">
+            <span>{logo.name}</span>
+            <Button
+              type="button"
+              variant="ghost"
+              onClick={() => {
+                setLogo(null);
+                if (logoInputRef.current) logoInputRef.current.value = "";
+              }}
+            >
+              {tx("Remove logo")}
+            </Button>
+          </div>
+        ) : null}
+      </ToolField>
+      {logo ? (
+        <p className="mt-3 text-sm leading-6 text-muted-foreground" data-testid="qr-logo-warning" role="status">
+          {tx("A logo covers part of the code, so always test-scan the result with a phone before you print or share it.")}
+        </p>
+      ) : null}
 
       <div className="mt-6">
         <ToolActions>
           <Button type="button" onClick={() => void generate()} disabled={busy}>
             {tx(busy ? "Generating…" : "Generate")}
           </Button>
-          <DownloadButton blob={blob} fileName="qr-code.png" label={tx("Download PNG")} />
+          <DownloadButton blob={pngBlob} fileName="qr-code.png" label={tx("Download PNG")} />
+          <DownloadButton blob={svgBlob} fileName="qr-code.svg" label={tx("Download SVG")} />
           <Button type="button" variant="ghost" onClick={reset}>{tx("Reset")}</Button>
         </ToolActions>
       </div>
@@ -279,12 +406,12 @@ export function QrCodeGeneratorProTool() {
           <figure className="mt-4 overflow-hidden rounded-2xl border border-border bg-muted p-4">
             {/* Local data URL preview; next/image is not suitable here. */}
             {/* eslint-disable-next-line @next/next/no-img-element */}
-            <img src={dataUrl} alt={tx("Generated QR code")} className="mx-auto max-h-80 w-auto max-w-full" />
+            <img src={dataUrl} alt={tx("Generated QR code")} className="mx-auto max-h-80 w-auto max-w-full" data-testid="qr-pro-preview" />
           </figure>
         ) : null}
       </div>
 
-      <ToolPrivacyNote>{tx("The QR code is generated in your browser. Wi-Fi passwords and other fields are not stored or sent to a server.")}</ToolPrivacyNote>
+      <ToolPrivacyNote>{tx("The QR code is generated in your browser. Wi-Fi passwords, logos, and other fields are not stored or sent to a server.")}</ToolPrivacyNote>
     </ToolPanel>
   );
 }

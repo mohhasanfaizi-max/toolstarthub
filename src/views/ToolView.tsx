@@ -213,7 +213,7 @@ export function ToolView({ locale, slug }: { locale: Locale; slug: string }) {
               : english && slug === "password-generator"
                 ? "Free Password Generator — Secure Passwords & Offline Password Log"
                 : english && slug === "qr-code-generator"
-                  ? "QR Code Generator — URL or Text to PNG"
+                  ? "QR Code Generator — URL or Text to PNG/SVG"
                   : english && slug === "qr-code-generator-pro"
                     ? "QR Code Generator Pro — Wi-Fi, vCard, Email and SMS"
                     : tool.name}

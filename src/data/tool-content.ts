@@ -983,11 +983,11 @@ export const toolContent: Record<string, ToolContent> = {
   },
   "qr-code-generator": {
     about:
-      "Encode plain text or a URL as a QR code PNG, up to 1,200 characters. Use it for a short link you want someone to scan. Wi-Fi, email, and contact layouts are on QR Code Generator Pro, and a long string makes a dense pattern some cameras miss.",
+      "Encode plain text or a URL as a QR code, up to 1,200 characters, and download a PNG or an SVG. Use it for a short link you want someone to scan. Wi-Fi, email, contact layouts, and an optional logo are on QR Code Generator Pro, and a long string makes a dense pattern some cameras miss.",
     howTo: [
       "Paste text or a full URL, including https:// if it is a web link.",
       "Press Generate. A preview and an accessible description appear.",
-      "Download the PNG, then reset if you need a different code.",
+      "Download a PNG or an SVG, then reset if you need a different code.",
     ],
     examples: [
       {
@@ -1002,7 +1002,7 @@ export const toolContent: Record<string, ToolContent> = {
     explanation:
       "A QR code is a matrix barcode. This tool builds the pattern in your browser with a client-side library. The text is not sent to a QR API. Very long content makes a dense code that many cameras struggle to read, so length is capped.",
     limitations:
-      "Plain text or a URL is encoded, and the text must be 1,200 characters or shorter. Wi-Fi, email, and contact layouts are on QR Code Generator Pro. A long string makes a dense pattern that some cameras miss.",
+      "Plain text or a URL is encoded, and the text must be 1,200 characters or shorter. Wi-Fi, email, contact layouts, and an optional logo are on QR Code Generator Pro. You can download a PNG or an SVG. A long string makes a dense pattern that some cameras miss.",
     faqs: [
       {
         question: "Is the QR Code Generator free?",
@@ -1017,7 +1017,7 @@ export const toolContent: Record<string, ToolContent> = {
       {
         question: "Will every scanner read the PNG?",
         answer:
-          "Most cameras can read a high-contrast PNG of a short URL. Tiny prints, low light, or very long text can fail.",
+          "Most cameras can read a high-contrast PNG or SVG of a short URL. Tiny prints, low light, or very long text can fail.",
       },
     ],
   },
@@ -1633,7 +1633,7 @@ export const toolContent: Record<string, ToolContent> = {
     howTo: [
       "Choose a type: text/URL, Wi-Fi, email, phone, SMS or contact.",
       "Fill the fields for that type. Invalid values are rejected before a code is drawn.",
-      "Optionally change colors, size, quiet zone and error correction, then generate and download a PNG.",
+      "Optionally change colors, size, quiet zone, error correction, and add a logo, then generate and download a PNG or an SVG.",
     ],
     examples: [
       {
@@ -1648,7 +1648,7 @@ export const toolContent: Record<string, ToolContent> = {
     explanation:
       "Structured types are converted to the usual QR text formats (WIFI, mailto, tel, SMSTO, vCard 3.0). Generation uses the same local QR library as the basic generator. Contents are not stored, logged, or placed in the page URL.",
     limitations:
-      "The types are plain text, Wi-Fi, email, phone, SMS, and a vCard 3.0 contact. A missing network name, an email that fails the simple check, or a phone number outside digits and optional + ( ) is rejected before a code is drawn. The encoded text still has to stay within 1,200 characters.",
+      "The types are plain text, Wi-Fi, email, phone, SMS, and a vCard 3.0 contact. A missing network name, an email that fails the simple check, or a phone number outside digits and optional + ( ) is rejected before a code is drawn. The encoded text still has to stay within 1,200 characters. You can download a PNG or an SVG, and you can add an optional center logo, which raises error correction to H and is limited to under 20% of the code.",
     faqs: [
       {
         question: "Is the QR Code Generator Pro free?",
@@ -1658,7 +1658,7 @@ export const toolContent: Record<string, ToolContent> = {
       {
         question: "Is this different from the basic QR generator?",
         answer:
-          "Yes. The basic tool encodes plain text or a URL. This version adds structured types, colors and error-correction controls. The basic tool is unchanged.",
+          "Yes. The basic tool encodes plain text or a URL and offers PNG and SVG downloads. This version adds structured types, colors, error-correction controls, and an optional center logo. The basic tool is unchanged.",
       },
       {
         question: "Are Wi-Fi passwords saved?",

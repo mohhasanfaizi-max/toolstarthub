@@ -392,16 +392,16 @@ export const priorityToolContent: Record<string, ToolContent> = {
   },
   "qr-code-generator": {
     about:
-      "The QR Code Generator builds a QR code PNG from plain text or a URL, up to 1,200 characters. Use it for a short link or a short note you want someone to scan. The text is stored in the pattern itself. There is no redirect service. Wi-Fi, email, phone, SMS, and contact layouts are on QR Code Generator Pro. A long string makes a denser code, and some cameras miss those.",
+      "The QR Code Generator builds a QR code from plain text or a URL, up to 1,200 characters, and you can download it as a PNG or as an SVG. Use it for a short link or a short note you want someone to scan. The text is stored in the pattern itself. There is no redirect service. Wi-Fi, email, phone, SMS, and contact layouts, including an optional logo, are on QR Code Generator Pro. A long string makes a denser code, and some cameras miss those.",
     howTo: [
       "Paste text or a full URL. Include https:// when it is a web link. The page trims spaces at the ends.",
       "Press Generate. A preview appears, 320 pixels wide, with a dark pattern on a white background.",
-      "Download the PNG. Press Reset if you need a different code. An empty box, or more than 1,200 characters, shows an error and clears the preview.",
+      "Download a PNG for screens, or an SVG if you need a true vector of the modules. Press Reset if you need a different code. An empty box, or more than 1,200 characters, shows an error and clears the preview.",
     ],
     examples: [
       {
         title: "A short website",
-        body: "Enter https://example.com and press Generate. The page trims any spaces around it and encodes that exact address. A phone that scans the PNG opens that URL if the camera treats it as a link. The code is a PNG with error correction level M, a quiet margin of 2 modules, and a width of 320 pixels. The dark color is #0b1f3a and the light color is #ffffff.",
+        body: "Enter https://example.com and press Generate. The page trims any spaces around it and encodes that exact address. A phone that scans the code opens that URL if the camera treats it as a link. The preview is 320 pixels wide, with error correction level M and a quiet margin of 2 modules. You can download a PNG or an SVG. The dark color is #0b1f3a and the light color is #ffffff.",
       },
       {
         title: "Plain text",
@@ -413,7 +413,7 @@ export const priorityToolContent: Record<string, ToolContent> = {
       },
     ],
     explanation:
-      "A QR code is a matrix of dark and light modules. This page builds it in the browser with a client-side library. Generate does not send the text to a QR service. Error correction level M can recover a modest amount of damage. It does not make a tiny or low-contrast print reliable. The download is a PNG of the preview.",
+      "A QR code is a matrix of dark and light modules. This page builds it in the browser with a client-side library. Generate does not send the text to a QR service. Error correction level M can recover a modest amount of damage. It does not make a tiny or low-contrast print reliable. You can download a PNG of the preview, or an SVG drawn as a true vector of the modules.",
     sections: [
       {
         heading: "Why a long code is harder to scan",
@@ -432,30 +432,30 @@ export const priorityToolContent: Record<string, ToolContent> = {
       {
         heading: "The code does not expire here",
         paragraphs: [
-          "There is no account and no short-link server behind the PNG. The pattern keeps working for as long as a scanner can read it and, for a URL, for as long as that address still responds. If you change the page at that address, the old code still points at the same address.",
+          "There is no account and no short-link server behind the file. The pattern keeps working for as long as a scanner can read it and, for a URL, for as long as that address still responds. If you change the page at that address, the old code still points at the same address.",
           "Test with a phone before you print a stack of labels. The preview on this page is not a scan test.",
         ],
       },
       {
         heading: "Privacy",
         paragraphs: [
-          "The text stays in this tab. Generate does not upload it. The PNG is created locally and downloaded to your device. Do not encode a password you would not want on a printed page. Anyone who scans the code can read the text.",
+          "The text stays in this tab. Generate does not upload it. The PNG and SVG are created locally and downloaded to your device. Do not encode a password you would not want on a printed page. Anyone who scans the code can read the text.",
         ],
       },
     ],
     tips: [
       "Include https:// on web links. A bare domain may be shown as text instead of opened as a site.",
       "Prefer a short URL over a long paragraph. Density, not the 1,200 cap alone, is what makes cameras fail.",
-      "Leave the quiet margin. The generator already adds a margin of 2 modules. Cropping the PNG can remove it.",
+      "Leave the quiet margin. The generator already adds a margin of 2 modules. Cropping the image can remove it.",
       "Use the scanner on this site, or your phone camera, before you publish the image.",
     ],
     limitations:
-      "Plain text or a URL is encoded, and the text must be 1,200 characters or shorter after trimming. An empty value is rejected. Wi-Fi, email, phone, SMS, and contact layouts are on QR Code Generator Pro. The image is a 320 pixel PNG at error correction level M. A long string makes a dense pattern that some cameras miss. The page does not track scans.",
+      "Plain text or a URL is encoded, and the text must be 1,200 characters or shorter after trimming. An empty value is rejected. Wi-Fi, email, phone, SMS, contact layouts, and an optional logo are on QR Code Generator Pro. The preview is 320 pixels wide at error correction level M, and you can download a PNG or an SVG. A long string makes a dense pattern that some cameras miss. The page does not track scans or add a logo.",
     faqs: [
       {
         question: "How do I make a QR code for a website?",
         answer:
-          "Paste the full address, including https://, press Generate, and download the PNG. https://example.com is encoded as that URL. Test it with a phone camera before you print it.",
+          "Paste the full address, including https://, press Generate, and download a PNG or an SVG. https://example.com is encoded as that URL. Test it with a phone camera before you print it.",
       },
       {
         question: "How long can the text be?",
@@ -480,7 +480,7 @@ export const priorityToolContent: Record<string, ToolContent> = {
       {
         question: "Will every scanner read the PNG?",
         answer:
-          "Most cameras can read a high-contrast PNG of a short URL. The image is 320 pixels wide, with error correction level M. Tiny prints, low light, or very long text can fail.",
+          "Most cameras can read a high-contrast PNG or SVG of a short URL. The preview is 320 pixels wide, with error correction level M. Tiny prints, low light, or very long text can fail.",
       },
     ],
   },
