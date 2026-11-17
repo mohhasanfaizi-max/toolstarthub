@@ -9,6 +9,7 @@ export type ActivityLevel =
   | "active"
   | "veryActive";
 export type WeightGoal = "maintain" | "lose" | "gain";
+export type BmrFormula = "mifflin" | "katch";
 
 export const ACTIVITY_MULTIPLIERS: Record<
   ActivityLevel,
@@ -70,6 +71,9 @@ export type TdeeResult =
       proteinCalories: number;
       carbCalories: number;
       fatCalories: number;
+      formulaId: BmrFormula;
+      bodyFatPercent?: number;
+      leanMassKg?: number;
       formula: string;
     }
   | { ok: false; error: string };
@@ -91,6 +95,20 @@ export function mifflinStJeorBmr(input: {
 }): number {
   const base = 10 * input.weightKg + 6.25 * input.heightCm - 5 * input.age;
   return input.sex === "male" ? base + 5 : base - 161;
+}
+
+/**
+ * Katch–McArdle resting energy (kcal/day).
+ * BMR = 370 + 21.6 × lean body mass (kg),
+ * where lean body mass = weight × (1 − body-fat percentage / 100).
+ * The equation does not use age, sex, or height.
+ */
+export function katchMcArdleBmr(input: {
+  weightKg: number;
+  bodyFatPercent: number;
+}): { bmr: number; leanMassKg: number } {
+  const leanMassKg = input.weightKg * (1 - input.bodyFatPercent / 100);
+  return { bmr: 370 + 21.6 * leanMassKg, leanMassKg };
 }
 
 /**
@@ -124,6 +142,10 @@ export function calculateTdee(input: {
   goal: WeightGoal;
   /** When true, height comes from feet + inches instead of a single field. */
   splitImperialHeight?: boolean;
+  /** Optional body-fat percentage, required only for Katch–McArdle. */
+  bodyFatRaw?: string;
+  /** Mifflin–St Jeor is the default. */
+  formula?: BmrFormula;
 }): TdeeResult {
   const age = parseNumber(input.ageRaw, { field: "age", allowNegative: false });
   if (!age.ok) return age;
@@ -195,18 +217,51 @@ export function calculateTdee(input: {
     }
   }
 
-  const activityMeta = ACTIVITY_MULTIPLIERS[input.activity];
-  const bmrRaw = mifflinStJeorBmr({
-    sex: input.sex,
-    weightKg,
-    heightCm,
-    age: age.value,
-  });
-  if (!Number.isFinite(bmrRaw) || bmrRaw <= 0) {
-    return { ok: false, error: "These values produce an invalid BMR. Check age, height and weight." };
+  const formulaId: BmrFormula = input.formula ?? "mifflin";
+  const bodyFatRaw = input.bodyFatRaw?.trim() ?? "";
+  let bodyFatPercent: number | undefined;
+  let leanMassKg: number | undefined;
+
+  if (formulaId === "katch" && bodyFatRaw === "") {
+    return {
+      ok: false,
+      error: "Enter a body-fat percentage to use the Katch–McArdle formula.",
+    };
+  }
+  if (bodyFatRaw !== "") {
+    const parsedFat = parseNumber(bodyFatRaw, {
+      field: "body-fat percentage",
+      allowNegative: false,
+    });
+    if (!parsedFat.ok) return parsedFat;
+    if (parsedFat.value < 2 || parsedFat.value > 70) {
+      return { ok: false, error: "Enter a body-fat percentage between 2 and 70." };
+    }
+    bodyFatPercent = parsedFat.value;
   }
 
-  const bmr = roundTo(bmrRaw, 0);
+  const activityMeta = ACTIVITY_MULTIPLIERS[input.activity];
+  let bmrRaw: number;
+  if (formulaId === "katch") {
+    const katch = katchMcArdleBmr({
+      weightKg,
+      bodyFatPercent: bodyFatPercent as number,
+    });
+    bmrRaw = katch.bmr;
+    leanMassKg = roundTo(katch.leanMassKg, 2);
+  } else {
+    bmrRaw = mifflinStJeorBmr({
+      sex: input.sex,
+      weightKg,
+      heightCm,
+      age: age.value,
+    });
+  }
+  if (!Number.isFinite(bmrRaw) || bmrRaw <= 0) {
+    return { ok: false, error: "These values produce an invalid BMR. Check age, height, weight and body fat." };
+  }
+
+  const bmr = formulaId === "katch" ? roundTo(bmrRaw, 1) : roundTo(bmrRaw, 0);
   const tdee = roundTo(bmrRaw * activityMeta.multiplier, 0);
   const maintainCalories = tdee;
   const loseCalories = Math.max(1200, tdee - LOSE_DEFICIT);
@@ -217,8 +272,10 @@ export function calculateTdee(input: {
 
   const sexConstant = input.sex === "male" ? "+ 5" : "− 161";
   const formula =
-    `BMR = 10 × ${roundTo(weightKg, 1)} kg + 6.25 × ${roundTo(heightCm, 1)} cm − 5 × ${age.value} ${sexConstant} = ${bmr} kcal. ` +
-    `TDEE = ${bmr} × ${activityMeta.multiplier} (${activityMeta.label}) = ${tdee} kcal.`;
+    formulaId === "katch"
+      ? `BMR (Katch–McArdle) = 370 + 21.6 × ${leanMassKg} kg lean mass = ${bmr} kcal. Lean mass = ${roundTo(weightKg, 1)} kg × (1 − ${bodyFatPercent}% / 100). TDEE = ${bmr} × ${activityMeta.multiplier} (${activityMeta.label}) = ${tdee} kcal.`
+      : `BMR = 10 × ${roundTo(weightKg, 1)} kg + 6.25 × ${roundTo(heightCm, 1)} cm − 5 × ${age.value} ${sexConstant} = ${bmr} kcal. ` +
+        `TDEE = ${bmr} × ${activityMeta.multiplier} (${activityMeta.label}) = ${tdee} kcal.`;
 
   return {
     ok: true,
@@ -236,6 +293,9 @@ export function calculateTdee(input: {
     gainCalories,
     goalCalories,
     ...macros,
+    formulaId,
+    bodyFatPercent,
+    leanMassKg,
     formula,
   };
 }

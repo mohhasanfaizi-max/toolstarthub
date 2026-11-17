@@ -100,7 +100,7 @@ const data: ToolPageTranslations = {
         },
         {
           "question": "¿Puedo formatear JSON5 u objetos de JavaScript?",
-          "answer": "El JSON estricto no admite comentarios ni comas finales. Elimina esas características antes de que un formateador estándar acepte el texto."
+          "answer": "Formatear, Minificar y Validar siguen exigiendo JSON estándar, así que los comentarios, las comas finales, las comillas simples y las claves sin comillas fallan ahí. El botón Reparar puede aplicar esas correcciones de sintaxis seguras, mostrar lo que cambió y rechazar cualquier cosa que no pueda arreglar sin adivinar valores."
         },
         {
           "question": "¿Ordenar las claves cambia el significado?",

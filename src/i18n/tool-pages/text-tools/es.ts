@@ -93,7 +93,7 @@ const data: ToolPageTranslations = {
         },
         {
           "question": "¿Cuántas palabras tiene un discurso de 5 minutos?",
-          "answer": "Esta página no calcula un ritmo de habla. El tiempo de lectura usa 225 palabras por minuto de lectura, no de dicción. Multiplica tu propio ritmo por 5 y compáralo con el recuento."
+          "answer": "El tiempo de habla usa la velocidad que indiques, habitualmente más lenta que la lectura. A 150 palabras por minuto, un discurso de 5 minutos son unas 750 palabras. El tiempo de lectura de esta página se mantiene en unas 225 palabras por minuto y se redondea a un minuto entero."
         },
         {
           "question": "¿Por qué el tiempo de lectura salta de 1 a 2 minutos?",
@@ -125,7 +125,7 @@ const data: ToolPageTranslations = {
         },
         {
           "question": "¿El contador corrige la ortografía o la gramática?",
-          "answer": "No. Solo cuenta. No identifica al autor ni evalúa la calidad del texto."
+          "answer": "No. Solo cuenta palabras, caracteres y la densidad de los términos más usados. No corrige la gramática, no identifica al autor y no evalúa la calidad del texto."
         },
         {
           "question": "¿Funciona sin conexión después de cargar la página?",
@@ -152,8 +152,27 @@ const data: ToolPageTranslations = {
       "Sample text": "Texto de ejemplo",
       "Reading time": "Tiempo de lectura",
       "0 min": "0 min",
-      "{0} min": "{0} min"
-    }
+      "{0} min": "{0} min",
+      "0 sec": "0 s",
+      "{0} sec": "{0} s",
+      "{0} min {1} sec": "{0} min {1} s",
+      "Term": "Término",
+      "Count": "Recuento",
+      "Share of words": "Porcentaje de palabras",
+      "Speaking time": "Tiempo de habla",
+      "Speaking speed (words per minute)": "Velocidad de habla (palabras por minuto)",
+      "Reading time stays at about 225 words per minute. Speaking time uses the speed you set, usually slower. Enter a value from 50 to 250.": "El tiempo de lectura se mantiene en unas 225 palabras por minuto. El tiempo de habla usa la velocidad que indiques, suele ser más lenta. Introduce un valor entre 50 y 250.",
+      "Ignore common English words (the, and, of…)": "Ignorar palabras comunes en inglés (the, and, of…)",
+      "Keyword density": "Densidad de palabras clave",
+      "Counts are taken from letters and numbers in your text. The share is that term’s count divided by all words, including common words. This is not grammar checking and it does not judge writing quality.": "Los recuentos salen de las letras y los números de tu texto. El porcentaje es el recuento de ese término dividido entre todas las palabras, incluidas las comunes. Esto no es una corrección gramatical y no juzga la calidad de la escritura.",
+      "Top words": "Palabras más frecuentes",
+      "Top two-word phrases": "Frases de dos palabras más frecuentes",
+      "No words to count yet.": "Aún no hay palabras que contar.",
+      "No phrases to count yet.": "Aún no hay frases que contar.",
+      "Enter a speaking speed in words per minute.": "Introduce una velocidad de habla en palabras por minuto.",
+      "Enter a speaking speed greater than 0.": "Introduce una velocidad de habla mayor que 0.",
+      "Enter a speaking speed between 50 and 250 words per minute.": "Introduce una velocidad de habla entre 50 y 250 palabras por minuto.",
+}
   },
   "character-counter": {
     "answer": "Un contador de caracteres suma caracteres, palabras y líneas mientras escribes, incluidos los espacios, salvo que elijas no contarlos.",

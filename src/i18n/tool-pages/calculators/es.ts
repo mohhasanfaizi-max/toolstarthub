@@ -3969,7 +3969,7 @@ const data: ToolPageTranslations = {
   "tdee-calculator": {
     "answer": "Una calculadora TDEE estima el gasto calórico diario a partir de la edad, el sexo, la estatura, el peso y la actividad. Esta usa Mifflin–St Jeor para el BMR, lo multiplica por un factor de actividad y luego muestra metas para mantener, perder o ganar peso, con macros sugeridos.",
     "content": {
-      "about": "Esta calculadora TDEE gratuita estima cuántas calorías quemas en un día a partir de tu edad, sexo, estatura, peso y actividad. Usa la ecuación de Mifflin–St Jeor para la tasa metabólica basal (BMR), la multiplica por un factor de actividad estándar para obtener el gasto energético total diario (TDEE) y luego muestra metas calóricas de mantenimiento, pérdida y ganancia de peso, con un reparto sugerido de proteínas, carbohidratos y grasas. Todo se ejecuta en tu navegador.",
+      "about": "Esta calculadora TDEE gratuita estima cuántas calorías quemas en un día a partir de tu edad, sexo, estatura, peso y actividad. Usa la ecuación de Mifflin–St Jeor de forma predeterminada para la tasa metabólica basal (BMR), la multiplica por un factor de actividad estándar para obtener el gasto energético total diario (TDEE) y luego muestra metas calóricas de mantenimiento, pérdida y ganancia de peso, con un reparto sugerido de proteínas, carbohidratos y grasas. Si ya conoces tu porcentaje de grasa corporal, puedes elegir de forma opcional la fórmula de Katch–McArdle. Todo se ejecuta en tu navegador.",
       "howTo": [
         "Elige el sistema métrico (kg, cm) o el imperial (lb, pies y pulgadas).",
         "Selecciona el sexo, escribe la edad, el peso y la estatura, y elige uno de los cinco niveles de actividad que mejor coincida con tu semana.",
@@ -4082,7 +4082,7 @@ const data: ToolPageTranslations = {
         },
         {
           "question": "¿Cómo funciona esta calculadora TDEE?",
-          "answer": "Calcula la tasa metabólica basal con la ecuación de Mifflin–St Jeor, la multiplica por el factor de actividad que eliges para obtener el TDEE y luego deriva las metas de mantenimiento, pérdida (unas −500 kcal) y ganancia (unas +300 kcal), más una sugerencia de macros 30/40/30 sobre la meta seleccionada."
+          "answer": "Calcula la tasa metabólica basal con la ecuación de Mifflin–St Jeor de forma predeterminada, o con Katch–McArdle si introduces un porcentaje de grasa corporal y eliges esa fórmula. Luego la multiplica por el factor de actividad que eliges para obtener el TDEE y luego deriva las metas de mantenimiento, pérdida (unas −500 kcal) y ganancia (unas +300 kcal), más una sugerencia de macros 30/40/30 sobre la meta seleccionada."
         },
         {
           "question": "¿Qué es la ecuación de Mifflin–St Jeor?",

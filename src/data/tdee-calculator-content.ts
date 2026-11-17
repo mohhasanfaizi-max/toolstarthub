@@ -2,10 +2,10 @@ import type { ToolContent } from "./tool-content.ts";
 
 export const tdeeCalculatorContent: ToolContent = {
   about:
-    "This free TDEE calculator estimates how many calories you burn in a day from your age, sex, height, weight and activity. It uses the Mifflin–St Jeor equation for basal metabolic rate (BMR), multiplies by a standard activity factor to get total daily energy expenditure (TDEE), then shows maintenance, weight-loss and weight-gain calorie targets with a suggested protein, carbohydrate and fat split. Everything runs in your browser.",
+    "This free TDEE calculator estimates how many calories you burn in a day from your age, sex, height, weight and activity. It uses the Mifflin–St Jeor equation for basal metabolic rate (BMR) by default, multiplies by a standard activity factor to get total daily energy expenditure (TDEE), then shows maintenance, weight-loss and weight-gain calorie targets with a suggested protein, carbohydrate and fat split. If you already know your body-fat percentage, you can optionally choose the Katch–McArdle formula instead. Everything runs in your browser.",
   howTo: [
     "Choose metric (kg, cm) or imperial (lb, feet and inches).",
-    "Select sex, enter age, weight and height, then pick one of the five activity levels that best matches your week.",
+    "Select sex, enter age, weight and height, then pick one of the five activity levels that best matches your week. Body-fat percentage is optional and is only used if you choose Katch–McArdle.",
     "Choose Maintain weight, Lose weight or Gain weight.",
     "Press Calculate to see BMR, TDEE, calorie targets and suggested macros. Use Copy Results or Share Results to save them, or Reset to clear the form.",
   ],
@@ -26,7 +26,7 @@ export const tdeeCalculatorContent: ToolContent = {
   explanation:
     "BMR is the energy your body uses at complete rest. Mifflin–St Jeor estimates it from weight, height, age and sex. TDEE multiplies BMR by an activity factor so daily movement and training are included. Maintenance calories equal TDEE. A common planning deficit for gradual loss is about 500 kcal per day; a modest surplus for gain is about 300 kcal. Suggested macros here assign 30% of goal calories to protein, 40% to carbohydrate and 30% to fat.",
   features: [
-    "Mifflin–St Jeor BMR with metric and imperial inputs.",
+    "Mifflin–St Jeor BMR with metric and imperial inputs, plus optional Katch–McArdle when you enter body-fat percentage.",
     "Five activity multipliers from sedentary through extra active.",
     "Maintain, lose and gain calorie targets with a selected-goal highlight.",
     "Suggested protein, carbohydrate and fat grams plus percentage bars.",
@@ -120,7 +120,7 @@ export const tdeeCalculatorContent: ToolContent = {
     {
       question: "How does this TDEE calculator work?",
       answer:
-        "It computes basal metabolic rate with the Mifflin–St Jeor equation, multiplies by your chosen activity factor to get TDEE, then derives maintenance, loss (about −500 kcal) and gain (about +300 kcal) targets plus a 30/40/30 macro suggestion on the selected goal.",
+        "It computes basal metabolic rate with the Mifflin–St Jeor equation by default, or with Katch–McArdle if you enter a body-fat percentage and choose that formula. It then multiplies BMR by your chosen activity factor to get TDEE, and derives maintenance, loss (about −500 kcal) and gain (about +300 kcal) targets plus a 30/40/30 macro suggestion on the selected goal.",
     },
     {
       question: "What is the Mifflin–St Jeor equation?",

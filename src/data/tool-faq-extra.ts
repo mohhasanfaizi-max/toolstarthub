@@ -6775,7 +6775,7 @@ export const extraToolFaqs: Record<string, ToolFaq[]> = {
     {
       question: "Can I format JSON5 or JavaScript objects?",
       answer:
-        "Strict JSON forbids comments and trailing commas. Convert those features away before a standard formatter will accept the text.",
+        "Format, Minify and Validate still require standard JSON, so comments, trailing commas, single quotes and unquoted keys fail there. The separate Repair button can apply those safe syntax fixes, show what it changed, and refuse anything it cannot fix without guessing values.",
     },
     {
       question: "Does sorting keys change meaning?",
@@ -7803,7 +7803,7 @@ export const extraToolFaqs: Record<string, ToolFaq[]> = {
     {
       question: "Is speaking time the same as reading time?",
       answer:
-        "No—speaking pace is usually slower; use the speech-oriented estimate when preparing talks.",
+        "No. Reading time uses about 225 words per minute and rounds up to a whole minute. Speaking time uses the words-per-minute speed you set, usually slower, and can show minutes and seconds.",
     },
     {
       question: "Do hashtags count as words on social posts?",
@@ -7833,7 +7833,7 @@ export const extraToolFaqs: Record<string, ToolFaq[]> = {
     {
       question: "Can I check keyword density here?",
       answer:
-        "You get totals only; density needs separate term counting beyond this counter.",
+        "Yes. The page lists the most used words and two-word phrases, with each term’s share of all words. You can optionally hide common English words such as “the” and “and”. This is a count, not grammar checking.",
     },
     {
       question: "Is there a limit to paste size?",

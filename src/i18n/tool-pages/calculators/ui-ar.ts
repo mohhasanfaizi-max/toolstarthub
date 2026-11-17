@@ -843,6 +843,16 @@ const data: ToolTextDictionary = {
   "{0} must stay within ±1,000,000,000.": "يجب أن تبقى قيمة {0} ضمن ±1,000,000,000.",
   "{0} years, {1} months, and {2} days.": "{0} سنة، {1} شهرًا، و{2} يومًا.",
   "{0}% {1}": "{0}% {1}",
+  "Body fat % (optional)": "نسبة الدهون في الجسم % (اختياري)",
+  "Needed only for Katch–McArdle. Enter a percentage you already know, from 2 to 70. This page does not estimate body fat.": "مطلوب فقط لصيغة Katch–McArdle. أدخل نسبة تعرفها مسبقًا، من 2 إلى 70. هذه الصفحة لا تقدّر نسبة الدهون في الجسم.",
+  "BMR formula": "صيغة معدل الأيض الأساسي",
+  "Mifflin–St Jeor (default)": "Mifflin–St Jeor (افتراضي)",
+  "Katch–McArdle": "Katch–McArdle",
+  "Mifflin–St Jeor uses weight, height, age and sex. Katch–McArdle uses lean body mass only: BMR = 370 + 21.6 × (weight × (1 − body-fat % / 100)). It does not use age, sex or height.": "تستخدم Mifflin–St Jeor الوزن والطول والعمر والجنس. أمّا Katch–McArdle فتستخدم الكتلة الخالية من الدهون فقط: BMR = 370 + 21.6 × (الوزن × (1 − نسبة الدهون % / 100)). ولا تستخدم العمر أو الجنس أو الطول.",
+  "Enter a body-fat percentage to use the Katch–McArdle formula.": "أدخل نسبة الدهون في الجسم لاستخدام صيغة Katch–McArdle.",
+  "Enter a body-fat percentage between 2 and 70.": "أدخل نسبة دهون في الجسم بين 2 و70.",
+  "These values produce an invalid BMR. Check age, height, weight and body fat.": "تنتج هذه القيم معدل أيض أساسيًا غير صالح. راجع العمر والطول والوزن ونسبة الدهون.",
+  "Estimate your basal metabolic rate (BMR) with the Mifflin–St Jeor equation by default, then scale it by activity to get total daily energy expenditure (TDEE). If you already know your body-fat percentage, you can optionally use the Katch–McArdle formula instead. Pick a weight goal to see maintenance, loss and gain calorie targets plus a suggested 30/40/30 macro split. This is an estimate, not medical advice.": "قدّر معدل الأيض الأساسي (BMR) بمعادلة Mifflin–St Jeor افتراضيًا، ثم اضربه في النشاط للحصول على إجمالي الإنفاق اليومي من الطاقة (TDEE). إذا كنت تعرف نسبة الدهون في جسمك، يمكنك اختياريًا استخدام صيغة Katch–McArdle بدلًا منها. اختر هدفًا للوزن لرؤية أهداف السعرات للحفاظ أو الفقد أو الزيادة، مع توزيع مقترح للعناصر الكبرى 30/40/30. هذه تقدير وليست نصيحة طبية.",
 };
 
 export default data;

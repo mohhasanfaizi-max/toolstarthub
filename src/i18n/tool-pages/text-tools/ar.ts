@@ -113,7 +113,7 @@ const data: ToolPageTranslations = {
         },
         {
           "question": "هل مدة الكلام هي نفسها مدة القراءة؟",
-          "answer": "لا؛ وتيرة الكلام أبطأ عادة. استخدم تقديرًا موجّهًا للكلام عند إعداد حديث."
+          "answer": "لا. تعتمد مدة القراءة على نحو 225 كلمة في الدقيقة وتُقرَّب إلى دقيقة كاملة. أمّا مدة الكلام فتستخدم سرعة الكلمات في الدقيقة التي تعيّنها، وعادة ما تكون أبطأ، ويمكن أن تظهر بالدقائق والثواني."
         },
         {
           "question": "هل تُحسب الوسوم كلمات في المنشورات الاجتماعية؟",
@@ -137,7 +137,7 @@ const data: ToolPageTranslations = {
         },
         {
           "question": "هل يمكنني فحص كثافة الكلمات المفتاحية هنا؟",
-          "answer": "تحصل على الإجماليات فقط؛ الكثافة تحتاج عدًّا منفصلًا للمصطلحات يتجاوز هذا العدّاد."
+          "answer": "نعم. تعرض الصفحة أكثر الكلمات والعبارات المكونة من كلمتين استخدامًا، مع حصة كل مصطلح من جميع الكلمات. ويمكنك اختياريًا إخفاء الكلمات الإنجليزية الشائعة مثل “the” و“and”. هذا عدّ وليس تدقيقًا نحويًا."
         },
         {
           "question": "هل هناك حد لحجم النص الملصق؟",
@@ -152,8 +152,27 @@ const data: ToolPageTranslations = {
       "Sample text": "نص تجريبي",
       "Reading time": "مدة القراءة",
       "0 min": "0 دقيقة",
-      "{0} min": "{0} دقيقة"
-    }
+      "{0} min": "{0} دقيقة",
+      "0 sec": "0 ث",
+      "{0} sec": "{0} ث",
+      "{0} min {1} sec": "{0} د {1} ث",
+      "Term": "المصطلح",
+      "Count": "العدد",
+      "Share of words": "الحصة من الكلمات",
+      "Speaking time": "مدة الكلام",
+      "Speaking speed (words per minute)": "سرعة الكلام (كلمة في الدقيقة)",
+      "Reading time stays at about 225 words per minute. Speaking time uses the speed you set, usually slower. Enter a value from 50 to 250.": "تبقى مدة القراءة عند نحو 225 كلمة في الدقيقة. أمّا مدة الكلام فتستخدم السرعة التي تعيّنها، وعادة ما تكون أبطأ. أدخل قيمة بين 50 و250.",
+      "Ignore common English words (the, and, of…)": "تجاهل الكلمات الإنجليزية الشائعة (the وand وof…)",
+      "Keyword density": "كثافة الكلمات المفتاحية",
+      "Counts are taken from letters and numbers in your text. The share is that term’s count divided by all words, including common words. This is not grammar checking and it does not judge writing quality.": "تُؤخذ الأعداد من الحروف والأرقام في نصك. والحصة هي عدد ذلك المصطلح مقسومًا على كل الكلمات، بما فيها الكلمات الشائعة. هذا ليس تدقيقًا نحويًا ولا يحكم على جودة الكتابة.",
+      "Top words": "أكثر الكلمات تكرارًا",
+      "Top two-word phrases": "أكثر العبارات المكونة من كلمتين تكرارًا",
+      "No words to count yet.": "لا توجد كلمات للعدّ بعد.",
+      "No phrases to count yet.": "لا توجد عبارات للعدّ بعد.",
+      "Enter a speaking speed in words per minute.": "أدخل سرعة كلام بالكلمات في الدقيقة.",
+      "Enter a speaking speed greater than 0.": "أدخل سرعة كلام أكبر من 0.",
+      "Enter a speaking speed between 50 and 250 words per minute.": "أدخل سرعة كلام بين 50 و250 كلمة في الدقيقة.",
+}
   },
   "character-counter": {
     "answer": "يعدّ عدّاد الأحرف الحروف والكلمات والأسطر أثناء الكتابة، بما فيها المسافات ما لم تختر غير ذلك.",

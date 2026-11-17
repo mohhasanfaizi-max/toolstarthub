@@ -9,6 +9,7 @@ import {
   convertWeightForUnits,
   macrosFromCalories,
   mifflinStJeorBmr,
+  katchMcArdleBmr,
 } from "./tdee.ts";
 
 export function runTdeeChecks() {
@@ -115,4 +116,54 @@ export function runTdeeChecks() {
   assert.ok(Number(ftIn.feet) >= 5);
   const back = convertImperialHeightToCm(ftIn.feet, ftIn.inches);
   assert.ok(Math.abs(Number(back) - 178) < 1.5);
+
+  // 80 kg at 20% body fat: lean mass = 64 kg, BMR = 370 + 21.6×64 = 1752.4
+  const katch = katchMcArdleBmr({ weightKg: 80, bodyFatPercent: 20 });
+  assert.equal(katch.leanMassKg, 64);
+  assert.equal(katch.bmr, 1752.4);
+
+  const katchResult = calculateTdee({
+    sex: "male",
+    ageRaw: "30",
+    weightRaw: "80",
+    heightRaw: "180",
+    units: "metric",
+    activity: "sedentary",
+    goal: "maintain",
+    bodyFatRaw: "20",
+    formula: "katch",
+  });
+  assert.equal(katchResult.ok, true);
+  if (!katchResult.ok) return;
+  assert.equal(katchResult.formulaId, "katch");
+  assert.equal(katchResult.bmr, 1752.4);
+  assert.equal(katchResult.leanMassKg, 64);
+  assert.ok(katchResult.formula.includes("1752.4"));
+
+  const missingFat = calculateTdee({
+    sex: "male",
+    ageRaw: "30",
+    weightRaw: "80",
+    heightRaw: "180",
+    units: "metric",
+    activity: "sedentary",
+    goal: "maintain",
+    formula: "katch",
+  });
+  assert.equal(missingFat.ok, false);
+
+  const defaultMifflin = calculateTdee({
+    sex: "male",
+    ageRaw: "30",
+    weightRaw: "80",
+    heightRaw: "180",
+    units: "metric",
+    activity: "sedentary",
+    goal: "maintain",
+    bodyFatRaw: "20",
+  });
+  assert.equal(defaultMifflin.ok, true);
+  if (!defaultMifflin.ok) return;
+  assert.equal(defaultMifflin.formulaId, "mifflin");
+  assert.equal(defaultMifflin.bmr, 1780);
 }

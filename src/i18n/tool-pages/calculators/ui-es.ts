@@ -843,6 +843,16 @@ const data: ToolTextDictionary = {
   "{0} must stay within ±1,000,000,000.": "{0} debe mantenerse dentro de ±1,000,000,000.",
   "{0} years, {1} months, and {2} days.": "{0} años, {1} meses y {2} días.",
   "{0}% {1}": "{0}% {1}",
+  "Body fat % (optional)": "Grasa corporal % (opcional)",
+  "Needed only for Katch–McArdle. Enter a percentage you already know, from 2 to 70. This page does not estimate body fat.": "Solo hace falta para Katch–McArdle. Introduce un porcentaje que ya conozcas, de 2 a 70. Esta página no estima la grasa corporal.",
+  "BMR formula": "Fórmula del BMR",
+  "Mifflin–St Jeor (default)": "Mifflin–St Jeor (predeterminada)",
+  "Katch–McArdle": "Katch–McArdle",
+  "Mifflin–St Jeor uses weight, height, age and sex. Katch–McArdle uses lean body mass only: BMR = 370 + 21.6 × (weight × (1 − body-fat % / 100)). It does not use age, sex or height.": "Mifflin–St Jeor usa peso, estatura, edad y sexo. Katch–McArdle usa solo la masa magra: BMR = 370 + 21.6 × (peso × (1 − % de grasa corporal / 100)). No usa edad, sexo ni estatura.",
+  "Enter a body-fat percentage to use the Katch–McArdle formula.": "Introduce un porcentaje de grasa corporal para usar la fórmula de Katch–McArdle.",
+  "Enter a body-fat percentage between 2 and 70.": "Introduce un porcentaje de grasa corporal entre 2 y 70.",
+  "These values produce an invalid BMR. Check age, height, weight and body fat.": "Estos valores producen un BMR no válido. Revisa la edad, la estatura, el peso y la grasa corporal.",
+  "Estimate your basal metabolic rate (BMR) with the Mifflin–St Jeor equation by default, then scale it by activity to get total daily energy expenditure (TDEE). If you already know your body-fat percentage, you can optionally use the Katch–McArdle formula instead. Pick a weight goal to see maintenance, loss and gain calorie targets plus a suggested 30/40/30 macro split. This is an estimate, not medical advice.": "Estima tu tasa metabólica basal (BMR) con la ecuación de Mifflin–St Jeor de forma predeterminada y, después, ajústala por la actividad para obtener el gasto energético diario total (TDEE). Si ya conoces tu porcentaje de grasa corporal, puedes usar de forma opcional la fórmula de Katch–McArdle. Elige un objetivo de peso para ver las calorías de mantenimiento, pérdida y ganancia, más un reparto de macros 30/40/30 sugerido. Esto es una estimación, no un consejo médico.",
 };
 
 export default data;

@@ -19,6 +19,7 @@ import {
   ACTIVITY_MULTIPLIERS,
   type ActivityLevel,
   type Sex,
+  type BmrFormula,
   type UnitSystem,
   type WeightGoal,
   calculateTdee,
@@ -35,8 +36,8 @@ const ACTIVITY_OPTIONS = (
   label: `${ACTIVITY_MULTIPLIERS[id].label} (×${ACTIVITY_MULTIPLIERS[id].multiplier})`,
 }));
 
-function kcal(value: number) {
-  return `${formatNumber(value, 0)} kcal`;
+function kcal(value: number, digits = 0) {
+  return `${formatNumber(value, digits)} kcal`;
 }
 
 function grams(value: number) {
@@ -45,7 +46,9 @@ function grams(value: number) {
 
 function buildShareText(result: Extract<TdeeResult, { ok: true }>) {
   return [
-    "TDEE Calculator results (Mifflin–St Jeor)",
+    result.formulaId === "katch"
+      ? "TDEE Calculator results (Katch–McArdle)"
+      : "TDEE Calculator results (Mifflin–St Jeor)",
     `BMR: ${result.bmr} kcal/day`,
     `TDEE: ${result.tdee} kcal/day (×${result.activityMultiplier})`,
     `Maintain: ${result.maintainCalories} kcal`,
@@ -70,6 +73,8 @@ export function TdeeCalculatorTool() {
   const [heightInches, setHeightInches] = useState("11");
   const [activity, setActivity] = useState<ActivityLevel>("moderate");
   const [goal, setGoal] = useState<WeightGoal>("maintain");
+  const [bodyFat, setBodyFat] = useState("");
+  const [formula, setFormula] = useState<BmrFormula>("mifflin");
   const [error, setError] = useState("");
   const [result, setResult] = useState<TdeeResult>();
   const [shareNote, setShareNote] = useState("");
@@ -103,6 +108,8 @@ export function TdeeCalculatorTool() {
       activity,
       goal: nextGoal,
       splitImperialHeight: units === "imperial",
+      bodyFatRaw: bodyFat,
+      formula: bodyFat.trim() ? formula : "mifflin",
     });
     if (!next.ok) {
       setError(next.error);
@@ -125,6 +132,8 @@ export function TdeeCalculatorTool() {
     setHeightInches("11");
     setActivity("moderate");
     setGoal("maintain");
+    setBodyFat("");
+    setFormula("mifflin");
     setError("");
     setResult(undefined);
     setShareNote("");
@@ -190,7 +199,7 @@ export function TdeeCalculatorTool() {
   return (
     <ToolPanel>
       <p className="text-sm leading-6 text-muted-foreground">
-        {tx("Estimate your basal metabolic rate (BMR) with the Mifflin–St Jeor equation, then scale it by activity to get total daily energy expenditure (TDEE). Pick a weight goal to see maintenance, loss and gain calorie targets plus a suggested 30/40/30 macro split. This is an estimate, not medical advice.")}
+        {tx("Estimate your basal metabolic rate (BMR) with the Mifflin–St Jeor equation by default, then scale it by activity to get total daily energy expenditure (TDEE). If you already know your body-fat percentage, you can optionally use the Katch–McArdle formula instead. Pick a weight goal to see maintenance, loss and gain calorie targets plus a suggested 30/40/30 macro split. This is an estimate, not medical advice.")}
       </p>
 
       <div className="mt-5">
@@ -283,6 +292,48 @@ export function TdeeCalculatorTool() {
       </div>
 
       <div className="mt-4">
+        <ToolField
+          id="tdee-body-fat"
+          label={tx("Body fat % (optional)")}
+          hint={tx("Needed only for Katch–McArdle. Enter a percentage you already know, from 2 to 70. This page does not estimate body fat.")}
+        >
+          <input
+            id="tdee-body-fat"
+            data-testid="tdee-body-fat"
+            inputMode="decimal"
+            autoComplete="off"
+            value={bodyFat}
+            onChange={(event) => {
+              setBodyFat(event.target.value);
+              if (event.target.value.trim() === "") {
+                setFormula("mifflin");
+              }
+            }}
+            className={toolControlClass}
+          />
+        </ToolField>
+      </div>
+
+      {bodyFat.trim() ? (
+        <div className="mt-4">
+          <ToolChoiceGroup
+            legend={tx("BMR formula")}
+            name="tdee-formula"
+            value={formula}
+            onChange={setFormula}
+            columns="grid gap-2 sm:grid-cols-2"
+            options={[
+              { id: "mifflin", label: "Mifflin–St Jeor (default)" },
+              { id: "katch", label: "Katch–McArdle" },
+            ]}
+          />
+          <p className="mt-2 text-sm text-muted-foreground">
+            {tx("Mifflin–St Jeor uses weight, height, age and sex. Katch–McArdle uses lean body mass only: BMR = 370 + 21.6 × (weight × (1 − body-fat % / 100)). It does not use age, sex or height.")}
+          </p>
+        </div>
+      ) : null}
+
+      <div className="mt-4">
         <ToolChoiceGroup
           legend="Activity level"
           name="tdee-activity"
@@ -351,7 +402,7 @@ export function TdeeCalculatorTool() {
             <div className="mt-4">
               <ToolStatGrid
                 items={[
-                  { label: "Basal Metabolic Rate (BMR)", value: kcal(result.bmr) },
+                  { label: "Basal Metabolic Rate (BMR)", value: kcal(result.bmr, result.formulaId === "katch" ? 1 : 0) },
                   { label: "Total Daily Energy Expenditure (TDEE)", value: kcal(result.tdee) },
                   { label: "Maintenance Calories", value: kcal(result.maintainCalories) },
                   { label: "Weight Loss Calories", value: kcal(result.loseCalories) },
@@ -407,7 +458,8 @@ export function TdeeCalculatorTool() {
 
           <div className="rounded-2xl bg-accent-soft px-4 py-4 sm:px-5">
             <p className="text-sm font-medium text-accent">{tx("How this was calculated")}</p>
-            <p className="mt-2 text-sm leading-6 text-foreground">{result.formula}</p>
+            <p className="mt-2 text-sm leading-6 text-foreground" data-testid="tdee-formula">{result.formula}</p>
+            <p className="sr-only" data-testid="tdee-bmr">{result.bmr}</p>
             <p className="mt-2 text-sm leading-6 text-muted-foreground">
               {tx(`Weight used: ${formatNumber(result.weightKg, 1)} kg · Height used: ${formatNumber(result.heightCm, 1)} cm · Age: ${result.age} · Sex: ${result.sex}.`)}
             </p>

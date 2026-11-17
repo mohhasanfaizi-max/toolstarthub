@@ -632,6 +632,18 @@ const data: ToolTextDictionary = {
   "“{0}” is not a page number.": "“{0}” ليس رقم صفحة.",
   "“{0}” is not a valid page or range.": "“{0}” ليست صفحة أو نطاقًا صالحًا.",
   "“{0}” is not a valid range.": "“{0}” ليس نطاقًا صالحًا.",
+  "Text view": "عرض النص",
+  "Tree view": "عرض الشجرة",
+  "Repair": "إصلاح",
+  "Example with safe repairs": "مثال مع إصلاحات آمنة",
+  "Format, Minify and Validate still require standard JSON. Repair only applies safe syntax fixes: comments, trailing commas, single quotes, and unquoted keys. It shows what it changed and will not guess or rewrite values.": "ما زال التنسيق والتصغير والتحقق يتطلبون JSON قياسيًا. والإصلاح يطبّق فقط تصحيحات صياغة آمنة: التعليقات، والفواصل اللاحقة، وعلامات الاقتباس المفردة، والمفاتيح غير المحاطة بعلامتي اقتباس. ويعرض ما تغيّر ولن يخمن القيم أو يعيد كتابتها.",
+  "This was already valid JSON. Nothing was repaired.": "كان هذا JSON صالحًا أصلًا. لم يُصلح شيء.",
+  "Repair applied the safe fixes listed below. Values were not changed.": "طبّق الإصلاح التصحيحات الآمنة المدرجة أدناه. ولم تُغيَّر القيم.",
+  "Removed comments": "تمت إزالة التعليقات",
+  "Removed trailing commas": "تمت إزالة الفواصل اللاحقة",
+  "Converted single-quoted strings to double quotes": "حُوِّلت السلاسل ذات علامات الاقتباس المفردة إلى مزدوجة",
+  "Quoted unquoted keys": "وُضعت علامتا اقتباس حول المفاتيح غير المحاطة بهما",
+  "This could not be repaired safely. Repair only fixes comments, trailing commas, single quotes, and unquoted keys. It will not guess values or run the text as JavaScript.": "تعذّر إصلاح هذا بأمان. يصلح الإصلاح فقط التعليقات والفواصل اللاحقة وعلامات الاقتباس المفردة والمفاتيح غير المحاطة بعلامتي اقتباس. ولن يخمن القيم أو يشغّل النص كـ JavaScript.",
 };
 
 export default data;
