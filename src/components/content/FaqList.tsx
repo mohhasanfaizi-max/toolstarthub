@@ -1,3 +1,5 @@
+import { LinkedText } from "@/components/content/LinkedText";
+
 type FaqItem = {
   question: string;
   answer: string;
@@ -26,7 +28,7 @@ export function FaqList({ items, heading = "FAQ" }: FaqListProps) {
           <div key={item.question} className="px-5 py-4">
             <dt className="font-medium text-foreground">{item.question}</dt>
             <dd className="mt-2 text-sm leading-6 text-muted-foreground">
-              {item.answer}
+              <LinkedText text={item.answer} />
             </dd>
           </div>
         ))}

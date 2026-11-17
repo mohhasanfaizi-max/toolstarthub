@@ -448,6 +448,81 @@ export const extraToolFaqs: Record<string, ToolFaq[]> = {
       answer:
         "Usually, yes. Fewer pixels means less data to store. For the smallest file, resize first and then compress the result.",
     },
+    {
+      question: "How do I set an exact width and height?",
+      answer:
+        "Type whole pixel values from 1 through 8,192. With the aspect lock on, changing one side updates the other. Turn the lock off only if you want both values exactly as typed.",
+    },
+    {
+      question: "What formats can I resize?",
+      answer:
+        "JPG, PNG, and WebP open here. GIF, HEIC, and SVG are not accepted on this page.",
+    },
+    {
+      question: "Can I crop or rotate the photo here?",
+      answer:
+        "No. This page only scales the whole image. To cut out a region, use the [Image Cropper](/tools/image-cropper). Rotation and background removal are not available here.",
+    },
+    {
+      question: "What happens if I turn the aspect lock off?",
+      answer:
+        "You can type width and height independently. If those numbers do not match the original proportions, the picture will stretch.",
+    },
+    {
+      question: "Does the resizer work on a mobile phone?",
+      answer:
+        "Yes. You can open a JPG, PNG, or WebP and set the pixel size in a mobile browser. The work stays in this tab.",
+    },
+    {
+      question: "Does resizing overwrite the original file?",
+      answer:
+        "No. You download a new image. The file on your device stays as it was.",
+    },
+    {
+      question: "Can I resize more than one image in a single pass?",
+      answer:
+        "No. This page resizes one image at a time.",
+    },
+    {
+      question: "Why would I resize before compressing?",
+      answer:
+        "Fewer pixels usually means a smaller file. A common sequence is to resize to the size you need, then compress the result with the [Image Compressor](/tools/image-compressor).",
+    },
+    {
+      question: "What size should I use for a social preview image?",
+      answer:
+        "Many link previews use 1200 by 630 pixels. Enter the width and height you need, or crop to the shape first in the [Image Cropper](/tools/image-cropper) and then resize.",
+    },
+    {
+      question: "Are the output dimensions exactly what I type?",
+      answer:
+        "Yes, when both sides are whole pixels from 1 through 8,192. With the lock on, the second side is calculated from the first so the proportions stay the same.",
+    },
+    {
+      question: "Can I enlarge a small photo without it looking soft?",
+      answer:
+        "You can type a larger size, but this page cannot invent missing detail. Enlarging a small image often looks blurry or blocky.",
+    },
+    {
+      question: "Can I keep transparency in a PNG?",
+      answer:
+        "Yes. A PNG with a transparent background keeps that transparency when you resize it, because this page does not flatten the image onto a fill color.",
+    },
+    {
+      question: "Can I resize by a percentage of the original size?",
+      answer:
+        "There is no percentage box. Work out the new width or height in pixels and type that number, leaving the aspect lock on if you want the other side to follow.",
+    },
+    {
+      question: "Does the download stay in the same format I opened?",
+      answer:
+        "Yes. A JPG stays a JPG, a PNG stays a PNG, and a WebP stays a WebP. To change format, use the [Image Converter](/tools/image-converter) or, for WebP output from a compression pass, the [Image Compressor](/tools/image-compressor).",
+    },
+    {
+      question: "What happens if I enter 0 or a decimal for a side?",
+      answer:
+        "Width and height have to be whole pixels from 1 through 8,192. 0, a negative number, or a decimal is not accepted.",
+    },
   ],
   "image-cropper": [
     {
@@ -460,6 +535,81 @@ export const extraToolFaqs: Record<string, ToolFaq[]> = {
       answer:
         "No. Cropping removes the pixels outside the frame and keeps the pixels inside it, so the area you keep is not blurred.",
     },
+    {
+      question: "Which formats can I crop?",
+      answer:
+        "JPG, PNG, and WebP open here. GIF, HEIC, and SVG files do not open.",
+    },
+    {
+      question: "How do I crop a square profile photo?",
+      answer:
+        "Choose the 1:1 frame, drag and resize the box over the area you want, then download. The file is the original pixels inside that frame.",
+    },
+    {
+      question: "Can I rotate or filter the photo on this page?",
+      answer:
+        "No. Rotation, filters, and a healing brush are not on this page. The download is only the pixels inside the frame you drew.",
+    },
+    {
+      question: "What is the file size and pixel limit?",
+      answer:
+        "A file over 25 MB, or a side longer than 8,192 pixels, is turned away.",
+    },
+    {
+      question: "Does cropping overwrite the original photo?",
+      answer:
+        "No. The file on your device stays as it was. You download a new image of the cropped area.",
+    },
+    {
+      question: "Can I crop several photos at once?",
+      answer:
+        "No. This page crops one image at a time.",
+    },
+    {
+      question: "Does the cropper work in a mobile browser?",
+      answer:
+        "Yes. You can drag the frame on a phone or tablet. The work stays in this tab, and the photo is not uploaded.",
+    },
+    {
+      question: "Can I keep a transparent PNG background after cropping?",
+      answer:
+        "Yes. Transparent pixels inside the frame stay transparent in the download. Pixels outside the frame are discarded.",
+    },
+    {
+      question: "How is cropping different from resizing?",
+      answer:
+        "Cropping keeps a region and throws the rest away, without scaling that region. The [Image Resizer](/tools/image-resizer) scales the whole picture to a new width and height.",
+    },
+    {
+      question: "What does the free aspect option do?",
+      answer:
+        "Free lets you drag any rectangle. 1:1, 4:3, and 16:9 lock the frame to that ratio while you move or resize it.",
+    },
+    {
+      question: "Can I crop to a custom ratio such as 9:16?",
+      answer:
+        "There is no 9:16 preset. Use Free and shape the box by eye, or crop a 16:9 or 1:1 frame if that preset is closer to what you need.",
+    },
+    {
+      question: "Is the downloaded crop the same resolution as the selected area?",
+      answer:
+        "Yes. The download is the original pixels inside the frame, not a resized or sharpened copy of that area.",
+    },
+    {
+      question: "What happens if the box is too small?",
+      answer:
+        "You can still download a very small region, but a tiny crop has few pixels and will look soft if you later enlarge it.",
+    },
+    {
+      question: "Can I go back and change the frame after downloading?",
+      answer:
+        "Yes. The original file is still on your device. Adjust the box and download again, or Reset and choose the file once more.",
+    },
+    {
+      question: "Should I crop before I compress?",
+      answer:
+        "Usually yes, if you only need part of the photo. Crop first so you are not compressing pixels you will throw away, then use the [Image Compressor](/tools/image-compressor) if you also need a smaller file.",
+    },
   ],
   "image-converter": [
     {
@@ -471,6 +621,81 @@ export const extraToolFaqs: Record<string, ToolFaq[]> = {
       question: "Why did my transparent background turn white?",
       answer:
         "JPG cannot store transparency, so transparent pixels are filled with a background color when you convert PNG to JPG. White is the default, and you can choose another color.",
+    },
+    {
+      question: "Which conversions are available?",
+      answer:
+        "This page turns a JPG into a PNG, or a PNG into a JPG. WebP, GIF, and HEIC are not converted here.",
+    },
+    {
+      question: "How do I choose the background color for a transparent PNG?",
+      answer:
+        "When you convert PNG to JPG, pick a fill color first. JPG cannot store a transparent pixel, so that color is written behind any clear areas before the JPEG is saved.",
+    },
+    {
+      question: "Does converting a JPG to PNG restore lost quality?",
+      answer:
+        "No. JPG to PNG keeps damage that JPEG already introduced. The PNG is a lossless copy of the picture as it looks now, not a recovery of the original photo.",
+    },
+    {
+      question: "Can I convert WebP, GIF, or HEIC here?",
+      answer:
+        "No. Those formats are not converted on this page. For a JPG, PNG, or WebP that only needs a smaller file, use the [Image Compressor](/tools/image-compressor).",
+    },
+    {
+      question: "Does the converter work on a mobile phone?",
+      answer:
+        "Yes. You can choose a JPG or PNG and download the other format in a mobile browser. The file is not uploaded.",
+    },
+    {
+      question: "Does conversion overwrite the original file?",
+      answer:
+        "No. You download a new file. The original stays on your device.",
+    },
+    {
+      question: "Can I convert several images at once?",
+      answer:
+        "No. This page converts one image at a time.",
+    },
+    {
+      question: "What are the size and pixel limits?",
+      answer:
+        "A file over 25 MB, or a side longer than 8,192 pixels, is refused, as are formats this page does not open.",
+    },
+    {
+      question: "When should I convert a screenshot to PNG?",
+      answer:
+        "If the screenshot is already a PNG, you usually should leave it as PNG so text and flat edges stay sharp. Converting it to JPG can add artifacts around text. The compressor also explains this when a screenshot is saved as JPEG.",
+    },
+    {
+      question: "Can I convert a photo to PNG to make it smaller?",
+      answer:
+        "Usually no. A photographic JPG often becomes a larger PNG because PNG is lossless. Use the [Image Compressor](/tools/image-compressor) if you want a smaller photo.",
+    },
+    {
+      question: "Is there a quality slider for PNG to JPG?",
+      answer:
+        "The conversion writes a JPEG of the picture after any transparent pixels are filled. Use the [Image Compressor](/tools/image-compressor) if you then want to adjust JPEG or WebP quality.",
+    },
+    {
+      question: "Can I keep the same file name after converting?",
+      answer:
+        "The download uses the new format’s extension. You can rename the file on your device after you save it.",
+    },
+    {
+      question: "Does a PNG to JPG conversion also resize the picture?",
+      answer:
+        "No. The width and height stay the same. To change pixel size, use the [Image Resizer](/tools/image-resizer).",
+    },
+    {
+      question: "Why would a converted JPG look slightly different?",
+      answer:
+        "JPEG is lossy, so fine edges can change. A transparent PNG also gains the fill color you chose in every previously clear pixel.",
+    },
+    {
+      question: "Is this different from changing a file’s extension by hand?",
+      answer:
+        "Yes. Renaming a .png file to .jpg does not convert the pixels. This page actually re-encodes the image into the format you choose.",
     },
   ],
   "base64-encoder": [
@@ -1177,6 +1402,81 @@ export const extraToolFaqs: Record<string, ToolFaq[]> = {
       answer:
         "Copy the value and paste it into a CSS property, for example color: #1E90FF; or background: rgb(30, 144, 255);.",
     },
+    {
+      question: "Can I pick a color from a photograph?",
+      answer:
+        "No. This page does not sample a pixel from a photo. To list main colors in a picture, use the [Image Color Analyzer](/tools/image-color-analyzer).",
+    },
+    {
+      question: "Can I choose a transparent or semi-transparent color?",
+      answer:
+        "No. The native control supplies an opaque sRGB color. Alpha is not available.",
+    },
+    {
+      question: "How do I type a hex value I already have?",
+      answer:
+        "Enter the hex code, with or without the #, in the hex field. The picker and the RGB and HSL values update to match that same color.",
+    },
+    {
+      question: "Does the color picker work on a mobile phone?",
+      answer:
+        "Yes. You can use the browser’s color control or type a hex value on a phone or tablet. Nothing is uploaded.",
+    },
+    {
+      question: "Are HEX, RGB, and HSL different colors or the same color?",
+      answer:
+        "They are three writings of the same opaque color. Copy whichever format your stylesheet or design tool expects.",
+    },
+    {
+      question: "Can I copy all three formats at once?",
+      answer:
+        "You can copy HEX, RGB, or HSL from the values shown. Copy each format you need; they remain the same color.",
+    },
+    {
+      question: "Does this convert hex to RGB only, or the other way too?",
+      answer:
+        "Picking or typing a color updates HEX, RGB, and HSL together. If you mainly need a typed hex code converted, the [Hex to RGB](/tools/hex-to-rgb) tool is also available.",
+    },
+    {
+      question: "Can I save a palette of several colors?",
+      answer:
+        "This page works on one color at a time and does not store a palette. Copy the values you need into your notes or CSS.",
+    },
+    {
+      question: "Will the color look the same on every screen?",
+      answer:
+        "The values are sRGB. Different screens and color profiles can still shift how the color appears. For contrast against text, use the [Color Contrast Checker](/tools/color-contrast-checker).",
+    },
+    {
+      question: "Can I enter RGB or HSL directly?",
+      answer:
+        "The typed field is hex. You can also use the browser’s color control. RGB and HSL are shown so you can copy them after the color is set.",
+    },
+    {
+      question: "Is the hex output uppercase or lowercase?",
+      answer:
+        "Copy the hex string as the page shows it. CSS treats #1e90ff and #1E90FF as the same color.",
+    },
+    {
+      question: "Does this work offline after the page has loaded?",
+      answer:
+        "The picker runs in this tab and does not send the color to a server. You need a connection to open the page.",
+    },
+    {
+      question: "Can I get a CSS variable from the picked color?",
+      answer:
+        "There is no variable generator here. Copy the HEX, RGB, or HSL value and paste it into a variable in your stylesheet, such as --accent: #1E90FF;.",
+    },
+    {
+      question: "Why is there no eyedropper for the screen?",
+      answer:
+        "This page uses the browser’s color input and a hex field. It does not capture pixels from other windows or from a photo.",
+    },
+    {
+      question: "Can I check whether two colors meet WCAG contrast here?",
+      answer:
+        "No. Copy the colors and test them in the [Color Contrast Checker](/tools/color-contrast-checker), which reports the WCAG 2 ratio and AA or AAA results.",
+    },
   ],
   "html-encoder": [
     {
@@ -1534,6 +1834,81 @@ export const extraToolFaqs: Record<string, ToolFaq[]> = {
       answer:
         "Each run creates one new PDF from the pages you choose. Repeat with a different range for each file you need.",
     },
+    {
+      question: "How do I write a page range?",
+      answer:
+        "Use commas and hyphens, such as 1-3,6. Page numbers start at 1. A reversed range such as 5-2 is rejected, and so is a page that is not in the file.",
+    },
+    {
+      question: "How many pages can the new PDF hold?",
+      answer:
+        "The new file can hold at most 80 pages. If you need more than that, run more than one split and keep the ranges within 80 pages each.",
+    },
+    {
+      question: "Does the splitter work on a mobile phone?",
+      answer:
+        "Yes. You can enter a range and download the new PDF in a mobile browser. The original file is not uploaded.",
+    },
+    {
+      question: "Can I drop the middle of a document and keep the rest in one file?",
+      answer:
+        "Yes. Enter the pages you want to keep, for example 1-2,8-10, and download one new PDF that holds only those pages.",
+    },
+    {
+      question: "What happens if I type a page that is not in the PDF?",
+      answer:
+        "That range is rejected. Check the page count first with the [PDF Page Counter](/tools/pdf-page-counter) if you are not sure how many pages the file has.",
+    },
+    {
+      question: "Will a locked or password-protected PDF split here?",
+      answer:
+        "A locked file will not open here, so it cannot be split. The original on your device is not changed.",
+    },
+    {
+      question: "Does splitting compress the pages?",
+      answer:
+        "No. The new file is a copy of the pages you selected. To try to shrink a PDF, use the [PDF Compressor](/tools/pdf-compressor).",
+    },
+    {
+      question: "Can I extract a single page?",
+      answer:
+        "Yes. Enter that page number, such as 3, and download a one-page PDF.",
+    },
+    {
+      question: "Is the new PDF’s page order the same as in my range?",
+      answer:
+        "Yes. Pages are copied in the order you list them, as long as each number exists in the file and the range is not reversed.",
+    },
+    {
+      question: "Can I undo a split?",
+      answer:
+        "There is nothing to undo on the original, because it was not changed. Delete the download if you do not need it, then run a different range.",
+    },
+    {
+      question: "Does this extract images or text from the pages?",
+      answer:
+        "No. The result is a PDF made of the pages you chose. For page pictures, use [PDF to JPG](/tools/pdf-to-jpg). For a text layer, use [PDF to Text](/tools/pdf-to-text).",
+    },
+    {
+      question: "What if I need every page as its own file?",
+      answer:
+        "This page writes one new PDF per run. Repeat the split for each page, or use a different tool if you need a folder of single-page files in one step.",
+    },
+    {
+      question: "Are blank pages included if I select them?",
+      answer:
+        "Yes. If a selected page is blank, it is still copied into the new PDF.",
+    },
+    {
+      question: "Can I rearrange pages without dropping any?",
+      answer:
+        "You can list the pages in a new order in the range, within the 80-page cap, and download that as a new file. The original order on your device is unchanged.",
+    },
+    {
+      question: "Is there a file size limit?",
+      answer:
+        "A file that will not open—because it is damaged, password-protected, or otherwise unreadable—cannot be split. The new PDF is also capped at 80 pages.",
+    },
   ],
   "pdf-page-counter": [
     {
@@ -1546,6 +1921,81 @@ export const extraToolFaqs: Record<string, ToolFaq[]> = {
       answer:
         "Count them one after another. Each file is read on your device and is not uploaded.",
     },
+    {
+      question: "What information is shown besides the page count?",
+      answer:
+        "The page also shows the file name and size, along with the number of pages.",
+    },
+    {
+      question: "Are blank pages and covers counted?",
+      answer:
+        "Yes. Blank pages and covers are included in the count.",
+    },
+    {
+      question: "Does the page counter work on a mobile browser?",
+      answer:
+        "Yes. You can open a PDF and read the count on a phone or tablet. The file is not uploaded.",
+    },
+    {
+      question: "How large a PDF can I count?",
+      answer:
+        "Files over 20 MB are refused. A file that is not a PDF, a damaged file, or a password-protected file is not counted.",
+    },
+    {
+      question: "Can this tool split, merge, or extract pages?",
+      answer:
+        "No. It only reports the count. To copy pages into a new file, use the [PDF Splitter](/tools/pdf-splitter). To join files, use the [PDF Merger](/tools/pdf-merger).",
+    },
+    {
+      question: "Does counting change the PDF?",
+      answer:
+        "No. The file on your device is left unchanged.",
+    },
+    {
+      question: "Why would a viewer on my computer show a different count?",
+      answer:
+        "Most often the files are not the same copy, or one of them is damaged. This page includes blank pages and covers, and it will not count a password-protected file.",
+    },
+    {
+      question: "Can I count pages in a password-protected PDF if I know the password?",
+      answer:
+        "This page has no password field. A password-protected file is not counted.",
+    },
+    {
+      question: "Does a two-page spread count as one page or two?",
+      answer:
+        "The count is the number of pages in the PDF, not the number of physical sheets after printing. A spread that is stored as two pages counts as two.",
+    },
+    {
+      question: "Can I see a thumbnail of each page?",
+      answer:
+        "No. This page reports the count, file name, and size. It does not preview pages. For page pictures, use [PDF to JPG](/tools/pdf-to-jpg).",
+    },
+    {
+      question: "Is a PDF portfolio or a file with attachments counted specially?",
+      answer:
+        "The page reports the document’s page count when the file opens as a PDF. Attachments and portfolios are not listed separately, and a file that will not open is not counted.",
+    },
+    {
+      question: "How do I check the count before I merge files?",
+      answer:
+        "Count each PDF here, then add the numbers. The [PDF Merger](/tools/pdf-merger) allows at most 80 combined pages, so checking first can save a refused merge.",
+    },
+    {
+      question: "Will a scanned PDF still have a page count?",
+      answer:
+        "Yes, if the file is a readable PDF and is 20 MB or smaller. Scanning does not stop the count; it only affects tools that need a text layer.",
+    },
+    {
+      question: "Can I copy the page count to use in a document?",
+      answer:
+        "Yes. Read the count on the page and copy it into your notes. The PDF itself is not modified.",
+    },
+    {
+      question: "Does the tool count pages in Word or image files?",
+      answer:
+        "No. A file that is not a PDF is not counted. Convert or export to PDF first, then open that PDF here.",
+    },
   ],
   "image-color-analyzer": [
     {
@@ -1557,6 +2007,81 @@ export const extraToolFaqs: Record<string, ToolFaq[]> = {
       question: "Can I get the hex code of a color in a photo?",
       answer:
         "Yes. Each listed color can be copied as HEX or RGB, ready for a design tool or CSS.",
+    },
+    {
+      question: "Which image formats can I analyze?",
+      answer:
+        "JPG, PNG, and WebP open here. GIF and HEIC files do not open, and a file over 25 MB or a side over 8,192 pixels is refused.",
+    },
+    {
+      question: "How many colors will the palette list?",
+      answer:
+        "You can ask for 3 to 10 colors. The list is built from a smaller, sampled copy of the image, so a rare color can be missed.",
+    },
+    {
+      question: "Why might a color I can see in the photo be missing?",
+      answer:
+        "The photo is reduced to a 96-pixel edge before pixels are grouped, and nearly transparent pixels are skipped. Small or rare colors may not appear in the list.",
+    },
+    {
+      question: "Does the analyzer work on a mobile phone?",
+      answer:
+        "Yes. You can open a JPG, PNG, or WebP and copy the listed colors in a mobile browser. The image is not uploaded.",
+    },
+    {
+      question: "Does analysis change or overwrite the photo?",
+      answer:
+        "No. The file on your device is not changed. The page only lists colors from a sampled copy.",
+    },
+    {
+      question: "Can I analyze several images at once?",
+      answer:
+        "No. This page analyzes one image at a time.",
+    },
+    {
+      question: "Are the shares a percentage of the whole original photo?",
+      answer:
+        "No. Each share is of the sampled pixels after the image is reduced to a 96-pixel edge and nearly transparent pixels are skipped.",
+    },
+    {
+      question: "Can I pick a single pixel’s exact color?",
+      answer:
+        "No. This tool groups similar pixels into a short palette. For one opaque color that you choose yourself, use the [Color Picker](/tools/color-picker).",
+    },
+    {
+      question: "Do transparent areas count toward the palette?",
+      answer:
+        "Nearly transparent pixels are skipped, so a clear background usually does not appear as a color in the list.",
+    },
+    {
+      question: "Can I copy RGB as well as HEX?",
+      answer:
+        "Yes. Each listed color can be copied as HEX or RGB for a design tool or CSS.",
+    },
+    {
+      question: "Will two similar photos give the same palette?",
+      answer:
+        "Not always. Cropping, compression, or a small shift in light can change the sampled pixels and the grouped colors.",
+    },
+    {
+      question: "Is this a replacement for a brand style guide?",
+      answer:
+        "No. It is a starting palette from a photo. Official brand colors should still come from the brand’s own specifications.",
+    },
+    {
+      question: "Can I use the palette in the Color Contrast Checker?",
+      answer:
+        "Yes. Copy a HEX value and paste it into the [Color Contrast Checker](/tools/color-contrast-checker) to test it against text or a background.",
+    },
+    {
+      question: "Does a busy photo produce messy results?",
+      answer:
+        "It can. Many small details compete in the sample. A flatter image, or a crop of the area you care about from the [Image Cropper](/tools/image-cropper), often yields a clearer list.",
+    },
+    {
+      question: "Is the 96-pixel preview the same as shrinking the file I download?",
+      answer:
+        "No. The 96-pixel edge is only used for sampling. Your original file is not resized or downloaded as a smaller image.",
     },
   ],
   "qr-code-generator-pro": [
@@ -1573,12 +2098,12 @@ export const extraToolFaqs: Record<string, ToolFaq[]> = {
     {
       question: "How do I create a QR code for a website URL?",
       answer:
-        "Paste the HTTPS link, choose size and error correction, then download the PNG or SVG.",
+        "You can paste a URL here among the other types, then download a PNG. For a simple URL or plain-text PNG with no color or type form, use the [QR Code Generator](/tools/qr-code-generator).",
     },
     {
       question: "When should I pick a higher error-correction level?",
       answer:
-        "Use higher levels when the code will be small, printed roughly, or partly covered by a logo.",
+        "Use a higher level when the code will be small or printed roughly. This page does not place a logo on the code. Always test a print at the final size.",
     },
     {
       question: "Can I encode plain text instead of a link?",
@@ -1593,7 +2118,7 @@ export const extraToolFaqs: Record<string, ToolFaq[]> = {
     {
       question: "Will a logo in the center still scan?",
       answer:
-        "Often yes at high error correction with enough quiet zone—always test real devices.",
+        "This page does not add a logo to the code. It downloads a PNG of the pattern itself. A logo would have to be added in a design tool, and you would need to test that the result still scans.",
     },
     {
       question: "How large should a printed QR be on a flyer?",
@@ -1638,7 +2163,7 @@ export const extraToolFaqs: Record<string, ToolFaq[]> = {
     {
       question: "What file format is best for print vendors?",
       answer:
-        "SVG or high-resolution PNG; avoid tiny compressed JPEGs.",
+        "This page downloads a PNG only, not SVG. Send the PNG, and ask the printer not to compress it as a small JPEG. Test a proof at the final size before a large run.",
     },
     {
       question: "Does generating a QR upload my Wi-Fi password?",
@@ -1742,6 +2267,81 @@ export const extraToolFaqs: Record<string, ToolFaq[]> = {
       answer:
         "A scanned page is a picture of text with no text layer to read. It needs OCR (optical character recognition), which this tool does not run.",
     },
+    {
+      question: "How do I extract text from only some pages?",
+      answer:
+        "Choose all pages, one page, or a range such as 1-3,5. Only the pages you ask for are read.",
+    },
+    {
+      question: "What are the file size and page limits?",
+      answer:
+        "Files over 20 MB, or documents over 80 pages, are refused. A password-protected PDF does not open.",
+    },
+    {
+      question: "Does PDF to Text work on a mobile browser?",
+      answer:
+        "Yes. You can open a PDF and copy or download the text on a phone or tablet. The file is not uploaded.",
+    },
+    {
+      question: "Will the text keep the original fonts and layout?",
+      answer:
+        "No. Line breaks are rebuilt from glyph positions, so a tight or multi-column layout can come out uneven. You get the words, not a designed page.",
+    },
+    {
+      question: "Can I extract text from a scanned invoice?",
+      answer:
+        "Only if that file already has a text layer. A scan that is just a picture of the page comes back empty, because this page does not run OCR.",
+    },
+    {
+      question: "Does extraction change the PDF?",
+      answer:
+        "No. The PDF on your device is left unchanged. You copy or download the text separately.",
+    },
+    {
+      question: "Can I extract text from several PDFs at once?",
+      answer:
+        "No. This page reads one PDF at a time.",
+    },
+    {
+      question: "What if only some pages have a text layer?",
+      answer:
+        "Pages with a text layer contribute words. Pages that are only images contribute nothing, which can look like gaps in the output.",
+    },
+    {
+      question: "Is this the same as selecting text in a PDF reader?",
+      answer:
+        "It is the same kind of text: the stored text layer. If you cannot select words in a reader, this page will usually not find a text layer either.",
+    },
+    {
+      question: "Can I get a page picture instead of the words?",
+      answer:
+        "Yes. Use [PDF to JPG](/tools/pdf-to-jpg) when you want a JPEG of the page, not the text layer.",
+    },
+    {
+      question: "Are tables kept as tables?",
+      answer:
+        "Table cells are read as text, not as a spreadsheet. Columns may come out as lines that you have to tidy in an editor.",
+    },
+    {
+      question: "Does a password-protected PDF work if I know the password?",
+      answer:
+        "This page has no password field. A password-protected PDF does not open here.",
+    },
+    {
+      question: "Can I download the text as a file?",
+      answer:
+        "Yes. After the text is extracted, you can copy it or download it, then paste it into an editor.",
+    },
+    {
+      question: "Why do some letters look out of order?",
+      answer:
+        "The extractor rebuilds lines from glyph positions. Unusual spacing, rotated text, or tight columns can come out in a surprising order.",
+    },
+    {
+      question: "Is there a character limit on the extracted text?",
+      answer:
+        "The limits are on the PDF itself: 20 MB and 80 pages. A dense 80-page file can still produce a long text output.",
+    },
   ],
   "pdf-metadata": [
     {
@@ -1753,6 +2353,81 @@ export const extraToolFaqs: Record<string, ToolFaq[]> = {
       question: "Should I remove metadata before sharing a PDF?",
       answer:
         "If the fields show a name, a company, or software you would rather not share, clearing them is a sensible step. Text inside the pages is not changed.",
+    },
+    {
+      question: "Which fields can I see and clear?",
+      answer:
+        "The viewer lists filename, size, page count, and the standard Info fields when they exist: title, author, subject, keywords, creator, producer, and dates. Remove metadata clears those Info fields in a new download.",
+    },
+    {
+      question: "Does clearing metadata change the words on the pages?",
+      answer:
+        "No. Page text, comments, embedded files, and images stay. Only the standard Info fields are cleared in the new file.",
+    },
+    {
+      question: "What is the page limit?",
+      answer:
+        "Documents over 80 pages are refused, and a password-protected file will not open.",
+    },
+    {
+      question: "Does the metadata tool work on a mobile phone?",
+      answer:
+        "Yes. You can open a PDF and download a copy with Info fields cleared in a mobile browser. The file is not uploaded.",
+    },
+    {
+      question: "Does clearing metadata overwrite the original PDF?",
+      answer:
+        "No. You download a new copy. The original file on your device stays as it was.",
+    },
+    {
+      question: "Can I edit the title or author to a new value?",
+      answer:
+        "This page can show the fields and clear them. It does not offer a form to write a new title or author.",
+    },
+    {
+      question: "Will document properties in a PDF reader then be empty?",
+      answer:
+        "The standard Info fields this page clears should be empty in the new file. Other hidden data can still be present, so this is not a full wipe.",
+    },
+    {
+      question: "Can I process several PDFs at once?",
+      answer:
+        "No. This page reads and, if you choose, clears fields in one PDF at a time.",
+    },
+    {
+      question: "Does this remove comments or annotations?",
+      answer:
+        "No. Comments and annotations stay. Only the standard Info fields are cleared.",
+    },
+    {
+      question: "What if the Author field is already empty?",
+      answer:
+        "The viewer only shows fields that exist. Clearing metadata still writes a new file with those standard Info fields emptied, which is useful when some of them are filled and others are not.",
+    },
+    {
+      question: "Is XMP or hidden revision data removed too?",
+      answer:
+        "No. This page targets the standard Info fields listed above. Other metadata structures can remain.",
+    },
+    {
+      question: "Can I inspect metadata without downloading a new file?",
+      answer:
+        "Yes. Open the PDF to read the fields. Download a cleared copy only if you want those Info fields removed.",
+    },
+    {
+      question: "Does a password-protected PDF show its Info fields?",
+      answer:
+        "No. A password-protected file will not open, so the fields cannot be listed or cleared here.",
+    },
+    {
+      question: "Will search engines still see the old author after I clear the fields?",
+      answer:
+        "The new file no longer carries those Info fields. Anyone who still has the original file, or a copy that was already uploaded, can still see the old values.",
+    },
+    {
+      question: "Is this the same as renaming the file?",
+      answer:
+        "No. The file name and the document’s Author or Title fields are separate. Renaming the file does not clear Info fields, and clearing Info fields does not rename the file on your device.",
     },
   ],
   "text-to-pdf": [
@@ -6810,7 +7485,7 @@ export const extraToolFaqs: Record<string, ToolFaq[]> = {
     {
       question: "Can I encode a phone number or SMS link?",
       answer:
-        "Yes—use tel: or sms: URLs if your scanner apps support them; keep payloads short so the code stays easy to read.",
+        "This page encodes the text you paste, so a tel: or sms: string will be stored in the PNG if you already have one. For a form that builds phone or SMS codes, use [QR Code Generator Pro](/tools/qr-code-generator-pro).",
     },
     {
       question: "Should I test the PNG before printing stickers?",
@@ -6840,7 +7515,7 @@ export const extraToolFaqs: Record<string, ToolFaq[]> = {
     {
       question: "Can I make a vCard contact QR here?",
       answer:
-        "Paste a vCard or MECARD text string if you already have one; the tool encodes the text you provide.",
+        "Only if you paste a ready-made vCard string as plain text. For a form that builds a contact from name, phone, and email, use [QR Code Generator Pro](/tools/qr-code-generator-pro).",
     },
     {
       question: "Why should outdoor signs use larger modules?",
@@ -7757,5 +8432,236 @@ export const extraToolFaqs: Record<string, ToolFaq[]> = {
       answer:
         "Usually no if you already picked an activity level that includes training; adding tracker burns on top often overestimates.",
     }
+  ],
+  "image-compressor": [
+    {
+      question: "Is the Image Compressor free?",
+      answer:
+        "Yes. You can re-encode a JPG, PNG, or WebP here without paying or creating an account.",
+    },
+    {
+      question: "Which formats can I compress?",
+      answer:
+        "This page opens JPG, PNG, and WebP. You can also choose JPG, PNG, or WebP as the download format. GIF, HEIC, and SVG files are rejected.",
+    },
+    {
+      question: "How does the quality slider work?",
+      answer:
+        "Quality runs from 10 to 100 and starts at 80. It changes JPEG and WebP encoding. It does not change how PNG is written on this page, because PNG output here is lossless.",
+    },
+    {
+      question: "Can I compress an image to a target size, such as under 200 KB?",
+      answer:
+        "No. The page reports the new file size after you press Compress. It does not search for a quality that meets a size cap in advance.",
+    },
+    {
+      question: "Can I compress several images at once or download a ZIP?",
+      answer:
+        "No. You compress one image at a time, then download that file. There is no batch upload or ZIP on this page.",
+    },
+    {
+      question: "What are the file size and pixel limits?",
+      answer:
+        "The image must be 25 MB or smaller, and neither side can exceed 8,192 pixels. A file outside those limits is refused.",
+    },
+    {
+      question: "Will compressing a JPEG more than once make it look worse?",
+      answer:
+        "It can. JPEG and WebP on this page are lossy, so compressing a JPEG again can add more artifacts. Start from the original when you can.",
+    },
+    {
+      question: "Does compression overwrite the photo on my device?",
+      answer:
+        "No. The original file stays where it is. You download a new file, and Reset clears the image from this tab only.",
+    },
+    {
+      question: "When should I choose WebP as the output?",
+      answer:
+        "Choose WebP when the place you will use the image accepts it and you want a smaller file than JPEG at a similar look. If a form only accepts JPG or PNG, pick that format instead.",
+    },
+    {
+      question: "Can I undo a compression if I dislike the result?",
+      answer:
+        "Yes. The original file on your device is unchanged. Move the quality slider and compress again, or Reset and choose the file once more.",
+    },
+    {
+      question: "Is there a daily limit or a sign-in wall?",
+      answer:
+        "No. There is no account and no daily cap on this page. The practical limits are the 25 MB size and the 8,192-pixel side length.",
+    },
+    {
+      question: "How is this different from the Image Converter?",
+      answer:
+        "This page re-encodes a JPG, PNG, or WebP to reduce file size. The [Image Converter](/tools/image-converter) changes a JPG into a PNG or a PNG into a JPG, including a fill color for transparent pixels.",
+    },
+    {
+      question: "Do I need an internet connection after the page has loaded?",
+      answer:
+        "The compression itself runs in this tab. You need a connection to open the page, but the image is not uploaded to a server to be compressed.",
+    },
+    {
+      question: "Can I use the compressed file in an email or on a website?",
+      answer:
+        "Yes. Download the result and attach or upload that new file wherever you need it. Check that the destination accepts the format you chose, especially if you picked WebP.",
+    },
+  ],
+  "pdf-to-jpg": [
+    {
+      question: "Is the PDF to JPG converter free?",
+      answer:
+        "Yes. Turning PDF pages into JPEG images is free, and no account is required.",
+    },
+    {
+      question: "Can I download PNG or WebP instead of JPEG?",
+      answer:
+        "No. The download is JPEG only. There is no PNG or WebP export on this page, and no ZIP of the pages.",
+    },
+    {
+      question: "Can this extract the photos that were embedded in the PDF?",
+      answer:
+        "No. Each result is a picture of a whole page, not a set of images pulled out of the file.",
+    },
+    {
+      question: "Does the converter work on a mobile browser?",
+      answer:
+        "Yes. You can open a PDF and download page JPEGs on a phone or tablet. The file stays in this tab and is not uploaded.",
+    },
+    {
+      question: "Does converting change the original PDF?",
+      answer:
+        "No. The PDF on your device is left unchanged. You download new JPEG files.",
+    },
+    {
+      question: "How many pages can I preview before I export?",
+      answer:
+        "Thumbnails cover the first 12 pages. You can still export the first page, the pages you tick, or every page, within the 40-page limit.",
+    },
+    {
+      question: "What scale are the JPEGs rendered at?",
+      answer:
+        "The requested scale is 1.5. It is reduced when a page would exceed a longest edge of 4,096 pixels.",
+    },
+    {
+      question: "Can I convert several PDFs at once?",
+      answer:
+        "No. This page converts one PDF at a time.",
+    },
+    {
+      question: "Will a scanned PDF become a clear photograph?",
+      answer:
+        "You get a picture of each page as it looks, including a scan. This does not sharpen a blurry scan or extract its text. For words from a text layer, use [PDF to Text](/tools/pdf-to-text).",
+    },
+    {
+      question: "Why might a long page look smaller than I expect?",
+      answer:
+        "Rendering stops at a longest edge of 4,096 pixels, and the 1.5 scale is reduced when needed so the page stays inside that edge.",
+    },
+    {
+      question: "Can I pick a JPEG quality setting?",
+      answer:
+        "This page writes JPEG page pictures at the scale described above. It does not offer a separate quality slider or a target file size.",
+    },
+    {
+      question: "What if I only need the cover?",
+      answer:
+        "Export the first page, or tick only page 1 if you are choosing pages by hand, then download that JPEG.",
+    },
+    {
+      question: "Are form fields and annotations included in the picture?",
+      answer:
+        "The JPEG is a picture of the rendered page. Anything not drawn in that render will not appear. This is not a data export of form values.",
+    },
+    {
+      question: "What happens if the file is larger than 20 MB?",
+      answer:
+        "Rendering stops at 20 MB, 40 pages, and a longest edge of 4,096 pixels. A larger file, or one with more pages, is refused.",
+    },
+  ],
+  "pdf-merger": [
+    {
+      question: "How do I choose the order of the PDFs?",
+      answer:
+        "Add two to ten PDFs, then arrange them in the order you want the pages to appear. The merged file follows that list.",
+    },
+    {
+      question: "How many files and pages can I merge?",
+      answer:
+        "You need at least two PDFs and no more than 10. The combined page count has to stay at 80 or below.",
+    },
+    {
+      question: "Does merging work on a mobile phone?",
+      answer:
+        "Yes. You can add PDFs and download the combined file in a mobile browser. The files are not uploaded to a server.",
+    },
+    {
+      question: "Does the merge change the original PDFs on my device?",
+      answer:
+        "No. Each source file stays as it was. You download a new, combined PDF.",
+    },
+    {
+      question: "Can I merge the same PDF more than once?",
+      answer:
+        "You can add files in the order you need. The page still enforces the 10-file and 80-page limits on the combination.",
+    },
+    {
+      question: "Are fillable forms kept as forms after a merge?",
+      answer:
+        "Forms are not flattened, and this page does not promise that form fields will keep working in the combined file. Encryption is not removed.",
+    },
+    {
+      question: "What happens if one file is password-protected?",
+      answer:
+        "A password-protected file will not open, so it cannot be included. Remove the password in another tool first, if you are allowed to, then add the file here.",
+    },
+    {
+      question: "Can I add a cover to a report?",
+      answer:
+        "Yes. Add the cover PDF first and the report after it, then merge, as long as the combined page count stays at 80 or below.",
+    },
+    {
+      question: "Is there a file size limit as well as a page limit?",
+      answer:
+        "The hard limits on this page are two to ten PDFs and 80 combined pages, plus the refusal of password-protected files. If a file will not open, check those limits first.",
+    },
+    {
+      question: "Can I remove one file before I merge?",
+      answer:
+        "Yes. Take it out of the list, rearrange what remains, and merge when at least two PDFs are still present.",
+    },
+    {
+      question: "Does merging reduce the file size?",
+      answer:
+        "No. This page joins the files; it does not compress them. To try to shrink a PDF, use the [PDF Compressor](/tools/pdf-compressor).",
+    },
+    {
+      question: "Can I split the merged file afterward?",
+      answer:
+        "Yes. Download the combined PDF, then open it in the [PDF Splitter](/tools/pdf-splitter) to copy selected pages into a new file.",
+    },
+    {
+      question: "Do bookmarks or outlines from each file stay intact?",
+      answer:
+        "This page joins page content in the order you arrange. It does not promise to keep bookmarks, outlines, or attachments from the source files.",
+    },
+    {
+      question: "What if the combined page count would exceed 80?",
+      answer:
+        "The merge is refused until the combination stays at 80 pages or below. Split a long file first, or remove some of the PDFs from the list.",
+    },
+    {
+      question: "Can I merge scanned PDFs with born-digital ones?",
+      answer:
+        "Yes, if each file opens and the page and file counts stay within the limits. A scan is treated as pages, not as a source of extractable text.",
+    },
+    {
+      question: "How do I start over?",
+      answer:
+        "Clear the list and add the PDFs again in the order you want. Nothing is kept from the previous attempt unless you still have the files on your device.",
+    },
+    {
+      question: "Is the merged PDF downloaded as one file?",
+      answer:
+        "Yes. The result is a single PDF you can save to your device.",
+    },
   ],
 };

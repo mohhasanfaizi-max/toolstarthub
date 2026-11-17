@@ -402,15 +402,15 @@ export const tools: Tool[] = [
     slug: "qr-code-generator",
     name: "QR Code Generator",
     description:
-      "Create a QR code from text or a URL in your browser, then download a PNG.",
+      "Create a QR code from a URL or plain text and download a PNG. For Wi-Fi, vCard, email, phone, or SMS, use QR Code Generator Pro.",
     category: "seo-utilities",
     icon: "encode",
     route: "/tools/qr-code-generator",
     featured: false,
     new: false,
-    keywords: ["qr code", "generator", "url", "barcode", "png"],
+    keywords: ["qr code", "generator", "URL or text", "PNG download", "barcode"],
     status: "available",
-    metaTitle: "QR Code Generator — Create QR Codes Online",
+    metaTitle: "QR Code Generator — URL or Text to PNG",
     relatedSlugs: ["qr-code-generator-pro", "qr-code-scanner", "utm-builder"],
   },
   {
@@ -644,7 +644,7 @@ export const tools: Tool[] = [
     slug: "qr-code-generator-pro",
     name: "QR Code Generator Pro",
     description:
-      "Create QR codes for URLs, Wi-Fi, email, phone, SMS or contacts, with colors and download.",
+      "Create QR codes for Wi-Fi, vCard contacts, email, phone, or SMS, with colors and PNG download. For a simple URL or text PNG, use the basic QR Code Generator.",
     category: "seo-utilities",
     icon: "encode",
     route: "/tools/qr-code-generator-pro",
@@ -652,7 +652,7 @@ export const tools: Tool[] = [
     new: false,
     keywords: ["qr code", "wifi qr", "vcard", "email qr", "sms"],
     status: "available",
-    metaTitle: "QR Code Generator Pro — Wi-Fi, Email, vCard",
+    metaTitle: "QR Code Generator Pro — Wi-Fi, vCard, SMS",
     relatedSlugs: ["qr-code-generator", "qr-code-scanner", "utm-builder"],
   },
   {

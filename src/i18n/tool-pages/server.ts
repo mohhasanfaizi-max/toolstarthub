@@ -7,6 +7,7 @@ import {
   translatedToolCategories,
 } from "./index";
 import type { ToolPageTranslation } from "./types";
+import { localeToolFaqExtras } from "./faq-extra";
 import { getLocalizedToolPage } from "@/i18n/localized-tool-content";
 import { indexableLocales } from "@/i18n/indexing";
 import { getFaqsForTool } from "@/components/tools/ToolDetails";
@@ -75,7 +76,21 @@ export function getToolPageTranslation(
   if (!category || !translatedToolCategories.includes(category)) {
     return undefined;
   }
-  return toolPageTranslations[locale]?.[slug];
+  const page = toolPageTranslations[locale]?.[slug];
+  if (!page?.content) {
+    return page;
+  }
+  const extra = localeToolFaqExtras[locale]?.[slug];
+  if (!extra?.length) {
+    return page;
+  }
+  return {
+    ...page,
+    content: {
+      ...page.content,
+      faqs: [...page.content.faqs, ...extra],
+    },
+  };
 }
 
 /** Workspace strings for one tool: shared strings plus the tool's own. */

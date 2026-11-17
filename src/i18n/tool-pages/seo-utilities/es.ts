@@ -323,7 +323,7 @@ const data: ToolPageTranslations = {
         },
         {
           "question": "¿Puedo codificar un número de teléfono o un enlace SMS?",
-          "answer": "Sí: usa URL tel: o sms: si tus aplicaciones de escaneo las admiten; mantén la carga corta para que el código siga siendo fácil de leer."
+          "answer": "Esta página codifica el texto que pegas, así que una cadena tel: o sms: quedará en el PNG si ya la tienes. Para un formulario de teléfono o SMS, usa el [Generador de códigos QR Pro](/tools/qr-code-generator-pro)."
         },
         {
           "question": "¿Debo probar el PNG antes de imprimir pegatinas?",
@@ -347,7 +347,7 @@ const data: ToolPageTranslations = {
         },
         {
           "question": "¿Puedo hacer aquí un QR de contacto vCard?",
-          "answer": "Pega una cadena de texto vCard o MECARD si ya tienes una; la herramienta codifica el texto que das."
+          "answer": "Solo si pegas una cadena vCard ya lista como texto. Para un formulario que arma un contacto con nombre, teléfono y correo, usa el [Generador de códigos QR Pro](/tools/qr-code-generator-pro)."
         },
         {
           "question": "¿Por qué las señales exteriores deberían usar módulos más grandes?",
@@ -379,7 +379,7 @@ const data: ToolPageTranslations = {
         }
       ]
     },
-    "metaDescription": "Crea un código QR en PNG a partir de un texto o una URL, hasta 1.200 caracteres, en tu navegador. No hay acortador ni se sube el texto a un servidor.",
+    "metaDescription": "Crea un código QR en PNG a partir de una URL o un texto, en tu navegador. Para Wi-Fi, vCard, correo o SMS, usa el generador Pro. Nada se sube.",
     "ui": {
       "The QR code is created in your browser. Keep content reasonably short.": "El código QR se crea en tu navegador. Mantén el contenido razonablemente corto.",
       "QR code for {0}": "Código QR para {0}",
@@ -787,11 +787,11 @@ const data: ToolPageTranslations = {
         },
         {
           "question": "¿Cómo creo un código QR para la URL de un sitio?",
-          "answer": "Pega el enlace HTTPS, elige el tamaño y la corrección de errores, y descarga el PNG o el SVG."
+          "answer": "Puedes pegar una URL aquí, entre los demás tipos, y descargar un PNG. Para un PNG simple de URL o texto, sin formulario de tipo ni colores, usa el [Generador de códigos QR](/tools/qr-code-generator)."
         },
         {
           "question": "¿Cuándo debo elegir un nivel más alto de corrección de errores?",
-          "answer": "Usa niveles más altos cuando el código vaya a ser pequeño, se imprima de forma tosca o quede cubierto en parte por un logotipo."
+          "answer": "Usa un nivel más alto cuando el código vaya a ser pequeño o se imprima de forma tosca. Esta página no coloca un logotipo en el código. Prueba siempre una impresión al tamaño final."
         },
         {
           "question": "¿Puedo codificar texto plano en lugar de un enlace?",
@@ -803,7 +803,7 @@ const data: ToolPageTranslations = {
         },
         {
           "question": "¿Un logotipo en el centro se sigue escaneando?",
-          "answer": "A menudo sí, con una corrección de errores alta y bastante zona de silencio: prueba siempre en dispositivos reales."
+          "answer": "Esta página no añade un logotipo al código. Descarga un PNG del patrón. Un logotipo tendría que añadirse en una herramienta de diseño, y habría que comprobar que el resultado se sigue escaneando."
         },
         {
           "question": "¿Qué tan grande debería ser un QR impreso en un folleto?",
@@ -839,7 +839,7 @@ const data: ToolPageTranslations = {
         },
         {
           "question": "¿Qué formato de archivo es mejor para un taller de impresión?",
-          "answer": "SVG o un PNG de alta resolución; evita los JPEG diminutos y muy comprimidos."
+          "answer": "Esta página solo descarga un PNG, no un SVG. Envía el PNG y pide que no lo compriman como un JPEG pequeño. Prueba una impresión al tamaño final."
         },
         {
           "question": "¿Generar un QR sube mi contraseña de Wi-Fi?",
@@ -847,7 +847,7 @@ const data: ToolPageTranslations = {
         }
       ]
     },
-    "metaDescription": "Crea códigos QR de URL, Wi-Fi, correo, teléfono, SMS o vCard, con colores, en tu navegador. Las contraseñas de Wi-Fi no se guardan ni se envían.",
+    "metaDescription": "Crea códigos QR de Wi-Fi, vCard, correo, teléfono o SMS, con colores y PNG, en tu navegador. Para una URL simple, usa el generador básico.",
     "ui": {
       "QR type": "Tipo de QR",
       "Network name (SSID)": "Nombre de la red (SSID)",

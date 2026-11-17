@@ -212,7 +212,11 @@ export function ToolView({ locale, slug }: { locale: Locale; slug: string }) {
               ? "Free Paint Calculator – How Much Paint Do I Need?"
               : english && slug === "password-generator"
                 ? "Free Password Generator — Secure Passwords & Offline Password Log"
-                : tool.name}
+                : english && slug === "qr-code-generator"
+                  ? "QR Code Generator — URL or Text to PNG"
+                  : english && slug === "qr-code-generator-pro"
+                    ? "QR Code Generator Pro — Wi-Fi, vCard, Email and SMS"
+                    : tool.name}
           </h1>
           <FavoriteButton slug={tool.slug} name={tool.name} />
         </div>
