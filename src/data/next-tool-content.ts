@@ -87,7 +87,7 @@ export const nextToolContent: Record<string, ToolContent> = {
       "For a discount and then tax, run the discount calculator first and use that result as the original price.",
     ],
     limitations:
-      "This does not look up a city, state, or country rate. You supply the percentage. It also does not split tax across several items.",
+      "This does not look up a city, state, or country rate. You supply the percentage. It also does not split tax across several items. It models add-on sales tax and does not automatically apply UK VAT, Canadian GST/HST, or Australian GST.",
     faqs: [
       {
         question: "Why is there no dollar sign?",

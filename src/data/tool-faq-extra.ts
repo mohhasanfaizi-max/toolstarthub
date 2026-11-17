@@ -3596,7 +3596,7 @@ export const extraToolFaqs: Record<string, ToolFaq[]> = {
     {
       question: "Is sales tax the same as VAT inclusive pricing?",
       answer:
-        "No—VAT is often embedded; this tool models add-on sales tax common in the US.",
+        "No—VAT is often embedded; this tool models add-on sales tax common in the US. It does not automatically apply UK VAT, Canadian GST/HST, or Australian GST. Official starting points are linked on the calculator.",
     },
     {
       question: "How should invoices show tax for clients?",
@@ -5230,7 +5230,7 @@ export const extraToolFaqs: Record<string, ToolFaq[]> = {
     {
       question: "What inputs does a loan payment calculator need?",
       answer:
-        "Principal, annual interest rate, and term length (in years or months) are the core fields. This calculator also takes an optional upfront fee, which is added to total cost only. It does not take extra payments.",
+        "Principal, annual interest rate, and term length (in years or months) are the core fields. This calculator also takes an optional upfront fee, which is added to total cost only, plus optional extra monthly and one-time payments applied to principal in this estimate.",
     },
     {
       question: "How does a longer term change my monthly payment?",
@@ -5250,7 +5250,7 @@ export const extraToolFaqs: Record<string, ToolFaq[]> = {
     {
       question: "How do extra payments affect payoff?",
       answer:
-        "Extra principal shortens the term and cuts interest if the lender applies it to principal. This calculator does not model extra payments: its schedule assumes the same payment every month. Ask your lender for a revised payoff schedule, and confirm there is no prepayment penalty on your contract.",
+        "Extra principal shortens the term and cuts interest if the lender applies it to principal. You can enter an extra monthly payment and an optional one-time payment; the schedule, totals, and CSV then reflect the faster payoff. A lender may apply extras differently, so confirm there is no prepayment penalty on your contract.",
     },
     {
       question: "What is the difference between fixed and variable rates?",
@@ -5275,7 +5275,7 @@ export const extraToolFaqs: Record<string, ToolFaq[]> = {
     {
       question: "How accurate is an online loan estimate?",
       answer:
-        "It is a planning figure, not a lender quote. Origination fees, credit-based pricing, and escrow can change what you actually pay.",
+        "It is a planning figure, not a lender quote. Origination fees, credit-based pricing, and escrow can change what you actually pay. The formula uses monthly compounding and is not a UK, Canadian, or Australian credit-specific engine.",
     },
     {
       question: "Can I use this for auto loans and personal loans?",
@@ -6070,7 +6070,7 @@ export const extraToolFaqs: Record<string, ToolFaq[]> = {
     {
       question: "How accurate is an online mortgage estimate?",
       answer:
-        "It is a planning figure, not a lender commitment. Quotes vary with credit, points, escrow, and underwriting.",
+        "It is a planning figure, not a lender commitment. Quotes vary with credit, points, escrow, and underwriting. This page uses US-style monthly compounding and does not include UK stamp duty, Canadian semi-annual compounding, or Australian lenders mortgage insurance.",
     },
     {
       question: "What is PMI and when does it appear?",

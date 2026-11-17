@@ -54,17 +54,18 @@ export const financeToolContent: Record<string, ToolContent> = {
   },
   "loan-calculator": {
     about:
-      "Estimate the monthly payment on a fixed-rate installment loan, including a personal loan. Enter the amount, the annual rate, the term, and an optional fee that is not financed.",
+      "Estimate the monthly payment on a fixed-rate installment loan, including a personal loan. Enter the amount, the annual rate, the term, and an optional fee that is not financed. You can add extra payments, view the amortization schedule, and download it as CSV.",
     howTo: [
       "Enter the loan amount and the annual interest rate.",
       "Enter the term in years or months. The sample is 20,000 at 7% for 5 years.",
       "Enter a fee if you want it counted in the total cost. A fee of 0 leaves the payment unchanged.",
-      "Press Calculate to see the payment, the interest, and the yearly schedule.",
+      "Optional extra monthly or one-time payments are applied to principal in this estimate.",
+      "Press Calculate to see the payment, the interest, the amortization schedule, and a CSV download.",
     ],
     features: [
       "A standard fixed payment, including a zero-interest loan.",
       "Principal, interest, fee, and total cost shown as separate amounts.",
-      "A yearly schedule, with the monthly rows available on request.",
+      "A yearly and monthly amortization schedule, with a CSV download.",
     ],
     examples: [
       {
@@ -83,7 +84,7 @@ export const financeToolContent: Record<string, ToolContent> = {
       "This page can answer a personal-loan question. It does not need a separate personal-loan URL.",
     ],
     limitations:
-      "The result is an estimate from the numbers you enter. It is not a lender’s offer, and it does not include a variable rate or a payment holiday. The fee is not added to the amount that accrues interest.",
+      "The result is an estimate from the numbers you enter. It is not a lender’s offer, and it does not include a variable rate or a payment holiday. The fee is not added to the amount that accrues interest. The formula uses monthly compounding and does not apply UK, Canadian, or Australian consumer-credit rules.",
     faqs: [
       {
         question: "How is a loan payment calculated?",
@@ -105,17 +106,17 @@ export const financeToolContent: Record<string, ToolContent> = {
   },
   "mortgage-calculator": {
     about:
-      "Estimate a fixed-rate mortgage payment from a home price, a down payment, a rate, and a term. Optional tax, insurance, HOA, and PMI stay at 0 until you enter them. Extra payments and a 15-year versus 30-year comparison are on this same page.",
+      "Estimate a fixed-rate mortgage payment from a home price, a down payment, a rate, and a term. Optional tax, insurance, HOA, and PMI stay at 0 until you enter them. Extra payments, a downloadable amortization schedule, and a 15-year versus 30-year comparison are on this same page.",
     howTo: [
       "Enter the home price, the down payment as a percent or a dollar amount, the rate, and the term.",
       "Use 15 years or 30 years, or type another whole number of years from 1 to 50.",
       "Leave tax, insurance, HOA, and PMI blank if you only want principal and interest.",
       "Add an extra monthly payment or a one-time payment if you want a payoff estimate.",
-      "Press Calculate. The rate in the sample is an example, not a live lender rate.",
+      "Press Calculate to see the payment, the amortization schedule, and a CSV download. The rate in the sample is an example, not a live lender rate.",
     ],
     features: [
       "Principal and interest shown apart from the full monthly housing cost.",
-      "A yearly schedule and an optional monthly schedule.",
+      "A yearly and monthly amortization schedule, with a CSV download.",
       "An extra-payment estimate with months saved and interest saved.",
       "A 15-year and 30-year comparison on the same price, down payment, and rate.",
     ],
@@ -136,7 +137,7 @@ export const financeToolContent: Record<string, ToolContent> = {
       "PMI is whatever monthly amount you type. This page does not decide whether a loan has PMI.",
     ],
     limitations:
-      "Estimates are for educational purposes and are based on the information you enter. Actual loan terms, lender fees, taxes, insurance, and other costs may differ. Extra payments are a mathematical estimate. A lender may apply them on a different schedule. This is not a quote.",
+      "Estimates are for educational purposes and are based on the information you enter. Actual loan terms, lender fees, taxes, insurance, and other costs may differ. Extra payments are a mathematical estimate. A lender may apply them on a different schedule. This is not a quote. The payment formula uses US-style monthly compounding. It does not add UK stamp duty, Canadian semi-annual compounding, or Australian lenders mortgage insurance. Official links for those differences are on the calculator.",
     faqs: [
       {
         question: "How is a mortgage payment calculated?",
@@ -152,7 +153,7 @@ export const financeToolContent: Record<string, ToolContent> = {
       },
       {
         question: "How do extra mortgage payments reduce interest?",
-        answer: "In this estimate, an extra monthly payment and an optional one-time payment reduce the balance faster. The page then shows the shorter payoff and the interest that was not charged.",
+        answer: "In this estimate, an extra monthly payment and an optional one-time payment reduce the balance faster. The page then shows the shorter payoff, the interest that was not charged, an updated amortization schedule, and a CSV download.",
       },
       {
         question: "Are these numbers sent to a server?",
@@ -511,13 +512,13 @@ export const financeToolContent: Record<string, ToolContent> = {
     ],
     explanation: "Pre-tax deductions come out of gross pay first. Withholding is then a percent of what remains, or the dollar amount you typed. Post-tax deductions come out after withholding. Annual figures repeat that paycheck by 52, 26, 24, or 12.",
     tips: ["Leave a deduction blank when it is zero.", "Use percent withholding only for the rate you want this estimate to assume."],
-    limitations: "Withholding is entirely the number you enter. This page does not use IRS, state, or local tax tables, and it is not an official tax calculation.",
+    limitations: "Withholding is entirely the number you enter. This page does not use IRS, state, or local tax tables, and it is not an official tax calculation. It also does not apply UK PAYE, Canada Revenue Agency payroll deductions, or Australian PAYG withholding. Official starting points are linked on the calculator.",
     faqs: [
       { question: "How is take-home pay estimated?", answer: "Gross pay minus pre-tax deductions, minus the withholding you entered, minus post-tax deductions." },
       { question: "What is the difference between pre-tax and post-tax deductions?", answer: "Pre-tax deductions reduce the amount used for withholding. Post-tax deductions are subtracted after withholding." },
       { question: "How does withholding percent work?", answer: "The percent is applied to gross pay after pre-tax deductions. 0 percent withholds nothing. 100 percent withholds all of that remaining amount." },
       { question: "What do the pay frequencies mean?", answer: "Weekly uses 52 paychecks, every two weeks uses 26, twice a month uses 24, and monthly uses 12." },
-      { question: "Is this an official tax calculation?", answer: "No. It uses only the withholding percent or dollar amount you type." },
+      { question: "Is this an official tax calculation?", answer: "No. It uses only the withholding percent or dollar amount you type. It does not apply IRS tables, UK PAYE, Canada Revenue Agency payroll deductions, or Australian PAYG withholding." },
       {
         question: "Are these numbers sent to a server?",
         answer: "No. Gross pay and the withholding you typed are estimated here. They are not uploaded.",

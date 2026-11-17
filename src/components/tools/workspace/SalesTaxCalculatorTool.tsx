@@ -11,6 +11,7 @@ import {
   ToolStatGrid,
   toolControlClass,
 } from "@/components/tools/ToolForm";
+import { RegionalFinanceNote } from "@/components/tools/RegionalFinanceNote";
 import { calculateSalesTax } from "@/lib/tools/sales-tax";
 import { formatNumber } from "@/lib/tools/numbers";
 
@@ -47,6 +48,7 @@ export function SalesTaxCalculatorTool() {
       <p className="text-sm leading-6 text-muted-foreground">
         Enter the price and the tax rate as plain numbers. The labels stay the same no matter which currency you have in mind.
       </p>
+      <RegionalFinanceNote variant="sales-tax" />
       <div className="mt-4 grid gap-4 sm:grid-cols-2">
         <ToolField id="tax-price" label="Original price">
           <input id="tax-price" inputMode="decimal" value={price} onChange={(event) => setPrice(event.target.value)} className={toolControlClass} />

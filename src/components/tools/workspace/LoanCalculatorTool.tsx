@@ -13,6 +13,8 @@ import {
   ToolStatGrid,
   toolControlClass,
 } from "@/components/tools/ToolForm";
+import { AmortizationSchedule } from "@/components/tools/AmortizationSchedule";
+import { RegionalFinanceNote } from "@/components/tools/RegionalFinanceNote";
 import { calculateLoan } from "@/lib/tools/loan";
 import { formatNumber } from "@/lib/tools/numbers";
 
@@ -26,12 +28,13 @@ export function LoanCalculatorTool() {
   const [term, setTerm] = useState("5");
   const [unit, setUnit] = useState<"years" | "months">("years");
   const [fee, setFee] = useState("0");
+  const [extra, setExtra] = useState("");
+  const [oneTime, setOneTime] = useState("");
   const [error, setError] = useState("");
-  const [showMonthly, setShowMonthly] = useState(false);
   const [result, setResult] = useState<ReturnType<typeof calculateLoan>>();
 
   function calculate() {
-    const next = calculateLoan(amount, rate, term, unit, fee);
+    const next = calculateLoan(amount, rate, term, unit, fee, extra, oneTime);
     if (!next.ok) {
       setError(next.error);
       setResult(undefined);
@@ -47,7 +50,8 @@ export function LoanCalculatorTool() {
     setTerm("5");
     setUnit("years");
     setFee("0");
-    setShowMonthly(false);
+    setExtra("");
+    setOneTime("");
     setError("");
     setResult(undefined);
   }
@@ -61,6 +65,7 @@ export function LoanCalculatorTool() {
       <p className="text-sm leading-6 text-muted-foreground">
         Estimated payment based on the information entered. This is not a lender offer.
       </p>
+      <RegionalFinanceNote variant="loan" />
       <div className="mt-4 grid gap-4 sm:grid-cols-2">
         <ToolField id="loan-amount" label="Loan amount (USD)">
           <input id="loan-amount" inputMode="decimal" value={amount} onChange={(event) => setAmount(event.target.value)} className={toolControlClass} />
@@ -73,6 +78,12 @@ export function LoanCalculatorTool() {
         </ToolField>
         <ToolField id="loan-fee" label="Optional fee (USD)" hint="Added to the total cost. It is not financed into the payment.">
           <input id="loan-fee" inputMode="decimal" value={fee} onChange={(event) => setFee(event.target.value)} className={toolControlClass} />
+        </ToolField>
+        <ToolField id="loan-extra" label="Extra payment each month (USD)" hint="Optional. Applied to principal in this estimate.">
+          <input id="loan-extra" inputMode="decimal" value={extra} onChange={(event) => setExtra(event.target.value)} className={toolControlClass} />
+        </ToolField>
+        <ToolField id="loan-once" label="One-time extra payment (USD)" hint="Optional. Applied at the start of the estimate.">
+          <input id="loan-once" inputMode="decimal" value={oneTime} onChange={(event) => setOneTime(event.target.value)} className={toolControlClass} />
         </ToolField>
       </div>
       <div className="mt-4">
@@ -107,48 +118,17 @@ export function LoanCalculatorTool() {
               { label: "Total cost including fee", value: money(result.totalCost) },
             ]}
           />
-          <ScheduleTable rows={result.yearly} label="Year" />
-          <Button type="button" variant="secondary" onClick={() => setShowMonthly((open) => !open)}>
-            {showMonthly ? "Hide monthly schedule" : "Show monthly schedule"}
-          </Button>
-          {showMonthly ? <ScheduleTable rows={result.monthly} label="Month" /> : null}
+          {result.payoff ? (
+            <ToolOutput label="Extra payment estimate">
+              <p className="text-sm leading-6">
+                Payoff in {result.payoff.monthsPaid} months, which is {result.payoff.monthsSaved} months sooner than the original term. Interest falls from {money(result.payoff.originalInterest)} to {money(result.payoff.interest)}, a difference of {money(result.payoff.interestSaved)}. A lender may apply extra payments differently.
+              </p>
+            </ToolOutput>
+          ) : null}
+          <AmortizationSchedule yearly={result.yearly} monthly={result.monthly} idPrefix="loan" />
         </div>
       ) : null}
     </ToolPanel>
   );
 }
 
-function ScheduleTable({
-  rows,
-  label,
-}: {
-  rows: Array<{ year: number; principalPaid: number; interestPaid: number; balance: number }>;
-  label: string;
-}) {
-  return (
-    <ToolOutput label={label === "Year" ? "Yearly schedule" : "Monthly schedule"}>
-      <div className="max-h-80 overflow-auto">
-        <table className="w-full min-w-[32rem] text-left text-sm">
-          <thead>
-            <tr className="border-b border-border">
-              <th className="py-2 pr-3 font-medium">{label}</th>
-              <th className="py-2 pr-3 font-medium">Principal paid</th>
-              <th className="py-2 pr-3 font-medium">Interest paid</th>
-              <th className="py-2 font-medium">Remaining balance</th>
-            </tr>
-          </thead>
-          <tbody>
-            {rows.map((row) => (
-              <tr key={`${label}-${row.year}-${row.balance}`} className="border-b border-border">
-                <td className="py-2 pr-3">{row.year}</td>
-                <td className="py-2 pr-3">{money(row.principalPaid)}</td>
-                <td className="py-2 pr-3">{money(row.interestPaid)}</td>
-                <td className="py-2">{money(row.balance)}</td>
-              </tr>
-            ))}
-          </tbody>
-        </table>
-      </div>
-    </ToolOutput>
-  );
-}

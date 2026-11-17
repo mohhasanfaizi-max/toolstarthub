@@ -17,8 +17,16 @@ export type LoanResult =
       fee: number;
       totalCost: number;
       months: number;
+      monthsPaid: number;
       yearly: AmortizationYear[];
       monthly: AmortizationYear[];
+      payoff: {
+        monthsPaid: number;
+        monthsSaved: number;
+        interest: number;
+        interestSaved: number;
+        originalInterest: number;
+      } | null;
     }
   | { ok: false; error: string };
 
@@ -41,6 +49,8 @@ export function calculateLoan(
   termRaw: string,
   unit: "years" | "months",
   feeRaw: string,
+  extraMonthlyRaw = "",
+  oneTimeRaw = "",
 ): LoanResult {
   const amount = parseNumber(amountRaw, { field: "loan amount", allowNegative: false });
   if (!amount.ok) return amount;
@@ -50,6 +60,10 @@ export function calculateLoan(
   if (!term.ok) return term;
   const fee = parseNumber(feeRaw === "" ? "0" : feeRaw, { field: "loan fee", allowNegative: false });
   if (!fee.ok) return fee;
+  const extra = optionalLoanMoney(extraMonthlyRaw, "extra monthly payment");
+  if (!extra.ok) return extra;
+  const oneTime = optionalLoanMoney(oneTimeRaw, "one-time extra payment");
+  if (!oneTime.ok) return oneTime;
 
   if (amount.value <= 0) return { ok: false, error: "Enter a loan amount greater than 0." };
   if (amount.value > MAX_PRINCIPAL) return { ok: false, error: "Enter a smaller loan amount." };
@@ -64,22 +78,57 @@ export function calculateLoan(
   const payment = monthlyInstallment(amount.value, rate.value, months);
   if (!Number.isFinite(payment)) return { ok: false, error: "This combination is too large to calculate." };
 
-  const schedule = buildSchedule(amount.value, rate.value, months, payment, 0, 0);
-  if (!schedule.ok) return schedule;
+  if (oneTime.value > amount.value) {
+    return { ok: false, error: "The one-time extra payment cannot be larger than the loan amount." };
+  }
 
-  const totalPaid = roundTo(schedule.totalInterest + amount.value, 2);
+  const base = buildSchedule(amount.value, rate.value, months, payment, 0, 0);
+  if (!base.ok) return base;
+
+  let applied = base;
+  let payoff: {
+    monthsPaid: number;
+    monthsSaved: number;
+    interest: number;
+    interestSaved: number;
+    originalInterest: number;
+  } | null = null;
+  if (extra.value > 0 || oneTime.value > 0) {
+    const faster = buildSchedule(amount.value, rate.value, months, payment, extra.value, oneTime.value);
+    if (!faster.ok) return faster;
+    applied = faster;
+    payoff = {
+      monthsPaid: faster.monthsPaid,
+      monthsSaved: Math.max(0, months - faster.monthsPaid),
+      interest: roundTo(faster.totalInterest, 2),
+      interestSaved: roundTo(base.totalInterest - faster.totalInterest, 2),
+      originalInterest: roundTo(base.totalInterest, 2),
+    };
+  }
+
+  const totalPaid = roundTo(applied.totalInterest + amount.value, 2);
   return {
     ok: true,
     payment: roundTo(payment, 2),
     totalPaid,
-    totalInterest: roundTo(schedule.totalInterest, 2),
+    totalInterest: roundTo(applied.totalInterest, 2),
     principal: roundTo(amount.value, 2),
     fee: roundTo(fee.value, 2),
     totalCost: roundTo(totalPaid + fee.value, 2),
     months,
-    yearly: schedule.yearly,
-    monthly: schedule.monthly,
+    monthsPaid: applied.monthsPaid,
+    yearly: applied.yearly,
+    monthly: applied.monthly,
+    payoff,
   };
+}
+
+function optionalLoanMoney(raw: string, field: string) {
+  if (raw.trim() === "") return { ok: true as const, value: 0 };
+  const parsed = parseNumber(raw, { field, allowNegative: false });
+  if (!parsed.ok) return parsed;
+  if (parsed.value > MAX_PRINCIPAL) return { ok: false as const, error: `Enter a smaller ${field}.` };
+  return parsed;
 }
 
 export function buildSchedule(
@@ -142,4 +191,18 @@ export function buildSchedule(
   }
 
   return { ok: true, yearly, monthly: monthRows, totalInterest, monthsPaid: paidMonths };
+}
+
+export function formatScheduleCsv(
+  rows: AmortizationYear[],
+  periodLabel: "Month" | "Year",
+): string {
+  const header = `${periodLabel},Principal paid,Interest paid,Remaining balance`;
+  const body = rows.map((row) =>
+    [row.year, row.principalPaid.toFixed(2), row.interestPaid.toFixed(2), row.balance.toFixed(2)].join(","),
+  );
+  const principal = rows.reduce((sum, row) => sum + row.principalPaid, 0);
+  const interest = rows.reduce((sum, row) => sum + row.interestPaid, 0);
+  const totals = `Totals,${principal.toFixed(2)},${interest.toFixed(2)},`;
+  return [header, ...body, totals].join("\n");
 }

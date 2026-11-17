@@ -12,6 +12,7 @@ import {
   ToolStatGrid,
   toolControlClass,
 } from "@/components/tools/ToolForm";
+import { RegionalFinanceNote } from "@/components/tools/RegionalFinanceNote";
 import { calculatePaycheck, type PayFrequency, type WithholdingMode } from "@/lib/tools/paycheck";
 import { formatNumber } from "@/lib/tools/numbers";
 
@@ -65,6 +66,7 @@ export function PaycheckEstimatorTool() {
       <p className="text-sm leading-6 text-muted-foreground">
         Withholding is the percent or dollar amount you type. This is not an official federal, state, or local tax calculation.
       </p>
+      <RegionalFinanceNote variant="paycheck" />
       <div className="mt-4 grid gap-4 sm:grid-cols-2">
         <ToolField id="pay-gross" label="Gross pay this paycheck (USD)">
           <input id="pay-gross" inputMode="decimal" value={gross} onChange={(event) => setGross(event.target.value)} className={toolControlClass} />

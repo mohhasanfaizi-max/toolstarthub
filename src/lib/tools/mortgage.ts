@@ -95,8 +95,8 @@ export function calculateMortgage(input: {
   const taxMonthly = roundTo(tax.value / 12, 2);
   const insuranceMonthly = roundTo(insurance.value / 12, 2);
   const housing = roundTo(roundTo(payment, 2) + taxMonthly + insuranceMonthly + pmi.value + hoa.value, 2);
-  const totalPayments = roundTo(base.totalInterest + loanAmount, 2);
 
+  let applied = base;
   let payoff: {
     monthsPaid: number;
     monthsSaved: number;
@@ -110,6 +110,7 @@ export function calculateMortgage(input: {
     }
     const faster = buildSchedule(loanAmount, rate.value, months, payment, extra.value, oneTime.value);
     if (!faster.ok) return faster;
+    applied = faster;
     payoff = {
       monthsPaid: faster.monthsPaid,
       monthsSaved: Math.max(0, months - faster.monthsPaid),
@@ -118,6 +119,7 @@ export function calculateMortgage(input: {
       originalInterest: roundTo(base.totalInterest, 2),
     };
   }
+  const totalPayments = roundTo(applied.totalInterest + loanAmount, 2);
 
   const comparison: Array<{ term: number; payment: number; totalInterest: number; totalPayments: number }> = [];
   for (const term of [15, 30]) {
@@ -143,12 +145,12 @@ export function calculateMortgage(input: {
     insuranceMonthly,
     pmiMonthly: roundTo(pmi.value, 2),
     hoaMonthly: roundTo(hoa.value, 2),
-    totalInterest: roundTo(base.totalInterest, 2),
+    totalInterest: roundTo(applied.totalInterest, 2),
     totalPrincipal: loanAmount,
     totalPayments,
     months,
-    yearly: base.yearly,
-    monthly: base.monthly,
+    yearly: applied.yearly,
+    monthly: applied.monthly,
     comparison,
     payoff,
   };
