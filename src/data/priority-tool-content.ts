@@ -486,12 +486,12 @@ export const priorityToolContent: Record<string, ToolContent> = {
   },
   "image-compressor": {
     about:
-      "The Image Compressor re-encodes a JPG, PNG, or WebP in your browser. Set a quality from 10 to 100, pick an output format, and compare the file size the page reports after you press Compress. Use it before you attach a photo to an email or a page. PNG output is lossless in this tool, so a flat graphic may barely shrink. Compressing a JPEG again can add artifacts.",
+      "The Image Compressor re-encodes images in your browser. Set a quality from 10 to 100, pick an output format, and compare the file size the page reports after you press Compress. You can compress one file or up to 20 at a time, then download a file or a ZIP of the results. Use it before you attach a photo to an email or a page. PNG output is lossless in this tool, so a flat graphic may barely shrink. Compressing a JPEG again can add artifacts.",
     howTo: [
-      "Choose a JPG, PNG, or WebP, or drag it onto the box. The limit is 25 MB, and neither side can exceed 8,192 pixels.",
+      "Choose one or more JPG, PNG, or WebP files, or drag them onto the box. AVIF and HEIC open only if this browser can decode them. Each file must be 25 MB or smaller, with neither side over 8,192 pixels, and a run is limited to 20 files.",
       "Set quality from 10 to 100. The control starts at 80. Quality changes JPEG and WebP. It does not change PNG encoding on this page.",
-      "Choose JPG, PNG, or WebP as the output, then press Compress.",
-      "Read the original size and the new size on the page, then download the result. Reset clears the image from this tab.",
+      "Choose JPG, PNG, or WebP as the output, or AVIF if this browser can encode it, then press Compress.",
+      "Read the original size and the new size on the page, then download the file. If you compressed several images, download all of them as a ZIP. Reset clears the files from this tab.",
     ],
     examples: [
       {
@@ -504,7 +504,7 @@ export const priorityToolContent: Record<string, ToolContent> = {
       },
       {
         title: "A file the page will not open",
-        body: "GIF, HEIC, and SVG are rejected. A file over 25 MB is rejected so the tab stays responsive. A side longer than 8,192 pixels is rejected. Quality below 10 or above 100 is rejected. Convert those files to JPG, PNG, or WebP in another tool first, or export a smaller image.",
+        body: "GIF and SVG are always rejected. HEIC and AVIF open only if this browser can decode them; otherwise the page says so and leaves the file out. A file over 25 MB is rejected so the tab stays responsive. A side longer than 8,192 pixels is rejected. Quality below 10 or above 100 is rejected. More than 20 files in one run is rejected. Convert unsupported files to JPG, PNG, or WebP first, or export a smaller image.",
       },
     ],
     explanation:
@@ -545,12 +545,12 @@ export const priorityToolContent: Record<string, ToolContent> = {
       "Check transparency. JPEG and WebP output on this page sit on white.",
     ],
     limitations:
-      "GIF, HEIC, and SVG files are rejected. An image must be 25 MB or smaller, and neither side can exceed 8,192 pixels. Quality must be from 10 to 100. PNG is re-encoded without a lossy quality control, so a flat graphic may barely shrink. JPEG and WebP are lossy, and compressing a JPEG again can add artifacts. The page shows the resulting file size after you compress. It does not promise a target size in advance.",
+      "GIF and SVG files are rejected. HEIC and AVIF open only when this browser can decode them. You can choose JPG, PNG, or WebP as the output, and AVIF only when this browser can encode it. An image must be 25 MB or smaller, and neither side can exceed 8,192 pixels. Up to 20 files can be compressed in one run, and a ZIP is offered when more than one file succeeds. Quality must be from 10 to 100. PNG is re-encoded without a lossy quality control, so a flat graphic may barely shrink. JPEG, WebP, and AVIF are lossy, and compressing a JPEG again can add artifacts. The page shows the resulting file size after you compress. It does not promise a target size in advance.",
     faqs: [
       {
         question: "How do I compress a JPEG?",
         answer:
-          "Open the JPG, set quality between 10 and 100, choose JPG, and press Compress. The control starts at 80, which encodes at 0.80. The page shows the new file size for that image.",
+          "Open one JPG or several, set quality between 10 and 100, choose JPG, and press Compress. The control starts at 80, which encodes at 0.80. The page shows the new file size for each image, and a ZIP when more than one file succeeds.",
       },
       {
         question: "Why did my PNG barely shrink?",
@@ -565,12 +565,12 @@ export const priorityToolContent: Record<string, ToolContent> = {
       {
         question: "Which files are rejected?",
         answer:
-          "GIF, HEIC, and SVG are not opened. Files over 25 MB are rejected, and so is any side longer than 8,192 pixels. Quality outside 10 to 100 is rejected.",
+          "GIF and SVG are not opened. HEIC and AVIF are opened only if this browser can decode them; otherwise they are refused with a clear message. Files over 25 MB are rejected, and so is any side longer than 8,192 pixels, or more than 20 files in one run. Quality outside 10 to 100 is rejected.",
       },
       {
         question: "Is my image uploaded?",
         answer:
-          "No. The JPG, PNG, or WebP is re-encoded in this tab at the quality you set. The file is not sent to Tools Star Hub.",
+          "No. Each file is re-encoded in this tab at the quality you set. The images are not sent to Tools Star Hub.",
       },
       {
         question: "Does it work on mobile?",
