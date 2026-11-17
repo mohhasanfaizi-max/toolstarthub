@@ -28,7 +28,7 @@ const plusJakarta = Plus_Jakarta_Sans({
   adjustFontFallback: true,
 });
 
-const themeScript = `(function(){try{var t=localStorage.getItem("tsh-theme");var d=t==="dark"||(t!=="light"&&window.matchMedia("(prefers-color-scheme: dark)").matches);document.documentElement.setAttribute("data-theme",d?"dark":"light");}catch(e){}})();`;
+const themeScript = `(function(){try{var t=localStorage.getItem("tsh-theme");document.documentElement.setAttribute("data-theme",t==="dark"?"dark":"light");}catch(e){document.documentElement.setAttribute("data-theme","light");}})();`;
 
 /**
  * The html document for one locale: lang/dir, early inline scripts (theme and

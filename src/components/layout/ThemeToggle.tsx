@@ -16,10 +16,7 @@ function getPreferredTheme(): Theme {
     // Ignore storage access errors.
   }
 
-  if (window.matchMedia("(prefers-color-scheme: dark)").matches) {
-    return "dark";
-  }
-
+  // First-time visitors get light. A saved tsh-theme choice is still respected.
   return "light";
 }
 
