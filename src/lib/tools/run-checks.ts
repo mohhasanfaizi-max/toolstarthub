@@ -98,7 +98,7 @@ import {
   PASSPHRASE_MAX_WORDS,
   PASSPHRASE_WORDLIST_SIZE,
 } from "./password.ts";
-import { looksLikePdf, parsePageSelection, pdfScaleForPage, validatePdfBytes, validatePdfFile } from "./pdf.ts";
+import { looksLikePdf, parsePageRange, parsePageSelection, pdfScaleForPage, pdfScaleFromDpi, validatePdfBytes, validatePdfFile } from "./pdf.ts";
 import { calculatePercentage } from "./percentage.ts";
 import { calculatePercentageChange } from "./percentage-change.ts";
 import { looksLikeUrl, validateQrText } from "./qr.ts";
@@ -598,6 +598,14 @@ const selectedPages = parsePageSelection("selected", 4, [3, 1, 1, 9]);
 assert(selectedPages.ok && selectedPages.pages.join() === "1,3", "Selected pages are unique and in range");
 assert(!parsePageSelection("selected", 4, []).ok, "Empty selected pages should fail");
 assert(!parsePageSelection("all", 41, []).ok, "Too many pages should fail");
+const ranged = parsePageSelection("range", 10, [], "1-3, 5, 8-7");
+assert(ranged.ok && ranged.pages.join() === "1,2,3,5,7,8", "Page range is unique, inclusive, and order-insensitive");
+const singleRange = parsePageRange("2", 4);
+assert(singleRange.ok && singleRange.pages.join() === "2", "Single page range");
+assert(!parsePageRange("", 4).ok, "Empty range should fail");
+assert(!parsePageRange("1-5", 4).ok, "Range past the last page should fail");
+assert(!parsePageRange("abc", 4).ok, "Invalid range token should fail");
+assert(pdfScaleFromDpi(108) === 1.5, "108 DPI matches the existing 1.5 scale");
 assert(pdfScaleForPage(10000, 10000, 1.5) < 1.5, "Huge pages should downscale");
 
 assert(!validateQrText("").ok, "Empty QR text should fail");

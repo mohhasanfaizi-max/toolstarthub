@@ -239,28 +239,28 @@ const data: ToolPageTranslations = {
   "pdf-to-jpg": {
     "answer": "PDF a JPG renderiza las páginas PDF seleccionadas como imágenes JPEG en tu navegador, sin subir el documento.",
     "content": {
-      "about": "PDF a JPG convierte páginas de un PDF en imágenes JPEG en tu navegador. Puedes exportar la primera página, las páginas que marques o todas. Úsalo para una miniatura de portada o un conjunto de fotos de páginas. La descarga es solo JPEG. Un archivo protegido con contraseña no se abre. El renderizado se detiene en 20 MB, 40 páginas y un lado más largo de 4096 píxeles.",
+      "about": "PDF a JPG convierte páginas de un PDF en imágenes JPG, PNG o WebP en tu navegador. Puedes exportar la primera página, las páginas que marques, un rango como 1-3, 5, o todas. Úsalo para una miniatura de portada o un conjunto de fotos de páginas. Si el PDF está protegido con contraseña, puedes escribirla en esta pestaña; no se envía a ningún sitio. El renderizado se detiene en 20 MB, 40 páginas y un lado más largo de 4096 píxeles. Esta página dibuja cada página elegida como una imagen. No extrae las fotos individuales incrustadas en el archivo.",
       "howTo": [
         "Sube un PDF desde tu dispositivo. El archivo se queda en esta pestaña del navegador.",
         "Comprueba el nombre del archivo, el tamaño y el recuento de páginas. Aparecen vistas previas en miniatura de las primeras 12 páginas. Las páginas posteriores igualmente se pueden convertir.",
-        "Elige la primera página, las páginas seleccionadas o todas las páginas. Fija la calidad JPG si necesitas una imagen más pequeña o más nítida. El control empieza en 80.",
-        "Pulsa Convertir y luego descarga una página o los archivos JPG generados. Cada archivo se nombra a partir del nombre del PDF más el número de página, como notes-page-1.jpg."
+        "Elige la primera página, las páginas seleccionadas, un rango de páginas o todas. Elige JPG, PNG o WebP, y una resolución de 72, 108, 150 o 300 DPI. 108 DPI es el valor predeterminado y coincide con la escala anterior de 1,5×. En JPG y WebP, fija la calidad si necesitas una imagen más pequeña o más nítida. El control empieza en 80. PNG no tiene pérdida, así que la calidad no se aplica.",
+        "Pulsa Convertir y luego descarga una página o, cuando hay más de una lista, Descargar todo como ZIP. Cada archivo se nombra a partir del nombre del PDF más el número de página, como notes-page-1.jpg."
       ],
       "examples": [
         {
           "title": "Un archivo de 3 páginas, todas las páginas",
-          "body": "Abre un PDF de 3 páginas y elige todas las páginas. Convertir dibuja tres JPEG, uno por página, con nombres -page-1, -page-2 y -page-3. La escala de renderizado empieza en 1,5. Una página Carta de EE. UU. mide 612 por 792 puntos. A 1,5× eso son 918 por 1188 píxeles. El lado más largo, 1188, está por debajo del tope de 4096 píxeles, así que la escala se queda en 1,5. La calidad 80 codifica cada JPEG a 0,80."
+          "body": "Abre un PDF de 3 páginas y elige todas las páginas. Convertir dibuja tres imágenes, una por página, con nombres -page-1, -page-2 y -page-3. Puedes descargarlas en un ZIP. La resolución predeterminada es 108 DPI, la misma escala 1,5× de antes. Una página Carta de EE. UU. mide 612 por 792 puntos. A 108 DPI eso son 918 por 1188 píxeles. El lado más largo, 1188, está por debajo del tope de 4096 píxeles, así que la escala se queda en 1,5. La calidad 80 codifica cada JPEG a 0,80."
         },
         {
           "title": "Solo la primera página",
-          "body": "Elige la primera página. La herramienta renderiza la página 1 y omite el resto, lo que usa menos memoria que convertir todas las páginas. La tira de miniaturas igualmente muestra hasta las primeras 12 páginas para que veas la portada. La descarga es un solo JPEG."
+          "body": "Elige la primera página. La herramienta renderiza la página 1 y omite el resto, lo que usa menos memoria que convertir todas las páginas. La tira de miniaturas igualmente muestra hasta las primeras 12 páginas para que veas la portada. La descarga es una sola imagen, no un ZIP."
         },
         {
           "title": "Un archivo bloqueado o demasiado grande",
-          "body": "Un PDF protegido con contraseña se detiene con un mensaje que indica que el PDF está protegido con contraseña y que esta herramienta no puede abrir archivos bloqueados. Desbloquéalo en un lector de PDF y luego convierte la copia desbloqueada. Se rechaza un archivo de más de 20 MB. Se rechaza un PDF de más de 40 páginas, con un mensaje para dividirlo primero. Una página que superaría los 4096 píxeles en el lado largo a 1,5× se reduce para que el lado largo se quede en 4096."
+          "body": "Un PDF protegido con contraseña te pide que escribas la contraseña en esta pestaña. La contraseña no se envía a ningún sitio. Si no es correcta, la página lo indica. Se rechaza un archivo de más de 20 MB. Se rechaza un PDF de más de 40 páginas, con un mensaje para dividirlo primero. Una página que superaría los 4096 píxeles en el lado largo a los DPI elegidos se reduce para que el lado largo se quede en 4096."
         }
       ],
-      "explanation": "Las páginas se renderizan en local con PDF.js, se dibujan en un lienzo y se guardan como JPEG. No hay una subida a una API de conversión. La escala pedida es 1,5. Si el lado más largo a esa escala superaría los 4096 píxeles, la escala se reduce para que el lado más largo sea 4096. La calidad JPG es el control dividido entre 100. Las páginas no seleccionadas no se dibujan.",
+      "explanation": "Las páginas se renderizan en local con PDF.js, se dibujan en un lienzo y se guardan como JPG, PNG o WebP. No hay una subida a una API de conversión. La resolución predeterminada es 108 DPI, la misma escala 1,5× de antes. También puedes elegir 72, 150 o 300 DPI. Si el lado más largo a esa escala superaría los 4096 píxeles, la escala se reduce para que el lado más largo sea 4096. En JPG y WebP, la calidad es el control dividido entre 100. PNG no tiene pérdida. Las páginas no seleccionadas no se dibujan. Se ofrece un ZIP cuando se convierte más de una página.",
       "sections": [
         {
           "heading": "Lo que obtienes es una imagen de la página",
@@ -272,7 +272,7 @@ const data: ToolPageTranslations = {
         {
           "heading": "Qué páginas se exportan",
           "paragraphs": [
-            "La primera página exporta solo la página 1. Todas las páginas exporta cada página, hasta el tope de 40. Las páginas seleccionadas exportan las casillas que marcas. Si no existe ninguno de los números seleccionados, la página indica que selecciones al menos una página.",
+            "La primera página exporta solo la página 1. Todas las páginas exporta cada página, hasta el tope de 40. Las páginas seleccionadas exportan las casillas que marcas. El rango de páginas acepta una lista como 1-3, 5. Si no existe ninguno de los números seleccionados, o el rango está vacío o no es válido, la página lo indica.",
             "Las miniaturas se dibujan de las primeras 12 páginas a una escala menor para que puedas elegir. Si el PDF tiene más páginas, la nota bajo la tira indica que igualmente puedes convertir las páginas posteriores. No necesitas una miniatura para incluir una página posterior en la selección."
           ]
         },
@@ -286,29 +286,29 @@ const data: ToolPageTranslations = {
         {
           "heading": "Privacidad",
           "paragraphs": [
-            "El PDF se abre en esta pestaña. Las páginas seleccionadas se renderizan aquí a JPEG. El archivo no se envía a Tools Star Hub. Las descargas se quedan en tu dispositivo. La analítica, si la aceptas, no recibe el PDF ni las imágenes."
+            "El PDF se abre en esta pestaña. Las páginas seleccionadas se renderizan aquí. El archivo y la contraseña que escribas no se envían a Tools Star Hub. Las descargas se quedan en tu dispositivo. La analítica, si la aceptas, no recibe el PDF, la contraseña ni las imágenes."
           ]
         }
       ],
       "tips": [
         "Convierte la primera página cuando solo necesites una portada. Es más rápido que renderizar todo el archivo.",
         "En una página Carta estándar, espera 918 por 1188 píxeles en la escala predeterminada. Otros tamaños de página se escalan a partir de su propio tamaño en puntos.",
-        "Desbloquea un PDF protegido con contraseña antes de abrirlo aquí. Esta herramienta no tiene un campo de contraseña.",
+        "Si el PDF está bloqueado, escribe la contraseña en esta pestaña. Permanece en el navegador y no se envía a ningún sitio.",
         "Si necesitas palabras, no una imagen, pasa a [PDF a texto](/tools/pdf-to-text). Un JPEG no te dará un párrafo seleccionable."
       ],
-      "limitations": "La descarga es JPEG, no PNG. Un archivo protegido con contraseña no se abre. El renderizado se detiene en 20 MB, 40 páginas y un lado más largo de 4096 píxeles. La escala pedida es 1,5 y se reduce cuando una página superaría ese lado. Las páginas que dejas sin seleccionar no se dibujan. Las miniaturas cubren las primeras 12 páginas. El resultado es una imagen de la página, no texto extraído.",
+      "limitations": "Puedes descargar JPG, PNG o WebP, y un ZIP cuando se convierte más de una página. Un archivo protegido con contraseña se puede abrir con la contraseña escrita en esta pestaña; no se envía a ningún sitio. El renderizado se detiene en 20 MB, 40 páginas y un lado más largo de 4096 píxeles. La resolución predeterminada es 108 DPI (1,5×) y se reduce cuando una página superaría ese lado. Las páginas que dejas sin seleccionar no se dibujan. Las miniaturas cubren las primeras 12 páginas. El resultado es una imagen de cada página, no el texto extraído ni las fotos originales incrustadas en el archivo.",
       "faqs": [
         {
           "question": "¿Cómo convierto un PDF de 3 páginas a JPG?",
-          "answer": "Sube el PDF, elige todas las páginas y pulsa Convertir. Obtienes tres archivos JPEG, uno por página. Una página Carta de EE. UU. a la escala 1,5 mide 918 por 1188 píxeles. La calidad empieza en 80."
+          "answer": "Sube el PDF, elige todas las páginas y pulsa Convertir. Obtienes tres archivos de imagen, uno por página, y puedes descargarlos en un ZIP. Una página Carta de EE. UU. a 108 DPI mide 918 por 1188 píxeles. La calidad empieza en 80 en JPG y WebP."
         },
         {
           "question": "¿Puedo convertir solo algunas páginas?",
-          "answer": "Sí. Elige la primera página para la página 1, o páginas seleccionadas y marca las que necesites. Las páginas no seleccionadas no se dibujan. Las vistas previas muestran las primeras 12 páginas. Las páginas posteriores igualmente se pueden convertir."
+          "answer": "Sí. Elige la primera página para la página 1, páginas seleccionadas y marca las que necesites, o escribe un rango como 1-3, 5. Las páginas no seleccionadas no se dibujan. Las vistas previas muestran las primeras 12 páginas. Las páginas posteriores igualmente se pueden convertir."
         },
         {
           "question": "¿Puedo abrir un PDF protegido con contraseña?",
-          "answer": "No. El mensaje indica que el PDF está protegido con contraseña y que esta herramienta no puede abrir archivos bloqueados. Desbloquea el archivo en un lector de PDF y luego convierte la copia desbloqueada."
+          "answer": "Sí, si conoces la contraseña. Escríbela en esta pestaña para desbloquear el archivo. La contraseña no se envía a ningún sitio. Si no es correcta, la página lo indica y puedes intentarlo de nuevo."
         },
         {
           "question": "¿Por qué hay un límite de páginas o de tamaño?",

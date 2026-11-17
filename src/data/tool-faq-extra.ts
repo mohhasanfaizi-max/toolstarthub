@@ -8514,7 +8514,7 @@ export const extraToolFaqs: Record<string, ToolFaq[]> = {
     {
       question: "Can I download PNG or WebP instead of JPEG?",
       answer:
-        "No. The download is JPEG only. There is no PNG or WebP export on this page, and no ZIP of the pages.",
+        "Yes. Choose JPG, PNG, or WebP before you convert. When more than one page is ready, you can download them all as a ZIP. Single-page results download as that one file.",
     },
     {
       question: "Can this extract the photos that were embedded in the PDF?",
@@ -8539,7 +8539,7 @@ export const extraToolFaqs: Record<string, ToolFaq[]> = {
     {
       question: "What scale are the JPEGs rendered at?",
       answer:
-        "The requested scale is 1.5. It is reduced when a page would exceed a longest edge of 4,096 pixels.",
+        "The default is 108 DPI, which is the same 1.5× scale as before. You can also choose 72, 150, or 300 DPI. The scale is reduced when a page would exceed a longest edge of 4,096 pixels.",
     },
     {
       question: "Can I convert several PDFs at once?",
@@ -8559,7 +8559,7 @@ export const extraToolFaqs: Record<string, ToolFaq[]> = {
     {
       question: "Can I pick a JPEG quality setting?",
       answer:
-        "This page writes JPEG page pictures at the scale described above. It does not offer a separate quality slider or a target file size.",
+        "Yes. For JPG and WebP, a quality slider starts at 80. Lower values usually make a smaller file. PNG is lossless, so the slider does not apply. There is no target file size on this page.",
     },
     {
       question: "What if I only need the cover?",
