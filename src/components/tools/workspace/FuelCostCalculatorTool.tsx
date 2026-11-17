@@ -14,12 +14,15 @@ import {
 } from "@/components/tools/ToolForm";
 import { calculateFuelCost, type FuelMode } from "@/lib/tools/fuel-cost";
 import { formatNumber } from "@/lib/tools/numbers";
+import { useTx } from "@/i18n/tool-text";
 
 function money(value: number) {
   return `$${formatNumber(value, 2)}`;
 }
 
 export function FuelCostCalculatorTool() {
+  const tx = useTx();
+
   const [mode, setMode] = useState<FuelMode>("mpg");
   const [distance, setDistance] = useState("100");
   const [economy, setEconomy] = useState("25");
@@ -61,7 +64,7 @@ export function FuelCostCalculatorTool() {
   return (
     <ToolPanel>
       <p className="text-sm leading-6 text-muted-foreground">
-        Fuel cost uses the price you type. The page does not look up a live fuel price.
+        {tx("Fuel cost uses the price you type. The page does not look up a live fuel price.")}
       </p>
       <div className="mt-4">
         <ToolChoiceGroup
@@ -96,9 +99,9 @@ export function FuelCostCalculatorTool() {
       {error ? <div className="mt-4"><ToolError>{error}</ToolError></div> : null}
       <div className="mt-4">
         <ToolActions>
-          <Button type="button" onClick={calculate}>Calculate</Button>
+          <Button type="button" onClick={calculate}>{tx("Calculate")}</Button>
           <CopyButton value={summary} label="Copy result" />
-          <Button type="button" variant="ghost" onClick={reset}>Reset</Button>
+          <Button type="button" variant="ghost" onClick={reset}>{tx("Reset")}</Button>
         </ToolActions>
       </div>
       {result?.ok ? (

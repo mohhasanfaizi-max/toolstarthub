@@ -14,10 +14,13 @@ import {
 } from "@/components/tools/ToolForm";
 import { calculateTip } from "@/lib/tools/tip";
 import { formatNumber } from "@/lib/tools/numbers";
+import { useTx } from "@/i18n/tool-text";
 
 const PRESETS = ["10", "15", "18", "20", "25"];
 
 export function TipCalculatorTool() {
+  const tx = useTx();
+
   const [bill, setBill] = useState("");
   const [percent, setPercent] = useState("15");
   const [people, setPeople] = useState("1");
@@ -63,7 +66,7 @@ export function TipCalculatorTool() {
         </ToolField>
       </div>
       <fieldset className="mt-4">
-        <legend className="text-sm font-medium text-foreground">Tip percentage</legend>
+        <legend className="text-sm font-medium text-foreground">{tx("Tip percentage")}</legend>
         <div className="mt-2 flex flex-wrap gap-2">
           {PRESETS.map((value) => (
             <button
@@ -78,16 +81,16 @@ export function TipCalculatorTool() {
           ))}
         </div>
         <div className="mt-3 max-w-xs">
-          <label htmlFor="tip-percent" className="block text-sm font-medium text-foreground">Custom percentage</label>
+          <label htmlFor="tip-percent" className="block text-sm font-medium text-foreground">{tx("Custom percentage")}</label>
           <input id="tip-percent" inputMode="decimal" value={percent} onChange={(event) => setPercent(event.target.value)} className={toolControlClass} />
         </div>
       </fieldset>
       {error ? <div className="mt-4"><ToolError>{error}</ToolError></div> : null}
       <div className="mt-4">
         <ToolActions>
-          <Button type="button" onClick={calculate}>Calculate</Button>
+          <Button type="button" onClick={calculate}>{tx("Calculate")}</Button>
           <CopyButton value={summary} label="Copy result" />
-          <Button type="button" variant="ghost" onClick={reset}>Clear</Button>
+          <Button type="button" variant="ghost" onClick={reset}>{tx("Clear")}</Button>
         </ToolActions>
       </div>
       {result?.ok ? (

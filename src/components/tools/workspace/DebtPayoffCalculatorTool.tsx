@@ -15,6 +15,7 @@ import {
 } from "@/components/tools/ToolForm";
 import { calculateDebtPayoff, type DebtStrategy } from "@/lib/tools/debt-payoff";
 import { formatNumber } from "@/lib/tools/numbers";
+import { useTx } from "@/i18n/tool-text";
 
 function money(value: number) {
   return `$${formatNumber(value, 2)}`;
@@ -36,6 +37,8 @@ const starter: DebtRow[] = [
 ];
 
 export function DebtPayoffCalculatorTool() {
+  const tx = useTx();
+
   const [rows, setRows] = useState<DebtRow[]>(starter);
   const [nextId, setNextId] = useState(4);
   const [extra, setExtra] = useState("100");
@@ -83,7 +86,7 @@ export function DebtPayoffCalculatorTool() {
   return (
     <ToolPanel>
       <p className="text-sm leading-6 text-muted-foreground">
-        An estimate of how long several debts take to pay off under the strategy and extra payment you enter. It is not a promised payoff date.
+        {tx("An estimate of how long several debts take to pay off under the strategy and extra payment you enter. It is not a promised payoff date.")}
       </p>
       <div className="mt-4 space-y-4">
         {rows.map((row, index) => (
@@ -103,7 +106,7 @@ export function DebtPayoffCalculatorTool() {
             {rows.length > 1 ? (
               <div className="sm:col-span-4">
                 <Button type="button" variant="ghost" onClick={() => setRows((current) => current.filter((item) => item.id !== row.id))}>
-                  Remove debt {index + 1}
+                  {tx(`Remove debt ${index + 1}`)}
                 </Button>
               </div>
             ) : null}
@@ -120,7 +123,7 @@ export function DebtPayoffCalculatorTool() {
             setNextId((id) => id + 1);
           }}
         >
-          Add debt
+          {tx("Add debt")}
         </Button>
       </div>
       <div className="mt-4 grid gap-4 sm:grid-cols-2">
@@ -140,15 +143,15 @@ export function DebtPayoffCalculatorTool() {
           ]}
         />
         <p className="mt-2 text-sm leading-6 text-muted-foreground">
-          These are two different ways to send the extra payment. Neither one is labeled as the better plan.
+          {tx("These are two different ways to send the extra payment. Neither one is labeled as the better plan.")}
         </p>
       </div>
       {error ? <div className="mt-4"><ToolError>{error}</ToolError></div> : null}
       <div className="mt-4">
         <ToolActions>
-          <Button type="button" onClick={calculate}>Calculate</Button>
+          <Button type="button" onClick={calculate}>{tx("Calculate")}</Button>
           <CopyButton value={summary} label="Copy result" />
-          <Button type="button" variant="ghost" onClick={reset}>Reset</Button>
+          <Button type="button" variant="ghost" onClick={reset}>{tx("Reset")}</Button>
         </ToolActions>
       </div>
       {result?.ok ? (
@@ -168,9 +171,9 @@ export function DebtPayoffCalculatorTool() {
               <table className="w-full min-w-[28rem] text-left text-sm">
                 <thead>
                   <tr className="border-b border-border">
-                    <th className="py-2 pr-3 font-medium">Debt</th>
-                    <th className="py-2 pr-3 font-medium">Months</th>
-                    <th className="py-2 font-medium">Interest</th>
+                    <th className="py-2 pr-3 font-medium">{tx("Debt")}</th>
+                    <th className="py-2 pr-3 font-medium">{tx("Months")}</th>
+                    <th className="py-2 font-medium">{tx("Interest")}</th>
                   </tr>
                 </thead>
                 <tbody>
@@ -186,14 +189,14 @@ export function DebtPayoffCalculatorTool() {
             </div>
           </ToolOutput>
           <ToolOutput label="Strategy comparison">
-            <p className="mb-2 text-sm leading-6">Same debts. The rows show payoff time and interest. They are not ranked.</p>
+            <p className="mb-2 text-sm leading-6">{tx("Same debts. The rows show payoff time and interest. They are not ranked.")}</p>
             <div className="overflow-auto">
               <table className="w-full min-w-[28rem] text-left text-sm">
                 <thead>
                   <tr className="border-b border-border">
-                    <th className="py-2 pr-3 font-medium">Plan</th>
-                    <th className="py-2 pr-3 font-medium">Months</th>
-                    <th className="py-2 font-medium">Total interest</th>
+                    <th className="py-2 pr-3 font-medium">{tx("Plan")}</th>
+                    <th className="py-2 pr-3 font-medium">{tx("Months")}</th>
+                    <th className="py-2 font-medium">{tx("Total interest")}</th>
                   </tr>
                 </thead>
                 <tbody>

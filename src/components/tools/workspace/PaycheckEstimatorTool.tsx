@@ -15,12 +15,15 @@ import {
 import { RegionalFinanceNote } from "@/components/tools/RegionalFinanceNote";
 import { calculatePaycheck, type PayFrequency, type WithholdingMode } from "@/lib/tools/paycheck";
 import { formatNumber } from "@/lib/tools/numbers";
+import { useTx } from "@/i18n/tool-text";
 
 function money(value: number) {
   return `$${formatNumber(value, 2)}`;
 }
 
 export function PaycheckEstimatorTool() {
+  const tx = useTx();
+
   const [gross, setGross] = useState("1000");
   const [frequency, setFrequency] = useState<PayFrequency>("biweekly");
   const [preTax, setPreTax] = useState("0");
@@ -64,7 +67,7 @@ export function PaycheckEstimatorTool() {
   return (
     <ToolPanel>
       <p className="text-sm leading-6 text-muted-foreground">
-        Withholding is the percent or dollar amount you type. This is not an official federal, state, or local tax calculation.
+        {tx("Withholding is the percent or dollar amount you type. This is not an official federal, state, or local tax calculation.")}
       </p>
       <RegionalFinanceNote variant="paycheck" />
       <div className="mt-4 grid gap-4 sm:grid-cols-2">
@@ -108,9 +111,9 @@ export function PaycheckEstimatorTool() {
       {error ? <div className="mt-4"><ToolError>{error}</ToolError></div> : null}
       <div className="mt-4">
         <ToolActions>
-          <Button type="button" onClick={calculate}>Calculate</Button>
+          <Button type="button" onClick={calculate}>{tx("Calculate")}</Button>
           <CopyButton value={summary} label="Copy result" />
-          <Button type="button" variant="ghost" onClick={reset}>Reset</Button>
+          <Button type="button" variant="ghost" onClick={reset}>{tx("Reset")}</Button>
         </ToolActions>
       </div>
       {result?.ok ? (

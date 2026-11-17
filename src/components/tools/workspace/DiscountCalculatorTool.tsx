@@ -13,8 +13,11 @@ import {
 import { CopyButton } from "@/components/tools/CopyButton";
 import { calculateDiscount } from "@/lib/tools/discount";
 import { formatNumber } from "@/lib/tools/numbers";
+import { useTx } from "@/i18n/tool-text";
 
 export function DiscountCalculatorTool() {
+  const tx = useTx();
+
   const [price, setPrice] = useState("");
   const [percent, setPercent] = useState("");
   const [error, setError] = useState("");
@@ -71,10 +74,10 @@ export function DiscountCalculatorTool() {
       <div className="mt-6">
         <ToolActions>
           <Button type="button" onClick={calculate}>
-            Calculate
+            {tx("Calculate")}
           </Button>
           <Button type="button" variant="secondary" onClick={reset}>
-            Reset
+            {tx("Reset")}
           </Button>
           {result?.ok ? (
             <CopyButton value={formatNumber(result.finalPrice, 2)} />
@@ -90,10 +93,10 @@ export function DiscountCalculatorTool() {
               {formatNumber(result.finalPrice, 2)}
             </p>
             <p className="mt-2 text-sm text-muted-foreground">
-              Final price after discount
+              {tx("Final price after discount")}
             </p>
             <p className="mt-1 text-sm text-muted-foreground">
-              Discount amount: {formatNumber(result.discountAmount, 2)}
+              {tx(`Discount amount: ${formatNumber(result.discountAmount, 2)}`)}
             </p>
           </ToolOutput>
         ) : null}

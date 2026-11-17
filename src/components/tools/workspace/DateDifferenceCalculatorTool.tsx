@@ -14,8 +14,11 @@ import {
 } from "@/components/tools/ToolForm";
 import { calculateDateDifference } from "@/lib/tools/date-diff";
 import { formatNumber } from "@/lib/tools/numbers";
+import { useTx } from "@/i18n/tool-text";
 
 export function DateDifferenceCalculatorTool() {
+  const tx = useTx();
+
   const [start, setStart] = useState("");
   const [end, setEnd] = useState("");
   const [error, setError] = useState("");
@@ -40,7 +43,7 @@ export function DateDifferenceCalculatorTool() {
   }
 
   const summary = result?.ok
-    ? `${result.totalDays} days (${result.weeks} weeks and ${result.extraDays} days). Calendar span: ${result.years} years, ${result.months} months, ${result.days} days.`
+    ? tx(`${result.totalDays} days (${result.weeks} weeks and ${result.extraDays} days). Calendar span: ${result.years} years, ${result.months} months, ${result.days} days.`)
     : "";
 
   return (
@@ -56,9 +59,9 @@ export function DateDifferenceCalculatorTool() {
       {error ? <div className="mt-4"><ToolError>{error}</ToolError></div> : null}
       <div className="mt-4">
         <ToolActions>
-          <Button type="button" onClick={calculate}>Calculate</Button>
+          <Button type="button" onClick={calculate}>{tx("Calculate")}</Button>
           <CopyButton value={summary} label="Copy result" />
-          <Button type="button" variant="ghost" onClick={reset}>Clear</Button>
+          <Button type="button" variant="ghost" onClick={reset}>{tx("Clear")}</Button>
         </ToolActions>
       </div>
       {result?.ok ? (
@@ -74,13 +77,13 @@ export function DateDifferenceCalculatorTool() {
             <p className="text-sm leading-6">
               {result.same
                 ? "The dates are the same. The difference is 0 days."
-                : `${result.years} years, ${result.months} months, and ${result.days} days.`}
+                : tx(`${result.years} years, ${result.months} months, and ${result.days} days.`)}
             </p>
             {result.reversed ? (
-              <p className="mt-2 text-sm leading-6">The end date is before the start date. The counts above run from the later date back to the earlier one.</p>
+              <p className="mt-2 text-sm leading-6">{tx("The end date is before the start date. The counts above run from the later date back to the earlier one.")}</p>
             ) : null}
             <p className="mt-2 text-sm leading-6 text-muted-foreground">
-              The year, month, and day line follows the calendar. A month is not treated as 30 days. About {formatNumber(result.averageMonths, 1)} months is only an average using 30.44 days, and it is not a second calendar count.
+              {tx(`The year, month, and day line follows the calendar. A month is not treated as 30 days. About ${formatNumber(result.averageMonths, 1)} months is only an average using 30.44 days, and it is not a second calendar count.`)}
             </p>
           </ToolOutput>
         </div>

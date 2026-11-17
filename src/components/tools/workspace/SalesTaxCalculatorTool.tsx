@@ -14,8 +14,11 @@ import {
 import { RegionalFinanceNote } from "@/components/tools/RegionalFinanceNote";
 import { calculateSalesTax } from "@/lib/tools/sales-tax";
 import { formatNumber } from "@/lib/tools/numbers";
+import { useTx } from "@/i18n/tool-text";
 
 export function SalesTaxCalculatorTool() {
+  const tx = useTx();
+
   const [price, setPrice] = useState("");
   const [percent, setPercent] = useState("");
   const [error, setError] = useState("");
@@ -46,7 +49,7 @@ export function SalesTaxCalculatorTool() {
   return (
     <ToolPanel>
       <p className="text-sm leading-6 text-muted-foreground">
-        Enter the price and the tax rate as plain numbers. The labels stay the same no matter which currency you have in mind.
+        {tx("Enter the price and the tax rate as plain numbers. The labels stay the same no matter which currency you have in mind.")}
       </p>
       <RegionalFinanceNote variant="sales-tax" />
       <div className="mt-4 grid gap-4 sm:grid-cols-2">
@@ -60,9 +63,9 @@ export function SalesTaxCalculatorTool() {
       {error ? <div className="mt-4"><ToolError>{error}</ToolError></div> : null}
       <div className="mt-4">
         <ToolActions>
-          <Button type="button" onClick={calculate}>Calculate</Button>
+          <Button type="button" onClick={calculate}>{tx("Calculate")}</Button>
           <CopyButton value={summary} label="Copy result" />
-          <Button type="button" variant="ghost" onClick={reset}>Clear</Button>
+          <Button type="button" variant="ghost" onClick={reset}>{tx("Clear")}</Button>
         </ToolActions>
       </div>
       {result?.ok ? (

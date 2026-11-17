@@ -14,12 +14,15 @@ import {
 } from "@/components/tools/ToolForm";
 import { calculateAutoLoan } from "@/lib/tools/auto-loan";
 import { formatNumber } from "@/lib/tools/numbers";
+import { useTx } from "@/i18n/tool-text";
 
 function money(value: number) {
   return `$${formatNumber(value, 2)}`;
 }
 
 export function AutoLoanCalculatorTool() {
+  const tx = useTx();
+
   const [price, setPrice] = useState("30000");
   const [down, setDown] = useState("3000");
   const [trade, setTrade] = useState("0");
@@ -82,7 +85,7 @@ export function AutoLoanCalculatorTool() {
   return (
     <ToolPanel>
       <p className="text-sm leading-6 text-muted-foreground">
-        Estimated auto loan from the price, tax rate, fees, and APR you enter. This is not a lender offer or an approval.
+        {tx("Estimated auto loan from the price, tax rate, fees, and APR you enter. This is not a lender offer or an approval.")}
       </p>
       <div className="mt-4 grid gap-4 sm:grid-cols-2">
         <ToolField id="auto-price" label="Vehicle price (USD)">
@@ -131,9 +134,9 @@ export function AutoLoanCalculatorTool() {
       {error ? <div className="mt-4"><ToolError>{error}</ToolError></div> : null}
       <div className="mt-4">
         <ToolActions>
-          <Button type="button" onClick={calculate}>Calculate</Button>
+          <Button type="button" onClick={calculate}>{tx("Calculate")}</Button>
           <CopyButton value={summary} label="Copy result" />
-          <Button type="button" variant="ghost" onClick={reset}>Reset</Button>
+          <Button type="button" variant="ghost" onClick={reset}>{tx("Reset")}</Button>
         </ToolActions>
       </div>
       {result?.ok ? (
@@ -158,7 +161,7 @@ export function AutoLoanCalculatorTool() {
               <li>Amount financed: {money(result.amountFinanced)}</li>
             </ul>
             <p className="mt-2 text-sm leading-6 text-muted-foreground">
-              Sales tax is the vehicle price times the rate you enter. Trade-in is subtracted after that. States treat tax on a trade-in differently, so this page does not apply one national rule.
+              {tx("Sales tax is the vehicle price times the rate you enter. Trade-in is subtracted after that. States treat tax on a trade-in differently, so this page does not apply one national rule.")}
             </p>
           </ToolOutput>
           {result.ownershipMonthly !== null ? (
@@ -169,15 +172,15 @@ export function AutoLoanCalculatorTool() {
             </ToolOutput>
           ) : null}
           <ToolOutput label="Term comparison">
-            <p className="mb-2 text-sm leading-6">Same amount financed and APR. No term is labeled as the best choice.</p>
+            <p className="mb-2 text-sm leading-6">{tx("Same amount financed and APR. No term is labeled as the best choice.")}</p>
             <div className="overflow-auto">
               <table className="w-full min-w-[28rem] text-left text-sm">
                 <thead>
                   <tr className="border-b border-border">
-                    <th className="py-2 pr-3 font-medium">Term</th>
-                    <th className="py-2 pr-3 font-medium">Monthly payment</th>
-                    <th className="py-2 pr-3 font-medium">Total interest</th>
-                    <th className="py-2 font-medium">Total of payments</th>
+                    <th className="py-2 pr-3 font-medium">{tx("Term")}</th>
+                    <th className="py-2 pr-3 font-medium">{tx("Monthly payment")}</th>
+                    <th className="py-2 pr-3 font-medium">{tx("Total interest")}</th>
+                    <th className="py-2 font-medium">{tx("Total of payments")}</th>
                   </tr>
                 </thead>
                 <tbody>
@@ -211,6 +214,7 @@ function Schedule({
   rows: Array<{ year: number; principalPaid: number; interestPaid: number; balance: number }>;
   label: string;
 }) {
+  const tx = useTx();
   return (
     <ToolOutput label={label === "Year" ? "Yearly schedule" : "Monthly schedule"}>
       <div className="max-h-80 overflow-auto">
@@ -218,9 +222,9 @@ function Schedule({
           <thead>
             <tr className="border-b border-border">
               <th className="py-2 pr-3 font-medium">{label}</th>
-              <th className="py-2 pr-3 font-medium">Principal paid</th>
-              <th className="py-2 pr-3 font-medium">Interest paid</th>
-              <th className="py-2 font-medium">Remaining balance</th>
+              <th className="py-2 pr-3 font-medium">{tx("Principal paid")}</th>
+              <th className="py-2 pr-3 font-medium">{tx("Interest paid")}</th>
+              <th className="py-2 font-medium">{tx("Remaining balance")}</th>
             </tr>
           </thead>
           <tbody>

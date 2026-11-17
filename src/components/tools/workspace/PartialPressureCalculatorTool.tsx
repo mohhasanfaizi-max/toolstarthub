@@ -15,6 +15,7 @@ import {
   type PressureUnit,
 } from "@/lib/tools/partial-pressure";
 import { goldBtn, goldCard, goldGhost, goldTab } from "./goldUi";
+import { useTx } from "@/i18n/tool-text";
 
 type Mode = "dalton" | "mixture" | "total" | "ideal";
 const MODES: Array<{ id: Mode; label: string }> = [
@@ -27,6 +28,8 @@ const MODES: Array<{ id: Mode; label: string }> = [
 type Output = { headline: string; conversions: Array<[string, string]>; steps: string[]; extra?: Array<[string, string]> };
 
 export function PartialPressureCalculatorTool() {
+  const tx = useTx();
+
   const [mode, setMode] = useState<Mode>("dalton");
   const [unit, setUnit] = useState<PressureUnit>("atm");
   const [fraction, setFraction] = useState("");
@@ -101,7 +104,7 @@ export function PartialPressureCalculatorTool() {
       <div role="tablist" aria-label="Calculation mode" className="grid grid-cols-2 gap-2 lg:grid-cols-4">
         {MODES.map((m) => (
           <button key={m.id} role="tab" type="button" aria-selected={mode === m.id} className={goldTab(mode === m.id)} onClick={() => { setMode(m.id); setOut(null); setError(""); }}>
-            {m.label}
+            {tx(m.label)}
           </button>
         ))}
       </div>
@@ -127,7 +130,7 @@ export function PartialPressureCalculatorTool() {
               {gases.map((g, i) => (
                 <div key={i} className="grid grid-cols-[1fr_1fr_auto] items-end gap-2">
                   <div>
-                    <label htmlFor={`pp-gn-${i}`} className="block text-sm font-medium">Gas {i + 1}</label>
+                    <label htmlFor={`pp-gn-${i}`} className="block text-sm font-medium">{tx(`Gas ${i + 1}`)}</label>
                     <input id={`pp-gn-${i}`} value={g.name} onChange={(e) => setGases(gases.map((x, j) => (j === i ? { ...x, name: e.target.value } : x)))} className={toolControlClass} />
                   </div>
                   <div>
@@ -179,7 +182,7 @@ export function PartialPressureCalculatorTool() {
               </ToolField>
               <select aria-label="Volume unit" value={vUnit} onChange={(e) => setVUnit(e.target.value as "L" | "m3")} className={toolControlClass}>
                 <option value="L">L</option>
-                <option value="m3">m³</option>
+                <option value="m3">{tx("m³")}</option>
               </select>
             </div>
           </>
@@ -187,14 +190,14 @@ export function PartialPressureCalculatorTool() {
       </div>
       {error ? <div className="mt-4"><ToolError>{error}</ToolError></div> : null}
       <div className="mt-5 flex flex-wrap gap-3">
-        <button type="button" className={goldBtn} onClick={calculate}>Calculate</button>
+        <button type="button" className={goldBtn} onClick={calculate}>{tx("Calculate")}</button>
         <CopyButton value={summary} label="Copy result" />
-        <button type="button" className={goldGhost} onClick={clear}>Clear</button>
+        <button type="button" className={goldGhost} onClick={clear}>{tx("Clear")}</button>
       </div>
       {out ? (
         <div className="mt-6 space-y-4" aria-live="polite">
           <div className={goldCard}>
-            <p className="text-sm font-medium text-[#A8841A]">Result</p>
+            <p className="text-sm font-medium text-[#A8841A]">{tx("Result")}</p>
             <p className="mt-1 break-words text-2xl font-semibold">{out.headline}</p>
           </div>
           {out.extra ? (
@@ -211,7 +214,7 @@ export function PartialPressureCalculatorTool() {
             </dl>
           ) : null}
           <div>
-            <p className="text-sm font-semibold">Steps</p>
+            <p className="text-sm font-semibold">{tx("Steps")}</p>
             <ol className="mt-2 list-decimal space-y-1 pl-5 text-sm leading-6 text-muted-foreground">
               {out.steps.map((s) => <li key={s} className="break-words">{s}</li>)}
             </ol>

@@ -15,6 +15,7 @@ import {
 } from "@/components/tools/ToolForm";
 import { calculateSavingsGoal, type SavingsFrequency } from "@/lib/tools/savings-goal";
 import { formatNumber } from "@/lib/tools/numbers";
+import { useTx } from "@/i18n/tool-text";
 
 function money(value: number) {
   return `$${formatNumber(value, 2)}`;
@@ -28,6 +29,8 @@ const frequencyLabel: Record<SavingsFrequency, string> = {
 };
 
 export function SavingsGoalCalculatorTool() {
+  const tx = useTx();
+
   const [target, setTarget] = useState("10000");
   const [current, setCurrent] = useState("2000");
   const [rate, setRate] = useState("3");
@@ -70,7 +73,7 @@ export function SavingsGoalCalculatorTool() {
   return (
     <ToolPanel>
       <p className="text-sm leading-6 text-muted-foreground">
-        An estimate of the contribution that reaches a target from the rate you enter. The rate is an assumption, not a promised return.
+        {tx("An estimate of the contribution that reaches a target from the rate you enter. The rate is an assumption, not a promised return.")}
       </p>
       <div className="mt-4 grid gap-4 sm:grid-cols-2">
         <ToolField id="save-target" label="Savings goal (USD)">
@@ -103,9 +106,9 @@ export function SavingsGoalCalculatorTool() {
       {error ? <div className="mt-4"><ToolError>{error}</ToolError></div> : null}
       <div className="mt-4">
         <ToolActions>
-          <Button type="button" onClick={calculate}>Calculate</Button>
+          <Button type="button" onClick={calculate}>{tx("Calculate")}</Button>
           <CopyButton value={summary} label="Copy result" />
-          <Button type="button" variant="ghost" onClick={reset}>Reset</Button>
+          <Button type="button" variant="ghost" onClick={reset}>{tx("Reset")}</Button>
         </ToolActions>
       </div>
       {result?.ok ? (
@@ -121,14 +124,14 @@ export function SavingsGoalCalculatorTool() {
             ]}
           />
           <ToolOutput label="Rate assumptions">
-            <p className="mb-2 text-sm leading-6">Same goal, current savings, time, and frequency. These rates are samples, not forecasts.</p>
+            <p className="mb-2 text-sm leading-6">{tx("Same goal, current savings, time, and frequency. These rates are samples, not forecasts.")}</p>
             <div className="overflow-auto">
               <table className="w-full min-w-[24rem] text-left text-sm">
                 <thead>
                   <tr className="border-b border-border">
-                    <th className="py-2 pr-3 font-medium">Assumed rate</th>
-                    <th className="py-2 pr-3 font-medium">Contribution</th>
-                    <th className="py-2 font-medium">Estimated interest</th>
+                    <th className="py-2 pr-3 font-medium">{tx("Assumed rate")}</th>
+                    <th className="py-2 pr-3 font-medium">{tx("Contribution")}</th>
+                    <th className="py-2 font-medium">{tx("Estimated interest")}</th>
                   </tr>
                 </thead>
                 <tbody>
@@ -148,9 +151,9 @@ export function SavingsGoalCalculatorTool() {
               <table className="w-full min-w-[24rem] text-left text-sm">
                 <thead>
                   <tr className="border-b border-border">
-                    <th className="py-2 pr-3 font-medium">Year</th>
-                    <th className="py-2 pr-3 font-medium">Contributed that year</th>
-                    <th className="py-2 font-medium">Balance</th>
+                    <th className="py-2 pr-3 font-medium">{tx("Year")}</th>
+                    <th className="py-2 pr-3 font-medium">{tx("Contributed that year")}</th>
+                    <th className="py-2 font-medium">{tx("Balance")}</th>
                   </tr>
                 </thead>
                 <tbody>

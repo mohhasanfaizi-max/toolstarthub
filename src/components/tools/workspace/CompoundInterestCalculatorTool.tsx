@@ -18,12 +18,15 @@ import {
   type CompoundFrequency,
 } from "@/lib/tools/compound-interest";
 import { formatNumber } from "@/lib/tools/numbers";
+import { useTx } from "@/i18n/tool-text";
 
 function money(value: number) {
   return `$${formatNumber(value, 2)}`;
 }
 
 export function CompoundInterestCalculatorTool() {
+  const tx = useTx();
+
   const [principal, setPrincipal] = useState("10000");
   const [rate, setRate] = useState("5");
   const [time, setTime] = useState("10");
@@ -63,7 +66,7 @@ export function CompoundInterestCalculatorTool() {
   return (
     <ToolPanel>
       <p className="text-sm leading-6 text-muted-foreground">
-        This is a mathematical estimate from the numbers you enter. It is not a prediction of investment returns.
+        {tx("This is a mathematical estimate from the numbers you enter. It is not a prediction of investment returns.")}
       </p>
       <div className="mt-4 grid gap-4 sm:grid-cols-2">
         <ToolField id="compound-principal" label="Starting amount (USD)">
@@ -108,9 +111,9 @@ export function CompoundInterestCalculatorTool() {
       {error ? <div className="mt-4"><ToolError>{error}</ToolError></div> : null}
       <div className="mt-4">
         <ToolActions>
-          <Button type="button" onClick={calculate}>Calculate</Button>
+          <Button type="button" onClick={calculate}>{tx("Calculate")}</Button>
           <CopyButton value={summary} label="Copy result" />
-          <Button type="button" variant="ghost" onClick={reset}>Reset</Button>
+          <Button type="button" variant="ghost" onClick={reset}>{tx("Reset")}</Button>
         </ToolActions>
       </div>
       {result?.ok ? (
@@ -139,7 +142,7 @@ export function CompoundInterestCalculatorTool() {
           </ToolOutput>
           <ToolOutput label="Simple interest comparison">
             <p className="text-sm leading-6">
-              Simple interest on the starting amount is {money(result.simpleInterest)}. Adding the same contributions with no interest on them gives {money(result.simpleFinal)}. Compound interest ends at {money(result.finalBalance)}. This comparison uses the formula only. It is not a forecast.
+              {tx(`Simple interest on the starting amount is ${money(result.simpleInterest)}. Adding the same contributions with no interest on them gives ${money(result.simpleFinal)}. Compound interest ends at ${money(result.finalBalance)}. This comparison uses the formula only. It is not a forecast.`)}
             </p>
           </ToolOutput>
         </div>

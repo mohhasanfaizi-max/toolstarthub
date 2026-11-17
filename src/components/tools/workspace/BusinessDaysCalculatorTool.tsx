@@ -13,8 +13,11 @@ import {
   toolControlClass,
 } from "@/components/tools/ToolForm";
 import { calculateBusinessDays } from "@/lib/tools/business-days";
+import { useTx } from "@/i18n/tool-text";
 
 export function BusinessDaysCalculatorTool() {
+  const tx = useTx();
+
   const [start, setStart] = useState("2024-01-01");
   const [end, setEnd] = useState("2024-01-05");
   const [includeEnd, setIncludeEnd] = useState(true);
@@ -54,7 +57,7 @@ export function BusinessDaysCalculatorTool() {
   return (
     <ToolPanel>
       <p className="text-sm leading-6 text-muted-foreground">
-        Business days are Monday through Friday. This page does not apply a holiday calendar. Exclude any dates you do not want counted.
+        {tx("Business days are Monday through Friday. This page does not apply a holiday calendar. Exclude any dates you do not want counted.")}
       </p>
       <div className="mt-4 grid gap-4 sm:grid-cols-2">
         <ToolField id="biz-start" label="Start date">
@@ -66,7 +69,7 @@ export function BusinessDaysCalculatorTool() {
       </div>
       <label className="mt-4 flex min-h-11 items-center gap-2 text-sm">
         <input type="checkbox" checked={includeEnd} onChange={(event) => setIncludeEnd(event.target.checked)} />
-        Include the end date
+        {tx("Include the end date")}
       </label>
       <div className="mt-4">
         <ToolField id="biz-excluded" label="Excluded dates" hint="Optional. One YYYY-MM-DD date per line. Duplicates are ignored.">
@@ -76,9 +79,9 @@ export function BusinessDaysCalculatorTool() {
       {error ? <div className="mt-4"><ToolError>{error}</ToolError></div> : null}
       <div className="mt-4">
         <ToolActions>
-          <Button type="button" onClick={calculate}>Calculate</Button>
+          <Button type="button" onClick={calculate}>{tx("Calculate")}</Button>
           <CopyButton value={summary} label="Copy result" />
-          <Button type="button" variant="ghost" onClick={reset}>Reset</Button>
+          <Button type="button" variant="ghost" onClick={reset}>{tx("Reset")}</Button>
         </ToolActions>
       </div>
       {result?.ok ? (
@@ -92,7 +95,7 @@ export function BusinessDaysCalculatorTool() {
             ]}
           />
           {result.reversed ? (
-            <p className="text-sm leading-6 text-muted-foreground">The end date was earlier than the start date, so the count uses the span between them.</p>
+            <p className="text-sm leading-6 text-muted-foreground">{tx("The end date was earlier than the start date, so the count uses the span between them.")}</p>
           ) : null}
           {result.excludedWeekdays.length > 0 ? (
             <ToolOutput label="Excluded weekdays inside the range">

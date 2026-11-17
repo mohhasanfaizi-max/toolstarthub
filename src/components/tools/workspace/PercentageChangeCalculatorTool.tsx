@@ -13,8 +13,11 @@ import {
 import { CopyButton } from "@/components/tools/CopyButton";
 import { calculatePercentageChange } from "@/lib/tools/percentage-change";
 import { formatNumber } from "@/lib/tools/numbers";
+import { useTx } from "@/i18n/tool-text";
 
 export function PercentageChangeCalculatorTool() {
+  const tx = useTx();
+
   const [original, setOriginal] = useState("");
   const [nextValue, setNextValue] = useState("");
   const [error, setError] = useState("");
@@ -75,10 +78,10 @@ export function PercentageChangeCalculatorTool() {
       <div className="mt-6">
         <ToolActions>
           <Button type="button" onClick={calculate}>
-            Calculate
+            {tx("Calculate")}
           </Button>
           <Button type="button" variant="secondary" onClick={reset}>
-            Reset
+            {tx("Reset")}
           </Button>
           {result?.ok ? (
             <CopyButton value={`${formatNumber(result.change)}%`} />
@@ -91,11 +94,10 @@ export function PercentageChangeCalculatorTool() {
         {result?.ok ? (
           <ToolOutput>
             <p className="text-3xl font-semibold tabular-nums">
-              {formatNumber(Math.abs(result.change))}% {directionLabel.toLowerCase()}
+              {tx(`${formatNumber(Math.abs(result.change))}% ${directionLabel.toLowerCase()}`)}
             </p>
             <p className="mt-2 text-sm text-muted-foreground">
-              Signed change: {formatNumber(result.change)}%. Difference:{" "}
-              {formatNumber(result.difference)}.
+              {tx(`Signed change: ${formatNumber(result.change)}%. Difference: ${formatNumber(result.difference)}.`)}
             </p>
           </ToolOutput>
         ) : null}

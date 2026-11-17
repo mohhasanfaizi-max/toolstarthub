@@ -14,12 +14,15 @@ import {
 } from "@/components/tools/ToolForm";
 import { calculateHourlyWage, type WageMode } from "@/lib/tools/hourly-wage";
 import { formatNumber } from "@/lib/tools/numbers";
+import { useTx } from "@/i18n/tool-text";
 
 function money(value: number) {
   return `$${formatNumber(value, 2)}`;
 }
 
 export function HourlyWageCalculatorTool() {
+  const tx = useTx();
+
   const [mode, setMode] = useState<WageMode>("hourly");
   const [hourly, setHourly] = useState("20");
   const [salary, setSalary] = useState("52000");
@@ -68,7 +71,7 @@ export function HourlyWageCalculatorTool() {
   return (
     <ToolPanel>
       <p className="text-sm leading-6 text-muted-foreground">
-        Pay is calculated from the hours and rate you enter. It does not include taxes or deductions.
+        {tx("Pay is calculated from the hours and rate you enter. It does not include taxes or deductions.")}
       </p>
       <div className="mt-4">
         <ToolChoiceGroup
@@ -108,9 +111,9 @@ export function HourlyWageCalculatorTool() {
       {error ? <div className="mt-4"><ToolError>{error}</ToolError></div> : null}
       <div className="mt-4">
         <ToolActions>
-          <Button type="button" onClick={calculate}>Calculate</Button>
+          <Button type="button" onClick={calculate}>{tx("Calculate")}</Button>
           <CopyButton value={summary} label="Copy result" />
-          <Button type="button" variant="ghost" onClick={reset}>Reset</Button>
+          <Button type="button" variant="ghost" onClick={reset}>{tx("Reset")}</Button>
         </ToolActions>
       </div>
       {result?.ok ? (

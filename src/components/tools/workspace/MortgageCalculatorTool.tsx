@@ -17,12 +17,15 @@ import { AmortizationSchedule } from "@/components/tools/AmortizationSchedule";
 import { RegionalFinanceNote } from "@/components/tools/RegionalFinanceNote";
 import { calculateMortgage } from "@/lib/tools/mortgage";
 import { formatNumber } from "@/lib/tools/numbers";
+import { useTx } from "@/i18n/tool-text";
 
 function money(value: number) {
   return `$${formatNumber(value, 2)}`;
 }
 
 export function MortgageCalculatorTool() {
+  const tx = useTx();
+
   const [price, setPrice] = useState("400000");
   const [downMode, setDownMode] = useState<"amount" | "percent">("percent");
   const [down, setDown] = useState("20");
@@ -93,7 +96,7 @@ export function MortgageCalculatorTool() {
   return (
     <ToolPanel>
       <p className="text-sm leading-6 text-muted-foreground">
-        Estimates are for educational purposes and are based on the information you enter. Mortgage estimates vary by lender, location, property, loan program, taxes, insurance, credit profile, and other factors. The 6.5% field is an example rate, not a live quote.
+        {tx("Estimates are for educational purposes and are based on the information you enter. Mortgage estimates vary by lender, location, property, loan program, taxes, insurance, credit profile, and other factors. The 6.5% field is an example rate, not a live quote.")}
       </p>
       <RegionalFinanceNote variant="mortgage" />
       <div className="mt-4 grid gap-4 sm:grid-cols-2">
@@ -111,8 +114,8 @@ export function MortgageCalculatorTool() {
         </ToolField>
       </div>
       <div className="mt-4 flex flex-wrap gap-2">
-        <Button type="button" variant={years === "15" ? "primary" : "secondary"} onClick={() => setYears("15")}>15 years</Button>
-        <Button type="button" variant={years === "30" ? "primary" : "secondary"} onClick={() => setYears("30")}>30 years</Button>
+        <Button type="button" variant={years === "15" ? "primary" : "secondary"} onClick={() => setYears("15")}>{tx("15 years")}</Button>
+        <Button type="button" variant={years === "30" ? "primary" : "secondary"} onClick={() => setYears("30")}>{tx("30 years")}</Button>
       </div>
       <div className="mt-4">
         <ToolChoiceGroup
@@ -161,9 +164,9 @@ export function MortgageCalculatorTool() {
       {error ? <div className="mt-4"><ToolError>{error}</ToolError></div> : null}
       <div className="mt-4">
         <ToolActions>
-          <Button type="button" onClick={calculate}>Calculate</Button>
+          <Button type="button" onClick={calculate}>{tx("Calculate")}</Button>
           <CopyButton value={summary} label="Copy result" />
-          <Button type="button" variant="ghost" onClick={reset}>Reset</Button>
+          <Button type="button" variant="ghost" onClick={reset}>{tx("Reset")}</Button>
         </ToolActions>
       </div>
       {result?.ok ? (
@@ -184,21 +187,21 @@ export function MortgageCalculatorTool() {
           <ToolOutput label="Monthly breakdown">
             <ul className="space-y-1 text-sm leading-6">
               {breakdown.map((item) => (
-                <li key={item.label}>{item.label}: {item.value}</li>
+                <li key={tx(item.label)}>{tx(item.label)}: {item.value}</li>
               ))}
             </ul>
-            <p className="mt-2 text-sm leading-6 text-muted-foreground">Blank optional costs stay at 0. A borrower does not automatically have tax, insurance, PMI, or HOA.</p>
+            <p className="mt-2 text-sm leading-6 text-muted-foreground">{tx("Blank optional costs stay at 0. A borrower does not automatically have tax, insurance, PMI, or HOA.")}</p>
           </ToolOutput>
           <ToolOutput label="15-year and 30-year comparison">
-            <p className="mb-2 text-sm leading-6">Same home price, down payment, and rate. Neither term is always the better choice.</p>
+            <p className="mb-2 text-sm leading-6">{tx("Same home price, down payment, and rate. Neither term is always the better choice.")}</p>
             <div className="overflow-auto">
               <table className="w-full min-w-[28rem] text-left text-sm">
                 <thead>
                   <tr className="border-b border-border">
-                    <th className="py-2 pr-3 font-medium">Term</th>
-                    <th className="py-2 pr-3 font-medium">Principal and interest</th>
-                    <th className="py-2 pr-3 font-medium">Total interest</th>
-                    <th className="py-2 font-medium">Total paid</th>
+                    <th className="py-2 pr-3 font-medium">{tx("Term")}</th>
+                    <th className="py-2 pr-3 font-medium">{tx("Principal and interest")}</th>
+                    <th className="py-2 pr-3 font-medium">{tx("Total interest")}</th>
+                    <th className="py-2 font-medium">{tx("Total paid")}</th>
                   </tr>
                 </thead>
                 <tbody>
@@ -217,7 +220,7 @@ export function MortgageCalculatorTool() {
           {result.payoff ? (
             <ToolOutput label="Extra payment estimate">
               <p className="text-sm leading-6">
-                Payoff in {result.payoff.monthsPaid} months, which is {result.payoff.monthsSaved} months sooner than the original term. Interest falls from {money(result.payoff.originalInterest)} to {money(result.payoff.interest)}, a difference of {money(result.payoff.interestSaved)}. A lender may apply extra payments differently.
+                {tx(`Payoff in ${result.payoff.monthsPaid} months, which is ${result.payoff.monthsSaved} months sooner than the original term. Interest falls from ${money(result.payoff.originalInterest)} to ${money(result.payoff.interest)}, a difference of ${money(result.payoff.interestSaved)}. A lender may apply extra payments differently.`)}
               </p>
             </ToolOutput>
           ) : null}

@@ -12,8 +12,11 @@ import {
 } from "@/components/tools/ToolForm";
 import { CopyButton } from "@/components/tools/CopyButton";
 import { calculateAge } from "@/lib/tools/age";
+import { useTx } from "@/i18n/tool-text";
 
 export function AgeCalculatorTool() {
+  const tx = useTx();
+
   const [birth, setBirth] = useState("");
   const [asOf, setAsOf] = useState("");
   const [error, setError] = useState("");
@@ -69,10 +72,10 @@ export function AgeCalculatorTool() {
       <div className="mt-6">
         <ToolActions>
           <Button type="button" onClick={calculate}>
-            Calculate
+            {tx("Calculate")}
           </Button>
           <Button type="button" variant="secondary" onClick={reset}>
-            Reset
+            {tx("Reset")}
           </Button>
           {result?.ok ? (
             <CopyButton
@@ -90,7 +93,7 @@ export function AgeCalculatorTool() {
               {result.years} years, {result.months} months, {result.days} days
             </p>
             <p className="mt-2 text-sm text-muted-foreground">
-              Total days: {result.totalDays.toLocaleString("en-US")}
+              {tx(`Total days: ${result.totalDays.toLocaleString("en-US")}`)}
             </p>
           </ToolOutput>
         ) : null}

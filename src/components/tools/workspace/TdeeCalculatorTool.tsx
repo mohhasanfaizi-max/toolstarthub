@@ -14,6 +14,7 @@ import {
   toolControlClass,
 } from "@/components/tools/ToolForm";
 import { formatNumber } from "@/lib/tools/numbers";
+import { useTx } from "@/i18n/tool-text";
 import {
   ACTIVITY_MULTIPLIERS,
   type ActivityLevel,
@@ -58,6 +59,8 @@ function buildShareText(result: Extract<TdeeResult, { ok: true }>) {
 }
 
 export function TdeeCalculatorTool() {
+  const tx = useTx();
+
   const [units, setUnits] = useState<UnitSystem>("metric");
   const [sex, setSex] = useState<Sex>("male");
   const [age, setAge] = useState("30");
@@ -187,10 +190,7 @@ export function TdeeCalculatorTool() {
   return (
     <ToolPanel>
       <p className="text-sm leading-6 text-muted-foreground">
-        Estimate your basal metabolic rate (BMR) with the Mifflin–St Jeor equation, then scale it by
-        activity to get total daily energy expenditure (TDEE). Pick a weight goal to see maintenance,
-        loss and gain calorie targets plus a suggested 30/40/30 macro split. This is an estimate, not
-        medical advice.
+        {tx("Estimate your basal metabolic rate (BMR) with the Mifflin–St Jeor equation, then scale it by activity to get total daily energy expenditure (TDEE). Pick a weight goal to see maintenance, loss and gain calorie targets plus a suggested 30/40/30 macro split. This is an estimate, not medical advice.")}
       </p>
 
       <div className="mt-5">
@@ -318,7 +318,7 @@ export function TdeeCalculatorTool() {
       <div className="mt-5">
         <ToolActions>
           <Button type="button" onClick={() => runCalculate()}>
-            Calculate
+            {tx("Calculate")}
           </Button>
           <CopyButton value={summary} label="Copy Results" />
           <Button
@@ -328,15 +328,15 @@ export function TdeeCalculatorTool() {
             disabled={!result?.ok}
           >
             <Icon name="link" className="size-4" />
-            Share Results
+            {tx("Share Results")}
           </Button>
           <Button type="button" variant="ghost" onClick={reset}>
-            Reset
+            {tx("Reset")}
           </Button>
         </ToolActions>
         {shareNote ? (
           <p className="mt-2 text-sm text-muted-foreground" role="status">
-            {shareNote}
+            {tx(shareNote)}
           </p>
         ) : null}
       </div>
@@ -344,11 +344,9 @@ export function TdeeCalculatorTool() {
       {result?.ok ? (
         <div className="mt-8 space-y-6">
           <div>
-            <h3 className="text-base font-semibold text-foreground">Results dashboard</h3>
+            <h3 className="text-base font-semibold text-foreground">{tx("Results dashboard")}</h3>
             <p className="mt-1 text-sm text-muted-foreground">
-              Goal calories use your selected target. Loss assumes about a 500 kcal daily deficit;
-              gain adds about 300 kcal. Loss calories are floored at 1,200 kcal for safety in this
-              estimate.
+              {tx("Goal calories use your selected target. Loss assumes about a 500 kcal daily deficit; gain adds about 300 kcal. Loss calories are floored at 1,200 kcal for safety in this estimate.")}
             </p>
             <div className="mt-4">
               <ToolStatGrid
@@ -365,10 +363,9 @@ export function TdeeCalculatorTool() {
           </div>
 
           <div className="rounded-2xl border border-border bg-background/60 p-4 sm:p-5">
-            <h3 className="text-base font-semibold text-foreground">Suggested macronutrients</h3>
+            <h3 className="text-base font-semibold text-foreground">{tx("Suggested macronutrients")}</h3>
             <p className="mt-1 text-sm text-muted-foreground">
-              Split of the selected goal calories: 30% protein, 40% carbohydrate, 30% fat (common
-              starting template — adjust for your coach or clinician).
+              {tx("Split of the selected goal calories: 30% protein, 40% carbohydrate, 30% fat (common starting template — adjust for your coach or clinician).")}
             </p>
             <div className="mt-4">
               <ToolStatGrid
@@ -384,7 +381,7 @@ export function TdeeCalculatorTool() {
                 {macroBars.map((bar) => (
                   <div key={bar.key}>
                     <div className="flex items-center justify-between gap-3 text-sm text-foreground">
-                      <span>{bar.label}</span>
+                      <span>{tx(bar.label)}</span>
                       <span className="tabular-nums text-muted-foreground">
                         {formatNumber(bar.pct, 0)}%
                       </span>
@@ -395,7 +392,7 @@ export function TdeeCalculatorTool() {
                       aria-valuemin={0}
                       aria-valuemax={100}
                       aria-valuenow={Math.round(bar.pct)}
-                      aria-label={bar.label}
+                      aria-label={tx(bar.label)}
                     >
                       <div
                         className="h-full rounded-full bg-accent"
@@ -409,11 +406,10 @@ export function TdeeCalculatorTool() {
           </div>
 
           <div className="rounded-2xl bg-accent-soft px-4 py-4 sm:px-5">
-            <p className="text-sm font-medium text-accent">How this was calculated</p>
+            <p className="text-sm font-medium text-accent">{tx("How this was calculated")}</p>
             <p className="mt-2 text-sm leading-6 text-foreground">{result.formula}</p>
             <p className="mt-2 text-sm leading-6 text-muted-foreground">
-              Weight used: {formatNumber(result.weightKg, 1)} kg · Height used:{" "}
-              {formatNumber(result.heightCm, 1)} cm · Age: {result.age} · Sex: {result.sex}.
+              {tx(`Weight used: ${formatNumber(result.weightKg, 1)} kg · Height used: ${formatNumber(result.heightCm, 1)} cm · Age: ${result.age} · Sex: ${result.sex}.`)}
             </p>
           </div>
         </div>
