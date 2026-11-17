@@ -27,9 +27,9 @@ const ABSOLUTE_TITLES: Record<string, string> = {
   "significant-figures-calculator": "Significant Figures Calculator & Sig Fig Counter | Tools Star Hub",
   "secret-santa-generator": "Free Secret Santa Generator – Random Gift Exchange Draw",
   "tdee-calculator": "Free TDEE Calculator – Daily Calorie Needs & BMR",
-  "alma-ai-nutrition-coach": "Alma: AI Nutrition Coach & Food Tracker – Free Nutrition Calculator",
-  "css-gradient-generator": "Free CSS Gradient Generator – Linear, Radial & Conic | ToolStarHub",
-  "password-generator": "Free Password Generator – Secure Passwords & Password Log Template",
+  "alma-ai-nutrition-coach": "Alma AI Nutrition Coach and Food Tracker — Tools Star Hub",
+  "css-gradient-generator": "CSS Gradient Generator — Linear, Radial, Conic — Tools Star Hub",
+  "password-generator": "Free Password Generator — Random Passwords — Tools Star Hub",
 };
 
 export async function generateMetadata({

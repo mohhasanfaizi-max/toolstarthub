@@ -272,7 +272,7 @@ const passport: ToolGuide = {
     secondaryKeywords: ["passport photo size", "2x2 photo in pixels", "visa photo size", "35x45 mm in pixels", "digital passport photo requirements"],
     toolSlug: "image-resizer",
     siblingToolSlugs: ["image-cropper", "image-compressor"],
-    metaTitle: "Passport and Visa Photo Sizes in Pixels and Inches",
+    metaTitle: "Passport and Visa Photo Sizes in Pixels",
     metaDescription:
       "Convert passport and visa photo sizes between millimetres, inches and pixels, understand DPI, and prepare a digital photo that meets the stated rules.",
     excerpt:

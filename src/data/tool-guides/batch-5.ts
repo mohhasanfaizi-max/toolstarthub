@@ -11,7 +11,7 @@ const banner: ToolGuide = {
     secondaryKeywords: ["youtube channel art size", "youtube banner safe area", "2560x1440 banner", "youtube banner template", "youtube banner under 6 mb"],
     toolSlug: "youtube-banner-maker",
     siblingToolSlugs: ["image-resizer", "image-compressor", "css-gradient-generator"],
-    metaTitle: "How to Make a YouTube Banner: 2560×1440 and Safe Area",
+    metaTitle: "How to Make a YouTube Banner: 2560×1440 Size",
     metaDescription:
       "Design a 2560 × 1440 YouTube banner in your browser with templates, text, shapes, logos and a 1546 × 423 safe-area guide. Export a PNG or JPG under 6 MB.",
     excerpt:
@@ -158,7 +158,7 @@ const partialPressure: ToolGuide = {
     secondaryKeywords: ["dalton's law of partial pressures", "mole fraction partial pressure", "partial pressure formula", "total pressure of a gas mixture", "p = nrt/v"],
     toolSlug: "partial-pressure-calculator",
     siblingToolSlugs: ["unit-converter", "significant-figures-calculator", "percentage-calculator"],
-    metaTitle: "How to Calculate Partial Pressure: Dalton’s Law Guide",
+    metaTitle: "How to Calculate Partial Pressure: Dalton’s Law",
     metaDescription:
       "Find a gas’s partial pressure from mole fraction, moles in a mixture, the sum of partials or P = nRT/V. Results in atm, kPa, Pa, bar and mmHg with steps.",
     excerpt:
@@ -314,7 +314,7 @@ const fantasy: ToolGuide = {
     secondaryKeywords: ["fantasy cricket points", "fantasy football points", "fantasy basketball points", "custom fantasy scoring", "fantasy points breakdown"],
     toolSlug: "fantasy-point-calculator",
     siblingToolSlugs: ["average-calculator", "percentage-calculator", "random-number-generator"],
-    metaTitle: "How to Calculate Fantasy Points: Cricket, Football, NBA",
+    metaTitle: "How to Calculate Fantasy Points: Cricket or NBA",
     metaDescription:
       "Total a player’s fantasy points from match stats for cricket, football or basketball. Edit and save your league’s scoring rules and copy a full breakdown.",
     excerpt:
@@ -504,7 +504,7 @@ const graduation: ToolGuide = {
     secondaryKeywords: ["what year will my child graduate", "school cutoff date", "school starting age", "class of year calculator", "school entry year"],
     toolSlug: "graduation-calculator-by-birthday",
     siblingToolSlugs: ["age-calculator", "date-difference-calculator", "gpa-calculator"],
-    metaTitle: "Find Graduation Year by Birthday: Cutoffs and Entry Age",
+    metaTitle: "Find Graduation Year by Birthday and Cutoffs",
     metaDescription:
       "Work out when a child starts school and graduates from their date of birth, entry age, cutoff date and years of study. See every milestone with ages.",
     excerpt:

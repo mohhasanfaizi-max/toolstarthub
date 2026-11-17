@@ -65,7 +65,7 @@ export const extraArticles: Article[] = [
     articleType: "overview",
     status: "PUBLISHED",
     publishedAt: "2026-10-04T09:00:00.000Z",
-    metaTitle: "How to Click Faster: Average CPS, Jitter and Butterfly Clicking",
+    metaTitle: "How to Click Faster: Average CPS and Jitter",
     metaDescription:
       "How to click faster: the average CPS, a CPS rating table, and how regular, jitter, butterfly, and drag clicking compare, plus mouse tips and wrist safety.",
     excerpt:
@@ -94,7 +94,7 @@ export const extraArticles: Article[] = [
     articleType: "overview",
     status: "PUBLISHED",
     publishedAt: "2026-10-27T16:00:00Z",
-    metaTitle: "Significant Figures Calculator: Count, Round, and Solve Sig Figs",
+    metaTitle: "Significant Figures Calculator: Count and Round",
     metaDescription:
       "Count and round significant figures, then add or multiply with the matching rule. 150, 80, and 1200 stay ambiguous.",
     excerpt:

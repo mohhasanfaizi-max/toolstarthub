@@ -9,7 +9,7 @@ import { breadcrumbJsonLd, createPageMetadata } from "@/lib/seo";
 
 export function categoriesMetadata(locale: Locale) {
   const t = getMessages(locale).meta;
-  return createPageMetadata({
+  const metadata = createPageMetadata({
     title: t.categoriesTitle,
     description: t.categoriesDescription,
     path: "/categories",
@@ -17,6 +17,14 @@ export function categoriesMetadata(locale: Locale) {
     hreflang: true,
     shareImage: { route: "/categories", alt: t.categoriesTitle },
   });
+  if (locale !== "en") return metadata;
+  const title = "Free Tool Categories — Calculators, PDF, SEO, AI";
+  return {
+    ...metadata,
+    title: { absolute: title },
+    openGraph: { ...metadata.openGraph, title },
+    twitter: { ...metadata.twitter, title },
+  };
 }
 
 export function CategoriesView({ locale }: { locale: Locale }) {

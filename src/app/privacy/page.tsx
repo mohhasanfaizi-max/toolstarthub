@@ -6,11 +6,9 @@ import { JsonLd } from "@/components/seo/JsonLd";
 import { breadcrumbJsonLd, createPageMetadata } from "@/lib/seo";
 import { siteConfig } from "@/lib/site";
 
-const linkClass = "font-medium text-accent hover:underline";
-
 export const metadata = createPageMetadata({
   title: "Privacy Policy",
-  description: `How ${siteConfig.name} handles browser tools, Google Analytics, and advertising cookies from Google AdSense and other partners.`,
+  description: `How ${siteConfig.name} handles browser tools, local in-browser file processing, Google Gemini on AI tools, and consent-gated Google Analytics.`,
   path: "/privacy",
   shareImage: { route: "/privacy", alt: `Privacy Policy — ${siteConfig.name}` },
 });
@@ -34,7 +32,7 @@ export default function PrivacyPage() {
       />
       <div className="mt-8 max-w-3xl space-y-5 text-base leading-7 text-muted-foreground">
         <p>
-          Last updated: <time dateTime="2026-11-07">7 November 2026</time>.
+          Last updated: <time dateTime="2026-11-17">17 November 2026</time>.
         </p>
         <p>
           {siteConfig.name} has no user accounts, no payment system, and no
@@ -125,61 +123,37 @@ export default function PrivacyPage() {
           Tool comments and feedback
         </h2>
         <p>
-          If you post a comment at the end of a tool page, we store the tool
-          name, the name you enter, your optional helpfulness rating, your
-          comment, the time it was posted, and a one-way keyed hash of your IP
-          address in our own database. The hash is used only to limit repeated
-          posting; your raw IP address is not stored. Comments are held for
-          review and appear publicly, with the name you entered, only after we
-          approve them. We may remove any comment. To have your comment removed,
-          ask through the <Link href="/contact" className="underline underline-offset-2">contact page</Link>
-          {" "}and tell us the tool, the name you used and roughly when you posted.
-          Comment requests also pass through our hosting provider and may appear
-          in its standard request logs. Visitors who only read comments are not
-          given a cookie; only the site owner&apos;s admin sign-in uses one.
+          Public comments on tool pages are not enabled at the moment, and this
+          site does not currently store visitor comments. If you want to send
+          feedback, use the{" "}
+          <Link href="/contact" className="underline underline-offset-2">contact page</Link>.
+          If comments are turned on later, we would store the tool name, the name
+          you enter, your optional helpfulness rating, your comment, the time it
+          was posted, and a one-way keyed hash of your IP address in our own
+          database. The hash would be used only to limit repeated posting; your
+          raw IP address would not be stored. Comments would be held for review
+          and appear publicly, with the name you entered, only after we approve
+          them. We may remove any comment. To have a comment removed, ask through
+          the contact page and tell us the tool, the name you used and roughly
+          when you posted. Comment requests would also pass through our hosting
+          provider and may appear in its standard request logs. Visitors who
+          only read comments would not be given a cookie; only the site
+          owner&apos;s admin sign-in uses one.
         </p>
 
         <h2 className="pt-4 text-xl font-semibold tracking-tight text-foreground">
-          Advertising and cookies
+          Analytics and cookies
         </h2>
         <p>
-          {siteConfig.name} may display advertisements served by Google
-          AdSense and other third-party advertising partners.
-        </p>
-        <p>
-          Third-party vendors, including Google, use cookies to serve ads
-          based on your prior visits to this website or other websites.
-          Google&apos;s advertising cookie is the DoubleClick cookie. Google
-          and its partners use it to serve ads based on visits to this site
-          and other sites.
-        </p>
-        <p>
-          You can turn off personalized advertising in{" "}
-          <a href="https://adssettings.google.com" className={linkClass}>
-            Google&apos;s Ads Settings
-          </a>{" "}
-          (<span className="break-all">https://adssettings.google.com</span>
-          ). You can opt out of some other companies&apos; advertising cookies
-          at{" "}
-          <a href="https://www.aboutads.info" className={linkClass}>
-            https://www.aboutads.info
-          </a>
-          . How Google uses advertising cookies is explained at{" "}
-          <a
-            href="https://policies.google.com/technologies/ads"
-            className={linkClass}
-          >
-            https://policies.google.com/technologies/ads
-          </a>
-          .
+          {siteConfig.name} does not currently display advertisements or load
+          advertising scripts such as Google AdSense. If advertising is added
+          later, this policy will be updated before those scripts are turned on.
         </p>
         <p>
           Visitors in the European Economic Area and the United Kingdom are
           asked for consent before non-essential cookies are stored. The same
           cookie banner is shown to every visitor. It asks before Google
-          Analytics loads. Advertising cookies, including the DoubleClick
-          cookie, are not stored unless you consent. Pressing Accept turns on
-          analytics measurement only. It does not turn advertising cookies on.
+          Analytics loads. Pressing Accept turns on analytics measurement only.
           You can press Decline, and you can change your choice at any time
           with the Cookie settings link in the footer.
         </p>

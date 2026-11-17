@@ -1051,7 +1051,7 @@ const calorieDeficit: ToolGuide = {
     ],
     toolSlug: "alma-ai-nutrition-coach",
     siblingToolSlugs: ["tdee-calculator", "percentage-calculator", "unit-converter"],
-    metaTitle: "Calorie Deficit Explained: Energy Gaps for Fat Loss",
+    metaTitle: "Calorie Deficit Explained: Fat Loss Energy Gaps",
     metaDescription:
       "A calorie deficit means eating below TDEE over time. See how a ~500 kcal planning gap works, why floors matter and how to monitor progress carefully.",
     excerpt:

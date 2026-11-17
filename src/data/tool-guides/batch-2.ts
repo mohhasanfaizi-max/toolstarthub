@@ -11,7 +11,7 @@ const imageResizer: ToolGuide = {
     secondaryKeywords: ["resize image to pixels", "keep aspect ratio", "change image dimensions", "make a photo smaller", "resize jpg png webp"],
     toolSlug: "image-resizer",
     siblingToolSlugs: ["image-cropper", "image-compressor", "aspect-ratio-calculator"],
-    metaTitle: "How to Resize an Image: Pixels, Aspect Ratio and File Size",
+    metaTitle: "How to Resize an Image: Pixels and File Size",
     metaDescription:
       "Resize a JPG, PNG or WebP to an exact width and height without stretching it. How aspect ratio works, when to crop instead, and what happens to file size.",
     excerpt:
@@ -148,7 +148,7 @@ const imageCropper: ToolGuide = {
     secondaryKeywords: ["crop photo to square", "crop to 16:9", "crop image online", "crop picture without app", "free crop"],
     toolSlug: "image-cropper",
     siblingToolSlugs: ["image-resizer", "aspect-ratio-calculator", "image-compressor"],
-    metaTitle: "How to Crop an Image: Square, 4:3, 16:9 and Free Crops",
+    metaTitle: "How to Crop an Image: Square, 4:3 and 16:9",
     metaDescription:
       "Crop a JPG, PNG or WebP by dragging a frame, or lock it to 1:1, 4:3 or 16:9. Framing tips, keyboard nudging, and how cropping affects size and quality.",
     excerpt:
@@ -287,7 +287,7 @@ const imageConverter: ToolGuide = {
     secondaryKeywords: ["convert png to jpg", "png transparency to jpg", "jpg vs png", "change image format", "background color for transparent png"],
     toolSlug: "image-converter",
     siblingToolSlugs: ["image-compressor", "image-resizer", "image-to-pdf"],
-    metaTitle: "How to Convert JPG to PNG and PNG to JPG (With Transparency)",
+    metaTitle: "How to Convert JPG to PNG and PNG to JPG",
     metaDescription:
       "Switch an image between JPG and PNG in your browser. What changes in quality and file size, and how to choose the fill colour for transparent areas.",
     excerpt:
@@ -430,7 +430,7 @@ const pdfToJpg: ToolGuide = {
     secondaryKeywords: ["pdf page to image", "save pdf as jpg", "pdf to jpg quality", "export one pdf page as image", "pdf to picture"],
     toolSlug: "pdf-to-jpg",
     siblingToolSlugs: ["pdf-splitter", "image-to-pdf", "pdf-page-counter"],
-    metaTitle: "How to Convert PDF Pages to JPG: Pages, Quality and Resolution",
+    metaTitle: "How to Convert PDF Pages to JPG: Quality Tips",
     metaDescription:
       "Turn one page, chosen pages or a whole PDF into JPG images in your browser. How quality and resolution work, file naming, and what to do with long PDFs.",
     excerpt:
@@ -573,7 +573,7 @@ const qrCode: ToolGuide = {
     secondaryKeywords: ["free qr code for a link", "static qr code", "qr code png", "qr code size for print", "test a qr code"],
     toolSlug: "qr-code-generator",
     siblingToolSlugs: ["qr-code-scanner", "qr-code-generator-pro", "utm-builder"],
-    metaTitle: "How to Make a QR Code: Links, Text, Print Size and Testing",
+    metaTitle: "How to Make a QR Code: Links, Text and Print",
     metaDescription:
       "Create a static QR code from a URL or text and save it as a PNG. How QR codes store data, why short links scan better, and how to test before printing.",
     excerpt:
@@ -723,7 +723,7 @@ const lineSorter: ToolGuide = {
     secondaryKeywords: ["alphabetize a list", "sort numbers in a list", "reverse alphabetical order", "sort by line length", "natural sort"],
     toolSlug: "line-sorter",
     siblingToolSlugs: ["duplicate-line-remover", "whitespace-remover", "add-line-numbers"],
-    metaTitle: "How to Sort Lines of Text: A–Z, Numbers, Length and Case",
+    metaTitle: "How to Sort Lines of Text: A–Z, Numbers, Length",
     metaDescription:
       "Sort a list A to Z, Z to A, by leading number or by length. Why 10 can come before 9, how capitals affect order, and how to clean the list while sorting.",
     excerpt:

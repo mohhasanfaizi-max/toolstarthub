@@ -17,7 +17,7 @@ const percentageChange: ToolGuide = {
     ],
     toolSlug: "percentage-change-calculator",
     siblingToolSlugs: ["percentage-calculator", "discount-calculator", "average-calculator"],
-    metaTitle: "How to Calculate Percentage Change: Formula, Examples and Traps",
+    metaTitle: "How to Calculate Percentage Change: The Formula",
     metaDescription:
       "Percentage change is (new − old) ÷ old × 100. Worked increase and decrease examples, percentage points, reversals, and the zero-start problem explained.",
     excerpt:
@@ -224,7 +224,7 @@ const discount: ToolGuide = {
     ],
     toolSlug: "discount-calculator",
     siblingToolSlugs: ["percentage-calculator", "percentage-change-calculator", "sales-tax-calculator"],
-    metaTitle: "How to Calculate a Discount: Percent Off, Sale Price and Savings",
+    metaTitle: "How to Calculate a Discount: Percent Off a Price",
     metaDescription:
       "Work out a discount in two steps: price × percent ÷ 100 is the saving, and price minus saving is what you pay. Stacked deals, tax and reverse discounts.",
     excerpt:
@@ -435,7 +435,7 @@ const caseConverter: ToolGuide = {
     ],
     toolSlug: "case-converter",
     siblingToolSlugs: ["slug-generator", "word-counter", "find-and-replace"],
-    metaTitle: "How to Change Text Case: Uppercase, Title Case, camelCase Guide",
+    metaTitle: "How to Change Text Case: Upper, Title, camelCase",
     metaDescription:
       "Change text to UPPERCASE, lowercase, Title Case, Sentence case, camelCase, PascalCase, snake_case or kebab-case, with examples and the edge cases to check.",
     excerpt:
@@ -643,7 +643,7 @@ const slugGenerator: ToolGuide = {
     ],
     toolSlug: "slug-generator",
     siblingToolSlugs: ["case-converter", "url-encoder", "meta-tag-generator"],
-    metaTitle: "How to Write a URL Slug: SEO-Friendly Permalinks with Examples",
+    metaTitle: "How to Write a URL Slug: SEO-Friendly Permalinks",
     metaDescription:
       "What a URL slug is, how to turn a title into a short hyphenated permalink, and what to do about accents, stop words, dates, duplicates and changing old URLs.",
     excerpt:
@@ -855,7 +855,7 @@ const duplicateLines: ToolGuide = {
     ],
     toolSlug: "duplicate-line-remover",
     siblingToolSlugs: ["line-sorter", "whitespace-remover", "text-diff"],
-    metaTitle: "How to Remove Duplicate Lines: Dedupe Lists, Emails and Logs",
+    metaTitle: "How to Remove Duplicate Lines from Lists",
     metaDescription:
       "Remove repeated lines from a list while keeping the first copy and the original order. When to ignore case and spaces, and how to check what was removed.",
     excerpt:
@@ -1055,7 +1055,7 @@ const whitespace: ToolGuide = {
     ],
     toolSlug: "whitespace-remover",
     siblingToolSlugs: ["remove-line-breaks", "duplicate-line-remover", "find-and-replace"],
-    metaTitle: "How to Remove Extra Spaces from Text: Trim, Tabs and Blank Lines",
+    metaTitle: "How to Remove Extra Spaces: Trim, Tabs, Lines",
     metaDescription:
       "Trim lines, collapse double spaces, turn tabs into spaces and delete or merge blank lines. Learn which whitespace option to use and how to keep indentation.",
     excerpt:

@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
+import Link from "next/link";
 
 type PublicComment = { id: string; name: string; rating: number | null; body: string; createdAt: string };
 type Phase = "idle" | "loading" | "off" | "ready" | "error";
@@ -94,7 +95,10 @@ export function ToolComments({ tool }: { tool: string }) {
     <section ref={ref} aria-labelledby="tool-comments-title" className="mt-12 min-h-[22rem] rounded-3xl border border-emerald-100 bg-emerald-50/30 p-5 dark:border-emerald-900/60 dark:bg-emerald-950/10 sm:p-6">
       <h2 id="tool-comments-title" className="text-xl font-semibold tracking-tight text-foreground">Feedback and comments</h2>
       {phase === "off" ? (
-        <p className="mt-3 text-sm text-muted-foreground">Comments coming soon.</p>
+        <p className="mt-3 text-sm text-muted-foreground">
+          Comments are not open yet. If you have feedback, please use the{" "}
+          <Link href="/contact" className="font-medium text-accent hover:underline">contact page</Link>.
+        </p>
       ) : phase === "idle" || phase === "loading" ? (
         <p className="mt-3 text-sm text-muted-foreground">Loading comments…</p>
       ) : (
