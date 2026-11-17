@@ -47,12 +47,12 @@ export function useLocalImage() {
     }
 
     replaceUrl(inspected.previewUrl);
-    const nextImage = {
+    const nextImage: LocalImage = {
       file,
       previewUrl: inspected.previewUrl,
       width: inspected.width,
       height: inspected.height,
-      mime: inspected.mime,
+      mime: inspected.mime as LocalImage["mime"],
     };
     setImage(nextImage);
     return nextImage;

@@ -4,12 +4,12 @@ const data: ToolPageTranslations = {
   "image-compressor": {
     "answer": "Un compresor de imágenes reduce el tamaño de archivos JPG, PNG y WebP en tu dispositivo, sin subir la foto.",
     "content": {
-      "about": "El compresor de imágenes vuelve a codificar un JPG, PNG o WebP en tu navegador. Fija una calidad de 10 a 100, elige un formato de salida y compara el tamaño de archivo que indica la página después de pulsar Comprimir. Úsalo antes de adjuntar una foto a un correo o a una página. La salida PNG es sin pérdida en esta herramienta, así que un gráfico plano apenas puede reducirse. Comprimir otra vez un JPEG puede añadir artefactos.",
+      "about": "El compresor de imágenes vuelve a codificar imágenes en tu navegador. Fija una calidad de 10 a 100, elige un formato de salida y compara el tamaño de archivo que indica la página después de pulsar Comprimir. Puedes comprimir un archivo o hasta 20 a la vez, y luego descargar un archivo o un ZIP con los resultados. Úsalo antes de adjuntar una foto a un correo o a una página. La salida PNG es sin pérdida en esta herramienta, así que un gráfico plano apenas puede reducirse. Comprimir otra vez un JPEG puede añadir artefactos.",
       "howTo": [
-        "Elige un JPG, PNG o WebP, o arrástralo al recuadro. El límite es de 25 MB, y ningún lado puede superar los 8192 píxeles.",
+        "Elige uno o varios archivos JPG, PNG o WebP, o arrástralos al recuadro. AVIF y HEIC se abren solo si este navegador puede decodificarlos. Cada archivo debe pesar 25 MB o menos, ningún lado puede superar los 8192 píxeles, y en una pasada caben hasta 20 archivos.",
         "Fija la calidad de 10 a 100. El control empieza en 80. La calidad cambia JPEG y WebP. No cambia la codificación PNG en esta página.",
-        "Elige JPG, PNG o WebP como salida y luego pulsa Comprimir.",
-        "Lee el tamaño original y el tamaño nuevo en la página, y luego descarga el resultado. Restablecer borra la imagen de esta pestaña."
+        "Elige JPG, PNG o WebP como salida, o AVIF si este navegador puede codificarlo, y luego pulsa Comprimir.",
+        "Lee el tamaño original y el tamaño nuevo en la página, y luego descarga el archivo. Si comprimiste varias imágenes, descárgalas todas en un ZIP. Restablecer borra los archivos de esta pestaña."
       ],
       "examples": [
         {
@@ -22,7 +22,7 @@ const data: ToolPageTranslations = {
         },
         {
           "title": "Un archivo que la página no abrirá",
-          "body": "Se rechazan GIF, HEIC y SVG. Se rechaza un archivo de más de 25 MB para que la pestaña siga respondiendo. Se rechaza un lado de más de 8192 píxeles. Se rechaza una calidad por debajo de 10 o por encima de 100. Convierte primero esos archivos a JPG, PNG o WebP en otra herramienta, o exporta una imagen más pequeña."
+          "body": "Siempre se rechazan GIF y SVG. HEIC y AVIF se abren solo si este navegador puede decodificarlos; si no, la página lo indica y deja ese archivo fuera. Se rechaza un archivo de más de 25 MB para que la pestaña siga respondiendo. Se rechaza un lado de más de 8192 píxeles. Se rechaza una calidad por debajo de 10 o por encima de 100. Se rechazan más de 20 archivos en una pasada. Convierte primero los archivos no admitidos a JPG, PNG o WebP, o exporta una imagen más pequeña."
         }
       ],
       "explanation": "La compresión se ejecuta en el navegador con el lienzo. Se dibuja la imagen y luego se codifica al formato que elegiste. JPEG y WebP reciben un valor de calidad de 0,10 a 1,00, que es el control dividido entre 100. PNG se codifica sin ese argumento de calidad, así que el control no hace un PNG con pérdida. La salida JPEG y WebP se rellena primero sobre un fondo blanco, lo que importa para un PNG que tenía transparencia.",
@@ -61,11 +61,11 @@ const data: ToolPageTranslations = {
         "Espera que una segunda pasada JPEG se vea peor que la primera, aunque el archivo nuevo sea más pequeño.",
         "Comprueba la transparencia. La salida JPEG y WebP de esta página se apoya sobre blanco."
       ],
-      "limitations": "Se rechazan los archivos GIF, HEIC y SVG. Una imagen debe ser de 25 MB o menos, y ningún lado puede superar los 8192 píxeles. La calidad debe estar entre 10 y 100. PNG se vuelve a codificar sin un control de calidad con pérdida, así que un gráfico plano apenas puede reducirse. JPEG y WebP tienen pérdida, y comprimir otra vez un JPEG puede añadir artefactos. La página muestra el tamaño de archivo resultante después de comprimir. No promete de antemano un tamaño objetivo.",
+      "limitations": "Se rechazan los archivos GIF y SVG. HEIC y AVIF se abren solo cuando este navegador puede decodificarlos. Puedes elegir JPG, PNG o WebP como salida, y AVIF solo cuando este navegador puede codificarlo. Una imagen debe ser de 25 MB o menos, y ningún lado puede superar los 8192 píxeles. Se pueden comprimir hasta 20 archivos en una pasada, y se ofrece un ZIP cuando sale bien más de un archivo. La calidad debe estar entre 10 y 100. PNG se vuelve a codificar sin un control de calidad con pérdida, así que un gráfico plano apenas puede reducirse. JPEG, WebP y AVIF tienen pérdida, y comprimir otra vez un JPEG puede añadir artefactos. La página muestra el tamaño de archivo resultante después de comprimir. No promete de antemano un tamaño objetivo.",
       "faqs": [
         {
           "question": "¿Cómo comprimo un JPEG?",
-          "answer": "Abre el JPG, fija una calidad entre 10 y 100, elige JPG y pulsa Comprimir. El control empieza en 80, que codifica a 0,80. La página muestra el tamaño de archivo nuevo de esa imagen."
+          "answer": "Abre un JPG o varios, fija una calidad entre 10 y 100, elige JPG y pulsa Comprimir. El control empieza en 80, que codifica a 0,80. La página muestra el tamaño nuevo de cada imagen, y un ZIP cuando sale bien más de un archivo."
         },
         {
           "question": "¿Por qué mi PNG apenas se redujo?",
@@ -77,11 +77,11 @@ const data: ToolPageTranslations = {
         },
         {
           "question": "¿Qué archivos se rechazan?",
-          "answer": "No se abren GIF, HEIC ni SVG. Se rechazan los archivos de más de 25 MB, y también cualquier lado de más de 8192 píxeles. Se rechaza una calidad fuera del rango de 10 a 100."
+          "answer": "No se abren GIF ni SVG. HEIC y AVIF se abren solo si este navegador puede decodificarlos; si no, se rechazan con un mensaje claro. Se rechazan los archivos de más de 25 MB, cualquier lado de más de 8192 píxeles, o más de 20 archivos en una pasada. Se rechaza una calidad fuera del rango de 10 a 100."
         },
         {
           "question": "¿Se sube mi imagen?",
-          "answer": "No. El JPG, PNG o WebP se vuelve a codificar en esta pestaña a la calidad que fijas. El archivo no se envía a Tools Star Hub."
+          "answer": "No. Cada archivo se vuelve a codificar en esta pestaña a la calidad que fijas. Las imágenes no se envían a Tools Star Hub."
         },
         {
           "question": "¿Funciona en el móvil?",

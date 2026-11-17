@@ -2,6 +2,8 @@ export const MAX_IMAGE_BYTES = 25 * 1024 * 1024;
 export const MAX_IMAGE_DIMENSION = 8192;
 export const MIN_OUTPUT_DIMENSION = 1;
 export const MAX_OUTPUT_DIMENSION = 8192;
+/** Upper bound for one Image Compressor run, to keep the tab responsive. */
+export const MAX_COMPRESSOR_BATCH = 20;
 
 export const SUPPORTED_IMAGE_TYPES = [
   "image/jpeg",
@@ -10,7 +12,7 @@ export const SUPPORTED_IMAGE_TYPES = [
 ] as const;
 
 export type SupportedImageType = (typeof SUPPORTED_IMAGE_TYPES)[number];
-export type ImageOutputType = "image/jpeg" | "image/png" | "image/webp";
+export type ImageOutputType = "image/jpeg" | "image/png" | "image/webp" | "image/avif";
 
 const TYPE_BY_EXTENSION: Record<string, SupportedImageType> = {
   jpg: "image/jpeg",
@@ -23,6 +25,7 @@ const EXTENSION_BY_TYPE: Record<ImageOutputType, string> = {
   "image/jpeg": "jpg",
   "image/png": "png",
   "image/webp": "webp",
+  "image/avif": "avif",
 };
 
 export type ImageFileLike = {
@@ -216,28 +219,60 @@ export function parseHexColor(
   return { ok: true, value: trimmed.toLowerCase() };
 }
 
-export function outputLabel(mime: ImageOutputType): string {
+export function outputLabel(mime: ImageOutputType | string): string {
   if (mime === "image/jpeg") {
     return "JPG";
   }
   if (mime === "image/png") {
     return "PNG";
   }
-  return "WebP";
+  if (mime === "image/webp") {
+    return "WebP";
+  }
+  if (mime === "image/avif") {
+    return "AVIF";
+  }
+  if (mime === "image/heic" || mime === "image/heif") {
+    return "HEIC";
+  }
+  return mime;
 }
+
+export type InspectableImageType = SupportedImageType | "image/heic" | "image/avif";
+
+export type InspectImageOptions = {
+  /** Try HEIC/HEIF or AVIF when this browser can decode them. */
+  tryExtendedFormats?: boolean;
+};
 
 export async function inspectImageFile(
   file: File,
+  options: InspectImageOptions = {},
 ): Promise<
-  | { ok: true; width: number; height: number; previewUrl: string; mime: SupportedImageType }
+  | { ok: true; width: number; height: number; previewUrl: string; mime: InspectableImageType }
   | { ok: false; error: string }
 > {
+  const header = new Uint8Array(await file.slice(0, 32).arrayBuffer());
+  const extendedKind = options.tryExtendedFormats ? identifyExtendedImage(file, header) : null;
+
+  if (extendedKind) {
+    if (file.size <= 0) {
+      return { ok: false, error: "That file is empty. Choose another image." };
+    }
+    if (file.size > MAX_IMAGE_BYTES) {
+      return {
+        ok: false,
+        error: `Keep images at ${formatBytes(MAX_IMAGE_BYTES)} or smaller so the browser stays responsive.`,
+      };
+    }
+    return decodeInspectedFile(file, extendedKind, header);
+  }
+
   const validated = validateImageFile(file);
   if (!validated.ok) {
     return validated;
   }
 
-  const header = new Uint8Array(await file.slice(0, 16).arrayBuffer());
   if (!looksLikeSupportedImage(header)) {
     return {
       ok: false,
@@ -382,6 +417,8 @@ function canvasToBlob(
             new Error(
               mime === "image/webp"
                 ? "This browser cannot encode WebP. Choose JPG or PNG instead."
+                : mime === "image/avif"
+                  ? "This browser cannot encode AVIF. Choose JPG, PNG, or WebP instead."
                 : "The browser could not create the output file.",
             ),
           );
@@ -393,6 +430,168 @@ function canvasToBlob(
       quality,
     );
   });
+}
+
+
+const HEIC_BRANDS = new Set(["heic", "heix", "heif", "heis", "heim", "hevc", "hevx", "mif1", "msf1"]);
+const AVIF_BRANDS = new Set(["avif", "avis", "avio"]);
+
+function ftypBrands(header: Uint8Array): string[] {
+  if (header.length < 16) {
+    return [];
+  }
+  const box = String.fromCharCode(header[4]!, header[5]!, header[6]!, header[7]!);
+  if (box !== "ftyp") {
+    return [];
+  }
+  const brands: string[] = [];
+  for (let offset = 8; offset + 4 <= header.length; offset += 4) {
+    brands.push(String.fromCharCode(header[offset]!, header[offset + 1]!, header[offset + 2]!, header[offset + 3]!));
+  }
+  return brands;
+}
+
+export function looksLikeHeic(bytes: ArrayBuffer | Uint8Array): boolean {
+  const view = bytes instanceof Uint8Array ? bytes : new Uint8Array(bytes);
+  return ftypBrands(view).some((brand) => HEIC_BRANDS.has(brand));
+}
+
+export function looksLikeAvif(bytes: ArrayBuffer | Uint8Array): boolean {
+  const view = bytes instanceof Uint8Array ? bytes : new Uint8Array(bytes);
+  return ftypBrands(view).some((brand) => AVIF_BRANDS.has(brand));
+}
+
+function fileLooksLikeHeic(file: ImageFileLike, header?: Uint8Array): boolean {
+  const type = file.type.toLowerCase();
+  if (type === "image/heic" || type === "image/heif" || type === "image/heic-sequence") {
+    return true;
+  }
+  const extension = file.name.split(".").pop()?.toLowerCase() ?? "";
+  if (extension === "heic" || extension === "heif") {
+    return true;
+  }
+  return header ? looksLikeHeic(header) : false;
+}
+
+function fileLooksLikeAvif(file: ImageFileLike, header?: Uint8Array): boolean {
+  if (file.type.toLowerCase() === "image/avif") {
+    return true;
+  }
+  const extension = file.name.split(".").pop()?.toLowerCase() ?? "";
+  if (extension === "avif") {
+    return true;
+  }
+  return header ? looksLikeAvif(header) : false;
+}
+
+function identifyExtendedImage(
+  file: ImageFileLike,
+  header: Uint8Array,
+): "image/heic" | "image/avif" | null {
+  if (fileLooksLikeHeic(file, header) || looksLikeHeic(header)) {
+    return "image/heic";
+  }
+  if (fileLooksLikeAvif(file, header) || looksLikeAvif(header)) {
+    return "image/avif";
+  }
+  return null;
+}
+
+async function decodeInspectedFile(
+  file: File,
+  mime: "image/heic" | "image/avif",
+  _header: Uint8Array,
+): Promise<
+  | { ok: true; width: number; height: number; previewUrl: string; mime: InspectableImageType }
+  | { ok: false; error: string }
+> {
+  const previewUrl = URL.createObjectURL(file);
+  const formatName = mime === "image/heic" ? "HEIC" : "AVIF";
+  const fallback = `This browser cannot open ${formatName}. Convert it to JPG, PNG, or WebP first, then compress it here.`;
+  try {
+    const size = await readImageSizeFromFile(file, previewUrl);
+    if (size.width > MAX_IMAGE_DIMENSION || size.height > MAX_IMAGE_DIMENSION) {
+      URL.revokeObjectURL(previewUrl);
+      return {
+        ok: false,
+        error: `Keep each side at ${MAX_IMAGE_DIMENSION} pixels or smaller.`,
+      };
+    }
+    return { ok: true, width: size.width, height: size.height, previewUrl, mime };
+  } catch {
+    URL.revokeObjectURL(previewUrl);
+    return { ok: false, error: fallback };
+  }
+}
+
+async function readImageSizeFromFile(
+  file: File,
+  url: string,
+): Promise<{ width: number; height: number }> {
+  try {
+    const size = await readImageSize(url);
+    if (size.width > 0 && size.height > 0) {
+      return size;
+    }
+  } catch {
+    // Try the bitmap path below.
+  }
+  if (typeof createImageBitmap === "function") {
+    const bitmap = await createImageBitmap(file);
+    const size = { width: bitmap.width, height: bitmap.height };
+    bitmap.close();
+    if (size.width > 0 && size.height > 0) {
+      return size;
+    }
+  }
+  throw new Error("Could not decode image");
+}
+
+export async function loadImageSource(
+  file: File,
+  previewUrl: string,
+): Promise<CanvasImageSource> {
+  try {
+    return await loadImageElement(previewUrl);
+  } catch {
+    if (typeof createImageBitmap === "function") {
+      return createImageBitmap(file);
+    }
+    throw new Error("Could not load image");
+  }
+}
+
+let avifEncodeProbe: Promise<boolean> | null = null;
+
+/** True only when canvas.toBlob can produce a real AVIF file in this browser. */
+export function canEncodeAvif(): Promise<boolean> {
+  if (typeof document === "undefined") {
+    return Promise.resolve(false);
+  }
+  if (!avifEncodeProbe) {
+    avifEncodeProbe = probeAvifEncode();
+  }
+  return avifEncodeProbe;
+}
+
+async function probeAvifEncode(): Promise<boolean> {
+  const canvas = document.createElement("canvas");
+  canvas.width = 1;
+  canvas.height = 1;
+  const context = canvas.getContext("2d");
+  if (!context) {
+    return false;
+  }
+  context.fillStyle = "#808080";
+  context.fillRect(0, 0, 1, 1);
+  const blob = await new Promise<Blob | null>((resolve) => {
+    try {
+      canvas.toBlob((next) => resolve(next), "image/avif", 0.8);
+    } catch {
+      resolve(null);
+    }
+  });
+  return Boolean(blob && blob.type === "image/avif" && blob.size > 0);
 }
 
 function capitalize(value: string): string {

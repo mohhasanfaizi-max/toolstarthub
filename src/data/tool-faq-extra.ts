@@ -8442,12 +8442,12 @@ export const extraToolFaqs: Record<string, ToolFaq[]> = {
     {
       question: "Which formats can I compress?",
       answer:
-        "This page opens JPG, PNG, and WebP. You can also choose JPG, PNG, or WebP as the download format. GIF, HEIC, and SVG files are rejected.",
+        "This page always opens JPG, PNG, and WebP, and you can save in those formats. AVIF appears as an output only if this browser can encode it. HEIC or AVIF files open only if this browser can decode them. GIF and SVG files are rejected.",
     },
     {
       question: "How does the quality slider work?",
       answer:
-        "Quality runs from 10 to 100 and starts at 80. It changes JPEG and WebP encoding. It does not change how PNG is written on this page, because PNG output here is lossless.",
+        "Quality runs from 10 to 100 and starts at 80. It changes JPEG, WebP, and AVIF encoding. It does not change how PNG is written on this page, because PNG output here is lossless.",
     },
     {
       question: "Can I compress an image to a target size, such as under 200 KB?",
@@ -8457,17 +8457,17 @@ export const extraToolFaqs: Record<string, ToolFaq[]> = {
     {
       question: "Can I compress several images at once or download a ZIP?",
       answer:
-        "No. You compress one image at a time, then download that file. There is no batch upload or ZIP on this page.",
+        "Yes. You can add up to 20 images, compress them in this tab, and review each result. If more than one file succeeds, Download all as ZIP packs those files. A single image still downloads as that file, not as a ZIP.",
     },
     {
       question: "What are the file size and pixel limits?",
       answer:
-        "The image must be 25 MB or smaller, and neither side can exceed 8,192 pixels. A file outside those limits is refused.",
+        "Each image must be 25 MB or smaller, and neither side can exceed 8,192 pixels. A run can include up to 20 files. A file outside those limits is refused.",
     },
     {
       question: "Will compressing a JPEG more than once make it look worse?",
       answer:
-        "It can. JPEG and WebP on this page are lossy, so compressing a JPEG again can add more artifacts. Start from the original when you can.",
+        "It can. JPEG, WebP, and AVIF on this page are lossy, so compressing a JPEG again can add more artifacts. Start from the original when you can.",
     },
     {
       question: "Does compression overwrite the photo on my device?",
@@ -8487,7 +8487,7 @@ export const extraToolFaqs: Record<string, ToolFaq[]> = {
     {
       question: "Is there a daily limit or a sign-in wall?",
       answer:
-        "No. There is no account and no daily cap on this page. The practical limits are the 25 MB size and the 8,192-pixel side length.",
+        "No. There is no account and no daily cap on this page. The practical limits are 20 files per run, 25 MB each, and an 8,192-pixel side length.",
     },
     {
       question: "How is this different from the Image Converter?",
@@ -8502,7 +8502,7 @@ export const extraToolFaqs: Record<string, ToolFaq[]> = {
     {
       question: "Can I use the compressed file in an email or on a website?",
       answer:
-        "Yes. Download the result and attach or upload that new file wherever you need it. Check that the destination accepts the format you chose, especially if you picked WebP.",
+        "Yes. Download the file or the ZIP and attach or upload the new files wherever you need them. Check that the destination accepts the format you chose, especially if you picked WebP or AVIF.",
     },
   ],
   "pdf-to-jpg": [

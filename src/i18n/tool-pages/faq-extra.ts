@@ -19,12 +19,12 @@ export const localeToolFaqExtras: Partial<
         {
           question: "¿Qué formatos puedo comprimir?",
           answer:
-            "Esta página abre JPG, PNG y WebP. También puedes elegir JPG, PNG o WebP como formato de descarga. Los archivos GIF, HEIC y SVG se rechazan.",
+            "Esta página siempre abre JPG, PNG y WebP, y puedes guardar en esos formatos. AVIF aparece como salida solo si este navegador puede codificarlo. Los archivos HEIC o AVIF se abren solo si este navegador puede decodificarlos. Los archivos GIF y SVG se rechazan.",
         },
         {
           question: "¿Cómo funciona el control de calidad?",
           answer:
-            "La calidad va de 10 a 100 y empieza en 80. Cambia la codificación JPEG y WebP. No cambia cómo se escribe el PNG en esta página, porque la salida PNG aquí es sin pérdida.",
+            "La calidad va de 10 a 100 y empieza en 80. Cambia la codificación JPEG, WebP y AVIF. No cambia cómo se escribe el PNG en esta página, porque la salida PNG aquí es sin pérdida.",
         },
         {
           question: "¿Puedo comprimir una imagen a un tamaño objetivo, por ejemplo por debajo de 200 KB?",
@@ -34,17 +34,17 @@ export const localeToolFaqExtras: Partial<
         {
           question: "¿Puedo comprimir varias imágenes a la vez o descargar un ZIP?",
           answer:
-            "No. Comprimes una imagen cada vez y luego descargas ese archivo. En esta página no hay carga por lotes ni ZIP.",
+            "Sí. Puedes añadir hasta 20 imágenes, comprimirlas en esta pestaña y revisar cada resultado. Si sale bien más de un archivo, «Descargar todo en ZIP» los empaqueta. Una sola imagen se descarga como ese archivo, no como un ZIP.",
         },
         {
           question: "¿Cuáles son los límites de tamaño de archivo y de píxeles?",
           answer:
-            "La imagen debe ocupar 25 MB o menos, y ningún lado puede superar los 8.192 píxeles. Un archivo fuera de esos límites se rechaza.",
+            "Cada imagen debe ocupar 25 MB o menos, y ningún lado puede superar los 8.192 píxeles. En una pasada caben hasta 20 archivos. Un archivo fuera de esos límites se rechaza.",
         },
         {
           question: "¿Comprimir un JPEG más de una vez lo empeora?",
           answer:
-            "Puede ocurrir. El JPEG y el WebP de esta página son con pérdida, así que comprimir otra vez un JPEG puede añadir más artefactos. Empieza por el original cuando puedas.",
+            "Puede ocurrir. El JPEG, el WebP y el AVIF de esta página son con pérdida, así que comprimir otra vez un JPEG puede añadir más artefactos. Empieza por el original cuando puedas.",
         },
         {
           question: "¿La compresión sobrescribe la foto en mi dispositivo?",
@@ -64,7 +64,7 @@ export const localeToolFaqExtras: Partial<
         {
           question: "¿Hay un límite diario o hay que iniciar sesión?",
           answer:
-            "No. En esta página no hay cuenta ni cupo diario. Los límites prácticos son los 25 MB y los 8.192 píxeles de lado.",
+            "No. En esta página no hay cuenta ni cupo diario. Los límites prácticos son 20 archivos por pasada, 25 MB cada uno y 8.192 píxeles de lado.",
         },
         {
           question: "¿En qué se diferencia del conversor de imágenes?",
@@ -79,7 +79,7 @@ export const localeToolFaqExtras: Partial<
         {
           question: "¿Puedo usar el archivo comprimido en un correo o en un sitio web?",
           answer:
-            "Sí. Descarga el resultado y adjúntalo o súbelo donde lo necesites. Comprueba que el destino acepte el formato que elegiste, sobre todo si elegiste WebP.",
+            "Sí. Descarga el archivo o el ZIP y adjúntalo o súbelo donde lo necesites. Comprueba que el destino acepte el formato que elegiste, sobre todo si elegiste WebP o AVIF.",
         },
     ],
     "image-resizer": [
@@ -945,12 +945,12 @@ export const localeToolFaqExtras: Partial<
         {
           question: "ما الصيغ التي يمكنني ضغطها؟",
           answer:
-            "تفتح هذه الصفحة ملفات JPG وPNG وWebP. ويمكنك أيضًا اختيار JPG أو PNG أو WebP كصيغة للتنزيل. تُرفض ملفات GIF وHEIC وSVG.",
+            "تفتح هذه الصفحة دائمًا ملفات JPG وPNG وWebP، ويمكنك الحفظ بهذه الصيغ. ويظهر AVIF كمخرجات فقط إذا كان هذا المتصفح قادرًا على ترميزه. وتُفتح ملفات HEIC أو AVIF فقط إذا كان هذا المتصفح قادرًا على فك ترميزها. وتُرفض ملفات GIF وSVG.",
         },
         {
           question: "كيف يعمل شريط الجودة؟",
           answer:
-            "تتراوح الجودة من 10 إلى 100 وتبدأ من 80. وهي تغيّر ترميز JPEG وWebP. ولا تغيّر طريقة كتابة PNG في هذه الصفحة، لأن مخرجات PNG هنا بلا فقدان.",
+            "تتراوح الجودة من 10 إلى 100 وتبدأ من 80. وهي تغيّر ترميز JPEG وWebP وAVIF. ولا تغيّر طريقة كتابة PNG في هذه الصفحة، لأن مخرجات PNG هنا بلا فقدان.",
         },
         {
           question: "هل يمكنني ضغط صورة إلى حجم مستهدف، مثل أقل من 200 كيلوبايت؟",
@@ -960,17 +960,17 @@ export const localeToolFaqExtras: Partial<
         {
           question: "هل يمكنني ضغط عدة صور دفعة واحدة أو تنزيل ملف ZIP؟",
           answer:
-            "لا. تضغط صورة واحدة في كل مرة ثم تنزّل ذلك الملف. لا يوجد رفع جماعي أو ZIP في هذه الصفحة.",
+            "نعم. يمكنك إضافة حتى 20 صورة، وضغطها في هذا التبويب، ومراجعة كل نتيجة. وإذا نجح أكثر من ملف، فإن «تنزيل الكل كملف ZIP» يحزم تلك الملفات. وتُنزَّل الصورة الواحدة كملفها، لا كملف ZIP.",
         },
         {
           question: "ما حدود حجم الملف وأبعاد البكسل؟",
           answer:
-            "يجب ألا يتجاوز حجم الصورة 25 ميغابايت، وألا يتجاوز أي ضلع 8,192 بكسل. يُرفض أي ملف خارج هذه الحدود.",
+            "يجب ألا يتجاوز حجم كل صورة 25 ميغابايت، وألا يتجاوز أي ضلع 8,192 بكسل. ويمكن أن يشمل التشغيل حتى 20 ملفًا. يُرفض أي ملف خارج هذه الحدود.",
         },
         {
           question: "هل ضغط ملف JPEG أكثر من مرة يجعله أسوأ؟",
           answer:
-            "قد يحدث ذلك. JPEG وWebP في هذه الصفحة فقودان للجودة، لذلك قد يضيف ضغط JPEG مرة أخرى مزيدًا من التشوّه. ابدأ من الأصل متى أمكن.",
+            "قد يحدث ذلك. JPEG وWebP وAVIF في هذه الصفحة فقودة للجودة، لذلك قد يضيف ضغط JPEG مرة أخرى مزيدًا من التشوّه. ابدأ من الأصل متى أمكن.",
         },
         {
           question: "هل يستبدل الضغط الصورة الموجودة على جهازي؟",
@@ -990,7 +990,7 @@ export const localeToolFaqExtras: Partial<
         {
           question: "هل هناك حد يومي أو جدار لتسجيل الدخول؟",
           answer:
-            "لا. لا يوجد حساب ولا سقف يومي في هذه الصفحة. الحدود العملية هي 25 ميغابايت وطول الضلع 8,192 بكسل.",
+            "لا. لا يوجد حساب ولا سقف يومي في هذه الصفحة. الحدود العملية هي 20 ملفًا في كل تشغيل، و25 ميغابايت لكل ملف، وطول ضلع 8,192 بكسل.",
         },
         {
           question: "ما الفرق بين هذا وبين محوّل الصور؟",
@@ -1005,7 +1005,7 @@ export const localeToolFaqExtras: Partial<
         {
           question: "هل يمكنني استخدام الملف المضغوط في بريد أو موقع؟",
           answer:
-            "نعم. نزّل الناتج وأرفقه أو ارفعه حيث تحتاج. تحقق من أن الوجهة تقبل الصيغة التي اخترتها، ولا سيما إذا اخترت WebP.",
+            "نعم. نزّل الملف أو ملف ZIP وأرفقه أو ارفعه حيث تحتاج. تحقق من أن الوجهة تقبل الصيغة التي اخترتها، ولا سيما إذا اخترت WebP أو AVIF.",
         },
     ],
     "image-resizer": [
