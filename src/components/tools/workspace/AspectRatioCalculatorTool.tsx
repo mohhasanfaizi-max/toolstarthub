@@ -6,8 +6,11 @@ import { CopyButton } from "@/components/tools/CopyButton";
 import { ToolActions, ToolChoiceGroup, ToolError, ToolField, ToolPanel, ToolStatGrid, toolControlClass } from "@/components/tools/ToolForm";
 import { calculateAspectRatio, type AspectMode } from "@/lib/tools/aspect-ratio";
 import { formatNumber } from "@/lib/tools/numbers";
+import { useTx } from "@/i18n/tool-text";
 
 export function AspectRatioCalculatorTool() {
+  const tx = useTx();
+
   const [mode, setMode] = useState<AspectMode>("simplify");
   const [width, setWidth] = useState("1920");
   const [height, setHeight] = useState("1080");
@@ -32,7 +35,7 @@ export function AspectRatioCalculatorTool() {
   return (
     <ToolPanel>
       <p className="text-sm leading-6 text-muted-foreground">
-        This calculates a ratio or a missing side. It does not resize or change an image file.
+        {tx("This calculates a ratio or a missing side. It does not resize or change an image file.")}
       </p>
       <div className="mt-4">
         <ToolChoiceGroup legend="Calculation" name="aspect-mode" value={mode} onChange={setMode} options={[{ id: "simplify", label: "Simplify a size" }, { id: "from-width", label: "Find height" }, { id: "from-height", label: "Find width" }]} />
@@ -62,9 +65,9 @@ export function AspectRatioCalculatorTool() {
       {error ? <div className="mt-4"><ToolError>{error}</ToolError></div> : null}
       <div className="mt-4">
         <ToolActions>
-          <Button type="button" onClick={calculate}>Calculate</Button>
+          <Button type="button" onClick={calculate}>{tx("Calculate")}</Button>
           <CopyButton value={summary} label="Copy result" />
-          <Button type="button" variant="ghost" onClick={() => { setMode("simplify"); setWidth("1920"); setHeight("1080"); setRatioWidth("16"); setRatioHeight("9"); setError(""); setResult(undefined); }}>Reset</Button>
+          <Button type="button" variant="ghost" onClick={() => { setMode("simplify"); setWidth("1920"); setHeight("1080"); setRatioWidth("16"); setRatioHeight("9"); setError(""); setResult(undefined); }}>{tx("Reset")}</Button>
         </ToolActions>
       </div>
       {result?.ok ? (

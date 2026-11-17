@@ -21,6 +21,7 @@ import {
   type PaintCurrency,
 } from "@/lib/tools/paint";
 import { paintColours, paintSources } from "@/data/paint-colours";
+import { useTx } from "@/i18n/tool-text";
 const control =
   "w-full min-w-0 rounded-xl border border-[#B3B8C2] bg-white px-3 py-2 text-[#17233F] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#8A6C12]";
 const card =
@@ -74,9 +75,10 @@ function Field({
   onChange: (v: string) => void;
   numeric?: boolean;
 }) {
+  const tx = useTx();
   return (
     <label htmlFor={id} className="block min-w-0 text-sm font-medium">
-      <span className="mb-1 block">{label}</span>
+      <span className="mb-1 block">{tx(label)}</span>
       <input
         id={id}
         className={control}
@@ -101,9 +103,10 @@ function Faces({
   onChange: (rows: Surface[]) => void;
   unit: LengthUnit;
 }) {
+  const tx = useTx();
   return (
     <fieldset className="mt-4 space-y-3">
-      <legend className="font-semibold">{title}</legend>
+      <legend className="font-semibold">{tx(title)}</legend>
       {rows.map((row, i) => (
         <div
           key={i}
@@ -127,7 +130,7 @@ function Faces({
             variant="ghost"
             onClick={() => onChange(rows.filter((_, j) => i !== j))}
           >
-            Remove {i + 1}
+            {tx(`Remove ${i + 1}`)}
           </Button>
         </div>
       ))}
@@ -137,12 +140,14 @@ function Faces({
         disabled={rows.length >= 100}
         onClick={() => onChange([...rows, face()])}
       >
-        Add {title.toLowerCase()}
+        {tx(`Add ${title.toLowerCase()}`)}
       </Button>
     </fieldset>
   );
 }
 export function PaintCalculatorTool() {
+  const tx = useTx();
+
   const [input, setInput] = useState<PaintInput>(() => initial());
   const [result, setResult] = useState<PaintResult>();
   const [note, setNote] = useState("");
@@ -251,22 +256,20 @@ export function PaintCalculatorTool() {
     <div className="paint-calculator min-w-0 space-y-6 rounded-3xl bg-[#FBF8EC] p-3 text-[#17233F] sm:p-6">
       <div>
         <p className="text-xs font-bold uppercase tracking-widest text-[#725914]">
-          Measure. Plan. Paint.
+          {tx("Measure. Plan. Paint.")}
         </p>
-        <h2 className="mt-1 text-2xl font-semibold">Paint Calculator</h2>
+        <h2 className="mt-1 text-2xl font-semibold">{tx("Paint Calculator")}</h2>
         <p className="mt-2 text-sm leading-6">
-          Start with the sample wall plan or clear it for your own project. All
-          dimensions and estimates stay in this browser tab. Check the paint tin
-          before buying.
+          {tx("Start with the sample wall plan or clear it for your own project. All dimensions and estimates stay in this browser tab. Check the paint tin before buying.")}
         </p>
       </div>
       <section className={card} aria-labelledby="paint-project">
         <h3 id="paint-project" className="text-lg font-semibold">
-          1. Your project
+          {tx("1. Your project")}
         </h3>
         <div className="mt-4 grid gap-4 sm:grid-cols-3">
           <label className="text-sm font-medium">
-            Project type
+            {tx("Project type")}
             <select
               aria-label="Project type"
               className={control}
@@ -274,12 +277,12 @@ export function PaintCalculatorTool() {
               onChange={(e) => patch({ project: e.target.value as Project })}
             >
               {PROJECTS.map((p) => (
-                <option key={p}>{p}</option>
+                <option key={p}>{tx(p)}</option>
               ))}
             </select>
           </label>
           <label className="text-sm font-medium">
-            Measurement unit
+            {tx("Measurement unit")}
             <select
               aria-label="Measurement unit"
               className={control}
@@ -292,7 +295,7 @@ export function PaintCalculatorTool() {
             </select>
           </label>
           <label className="text-sm font-medium">
-            Paint output
+            {tx("Paint output")}
             <select
               aria-label="Paint output"
               className={control}
@@ -306,20 +309,17 @@ export function PaintCalculatorTool() {
           </label>
         </div>
         <p className="mt-3 text-xs">
-          Changing the measurement unit converts existing dimensions. US and
-          Imperial gallons are different. Area is shown in both m² and ft².
+          {tx("Changing the measurement unit converts existing dimensions. US and Imperial gallons are different. Area is shown in both m² and ft².")}
         </p>
       </section>
       <section className={card} aria-labelledby="paint-measure">
         <h3 id="paint-measure" className="text-lg font-semibold">
-          2. Measure the surfaces
+          {tx("2. Measure the surfaces")}
         </h3>
         {roomMode ? (
           <>
             <p className="mt-2 text-sm">
-              Each rectangular room counts four walls exactly once: 2 × (length
-              + width) × height. Add its ceiling only if you will paint it.
-              Estimate different paint products separately.
+              {tx("Each rectangular room counts four walls exactly once: 2 × (length + width) × height. Add its ceiling only if you will paint it. Estimate different paint products separately.")}
             </p>
             {(input.project === "Entire Room"
               ? input.rooms.slice(0, 1)
@@ -329,7 +329,7 @@ export function PaintCalculatorTool() {
                 key={i}
                 className="mt-4 rounded-xl border border-[#C9A227]/50 p-3"
               >
-                <legend className="font-semibold">Room {i + 1}</legend>
+                <legend className="font-semibold">{tx(`Room ${i + 1}`)}</legend>
                 <div className="grid gap-3 sm:grid-cols-2">
                   <Field
                     id={`paint-room-${i}-name`}
@@ -356,7 +356,7 @@ export function PaintCalculatorTool() {
                       updateRoom(i, { ceiling: e.target.checked })
                     }
                   />
-                  Include this ceiling
+                  {tx("Include this ceiling")}
                 </label>
                 <Faces
                   id={`paint-room-${i}-open`}
@@ -374,7 +374,7 @@ export function PaintCalculatorTool() {
                       patch({ rooms: input.rooms.filter((_, j) => i !== j) })
                     }
                   >
-                    Remove room {i + 1}
+                    {tx(`Remove room ${i + 1}`)}
                   </Button>
                 ) : null}
               </fieldset>
@@ -386,7 +386,7 @@ export function PaintCalculatorTool() {
                 disabled={input.rooms.length >= 100}
                 onClick={() => patch({ rooms: [...input.rooms, room()] })}
               >
-                Add room
+                {tx("Add room")}
               </Button>
             ) : null}
           </>
@@ -419,16 +419,12 @@ export function PaintCalculatorTool() {
             />
             {input.project === "Doors and Windows" ? (
               <p className="mt-3 text-sm">
-                Enter each face you will paint; quantity 2 counts both sides.
-                These faces are added, not deducted. Frames and detailed
-                mouldings need their own measured allowance.
+                {tx("Enter each face you will paint; quantity 2 counts both sides. These faces are added, not deducted. Frames and detailed mouldings need their own measured allowance.")}
               </p>
             ) : (
               <>
                 <p className="mt-4 text-sm">
-                  Subtract doors and windows you will not paint. Enter each
-                  opening once, even when a wall row has a quantity greater than
-                  one. Quantity may group identical openings.
+                  {tx("Subtract doors and windows you will not paint. Enter each opening once, even when a wall row has a quantity greater than one. Quantity may group identical openings.")}
                 </p>
                 <Faces
                   id="paint-open"
@@ -444,11 +440,11 @@ export function PaintCalculatorTool() {
       </section>
       <section className={card} aria-labelledby="paint-coverage">
         <h3 id="paint-coverage" className="text-lg font-semibold">
-          3. Coverage, coats and budget
+          {tx("3. Coverage, coats and budget")}
         </h3>
         <div className="mt-4 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
           <label className="text-sm font-medium">
-            Coverage basis
+            {tx("Coverage basis")}
             <select
               aria-label="Coverage basis"
               className={control}
@@ -460,8 +456,8 @@ export function PaintCalculatorTool() {
                 })
               }
             >
-              <option value="m2/L">m² per litre</option>
-              <option value="ft2/USgal">ft² per US gallon</option>
+              <option value="m2/L">{tx("m² per litre")}</option>
+              <option value="ft2/USgal">{tx("ft² per US gallon")}</option>
             </select>
           </label>
           <Field
@@ -471,7 +467,7 @@ export function PaintCalculatorTool() {
             onChange={(coverage) => patch({ coverage })}
           />
           <label className="text-sm font-medium">
-            Coat preset
+            {tx("Coat preset")}
             <select
               aria-label="Coat preset"
               className={control}
@@ -489,7 +485,7 @@ export function PaintCalculatorTool() {
               {[1, 2, 3, 4].map((c) => (
                 <option key={c}>{c}</option>
               ))}
-              <option value="custom">Custom</option>
+              <option value="custom">{tx("Custom")}</option>
             </select>
           </label>
           <Field
@@ -499,7 +495,7 @@ export function PaintCalculatorTool() {
             onChange={(coats) => patch({ coats })}
           />
           <label className="text-sm font-medium">
-            Wastage
+            {tx("Wastage")}
             <select
               aria-label="Wastage"
               className={control}
@@ -514,7 +510,7 @@ export function PaintCalculatorTool() {
             </select>
           </label>
           <label className="text-sm font-medium">
-            Currency
+            {tx("Currency")}
             <select
               aria-label="Currency"
               className={control}
@@ -536,21 +532,15 @@ export function PaintCalculatorTool() {
           />
         </div>
         <p className="mt-3 text-sm">
-          Defaults of 10 m²/L or 350 ft²/US gal are planning estimates, not
-          equivalent rates or manufacturer promises. Changing coverage basis
-          loads its estimate. Replace it with the coverage for your product and
-          surface. Price follows your selected output unit; changing that unit
-          does not convert a price quote. Currency labels your quote; no
-          exchange rates are applied.
+          {tx("Defaults of 10 m²/L or 350 ft²/US gal are planning estimates, not equivalent rates or manufacturer promises. Changing coverage basis loads its estimate. Replace it with the coverage for your product and surface. Price follows your selected output unit; changing that unit does not convert a price quote. Currency labels your quote; no exchange rates are applied.")}
         </p>
         <p className="mt-2 text-sm font-medium">
-          Paint only: labour, primer, surface preparation and equipment are
-          excluded. Different colours or products need separate purchase plans.
+          {tx("Paint only: labour, primer, surface preparation and equipment are excluded. Different colours or products need separate purchase plans.")}
         </p>
       </section>
       <section className={card} aria-labelledby="paint-cans">
         <h3 id="paint-cans" className="text-lg font-semibold">
-          4. Choose available containers
+          {tx("4. Choose available containers")}
         </h3>
         <p className="mt-2 text-sm">
           Example sizes only: no stock or retailer availability is assumed.
@@ -627,7 +617,7 @@ export function PaintCalculatorTool() {
             setNote("");
           }}
         >
-          Calculate
+          {tx("Calculate")}
         </Button>
         <Button
           type="button"
@@ -639,7 +629,7 @@ export function PaintCalculatorTool() {
             setNote("Cleared. Enter your measurements.");
           }}
         >
-          Clear
+          {tx("Clear")}
         </Button>
       </div>
       {result && !result.ok ? (
@@ -656,7 +646,7 @@ export function PaintCalculatorTool() {
             id="paint-results"
             className="text-xl font-semibold text-green-900"
           >
-            Your paint plan
+            {tx("Your paint plan")}
           </h3>
           <dl className="mt-4 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
             {[
@@ -696,12 +686,10 @@ export function PaintCalculatorTool() {
             ))}
           </dl>
           <p className="mt-3 text-xs">
-            Cost basis: {active.costBasis}. Litres before wastage:{" "}
-            {n(active.baseLitres)}. Estimates retain precision internally;
-            displayed amounts are rounded, not a container guarantee.
+            {tx(`Cost basis: ${active.costBasis}. Litres before wastage: ${n(active.baseLitres)}. Estimates retain precision internally; displayed amounts are rounded, not a container guarantee.`)}
           </p>
           <h4 className="mt-5 font-semibold">
-            Itemized area and paint breakdown
+            {tx("Itemized area and paint breakdown")}
           </h4>
           <ul className="mt-2 space-y-3">
             {active.parts.map((p, i) => (
@@ -717,7 +705,7 @@ export function PaintCalculatorTool() {
           </ul>
           {active.plan.ok ? (
             <>
-              <h4 className="mt-5 font-semibold">Container combination</h4>
+              <h4 className="mt-5 font-semibold">{tx("Container combination")}</h4>
               <ul>
                 {active.plan.items.map((item) => (
                   <li key={item.can.id}>
@@ -739,9 +727,7 @@ export function PaintCalculatorTool() {
             </p>
           ))}
           <p className="mt-4 text-sm">
-            Calculation: net area × coats ÷ coverage × (1 + wastage ÷ 100).
-            Check manufacturer coverage, recommended coats, primer requirements
-            and actual container sizes before purchasing.
+            {tx("Calculation: net area × coats ÷ coverage × (1 + wastage ÷ 100). Check manufacturer coverage, recommended coats, primer requirements and actual container sizes before purchasing.")}
           </p>
           <div className="mt-5 flex flex-wrap gap-3">
             <Button
@@ -749,7 +735,7 @@ export function PaintCalculatorTool() {
               variant="secondary"
               onClick={() => void copy(summary)}
             >
-              Copy Results
+              {tx("Copy Results")}
             </Button>
             <Button
               type="button"
@@ -757,18 +743,17 @@ export function PaintCalculatorTool() {
               disabled={busy}
               onClick={() => void pdf()}
             >
-              Download PDF
+              {tx("Download PDF")}
             </Button>
             <Button type="button" variant="secondary" onClick={print}>
-              Print
-            </Button>
+            {tx("Print")}
+          </Button>
           </div>
           <p className="mt-3 text-xs">
-            The PDF uses the site’s standard Latin font. For non-Latin room
-            names, use Print to preserve the original text.
+            {tx("The PDF uses the site’s standard Latin font. For non-Latin room names, use Print to preserve the original text.")}
           </p>
           <details className="mt-4">
-            <summary>Selectable results text</summary>
+            <summary>{tx("Selectable results text")}</summary>
             <pre className="mt-3 whitespace-pre-wrap break-words text-xs">
               {summary}
             </pre>
@@ -780,13 +765,10 @@ export function PaintCalculatorTool() {
       </p>
       <section className={card} aria-labelledby="paint-colours">
         <h3 id="paint-colours" className="text-xl font-semibold">
-          Colour explorer
+          {tx("Colour explorer")}
         </h3>
         <p className="mt-2 text-sm">
-          Every HEX value here is an editable, approximate design example, not
-          an official Dulux match, formula or colour code. Names may vary by
-          market. Tools Star Hub is independent and is not affiliated with
-          Dulux. Verify with physical samples and current regional colour cards.
+          {tx("Every HEX value here is an editable, approximate design example, not an official Dulux match, formula or colour code. Names may vary by market. Tools Star Hub is independent and is not affiliated with Dulux. Verify with physical samples and current regional colour cards.")}
         </p>
         <Field
           id="paint-colour-search"
@@ -835,7 +817,7 @@ export function PaintCalculatorTool() {
             />
             {!validHex ? (
               <p role="alert" className="text-sm text-red-700">
-                Use # followed by six hexadecimal digits.
+                {tx("Use # followed by six hexadecimal digits.")}
               </p>
             ) : null}
             <Button
@@ -844,7 +826,7 @@ export function PaintCalculatorTool() {
               disabled={!validHex}
               onClick={() => void copy(swatch.hex.toUpperCase())}
             >
-              Copy HEX
+              {tx("Copy HEX")}
             </Button>
           </div>
           <div
@@ -856,11 +838,11 @@ export function PaintCalculatorTool() {
             <div className="absolute bottom-0 h-7 w-full bg-[#B19B7D]" />
             <div className="absolute bottom-7 left-8 h-16 w-28 rounded-t-2xl bg-white/75" />
             <span className="absolute right-2 top-2 rounded bg-white/90 px-2 py-1 text-xs">
-              Approximate sample wall
+              {tx("Approximate sample wall")}
             </span>
           </div>
         </div>
-        <h4 className="mt-5 font-semibold">Manufacturer references</h4>
+        <h4 className="mt-5 font-semibold">{tx("Manufacturer references")}</h4>
         <ul className="mt-2 text-sm">
           {paintSources.map((source) => (
             <li className="mt-2" key={source.url}>

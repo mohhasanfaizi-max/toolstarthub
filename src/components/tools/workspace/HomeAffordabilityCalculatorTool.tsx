@@ -15,12 +15,15 @@ import {
 } from "@/components/tools/ToolForm";
 import { calculateHomeAffordability } from "@/lib/tools/home-affordability";
 import { formatNumber } from "@/lib/tools/numbers";
+import { useTx } from "@/i18n/tool-text";
 
 function money(value: number) {
   return `$${formatNumber(value, 2)}`;
 }
 
 export function HomeAffordabilityCalculatorTool() {
+  const tx = useTx();
+
   const [income, setIncome] = useState("120000");
   const [debt, setDebt] = useState("500");
   const [downMode, setDownMode] = useState<"amount" | "percent">("percent");
@@ -81,7 +84,7 @@ export function HomeAffordabilityCalculatorTool() {
   return (
     <ToolPanel>
       <p className="text-sm leading-6 text-muted-foreground">
-        An estimate of a home price that fits the income, debts, and housing costs you enter. It is not a lender approval.
+        {tx("An estimate of a home price that fits the income, debts, and housing costs you enter. It is not a lender approval.")}
       </p>
       <div className="mt-4 grid gap-4 sm:grid-cols-2">
         <ToolField id="afford-income" label="Annual gross household income (USD)">
@@ -130,9 +133,9 @@ export function HomeAffordabilityCalculatorTool() {
       {error ? <div className="mt-4"><ToolError>{error}</ToolError></div> : null}
       <div className="mt-4">
         <ToolActions>
-          <Button type="button" onClick={calculate}>Calculate</Button>
+          <Button type="button" onClick={calculate}>{tx("Calculate")}</Button>
           <CopyButton value={summary} label="Copy result" />
-          <Button type="button" variant="ghost" onClick={reset}>Reset</Button>
+          <Button type="button" variant="ghost" onClick={reset}>{tx("Reset")}</Button>
         </ToolActions>
       </div>
       {result?.ok ? (
@@ -154,19 +157,19 @@ export function HomeAffordabilityCalculatorTool() {
           />
           <ToolOutput label="How this estimate is built">
             <p className="text-sm leading-6">
-              Monthly gross income is {money(result.monthlyGross)}. At the {formatNumber(result.targetDti, 2)}% target you chose, housing plus existing debt can use {money(result.housingBudget + result.existingDebt)} a month. After existing debt of {money(result.existingDebt)}, about {money(result.housingBudget)} is left for housing. That figure is an assumption, not an approval.
+              {tx(`Monthly gross income is ${money(result.monthlyGross)}. At the ${formatNumber(result.targetDti, 2)}% target you chose, housing plus existing debt can use ${money(result.housingBudget + result.existingDebt)} a month. After existing debt of ${money(result.existingDebt)}, about ${money(result.housingBudget)} is left for housing. That figure is an assumption, not an approval.`)}
             </p>
           </ToolOutput>
           <ToolOutput label="Target ratio comparison">
-            <p className="mb-2 text-sm leading-6">Same income, debts, rate, term, and housing costs at three target ratios. None of these rows is a better choice.</p>
+            <p className="mb-2 text-sm leading-6">{tx("Same income, debts, rate, term, and housing costs at three target ratios. None of these rows is a better choice.")}</p>
             <div className="overflow-auto">
               <table className="w-full min-w-[28rem] text-left text-sm">
                 <thead>
                   <tr className="border-b border-border">
-                    <th className="py-2 pr-3 font-medium">Target ratio</th>
-                    <th className="py-2 pr-3 font-medium">Home price</th>
-                    <th className="py-2 pr-3 font-medium">Loan amount</th>
-                    <th className="py-2 font-medium">Principal and interest</th>
+                    <th className="py-2 pr-3 font-medium">{tx("Target ratio")}</th>
+                    <th className="py-2 pr-3 font-medium">{tx("Home price")}</th>
+                    <th className="py-2 pr-3 font-medium">{tx("Loan amount")}</th>
+                    <th className="py-2 font-medium">{tx("Principal and interest")}</th>
                   </tr>
                 </thead>
                 <tbody>

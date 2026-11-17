@@ -6,8 +6,11 @@ import { CopyButton } from "@/components/tools/CopyButton";
 import { ToolActions, ToolChoiceGroup, ToolError, ToolField, ToolPanel, ToolStatGrid, toolControlClass } from "@/components/tools/ToolForm";
 import { calculateTime, type TimeOperation } from "@/lib/tools/time-calculator";
 import { formatNumber } from "@/lib/tools/numbers";
+import { useTx } from "@/i18n/tool-text";
 
 export function TimeCalculatorTool() {
+  const tx = useTx();
+
   const [operation, setOperation] = useState<TimeOperation>("add");
   const [startHours, setStartHours] = useState("2");
   const [startMinutes, setStartMinutes] = useState("30");
@@ -40,7 +43,7 @@ export function TimeCalculatorTool() {
   return (
     <ToolPanel>
       <p className="text-sm leading-6 text-muted-foreground">
-        Hours and minutes are added or subtracted in this tab. This is not a time zone or a date span.
+        {tx("Hours and minutes are added or subtracted in this tab. This is not a time zone or a date span.")}
       </p>
       <div className="mt-4 grid gap-4 sm:grid-cols-2">
         <ToolField id="time-start-hours" label="Starting hours">
@@ -68,9 +71,9 @@ export function TimeCalculatorTool() {
       {error ? <div className="mt-4"><ToolError>{error}</ToolError></div> : null}
       <div className="mt-4">
         <ToolActions>
-          <Button type="button" onClick={calculate}>Calculate</Button>
+          <Button type="button" onClick={calculate}>{tx("Calculate")}</Button>
           <CopyButton value={summary} label="Copy result" />
-          <Button type="button" variant="ghost" onClick={() => { setOperation("add"); setStartHours("2"); setStartMinutes("30"); setChangeHours("1"); setChangeMinutes("45"); setError(""); setResult(undefined); }}>Reset</Button>
+          <Button type="button" variant="ghost" onClick={() => { setOperation("add"); setStartHours("2"); setStartMinutes("30"); setChangeHours("1"); setChangeMinutes("45"); setError(""); setResult(undefined); }}>{tx("Reset")}</Button>
         </ToolActions>
       </div>
       {result?.ok ? (

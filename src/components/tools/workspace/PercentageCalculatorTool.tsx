@@ -17,6 +17,7 @@ import {
   type PercentageMode,
 } from "@/lib/tools/percentage";
 import { formatNumber } from "@/lib/tools/numbers";
+import { useTx } from "@/i18n/tool-text";
 
 const modes: Array<{ id: PercentageMode; label: string }> = [
   { id: "of", label: "What is X% of Y?" },
@@ -25,6 +26,8 @@ const modes: Array<{ id: PercentageMode; label: string }> = [
 ];
 
 export function PercentageCalculatorTool() {
+  const tx = useTx();
+
   const [mode, setMode] = useState<PercentageMode>("of");
   const [x, setX] = useState("");
   const [y, setY] = useState("");
@@ -68,7 +71,7 @@ export function PercentageCalculatorTool() {
   return (
     <ToolPanel>
       <fieldset className="space-y-2">
-        <legend className="text-sm font-medium text-foreground">Calculation</legend>
+        <legend className="text-sm font-medium text-foreground">{tx("Calculation")}</legend>
         <div className="grid gap-2 sm:grid-cols-3">
           {modes.map((item) => (
             <label
@@ -85,7 +88,7 @@ export function PercentageCalculatorTool() {
                   setResult(undefined);
                 }}
               />
-              {item.label}
+              {tx(item.label)}
             </label>
           ))}
         </div>
@@ -116,7 +119,7 @@ export function PercentageCalculatorTool() {
 
       {mode === "change-by" ? (
         <fieldset className="mt-4">
-          <legend className="text-sm font-medium text-foreground">Direction</legend>
+          <legend className="text-sm font-medium text-foreground">{tx("Direction")}</legend>
           <div className="mt-2 flex flex-wrap gap-2">
             {(["increase", "decrease"] as const).map((item) => (
               <label
@@ -139,10 +142,10 @@ export function PercentageCalculatorTool() {
       <div className="mt-6">
         <ToolActions>
           <Button type="button" onClick={calculate}>
-            Calculate
+            {tx("Calculate")}
           </Button>
           <Button type="button" variant="secondary" onClick={reset}>
-            Reset
+            {tx("Reset")}
           </Button>
           {result?.ok ? (
             <CopyButton
@@ -168,11 +171,10 @@ export function PercentageCalculatorTool() {
             <p className="mt-2 text-sm text-muted-foreground">{result.label}</p>
             {result.amount !== undefined ? (
               <p className="mt-1 text-sm text-muted-foreground">
-                Amount {direction === "increase" ? "added" : "subtracted"}:{" "}
-                {formatNumber(result.amount)}
+                {tx(`Amount ${direction === "increase" ? "added" : "subtracted"}: ${formatNumber(result.amount)}`)}
               </p>
             ) : null}
-            <p className="mt-1 text-sm text-muted-foreground">{result.detail}</p>
+            <p className="mt-1 text-sm text-muted-foreground">{tx(result.detail)}</p>
           </ToolOutput>
         ) : null}
       </div>

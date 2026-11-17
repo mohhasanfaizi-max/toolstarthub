@@ -17,12 +17,15 @@ import { AmortizationSchedule } from "@/components/tools/AmortizationSchedule";
 import { RegionalFinanceNote } from "@/components/tools/RegionalFinanceNote";
 import { calculateLoan } from "@/lib/tools/loan";
 import { formatNumber } from "@/lib/tools/numbers";
+import { useTx } from "@/i18n/tool-text";
 
 function money(value: number) {
   return `$${formatNumber(value, 2)}`;
 }
 
 export function LoanCalculatorTool() {
+  const tx = useTx();
+
   const [amount, setAmount] = useState("20000");
   const [rate, setRate] = useState("7");
   const [term, setTerm] = useState("5");
@@ -63,7 +66,7 @@ export function LoanCalculatorTool() {
   return (
     <ToolPanel>
       <p className="text-sm leading-6 text-muted-foreground">
-        Estimated payment based on the information entered. This is not a lender offer.
+        {tx("Estimated payment based on the information entered. This is not a lender offer.")}
       </p>
       <RegionalFinanceNote variant="loan" />
       <div className="mt-4 grid gap-4 sm:grid-cols-2">
@@ -101,9 +104,9 @@ export function LoanCalculatorTool() {
       {error ? <div className="mt-4"><ToolError>{error}</ToolError></div> : null}
       <div className="mt-4">
         <ToolActions>
-          <Button type="button" onClick={calculate}>Calculate</Button>
+          <Button type="button" onClick={calculate}>{tx("Calculate")}</Button>
           <CopyButton value={summary} label="Copy result" />
-          <Button type="button" variant="ghost" onClick={reset}>Reset</Button>
+          <Button type="button" variant="ghost" onClick={reset}>{tx("Reset")}</Button>
         </ToolActions>
       </div>
       {result?.ok ? (
@@ -121,7 +124,7 @@ export function LoanCalculatorTool() {
           {result.payoff ? (
             <ToolOutput label="Extra payment estimate">
               <p className="text-sm leading-6">
-                Payoff in {result.payoff.monthsPaid} months, which is {result.payoff.monthsSaved} months sooner than the original term. Interest falls from {money(result.payoff.originalInterest)} to {money(result.payoff.interest)}, a difference of {money(result.payoff.interestSaved)}. A lender may apply extra payments differently.
+                {tx(`Payoff in ${result.payoff.monthsPaid} months, which is ${result.payoff.monthsSaved} months sooner than the original term. Interest falls from ${money(result.payoff.originalInterest)} to ${money(result.payoff.interest)}, a difference of ${money(result.payoff.interestSaved)}. A lender may apply extra payments differently.`)}
               </p>
             </ToolOutput>
           ) : null}

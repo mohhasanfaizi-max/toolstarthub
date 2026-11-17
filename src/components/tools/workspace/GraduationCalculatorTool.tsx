@@ -5,10 +5,13 @@ import { CopyButton } from "@/components/tools/CopyButton";
 import { ToolError, ToolField, ToolPanel, toolControlClass } from "@/components/tools/ToolForm";
 import { calculateGraduation, type GraduationResult } from "@/lib/tools/graduation";
 import { goldBtn, goldCard, goldGhost } from "./goldUi";
+import { useTx } from "@/i18n/tool-text";
 
 const MONTHS = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
 
 export function GraduationCalculatorTool() {
+  const tx = useTx();
+
   const [birth, setBirth] = useState("");
   const [entryAge, setEntryAge] = useState("5");
   const [cutoffMonth, setCutoffMonth] = useState("9");
@@ -58,7 +61,7 @@ export function GraduationCalculatorTool() {
   );
   const summary =
     result && result.ok
-      ? [`School graduation: ${result.schoolGraduationYear}`, result.furtherGraduationYear ? `Further study ends: ${result.furtherGraduationYear}` : "", ...result.milestones.map((m) => `${m.label}: ${m.academicYear} (${m.date})`), "Assumptions:", ...result.assumptions].filter(Boolean).join("\n")
+      ? [`School graduation: ${result.schoolGraduationYear}`, result.furtherGraduationYear ? `Further study ends: ${result.furtherGraduationYear}` : "", ...result.milestones.map((m) => `${tx(m.label)}: ${m.academicYear} (${m.date})`), "Assumptions:", ...result.assumptions].filter(Boolean).join("\n")
       : "";
 
   return (
@@ -86,7 +89,7 @@ export function GraduationCalculatorTool() {
       <div className="mt-4 rounded-2xl border border-border p-4">
         <label className="flex items-center gap-2 text-sm font-medium">
           <input type="checkbox" checked={useCurrent} onChange={(e) => setUseCurrent(e.target.checked)} className="h-4 w-4 accent-[#C9A227]" />
-          Use the student&apos;s current level instead of the entry rule
+          {tx("Use the student's current level instead of the entry rule")}
         </label>
         {useCurrent ? (
           <div className="mt-3 grid gap-4 sm:grid-cols-2">
@@ -100,36 +103,36 @@ export function GraduationCalculatorTool() {
         ) : null}
       </div>
       <div className="mt-5 flex flex-wrap gap-3">
-        <button type="button" className={goldBtn} onClick={calculate}>Calculate graduation year</button>
+        <button type="button" className={goldBtn} onClick={calculate}>{tx("Calculate graduation year")}</button>
         <CopyButton value={summary} label="Copy timeline" />
-        <button type="button" className={goldGhost} onClick={reset}>Reset</button>
+        <button type="button" className={goldGhost} onClick={reset}>{tx("Reset")}</button>
       </div>
       {result && !result.ok ? <div className="mt-4"><ToolError>{result.error}</ToolError></div> : null}
       {result && result.ok ? (
         <div className="mt-6 space-y-4" aria-live="polite">
           <div className="grid gap-3 sm:grid-cols-2">
             <div className={goldCard}>
-              <p className="text-sm font-medium text-[#A8841A]">Finishes school</p>
+              <p className="text-sm font-medium text-[#A8841A]">{tx("Finishes school")}</p>
               <p className="mt-1 text-3xl font-semibold">{result.schoolGraduationYear}</p>
             </div>
             {result.furtherGraduationYear ? (
               <div className={goldCard}>
-                <p className="text-sm font-medium text-[#A8841A]">Finishes further study</p>
+                <p className="text-sm font-medium text-[#A8841A]">{tx("Finishes further study")}</p>
                 <p className="mt-1 text-3xl font-semibold">{result.furtherGraduationYear}</p>
               </div>
             ) : null}
           </div>
           <ol className="grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
             {result.milestones.map((m) => (
-              <li key={m.label} className="rounded-2xl border border-[#C9A227]/40 border-l-4 border-l-[#C9A227] px-4 py-3">
-                <p className="text-sm font-semibold">{m.label}</p>
+              <li key={tx(m.label)} className="rounded-2xl border border-[#C9A227]/40 border-l-4 border-l-[#C9A227] px-4 py-3">
+                <p className="text-sm font-semibold">{tx(m.label)}</p>
                 <p className="text-sm text-muted-foreground">Academic year {m.academicYear}</p>
                 <p className="text-sm text-muted-foreground">{m.date}{m.age !== null ? ` · age ${m.age}` : ""}</p>
               </li>
             ))}
           </ol>
           <div>
-            <p className="text-sm font-semibold">Assumptions used</p>
+            <p className="text-sm font-semibold">{tx("Assumptions used")}</p>
             <ul className="mt-2 list-disc space-y-1 pl-5 text-sm text-muted-foreground">
               {result.assumptions.map((a) => <li key={a}>{a}</li>)}
             </ul>

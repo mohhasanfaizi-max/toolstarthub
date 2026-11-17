@@ -3,6 +3,7 @@
 import { useEffect, useId, useMemo, useRef, useState, type FormEvent, type KeyboardEvent as ReactKeyboardEvent } from "react";
 import { ToolError } from "@/components/tools/ToolForm";
 import { inspectSigFigExpression, type SigFigCalculatorSuccess, type SigFigInspection } from "@/lib/tools/significant-figures-expression";
+import { useTx } from "@/i18n/tool-text";
 
 const PRESETS = [1, 2, 3, 4, 5] as const;
 
@@ -55,6 +56,8 @@ function activePrecision(custom: string, selected: number | null): string {
 }
 
 export function SignificantFiguresCalculatorTool() {
+  const tx = useTx();
+
   const formId = useId();
   const formRef = useRef<HTMLFormElement>(null);
   const inputRef = useRef<HTMLInputElement>(null);
@@ -228,7 +231,7 @@ export function SignificantFiguresCalculatorTool() {
     <form ref={formRef} onSubmit={onSubmit} className="mx-auto w-full max-w-2xl">
       <div className="rounded-2xl border border-border bg-muted p-4 sm:p-6 lg:p-8">
         <label htmlFor={`${formId}-expression`} className="sr-only">
-          Expression
+          {tx("Expression")}
         </label>
         <input
           ref={inputRef}
@@ -258,7 +261,7 @@ export function SignificantFiguresCalculatorTool() {
         />
 
         <p id={`${formId}-status`} className="mt-2 min-h-6 text-sm leading-6 text-foreground" role="status" aria-live="polite">
-          <span className="font-medium">Sig figs:</span> {statusLabel(inspection)}
+          <span className="font-medium">{tx("Sig figs:")}</span> {statusLabel(inspection)}
           {inspection.state === "ready" && inspection.result.statusNote ? (
             <span className="text-muted-foreground"> {inspection.result.statusNote}</span>
           ) : null}
@@ -296,7 +299,7 @@ export function SignificantFiguresCalculatorTool() {
 
         <div className="mt-2 grid grid-cols-[minmax(0,1.35fr)_minmax(2.75rem,0.8fr)_minmax(2.75rem,0.8fr)_minmax(0,1.35fr)] gap-2 sm:mt-2.5 sm:gap-2.5">
           <button type="button" className={clearKey} onClick={clearAll}>
-            Clear
+            {tx("Clear")}
           </button>
           <button type="button" className={numberKey} aria-label="Backspace" onClick={backspace}>
             ⌫
@@ -305,13 +308,13 @@ export function SignificantFiguresCalculatorTool() {
             .
           </button>
           <button type="submit" className={solveKey}>
-            Solve
+            {tx("Solve")}
           </button>
         </div>
 
         <div className="mt-5">
           <p id={`${formId}-round`} className="text-sm font-medium text-foreground">
-            Round to significant figures: <span className="font-normal text-muted-foreground">(optional)</span>
+            {tx("Round to significant figures:")} <span className="font-normal text-muted-foreground">{tx("(optional)")}</span>
           </p>
           <div className="mt-2 flex flex-wrap items-center gap-2" role="group" aria-labelledby={`${formId}-round`}>
             {PRESETS.map((preset) => {
@@ -366,7 +369,7 @@ export function SignificantFiguresCalculatorTool() {
       <div className="mt-4 grid gap-4 md:grid-cols-2">
         <section aria-labelledby={`${formId}-result`} className="rounded-2xl bg-accent-soft px-4 py-4 sm:px-5 sm:py-5">
           <h2 id={`${formId}-result`} className="text-sm font-semibold text-foreground">
-            Result
+            {tx("Result")}
           </h2>
           <div
             ref={resultRef}
@@ -380,7 +383,7 @@ export function SignificantFiguresCalculatorTool() {
 
         <section aria-labelledby={`${formId}-explanation`} className="rounded-2xl bg-[#eef0fa] px-4 py-4 sm:px-5 sm:py-5 dark:bg-[#1a1e2e]">
           <h2 id={`${formId}-explanation`} className="text-sm font-semibold text-foreground">
-            Explanation
+            {tx("Explanation")}
           </h2>
           <div className="mt-3 text-sm leading-6 text-foreground">
             {inspection.state === "invalid" ? (
@@ -392,7 +395,7 @@ export function SignificantFiguresCalculatorTool() {
                 ))}
               </ol>
             ) : (
-              <p>Enter a number to see the result and rounding suggestions.</p>
+              <p>{tx("Enter a number to see the result and rounding suggestions.")}</p>
             )}
           </div>
         </section>
@@ -428,6 +431,7 @@ function statusLabel(inspection: SigFigInspection): string {
 }
 
 function ResultBody({ result }: { result: SigFigCalculatorSuccess }) {
+  const tx = useTx();
   const [copied, setCopied] = useState(false);
 
   async function copy() {
@@ -458,7 +462,7 @@ function ResultBody({ result }: { result: SigFigCalculatorSuccess }) {
   return (
     <>
       <div>
-        <p className="text-sm text-muted-foreground">Value</p>
+        <p className="text-sm text-muted-foreground">{tx("Value")}</p>
         <p className="mt-1 break-words font-mono text-2xl font-semibold tracking-tight text-foreground">{result.value}</p>
       </div>
       <div>
@@ -469,14 +473,14 @@ function ResultBody({ result }: { result: SigFigCalculatorSuccess }) {
       </div>
       {result.scientific ? (
         <div>
-          <p className="text-sm text-muted-foreground">Scientific notation</p>
+          <p className="text-sm text-muted-foreground">{tx("Scientific notation")}</p>
           <p className="mt-1 break-words font-mono text-lg text-foreground">{result.scientific}</p>
         </div>
       ) : null}
       {result.roundedDisplay ? (
         <div>
           <p className="text-sm text-muted-foreground">
-            Rounded to {result.precision} significant {result.precision === 1 ? "figure" : "figures"}
+            {tx(`Rounded to ${result.precision} significant ${result.precision === 1 ? "figure" : "figures"}`)}
           </p>
           <p className="mt-1 break-words font-mono text-lg font-semibold text-foreground">{result.roundedDisplay}</p>
         </div>

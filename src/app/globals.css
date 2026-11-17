@@ -274,3 +274,19 @@
     color: transparent;
   }
 }
+
+
+/* RTL workspace: keep numeric and code fields left-to-right. */
+[dir="rtl"] input[inputmode="decimal"],
+[dir="rtl"] input[inputmode="numeric"],
+[dir="rtl"] input[type="number"],
+[dir="rtl"] input[type="date"],
+[dir="rtl"] input[type="time"],
+[dir="rtl"] textarea[data-ltr],
+[dir="rtl"] pre,
+[dir="rtl"] code,
+[dir="rtl"] .tabular-nums {
+  direction: ltr;
+  unicode-bidi: isolate;
+  text-align: left;
+}

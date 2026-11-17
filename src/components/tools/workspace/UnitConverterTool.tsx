@@ -12,6 +12,7 @@ import {
 } from "@/components/tools/ToolForm";
 import { CopyButton } from "@/components/tools/CopyButton";
 import { formatNumber } from "@/lib/tools/numbers";
+import { useTx } from "@/i18n/tool-text";
 import {
   convertLinear,
   convertTemperature,
@@ -23,6 +24,8 @@ import {
 } from "@/lib/tools/units";
 
 export function UnitConverterTool() {
+  const tx = useTx();
+
   const [category, setCategory] = useState<UnitCategoryId>("length");
   const [fromUnit, setFromUnit] = useState("meter");
   const [toUnit, setToUnit] = useState("foot");
@@ -76,7 +79,7 @@ export function UnitConverterTool() {
           >
             {unitCategories.map((item) => (
               <option key={item.id} value={item.id}>
-                {item.label}
+                {tx(item.label)}
               </option>
             ))}
           </select>
@@ -123,7 +126,7 @@ export function UnitConverterTool() {
       <div className="mt-6">
         <ToolActions>
           <Button type="button" variant="secondary" onClick={swap}>
-            Swap units
+            {tx("Swap units")}
           </Button>
           {converted.ok ? (
             <CopyButton value={formatNumber(converted.value)} />
@@ -133,7 +136,7 @@ export function UnitConverterTool() {
 
       <div className="mt-6">
         {value.trim() === "" ? (
-          <p className="text-sm text-muted-foreground">Enter a value to convert.</p>
+          <p className="text-sm text-muted-foreground">{tx("Enter a value to convert.")}</p>
         ) : converted.ok ? (
           <ToolOutput>
             <p className="text-3xl font-semibold break-all tabular-nums">

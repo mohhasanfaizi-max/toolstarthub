@@ -14,6 +14,7 @@ import {
 } from "@/components/tools/ToolForm";
 import { calculateCreditCardPayoff } from "@/lib/tools/credit-card-payoff";
 import { formatNumber } from "@/lib/tools/numbers";
+import { useTx } from "@/i18n/tool-text";
 
 function money(value: number) {
   return `$${formatNumber(value, 2)}`;
@@ -27,6 +28,8 @@ function estimatedMonth(months: number) {
 }
 
 export function CreditCardPayoffCalculatorTool() {
+  const tx = useTx();
+
   const [balance, setBalance] = useState("5000");
   const [apr, setApr] = useState("22");
   const [percent, setPercent] = useState("2");
@@ -74,7 +77,7 @@ export function CreditCardPayoffCalculatorTool() {
   return (
     <ToolPanel>
       <p className="text-sm leading-6 text-muted-foreground">
-        An estimate from the APR and payment rules you enter. Card issuers can bill interest on a different cycle, so this is not an exact statement.
+        {tx("An estimate from the APR and payment rules you enter. Card issuers can bill interest on a different cycle, so this is not an exact statement.")}
       </p>
       <div className="mt-4 grid gap-4 sm:grid-cols-2">
         <ToolField id="card-balance" label="Current balance (USD)">
@@ -99,9 +102,9 @@ export function CreditCardPayoffCalculatorTool() {
       {error ? <div className="mt-4"><ToolError>{error}</ToolError></div> : null}
       <div className="mt-4">
         <ToolActions>
-          <Button type="button" onClick={calculate}>Calculate</Button>
+          <Button type="button" onClick={calculate}>{tx("Calculate")}</Button>
           <CopyButton value={summary} label="Copy result" />
-          <Button type="button" variant="ghost" onClick={reset}>Reset</Button>
+          <Button type="button" variant="ghost" onClick={reset}>{tx("Reset")}</Button>
         </ToolActions>
       </div>
       {result?.ok ? (
@@ -117,18 +120,18 @@ export function CreditCardPayoffCalculatorTool() {
             ]}
           />
           <p className="text-sm leading-6 text-muted-foreground">
-            The month count starts from the month you begin these payments. A lender may post interest on a different schedule.
+            {tx("The month count starts from the month you begin these payments. A lender may post interest on a different schedule.")}
           </p>
           <ToolOutput label="Payment scenarios">
-            <p className="mb-2 text-sm leading-6">Same balance and APR. No scenario is labeled as the better choice.</p>
+            <p className="mb-2 text-sm leading-6">{tx("Same balance and APR. No scenario is labeled as the better choice.")}</p>
             <div className="overflow-auto">
               <table className="w-full min-w-[28rem] text-left text-sm">
                 <thead>
                   <tr className="border-b border-border">
-                    <th className="py-2 pr-3 font-medium">Scenario</th>
-                    <th className="py-2 pr-3 font-medium">Payment</th>
-                    <th className="py-2 pr-3 font-medium">Months</th>
-                    <th className="py-2 font-medium">Total interest</th>
+                    <th className="py-2 pr-3 font-medium">{tx("Scenario")}</th>
+                    <th className="py-2 pr-3 font-medium">{tx("Payment")}</th>
+                    <th className="py-2 pr-3 font-medium">{tx("Months")}</th>
+                    <th className="py-2 font-medium">{tx("Total interest")}</th>
                   </tr>
                 </thead>
                 <tbody>
@@ -159,11 +162,11 @@ export function CreditCardPayoffCalculatorTool() {
                 <table className="w-full min-w-[32rem] text-left text-sm">
                   <thead>
                     <tr className="border-b border-border">
-                      <th className="py-2 pr-3 font-medium">Month</th>
-                      <th className="py-2 pr-3 font-medium">Payment</th>
-                      <th className="py-2 pr-3 font-medium">Interest</th>
-                      <th className="py-2 pr-3 font-medium">Principal</th>
-                      <th className="py-2 font-medium">Balance</th>
+                      <th className="py-2 pr-3 font-medium">{tx("Month")}</th>
+                      <th className="py-2 pr-3 font-medium">{tx("Payment")}</th>
+                      <th className="py-2 pr-3 font-medium">{tx("Interest")}</th>
+                      <th className="py-2 pr-3 font-medium">{tx("Principal")}</th>
+                      <th className="py-2 font-medium">{tx("Balance")}</th>
                     </tr>
                   </thead>
                   <tbody>

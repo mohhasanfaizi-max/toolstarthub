@@ -13,12 +13,15 @@ import {
 } from "@/components/tools/ToolForm";
 import { calculateRentVsBuy } from "@/lib/tools/rent-vs-buy";
 import { formatNumber } from "@/lib/tools/numbers";
+import { useTx } from "@/i18n/tool-text";
 
 function money(value: number) {
   return `$${formatNumber(value, 2)}`;
 }
 
 export function RentVsBuyCalculatorTool() {
+  const tx = useTx();
+
   const [rent, setRent] = useState("1800");
   const [rentGrowth, setRentGrowth] = useState("0");
   const [price, setPrice] = useState("350000");
@@ -82,7 +85,7 @@ export function RentVsBuyCalculatorTool() {
   return (
     <ToolPanel>
       <p className="text-sm leading-6 text-muted-foreground">
-        An estimate from the rent change and home-value change you enter. Those rates are assumptions, not forecasts. The page does not say which choice is better.
+        {tx("An estimate from the rent change and home-value change you enter. Those rates are assumptions, not forecasts. The page does not say which choice is better.")}
       </p>
       <div className="mt-4 grid gap-4 sm:grid-cols-2">
         <ToolField id="rvb-rent" label="Monthly rent (USD)">
@@ -125,9 +128,9 @@ export function RentVsBuyCalculatorTool() {
       {error ? <div className="mt-4"><ToolError>{error}</ToolError></div> : null}
       <div className="mt-4">
         <ToolActions>
-          <Button type="button" onClick={calculate}>Calculate</Button>
+          <Button type="button" onClick={calculate}>{tx("Calculate")}</Button>
           <CopyButton value={summary} label="Copy result" />
-          <Button type="button" variant="ghost" onClick={reset}>Reset</Button>
+          <Button type="button" variant="ghost" onClick={reset}>{tx("Reset")}</Button>
         </ToolActions>
       </div>
       {result?.ok ? (
@@ -145,7 +148,7 @@ export function RentVsBuyCalculatorTool() {
             ]}
           />
           <p className="text-sm leading-6 text-muted-foreground">
-            Net buying cost is cash paid minus estimated equity. A positive difference means the rent total is higher than that net buying cost under these assumptions.
+            {tx("Net buying cost is cash paid minus estimated equity. A positive difference means the rent total is higher than that net buying cost under these assumptions.")}
           </p>
         </div>
       ) : null}

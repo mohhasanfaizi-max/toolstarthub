@@ -105,7 +105,8 @@ type ToolPrivacyNoteProps = {
 };
 
 export function ToolPrivacyNote({ children }: ToolPrivacyNoteProps) {
-  return <p className="mt-4 text-sm leading-6 text-muted-foreground">{children}</p>;
+  const tx = useTx();
+  return <p className="mt-4 text-sm leading-6 text-muted-foreground">{typeof children === "string" ? tx(children) : children}</p>;
 }
 
 type ToolChoiceOption<T extends string> = {

@@ -6,8 +6,11 @@ import { CopyButton } from "@/components/tools/CopyButton";
 import { ToolActions, ToolError, ToolField, ToolPanel, ToolStatGrid, toolControlClass } from "@/components/tools/ToolForm";
 import { calculateAverage } from "@/lib/tools/average";
 import { formatNumber } from "@/lib/tools/numbers";
+import { useTx } from "@/i18n/tool-text";
 
 export function AverageCalculatorTool() {
+  const tx = useTx();
+
   const [raw, setRaw] = useState("1, 2, 2, 3");
   const [error, setError] = useState("");
   const [result, setResult] = useState<ReturnType<typeof calculateAverage>>();
@@ -29,7 +32,7 @@ export function AverageCalculatorTool() {
   return (
     <ToolPanel>
       <p className="text-sm leading-6 text-muted-foreground">
-        The mean, median, and mode are calculated in this tab from the numbers you paste.
+        {tx("The mean, median, and mode are calculated in this tab from the numbers you paste.")}
       </p>
       <div className="mt-4">
         <ToolField id="average-values" label="Numbers" hint="Separate values with commas, spaces, or new lines.">
@@ -39,9 +42,9 @@ export function AverageCalculatorTool() {
       {error ? <div className="mt-4"><ToolError>{error}</ToolError></div> : null}
       <div className="mt-4">
         <ToolActions>
-          <Button type="button" onClick={calculate}>Calculate</Button>
+          <Button type="button" onClick={calculate}>{tx("Calculate")}</Button>
           <CopyButton value={summary} label="Copy result" />
-          <Button type="button" variant="ghost" onClick={() => { setRaw("1, 2, 2, 3"); setError(""); setResult(undefined); }}>Reset</Button>
+          <Button type="button" variant="ghost" onClick={() => { setRaw("1, 2, 2, 3"); setError(""); setResult(undefined); }}>{tx("Reset")}</Button>
         </ToolActions>
       </div>
       {result?.ok ? (

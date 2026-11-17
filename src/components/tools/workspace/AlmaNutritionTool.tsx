@@ -18,6 +18,7 @@ import { formatNumber } from "@/lib/tools/numbers";
 import { AlmaOldEntriesReview } from "@/components/tools/workspace/AlmaOldEntriesReview";
 import { listCandidates } from "@/lib/tools/alma-oldfix";
 import { ALMA_OLD_ENTRIES_NOTICE, dismissNotice, shouldShowOldEntriesNotice } from "@/lib/tools/alma-notice";
+import { useTx } from "@/i18n/tool-text";
 import {
   ACTIVITY_MULTIPLIERS,
   DEFICIT_OPTIONS,
@@ -158,6 +159,7 @@ function TabButtons<T extends string>({
   onChange: (value: T) => void;
   options: { id: T; label: string }[];
 }) {
+  const tx = useTx();
   return (
     <div className="flex flex-wrap gap-2" role="tablist">
       {options.map((option) => {
@@ -175,7 +177,7 @@ function TabButtons<T extends string>({
                 : "border-border bg-background text-foreground hover:border-amber-400"
             }`}
           >
-            {option.label}
+            {tx(option.label)}
           </button>
         );
       })}
@@ -184,6 +186,8 @@ function TabButtons<T extends string>({
 }
 
 export function AlmaNutritionTool() {
+  const tx = useTx();
+
   const [tab, setTab] = useState<TabId>("dashboard");
   const [calcTab, setCalcTab] = useState<CalcTab>("calories");
   const [units, setUnits] = useState<UnitSystem>("metric");
@@ -816,12 +820,10 @@ export function AlmaNutritionTool() {
   return (
     <ToolPanel className="border-emerald-100/80">
       <p className="text-base font-medium text-emerald-800 dark:text-emerald-300">
-        Your Smart AI Nutrition Coach for Free Nutrition Calculations, Food Tracking and Healthy Meal Planning.
+        {tx("Your Smart AI Nutrition Coach for Free Nutrition Calculations, Food Tracking and Healthy Meal Planning.")}
       </p>
       <p className="mt-2 text-sm leading-6 text-muted-foreground">
-        Alma helps you estimate daily calories, log meals, watch macros and micronutrients, and plan groceries. It is a free
-        educational tool on Tools Star Hub — not a substitute for professional medical or dietetic advice, and not an official
-        mobile app store listing or grocery delivery service.
+        {tx("Alma helps you estimate daily calories, log meals, watch macros and micronutrients, and plan groceries. It is a free educational tool on Tools Star Hub — not a substitute for professional medical or dietetic advice, and not an official mobile app store listing or grocery delivery service.")}
       </p>
 
       <div className="mt-5">
@@ -832,15 +834,15 @@ export function AlmaNutritionTool() {
         <div className="mt-6 space-y-6">
           <div className="grid gap-3 sm:grid-cols-3">
             <div className="rounded-2xl border border-emerald-200 bg-emerald-50/80 px-4 py-4 dark:border-emerald-900 dark:bg-emerald-950/30">
-              <p className="text-sm text-muted-foreground">Daily calorie target</p>
+              <p className="text-sm text-muted-foreground">{tx("Daily calorie target")}</p>
               <p className="mt-1 text-2xl font-semibold text-emerald-800 dark:text-emerald-200">{calorieTarget ? formatKcal(calorieTarget) : "Set in Calculators"}</p>
             </div>
             <div className="rounded-2xl border border-border bg-background/80 px-4 py-4">
-              <p className="text-sm text-muted-foreground">Calories consumed</p>
+              <p className="text-sm text-muted-foreground">{tx("Calories consumed")}</p>
               <p className="mt-1 text-2xl font-semibold text-foreground">{formatKcal(todayTotals.calories)}</p>
             </div>
             <div className="rounded-2xl border border-amber-200 bg-amber-50/80 px-4 py-4 dark:border-amber-900 dark:bg-amber-950/20">
-              <p className="text-sm text-muted-foreground">Remaining calories</p>
+              <p className="text-sm text-muted-foreground">{tx("Remaining calories")}</p>
               <p className="mt-1 text-2xl font-semibold text-amber-800 dark:text-amber-200">
                 {typeof remaining === "number" ? formatKcal(remaining) : "—"}
               </p>
@@ -871,7 +873,7 @@ export function AlmaNutritionTool() {
           <div className="rounded-2xl border border-border bg-background/70 p-4">
             <div className="flex flex-wrap items-center justify-between gap-3">
               <div>
-                <h3 className="text-base font-semibold text-foreground">Water intake</h3>
+                <h3 className="text-base font-semibold text-foreground">{tx("Water intake")}</h3>
                 <p className="text-sm text-muted-foreground">{day.waterMl} ml logged (about {Math.round(day.waterMl / 250)} glasses of 250 ml).</p>
               </div>
               <ToolActions>
@@ -886,8 +888,8 @@ export function AlmaNutritionTool() {
           </div>
 
           <div className="rounded-2xl border border-border bg-background/70 p-4">
-            <h3 className="text-base font-semibold text-foreground">Weekly progress</h3>
-            <p className="mt-1 text-sm text-muted-foreground">Calories logged over the last seven days, stored only in this browser.</p>
+            <h3 className="text-base font-semibold text-foreground">{tx("Weekly progress")}</h3>
+            <p className="mt-1 text-sm text-muted-foreground">{tx("Calories logged over the last seven days, stored only in this browser.")}</p>
             <div className="mt-4 flex h-40 items-end gap-2">
               {weekBars.map((item) => (
                 <div key={item.date} className="flex h-full flex-1 flex-col items-center justify-end gap-1">
@@ -903,9 +905,9 @@ export function AlmaNutritionTool() {
           </div>
 
           <div>
-            <h3 className="text-base font-semibold text-foreground">Today&apos;s food diary</h3>
+            <h3 className="text-base font-semibold text-foreground">{tx("Today's food diary")}</h3>
             {todayTotals.count === 0 ? (
-              <p className="mt-2 text-sm text-muted-foreground">No foods logged yet. Open the Food Tracker to add breakfast, lunch, dinner or snacks.</p>
+              <p className="mt-2 text-sm text-muted-foreground">{tx("No foods logged yet. Open the Food Tracker to add breakfast, lunch, dinner or snacks.")}</p>
             ) : (
               <ul className="mt-3 space-y-2 text-sm">
                 {dayEntries(day).map((item) => (
@@ -993,9 +995,7 @@ export function AlmaNutritionTool() {
           ) : null}
           {calcTab === "micros" ? (
             <p className="text-sm leading-6 text-muted-foreground">
-              General adult reference values below are adapted from publicly described NIH Office of Dietary Supplements / DRI
-              figures. They are educational population-style numbers, not personal medical requirements. Today&apos;s logged
-              totals only include micronutrients that a sample food, Open Food Facts listing, or custom entry actually provided.
+              {tx("General adult reference values below are adapted from publicly described NIH Office of Dietary Supplements / DRI figures. They are educational population-style numbers, not personal medical requirements. Today's logged totals only include micronutrients that a sample food, Open Food Facts listing, or custom entry actually provided.")}
             </p>
           ) : null}
 
@@ -1003,22 +1003,22 @@ export function AlmaNutritionTool() {
 
           <ToolActions>
             {calcTab === "protein" ? (
-              <Button type="button" onClick={runProteinCalc}>Calculate</Button>
+              <Button type="button" onClick={runProteinCalc}>{tx("Calculate")}</Button>
             ) : calcTab === "deficit" ? (
-              <Button type="button" onClick={runDeficitCalc}>Calculate</Button>
+              <Button type="button" onClick={runDeficitCalc}>{tx("Calculate")}</Button>
             ) : calcTab === "macros" ? (
-              <Button type="button" onClick={runMacrosCalc}>Calculate</Button>
+              <Button type="button" onClick={runMacrosCalc}>{tx("Calculate")}</Button>
             ) : calcTab === "micros" ? (
-              <Button type="button" onClick={() => runEnergy()}>Refresh from body details</Button>
+              <Button type="button" onClick={() => runEnergy()}>{tx("Refresh from body details")}</Button>
             ) : (
-              <Button type="button" onClick={() => runEnergy()}>Calculate</Button>
+              <Button type="button" onClick={() => runEnergy()}>{tx("Calculate")}</Button>
             )}
             <CopyButton value={energySummary} label="Copy Results" />
             <Button type="button" variant="secondary" onClick={() => energySummary && shareText("My Alma nutrition results", energySummary)} disabled={!energySummary}>
               <Icon name="link" className="size-4" />
-              Share Results
+              {tx("Share Results")}
             </Button>
-            <Button type="button" variant="ghost" onClick={resetForm}>Reset</Button>
+            <Button type="button" variant="ghost" onClick={resetForm}>{tx("Reset")}</Button>
           </ToolActions>
           {shareNote ? <p className="text-sm text-muted-foreground">{shareNote}</p> : null}
 
@@ -1046,7 +1046,7 @@ export function AlmaNutritionTool() {
                 }
               />
               <div className="rounded-2xl bg-amber-50 px-4 py-4 text-sm leading-6 text-foreground dark:bg-amber-950/20">
-                <p className="font-medium text-amber-800 dark:text-amber-200">How this was calculated</p>
+                <p className="font-medium text-amber-800 dark:text-amber-200">{tx("How this was calculated")}</p>
                 <p className="mt-2">{tdeeResult.formula}</p>
               </div>
             </div>
@@ -1095,10 +1095,10 @@ export function AlmaNutritionTool() {
               <table className="mt-2 w-full min-w-[32rem] text-left text-sm">
                 <thead>
                   <tr className="border-b border-border text-muted-foreground">
-                    <th className="py-2 pr-3 font-medium">Nutrient</th>
-                    <th className="py-2 pr-3 font-medium">General reference</th>
-                    <th className="py-2 pr-3 font-medium">Logged today</th>
-                    <th className="py-2 font-medium">Coverage</th>
+                    <th className="py-2 pr-3 font-medium">{tx("Nutrient")}</th>
+                    <th className="py-2 pr-3 font-medium">{tx("General reference")}</th>
+                    <th className="py-2 pr-3 font-medium">{tx("Logged today")}</th>
+                    <th className="py-2 font-medium">{tx("Coverage")}</th>
                   </tr>
                 </thead>
                 <tbody>
@@ -1132,14 +1132,14 @@ export function AlmaNutritionTool() {
                 onClick={openReview}
                 className="shrink-0 rounded-full bg-emerald-700 px-3 py-1 text-xs font-medium text-white hover:bg-emerald-800 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-600 focus-visible:ring-offset-2"
               >
-                Review old entries
+                {tx("Review old entries")}
               </button>
               <button
                 type="button"
                 onClick={dismissOldNotice}
                 className="shrink-0 rounded-full border border-emerald-700 px-3 py-1 text-xs font-medium text-emerald-800 hover:bg-emerald-50 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-600 focus-visible:ring-offset-2 dark:border-emerald-400 dark:text-emerald-200 dark:hover:bg-emerald-950"
               >
-                Dismiss<span className="sr-only"> packaged-food servings notice</span>
+                Dismiss<span className="sr-only"> {tx("packaged-food servings notice")}</span>
               </button>
             </div>
           ) : null}
@@ -1152,9 +1152,9 @@ export function AlmaNutritionTool() {
             />
           ) : ready && listCandidates(state).length > 0 ? (
             <p className="text-xs text-muted-foreground">
-              Older packaged-food servings found.{" "}
+              {tx("Older packaged-food servings found.")}{" "}
               <button type="button" onClick={openReview} className="font-medium text-emerald-800 underline underline-offset-2 hover:text-emerald-900 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-600 dark:text-emerald-200">
-                Review old packaged-food entries
+                {tx("Review old packaged-food entries")}
               </button>
             </p>
           ) : null}
@@ -1198,8 +1198,8 @@ export function AlmaNutritionTool() {
           </div>
           {entryError ? <ToolError>{entryError}</ToolError> : null}
           <div className="rounded-2xl border border-border p-3">
-            <p className="text-sm font-medium text-foreground">Sample reference foods</p>
-            <p className="mt-1 text-xs text-muted-foreground">Typical USDA-style values, clearly labelled and rounded. Alma never invents a precise packaged-food number.</p>
+            <p className="text-sm font-medium text-foreground">{tx("Sample reference foods")}</p>
+            <p className="mt-1 text-xs text-muted-foreground">{tx("Typical USDA-style values, clearly labelled and rounded. Alma never invents a precise packaged-food number.")}</p>
             <ul className="mt-3 max-h-56 space-y-2 overflow-auto">
               {sampleHits.map((food) => (
                 <li key={food.id} className="flex flex-wrap items-center justify-between gap-2 rounded-xl bg-background px-3 py-2 text-sm">
@@ -1209,16 +1209,16 @@ export function AlmaNutritionTool() {
                       {food.servingLabel} · {formatKcal(food.calories)} · P {food.protein}g · C {food.carbs}g · F {food.fat}g · {food.source === "custom" ? "Your entry" : "Sample"}
                     </span>
                   </span>
-                  <Button type="button" variant="secondary" onClick={() => addFood(food)}>Add</Button>
+                  <Button type="button" variant="secondary" onClick={() => addFood(food)}>{tx("Add")}</Button>
                 </li>
               ))}
             </ul>
           </div>
           <div className="rounded-2xl border border-amber-200/80 p-3">
-            <p className="text-sm font-medium text-foreground">Packaged foods (Open Food Facts)</p>
-            <p className="mt-1 text-xs text-muted-foreground">Drinks labelled per 100 ml are listed in millilitres and logged in Millilitres or ml Servings, never converted to grams. Products whose basis is unclear aren&apos;t included; use sample foods or custom entry for those.</p>
-            <p className="mt-1 text-xs text-muted-foreground">Sample foods filter as you type. For packaged foods, enter at least two letters, then select Search packaged foods.</p>
-            <Button type="button" variant="secondary" disabled={offLoading || query.trim().length < 2 || query.trim().length > 80} onClick={searchPackagedFoods}>Search packaged foods</Button>
+            <p className="text-sm font-medium text-foreground">{tx("Packaged foods (Open Food Facts)")}</p>
+            <p className="mt-1 text-xs text-muted-foreground">{tx("Drinks labelled per 100 ml are listed in millilitres and logged in Millilitres or ml Servings, never converted to grams. Products whose basis is unclear aren't included; use sample foods or custom entry for those.")}</p>
+            <p className="mt-1 text-xs text-muted-foreground">{tx("Sample foods filter as you type. For packaged foods, enter at least two letters, then select Search packaged foods.")}</p>
+            <Button type="button" variant="secondary" disabled={offLoading || query.trim().length < 2 || query.trim().length > 80} onClick={searchPackagedFoods}>{tx("Search packaged foods")}</Button>
             <p role="status" className="mt-1 text-xs text-muted-foreground">{packagedNote || "Results use the displayed gram or millilitre portion (or 100 g / 100 ml when the label gives no serving). Check the package label."}</p>
             <ul className="mt-3 max-h-48 space-y-2 overflow-auto">
               {packagedFoods.map((food) => (
@@ -1229,13 +1229,13 @@ export function AlmaNutritionTool() {
                       {food.servingLabel} · {formatKcal(food.calories)} · P {food.protein}g · C {food.carbs}g · F {food.fat}g
                     </span>
                   </span>
-                  <Button type="button" variant="secondary" onClick={() => addFood(food)}>Add</Button>
+                  <Button type="button" variant="secondary" onClick={() => addFood(food)}>{tx("Add")}</Button>
                 </li>
               ))}
             </ul>
           </div>
           <div className="rounded-2xl border border-border p-4">
-            <h3 className="text-base font-semibold text-foreground">Custom food from a label</h3>
+            <h3 className="text-base font-semibold text-foreground">{tx("Custom food from a label")}</h3>
             <div className="mt-3 grid gap-3 sm:grid-cols-2">
               <ToolField id="custom-name" label="Name">
                 <input id="custom-name" value={customName} onChange={(event) => setCustomName(event.target.value)} className={toolControlClass} />
@@ -1260,14 +1260,14 @@ export function AlmaNutritionTool() {
               </ToolField>
             </div>
             <div className="mt-4">
-              <Button type="button" onClick={addCustomFood}>Save and add custom food</Button>
+              <Button type="button" onClick={addCustomFood}>{tx("Save and add custom food")}</Button>
             </div>
           </div>
           {MEAL_TYPES.map((item) => (
             <div key={item.id}>
-              <h3 className="text-base font-semibold capitalize text-foreground">{item.label}</h3>
+              <h3 className="text-base font-semibold capitalize text-foreground">{tx(item.label)}</h3>
               {day.meals[item.id].length === 0 ? (
-                <p className="mt-1 text-sm text-muted-foreground">No items yet.</p>
+                <p className="mt-1 text-sm text-muted-foreground">{tx("No items yet.")}</p>
               ) : (
                 <ul className="mt-2 space-y-2">
                   {day.meals[item.id].map((entry) => (
@@ -1281,8 +1281,8 @@ export function AlmaNutritionTool() {
                           </p>
                         </div>
                         <div className="flex gap-2">
-                          <Button type="button" variant="secondary" onClick={() => setEditingId(entry.id)}>Edit</Button>
-                          <Button type="button" variant="ghost" onClick={() => deleteEntry(entry)}>Delete</Button>
+                          <Button type="button" variant="secondary" onClick={() => setEditingId(entry.id)}>{tx("Edit")}</Button>
+                          <Button type="button" variant="ghost" onClick={() => deleteEntry(entry)}>{tx("Delete")}</Button>
                         </div>
                       </div>
                       {editingId === entry.id ? (
@@ -1298,7 +1298,7 @@ export function AlmaNutritionTool() {
                           <Button type="button" onClick={() => {
                             const input = document.getElementById(`edit-${entry.id}`) as HTMLInputElement | null;
                             saveEditedEntry(entry, Number(input?.value ?? entry.servings));
-                          }}>Save</Button>
+                          }}>{tx("Save")}</Button>
                         </div>
                       ) : null}
                     </li>
@@ -1308,7 +1308,7 @@ export function AlmaNutritionTool() {
             </div>
           ))}
           <div className="rounded-2xl bg-emerald-50 px-4 py-4 text-sm dark:bg-emerald-950/20">
-            <p className="font-medium text-emerald-800 dark:text-emerald-200">Day total</p>
+            <p className="font-medium text-emerald-800 dark:text-emerald-200">{tx("Day total")}</p>
             <p className="mt-1">{formatKcal(todayTotals.calories)} · Protein {formatGrams(todayTotals.protein)} · Carbs {formatGrams(todayTotals.carbs)} · Fat {formatGrams(todayTotals.fat)}</p>
           </div>
         </div>
@@ -1317,7 +1317,7 @@ export function AlmaNutritionTool() {
       {tab === "planner" ? (
         <div className="mt-6 space-y-5">
           <p className="text-sm leading-6 text-muted-foreground">
-            Drop suggested meals onto any day this week, edit the plan, then build a grocery list. Plans stay in this browser.
+            {tx("Drop suggested meals onto any day this week, edit the plan, then build a grocery list. Plans stay in this browser.")}
           </p>
           <div className="grid gap-3 sm:grid-cols-2">
             {MEAL_TEMPLATES.map((template) => {
@@ -1337,24 +1337,24 @@ export function AlmaNutritionTool() {
             })}
           </div>
           <ToolActions>
-            <Button type="button" onClick={() => fillSampleDay(date)}>Fill a sample day</Button>
-            <Button type="button" variant="secondary" onClick={rebuildGrocery}>Build grocery list</Button>
+            <Button type="button" onClick={() => fillSampleDay(date)}>{tx("Fill a sample day")}</Button>
+            <Button type="button" variant="secondary" onClick={rebuildGrocery}>{tx("Build grocery list")}</Button>
           </ToolActions>
           <div className="space-y-4">
             {weekDates.map((dayKey) => (
               <div key={dayKey} className="rounded-2xl border border-border p-4">
                 <div className="flex flex-wrap items-center justify-between gap-2">
                   <h3 className="font-semibold text-foreground">{dayKey}</h3>
-                  <Button type="button" variant="ghost" onClick={() => fillSampleDay(dayKey)}>Fill sample meals</Button>
+                  <Button type="button" variant="ghost" onClick={() => fillSampleDay(dayKey)}>{tx("Fill sample meals")}</Button>
                 </div>
                 {(state.weekPlan[dayKey] ?? []).length === 0 ? (
-                  <p className="mt-2 text-sm text-muted-foreground">No planned meals yet.</p>
+                  <p className="mt-2 text-sm text-muted-foreground">{tx("No planned meals yet.")}</p>
                 ) : (
                   <ul className="mt-2 space-y-2 text-sm">
                     {(state.weekPlan[dayKey] ?? []).map((item) => (
                       <li key={item.id} className="flex flex-wrap items-center justify-between gap-2">
                         <span className="capitalize">{item.meal} · {item.name} · {formatKcal(item.calories)}</span>
-                        <Button type="button" variant="ghost" onClick={() => removePlanItem(dayKey, item.id)}>Remove</Button>
+                        <Button type="button" variant="ghost" onClick={() => removePlanItem(dayKey, item.id)}>{tx("Remove")}</Button>
                       </li>
                     ))}
                   </ul>
@@ -1363,9 +1363,9 @@ export function AlmaNutritionTool() {
             ))}
           </div>
           <div className="rounded-2xl border border-amber-200 p-4">
-            <h3 className="text-base font-semibold text-foreground">Grocery list</h3>
+            <h3 className="text-base font-semibold text-foreground">{tx("Grocery list")}</h3>
             {state.grocery.length === 0 ? (
-              <p className="mt-2 text-sm text-muted-foreground">Build a list from this week&apos;s planned meals.</p>
+              <p className="mt-2 text-sm text-muted-foreground">{tx("Build a list from this week's planned meals.")}</p>
             ) : (
               <ul className="mt-3 space-y-2">
                 {state.grocery.map((item) => (
@@ -1387,7 +1387,7 @@ export function AlmaNutritionTool() {
             )}
           </div>
           <div className="rounded-2xl border border-border p-4">
-            <h3 className="text-base font-semibold text-foreground">Food substitutions</h3>
+            <h3 className="text-base font-semibold text-foreground">{tx("Food substitutions")}</h3>
             <ToolField id="alma-sub" label="Starting food">
               <select id="alma-sub" value={subFood} onChange={(event) => setSubFood(event.target.value)} className={toolControlClass}>
                 {SAMPLE_FOODS.filter((food) => substitutionsFor(food.id).length > 0).map((food) => (
@@ -1410,11 +1410,7 @@ export function AlmaNutritionTool() {
       {tab === "coach" ? (
         <div className="mt-6 space-y-4">
           <p className="text-sm leading-6 text-muted-foreground">
-            Ask about calories, protein, meal balance or micronutrients. Each question sends your question, saved targets,
-            selected diary day&apos;s calorie and macro totals, food-entry count, water intake and food names to this site.
-            When configured, Gemini receives your question and a summary (including up to eight food names).
-            Otherwise, or if AI fails, the server returns a labelled educational rule-based reply.
-            Avoid sensitive details. Neither option is medical advice; see the privacy policy for the exact fields.
+            {tx("Ask about calories, protein, meal balance or micronutrients. Each question sends your question, saved targets, selected diary day's calorie and macro totals, food-entry count, water intake and food names to this site. When configured, Gemini receives your question and a summary (including up to eight food names). Otherwise, or if AI fails, the server returns a labelled educational rule-based reply. Avoid sensitive details. Neither option is medical advice; see the privacy policy for the exact fields.")}
           </p>
           <div className="flex flex-wrap gap-2">
             {COACH_PROMPTS.map((prompt) => (
@@ -1433,7 +1429,7 @@ export function AlmaNutritionTool() {
           </div>
           <div className="max-h-80 space-y-3 overflow-auto rounded-2xl border border-border bg-background/70 p-4">
             {coachMessages.length === 0 ? (
-              <p className="text-sm text-muted-foreground">No questions yet. Try “How much protein do I need?”</p>
+              <p className="text-sm text-muted-foreground">{tx("No questions yet. Try “How much protein do I need?”")}</p>
             ) : (
               coachMessages.map((message, index) => (
                 <div key={`${message.role}-${index}`} className={message.role === "user" ? "text-sm" : "rounded-xl bg-emerald-50 px-3 py-3 text-sm dark:bg-emerald-950/20"}>
@@ -1451,7 +1447,7 @@ export function AlmaNutritionTool() {
           </ToolField>
           <ToolActions>
             <Button type="button" onClick={() => askCoach()} disabled={coachLoading}>{coachLoading ? "Thinking…" : "Ask Alma"}</Button>
-            <Button type="button" variant="ghost" onClick={() => { setCoachMessages([]); setCoachError(""); }}>Clear conversation</Button>
+            <Button type="button" variant="ghost" onClick={() => { setCoachMessages([]); setCoachError(""); }}>{tx("Clear conversation")}</Button>
           </ToolActions>
         </div>
       ) : null}

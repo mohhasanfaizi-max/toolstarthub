@@ -5,6 +5,7 @@ import { CopyButton } from "@/components/tools/CopyButton";
 import { ToolError, ToolPanel, toolControlClass } from "@/components/tools/ToolForm";
 import { DEFAULT_RULES, calculateFantasyPoints, parseSavedRules, type ScoringRule, type Sport } from "@/lib/tools/fantasy-points";
 import { goldBtn, goldCard, goldGhost, goldTab } from "./goldUi";
+import { useTx } from "@/i18n/tool-text";
 
 const SPORTS: Array<{ id: Sport; label: string }> = [
   { id: "cricket", label: "Cricket" },
@@ -14,6 +15,8 @@ const SPORTS: Array<{ id: Sport; label: string }> = [
 const storageKey = (sport: Sport) => `tsh-fantasy-rules-${sport}`;
 
 export function FantasyPointCalculatorTool() {
+  const tx = useTx();
+
   const [sport, setSport] = useState<Sport>("cricket");
   const [rules, setRules] = useState<ScoringRule[]>(DEFAULT_RULES.cricket);
   const [stats, setStats] = useState<Record<string, string>>({});
@@ -77,16 +80,16 @@ export function FantasyPointCalculatorTool() {
         ))}
       </div>
       <p className="mt-3 text-sm text-muted-foreground">
-        Default values are illustrative only and do not match any particular fantasy platform. Edit them to match your league.
+        {tx("Default values are illustrative only and do not match any particular fantasy platform. Edit them to match your league.")}
       </p>
 
       <fieldset className="mt-5">
-        <legend className="text-sm font-semibold">Player stats for one match</legend>
+        <legend className="text-sm font-semibold">{tx("Player stats for one match")}</legend>
         <div className="mt-3 grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
           {rules.map((r) => (
             <div key={r.id}>
               <label htmlFor={`fp-${r.id}`} className="block text-sm font-medium">
-                {r.label} <span className="text-xs text-muted-foreground">({r.points > 0 ? "+" : ""}{r.points} each)</span>
+                {tx(r.label)} <span className="text-xs text-muted-foreground">({r.points > 0 ? "+" : ""}{r.points} each)</span>
               </label>
               <input
                 id={`fp-${r.id}`}
@@ -110,22 +113,22 @@ export function FantasyPointCalculatorTool() {
 
       {editing ? (
         <div className="mt-4 rounded-2xl border border-[#C9A227]/40 p-4">
-          <p className="text-sm font-semibold">Points per unit</p>
+          <p className="text-sm font-semibold">{tx("Points per unit")}</p>
           <div className="mt-3 grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
             {rules.map((r) => (
               <div key={r.id}>
-                <label htmlFor={`fr-${r.id}`} className="block text-sm">{r.label}</label>
+                <label htmlFor={`fr-${r.id}`} className="block text-sm">{tx(r.label)}</label>
                 <input id={`fr-${r.id}`} type="number" step="0.1" value={r.points} onChange={(e) => updateRule(r.id, e.target.value)} className={toolControlClass} />
               </div>
             ))}
           </div>
           <div className="mt-4 flex flex-wrap gap-3">
-            <button type="button" className={goldBtn} onClick={saveRules}>Save custom rules</button>
-            <button type="button" className={goldGhost} onClick={resetRules}>Reset to defaults</button>
+            <button type="button" className={goldBtn} onClick={saveRules}>{tx("Save custom rules")}</button>
+            <button type="button" className={goldGhost} onClick={resetRules}>{tx("Reset to defaults")}</button>
           </div>
         </div>
       ) : null}
-      {notice ? <p className="mt-3 text-sm text-[#A8841A]" role="status">{notice}</p> : null}
+      {notice ? <p className="mt-3 text-sm text-[#A8841A]" role="status">{tx(notice)}</p> : null}
 
       <div className="mt-6" aria-live="polite">
         {!result.ok ? (
@@ -133,15 +136,15 @@ export function FantasyPointCalculatorTool() {
         ) : (
           <>
             <div className={goldCard}>
-              <p className="text-sm font-medium text-[#A8841A]">Total fantasy points</p>
+              <p className="text-sm font-medium text-[#A8841A]">{tx("Total fantasy points")}</p>
               <p className="mt-1 text-3xl font-semibold">{result.total}</p>
             </div>
             {result.lines.length ? (
               <div className="mt-4 overflow-x-auto">
                 <table className="w-full min-w-[18rem] text-left text-sm">
-                  <caption className="sr-only">Points breakdown</caption>
+                  <caption className="sr-only">{tx("Points breakdown")}</caption>
                   <thead>
-                    <tr className="border-b border-border"><th className="py-2">Stat</th><th>Count</th><th>Points</th><th className="text-right">Subtotal</th></tr>
+                    <tr className="border-b border-border"><th className="py-2">{tx("Stat")}</th><th>{tx("Count")}</th><th>{tx("Points")}</th><th className="text-right">{tx("Subtotal")}</th></tr>
                   </thead>
                   <tbody>
                     {result.lines.map((l) => (
@@ -154,7 +157,7 @@ export function FantasyPointCalculatorTool() {
                 </table>
               </div>
             ) : (
-              <p className="mt-3 text-sm text-muted-foreground">Enter at least one stat to see a breakdown.</p>
+              <p className="mt-3 text-sm text-muted-foreground">{tx("Enter at least one stat to see a breakdown.")}</p>
             )}
           </>
         )}

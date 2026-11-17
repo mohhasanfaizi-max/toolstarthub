@@ -3,6 +3,7 @@
 import { useState } from "react";
 import { Button } from "@/components/ui/Button";
 import { CopyButton } from "@/components/tools/CopyButton";
+import { useTx } from "@/i18n/tool-text";
 import {
   ToolActions,
   ToolChoiceGroup,
@@ -23,6 +24,8 @@ import {
 } from "@/lib/tools/random";
 
 export function RandomNumberGeneratorTool() {
+  const tx = useTx();
+
   const [min, setMin] = useState("1");
   const [max, setMax] = useState("100");
   const [count, setCount] = useState("1");
@@ -110,19 +113,19 @@ export function RandomNumberGeneratorTool() {
             checked={unique}
             onChange={(event) => setUnique(event.target.checked)}
           />
-          Unique numbers only
+          {tx("Unique numbers only")}
         </label>
       ) : (
         <p className="mt-4 text-sm text-muted-foreground">
-          Decimals use {RANDOM_DECIMAL_PLACES} places from a 32-bit unit interval.
-          Values are random, not a cryptographic sample for every statistical use.
+          {tx(`Decimals use ${RANDOM_DECIMAL_PLACES} places from a 32-bit unit interval.`)}
+          {tx("Values are random, not a cryptographic sample for every statistical use.")}
         </p>
       )}
 
       <div className="mt-6">
         <ToolActions>
           <Button type="button" onClick={generate}>
-            Generate
+            {tx("Generate")}
           </Button>
           <CopyButton value={values.join("\n")} label="Copy results" />
           <Button
@@ -138,7 +141,7 @@ export function RandomNumberGeneratorTool() {
               setError("");
             }}
           >
-            Reset
+            {tx("Reset")}
           </Button>
         </ToolActions>
       </div>
@@ -153,10 +156,7 @@ export function RandomNumberGeneratorTool() {
       </div>
 
       <p className="mt-4 text-sm leading-6 text-muted-foreground">
-        Integers are chosen with crypto.getRandomValues() and rejection sampling so
-        every value in the range is equally likely. That is suitable for casual
-        draws. It is not a guarantee for high-stakes cryptography or scientific
-        sampling.
+        {tx("Integers are chosen with crypto.getRandomValues() and rejection sampling so every value in the range is equally likely. That is suitable for casual draws. It is not a guarantee for high-stakes cryptography or scientific sampling.")}
       </p>
     </ToolPanel>
   );

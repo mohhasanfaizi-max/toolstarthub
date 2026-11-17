@@ -1,6 +1,7 @@
 "use client";
 
 import { ToolField } from "@/components/tools/ToolForm";
+import { useTx } from "@/i18n/tool-text";
 
 type RangeFieldProps = {
   id: string;
@@ -23,6 +24,7 @@ export function RangeField({
   suffix,
   onChange,
 }: RangeFieldProps) {
+  const tx = useTx();
   return (
     <ToolField id={id} label={label}>
       <input
@@ -37,7 +39,7 @@ export function RangeField({
       />
       <p className="mt-1 text-sm tabular-nums text-muted-foreground">
         {value}
-        {suffix ?? ""}
+        {suffix ? tx(suffix) : ""}
       </p>
     </ToolField>
   );

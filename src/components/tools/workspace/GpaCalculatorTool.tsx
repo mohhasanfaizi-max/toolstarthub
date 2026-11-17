@@ -6,6 +6,7 @@ import { CopyButton } from "@/components/tools/CopyButton";
 import { ToolActions, ToolError, ToolField, ToolPanel, ToolStatGrid, toolControlClass } from "@/components/tools/ToolForm";
 import { GPA_SCALE, calculateGpa } from "@/lib/tools/gpa";
 import { formatNumber } from "@/lib/tools/numbers";
+import { useTx } from "@/i18n/tool-text";
 
 type Row = { id: number; grade: string; credits: string; numeric: boolean };
 
@@ -16,6 +17,8 @@ const starter: Row[] = [
 ];
 
 export function GpaCalculatorTool() {
+  const tx = useTx();
+
   const [rows, setRows] = useState<Row[]>(starter);
   const [nextId, setNextId] = useState(4);
   const [error, setError] = useState("");
@@ -41,7 +44,7 @@ export function GpaCalculatorTool() {
   return (
     <ToolPanel>
       <p className="text-sm leading-6 text-muted-foreground">
-        This uses a common 4.0 map: A 4.0, A- 3.7, B+ 3.3, B 3.0, B- 2.7, C+ 2.3, C 2.0, C- 1.7, D+ 1.3, D 1.0, D- 0.7, F 0. A school may use a different map.
+        {tx("This uses a common 4.0 map: A 4.0, A- 3.7, B+ 3.3, B 3.0, B- 2.7, C+ 2.3, C 2.0, C- 1.7, D+ 1.3, D 1.0, D- 0.7, F 0. A school may use a different map.")}
       </p>
       <div className="mt-4 space-y-3">
         {rows.map((row, index) => (
@@ -54,26 +57,26 @@ export function GpaCalculatorTool() {
             </ToolField>
             <label className="flex min-h-11 items-end gap-2 pb-2 text-sm">
               <input type="checkbox" checked={row.numeric} onChange={(event) => update(row.id, { numeric: event.target.checked })} />
-              Numeric points
+              {tx("Numeric points")}
             </label>
             {rows.length > 1 ? (
               <div className="flex items-end">
-                <Button type="button" variant="ghost" onClick={() => setRows((current) => current.filter((item) => item.id !== row.id))}>Remove</Button>
+                <Button type="button" variant="ghost" onClick={() => setRows((current) => current.filter((item) => item.id !== row.id))}>{tx("Remove")}</Button>
               </div>
             ) : null}
           </div>
         ))}
       </div>
       <div className="mt-4">
-        <Button type="button" variant="secondary" onClick={() => { setRows((current) => [...current, { id: nextId, grade: "", credits: "", numeric: false }]); setNextId((id) => id + 1); }}>Add course</Button>
+        <Button type="button" variant="secondary" onClick={() => { setRows((current) => [...current, { id: nextId, grade: "", credits: "", numeric: false }]); setNextId((id) => id + 1); }}>{tx("Add course")}</Button>
       </div>
       <p className="mt-3 text-sm leading-6 text-muted-foreground">{GPA_SCALE.map((row) => `${row.letter} ${row.points}`).join(", ")}</p>
       {error ? <div className="mt-4"><ToolError>{error}</ToolError></div> : null}
       <div className="mt-4">
         <ToolActions>
-          <Button type="button" onClick={calculate}>Calculate</Button>
+          <Button type="button" onClick={calculate}>{tx("Calculate")}</Button>
           <CopyButton value={summary} label="Copy result" />
-          <Button type="button" variant="ghost" onClick={() => { setRows(starter); setNextId(4); setError(""); setResult(undefined); }}>Reset</Button>
+          <Button type="button" variant="ghost" onClick={() => { setRows(starter); setNextId(4); setError(""); setResult(undefined); }}>{tx("Reset")}</Button>
         </ToolActions>
       </div>
       {result?.ok ? (
