@@ -4,7 +4,7 @@ const data: ToolPageTranslations = {
   "utm-builder": {
     "answer": "منشئ روابط UTM يضيف معلمات الحملة إلى رابط URL لتتمكن من تتبّع مصادر الزيارات في أدوات التحليلات.",
     "content": {
-      "about": "أضف utm_source وutm_medium وutm_campaign إلى رابط، مع term وcontent اختياريًا. يستخدمه المسوّقون لتمييز رابط الحملة قبل وضعه في إعلان أو رسالة بريد إلكتروني. الحقل الفارغ لا يُضاف إلى الرابط، وهذه الصفحة لا تسجّل الزيارات ولا تختصر العنوان.",
+      "about": "أضف utm_source وutm_medium وutm_campaign إلى رابط، مع utm_id وterm وcontent وحقول حملة GA4 اختيارية إذا احتجت إليها. يستخدمه المسوّقون لتمييز رابط الحملة قبل وضعه في إعلان أو رسالة بريد إلكتروني. الحقل الفارغ لا يُضاف إلى الرابط، وهذه الصفحة لا تسجّل الزيارات ولا تختصر العنوان.",
       "howTo": [
         "أدخل رابط الموقع، مع https:// أو بدونها.",
         "املأ المصدر والوسيط والحملة. الحقلان term وcontent اختياريان.",
@@ -21,7 +21,7 @@ const data: ToolPageTranslations = {
         }
       ],
       "explanation": "تخبر معلمات UTM أدوات التحليلات بمصدر الزيارة. utm_source هو المنصة، وutm_medium هو القناة، وutm_campaign هو اسم العرض الترويجي. أما utm_term وutm_content فاختياريان. تُرمَّز القيم لتناسب الروابط حتى تبقى المسافات والأحرف الخاصة صالحة.",
-      "limitations": "إذا كان المصدر أو الوسيط أو الحملة فارغًا فإنه يُحذف من الرابط بدل كتابته كمعلمة فارغة. لا تختصر الصفحة العنوان ولا تسجّل أي زيارة. ويُرفض أي نص ليس رابط موقع.",
+      "limitations": "إذا كان الحقل فارغًا، بما في ذلك معرّف حملة اختياري، فإنه يُحذف من الرابط بدل كتابته كمعلمة فارغة. لا تختصر الصفحة العنوان ولا تسجّل أي زيارة. ويُرفض أي نص ليس رابط موقع. وعلى الحاسبة روابط إلى وثائق Google الرسمية.",
       "faqs": [
         {
           "question": "هل منشئ روابط UTM مجاني؟",
@@ -37,11 +37,11 @@ const data: ToolPageTranslations = {
         },
         {
           "question": "ما معلمات UTM؟",
-          "answer": "معلمات UTM وسوم تُضاف إلى الرابط، مثل utm_source وutm_medium وutm_campaign، تخبر أدوات التحليلات بمصدر الزيارة."
+          "answer": "معلمات UTM وسوم تُضاف إلى الرابط، مثل utm_source وutm_medium وutm_campaign وutm_id الاختياري، تخبر أدوات التحليلات بمصدر الزيارة."
         },
         {
           "question": "ما معلمات UTM المطلوبة؟",
-          "answer": "المصدر والوسيط والحملة هي الحد الأدنى المعتاد. أما term وcontent فاختياريان ويساعدان على التمييز بين الكلمات المفتاحية أو نسخ الإعلانات."
+          "answer": "المصدر والوسيط والحملة هي الحد الأدنى المعتاد. أما معرّف الحملة (utm_id) وterm وcontent فاختياريان. ويفيد utm_id عند استيراد بيانات الحملة إلى GA4."
         },
         {
           "question": "كيف أضيف utm_source وutm_medium إلى رابط؟",
@@ -107,6 +107,17 @@ const data: ToolPageTranslations = {
     },
     "metaDescription": "أضف utm_source وutm_medium وutm_campaign إلى رابط في متصفحك. تبقى المعلمات الأخرى كما هي، ولا يُرسل شيء إلى أي خادم.",
     "ui": {
+      'This page builds a campaign URL in your browser. Google recommends utm_source, utm_medium, and utm_campaign on every tagged link. utm_id is optional and is useful when you import campaign data. Blank fields are left off the URL.': 'تبني هذه الصفحة رابط حملة في متصفحك. توصي Google باستخدام utm_source وutm_medium وutm_campaign في كل رابط موسوم. وutm_id اختياري ومفيد عند استيراد بيانات الحملة. وتُحذف الحقول الفارغة من الرابط.',
+      'Google Analytics help: URL builders': 'مساعدة Google Analytics: أدوات إنشاء الروابط',
+      "Google's GA4 Campaign URL Builder": 'منشئ روابط حملات GA4 من Google',
+      'Campaign ID (optional)': 'معرّف الحملة (اختياري)',
+      'Adds utm_id. Use the same campaign ID you use when you import campaign data into GA4.': 'يضيف utm_id. استخدم نفس معرّف الحملة الذي تستخدمه عند استيراد بيانات الحملة إلى GA4.',
+      'Source platform (optional)': 'منصة المصدر (اختياري)',
+      'Adds utm_source_platform, for example Search Ads 360.': 'يضيف utm_source_platform، مثل Search Ads 360.',
+      'Creative format (optional)': 'تنسيق الإعلان (اختياري)',
+      'Adds utm_creative_format. Google says this parameter is not currently reported in Analytics properties.': 'يضيف utm_creative_format. وتقول Google إن هذه المعلمة لا تُعرض حاليًا في خصائص Analytics.',
+      'Marketing tactic (optional)': 'تكتيك التسويق (اختياري)',
+      'Adds utm_marketing_tactic. Google says this parameter is not currently reported in Analytics properties.': 'يضيف utm_marketing_tactic. وتقول Google إن هذه المعلمة لا تُعرض حاليًا في خصائص Analytics.',
       "Website URL": "رابط الموقع",
       "Existing query parameters are kept. UTM values are added or updated.": "تبقى معلمات الاستعلام الموجودة. تُضاف قيم UTM أو تُحدَّث.",
       "Campaign source": "مصدر الحملة",

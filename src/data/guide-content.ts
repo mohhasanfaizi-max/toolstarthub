@@ -3887,7 +3887,7 @@ export const guideContent: Record<string, GuideContent> = {
       {
         question: "Will either button make the draft pass an AI detector?",
         answer:
-          "No. The tool does not try to do that, and it does not claim the result will look like a particular kind of author.",
+          "No. The tool does not try to do that, and it does not claim the result will look like a particular kind of author. Use it responsibly, respect your school or workplace academic integrity policy, and check the result before you use it.",
       },
       {
         question: "Which button sends the draft to Gemini?",

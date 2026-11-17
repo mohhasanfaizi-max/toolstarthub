@@ -304,7 +304,7 @@ export const tools: Tool[] = [
   {
     slug: "utm-builder",
     name: "UTM Builder",
-    description: "Add utm_source, utm_medium, and utm_campaign to a link. Term and content are optional. Blank fields are omitted, and this page does not record a visit.",
+    description: "Add utm_source, utm_medium, and utm_campaign to a link. Campaign ID, term, and content are optional. Blank fields are omitted, and this page does not record a visit.",
     category: "seo-utilities",
     icon: "link",
     route: "/tools/utm-builder",

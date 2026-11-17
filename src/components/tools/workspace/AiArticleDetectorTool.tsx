@@ -36,6 +36,9 @@ export function AiArticleDetectorTool() {
   return (
     <ToolPanel>
       <p className="text-sm leading-6 text-muted-foreground">{tx("Analyze writing checks patterns in your browser. Analyze with AI sends the draft to Google's Gemini API through ToolStarHub for a writing-pattern analysis. Neither result can decide who wrote the text. The draft is not stored.")}</p>
+      <aside className="mt-4 rounded-lg border border-border bg-muted/30 px-4 py-3 text-sm leading-6 text-muted-foreground" data-testid="ai-detector-integrity">
+        {tx("This check is probabilistic. It can give false positives and false negatives. Do not use the result as the sole proof of misconduct.")}
+      </aside>
       <div className="mt-4">
         <ToolField id="pattern-text" label={tx("Article or draft")} hint={tx("Paste at least 40 words.")}>
           <textarea id="pattern-text" value={text} onChange={(event) => setText(event.target.value)} rows={10} className={`${toolControlClass} min-h-40 resize-y`} />

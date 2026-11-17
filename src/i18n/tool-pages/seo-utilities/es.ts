@@ -4,7 +4,7 @@ const data: ToolPageTranslations = {
   "utm-builder": {
     "answer": "Un constructor de UTM añade parámetros de campaña a una URL para que puedas rastrear el origen del tráfico en las herramientas de analítica.",
     "content": {
-      "about": "Añade utm_source, utm_medium y utm_campaign a un enlace, más term y content si los necesitas. Quien etiqueta un enlace de campaña lo usa antes de ponerlo en un anuncio o un correo. Un campo vacío no se incluye en el enlace, y esta página no registra una visita ni acorta la dirección.",
+      "about": "Añade utm_source, utm_medium y utm_campaign a un enlace, más utm_id, term, content y unos campos opcionales de campaña de GA4 si los necesitas. Quien etiqueta un enlace de campaña lo usa antes de ponerlo en un anuncio o un correo. Un campo vacío no se incluye en el enlace, y esta página no registra una visita ni acorta la dirección.",
       "howTo": [
         "Introduce la URL del sitio, con o sin https://.",
         "Completa origen, medio y campaña. Término y contenido son opcionales.",
@@ -21,7 +21,7 @@ const data: ToolPageTranslations = {
         }
       ],
       "explanation": "Los parámetros UTM indican a las herramientas de analítica de dónde vino una visita. utm_source es la plataforma, utm_medium es el canal y utm_campaign es el nombre de la promoción. utm_term y utm_content son opcionales. Los valores se codifican en la URL para que los espacios y los caracteres especiales sigan siendo válidos.",
-      "limitations": "Un origen, medio o campaña en blanco se omite del enlace, en lugar de escribirse como un parámetro vacío. La página no acorta la dirección y no registra una visita. Un texto que no es una URL de un sitio se rechaza.",
+      "limitations": "Un campo en blanco, incluido un ID de campaña opcional, se omite del enlace en lugar de escribirse como un parámetro vacío. La página no acorta la dirección y no registra una visita. Un texto que no es una URL de un sitio se rechaza. En la calculadora hay enlaces a la documentación oficial de Google.",
       "faqs": [
         {
           "question": "¿El constructor de UTM es gratis?",
@@ -37,11 +37,11 @@ const data: ToolPageTranslations = {
         },
         {
           "question": "¿Qué son los parámetros UTM?",
-          "answer": "Los parámetros UTM son etiquetas que se añaden a un enlace, como utm_source, utm_medium y utm_campaign, y que indican a las herramientas de analítica de dónde vino una visita."
+          "answer": "Los parámetros UTM son etiquetas que se añaden a un enlace, como utm_source, utm_medium, utm_campaign y el utm_id opcional, y que indican a las herramientas de analítica de dónde vino una visita."
         },
         {
           "question": "¿Qué parámetros UTM son obligatorios?",
-          "answer": "Origen, medio y campaña son el mínimo habitual. Término y contenido son opcionales y ayudan a distinguir palabras clave o versiones de un anuncio."
+          "answer": "Origen, medio y campaña son el mínimo habitual. El ID de campaña (utm_id), el término y el contenido son opcionales. utm_id es útil cuando importas datos de campaña en GA4."
         },
         {
           "question": "¿Cómo añado utm_source y utm_medium a un enlace?",
@@ -107,6 +107,21 @@ const data: ToolPageTranslations = {
     },
     "metaDescription": "Añade utm_source, utm_medium y utm_campaign a un enlace en tu navegador. Conserva los demás parámetros. Nada se envía a un servidor.",
     "ui": {
+      'This page builds a campaign URL in your browser. Google recommends utm_source, utm_medium, and utm_campaign on every tagged link. utm_id is optional and is useful when you import campaign data. Blank fields are left off the URL.': 'Esta página construye una URL de campaña en tu navegador. Google recomienda utm_source, utm_medium y utm_campaign en cada enlace etiquetado. utm_id es opcional y resulta útil cuando importas datos de campaña. Los campos vacíos no se incluyen en la URL.',
+      'Google Analytics help: URL builders': 'Ayuda de Google Analytics: creadores de URL',
+      "Google's GA4 Campaign URL Builder": 'Creador de URL de campaña de GA4 de Google',
+      'Campaign ID (optional)': 'ID de campaña (opcional)',
+      'Adds utm_id. Use the same campaign ID you use when you import campaign data into GA4.': 'Añade utm_id. Usa el mismo ID de campaña que empleas al importar datos de campaña en GA4.',
+      'abc.123': 'abc.123',
+      'Source platform (optional)': 'Plataforma de origen (opcional)',
+      'Adds utm_source_platform, for example Search Ads 360.': 'Añade utm_source_platform, por ejemplo Search Ads 360.',
+      'Creative format (optional)': 'Formato del anuncio (opcional)',
+      'Adds utm_creative_format. Google says this parameter is not currently reported in Analytics properties.': 'Añade utm_creative_format. Google indica que este parámetro no se informa actualmente en las propiedades de Analytics.',
+      'Marketing tactic (optional)': 'Táctica de marketing (opcional)',
+      'Adds utm_marketing_tactic. Google says this parameter is not currently reported in Analytics properties.': 'Añade utm_marketing_tactic. Google indica que este parámetro no se informa actualmente en las propiedades de Analytics.',
+      'display': 'display',
+      'remarketing': 'remarketing',
+      'Search Ads 360': 'Search Ads 360',
       "Website URL": "URL del sitio",
       "Existing query parameters are kept. UTM values are added or updated.": "Los parámetros de consulta existentes se conservan. Los valores UTM se añaden o actualizan.",
       "Campaign source": "Fuente de la campaña",

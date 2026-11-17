@@ -18,7 +18,10 @@ import { siteConfig, siteContact } from "@/lib/site";
 
 export const ORGANIZATION_ID = `${siteConfig.url}/#organization`;
 export const EDITORIAL_TEAM_ID = `${siteConfig.url}/about#editorial-team`;
-export const EDITORIAL_TEAM_NAME = `${siteConfig.name} Editorial Team`;
+/** Kept so existing /about#editorial-team links still resolve. The published fact is that Ali Ahmed runs the site. */
+export const SITE_OPERATOR_NAME = "Ali Ahmed";
+/** @deprecated Use SITE_OPERATOR_NAME. There is no separate published editorial staff. */
+export const EDITORIAL_TEAM_NAME = SITE_OPERATOR_NAME;
 
 export function websiteId(locale: Locale = defaultLocale): string {
   return `${absoluteUrl(localizePath("/", locale))}#website`;
@@ -43,14 +46,17 @@ export const publisherRef = {
   logo,
 };
 
-/** Guides are written and maintained by the site's editorial team. */
-export const editorialTeam = {
-  "@type": "Organization",
-  "@id": EDITORIAL_TEAM_ID,
-  name: EDITORIAL_TEAM_NAME,
-  url: absoluteUrl("/about#editorial-team"),
-  parentOrganization: { "@id": ORGANIZATION_ID },
+/** The person named on the About page as running this independent site. */
+export const siteOperator = {
+  "@type": "Person",
+  "@id": `${siteConfig.url}/about#ali-ahmed`,
+  name: SITE_OPERATOR_NAME,
+  url: absoluteUrl("/about"),
+  email: siteContact.email,
 };
+
+/** @deprecated Use siteOperator. Kept as an alias so older imports keep working. */
+export const editorialTeam = siteOperator;
 
 function organizationData() {
   return {
@@ -62,6 +68,7 @@ function organizationData() {
     image: absoluteUrl("/opengraph-image"),
     description: siteConfig.description,
     email: siteContact.email,
+    founder: siteOperator,
     contactPoint: {
       "@type": "ContactPoint",
       contactType: "customer support",
@@ -247,7 +254,7 @@ export function collectionPageJsonLd(input: {
   };
 }
 
-export function aboutPageJsonLd(input: { description: string }) {
+export function aboutPageJsonLd(input: { description: string; dateModified?: string }) {
   const url = absoluteUrl("/about");
   return {
     "@context": "https://schema.org",
@@ -259,6 +266,32 @@ export function aboutPageJsonLd(input: { description: string }) {
     inLanguage: "en",
     isPartOf: { "@id": websiteId() },
     about: { "@id": ORGANIZATION_ID },
-    mainEntity: [organizationData(), editorialTeam],
+    mainEntity: [organizationData(), siteOperator],
+    ...(input.dateModified ? { dateModified: input.dateModified } : {}),
+  };
+}
+
+export function contactPageJsonLd(input: { description: string; dateModified?: string }) {
+  const url = absoluteUrl("/contact");
+  return {
+    "@context": "https://schema.org",
+    "@type": "ContactPage",
+    "@id": `${url}#page`,
+    name: `Contact ${siteConfig.name}`,
+    description: input.description,
+    url,
+    inLanguage: "en",
+    isPartOf: { "@id": websiteId() },
+    about: { "@id": ORGANIZATION_ID },
+    mainEntity: {
+      "@type": "ContactPoint",
+      contactType: "customer support",
+      name: "Ali Ahmed",
+      email: siteContact.email,
+      telephone: siteContact.phoneE164,
+      url: url,
+      availableLanguage: ["English"],
+    },
+    ...(input.dateModified ? { dateModified: input.dateModified } : {}),
   };
 }

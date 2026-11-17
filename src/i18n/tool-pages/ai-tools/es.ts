@@ -473,7 +473,7 @@ const data: ToolPageTranslations = {
       "faqs": [
         {
           "question": "¿Puede decir si un texto lo escribió una IA?",
-          "answer": "No. No puede hacerlo con certeza. Las revisiones de patrones producen falsos positivos y falsos negativos. El resultado es una descripción del borrador, no un veredicto."
+          "answer": "No. No puede hacerlo con certeza. La revisión es probabilística: las revisiones de patrones producen falsos positivos y falsos negativos. El resultado es una descripción del borrador, no un veredicto, y no debe usarse como única prueba de una falta."
         },
         {
           "question": "¿Por qué no hay una puntuación en porcentaje?",
@@ -485,7 +485,7 @@ const data: ToolPageTranslations = {
         },
         {
           "question": "¿Los detectores de IA son precisos?",
-          "answer": "Ningún detector puede demostrar quién escribió un texto. Las puntuaciones basadas en patrones pueden marcar escritura humana y pasar por alto escritura de IA editada, así que trata cualquier resultado como una invitación a revisar, no como una prueba."
+          "answer": "Ningún detector puede demostrar quién escribió un texto. Estas revisiones son probabilísticas: las puntuaciones basadas en patrones pueden marcar escritura humana (falsos positivos) y pasar por alto escritura de IA editada (falsos negativos). Trata cualquier resultado como una invitación a revisar, no como una prueba ni como la única evidencia de una falta."
         },
         {
           "question": "¿Qué patrones observa esta herramienta?",
@@ -513,7 +513,7 @@ const data: ToolPageTranslations = {
         },
         {
           "question": "¿Las puntuaciones de un detector bastan para un caso disciplinario escolar?",
-          "answer": "Ninguna herramienta es definitiva. Las instituciones deben combinar pruebas del proceso con una revisión humana, no basarse solo en detectores."
+          "answer": "Ninguna herramienta es definitiva. No uses el resultado de un detector como única prueba de una falta. Las instituciones deben combinar pruebas del proceso con una revisión humana, no basarse solo en detectores."
         },
         {
           "question": "¿Qué indicios destaca esta página en un borrador?",
@@ -555,6 +555,7 @@ const data: ToolPageTranslations = {
     },
     "metaDescription": "Revisa la longitud de las frases y las repeticiones. «Analizar con IA» también es un análisis de patrones, no un veredicto sobre la autoría.",
     "ui": {
+      'This check is probabilistic. It can give false positives and false negatives. Do not use the result as the sole proof of misconduct.': 'Esta comprobación es probabilística. Puede dar falsos positivos y falsos negativos. No uses el resultado como única prueba de una falta.',
       "Analyze writing checks patterns in your browser. Analyze with AI sends the draft to Google's Gemini API through ToolStarHub for a writing-pattern analysis. Neither result can decide who wrote the text. The draft is not stored.": "«Analizar texto» revisa patrones en tu navegador. «Analizar con IA» envía el borrador a la API Gemini de Google a través de ToolStarHub para un análisis de patrones de escritura. Ningún resultado puede decidir quién escribió el texto. El borrador no se guarda.",
       "Article or draft": "Artículo o borrador",
       "Paste at least 40 words.": "Pega al menos 40 palabras.",
@@ -618,7 +619,7 @@ const data: ToolPageTranslations = {
       "faqs": [
         {
           "question": "¿El texto más corto evadirá un detector de IA?",
-          "answer": "No. La herramienta no intenta hacerlo y no afirma que el resultado se vea como un tipo concreto de autor."
+          "answer": "No. La herramienta no intenta hacerlo y no afirma que el resultado se vea como un tipo concreto de autor. Úsala con responsabilidad, respeta la normativa de integridad académica de tu escuela o trabajo, y revisa el resultado antes de usarlo."
         },
         {
           "question": "¿Conserva el sentido?",
@@ -761,7 +762,7 @@ const data: ToolPageTranslations = {
         },
         {
           "question": "¿Esto evadirá un detector de IA?",
-          "answer": "No. La herramienta no intenta hacerlo y no afirma que el resultado se vea como un tipo concreto de autor."
+          "answer": "No. La herramienta no intenta hacerlo y no afirma que el resultado se vea como un tipo concreto de autor. Úsala con responsabilidad, respeta la normativa de integridad académica de tu escuela o trabajo, y revisa el resultado antes de usarlo."
         },
         {
           "question": "¿Conserva el sentido?",
@@ -817,7 +818,7 @@ const data: ToolPageTranslations = {
         },
         {
           "question": "¿Los detectores siempre etiquetarán el texto humanizado como humano?",
-          "answer": "No. Los detectores son imperfectos y se actualizan a menudo. No confíes en ninguna herramienta de reescritura como garantía de que el contenido pasará un detector concreto."
+          "answer": "No. Los detectores son probabilísticos, imperfectos y se actualizan a menudo. No confíes en ninguna herramienta de reescritura como garantía de que el contenido pasará un detector concreto, y respeta las normas de integridad académica."
         },
         {
           "question": "¿Debo humanizar citas académicas y entrecomillados?",
@@ -839,6 +840,7 @@ const data: ToolPageTranslations = {
     },
     "metaDescription": "Reescribe frases hechas con una lista fija en el navegador. «Humanizar con IA» envía el borrador a Gemini. La herramienta no intenta evadir un detector de IA.",
     "ui": {
+      'Use this tool responsibly. It is not a way to hide how a draft was written. Respect your school or workplace academic integrity policy, and check the result before you use it.': 'Usa esta herramienta con responsabilidad. No es una forma de ocultar cómo se escribió un borrador. Respeta la normativa de integridad académica de tu escuela o trabajo, y revisa el resultado antes de usarlo.',
       "Rewrite text uses a fixed phrase list in your browser. Humanize with AI sends the text to Google's Gemini API through ToolStarHub and returns a rewritten draft. The text is not stored. Check the result before you use it. Neither result is a way to hide how a draft was written.": "«Reescribir texto» usa una lista fija de frases hechas en tu navegador. «Humanizar con IA» envía el texto a la API Gemini de Google a través de ToolStarHub y devuelve una versión reescrita. El texto no se guarda. Revisa el resultado antes de usarlo. Ningún resultado es una forma de ocultar cómo se produjo un borrador.",
       "Draft": "Borrador",
       "Rewrite text": "Reescribir texto",

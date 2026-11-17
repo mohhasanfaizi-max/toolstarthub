@@ -1049,12 +1049,12 @@ export const extraToolFaqs: Record<string, ToolFaq[]> = {
     {
       question: "What are UTM parameters?",
       answer:
-        "UTM parameters are tags added to a link, such as utm_source, utm_medium, and utm_campaign, that tell analytics tools where a visit came from.",
+        "UTM parameters are tags added to a link, such as utm_source, utm_medium, utm_campaign, and optional utm_id, that tell analytics tools where a visit came from.",
     },
     {
       question: "Which UTM parameters are required?",
       answer:
-        "Source, medium, and campaign are the usual minimum. Term and content are optional and help tell keywords or ad versions apart.",
+        "Source, medium, and campaign are the usual minimum. Campaign ID (utm_id), term, and content are optional. utm_id is useful when you import campaign data into GA4.",
     },
     {
       question: "How do I add utm_source and utm_medium to a link?",
@@ -3297,7 +3297,7 @@ export const extraToolFaqs: Record<string, ToolFaq[]> = {
     {
       question: "Are AI detectors accurate?",
       answer:
-        "No detector can prove who wrote a text. Pattern-based scores can flag human writing and miss edited AI writing, so treat any result as a prompt to review, not as evidence.",
+        "No detector can prove who wrote a text. These checks are probabilistic: pattern-based scores can flag human writing (false positives) and miss edited AI writing (false negatives). Treat any result as a prompt to review, not as evidence or as the sole proof of misconduct.",
     },
     {
       question: "What patterns does this tool look at?",
@@ -3332,7 +3332,7 @@ export const extraToolFaqs: Record<string, ToolFaq[]> = {
     {
       question: "Are detector scores enough for school discipline cases?",
       answer:
-        "No tool is definitive. Institutions should combine process evidence with human review, not detectors alone.",
+        "No tool is definitive. Do not use a detector result as the sole proof of misconduct. Institutions should combine process evidence with human review, not detectors alone.",
     },
     {
       question: "Which cues does this page highlight in a draft?",
@@ -4716,7 +4716,7 @@ export const extraToolFaqs: Record<string, ToolFaq[]> = {
     {
       question: "Will detectors always label humanized text as human?",
       answer:
-        "No. Detectors are imperfect and update often. Do not rely on any rewrite tool as a guarantee that content will pass a specific detector.",
+        "No. Detectors are probabilistic, imperfect, and update often. Do not rely on any rewrite tool as a guarantee that content will pass a specific detector, and respect academic integrity policies.",
     },
     {
       question: "Should I humanize academic citations and quotes?",
