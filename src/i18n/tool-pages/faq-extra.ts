@@ -322,7 +322,7 @@ export const localeToolFaqExtras: Partial<
         {
           question: "¿Puedo descargar PNG o WebP en lugar de JPEG?",
           answer:
-            "No. La descarga es solo JPEG. En esta página no hay exportación PNG ni WebP, ni un ZIP de las páginas.",
+            "Sí. Elige JPG, PNG o WebP antes de convertir. Cuando hay más de una página lista, puedes descargarlas todas en un ZIP. El resultado de una sola página se descarga como ese archivo.",
         },
         {
           question: "¿Esto extrae las fotos incrustadas en el PDF?",
@@ -347,7 +347,7 @@ export const localeToolFaqExtras: Partial<
         {
           question: "¿A qué escala se generan los JPEG?",
           answer:
-            "La escala pedida es 1,5. Se reduce cuando una página superaría un lado más largo de 4.096 píxeles.",
+            "El valor predeterminado es 108 DPI, la misma escala 1,5× de antes. También puedes elegir 72, 150 o 300 DPI. La escala se reduce cuando una página superaría un lado más largo de 4.096 píxeles.",
         },
         {
           question: "¿Puedo convertir varios PDF a la vez?",
@@ -367,7 +367,7 @@ export const localeToolFaqExtras: Partial<
         {
           question: "¿Puedo elegir la calidad del JPEG?",
           answer:
-            "Esta página escribe imágenes JPEG de las páginas a la escala indicada. No ofrece un control de calidad aparte ni un tamaño de archivo objetivo.",
+            "Sí. En JPG y WebP, un control de calidad empieza en 80. Los valores más bajos suelen hacer un archivo más pequeño. PNG no tiene pérdida, así que ese control no se aplica. En esta página no hay un tamaño de archivo objetivo.",
         },
         {
           question: "¿Qué hago si solo necesito la portada?",
@@ -1248,7 +1248,7 @@ export const localeToolFaqExtras: Partial<
         {
           question: "هل يمكنني تنزيل PNG أو WebP بدل JPEG؟",
           answer:
-            "لا. التنزيل بصيغة JPEG فقط. لا يوجد تصدير PNG أو WebP في هذه الصفحة، ولا ملف ZIP للصفحات.",
+            "نعم. اختر JPG أو PNG أو WebP قبل التحويل. وعندما تكون أكثر من صفحة جاهزة، يمكنك تنزيلها كلها في ملف ZIP. ونتيجة الصفحة الواحدة تُنزَّل كذلك الملف.",
         },
         {
           question: "هل يستخرج هذا الصور المضمّنة في ملف PDF؟",
@@ -1273,7 +1273,7 @@ export const localeToolFaqExtras: Partial<
         {
           question: "بأي مقياس تُرسم صور JPEG؟",
           answer:
-            "المقياس المطلوب هو 1.5. ويُخفَّض عندما تتجاوز الصفحة ضلعًا أطول يبلغ 4,096 بكسل.",
+            "الافتراضي هو 108 نقطة في البوصة، وهو نفس مقياس 1.5× السابق. ويمكنك أيضًا اختيار 72 أو 150 أو 300 نقطة في البوصة. ويُخفَّض المقياس عندما تتجاوز الصفحة ضلعًا أطول يبلغ 4,096 بكسل.",
         },
         {
           question: "هل يمكنني تحويل عدة ملفات PDF دفعة واحدة؟",
@@ -1293,7 +1293,7 @@ export const localeToolFaqExtras: Partial<
         {
           question: "هل يمكنني اختيار إعداد لجودة JPEG؟",
           answer:
-            "تكتب هذه الصفحة صور JPEG للصفحات بالمقياس المذكور أعلاه. ولا توفّر شريط جودة منفصلًا ولا حجم ملف مستهدفًا.",
+            "نعم. لـJPG وWebP، يبدأ شريط الجودة عند 80. والقيم الأدنى عادة تصنع ملفًا أصغر. وPNG بلا فقد، لذا لا ينطبق الشريط. ولا يوجد حجم ملف مستهدف في هذه الصفحة.",
         },
         {
           question: "ماذا لو احتجت الغلاف فقط؟",

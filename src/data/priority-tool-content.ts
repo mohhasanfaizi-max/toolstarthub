@@ -581,29 +581,29 @@ export const priorityToolContent: Record<string, ToolContent> = {
   },
   "pdf-to-jpg": {
     about:
-      "PDF to JPG turns PDF pages into JPEG images in your browser. You can export the first page, the pages you tick, or every page. Use it for a cover thumbnail or a set of page pictures. The download is JPEG only. A password-protected file will not open. Rendering stops at 20 MB, 40 pages, and a longest edge of 4,096 pixels.",
+      "PDF to JPG turns PDF pages into JPG, PNG, or WebP images in your browser. You can export the first page, the pages you tick, a page range such as 1-3, 5, or every page. Use it for a cover thumbnail or a set of page pictures. If a PDF is password-protected, you can enter the password in this tab; it is not sent anywhere. Rendering stops at 20 MB, 40 pages, and a longest edge of 4,096 pixels. This page draws each chosen page as a picture. It does not extract the individual photos embedded in the file.",
     howTo: [
       "Upload a PDF from your device. The file stays in this browser tab.",
       "Check the file name, size, and page count. Thumbnail previews appear for the first 12 pages. Later pages can still be converted.",
-      "Choose first page, selected pages, or all pages. Set JPG quality if you need a smaller or sharper image. The control starts at 80.",
-      "Press Convert, then download one page or the generated JPG files. Each file is named from the PDF name plus the page number, such as notes-page-1.jpg.",
+      "Choose first page, selected pages, a page range, or all pages. Pick JPG, PNG, or WebP, and a resolution of 72, 108, 150, or 300 DPI. 108 DPI is the default and matches the previous 1.5× scale. For JPG and WebP, set quality if you need a smaller or sharper image. The control starts at 80. PNG is lossless, so quality does not apply.",
+      "Press Convert, then download one page or, when more than one page is ready, Download all as ZIP. Each file is named from the PDF name plus the page number, such as notes-page-1.jpg.",
     ],
     examples: [
       {
         title: "A 3-page file, all pages",
-        body: "Open a 3-page PDF and choose all pages. Convert draws three JPEGs, one per page, named with -page-1, -page-2, and -page-3. The render scale starts at 1.5. A US Letter page is 612 by 792 points. At 1.5× that is 918 by 1,188 pixels. The longest edge, 1,188, is under the 4,096 pixel cap, so the scale stays 1.5. Quality 80 encodes each JPEG at 0.80.",
+        body: "Open a 3-page PDF and choose all pages. Convert draws three images, one per page, named with -page-1, -page-2, and -page-3. You can download them as a ZIP. The default resolution is 108 DPI, the same 1.5× scale as before. A US Letter page is 612 by 792 points. At 108 DPI that is 918 by 1,188 pixels. The longest edge, 1,188, is under the 4,096 pixel cap, so the scale stays 1.5. Quality 80 encodes each JPEG at 0.80.",
       },
       {
         title: "First page only",
-        body: "Choose first page. The tool renders page 1 and skips the rest, which uses less memory than converting every page. The thumbnail strip still shows up to the first 12 pages so you can see the cover. The download is one JPEG.",
+        body: "Choose first page. The tool renders page 1 and skips the rest, which uses less memory than converting every page. The thumbnail strip still shows up to the first 12 pages so you can see the cover. The download is one image, not a ZIP.",
       },
       {
         title: "A locked file or a file that is too big",
-        body: "A password-protected PDF stops with: This PDF is password-protected. This tool cannot open locked files. Unlock it in a PDF reader, then convert the unlocked copy. A file over 20 MB is rejected. A PDF with more than 40 pages is rejected with a message to split it first. A page that would exceed 4,096 pixels on the long side at 1.5× is scaled down so the long side stays at 4,096.",
+        body: "A password-protected PDF asks you to enter the password in this tab. The password is not sent anywhere. If the password is wrong, the page says so. A file over 20 MB is rejected. A PDF with more than 40 pages is rejected with a message to split it first. A page that would exceed 4,096 pixels on the long side at the chosen DPI is scaled down so the long side stays at 4,096.",
       },
     ],
     explanation:
-      "Pages are rendered locally with PDF.js, drawn to a canvas, and saved as JPEG. There is no upload to a conversion API. The requested scale is 1.5. If the longest side at that scale would pass 4,096 pixels, the scale is reduced so the longest side is 4,096. JPG quality is the slider divided by 100. Unselected pages are not drawn.",
+      "Pages are rendered locally with PDF.js, drawn to a canvas, and saved as JPG, PNG, or WebP. There is no upload to a conversion API. The default resolution is 108 DPI, the same 1.5× scale as before. You can also choose 72, 150, or 300 DPI. If the longest side at that scale would pass 4,096 pixels, the scale is reduced so the longest side is 4,096. For JPG and WebP, quality is the slider divided by 100. PNG is lossless. Unselected pages are not drawn. A ZIP is offered when more than one page is converted.",
     sections: [
       {
         heading: "What you get is a picture of the page",
@@ -615,7 +615,7 @@ export const priorityToolContent: Record<string, ToolContent> = {
       {
         heading: "Which pages are exported",
         paragraphs: [
-          "First page exports page 1 only. All pages exports every page, up to the 40 page cap. Selected pages exports the boxes you tick. If none of the selected numbers exist, the page says: Select at least one page.",
+          "First page exports page 1 only. All pages exports every page, up to the 40 page cap. Selected pages exports the boxes you tick. Page range accepts a list such as 1-3, 5. If none of the selected numbers exist, or the range is empty or invalid, the page says so.",
           "Thumbnails are drawn for the first 12 pages at a smaller scale so you can choose. If the PDF has more pages, the note under the strip says you can still convert later pages. You do not need a thumbnail to include a later page in the selection.",
         ],
       },
@@ -629,33 +629,33 @@ export const priorityToolContent: Record<string, ToolContent> = {
       {
         heading: "Privacy",
         paragraphs: [
-          "The PDF is opened in this tab. Selected pages are rendered to JPEG here. The file is not sent to Tools Star Hub. Downloads stay on your device. Analytics, if you accept it, does not receive the PDF or the images.",
+          "The PDF is opened in this tab. Selected pages are rendered here. The file and any password you enter are not sent to Tools Star Hub. Downloads stay on your device. Analytics, if you accept it, does not receive the PDF, the password, or the images.",
         ],
       },
     ],
     tips: [
       "Convert the first page when you only need a cover. It is faster than rendering the whole file.",
       "For a standard letter page, expect 918 by 1,188 pixels at the default scale. Other page sizes scale from their own point size.",
-      "Unlock a password-protected PDF before you open it here. This tool has no password field.",
+      "If the PDF is locked, enter the password in this tab. It stays in the browser and is not sent anywhere.",
       "If you need words, not a picture, switch to PDF to Text. A JPEG will not give you a selectable paragraph.",
     ],
     limitations:
-      "The download is JPEG, not PNG. A password-protected file will not open. Rendering stops at 20 MB, 40 pages, and a longest edge of 4,096 pixels. The requested scale is 1.5 and is reduced when a page would exceed that edge. Pages you leave unselected are not drawn. Thumbnails cover the first 12 pages. The result is a picture of the page, not extracted text.",
+      "You can download JPG, PNG, or WebP, and a ZIP when more than one page is converted. A password-protected file can be opened with a password entered in this tab; the password is not sent anywhere. Rendering stops at 20 MB, 40 pages, and a longest edge of 4,096 pixels. The default resolution is 108 DPI (1.5×) and is reduced when a page would exceed that edge. Pages you leave unselected are not drawn. Thumbnails cover the first 12 pages. The result is a picture of each page, not extracted text or the original photos embedded in the file.",
     faqs: [
       {
         question: "How do I convert a 3-page PDF to JPG?",
         answer:
-          "Upload the PDF, choose all pages, and press Convert. You get three JPEG files, one per page. A US Letter page at the 1.5 scale is 918 by 1,188 pixels. Quality starts at 80.",
+          "Upload the PDF, choose all pages, and press Convert. You get three image files, one per page, and can download them as a ZIP. A US Letter page at the default 108 DPI is 918 by 1,188 pixels. Quality starts at 80 for JPG and WebP.",
       },
       {
         question: "Can I convert only some pages?",
         answer:
-          "Yes. Choose first page for page 1, or selected pages and tick the ones you need. Unselected pages are not drawn. Previews show the first 12 pages. Later pages can still be converted.",
+          "Yes. Choose first page for page 1, selected pages and tick the ones you need, or enter a page range such as 1-3, 5. Unselected pages are not drawn. Previews show the first 12 pages. Later pages can still be converted.",
       },
       {
         question: "Can I open a password-protected PDF?",
         answer:
-          "No. The message is: This PDF is password-protected. This tool cannot open locked files. Unlock the file in a PDF reader, then convert the unlocked copy.",
+          "Yes, if you know the password. Enter it in this tab to unlock the file. The password is not sent anywhere. If the password is wrong, the page says so and you can try again.",
       },
       {
         question: "Why is there a page or size limit?",
