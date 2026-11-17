@@ -1,5 +1,6 @@
 "use client";
 
+import { useTx } from "@/i18n/tool-text";
 import { CodeMinifierTool } from "@/components/tools/CodeMinifierTool";
 import { minifyCss } from "@/lib/tools/css-minify";
 
@@ -18,6 +19,8 @@ const SAMPLE = `/* layout */
 `;
 
 export function CssMinifierTool() {
+  const tx = useTx();
+
   return (
     <CodeMinifierTool
       id="css-minifier"

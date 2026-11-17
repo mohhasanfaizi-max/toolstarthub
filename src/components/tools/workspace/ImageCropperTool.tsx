@@ -1,5 +1,6 @@
 "use client";
 
+import { useTx } from "@/i18n/tool-text";
 import { useEffect, useRef, useState, type CSSProperties, type PointerEvent } from "react";
 import { Button } from "@/components/ui/Button";
 import { DownloadButton } from "@/components/tools/DownloadButton";
@@ -34,6 +35,8 @@ const ACCEPT = "image/jpeg,image/png,image/webp,.jpg,.jpeg,.png,.webp";
 const HANDLES: CropHandle[] = ["nw", "n", "ne", "e", "se", "s", "sw", "w"];
 
 export function ImageCropperTool() {
+  const tx = useTx();
+
   const { image, error, loading, loadFile, resetImage, setError } = useLocalImage();
   const [aspect, setAspect] = useState<CropAspect>("free");
   const [crop, setCrop] = useState<CropRect | null>(null);
@@ -195,11 +198,11 @@ export function ImageCropperTool() {
       <div className="mt-6">
         <ToolActions>
           <Button type="button" onClick={() => void cropImage()} disabled={busy || loading}>
-            {busy ? "Cropping…" : "Crop"}
+            {busy ? tx("Cropping…") : tx("Crop")}
           </Button>
           <DownloadButton blob={result?.blob ?? null} fileName={result?.name ?? "image.jpg"} />
           <Button type="button" variant="secondary" onClick={reset}>
-            Reset
+            {tx("Reset")}
           </Button>
         </ToolActions>
       </div>
@@ -243,6 +246,7 @@ function CropStage({
   aspect,
   onChange,
 }: CropStageProps) {
+  const tx = useTx();
   const imageRef = useRef<HTMLImageElement>(null);
   const [display, setDisplay] = useState({ width: 0, height: 0 });
   const dragRef = useRef<{
@@ -293,14 +297,14 @@ function CropStage({
           <img
             ref={imageRef}
             src={src}
-            alt="Image to crop"
+            alt={tx("Image to crop")}
             draggable={false}
             className="block max-h-[min(70vh,520px)] max-w-full select-none"
           />
           {display.width > 0 ? (
             <div
               role="application"
-              aria-label="Crop selection. Arrow keys move the box."
+              aria-label={tx("Crop selection. Arrow keys move the box.")}
               tabIndex={0}
               className="absolute inset-0 touch-none outline-none"
               onPointerMove={pointerDelta}

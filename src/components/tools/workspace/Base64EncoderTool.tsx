@@ -1,5 +1,6 @@
 "use client";
 
+import { useTx } from "@/i18n/tool-text";
 import { useState } from "react";
 import { Button } from "@/components/ui/Button";
 import {
@@ -13,6 +14,8 @@ import { CopyButton } from "@/components/tools/CopyButton";
 import { decodeBase64, encodeBase64 } from "@/lib/tools/base64";
 
 export function Base64EncoderTool() {
+  const tx = useTx();
+
   const [input, setInput] = useState("");
   const [output, setOutput] = useState("");
   const [error, setError] = useState("");
@@ -58,7 +61,7 @@ export function Base64EncoderTool() {
           />
         </ToolField>
         <ToolField id="base64-output" label="Output">
-          <textarea
+          <textarea data-ltr
             id="base64-output"
             value={output}
             readOnly
@@ -72,13 +75,13 @@ export function Base64EncoderTool() {
       <div className="mt-4">
         <ToolActions>
           <Button type="button" onClick={encode}>
-            Encode
+            {tx("Encode")}
           </Button>
           <Button type="button" variant="secondary" onClick={decode}>
-            Decode
+            {tx("Decode")}
           </Button>
           <Button type="button" variant="secondary" onClick={swap}>
-            Swap
+            {tx("Swap")}
           </Button>
           <CopyButton value={output} />
           <Button
@@ -90,13 +93,13 @@ export function Base64EncoderTool() {
               setError("");
             }}
           >
-            Clear
+            {tx("Clear")}
           </Button>
         </ToolActions>
       </div>
 
       <p className="mt-4 text-sm text-muted-foreground">
-        Base64 is encoding, not encryption. Anyone can decode the result.
+        {tx("Base64 is encoding, not encryption. Anyone can decode the result.")}
       </p>
 
       <div className="mt-4">{error ? <ToolError>{error}</ToolError> : null}</div>

@@ -1,5 +1,6 @@
 "use client";
 
+import { useTx } from "@/i18n/tool-text";
 import { useState } from "react";
 import { Button } from "@/components/ui/Button";
 import { DownloadButton } from "@/components/tools/DownloadButton";
@@ -25,6 +26,8 @@ import {
 import { readDocxText, validateDocxFile } from "@/lib/tools/word-to-pdf";
 
 export function WordToPdfTool() {
+  const tx = useTx();
+
   const [file, setFile] = useState<File | null>(null);
   const [title, setTitle] = useState("");
   const [pageSize, setPageSize] = useState<TextPdfPageSize>("a4");
@@ -100,8 +103,8 @@ export function WordToPdfTool() {
       setPdf(bytesToPdfBlob(result.bytes));
       setNote(
         result.replaced > 0
-          ? `Created ${result.pageCount} page${result.pageCount === 1 ? "" : "s"}. ${result.replaced} character${result.replaced === 1 ? " was" : "s were"} replaced because Helvetica does not cover every Unicode glyph.`
-          : `Created ${result.pageCount} page${result.pageCount === 1 ? "" : "s"} using Helvetica.`,
+          ? tx(`Created ${result.pageCount} ${result.pageCount === 1 ? "page" : "pages"}. ${result.replaced} ${result.replaced === 1 ? "character was" : "characters were"} replaced because Helvetica does not cover every Unicode glyph.`)
+          : tx(`Created ${result.pageCount} ${result.pageCount === 1 ? "page" : "pages"} using Helvetica.`),
       );
     } catch {
       setError("That file could not be read as a Word document.");
@@ -113,7 +116,7 @@ export function WordToPdfTool() {
   return (
     <ToolPanel>
       <p className="text-sm leading-6 text-muted-foreground">
-        This reads the words from a .docx file and places them in a plain PDF. Images, tables as grids, headers, footers, and text styling are left out. It is not a copy of the Word layout.
+        {tx("This reads the words from a .docx file and places them in a plain PDF. Images, tables as grids, headers, footers, and text styling are left out. It is not a copy of the Word layout.")}
       </p>
       <div className="mt-4">
         <FileDropZone
@@ -188,7 +191,7 @@ export function WordToPdfTool() {
       <div className="mt-6">
         <ToolActions>
           <Button type="button" onClick={() => void convert()} disabled={busy}>
-            {busy ? "Working…" : "Create PDF"}
+            {busy ? tx("Working…") : tx("Create PDF")}
           </Button>
           <DownloadButton blob={pdf} fileName="word.pdf" label="Download PDF" />
           <Button
@@ -203,7 +206,7 @@ export function WordToPdfTool() {
             }}
             disabled={busy}
           >
-            Clear
+            {tx("Clear")}
           </Button>
         </ToolActions>
       </div>
@@ -212,7 +215,7 @@ export function WordToPdfTool() {
         {note ? <p className="text-sm leading-6 text-muted-foreground">{note}</p> : null}
       </div>
       <p className="mt-4 text-sm leading-6 text-muted-foreground">
-        The PDF is built with Helvetica, a standard PDF font. Latin text usually prints as written. Characters outside that font’s coverage are replaced with “?” rather than claiming universal Unicode support.
+        {tx("The PDF is built with Helvetica, a standard PDF font. Latin text usually prints as written. Characters outside that font’s coverage are replaced with “?” rather than claiming universal Unicode support.")}
       </p>
       <ToolPrivacyNote>The PDF is built in this tab from the .docx you choose. That file is not uploaded.</ToolPrivacyNote>
     </ToolPanel>

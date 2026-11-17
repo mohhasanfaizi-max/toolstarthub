@@ -1,5 +1,6 @@
 "use client";
 
+import { useTx } from "@/i18n/tool-text";
 import { useState } from "react";
 import { Button } from "@/components/ui/Button";
 import { CopyButton } from "@/components/tools/CopyButton";
@@ -17,6 +18,8 @@ const PRESETS = [
 ];
 
 export function CronExpressionGeneratorTool() {
+  const tx = useTx();
+
   const [mode, setMode] = useState<CronMode>("build");
   const [minute, setMinute] = useState("0");
   const [hour, setHour] = useState("9");
@@ -41,7 +44,7 @@ export function CronExpressionGeneratorTool() {
   return (
     <ToolPanel>
       <p className="text-sm leading-6 text-muted-foreground">
-        Five fields only: minute, hour, day of month, month, and day of week. Sunday is 0. Names such as MON are rejected.
+        {tx("Five fields only: minute, hour, day of month, month, and day of week. Sunday is 0. Names such as MON are rejected.")}
       </p>
       <div className="mt-4">
         <ToolChoiceGroup
@@ -100,14 +103,14 @@ export function CronExpressionGeneratorTool() {
       {error ? <div className="mt-4"><ToolError>{error}</ToolError></div> : null}
       <div className="mt-4">
         <ToolActions>
-          <Button type="button" onClick={run}>{mode === "build" ? "Build" : "Explain"}</Button>
+          <Button type="button" onClick={run}>{mode === "build" ? tx("Build") : tx("Explain")}</Button>
           <CopyButton value={result?.ok ? result.expression : ""} label="Copy expression" />
-          <Button type="button" variant="ghost" onClick={() => { setMode("build"); setMinute("0"); setHour("9"); setDayOfMonth("*"); setMonth("*"); setDayOfWeek("*"); setExpression("*/15 * * * *"); setError(""); setResult(undefined); }}>Reset</Button>
+          <Button type="button" variant="ghost" onClick={() => { setMode("build"); setMinute("0"); setHour("9"); setDayOfMonth("*"); setMonth("*"); setDayOfWeek("*"); setExpression("*/15 * * * *"); setError(""); setResult(undefined); }}>{tx("Reset")}</Button>
         </ToolActions>
       </div>
       {result?.ok ? (
         <div className="mt-6 space-y-4">
-          <ToolOutput label="Expression"><pre className="font-mono text-sm">{result.expression}</pre></ToolOutput>
+          <ToolOutput label="Expression"><pre data-ltr className="font-mono text-sm">{result.expression}</pre></ToolOutput>
           <ToolOutput label="Meaning"><p className="text-sm leading-6">{result.summary}</p></ToolOutput>
         </div>
       ) : null}

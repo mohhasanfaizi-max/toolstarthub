@@ -1,5 +1,6 @@
 "use client";
 
+import { useTx } from "@/i18n/tool-text";
 import { useState } from "react";
 import { Button } from "@/components/ui/Button";
 import { CopyButton } from "@/components/tools/CopyButton";
@@ -23,6 +24,8 @@ import {
 } from "@/lib/tools/ocr";
 
 export function ImageToTextTool() {
+  const tx = useTx();
+
   const [file, setFile] = useState<File | null>(null);
   const [text, setText] = useState("");
   const [note, setNote] = useState("");
@@ -156,11 +159,11 @@ export function ImageToTextTool() {
       <div className="mt-6">
         <ToolActions>
           <Button type="button" onClick={() => void readText()} disabled={busy || !file}>
-            {busy ? "Reading…" : "Read text"}
+            {busy ? tx("Reading…") : tx("Read text")}
           </Button>
           <CopyButton value={text} label="Copy text" />
           <Button type="button" variant="ghost" onClick={clear} disabled={busy}>
-            Clear
+            {tx("Clear")}
           </Button>
         </ToolActions>
       </div>
@@ -170,7 +173,7 @@ export function ImageToTextTool() {
         {note ? <p className="text-sm leading-6 text-muted-foreground">{note}</p> : null}
         {text ? (
           <ToolField id="image-to-text-output" label="Text from the image">
-            <textarea
+            <textarea data-ltr
               id="image-to-text-output"
               value={text}
               readOnly

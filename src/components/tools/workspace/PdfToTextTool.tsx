@@ -1,5 +1,6 @@
 "use client";
 
+import { useTx } from "@/i18n/tool-text";
 import { useEffect, useRef, useState } from "react";
 import { Button } from "@/components/ui/Button";
 import { CopyButton } from "@/components/tools/CopyButton";
@@ -29,6 +30,8 @@ import {
 import { validatePdfFile } from "@/lib/tools/pdf";
 
 export function PdfToTextTool() {
+  const tx = useTx();
+
   const [file, setFile] = useState<File | null>(null);
   const [bytes, setBytes] = useState<Uint8Array | null>(null);
   const [pageCount, setPageCount] = useState(0);
@@ -242,12 +245,12 @@ export function PdfToTextTool() {
       <div className="mt-6">
         <ToolActions>
           <Button type="button" onClick={() => void extract()} disabled={busy || !file}>
-            {busy ? "Working…" : "Extract text"}
+            {busy ? tx("Working…") : tx("Extract text")}
           </Button>
           <CopyButton value={text} label="Copy text" />
           <DownloadButton blob={textBlob} fileName={downloadName} label="Download .txt" />
           <Button type="button" variant="ghost" onClick={reset} disabled={busy}>
-            Reset
+            {tx("Reset")}
           </Button>
         </ToolActions>
       </div>
@@ -265,7 +268,7 @@ export function PdfToTextTool() {
                 : undefined
             }
           >
-            <textarea
+            <textarea data-ltr
               id="pdf-text-output"
               value={text}
               readOnly
@@ -278,8 +281,7 @@ export function PdfToTextTool() {
       </div>
 
       <p className="mt-4 text-sm leading-6 text-muted-foreground">
-        This reads the PDF’s text layer. Scanned or image-only pages often produce little or no text
-        because optical character recognition (OCR) is not included.
+        {tx("This reads the PDF’s text layer. Scanned or image-only pages often produce little or no text because optical character recognition (OCR) is not included.")}
       </p>
 
       <ToolPrivacyNote>

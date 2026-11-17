@@ -1,5 +1,6 @@
 "use client";
 
+import { useTx } from "@/i18n/tool-text";
 import { useEffect, useRef, useState } from "react";
 import type { PDFDocumentLoadingTask, PDFDocumentProxy } from "pdfjs-dist";
 import { Button } from "@/components/ui/Button";
@@ -54,6 +55,8 @@ const FORMAT_EXT: Record<OutputFormat, string> = {
 };
 
 export function PdfToJpgTool() {
+  const tx = useTx();
+
   const [file, setFile] = useState<File | null>(null);
   const [doc, setDoc] = useState<PDFDocumentProxy | null>(null);
   const [pageCount, setPageCount] = useState(0);
@@ -327,7 +330,7 @@ export function PdfToJpgTool() {
             onClick={() => file && void loadPdf(file, password)}
             disabled={busy || !file || password.length === 0}
           >
-            Unlock PDF
+            {tx("Unlock PDF")}
           </Button>
         </div>
       ) : null}
@@ -379,7 +382,7 @@ export function PdfToJpgTool() {
 
       {mode === "selected" && pageCount > 0 ? (
         <fieldset className="mt-4">
-          <legend className="text-sm font-medium text-foreground">Selected pages</legend>
+          <legend className="text-sm font-medium text-foreground">{tx("Selected pages")}</legend>
           <div className="mt-2 grid grid-cols-4 gap-2 sm:grid-cols-8">
             {Array.from({ length: pageCount }, (_, index) => index + 1).map((page) => (
               <label
@@ -462,11 +465,11 @@ export function PdfToJpgTool() {
 
       {format === "png" ? (
         <p className="mt-4 text-sm text-muted-foreground" data-testid="png-quality-note">
-          PNG is lossless, so there is no quality slider for this format.
+          {tx("PNG is lossless, so there is no quality slider for this format.")}
         </p>
       ) : (
         <div className="mt-4">
-          <ToolField id="pdf-quality" label={format === "webp" ? "WebP quality" : "JPG quality"}>
+          <ToolField id="pdf-quality" label={format === "webp" ? tx("WebP quality") : tx("JPG quality")}>
             <input
               id="pdf-quality"
               type="range"
@@ -484,17 +487,17 @@ export function PdfToJpgTool() {
       <div className="mt-6">
         <ToolActions>
           <Button type="button" onClick={() => void convert()} disabled={busy || !doc}>
-            {busy ? "Working…" : "Convert"}
+            {busy ? tx("Working…") : tx("Convert")}
           </Button>
           {zipBlob && zipName ? (
             <DownloadButton blob={zipBlob} fileName={zipName} label="Download all as ZIP" />
           ) : (
             <Button type="button" variant="secondary" disabled>
-              Download all as ZIP
+              {tx("Download all as ZIP")}
             </Button>
           )}
           <Button type="button" variant="ghost" onClick={reset} disabled={busy}>
-            Reset
+            {tx("Reset")}
           </Button>
         </ToolActions>
       </div>

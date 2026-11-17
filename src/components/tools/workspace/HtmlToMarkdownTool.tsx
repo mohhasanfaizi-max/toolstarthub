@@ -1,5 +1,6 @@
 "use client";
 
+import { useTx } from "@/i18n/tool-text";
 import { useState } from "react";
 import { Button } from "@/components/ui/Button";
 import { CopyButton } from "@/components/tools/CopyButton";
@@ -15,6 +16,8 @@ import {
 import { HTML_SAMPLE, htmlToMarkdown } from "@/lib/tools/html-markdown";
 
 export function HtmlToMarkdownTool() {
+  const tx = useTx();
+
   const [input, setInput] = useState("");
   const [output, setOutput] = useState("");
   const [error, setError] = useState("");
@@ -51,7 +54,7 @@ export function HtmlToMarkdownTool() {
           />
         </ToolField>
         <ToolField id="html-md-output" label="Markdown">
-          <textarea
+          <textarea data-ltr
             id="html-md-output"
             value={output}
             readOnly
@@ -65,10 +68,10 @@ export function HtmlToMarkdownTool() {
       <div className="mt-4">
         <ToolActions>
           <Button type="button" onClick={convert}>
-            Convert
+            {tx("Convert")}
           </Button>
           <Button type="button" variant="secondary" onClick={() => setInput(HTML_SAMPLE)}>
-            Sample
+            {tx("Sample")}
           </Button>
           <CopyButton value={output} label="Copy Markdown" />
           <DownloadButton blob={blob} fileName="converted.md" label="Download .md" />
@@ -81,7 +84,7 @@ export function HtmlToMarkdownTool() {
               setError("");
             }}
           >
-            Clear
+            {tx("Clear")}
           </Button>
         </ToolActions>
       </div>
@@ -89,8 +92,7 @@ export function HtmlToMarkdownTool() {
       <div className="mt-4">{error ? <ToolError>{error}</ToolError> : null}</div>
 
       <p className="mt-4 text-sm leading-6 text-muted-foreground">
-        The HTML is parsed as source text in this tab. It is not injected into the page and is not
-        executed. Complex or invalid markup may convert only the tags this tool understands.
+        {tx("The HTML is parsed as source text in this tab. It is not injected into the page and is not executed. Complex or invalid markup may convert only the tags this tool understands.")}
       </p>
 
       <ToolPrivacyNote>

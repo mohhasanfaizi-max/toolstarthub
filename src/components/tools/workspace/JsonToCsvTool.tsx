@@ -1,5 +1,6 @@
 "use client";
 
+import { useTx } from "@/i18n/tool-text";
 import { useState } from "react";
 import { Button } from "@/components/ui/Button";
 import { CopyButton } from "@/components/tools/CopyButton";
@@ -15,6 +16,8 @@ import {
 import { jsonToCsv } from "@/lib/tools/json-to-csv";
 
 export function JsonToCsvTool() {
+  const tx = useTx();
+
   const [source, setSource] = useState("");
   const [output, setOutput] = useState("");
   const [error, setError] = useState("");
@@ -30,7 +33,7 @@ export function JsonToCsvTool() {
     }
     setError("");
     setOutput(result.csv);
-    setNote(`${result.rows} ${result.rows === 1 ? "row" : "rows"}, ${result.columns.length} ${result.columns.length === 1 ? "column" : "columns"}.`);
+    setNote(tx(`${result.rows} ${result.rows === 1 ? "row" : "rows"}, ${result.columns.length} ${result.columns.length === 1 ? "column" : "columns"}.`));
   }
 
   function reset() {
@@ -50,15 +53,15 @@ export function JsonToCsvTool() {
       {error ? <div className="mt-4"><ToolError>{error}</ToolError></div> : null}
       <div className="mt-4">
         <ToolActions>
-          <Button type="button" onClick={run}>Convert to CSV</Button>
+          <Button type="button" onClick={run}>{tx("Convert to CSV")}</Button>
           <CopyButton value={output} label="Copy CSV" />
           <DownloadButton blob={blob} fileName="data.csv" label="Download CSV" />
-          <Button type="button" variant="ghost" onClick={reset}>Clear</Button>
+          <Button type="button" variant="ghost" onClick={reset}>{tx("Clear")}</Button>
         </ToolActions>
       </div>
       <div className="mt-6">
         <ToolField id="json-csv-output" label="CSV" hint={note || undefined}>
-          <textarea id="json-csv-output" value={output} readOnly rows={8} spellCheck={false} className={`${toolControlClass} min-h-36 resize-y font-mono text-sm`} />
+          <textarea data-ltr id="json-csv-output" value={output} readOnly rows={8} spellCheck={false} className={`${toolControlClass} min-h-36 resize-y font-mono text-sm`} />
         </ToolField>
       </div>
       <ToolPrivacyNote>The JSON stays in your browser. It is not uploaded.</ToolPrivacyNote>

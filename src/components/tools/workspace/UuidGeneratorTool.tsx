@@ -1,5 +1,6 @@
 "use client";
 
+import { useTx } from "@/i18n/tool-text";
 import { useState } from "react";
 import { Button } from "@/components/ui/Button";
 import { CopyButton } from "@/components/tools/CopyButton";
@@ -13,6 +14,8 @@ import {
 import { generateUuids, UUID_MAX, UUID_MIN } from "@/lib/tools/uuid";
 
 export function UuidGeneratorTool() {
+  const tx = useTx();
+
   const [quantity, setQuantity] = useState("1");
   const [values, setValues] = useState<string[]>([]);
   const [error, setError] = useState("");
@@ -46,10 +49,10 @@ export function UuidGeneratorTool() {
       <div className="mt-6">
         <ToolActions>
           <Button type="button" onClick={generate}>
-            Generate
+            {tx("Generate")}
           </Button>
           <Button type="button" variant="secondary" onClick={generate} disabled={values.length === 0}>
-            Regenerate
+            {tx("Regenerate")}
           </Button>
           <CopyButton value={values.join("\n")} label="Copy all" />
           <Button
@@ -60,7 +63,7 @@ export function UuidGeneratorTool() {
               setError("");
             }}
           >
-            Clear
+            {tx("Clear")}
           </Button>
         </ToolActions>
       </div>

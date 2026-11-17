@@ -1,5 +1,6 @@
 "use client";
 
+import { useTx } from "@/i18n/tool-text";
 import { useState } from "react";
 import { Button } from "@/components/ui/Button";
 import { ColorValues } from "@/components/tools/ColorValues";
@@ -13,6 +14,8 @@ import {
 import { parseCssColor } from "@/lib/tools/color";
 
 export function ColorPickerTool() {
+  const tx = useTx();
+
   const [hex, setHex] = useState("#2563eb");
   const parsed = parseCssColor(hex);
   const pickerValue = parsed.ok ? parsed.color.hex : "#2563eb";
@@ -48,7 +51,7 @@ export function ColorPickerTool() {
       <div className="mt-4">
         <ToolActions>
           <Button type="button" variant="ghost" onClick={() => setHex("#2563eb")}>
-            Reset
+            {tx("Reset")}
           </Button>
         </ToolActions>
       </div>
@@ -63,15 +66,15 @@ export function ColorPickerTool() {
 
       <div className="mt-6 space-y-3 text-sm leading-6 text-muted-foreground">
         <p>
-          <strong className="font-medium text-foreground">HEX</strong> writes red,
+          <strong className="font-medium text-foreground">{tx("HEX")}</strong> writes red,
           green and blue as hexadecimal digits, for example #2563eb.
         </p>
         <p>
-          <strong className="font-medium text-foreground">RGB</strong> uses decimal
+          <strong className="font-medium text-foreground">{tx("RGB")}</strong> uses decimal
           channels from 0 to 255, for example rgb(37, 99, 235).
         </p>
         <p>
-          <strong className="font-medium text-foreground">HSL</strong> describes hue,
+          <strong className="font-medium text-foreground">{tx("HSL")}</strong> describes hue,
           saturation and lightness of the same color.
         </p>
       </div>

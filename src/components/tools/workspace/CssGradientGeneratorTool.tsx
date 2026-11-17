@@ -1,5 +1,6 @@
 "use client";
 
+import { useTx } from "@/i18n/tool-text";
 import { useState, useSyncExternalStore, type CSSProperties } from "react";
 import { Button } from "@/components/ui/Button";
 import { CodeOutputWithCopy } from "@/components/tools/CodeOutputWithCopy";
@@ -126,6 +127,8 @@ function presetSwatch(options: GradientOptions): string | undefined {
 }
 
 export function CssGradientGeneratorTool() {
+  const tx = useTx();
+
   const search = useSyncExternalStore(
     subscribeShareUrl,
     getShareUrlSnapshot,
@@ -198,7 +201,7 @@ export function CssGradientGeneratorTool() {
         <div className="min-w-0 lg:col-start-2 lg:row-start-1">
           {built.ok ? (
             <div>
-              <p className="text-sm font-medium text-foreground">Preview</p>
+              <p className="text-sm font-medium text-foreground">{tx("Preview")}</p>
               {design.mode === "text" ? (
                 <div className="mt-2 flex min-h-40 items-center rounded-2xl border border-border bg-background p-5 sm:min-h-48 sm:p-6">
                   <p className="w-full" style={textPreviewStyle}>
@@ -259,13 +262,13 @@ export function CssGradientGeneratorTool() {
                 ]}
               />
               <p className="text-sm text-muted-foreground">
-                Radial gradients have no angle in CSS. Set the shape and center instead.
+                {tx("Radial gradients have no angle in CSS. Set the shape and center instead.")}
               </p>
             </div>
           ) : (
             <RangeField
               id="gradient-angle"
-              label={options.type === "conic" ? "Start angle" : "Angle"}
+              label={options.type === "conic" ? tx("Start angle") : tx("Angle")}
               min={0}
               max={359}
               value={options.angle}
@@ -299,7 +302,7 @@ export function CssGradientGeneratorTool() {
 
           {design.mode === "text" ? (
             <fieldset className="space-y-4 rounded-2xl border border-border p-4">
-              <legend className="px-1 text-sm font-medium text-foreground">Text settings</legend>
+              <legend className="px-1 text-sm font-medium text-foreground">{tx("Text settings")}</legend>
               <ToolField
                 id="gradient-text"
                 label="Text"
@@ -372,7 +375,7 @@ export function CssGradientGeneratorTool() {
           ) : null}
 
           <fieldset className="space-y-4">
-            <legend className="text-sm font-medium text-foreground">Color stops</legend>
+            <legend className="text-sm font-medium text-foreground">{tx("Color stops")}</legend>
             {options.stops.map((stop, index) => (
               <div key={stop.id} className="rounded-2xl border border-border p-4">
                 <div className="grid gap-4 sm:grid-cols-2">
@@ -436,7 +439,7 @@ export function CssGradientGeneratorTool() {
                     }
                     disabled={options.stops.length <= 2}
                   >
-                    Remove
+                    {tx("Remove")}
                   </Button>
                 </div>
               </div>
@@ -457,7 +460,7 @@ export function CssGradientGeneratorTool() {
           </fieldset>
 
           <fieldset>
-            <legend className="text-sm font-medium text-foreground">Presets</legend>
+            <legend className="text-sm font-medium text-foreground">{tx("Presets")}</legend>
             <div className="mt-2 grid grid-cols-2 gap-2 sm:grid-cols-3">
               {PRESETS.map((preset) => (
                 <button
@@ -484,7 +487,7 @@ export function CssGradientGeneratorTool() {
 
           <ToolActions>
             <Button type="button" variant="ghost" onClick={reset}>
-              Reset
+              {tx("Reset")}
             </Button>
             <ShareLinkButton />
           </ToolActions>
@@ -495,7 +498,7 @@ export function CssGradientGeneratorTool() {
             <>
               <CodeOutputWithCopy
                 id="gradient-css-output"
-                label={design.mode === "text" ? "CSS for gradient text" : "CSS"}
+                label={design.mode === "text" ? tx("CSS for gradient text") : tx("CSS")}
                 value={css}
                 copyLabel="Copy CSS"
                 what="CSS"

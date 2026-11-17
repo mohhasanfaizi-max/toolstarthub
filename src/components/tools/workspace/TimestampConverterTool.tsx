@@ -1,5 +1,6 @@
 "use client";
 
+import { useTx } from "@/i18n/tool-text";
 import { useState } from "react";
 import { Button } from "@/components/ui/Button";
 import { CopyButton } from "@/components/tools/CopyButton";
@@ -21,6 +22,8 @@ import {
 } from "@/lib/tools/timestamp";
 
 export function TimestampConverterTool() {
+  const tx = useTx();
+
   const [unit, setUnit] = useState<TimestampUnit>("seconds");
   const [timestamp, setTimestamp] = useState("");
   const [dateValue, setDateValue] = useState("");
@@ -66,7 +69,7 @@ export function TimestampConverterTool() {
       <div className="grid gap-8 lg:grid-cols-2">
         <section aria-labelledby="timestamp-to-date-heading">
           <h2 id="timestamp-to-date-heading" className="text-base font-semibold text-foreground">
-            Timestamp to date
+            {tx("Timestamp to date")}
           </h2>
           <div className="mt-4">
             <ToolChoiceGroup
@@ -83,7 +86,7 @@ export function TimestampConverterTool() {
           <div className="mt-4">
             <ToolField
               id="unix-input"
-              label={unit === "seconds" ? "Unix timestamp (seconds)" : "Unix timestamp (milliseconds)"}
+              label={unit === "seconds" ? tx("Unix timestamp (seconds)") : tx("Unix timestamp (milliseconds)")}
             >
               <input
                 id="unix-input"
@@ -97,10 +100,10 @@ export function TimestampConverterTool() {
           <div className="mt-4">
             <ToolActions>
               <Button type="button" onClick={convertTimestamp}>
-                Convert
+                {tx("Convert")}
               </Button>
               <Button type="button" variant="secondary" onClick={useCurrent}>
-                Current timestamp
+                {tx("Current timestamp")}
               </Button>
               {fromUnix?.ok ? <CopyButton value={fromUnix.iso} label="Copy ISO" /> : null}
             </ToolActions>
@@ -108,11 +111,11 @@ export function TimestampConverterTool() {
           {fromUnix?.ok ? (
             <div className="mt-4">
               <ToolOutput>
-                <p className="text-sm text-muted-foreground">Local</p>
+                <p className="text-sm text-muted-foreground">{tx("Local")}</p>
                 <p className="font-medium">{fromUnix.local}</p>
-                <p className="mt-3 text-sm text-muted-foreground">UTC</p>
+                <p className="mt-3 text-sm text-muted-foreground">{tx("UTC")}</p>
                 <p className="font-medium">{fromUnix.utc}</p>
-                <p className="mt-3 text-sm text-muted-foreground">ISO 8601</p>
+                <p className="mt-3 text-sm text-muted-foreground">{tx("ISO 8601")}</p>
                 <p className="break-all font-medium">{fromUnix.iso}</p>
                 {fromUnix.warning ? (
                   <p className="mt-3 text-sm text-foreground">{fromUnix.warning}</p>
@@ -124,7 +127,7 @@ export function TimestampConverterTool() {
 
         <section aria-labelledby="date-to-timestamp-heading">
           <h2 id="date-to-timestamp-heading" className="text-base font-semibold text-foreground">
-            Date to timestamp
+            {tx("Date to timestamp")}
           </h2>
           <div className="mt-4 grid gap-4 sm:grid-cols-2">
             <ToolField id="timestamp-date" label="Date">
@@ -162,7 +165,7 @@ export function TimestampConverterTool() {
           <div className="mt-4">
             <ToolActions>
               <Button type="button" onClick={convertDate}>
-                Convert
+                {tx("Convert")}
               </Button>
               {toUnix?.ok ? (
                 <CopyButton
@@ -175,15 +178,15 @@ export function TimestampConverterTool() {
           {toUnix?.ok ? (
             <div className="mt-4">
               <ToolOutput>
-                <p className="text-sm text-muted-foreground">Seconds</p>
+                <p className="text-sm text-muted-foreground">{tx("Seconds")}</p>
                 <p className="break-all text-2xl font-semibold tabular-nums">
                   {toUnix.seconds}
                 </p>
-                <p className="mt-3 text-sm text-muted-foreground">Milliseconds</p>
+                <p className="mt-3 text-sm text-muted-foreground">{tx("Milliseconds")}</p>
                 <p className="break-all text-2xl font-semibold tabular-nums">
                   {toUnix.milliseconds}
                 </p>
-                <p className="mt-3 text-sm text-muted-foreground">ISO 8601</p>
+                <p className="mt-3 text-sm text-muted-foreground">{tx("ISO 8601")}</p>
                 <p className="break-all font-medium">{toUnix.iso}</p>
               </ToolOutput>
             </div>
@@ -194,7 +197,7 @@ export function TimestampConverterTool() {
       <div className="mt-6">
         <ToolActions>
           <Button type="button" variant="secondary" onClick={reset}>
-            Reset
+            {tx("Reset")}
           </Button>
         </ToolActions>
       </div>

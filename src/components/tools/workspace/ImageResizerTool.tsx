@@ -1,5 +1,6 @@
 "use client";
 
+import { useTx } from "@/i18n/tool-text";
 import { useEffect, useState } from "react";
 import { Button } from "@/components/ui/Button";
 import { DownloadButton } from "@/components/tools/DownloadButton";
@@ -29,6 +30,8 @@ import {
 const ACCEPT = "image/jpeg,image/png,image/webp,.jpg,.jpeg,.png,.webp";
 
 export function ImageResizerTool() {
+  const tx = useTx();
+
   const { image, error, loading, loadFile, resetImage, setError } = useLocalImage();
   const [width, setWidth] = useState("");
   const [height, setHeight] = useState("");
@@ -235,11 +238,11 @@ export function ImageResizerTool() {
       <div className="mt-6">
         <ToolActions>
           <Button type="button" onClick={() => void resize()} disabled={busy || loading}>
-            {busy ? "Resizing…" : "Resize"}
+            {busy ? tx("Resizing…") : tx("Resize")}
           </Button>
           <DownloadButton blob={result?.blob ?? null} fileName={result?.name ?? "image.jpg"} />
           <Button type="button" variant="secondary" onClick={reset}>
-            Reset
+            {tx("Reset")}
           </Button>
         </ToolActions>
       </div>

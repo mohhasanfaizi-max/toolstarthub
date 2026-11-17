@@ -1,5 +1,6 @@
 "use client";
 
+import { useTx } from "@/i18n/tool-text";
 import { useState } from "react";
 import { Button } from "@/components/ui/Button";
 import { CopyButton } from "@/components/tools/CopyButton";
@@ -16,6 +17,8 @@ import {
 import { HASH_ALGORITHMS, hashText, type HashAlgorithm } from "@/lib/tools/hash";
 
 export function HashGeneratorTool() {
+  const tx = useTx();
+
   const [text, setText] = useState("");
   const [algorithm, setAlgorithm] = useState<HashAlgorithm>("SHA-256");
   const [error, setError] = useState("");
@@ -45,7 +48,7 @@ export function HashGeneratorTool() {
   return (
     <ToolPanel>
       <p className="text-sm leading-6 text-muted-foreground">
-        This creates a one-way hash for checking that text has not changed. It does not encrypt the text, and it does not store a password.
+        {tx("This creates a one-way hash for checking that text has not changed. It does not encrypt the text, and it does not store a password.")}
       </p>
       <div className="mt-4">
         <ToolField id="hash-text" label="Text">
@@ -65,9 +68,9 @@ export function HashGeneratorTool() {
       {error ? <div className="mt-4"><ToolError>{error}</ToolError></div> : null}
       <div className="mt-4">
         <ToolActions>
-          <Button type="button" onClick={run} disabled={busy}>{busy ? "Working" : "Create hash"}</Button>
+          <Button type="button" onClick={run} disabled={busy}>{busy ? tx("Working") : tx("Create hash")}</Button>
           <CopyButton value={hex} label="Copy result" />
-          <Button type="button" variant="ghost" onClick={reset}>Clear</Button>
+          <Button type="button" variant="ghost" onClick={reset}>{tx("Clear")}</Button>
         </ToolActions>
       </div>
       <div className="mt-6">

@@ -1,5 +1,6 @@
 "use client";
 
+import { useTx } from "@/i18n/tool-text";
 import { useCallback, useEffect, useRef, useState, type PointerEvent as ReactPointerEvent } from "react";
 import { ToolError, ToolPanel, toolControlClass } from "@/components/tools/ToolForm";
 import {
@@ -74,6 +75,8 @@ function blobFrom(canvas: HTMLCanvasElement, type: string, quality?: number): Pr
 }
 
 export function YoutubeBannerMakerTool() {
+  const tx = useTx();
+
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const fileRef = useRef<HTMLInputElement>(null);
   const images = useRef(new Map<string, HTMLImageElement>());
@@ -180,7 +183,7 @@ export function YoutubeBannerMakerTool() {
   const addText = () =>
     addLayer({ id: newId("t"), name: "Text", type: "text", text: "New text", color: "#ffffff", fontSize: 96, fontWeight: 600, fontFamily: FONT_OPTIONS[0].value, align: "center", x: BANNER_WIDTH / 2 - 500, y: BANNER_HEIGHT / 2 - 60, w: 1000, h: 130, opacity: 1 });
   const addShape = (type: "rect" | "ellipse") =>
-    addLayer({ id: newId("s"), name: type === "rect" ? "Rectangle" : "Ellipse", type, fill: { kind: "solid", color: "#C9A227" }, radius: type === "rect" ? 24 : 0, x: BANNER_WIDTH / 2 - 200, y: BANNER_HEIGHT / 2 - 120, w: 400, h: 240, opacity: 1 });
+    addLayer({ id: newId("s"), name: type === "rect" ? tx("Rectangle") : tx("Ellipse"), type, fill: { kind: "solid", color: "#C9A227" }, radius: type === "rect" ? 24 : 0, x: BANNER_WIDTH / 2 - 200, y: BANNER_HEIGHT / 2 - 120, w: 400, h: 240, opacity: 1 });
 
   function onFile(file: File | undefined, asLogo: boolean) {
     setError("");
@@ -197,7 +200,7 @@ export function YoutubeBannerMakerTool() {
         const scale = Math.min(target / img.width, (asLogo ? 300 : BANNER_HEIGHT) / img.height);
         const w = Math.round(img.width * scale);
         const h = Math.round(img.height * scale);
-        addLayer({ id: newId("i"), name: asLogo ? "Logo" : "Image", type: "image", src, x: asLogo ? SAFE_RECT.x + 30 : (BANNER_WIDTH - w) / 2, y: asLogo ? (BANNER_HEIGHT - h) / 2 : (BANNER_HEIGHT - h) / 2, w, h, opacity: 1 });
+        addLayer({ id: newId("i"), name: asLogo ? tx("Logo") : tx("Image"), type: "image", src, x: asLogo ? SAFE_RECT.x + 30 : (BANNER_WIDTH - w) / 2, y: asLogo ? (BANNER_HEIGHT - h) / 2 : (BANNER_HEIGHT - h) / 2, w, h, opacity: 1 });
         setTick((t) => t + 1);
       };
       img.onerror = () => setError("This image could not be read.");
@@ -305,7 +308,7 @@ export function YoutubeBannerMakerTool() {
     a.download = `youtube-banner-2560x1440.${used === "png" ? "png" : "jpg"}`;
     a.click();
     setTimeout(() => URL.revokeObjectURL(url), 2000);
-    setStatus(`Exported 2560 × 1440 ${used.toUpperCase()} (${(blob.size / 1024 / 1024).toFixed(2)} MB)${format === "png" && used === "jpeg" ? ". PNG was over 6 MB, so JPG was used." : "."} The safe-area guide is not included.`);
+    setStatus(tx(`Exported 2560 × 1440 ${used.toUpperCase()} (${(blob.size / 1024 / 1024).toFixed(2)} MB)${format === "png" && used === "jpeg" ? ". PNG was over 6 MB, so JPG was used." : "."} The safe-area guide is not included.`));
   }
 
   const setBg = (bg: Fill) => {
@@ -320,16 +323,16 @@ export function YoutubeBannerMakerTool() {
       <div id="yt-banner-editor" className="grid min-w-0 gap-5 lg:grid-cols-[minmax(0,1fr)_20rem]">
         <div className="min-w-0 space-y-3">
           <div className="flex flex-wrap items-center gap-2">
-            <button type="button" className={goldGhost} onClick={undo} disabled={index === 0} aria-label="Undo (Ctrl+Z)">Undo</button>
-            <button type="button" className={goldGhost} onClick={redo} disabled={index >= history.length - 1} aria-label="Redo (Ctrl+Shift+Z)">Redo</button>
-            <button type="button" className={goldGhost} onClick={reset}>Reset</button>
+            <button type="button" className={goldGhost} onClick={undo} disabled={index === 0} aria-label={tx("Undo (Ctrl+Z)")}>{tx("Undo")}</button>
+            <button type="button" className={goldGhost} onClick={redo} disabled={index >= history.length - 1} aria-label={tx("Redo (Ctrl+Shift+Z)")}>{tx("Redo")}</button>
+            <button type="button" className={goldGhost} onClick={reset}>{tx("Reset")}</button>
             <label className="ml-auto flex items-center gap-2 text-sm">
               Zoom
               <input type="range" min={0.5} max={3} step={0.25} value={zoom} onChange={(e) => setZoom(Number(e.target.value))} className="accent-[#C9A227]" aria-valuetext={`${Math.round(zoom * 100)}%`} />
               <span className="w-12 tabular-nums">{Math.round(zoom * 100)}%</span>
             </label>
           </div>
-          <div className="max-h-[70vh] overflow-auto rounded-2xl border border-[#C9A227]/40 bg-neutral-200 dark:bg-neutral-800" tabIndex={0} aria-label="Banner canvas. Arrow keys move the selected layer, Delete removes it, Ctrl+D duplicates.">
+          <div className="max-h-[70vh] overflow-auto rounded-2xl border border-[#C9A227]/40 bg-neutral-200 dark:bg-neutral-800" tabIndex={0} aria-label={tx("Banner canvas. Arrow keys move the selected layer, Delete removes it, Ctrl+D duplicates.")}>
             <canvas
               ref={canvasRef}
               width={BANNER_WIDTH}
@@ -341,7 +344,7 @@ export function YoutubeBannerMakerTool() {
               onPointerUp={onPointerUp}
               onPointerCancel={onPointerUp}
               role="img"
-              aria-label="YouTube banner preview, 2560 by 1440 pixels"
+              aria-label={tx("YouTube banner preview, 2560 by 1440 pixels")}
             />
           </div>
           <div className="flex flex-wrap items-center gap-3 text-sm">
@@ -351,20 +354,20 @@ export function YoutubeBannerMakerTool() {
             </label>
           </div>
           <div className="flex flex-wrap items-center gap-2">
-            <select aria-label="Export format" value={format} onChange={(e) => setFormat(e.target.value as "png" | "jpeg")} className={`${toolControlClass} w-auto`}>
-              <option value="png">PNG</option>
-              <option value="jpeg">JPG</option>
+            <select aria-label={tx("Export format")} value={format} onChange={(e) => setFormat(e.target.value as "png" | "jpeg")} className={`${toolControlClass} w-auto`}>
+              <option value="png">{tx("PNG")}</option>
+              <option value="jpeg">{tx("JPG")}</option>
             </select>
-            <button type="button" className={goldBtn} onClick={exportBanner}>Download 2560 × 1440</button>
+            <button type="button" className={goldBtn} onClick={exportBanner}>{tx("Download 2560 × 1440")}</button>
           </div>
           {error ? <ToolError>{error}</ToolError> : null}
           {status ? <p className="text-sm text-[#A8841A]" role="status">{status}</p> : null}
-          <p className="text-xs text-muted-foreground">Everything runs in your browser. Images you add are never uploaded. Shortcuts: Ctrl/⌘+Z undo, Ctrl/⌘+Shift+Z or Ctrl+Y redo, Ctrl/⌘+D duplicate, Delete remove, arrows nudge (Shift for 50 px), Esc deselect.</p>
+          <p className="text-xs text-muted-foreground">{tx("Everything runs in your browser. Images you add are never uploaded. Shortcuts: Ctrl/⌘+Z undo, Ctrl/⌘+Shift+Z or Ctrl+Y redo, Ctrl/⌘+D duplicate, Delete remove, arrows nudge (Shift for 50 px), Esc deselect.")}</p>
         </div>
 
         <aside className="min-w-0 space-y-5">
           <section>
-            <h3 className="text-sm font-semibold">Templates</h3>
+            <h3 className="text-sm font-semibold">{tx("Templates")}</h3>
             <div className="mt-2 grid max-h-56 grid-cols-2 gap-2 overflow-y-auto pr-1">
               {BANNER_TEMPLATES.map((t) => (
                 <button key={t.id} type="button" className={goldTab(templateId === t.id)} onClick={() => loadTemplate(t.id)}>{t.name}</button>
@@ -372,34 +375,34 @@ export function YoutubeBannerMakerTool() {
             </div>
           </section>
           <section>
-            <h3 className="text-sm font-semibold">Add</h3>
+            <h3 className="text-sm font-semibold">{tx("Add")}</h3>
             <div className="mt-2 grid grid-cols-2 gap-2">
-              <button type="button" className={goldGhost} onClick={addText}>Text</button>
-              <button type="button" className={goldGhost} onClick={() => addShape("rect")}>Rectangle</button>
-              <button type="button" className={goldGhost} onClick={() => addShape("ellipse")}>Circle</button>
-              <button type="button" className={goldGhost} onClick={() => { setUploadAsLogo(false); fileRef.current?.click(); }}>Image</button>
-              <button type="button" className={`${goldGhost} col-span-2`} onClick={() => { setUploadAsLogo(true); fileRef.current?.click(); }}>Logo</button>
+              <button type="button" className={goldGhost} onClick={addText}>{tx("Text")}</button>
+              <button type="button" className={goldGhost} onClick={() => addShape("rect")}>{tx("Rectangle")}</button>
+              <button type="button" className={goldGhost} onClick={() => addShape("ellipse")}>{tx("Circle")}</button>
+              <button type="button" className={goldGhost} onClick={() => { setUploadAsLogo(false); fileRef.current?.click(); }}>{tx("Image")}</button>
+              <button type="button" className={`${goldGhost} col-span-2`} onClick={() => { setUploadAsLogo(true); fileRef.current?.click(); }}>{tx("Logo")}</button>
             </div>
-            <input ref={fileRef} type="file" accept="image/png,image/jpeg,image/webp,image/gif,image/svg+xml" className="sr-only" aria-label="Upload image" onChange={(e) => { onFile(e.target.files?.[0], uploadAsLogo); e.target.value = ""; }} />
+            <input ref={fileRef} type="file" accept="image/png,image/jpeg,image/webp,image/gif,image/svg+xml" className="sr-only" aria-label={tx("Upload image")} onChange={(e) => { onFile(e.target.files?.[0], uploadAsLogo); e.target.value = ""; }} />
           </section>
           <section>
-            <h3 className="text-sm font-semibold">Background</h3>
+            <h3 className="text-sm font-semibold">{tx("Background")}</h3>
             <div className="mt-2 grid grid-cols-2 gap-2 text-sm">
-              <button type="button" className={goldTab(bg.kind === "solid")} onClick={() => setBg({ kind: "solid", color: bg.kind === "solid" ? bg.color : bg.from })}>Solid</button>
-              <button type="button" className={goldTab(bg.kind === "linear")} onClick={() => setBg(bg.kind === "linear" ? bg : { kind: "linear", from: bg.color, to: "#C9A227", angle: 135 })}>Gradient</button>
+              <button type="button" className={goldTab(bg.kind === "solid")} onClick={() => setBg({ kind: "solid", color: bg.kind === "solid" ? bg.color : bg.from })}>{tx("Solid")}</button>
+              <button type="button" className={goldTab(bg.kind === "linear")} onClick={() => setBg(bg.kind === "linear" ? bg : { kind: "linear", from: bg.color, to: "#C9A227", angle: 135 })}>{tx("Gradient")}</button>
               {bg.kind === "solid" ? (
-                <label className="col-span-2 flex items-center gap-2">Colour <input type="color" value={bg.color} onChange={(e) => setBg({ kind: "solid", color: e.target.value })} /></label>
+                <label className="col-span-2 flex items-center gap-2">{tx("Colour")} <input type="color" value={bg.color} onChange={(e) => setBg({ kind: "solid", color: e.target.value })} /></label>
               ) : (
                 <>
-                  <label className="flex items-center gap-2">From <input type="color" value={bg.from} onChange={(e) => setBg({ ...bg, from: e.target.value })} /></label>
-                  <label className="flex items-center gap-2">To <input type="color" value={bg.to} onChange={(e) => setBg({ ...bg, to: e.target.value })} /></label>
-                  <label className="col-span-2 flex items-center gap-2">Angle <input type="range" min={0} max={360} value={bg.angle} onChange={(e) => setBg({ ...bg, angle: Number(e.target.value) })} className="flex-1 accent-[#C9A227]" /></label>
+                  <label className="flex items-center gap-2">{tx("From")} <input type="color" value={bg.from} onChange={(e) => setBg({ ...bg, from: e.target.value })} /></label>
+                  <label className="flex items-center gap-2">{tx("To")} <input type="color" value={bg.to} onChange={(e) => setBg({ ...bg, to: e.target.value })} /></label>
+                  <label className="col-span-2 flex items-center gap-2">{tx("Angle")} <input type="range" min={0} max={360} value={bg.angle} onChange={(e) => setBg({ ...bg, angle: Number(e.target.value) })} className="flex-1 accent-[#C9A227]" /></label>
                 </>
               )}
             </div>
           </section>
           <section>
-            <h3 className="text-sm font-semibold">Layers</h3>
+            <h3 className="text-sm font-semibold">{tx("Layers")}</h3>
             <ul className="mt-2 max-h-56 space-y-1 overflow-y-auto pr-1">
               {[...doc.layers].reverse().map((l) => (
                 <li key={l.id} className="flex items-center gap-1">
@@ -415,8 +418,8 @@ export function YoutubeBannerMakerTool() {
             <section className="space-y-3 rounded-2xl border border-[#C9A227]/40 p-3 text-sm">
               <h3 className="font-semibold">Selected: {selected.name}</h3>
               <div className="grid grid-cols-2 gap-2">
-                <button type="button" className={goldGhost} onClick={duplicate}>Duplicate</button>
-                <button type="button" className={goldGhost} onClick={remove}>Delete</button>
+                <button type="button" className={goldGhost} onClick={duplicate}>{tx("Duplicate")}</button>
+                <button type="button" className={goldGhost} onClick={remove}>{tx("Delete")}</button>
               </div>
               {selected.type === "text" ? <TextControls layer={selected} onChange={(p) => updateLayer(selected.id, p)} /> : null}
               {selected.type === "rect" || selected.type === "ellipse" ? <ShapeControls layer={selected} onChange={(p) => updateLayer(selected.id, p)} /> : null}
@@ -430,7 +433,7 @@ export function YoutubeBannerMakerTool() {
               </div>
             </section>
           ) : (
-            <p className="text-xs text-muted-foreground">Tap or click a layer on the canvas to edit it. Drag to move; drag the gold corner square to resize.</p>
+            <p className="text-xs text-muted-foreground">{tx("Tap or click a layer on the canvas to edit it. Drag to move; drag the gold corner square to resize.")}</p>
           )}
         </aside>
       </div>
@@ -439,55 +442,58 @@ export function YoutubeBannerMakerTool() {
 }
 
 function TextControls({ layer, onChange }: { layer: TextLayer; onChange: (p: Partial<TextLayer>) => void }) {
+  const tx = useTx();
+
   return (
     <div className="space-y-2">
-      <label className="block">Text
+      <label className="block">{tx("Text")}
         <textarea value={layer.text} rows={2} onChange={(e) => onChange({ text: e.target.value })} className={toolControlClass} />
       </label>
       <div className="grid grid-cols-2 gap-2">
-        <label className="text-xs">Font
+        <label className="text-xs">{tx("Font")}
           <select value={layer.fontFamily} onChange={(e) => onChange({ fontFamily: e.target.value })} className={toolControlClass}>
             {FONT_OPTIONS.map((f) => <option key={f.label} value={f.value}>{f.label}</option>)}
           </select>
         </label>
-        <label className="text-xs">Weight
+        <label className="text-xs">{tx("Weight")}
           <select value={layer.fontWeight} onChange={(e) => onChange({ fontWeight: Number(e.target.value) as TextLayer["fontWeight"] })} className={toolControlClass}>
-            <option value={400}>Regular</option><option value={600}>Semibold</option><option value={800}>Bold</option>
+            <option value={400}>{tx("Regular")}</option><option value={600}>{tx("Semibold")}</option><option value={800}>{tx("Bold")}</option>
           </select>
         </label>
-        <label className="text-xs">Size
+        <label className="text-xs">{tx("Size")}
           <input type="number" min={12} max={400} value={layer.fontSize} onChange={(e) => onChange({ fontSize: Math.max(12, Number(e.target.value) || 12) })} className={toolControlClass} />
         </label>
-        <label className="text-xs">Align
+        <label className="text-xs">{tx("Align")}
           <select value={layer.align} onChange={(e) => onChange({ align: e.target.value as TextLayer["align"] })} className={toolControlClass}>
-            <option value="left">Left</option><option value="center">Centre</option><option value="right">Right</option>
+            <option value="left">{tx("Left")}</option><option value="center">{tx("Centre")}</option><option value="right">{tx("Right")}</option>
           </select>
         </label>
       </div>
-      <label className="flex items-center gap-2">Colour <input type="color" value={layer.color} onChange={(e) => onChange({ color: e.target.value })} /></label>
+      <label className="flex items-center gap-2">{tx("Colour")} <input type="color" value={layer.color} onChange={(e) => onChange({ color: e.target.value })} /></label>
     </div>
   );
 }
 
 function ShapeControls({ layer, onChange }: { layer: ShapeLayer; onChange: (p: Partial<ShapeLayer>) => void }) {
+  const tx = useTx();
   const f = layer.fill;
   return (
     <div className="space-y-2">
       <div className="grid grid-cols-2 gap-2">
-        <button type="button" className={goldTab(f.kind === "solid")} onClick={() => onChange({ fill: { kind: "solid", color: f.kind === "solid" ? f.color : f.from } })}>Solid</button>
-        <button type="button" className={goldTab(f.kind === "linear")} onClick={() => onChange({ fill: f.kind === "linear" ? f : { kind: "linear", from: f.color, to: "#F7F0D8", angle: 90 } })}>Gradient</button>
+        <button type="button" className={goldTab(f.kind === "solid")} onClick={() => onChange({ fill: { kind: "solid", color: f.kind === "solid" ? f.color : f.from } })}>{tx("Solid")}</button>
+        <button type="button" className={goldTab(f.kind === "linear")} onClick={() => onChange({ fill: f.kind === "linear" ? f : { kind: "linear", from: f.color, to: "#F7F0D8", angle: 90 } })}>{tx("Gradient")}</button>
       </div>
       {f.kind === "solid" ? (
-        <label className="flex items-center gap-2">Fill <input type="color" value={f.color} onChange={(e) => onChange({ fill: { kind: "solid", color: e.target.value } })} /></label>
+        <label className="flex items-center gap-2">{tx("Fill")} <input type="color" value={f.color} onChange={(e) => onChange({ fill: { kind: "solid", color: e.target.value } })} /></label>
       ) : (
         <div className="flex flex-wrap gap-3">
-          <label className="flex items-center gap-2">From <input type="color" value={f.from} onChange={(e) => onChange({ fill: { ...f, from: e.target.value } })} /></label>
-          <label className="flex items-center gap-2">To <input type="color" value={f.to} onChange={(e) => onChange({ fill: { ...f, to: e.target.value } })} /></label>
-          <label className="flex w-full items-center gap-2">Angle <input type="range" min={0} max={360} value={f.angle} onChange={(e) => onChange({ fill: { ...f, angle: Number(e.target.value) } })} className="flex-1 accent-[#C9A227]" /></label>
+          <label className="flex items-center gap-2">{tx("From")} <input type="color" value={f.from} onChange={(e) => onChange({ fill: { ...f, from: e.target.value } })} /></label>
+          <label className="flex items-center gap-2">{tx("To")} <input type="color" value={f.to} onChange={(e) => onChange({ fill: { ...f, to: e.target.value } })} /></label>
+          <label className="flex w-full items-center gap-2">{tx("Angle")} <input type="range" min={0} max={360} value={f.angle} onChange={(e) => onChange({ fill: { ...f, angle: Number(e.target.value) } })} className="flex-1 accent-[#C9A227]" /></label>
         </div>
       )}
       {layer.type === "rect" ? (
-        <label className="flex items-center gap-2">Corner radius <input type="range" min={0} max={300} value={layer.radius} onChange={(e) => onChange({ radius: Number(e.target.value) })} className="flex-1 accent-[#C9A227]" /></label>
+        <label className="flex items-center gap-2">{tx("Corner radius")} <input type="range" min={0} max={300} value={layer.radius} onChange={(e) => onChange({ radius: Number(e.target.value) })} className="flex-1 accent-[#C9A227]" /></label>
       ) : null}
     </div>
   );

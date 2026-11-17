@@ -1,5 +1,6 @@
 "use client";
 
+import { useTx } from "@/i18n/tool-text";
 import { useState } from "react";
 import { Button } from "@/components/ui/Button";
 import { DownloadButton } from "@/components/tools/DownloadButton";
@@ -20,6 +21,8 @@ import { MAX_MERGE_PAGES, MAX_MERGE_PDFS } from "@/lib/tools/pdf-layout";
 type PdfItem = LoadedPdf & { id: string };
 
 export function PdfMergerTool() {
+  const tx = useTx();
+
   const [items, setItems] = useState<PdfItem[]>([]);
   const [error, setError] = useState("");
   const [busy, setBusy] = useState(false);
@@ -108,7 +111,7 @@ export function PdfMergerTool() {
       <div className="mt-6">
         <ToolActions>
           <Button type="button" onClick={() => void merge()} disabled={busy}>
-            {busy ? "Merging…" : "Merge PDFs"}
+            {busy ? tx("Merging…") : tx("Merge PDFs")}
           </Button>
           <DownloadButton blob={pdf} fileName="merged.pdf" label="Download PDF" />
           <Button
@@ -121,7 +124,7 @@ export function PdfMergerTool() {
             }}
             disabled={busy}
           >
-            Reset
+            {tx("Reset")}
           </Button>
         </ToolActions>
       </div>

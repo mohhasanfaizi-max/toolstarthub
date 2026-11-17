@@ -1,5 +1,6 @@
 "use client";
 
+import { useTx } from "@/i18n/tool-text";
 import { useState } from "react";
 import { Button } from "@/components/ui/Button";
 import { CopyButton } from "@/components/tools/CopyButton";
@@ -15,6 +16,8 @@ import { decodeHtml, encodeHtml } from "@/lib/tools/html-codec";
 const SAMPLE = `<div class="hero">Hello & welcome</div>`;
 
 export function HtmlEncoderTool() {
+  const tx = useTx();
+
   const [mode, setMode] = useState<"encode" | "decode">("encode");
   const [input, setInput] = useState("");
   const [output, setOutput] = useState("");
@@ -58,7 +61,7 @@ export function HtmlEncoderTool() {
           />
         </ToolField>
         <ToolField id="html-output" label="Result">
-          <textarea
+          <textarea data-ltr
             id="html-output"
             value={output}
             readOnly
@@ -72,13 +75,13 @@ export function HtmlEncoderTool() {
       <div className="mt-4">
         <ToolActions>
           <Button type="button" onClick={() => run()}>
-            {mode === "encode" ? "Encode" : "Decode"}
+            {mode === "encode" ? tx("Encode") : tx("Decode")}
           </Button>
           <Button type="button" variant="secondary" onClick={() => setInput(SAMPLE)}>
-            Example
+            {tx("Example")}
           </Button>
           <Button type="button" variant="secondary" onClick={swap}>
-            Swap
+            {tx("Swap")}
           </Button>
           <CopyButton value={output} />
           <Button
@@ -89,13 +92,13 @@ export function HtmlEncoderTool() {
               setOutput("");
             }}
           >
-            Clear
+            {tx("Clear")}
           </Button>
         </ToolActions>
       </div>
 
       <p className="mt-4 text-sm leading-6 text-muted-foreground">
-        Input is treated as text. It is not executed as HTML.
+        {tx("Input is treated as text. It is not executed as HTML.")}
       </p>
     </ToolPanel>
   );

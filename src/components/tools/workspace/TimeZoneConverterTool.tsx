@@ -1,5 +1,6 @@
 "use client";
 
+import { useTx } from "@/i18n/tool-text";
 import { useMemo, useState } from "react";
 import { Button } from "@/components/ui/Button";
 import { CopyButton } from "@/components/tools/CopyButton";
@@ -7,6 +8,8 @@ import { ToolActions, ToolError, ToolField, ToolPanel, ToolStatGrid, toolControl
 import { convertTimeZone, listTimeZones } from "@/lib/tools/time-zone";
 
 export function TimeZoneConverterTool() {
+  const tx = useTx();
+
   const zones = useMemo(() => listTimeZones(), []);
   const [date, setDate] = useState("2024-06-15");
   const [time, setTime] = useState("12:00");
@@ -31,7 +34,7 @@ export function TimeZoneConverterTool() {
   return (
     <ToolPanel>
       <p className="text-sm leading-6 text-muted-foreground">
-        The same instant is shown in both zones from the browser time-zone list. The computer&apos;s own zone is not used as the result.
+        {tx("The same instant is shown in both zones from the browser time-zone list. The computer's own zone is not used as the result.")}
       </p>
       <div className="mt-4 grid gap-4 sm:grid-cols-2">
         <ToolField id="tz-date" label="Date">
@@ -54,9 +57,9 @@ export function TimeZoneConverterTool() {
       {error ? <div className="mt-4"><ToolError>{error}</ToolError></div> : null}
       <div className="mt-4">
         <ToolActions>
-          <Button type="button" onClick={calculate}>Convert</Button>
+          <Button type="button" onClick={calculate}>{tx("Convert")}</Button>
           <CopyButton value={summary} label="Copy result" />
-          <Button type="button" variant="ghost" onClick={() => { setDate("2024-06-15"); setTime("12:00"); setSource("America/New_York"); setTarget("Europe/London"); setError(""); setResult(undefined); }}>Reset</Button>
+          <Button type="button" variant="ghost" onClick={() => { setDate("2024-06-15"); setTime("12:00"); setSource("America/New_York"); setTarget("Europe/London"); setError(""); setResult(undefined); }}>{tx("Reset")}</Button>
         </ToolActions>
       </div>
       {result?.ok ? (
@@ -68,7 +71,7 @@ export function TimeZoneConverterTool() {
             { label: "Target UTC offset", value: result.targetOffset },
           ]} />
           {result.ambiguous ? (
-            <p className="text-sm leading-6 text-muted-foreground">This local time happens twice because clocks fall back. The earlier instant is shown.</p>
+            <p className="text-sm leading-6 text-muted-foreground">{tx("This local time happens twice because clocks fall back. The earlier instant is shown.")}</p>
           ) : null}
         </div>
       ) : null}

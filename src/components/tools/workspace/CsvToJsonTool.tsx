@@ -1,5 +1,6 @@
 "use client";
 
+import { useTx } from "@/i18n/tool-text";
 import { useState } from "react";
 import { Button } from "@/components/ui/Button";
 import { CopyButton } from "@/components/tools/CopyButton";
@@ -16,6 +17,8 @@ import {
 import { csvToJson } from "@/lib/tools/csv-to-json";
 
 export function CsvToJsonTool() {
+  const tx = useTx();
+
   const [source, setSource] = useState("");
   const [pretty, setPretty] = useState<"pretty" | "compact">("pretty");
   const [output, setOutput] = useState("");
@@ -32,7 +35,7 @@ export function CsvToJsonTool() {
     }
     setError("");
     setOutput(result.json);
-    setNote(`${result.rows} ${result.rows === 1 ? "row" : "rows"}.`);
+    setNote(tx(`${result.rows} ${result.rows === 1 ? "row" : "rows"}.`));
   }
 
   function reset() {
@@ -65,15 +68,15 @@ export function CsvToJsonTool() {
       {error ? <div className="mt-4"><ToolError>{error}</ToolError></div> : null}
       <div className="mt-4">
         <ToolActions>
-          <Button type="button" onClick={run}>Convert to JSON</Button>
+          <Button type="button" onClick={run}>{tx("Convert to JSON")}</Button>
           <CopyButton value={output} label="Copy" />
           <DownloadButton blob={blob} fileName="data.json" label="Download" />
-          <Button type="button" variant="ghost" onClick={reset}>Clear</Button>
+          <Button type="button" variant="ghost" onClick={reset}>{tx("Clear")}</Button>
         </ToolActions>
       </div>
       <div className="mt-6">
         <ToolField id="csv-json-output" label="JSON" hint={note || undefined}>
-          <textarea id="csv-json-output" value={output} readOnly rows={8} spellCheck={false} className={`${toolControlClass} min-h-36 resize-y font-mono text-sm`} />
+          <textarea data-ltr id="csv-json-output" value={output} readOnly rows={8} spellCheck={false} className={`${toolControlClass} min-h-36 resize-y font-mono text-sm`} />
         </ToolField>
       </div>
       <ToolPrivacyNote>The CSV stays in your browser. It is not uploaded.</ToolPrivacyNote>

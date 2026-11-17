@@ -1,5 +1,6 @@
 "use client";
 
+import { useTx } from "@/i18n/tool-text";
 import { useState } from "react";
 import { Button } from "@/components/ui/Button";
 import { DownloadButton } from "@/components/tools/DownloadButton";
@@ -23,6 +24,8 @@ import {
 } from "@/lib/tools/text-to-pdf";
 
 export function TextToPdfTool() {
+  const tx = useTx();
+
   const [input, setInput] = useState("");
   const [title, setTitle] = useState("");
   const [pageSize, setPageSize] = useState<TextPdfPageSize>("a4");
@@ -62,8 +65,8 @@ export function TextToPdfTool() {
       setPdf(bytesToPdfBlob(result.bytes));
       setNote(
         result.replaced > 0
-          ? `Created ${result.pageCount} page${result.pageCount === 1 ? "" : "s"}. ${result.replaced} character${result.replaced === 1 ? " was" : "s were"} replaced because Helvetica does not cover every Unicode glyph.`
-          : `Created ${result.pageCount} page${result.pageCount === 1 ? "" : "s"} using Helvetica.`,
+          ? tx(`Created ${result.pageCount} ${result.pageCount === 1 ? "page" : "pages"}. ${result.replaced} ${result.replaced === 1 ? "character was" : "characters were"} replaced because Helvetica does not cover every Unicode glyph.`)
+          : tx(`Created ${result.pageCount} ${result.pageCount === 1 ? "page" : "pages"} using Helvetica.`),
       );
     } finally {
       setBusy(false);
@@ -161,7 +164,7 @@ export function TextToPdfTool() {
       <div className="mt-6">
         <ToolActions>
           <Button type="button" onClick={() => void convert()} disabled={busy}>
-            {busy ? "Working…" : "Create PDF"}
+            {busy ? tx("Working…") : tx("Create PDF")}
           </Button>
           <DownloadButton blob={pdf} fileName="text.pdf" label="Download PDF" />
           <Button
@@ -176,7 +179,7 @@ export function TextToPdfTool() {
             }}
             disabled={busy}
           >
-            Clear
+            {tx("Clear")}
           </Button>
         </ToolActions>
       </div>
@@ -187,9 +190,7 @@ export function TextToPdfTool() {
       </div>
 
       <p className="mt-4 text-sm leading-6 text-muted-foreground">
-        The PDF is built with Helvetica, a standard PDF font. Latin text usually prints as written.
-        Characters outside that font’s coverage are replaced with “?” rather than claiming universal
-        Unicode support.
+        {tx("The PDF is built with Helvetica, a standard PDF font. Latin text usually prints as written. Characters outside that font’s coverage are replaced with “?” rather than claiming universal Unicode support.")}
       </p>
 
       <ToolPrivacyNote>
