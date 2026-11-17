@@ -85,7 +85,7 @@ import {
   widthForHeight,
 } from "./image.ts";
 import { minifyJavaScript } from "./javascript-minify.ts";
-import { formatJson, minifyJson, validateJson } from "./json.ts";
+import { formatJson, minifyJson, repairJson, validateJson } from "./json.ts";
 import { generateLorem } from "./lorem.ts";
 import { minifyStats } from "./minify-stats.ts";
 import { passwordLogCsvTemplate, PASSWORD_LOG_COLUMNS } from "./password-log.ts";
@@ -104,7 +104,7 @@ import { calculatePercentageChange } from "./percentage-change.ts";
 import { looksLikeUrl, validateQrText } from "./qr.ts";
 import { runQrRenderChecks } from "./qr-render-checks.ts";
 import { slugify } from "./slug.ts";
-import { getTextStats } from "./text-stats.ts";
+import { getKeywordDensity, getSpeakingTime, getTextStats } from "./text-stats.ts";
 import {
   currentUnix,
   dateTimeToUnix,
@@ -344,6 +344,41 @@ assert(validMessage.ok, "Array JSON should validate");
 
 const escaped = formatJson('{"q":"He said \\"hi\\""}');
 assert(escaped.ok, "Escaped quotes should parse");
+
+
+const densitySample = getKeywordDensity("alpha beta alpha gamma alpha beta");
+assert(densitySample.tokenCount === 6, "Density sample should have 6 tokens");
+assert(densitySample.words[0]?.term === "alpha" && densitySample.words[0]?.count === 3, "alpha should appear 3 times");
+assert(Math.abs(densitySample.words[0]!.density - 50) < 1e-9, "alpha density should be 50%");
+const beta = densitySample.words.find((item) => item.term === "beta");
+assert(beta?.count === 2, "beta should appear twice");
+const phrase = densitySample.phrases.find((item) => item.term === "alpha beta");
+assert(phrase?.count === 2, "alpha beta should appear twice");
+
+const filtered = getKeywordDensity("the alpha and the beta and the alpha", { ignoreStopWords: true });
+assert(filtered.words.every((item) => item.term !== "the" && item.term !== "and"), "Stop words should be omitted");
+assert(filtered.words[0]?.term === "alpha" && filtered.words[0]?.count === 2, "Filtered density should keep alpha");
+
+const spoken = getSpeakingTime(150, 150);
+assert(spoken.totalSeconds === 60 && spoken.minutes === 1 && spoken.seconds === 0, "150 words at 150 wpm is 1 minute");
+const half = getSpeakingTime(75, 150);
+assert(half.totalSeconds === 30 && half.minutes === 0 && half.seconds === 30, "75 words at 150 wpm is 30 seconds");
+
+const repaired = repairJson("{name: 'Ada', trailing: true, /* note */ }");
+assert(repaired.ok, "Safe JSON repairs should succeed");
+if (repaired.ok) {
+  assert(JSON.parse(repaired.output).name === "Ada", "Repair must not change string values");
+  assert(repaired.changes.includes("Quoted unquoted keys"), "Should report unquoted keys");
+  assert(repaired.changes.includes("Converted single-quoted strings to double quotes"), "Should report single quotes");
+  assert(repaired.changes.includes("Removed trailing commas"), "Should report trailing commas");
+  assert(repaired.changes.includes("Removed comments"), "Should report comments");
+}
+
+const alreadyValid = repairJson('{"ok":true}');
+assert(alreadyValid.ok && alreadyValid.changes.length === 0, "Valid JSON should not be altered beyond formatting");
+
+const unsafe = repairJson("{name: undefined}");
+assert(!unsafe.ok, "Repair should refuse unsafe values such as undefined");
 
 const encoded = encodeBase64("Hi");
 assert(encoded.ok && encoded.output === "SGk=", "Hi should encode to SGk=");

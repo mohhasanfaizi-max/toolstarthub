@@ -632,6 +632,18 @@ const data: ToolTextDictionary = {
   "“{0}” is not a page number.": "“{0}” no es un número de página.",
   "“{0}” is not a valid page or range.": "“{0}” no es una página o un rango válido.",
   "“{0}” is not a valid range.": "“{0}” no es un rango válido.",
+  "Text view": "Vista de texto",
+  "Tree view": "Vista de árbol",
+  "Repair": "Reparar",
+  "Example with safe repairs": "Ejemplo con reparaciones seguras",
+  "Format, Minify and Validate still require standard JSON. Repair only applies safe syntax fixes: comments, trailing commas, single quotes, and unquoted keys. It shows what it changed and will not guess or rewrite values.": "Formatear, Minificar y Validar siguen exigiendo JSON estándar. Reparar solo aplica correcciones de sintaxis seguras: comentarios, comas finales, comillas simples y claves sin comillas. Muestra lo que cambió y no adivinará ni reescribirá valores.",
+  "This was already valid JSON. Nothing was repaired.": "Esto ya era JSON válido. No se reparó nada.",
+  "Repair applied the safe fixes listed below. Values were not changed.": "La reparación aplicó las correcciones seguras que aparecen abajo. Los valores no se modificaron.",
+  "Removed comments": "Se quitaron los comentarios",
+  "Removed trailing commas": "Se quitaron las comas finales",
+  "Converted single-quoted strings to double quotes": "Se convirtieron las cadenas con comillas simples a comillas dobles",
+  "Quoted unquoted keys": "Se pusieron comillas a las claves que no las tenían",
+  "This could not be repaired safely. Repair only fixes comments, trailing commas, single quotes, and unquoted keys. It will not guess values or run the text as JavaScript.": "Esto no se pudo reparar de forma segura. Reparar solo corrige comentarios, comas finales, comillas simples y claves sin comillas. No adivinará valores ni ejecutará el texto como JavaScript.",
 };
 
 export default data;
