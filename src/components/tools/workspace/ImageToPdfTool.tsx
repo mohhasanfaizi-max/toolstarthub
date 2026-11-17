@@ -1,5 +1,6 @@
 "use client";
 
+import { useTx } from "@/i18n/tool-text";
 import { useEffect, useRef, useState } from "react";
 import { Button } from "@/components/ui/Button";
 import { DownloadButton } from "@/components/tools/DownloadButton";
@@ -38,6 +39,8 @@ type ImageItem = {
 };
 
 export function ImageToPdfTool() {
+  const tx = useTx();
+
   const [items, setItems] = useState<ImageItem[]>([]);
   const [pageSize, setPageSize] = useState<PageSizeName>("a4");
   const [orientation, setOrientation] = useState<PageOrientation>("auto");
@@ -268,11 +271,11 @@ export function ImageToPdfTool() {
       <div className="mt-6">
         <ToolActions>
           <Button type="button" onClick={() => void generate()} disabled={busy}>
-            {busy ? "Working…" : "Create PDF"}
+            {busy ? tx("Working…") : tx("Create PDF")}
           </Button>
           <DownloadButton blob={pdf} fileName="images.pdf" label="Download PDF" />
           <Button type="button" variant="ghost" onClick={reset} disabled={busy}>
-            Reset
+            {tx("Reset")}
           </Button>
         </ToolActions>
       </div>

@@ -9,6 +9,8 @@ import {
 import type { ToolPageTranslation } from "./types";
 import { localeToolFaqExtras } from "./faq-extra";
 import { calculatorWorkspaceText } from "./calculators/ui";
+import { imageWorkspaceText } from "./image-tools/ui";
+import { developerWorkspaceText } from "./developer-tools/ui";
 import { getLocalizedToolPage } from "@/i18n/localized-tool-content";
 import { indexableLocales } from "@/i18n/indexing";
 import { getFaqsForTool } from "@/components/tools/ToolDetails";
@@ -105,6 +107,12 @@ export function getToolText(
   }
   const category = getToolBySlug(slug)?.category;
   const categoryText =
-    category === "calculators" ? calculatorWorkspaceText[locale] : undefined;
+    category === "calculators"
+      ? calculatorWorkspaceText[locale]
+      : category === "image-tools"
+        ? imageWorkspaceText[locale]
+        : category === "developer-tools"
+          ? developerWorkspaceText[locale]
+          : undefined;
   return { ...commonToolText[locale], ...categoryText, ...page.ui };
 }

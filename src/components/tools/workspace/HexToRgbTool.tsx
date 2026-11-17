@@ -1,5 +1,6 @@
 "use client";
 
+import { useTx } from "@/i18n/tool-text";
 import { useState } from "react";
 import { Button } from "@/components/ui/Button";
 import { ColorValues } from "@/components/tools/ColorValues";
@@ -15,6 +16,8 @@ import { parseCssColor } from "@/lib/tools/color";
 const EXAMPLES = ["#336699", "#fff", "336699", "#336699cc"];
 
 export function HexToRgbTool() {
+  const tx = useTx();
+
   const [input, setInput] = useState("#336699");
   const parsed = parseCssColor(input);
 
@@ -53,7 +56,7 @@ export function HexToRgbTool() {
       <div className="mt-4">
         <ToolActions>
           <Button type="button" variant="ghost" onClick={() => setInput("")}>
-            Reset
+            {tx("Reset")}
           </Button>
         </ToolActions>
       </div>

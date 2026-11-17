@@ -1,5 +1,6 @@
 "use client";
 
+import { useTx } from "@/i18n/tool-text";
 import { useState } from "react";
 import { Button } from "@/components/ui/Button";
 import { CopyButton } from "@/components/tools/CopyButton";
@@ -25,6 +26,8 @@ import {
 import { loadImageElement } from "@/lib/tools/image";
 
 export function ImageColorAnalyzerTool() {
+  const tx = useTx();
+
   const { image, error, loading, loadFile, resetImage, setError } = useLocalImage();
   const [count, setCount] = useState("5");
   const [colors, setColors] = useState<DominantColor[]>([]);
@@ -112,10 +115,10 @@ export function ImageColorAnalyzerTool() {
       <div className="mt-6">
         <ToolActions>
           <Button type="button" onClick={() => void analyze()} disabled={busy || loading}>
-            {busy ? "Analyzing…" : "Analyze colors"}
+            {busy ? tx("Analyzing…") : tx("Analyze colors")}
           </Button>
           <Button type="button" variant="ghost" onClick={reset} disabled={busy}>
-            Reset
+            {tx("Reset")}
           </Button>
         </ToolActions>
       </div>
@@ -152,9 +155,7 @@ export function ImageColorAnalyzerTool() {
       </div>
 
       <p className="mt-4 text-sm leading-6 text-muted-foreground">
-        Colors are grouped from a downsampled copy of the image, so similar shades
-        may merge. The percentages describe sampled pixels, not a laboratory
-        measurement.
+        {tx("Colors are grouped from a downsampled copy of the image, so similar shades may merge. The percentages describe sampled pixels, not a laboratory measurement.")}
       </p>
 
       <ToolPrivacyNote>

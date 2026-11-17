@@ -1,5 +1,6 @@
 "use client";
 
+import { useTx } from "@/i18n/tool-text";
 import { useEffect, useId, useState } from "react";
 import { Button } from "@/components/ui/Button";
 import { DownloadButton } from "@/components/tools/DownloadButton";
@@ -77,6 +78,8 @@ function isLoaded(item: QueueItem): item is LoadedImage {
 }
 
 export function ImageCompressorTool() {
+  const tx = useTx();
+
   const idPrefix = useId();
   const [items, setItems] = useState<QueueItem[]>([]);
   const [quality, setQuality] = useState(80);
@@ -396,7 +399,7 @@ export function ImageCompressorTool() {
                     {item.error ? <p className="mt-1 text-destructive">{item.error}</p> : null}
                     {result ? (
                       <p className="mt-1 text-foreground" data-testid="compressor-row-result">
-                        Compressed: {formatBytes(result.blob.size)} · {result.name}
+                        {tx(`Compressed: ${formatBytes(result.blob.size)} · ${result.name}`)}
                         {result.message ? ` · ${result.message}` : ""}
                       </p>
                     ) : null}
@@ -421,9 +424,9 @@ export function ImageCompressorTool() {
             data-testid="target-mode"
           />
           <span>
-            <span className="font-medium">Compress to a target file size</span>
+            <span className="font-medium">{tx("Compress to a target file size")}</span>
             <span className="mt-1 block text-muted-foreground">
-              Optional. For JPG, WebP, and AVIF the page searches for a quality at or under your target. Leave this off to set quality yourself.
+              {tx("Optional. For JPG, WebP, and AVIF the page searches for a quality at or under your target. Leave this off to set quality yourself.")}
             </span>
           </span>
         </label>
@@ -443,7 +446,7 @@ export function ImageCompressorTool() {
                 />
               </ToolField>
               <fieldset>
-                <legend className="sr-only">Target unit</legend>
+                <legend className="sr-only">{tx("Target unit")}</legend>
                 <div className="flex gap-3 text-sm">
                   {(["KB", "MB"] as const).map((unit) => (
                     <label key={unit} className="flex items-center gap-1.5">
@@ -486,13 +489,13 @@ export function ImageCompressorTool() {
               <span>
                 Also shrink dimensions if needed
                 <span className="mt-1 block text-muted-foreground">
-                  If the lowest quality is still larger than the target, reduce the width and height in steps. The shorter side will not go below 32 pixels.
+                  {tx("If the lowest quality is still larger than the target, reduce the width and height in steps. The shorter side will not go below 32 pixels.")}
                 </span>
               </span>
             </label>
             {outputType === "image/png" ? (
               <p className="text-sm text-muted-foreground" data-testid="png-target-note">
-                PNG is lossless on this page, so the quality slider will not shrink the file. To hit a target size, choose JPG or WebP, or turn on shrinking dimensions.
+                {tx("PNG is lossless on this page, so the quality slider will not shrink the file. To hit a target size, choose JPG or WebP, or turn on shrinking dimensions.")}
               </p>
             ) : null}
           </div>
@@ -533,11 +536,11 @@ export function ImageCompressorTool() {
           />
           {!avifSupported ? (
             <p className="mt-2 text-sm text-muted-foreground" data-testid="avif-unsupported">
-              AVIF is not offered because this browser cannot encode it.
+              {tx("AVIF is not offered because this browser cannot encode it.")}
             </p>
           ) : (
             <p className="mt-2 text-sm text-muted-foreground" data-testid="avif-supported">
-              AVIF is available in this browser. JPEG, PNG, and WebP remain available too.
+              {tx("AVIF is available in this browser. JPEG, PNG, and WebP remain available too.")}
             </p>
           )}
         </div>
@@ -546,7 +549,7 @@ export function ImageCompressorTool() {
       <div className="mt-6">
         <ToolActions>
           <Button type="button" onClick={() => void compress()} disabled={busy || loading} data-testid="compress-button">
-            {busy ? "Compressing…" : "Compress"}
+            {busy ? tx("Compressing…") : tx("Compress")}
           </Button>
           {items.length > 1 ? (
             <DownloadButton
@@ -561,7 +564,7 @@ export function ImageCompressorTool() {
             />
           )}
           <Button type="button" variant="secondary" onClick={reset}>
-            Reset
+            {tx("Reset")}
           </Button>
         </ToolActions>
       </div>
@@ -603,7 +606,7 @@ export function ImageCompressorTool() {
         ) : null}
         {items.length > 1 && zip ? (
           <p className="text-sm text-foreground" data-testid="zip-ready">
-            ZIP ready: {Object.keys(results).length} compressed {Object.keys(results).length === 1 ? "image" : "images"}.
+            {tx(`ZIP ready: ${Object.keys(results).length} compressed ${Object.keys(results).length === 1 ? "image" : "images"}.`)}
           </p>
         ) : null}
       </div>

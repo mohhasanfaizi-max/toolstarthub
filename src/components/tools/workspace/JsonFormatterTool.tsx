@@ -1,5 +1,6 @@
 "use client";
 
+import { useTx } from "@/i18n/tool-text";
 import { useState } from "react";
 import { Button } from "@/components/ui/Button";
 import {
@@ -19,6 +20,8 @@ const SAMPLE = `{
 }`;
 
 export function JsonFormatterTool() {
+  const tx = useTx();
+
   const [input, setInput] = useState("");
   const [output, setOutput] = useState("");
   const [error, setError] = useState("");
@@ -58,7 +61,7 @@ export function JsonFormatterTool() {
           />
         </ToolField>
         <ToolField id="json-output" label="Result">
-          <textarea
+          <textarea data-ltr
             id="json-output"
             value={output}
             readOnly
@@ -72,20 +75,20 @@ export function JsonFormatterTool() {
       <div className="mt-4">
         <ToolActions>
           <Button type="button" onClick={() => run(formatJson)}>
-            Format
+            {tx("Format")}
           </Button>
           <Button type="button" variant="secondary" onClick={() => run(minifyJson)}>
-            Minify
+            {tx("Minify")}
           </Button>
           <Button
             type="button"
             variant="secondary"
             onClick={() => run(validateJson, "This JSON is valid.")}
           >
-            Validate
+            {tx("Validate")}
           </Button>
           <Button type="button" variant="secondary" onClick={() => setInput(SAMPLE)}>
-            Example JSON
+            {tx("Example JSON")}
           </Button>
           <CopyButton value={output} />
           <Button
@@ -98,7 +101,7 @@ export function JsonFormatterTool() {
               setMessage("");
             }}
           >
-            Clear
+            {tx("Clear")}
           </Button>
         </ToolActions>
       </div>

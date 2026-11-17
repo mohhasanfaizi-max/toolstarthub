@@ -1,5 +1,6 @@
 "use client";
 
+import { useTx } from "@/i18n/tool-text";
 import { useEffect, useState } from "react";
 import { Button } from "@/components/ui/Button";
 import { DownloadButton } from "@/components/tools/DownloadButton";
@@ -27,6 +28,8 @@ import {
 const ACCEPT = "image/jpeg,image/png,.jpg,.jpeg,.png";
 
 export function ImageConverterTool() {
+  const tx = useTx();
+
   const { image, error, loading, loadFile, resetImage, setError } = useLocalImage();
   const [outputType, setOutputType] = useState<ImageOutputType>("image/png");
   const [background, setBackground] = useState("#ffffff");
@@ -178,7 +181,7 @@ export function ImageConverterTool() {
                 className="h-11 w-16 cursor-pointer rounded-xl border border-border bg-background"
               />
               <input
-                aria-label="Background hex color"
+                aria-label={tx("Background hex color")}
                 value={background}
                 onChange={(event) => setBackground(event.target.value)}
                 className={toolControlClass}
@@ -191,11 +194,11 @@ export function ImageConverterTool() {
       <div className="mt-6">
         <ToolActions>
           <Button type="button" onClick={() => void convert()} disabled={busy || loading}>
-            {busy ? "Converting…" : "Convert"}
+            {busy ? tx("Converting…") : tx("Convert")}
           </Button>
           <DownloadButton blob={result?.blob ?? null} fileName={result?.name ?? "image.png"} />
           <Button type="button" variant="secondary" onClick={reset}>
-            Reset
+            {tx("Reset")}
           </Button>
         </ToolActions>
       </div>

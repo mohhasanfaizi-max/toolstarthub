@@ -1,5 +1,6 @@
 "use client";
 
+import { useTx } from "@/i18n/tool-text";
 import { useState } from "react";
 import { Button } from "@/components/ui/Button";
 import { DownloadButton } from "@/components/tools/DownloadButton";
@@ -29,6 +30,8 @@ async function drawPng(size: number, background: string, textColor: string, lett
 }
 
 export function FaviconGeneratorTool() {
+  const tx = useTx();
+
   const [background, setBackground] = useState("#2563eb");
   const [textColor, setTextColor] = useState("#ffffff");
   const [letters, setLetters] = useState("T");
@@ -81,7 +84,7 @@ export function FaviconGeneratorTool() {
   return (
     <ToolPanel>
       <p className="text-sm leading-6 text-muted-foreground">
-        PNG icons are drawn in this tab at 16, 32, and 180 pixels. The ICO file packages the 16 and 32 pixel PNGs. Nothing is uploaded.
+        {tx("PNG icons are drawn in this tab at 16, 32, and 180 pixels. The ICO file packages the 16 and 32 pixel PNGs. Nothing is uploaded.")}
       </p>
       <div className="mt-4 grid gap-4 sm:grid-cols-2">
         <ToolField id="favicon-background" label="Background" hint="A 6-digit hex color, such as #2563eb.">
@@ -97,8 +100,8 @@ export function FaviconGeneratorTool() {
       {error ? <div className="mt-4"><ToolError>{error}</ToolError></div> : null}
       <div className="mt-4">
         <ToolActions>
-          <Button type="button" onClick={() => void generate()}>Generate</Button>
-          <Button type="button" variant="ghost" onClick={() => { setBackground("#2563eb"); setTextColor("#ffffff"); setLetters("T"); setError(""); clear(); setIco(null); }}>Reset</Button>
+          <Button type="button" onClick={() => void generate()}>{tx("Generate")}</Button>
+          <Button type="button" variant="ghost" onClick={() => { setBackground("#2563eb"); setTextColor("#ffffff"); setLetters("T"); setError(""); clear(); setIco(null); }}>{tx("Reset")}</Button>
         </ToolActions>
       </div>
       {preview ? (

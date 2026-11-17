@@ -1,5 +1,6 @@
 "use client";
 
+import { useTx } from "@/i18n/tool-text";
 import { useState } from "react";
 import { Button } from "@/components/ui/Button";
 import { FileDropZone } from "@/components/tools/FileDropZone";
@@ -15,6 +16,8 @@ import { formatBytes } from "@/lib/tools/image";
 import { countPdfPages } from "@/lib/tools/pdf-edit";
 
 export function PdfPageCounterTool() {
+  const tx = useTx();
+
   const [name, setName] = useState("");
   const [size, setSize] = useState(0);
   const [pageCount, setPageCount] = useState<number | null>(null);
@@ -81,7 +84,7 @@ export function PdfPageCounterTool() {
             }}
             disabled={busy}
           >
-            Reset
+            {tx("Reset")}
           </Button>
         </ToolActions>
       </div>
@@ -89,8 +92,7 @@ export function PdfPageCounterTool() {
       <div className="mt-4">{error ? <ToolError>{error}</ToolError> : null}</div>
 
       <p className="mt-4 text-sm leading-6 text-muted-foreground">
-        The count comes from the PDF structure. Cover pages, blank pages and
-        appendices are included. Encrypted files cannot be opened.
+        {tx("The count comes from the PDF structure. Cover pages, blank pages and appendices are included. Encrypted files cannot be opened.")}
       </p>
 
       <ToolPrivacyNote>

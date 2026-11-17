@@ -1,5 +1,6 @@
 "use client";
 
+import { useTx } from "@/i18n/tool-text";
 import { useState } from "react";
 import { Button } from "@/components/ui/Button";
 import { DownloadButton } from "@/components/tools/DownloadButton";
@@ -19,6 +20,8 @@ import { MAX_SPLIT_PAGES } from "@/lib/tools/pdf-layout";
 import { parsePageRanges } from "@/lib/tools/pdf-range";
 
 export function PdfSplitterTool() {
+  const tx = useTx();
+
   const [source, setSource] = useState<LoadedPdf | null>(null);
   const [range, setRange] = useState("");
   const [error, setError] = useState("");
@@ -134,7 +137,7 @@ export function PdfSplitterTool() {
 
       {source ? (
         <fieldset className="mt-4">
-          <legend className="text-sm font-medium text-foreground">Or pick pages</legend>
+          <legend className="text-sm font-medium text-foreground">{tx("Or pick pages")}</legend>
           <div className="mt-2 grid grid-cols-4 gap-2 sm:grid-cols-8">
             {Array.from({ length: source.pageCount }, (_, index) => index + 1).map((page) => (
               <label
@@ -156,7 +159,7 @@ export function PdfSplitterTool() {
       <div className="mt-6">
         <ToolActions>
           <Button type="button" onClick={() => void split()} disabled={busy}>
-            {busy ? "Splitting…" : "Create PDF"}
+            {busy ? tx("Splitting…") : tx("Create PDF")}
           </Button>
           <DownloadButton blob={pdf} fileName="split.pdf" label="Download PDF" />
           <Button
@@ -170,7 +173,7 @@ export function PdfSplitterTool() {
             }}
             disabled={busy}
           >
-            Reset
+            {tx("Reset")}
           </Button>
         </ToolActions>
       </div>

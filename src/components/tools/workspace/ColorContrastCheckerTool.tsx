@@ -1,5 +1,6 @@
 "use client";
 
+import { useTx } from "@/i18n/tool-text";
 import { useSyncExternalStore } from "react";
 import { Button } from "@/components/ui/Button";
 import { ColorInput } from "@/components/tools/ColorInput";
@@ -24,6 +25,8 @@ import {
 } from "@/lib/tools/url-state";
 
 export function ColorContrastCheckerTool() {
+  const tx = useTx();
+
   const search = useSyncExternalStore(
     subscribeShareUrl,
     getShareUrlSnapshot,
@@ -81,7 +84,7 @@ export function ColorContrastCheckerTool() {
             Swap colors
           </Button>
           <Button type="button" variant="ghost" onClick={reset}>
-            Reset
+            {tx("Reset")}
           </Button>
           <ShareLinkButton />
         </ToolActions>
@@ -97,14 +100,10 @@ export function ColorContrastCheckerTool() {
 
       <div className="mt-6 space-y-3 text-sm leading-6 text-muted-foreground">
         <p>
-          WCAG 2.1 contrast uses relative luminance. Normal text needs 4.5:1 for
-          AA and 7:1 for AAA. Large text (18pt or 14pt bold) needs 3:1 for AA
-          and 4.5:1 for AAA.
+          {tx("WCAG 2.1 contrast uses relative luminance. Normal text needs 4.5:1 for AA and 7:1 for AAA. Large text (18pt or 14pt bold) needs 3:1 for AA and 4.5:1 for AAA.")}
         </p>
         <p>
-          A pass means the pair meets the selected WCAG contrast criterion.
-          Contrast is only one part of accessibility. Spacing, size, motion and
-          keyboard use still matter.
+          {tx("A pass means the pair meets the selected WCAG contrast criterion. Contrast is only one part of accessibility. Spacing, size, motion and keyboard use still matter.")}
         </p>
       </div>
     </ToolPanel>
@@ -112,14 +111,16 @@ export function ColorContrastCheckerTool() {
 }
 
 function ContrastPreview({ result }: { result: ContrastResult }) {
+  const tx = useTx();
+
   return (
     <div className="space-y-4">
       <div
         className="rounded-2xl border border-border p-6"
         style={{ backgroundColor: result.background.hex, color: result.foreground.hex }}
       >
-        <p className="text-sm">Normal sample text</p>
-        <p className="mt-2 text-2xl font-semibold">Large sample text</p>
+        <p className="text-sm">{tx("Normal sample text")}</p>
+        <p className="mt-2 text-2xl font-semibold">{tx("Large sample text")}</p>
       </div>
       <div className="flex flex-wrap items-center gap-3">
         <p className="text-2xl font-semibold tabular-nums text-foreground">

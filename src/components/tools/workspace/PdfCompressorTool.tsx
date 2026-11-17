@@ -1,5 +1,6 @@
 "use client";
 
+import { useTx } from "@/i18n/tool-text";
 import { useEffect, useRef, useState } from "react";
 import { Button } from "@/components/ui/Button";
 import { DownloadButton } from "@/components/tools/DownloadButton";
@@ -29,6 +30,8 @@ import { bytesToPdfBlob, loadPdfBytes } from "@/lib/tools/pdf-edit";
 import { openPdfJsDocument, pdfClientError, renderPdfPageToJpeg } from "@/lib/tools/pdf-js-client";
 
 export function PdfCompressorTool() {
+  const tx = useTx();
+
   const [file, setFile] = useState<File | null>(null);
   const [bytes, setBytes] = useState<Uint8Array | null>(null);
   const [pageCount, setPageCount] = useState(0);
@@ -210,7 +213,7 @@ export function PdfCompressorTool() {
       <div className="mt-6">
         <ToolActions>
           <Button type="button" onClick={() => void compress()} disabled={busy || !file}>
-            {busy ? "Working…" : "Compress"}
+            {busy ? tx("Working…") : tx("Compress")}
           </Button>
           <DownloadButton blob={output?.blob ?? null} fileName={output?.name ?? "compressed.pdf"} />
           <Button
@@ -224,7 +227,7 @@ export function PdfCompressorTool() {
             }}
             disabled={busy}
           >
-            Reset
+            {tx("Reset")}
           </Button>
         </ToolActions>
       </div>
@@ -247,9 +250,7 @@ export function PdfCompressorTool() {
       </div>
 
       <p className="mt-4 text-sm leading-6 text-muted-foreground">
-        Compression is not guaranteed. Some PDFs are already small and may stay similar in size or
-        even grow slightly after rewriting. Low and Balanced keep text and vectors. Strong replaces
-        each page with a JPEG, so text is no longer selectable.
+        {tx("Compression is not guaranteed. Some PDFs are already small and may stay similar in size or even grow slightly after rewriting. Low and Balanced keep text and vectors. Strong replaces each page with a JPEG, so text is no longer selectable.")}
       </p>
 
       <ToolPrivacyNote>

@@ -1,5 +1,6 @@
 "use client";
 
+import { useTx } from "@/i18n/tool-text";
 import { useState } from "react";
 import { Button } from "@/components/ui/Button";
 import { CopyButton } from "@/components/tools/CopyButton";
@@ -15,6 +16,8 @@ import {
 import { MARKDOWN_SAMPLE, markdownToHtml } from "@/lib/tools/markdown";
 
 export function MarkdownToHtmlTool() {
+  const tx = useTx();
+
   const [input, setInput] = useState("");
   const [output, setOutput] = useState("");
   const [error, setError] = useState("");
@@ -51,7 +54,7 @@ export function MarkdownToHtmlTool() {
           label="HTML"
           hint="Output is HTML source as text. It is not executed on this page."
         >
-          <textarea
+          <textarea data-ltr
             id="md-output"
             value={output}
             readOnly
@@ -65,10 +68,10 @@ export function MarkdownToHtmlTool() {
       <div className="mt-4">
         <ToolActions>
           <Button type="button" onClick={convert}>
-            Convert
+            {tx("Convert")}
           </Button>
           <Button type="button" variant="secondary" onClick={() => setInput(MARKDOWN_SAMPLE)}>
-            Sample
+            {tx("Sample")}
           </Button>
           <CopyButton value={output} label="Copy HTML" />
           <DownloadButton blob={blob} fileName="converted.html" label="Download .html" />
@@ -81,7 +84,7 @@ export function MarkdownToHtmlTool() {
               setError("");
             }}
           >
-            Clear
+            {tx("Clear")}
           </Button>
         </ToolActions>
       </div>
@@ -89,9 +92,7 @@ export function MarkdownToHtmlTool() {
       <div className="mt-4">{error ? <ToolError>{error}</ToolError> : null}</div>
 
       <p className="mt-4 text-sm leading-6 text-muted-foreground">
-        Raw HTML inside Markdown is escaped, not run. Links are limited to http, https, mailto,
-        in-page hashes and site paths. There is no live HTML preview, so untrusted Markdown cannot
-        execute scripts here.
+        {tx("Raw HTML inside Markdown is escaped, not run. Links are limited to http, https, mailto, in-page hashes and site paths. There is no live HTML preview, so untrusted Markdown cannot execute scripts here.")}
       </p>
 
       <ToolPrivacyNote>

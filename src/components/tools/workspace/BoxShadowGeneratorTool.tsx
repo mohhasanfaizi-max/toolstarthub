@@ -1,5 +1,6 @@
 "use client";
 
+import { useTx } from "@/i18n/tool-text";
 import { useState, useSyncExternalStore } from "react";
 import { Button } from "@/components/ui/Button";
 import { ColorInput } from "@/components/tools/ColorInput";
@@ -27,6 +28,8 @@ import {
 } from "@/lib/tools/url-state";
 
 export function BoxShadowGeneratorTool() {
+  const tx = useTx();
+
   const search = useSyncExternalStore(
     subscribeShareUrl,
     getShareUrlSnapshot,
@@ -122,8 +125,8 @@ export function BoxShadowGeneratorTool() {
       </label>
 
       <div className="mt-6 space-y-2 text-sm leading-6 text-muted-foreground">
-        <p>Offset moves the shadow. Blur softens the edge. Spread grows or shrinks the shadow before blur.</p>
-        <p>Opacity controls how strong the color appears. Inset draws the shadow inside the box.</p>
+        <p>{tx("Offset moves the shadow. Blur softens the edge. Spread grows or shrinks the shadow before blur.")}</p>
+        <p>{tx("Opacity controls how strong the color appears. Inset draws the shadow inside the box.")}</p>
       </div>
 
       <div className="mt-6">
@@ -137,7 +140,7 @@ export function BoxShadowGeneratorTool() {
               setBoxColor("#ffffff");
             }}
           >
-            Reset
+            {tx("Reset")}
           </Button>
           <ShareLinkButton />
         </ToolActions>
@@ -154,7 +157,7 @@ export function BoxShadowGeneratorTool() {
                 className="size-28 rounded-2xl"
                 style={{ backgroundColor: boxColor, boxShadow: built.value }}
                 role="img"
-                aria-label="Box shadow preview"
+                aria-label={tx("Box shadow preview")}
               />
             </div>
             <CssCodeOutput css={built.css} />

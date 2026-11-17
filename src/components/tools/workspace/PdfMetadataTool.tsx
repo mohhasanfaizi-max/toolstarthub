@@ -1,5 +1,6 @@
 "use client";
 
+import { useTx } from "@/i18n/tool-text";
 import { useState } from "react";
 import { Button } from "@/components/ui/Button";
 import { DownloadButton } from "@/components/tools/DownloadButton";
@@ -34,6 +35,8 @@ const FIELD_LABELS: Array<{ key: keyof PdfMetadataFields; label: string }> = [
 ];
 
 export function PdfMetadataTool() {
+  const tx = useTx();
+
   const [name, setName] = useState("");
   const [size, setSize] = useState(0);
   const [pageCount, setPageCount] = useState(0);
@@ -163,7 +166,7 @@ export function PdfMetadataTool() {
       <div className="mt-6">
         <ToolActions>
           <Button type="button" onClick={() => void removeMetadata()} disabled={busy || !bytes}>
-            {busy ? "Working…" : "Remove metadata"}
+            {busy ? tx("Working…") : tx("Remove metadata")}
           </Button>
           <DownloadButton
             blob={cleaned}
@@ -171,7 +174,7 @@ export function PdfMetadataTool() {
             label="Download cleaned PDF"
           />
           <Button type="button" variant="ghost" onClick={reset} disabled={busy}>
-            Reset
+            {tx("Reset")}
           </Button>
         </ToolActions>
       </div>
@@ -186,9 +189,7 @@ export function PdfMetadataTool() {
       </div>
 
       <p className="mt-4 text-sm leading-6 text-muted-foreground">
-        Removing Title, Author, Subject and similar Info fields does not make a PDF anonymous or
-        forensically clean. Page content, annotations, embedded files, images, and other structures
-        can still contain identifying information.
+        {tx("Removing Title, Author, Subject and similar Info fields does not make a PDF anonymous or forensically clean. Page content, annotations, embedded files, images, and other structures can still contain identifying information.")}
       </p>
 
       <ToolPrivacyNote>

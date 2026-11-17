@@ -1,5 +1,6 @@
 "use client";
 
+import { useTx } from "@/i18n/tool-text";
 import { useState } from "react";
 import { Button } from "@/components/ui/Button";
 import { CopyButton } from "@/components/tools/CopyButton";
@@ -7,6 +8,8 @@ import { ToolActions, ToolError, ToolField, ToolOutput, ToolPanel, toolControlCl
 import { GITIGNORE_PRESETS, generateGitignore, type GitignorePresetId } from "@/lib/tools/gitignore";
 
 export function GitignoreGeneratorTool() {
+  const tx = useTx();
+
   const [selected, setSelected] = useState<GitignorePresetId[]>(["node"]);
   const [custom, setCustom] = useState("");
   const [error, setError] = useState("");
@@ -30,10 +33,10 @@ export function GitignoreGeneratorTool() {
   return (
     <ToolPanel>
       <p className="text-sm leading-6 text-muted-foreground">
-        This writes .gitignore text in this tab. It does not change a repository.
+        {tx("This writes .gitignore text in this tab. It does not change a repository.")}
       </p>
       <fieldset className="mt-4">
-        <legend className="text-sm font-medium text-foreground">Templates</legend>
+        <legend className="text-sm font-medium text-foreground">{tx("Templates")}</legend>
         <div className="mt-2 grid gap-2 sm:grid-cols-2">
           {GITIGNORE_PRESETS.map((preset) => (
             <label key={preset.id} className="flex min-h-11 items-center gap-2 rounded-xl border border-border px-3 py-2 text-sm">
@@ -51,12 +54,12 @@ export function GitignoreGeneratorTool() {
       {error ? <div className="mt-4"><ToolError>{error}</ToolError></div> : null}
       <div className="mt-4">
         <ToolActions>
-          <Button type="button" onClick={generate}>Generate</Button>
+          <Button type="button" onClick={generate}>{tx("Generate")}</Button>
           <CopyButton value={result?.ok ? result.text : ""} label="Copy result" />
-          <Button type="button" variant="ghost" onClick={() => { setSelected(["node"]); setCustom(""); setError(""); setResult(undefined); }}>Reset</Button>
+          <Button type="button" variant="ghost" onClick={() => { setSelected(["node"]); setCustom(""); setError(""); setResult(undefined); }}>{tx("Reset")}</Button>
         </ToolActions>
       </div>
-      {result?.ok ? <div className="mt-6"><ToolOutput label=".gitignore"><pre className="whitespace-pre-wrap font-mono text-sm">{result.text}</pre></ToolOutput></div> : null}
+      {result?.ok ? <div className="mt-6"><ToolOutput label=".gitignore"><pre data-ltr className="whitespace-pre-wrap font-mono text-sm">{result.text}</pre></ToolOutput></div> : null}
     </ToolPanel>
   );
 }

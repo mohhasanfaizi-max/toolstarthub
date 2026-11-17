@@ -1,5 +1,6 @@
 "use client";
 
+import { useTx } from "@/i18n/tool-text";
 import { useState } from "react";
 import { Button } from "@/components/ui/Button";
 import { CopyButton } from "@/components/tools/CopyButton";
@@ -16,6 +17,8 @@ import { decodeUrlComponent, encodeUrlComponent } from "@/lib/tools/url-codec";
 const SAMPLE = "https://example.com/search?q=red shoes&lang=en";
 
 export function UrlEncoderTool() {
+  const tx = useTx();
+
   const [mode, setMode] = useState<"encode" | "decode">("encode");
   const [input, setInput] = useState("");
   const [output, setOutput] = useState("");
@@ -62,11 +65,11 @@ export function UrlEncoderTool() {
             onChange={(event) => setInput(event.target.value)}
             rows={8}
             className={`${toolControlClass} min-h-40 resize-y font-mono text-sm`}
-            placeholder={mode === "encode" ? "Text to encode" : "Encoded text to decode"}
+            placeholder={mode === "encode" ? tx("Text to encode") : tx("Encoded text to decode")}
           />
         </ToolField>
         <ToolField id="url-output" label="Result">
-          <textarea
+          <textarea data-ltr
             id="url-output"
             value={output}
             readOnly
@@ -79,13 +82,13 @@ export function UrlEncoderTool() {
       <div className="mt-4">
         <ToolActions>
           <Button type="button" onClick={() => run()}>
-            {mode === "encode" ? "Encode" : "Decode"}
+            {mode === "encode" ? tx("Encode") : tx("Decode")}
           </Button>
           <Button type="button" variant="secondary" onClick={() => setInput(SAMPLE)}>
-            Example
+            {tx("Example")}
           </Button>
           <Button type="button" variant="secondary" onClick={swap} disabled={!input && !output}>
-            Swap
+            {tx("Swap")}
           </Button>
           <CopyButton value={output} />
           <Button
@@ -97,7 +100,7 @@ export function UrlEncoderTool() {
               setError("");
             }}
           >
-            Clear
+            {tx("Clear")}
           </Button>
         </ToolActions>
       </div>
@@ -105,8 +108,7 @@ export function UrlEncoderTool() {
       <div className="mt-4">
         {error ? <ToolError>{error}</ToolError> : null}
         <p className="mt-4 text-sm leading-6 text-muted-foreground">
-          URL encoding is not encryption. It only makes text safe to put in a URL
-          component. Encoding and decoding run in your browser.
+          {tx("URL encoding is not encryption. It only makes text safe to put in a URL component. Encoding and decoding run in your browser.")}
         </p>
       </div>
     </ToolPanel>

@@ -1,5 +1,6 @@
 "use client";
 
+import { useTx } from "@/i18n/tool-text";
 import { useState } from "react";
 import { Button } from "@/components/ui/Button";
 import { CopyButton } from "@/components/tools/CopyButton";
@@ -7,6 +8,8 @@ import { ToolActions, ToolError, ToolField, ToolOutput, ToolPanel, toolControlCl
 import { decodeJwt } from "@/lib/tools/jwt-decode";
 
 export function JwtDecoderTool() {
+  const tx = useTx();
+
   const [value, setValue] = useState("");
   const [error, setError] = useState("");
   const [result, setResult] = useState<ReturnType<typeof decodeJwt>>();
@@ -32,8 +35,8 @@ export function JwtDecoderTool() {
 
   return (
     <ToolPanel>
-      <p className="text-sm leading-6 text-foreground">Decoding a JWT does not verify its signature or prove that the token is authentic.</p>
-      <p className="mt-2 text-sm leading-6 text-muted-foreground">The token stays in this browser. It is not sent, saved, or placed in the page address.</p>
+      <p className="text-sm leading-6 text-foreground">{tx("Decoding a JWT does not verify its signature or prove that the token is authentic.")}</p>
+      <p className="mt-2 text-sm leading-6 text-muted-foreground">{tx("The token stays in this browser. It is not sent, saved, or placed in the page address.")}</p>
       <div className="mt-4">
         <ToolField id="jwt-value" label="JWT">
           <textarea id="jwt-value" value={value} onChange={(event) => setValue(event.target.value)} rows={4} className={toolControlClass} spellCheck={false} autoComplete="off" />
@@ -42,16 +45,16 @@ export function JwtDecoderTool() {
       {error ? <div className="mt-4"><ToolError>{error}</ToolError></div> : null}
       <div className="mt-4">
         <ToolActions>
-          <Button type="button" onClick={decode}>Decode</Button>
+          <Button type="button" onClick={decode}>{tx("Decode")}</Button>
           <CopyButton value={result?.ok ? `${result.header}\n${result.payload}` : ""} label="Copy result" />
-          <Button type="button" variant="ghost" onClick={() => { setValue(""); setError(""); setResult(undefined); }}>Reset</Button>
+          <Button type="button" variant="ghost" onClick={() => { setValue(""); setError(""); setResult(undefined); }}>{tx("Reset")}</Button>
         </ToolActions>
       </div>
       {result?.ok ? (
         <div className="mt-6 space-y-4">
           <p className="text-sm leading-6 text-muted-foreground">{signatureNote}</p>
-          <ToolOutput label="Header"><pre className="whitespace-pre-wrap text-sm">{result.header}</pre></ToolOutput>
-          <ToolOutput label="Payload"><pre className="whitespace-pre-wrap text-sm">{result.payload}</pre></ToolOutput>
+          <ToolOutput label="Header"><pre data-ltr className="whitespace-pre-wrap text-sm">{result.header}</pre></ToolOutput>
+          <ToolOutput label="Payload"><pre data-ltr className="whitespace-pre-wrap text-sm">{result.payload}</pre></ToolOutput>
         </div>
       ) : null}
     </ToolPanel>
