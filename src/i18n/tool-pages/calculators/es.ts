@@ -862,7 +862,7 @@ const data: ToolPageTranslations = {
         }
       ],
       "explanation": "El importe del impuesto es el precio original multiplicado por el tipo y dividido entre 100. El precio final es el precio original más ese impuesto. El redondeo se hace a dos decimales, lo que coincide con importes habituales en efectivo, pero puede diferir en un céntimo de una caja que redondee cada línea de otra forma.",
-      "limitations": "Esta herramienta no consulta el tipo de una ciudad, un estado o un país. Tú indicas el porcentaje. Tampoco reparte el impuesto entre varios artículos.",
+      "limitations": "Esta herramienta no consulta el tipo de una ciudad, un estado o un país. Tú indicas el porcentaje. Tampoco reparte el impuesto entre varios artículos. Modela un impuesto sobre ventas que se suma al precio y no aplica automáticamente el IVA del Reino Unido, el GST/HST de Canadá ni el GST de Australia.",
       "tips": [
         "Si el precio que tienes ya incluye el impuesto, esta herramienta lo volverá a sumar. Parte del precio antes de impuestos.",
         "Si hay un descuento y luego el impuesto, usa primero la calculadora de descuentos y toma ese resultado como precio original."
@@ -919,7 +919,7 @@ const data: ToolPageTranslations = {
         },
         {
           "question": "¿El impuesto sobre ventas es lo mismo que un precio con IVA incluido?",
-          "answer": "No: el IVA suele ir incluido; esta herramienta modela el impuesto sobre ventas que se suma al precio, habitual en Estados Unidos."
+          "answer": "No: el IVA suele ir incluido; esta herramienta modela el impuesto sobre ventas que se suma al precio, habitual en Estados Unidos. No aplica automáticamente el IVA del Reino Unido, el GST/HST de Canadá ni el GST de Australia. En la calculadora hay puntos de partida oficiales."
         },
         {
           "question": "¿Cómo deben mostrar el impuesto las facturas a clientes?",
@@ -1196,12 +1196,13 @@ const data: ToolPageTranslations = {
   "loan-calculator": {
     "answer": "Una calculadora de préstamos estima la cuota mensual y el interés total de un préstamo a plazos a tipo fijo a partir del importe, el tipo y el plazo que indiques.",
     "content": {
-      "about": "Estima la cuota mensual de un préstamo a plazos a tipo fijo, incluido un préstamo personal. Escribe el importe, el tipo anual, el plazo y, de forma opcional, una comisión que no se financia.",
+      "about": "Estima la cuota mensual de un préstamo a plazos a tipo fijo, incluido un préstamo personal. Escribe el importe, el tipo anual, el plazo y, de forma opcional, una comisión que no se financia. Puedes añadir pagos extra, ver el calendario de amortización y descargarlo en CSV.",
       "howTo": [
         "Escribe el importe del préstamo y el tipo de interés anual.",
         "Escribe el plazo en años o en meses. El ejemplo es 20 000 al 7 % durante 5 años.",
         "Escribe una comisión si quieres incluirla en el coste total. Una comisión de 0 deja la cuota igual.",
-        "Pulsa Calcular para ver la cuota, los intereses y el calendario anual."
+        "Los pagos extra mensuales o únicos son opcionales y, en esta estimación, se aplican al capital.",
+        "Pulsa Calcular para ver la cuota, los intereses, el calendario de amortización y la descarga CSV."
       ],
       "examples": [
         {
@@ -1214,7 +1215,7 @@ const data: ToolPageTranslations = {
         }
       ],
       "explanation": "La cuota mensual es P multiplicado por r(1+r)^n, dividido entre (1+r)^n menos 1. P es el importe prestado, r es el tipo anual dividido entre 12 y n es el número de meses. Con un tipo del 0 %, la cuota es P dividido entre n. Un plazo más largo suele bajar la cuota y subir el interés total. El tipo de interés de aquí es el que se usa en esa fórmula. La TAE (APR) puede incluir comisiones, así que una comisión que escribas en esta página se suma al coste total y no se convierte en una TAE.",
-      "limitations": "El resultado es una estimación a partir de las cifras que indiques. No es una oferta de un prestamista y no incluye un tipo variable ni un periodo de carencia. La comisión no se suma al importe que genera interés.",
+      "limitations": "El resultado es una estimación a partir de las cifras que indiques. No es una oferta de un prestamista y no incluye un tipo variable ni un periodo de carencia. La comisión no se suma al importe que genera interés. La fórmula usa capitalización mensual y no aplica las normas de crédito al consumo del Reino Unido, Canadá o Australia.",
       "tips": [
         "Compara dos plazos calculando dos veces. Un plazo más corto suele costar menos interés y tener una cuota más alta.",
         "Esta página puede responder a una pregunta sobre un préstamo personal. No necesita una URL aparte de préstamo personal."
@@ -1222,7 +1223,7 @@ const data: ToolPageTranslations = {
       "features": [
         "Una cuota fija estándar, incluido un préstamo sin interés.",
         "Capital, intereses, comisión y coste total, mostrados como importes separados.",
-        "Un calendario anual, con las filas mensuales disponibles si las pides."
+        "Un calendario de amortización anual y mensual, con descarga en CSV."
       ],
       "faqs": [
         {
@@ -1243,7 +1244,7 @@ const data: ToolPageTranslations = {
         },
         {
           "question": "¿Qué datos necesita una calculadora de cuotas de préstamo?",
-          "answer": "El capital, el tipo de interés anual y la duración del plazo (en años o en meses) son los campos principales. Esta calculadora también admite una comisión inicial opcional, que solo se suma al coste total. No admite pagos extra."
+          "answer": "El capital, el tipo de interés anual y la duración del plazo (en años o en meses) son los campos principales. Esta calculadora también admite una comisión inicial opcional, que solo se suma al coste total, y pagos extra mensuales o únicos opcionales que, en esta estimación, se aplican al capital."
         },
         {
           "question": "¿Cómo cambia un plazo más largo mi cuota mensual?",
@@ -1259,7 +1260,7 @@ const data: ToolPageTranslations = {
         },
         {
           "question": "¿Cómo afectan los pagos extra a la cancelación?",
-          "answer": "Un capital extra acorta el plazo y reduce el interés si el prestamista lo aplica al capital. Esta calculadora no modela pagos extra: su calendario asume la misma cuota todos los meses. Pide a tu prestamista un calendario de cancelación actualizado y confirma que tu contrato no tenga una penalización por amortización anticipada."
+          "answer": "Un capital extra acorta el plazo y reduce el interés si el prestamista lo aplica al capital. Puedes indicar un pago mensual extra y un pago único opcional; el calendario, los totales y el CSV reflejan entonces la cancelación más rápida. Un prestamista puede aplicarlos de otra forma, así que confirma que tu contrato no tenga una penalización por amortización anticipada."
         },
         {
           "question": "¿Cuál es la diferencia entre un tipo fijo y uno variable?",
@@ -1279,7 +1280,7 @@ const data: ToolPageTranslations = {
         },
         {
           "question": "¿Qué tan precisa es una estimación de préstamo en línea?",
-          "answer": "Es una cifra de planificación, no una oferta de un prestamista. Las comisiones de originación, el precio según el crédito y las cuentas de depósito (escrow) pueden cambiar lo que pagues de verdad."
+          "answer": "Es una cifra de planificación, no una oferta de un prestamista. Las comisiones de originación, el precio según el crédito y las cuentas de depósito (escrow) pueden cambiar lo que pagues de verdad. La fórmula usa capitalización mensual y no es un motor específico del crédito del Reino Unido, Canadá o Australia."
         },
         {
           "question": "¿Puedo usarla para un préstamo de coche y para un préstamo personal?",
@@ -1313,13 +1314,13 @@ const data: ToolPageTranslations = {
   "mortgage-calculator": {
     "answer": "Una calculadora de hipotecas estima capital e intereses a partir del precio de la vivienda, la entrada, el tipo y el plazo, y puede incluir gastos de vivienda y pagos extra que indiques.",
     "content": {
-      "about": "Estima la cuota de una hipoteca a tipo fijo a partir del precio de la vivienda, una entrada, un tipo y un plazo. El impuesto, el seguro, la cuota de la comunidad (HOA) y el seguro hipotecario privado (PMI) se quedan en 0 hasta que los escribas. Los pagos extra y una comparación a 15 y 30 años están en esta misma página.",
+      "about": "Estima la cuota de una hipoteca a tipo fijo a partir del precio de la vivienda, una entrada, un tipo y un plazo. El impuesto, el seguro, la cuota de la comunidad (HOA) y el seguro hipotecario privado (PMI) se quedan en 0 hasta que los escribas. Los pagos extra, un calendario de amortización descargable y una comparación a 15 y 30 años están en esta misma página.",
       "howTo": [
         "Escribe el precio de la vivienda, la entrada como porcentaje o como importe, el tipo y el plazo.",
         "Usa 15 años o 30 años, o escribe otro número entero de años entre 1 y 50.",
         "Deja en blanco el impuesto, el seguro, la comunidad y el PMI si solo quieres capital e intereses.",
         "Añade un pago mensual extra o un pago único si quieres una estimación de cancelación.",
-        "Pulsa Calcular. El tipo del ejemplo es solo un ejemplo, no un tipo real de un prestamista."
+        "Pulsa Calcular para ver la cuota, el calendario de amortización y la descarga CSV. El tipo del ejemplo es solo un ejemplo, no un tipo real de un prestamista."
       ],
       "examples": [
         {
@@ -1332,14 +1333,14 @@ const data: ToolPageTranslations = {
         }
       ],
       "explanation": "El importe del préstamo es el precio de la vivienda menos la entrada. Capital e intereses usan la misma fórmula a tipo fijo que la calculadora de préstamos. Con un interés del 0 %, la cuota es el importe del préstamo dividido entre el número de meses. El impuesto predial y el seguro anuales se dividen entre 12. La comunidad y el PMI son importes mensuales que tú escribes. Las filas a 15 y 30 años usan el mismo precio, la misma entrada y el mismo tipo para que veas la cuota y el interés total uno al lado del otro.",
-      "limitations": "Las estimaciones tienen un fin educativo y se basan en la información que indiques. Las condiciones reales del préstamo, las comisiones del prestamista, los impuestos, el seguro y otros costes pueden diferir. Los pagos extra son una estimación matemática. Un prestamista puede aplicarlos en otro calendario. Esto no es una oferta.",
+      "limitations": "Las estimaciones tienen un fin educativo y se basan en la información que indiques. Las condiciones reales del préstamo, las comisiones del prestamista, los impuestos, el seguro y otros costes pueden diferir. Los pagos extra son una estimación matemática. Un prestamista puede aplicarlos en otro calendario. Esto no es una oferta. La fórmula de la cuota usa capitalización mensual al estilo de EE. UU. No añade el impuesto de actos jurídicos documentados del Reino Unido (stamp duty), la capitalización semestral canadiense ni el seguro hipotecario del prestamista (LMI) de Australia. En la calculadora hay enlaces oficiales a esas diferencias.",
       "tips": [
         "Una entrada del 100 % deja un importe de préstamo de 0 y una cuota de capital e intereses de 0.",
         "El PMI es el importe mensual que escribas. Esta página no decide si un préstamo tiene PMI."
       ],
       "features": [
         "Capital e intereses, mostrados aparte del coste mensual completo de la vivienda.",
-        "Un calendario anual y un calendario mensual opcional.",
+        "Un calendario de amortización anual y mensual, con descarga en CSV.",
         "Una estimación de pagos extra, con los meses y el interés ahorrados.",
         "Una comparación a 15 y 30 años con el mismo precio, la misma entrada y el mismo tipo."
       ],
@@ -1358,7 +1359,7 @@ const data: ToolPageTranslations = {
         },
         {
           "question": "¿Cómo reducen el interés los pagos hipotecarios extra?",
-          "answer": "En esta estimación, un pago mensual extra y un pago único opcional reducen el saldo más rápido. Luego la página muestra la cancelación más corta y el interés que no se cobró."
+          "answer": "En esta estimación, un pago mensual extra y un pago único opcional reducen el saldo más rápido. Luego la página muestra la cancelación más corta, el interés que no se cobró, un calendario de amortización actualizado y una descarga CSV."
         },
         {
           "question": "¿Se envían estas cifras a un servidor?",
@@ -1398,7 +1399,7 @@ const data: ToolPageTranslations = {
         },
         {
           "question": "¿Qué tan precisa es una estimación hipotecaria en línea?",
-          "answer": "Es una cifra de planificación, no un compromiso de un prestamista. Las ofertas varían según el crédito, los puntos, las cuentas de depósito y el análisis crediticio."
+          "answer": "Es una cifra de planificación, no un compromiso de un prestamista. Las ofertas varían según el crédito, los puntos, las cuentas de depósito y el análisis crediticio. Esta página usa capitalización mensual al estilo de EE. UU. y no incluye el stamp duty del Reino Unido, la capitalización semestral canadiense ni el LMI de Australia."
         },
         {
           "question": "¿Qué es el PMI y cuándo aparece?",
@@ -2153,7 +2154,7 @@ const data: ToolPageTranslations = {
         }
       ],
       "explanation": "Las deducciones antes de impuestos se restan primero del sueldo bruto. Luego la retención es un porcentaje de lo que queda, o el importe que escribiste. Las deducciones después de impuestos se restan después de la retención. Las cifras anuales repiten esa nómina 52, 26, 24 o 12 veces.",
-      "limitations": "La retención es por completo el número que tú indicas. Esta página no usa las tablas del IRS ni las tablas estatales o locales, y no es un cálculo oficial de impuestos.",
+      "limitations": "La retención es por completo el número que tú indicas. Esta página no usa las tablas del IRS ni las tablas estatales o locales, y no es un cálculo oficial de impuestos. Tampoco aplica el PAYE del Reino Unido, las retenciones de nómina de la Agencia Tributaria de Canadá ni el PAYG de Australia. En la calculadora hay puntos de partida oficiales.",
       "tips": [
         "Deja una deducción en blanco cuando sea cero.",
         "Usa la retención en porcentaje solo para el tipo que quieras que asuma esta estimación."
@@ -2182,7 +2183,7 @@ const data: ToolPageTranslations = {
         },
         {
           "question": "¿Esto es un cálculo oficial de impuestos?",
-          "answer": "No. Usa solo el porcentaje o el importe de retención que escribas."
+          "answer": "No. Usa solo el porcentaje o el importe de retención que escribas. No aplica las tablas del IRS, el PAYE del Reino Unido, las retenciones de la Agencia Tributaria de Canadá ni el PAYG de Australia."
         },
         {
           "question": "¿Se envían estas cifras a un servidor?",

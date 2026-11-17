@@ -13,6 +13,8 @@ import {
   ToolStatGrid,
   toolControlClass,
 } from "@/components/tools/ToolForm";
+import { AmortizationSchedule } from "@/components/tools/AmortizationSchedule";
+import { RegionalFinanceNote } from "@/components/tools/RegionalFinanceNote";
 import { calculateMortgage } from "@/lib/tools/mortgage";
 import { formatNumber } from "@/lib/tools/numbers";
 
@@ -32,7 +34,6 @@ export function MortgageCalculatorTool() {
   const [pmi, setPmi] = useState("");
   const [extra, setExtra] = useState("");
   const [oneTime, setOneTime] = useState("");
-  const [showMonthly, setShowMonthly] = useState(false);
   const [error, setError] = useState("");
   const [result, setResult] = useState<ReturnType<typeof calculateMortgage>>();
 
@@ -71,7 +72,6 @@ export function MortgageCalculatorTool() {
     setPmi("");
     setExtra("");
     setOneTime("");
-    setShowMonthly(false);
     setError("");
     setResult(undefined);
   }
@@ -95,6 +95,7 @@ export function MortgageCalculatorTool() {
       <p className="text-sm leading-6 text-muted-foreground">
         Estimates are for educational purposes and are based on the information you enter. Mortgage estimates vary by lender, location, property, loan program, taxes, insurance, credit profile, and other factors. The 6.5% field is an example rate, not a live quote.
       </p>
+      <RegionalFinanceNote variant="mortgage" />
       <div className="mt-4 grid gap-4 sm:grid-cols-2">
         <ToolField id="mortgage-price" label="Home price (USD)">
           <input id="mortgage-price" inputMode="decimal" value={price} onChange={(event) => setPrice(event.target.value)} className={toolControlClass} />
@@ -167,6 +168,7 @@ export function MortgageCalculatorTool() {
       </div>
       {result?.ok ? (
         <div className="mt-6 space-y-4">
+          <div data-testid="mortgage-stats">
           <ToolStatGrid
             items={[
               { label: "Monthly principal and interest", value: money(result.payment) },
@@ -178,6 +180,7 @@ export function MortgageCalculatorTool() {
               { label: "Total of principal and interest", value: money(result.totalPayments) },
             ]}
           />
+          </div>
           <ToolOutput label="Monthly breakdown">
             <ul className="space-y-1 text-sm leading-6">
               {breakdown.map((item) => (
@@ -218,49 +221,11 @@ export function MortgageCalculatorTool() {
               </p>
             </ToolOutput>
           ) : null}
-          <Schedule rows={result.yearly} label="Year" />
-          <Button type="button" variant="secondary" onClick={() => setShowMonthly((open) => !open)}>
-            {showMonthly ? "Hide monthly schedule" : "Show monthly schedule"}
-          </Button>
-          {showMonthly ? <Schedule rows={result.monthly} label="Month" /> : null}
+          <div data-testid="mortgage-results">
+            <AmortizationSchedule yearly={result.yearly} monthly={result.monthly} idPrefix="mortgage" />
+          </div>
         </div>
       ) : null}
     </ToolPanel>
-  );
-}
-
-function Schedule({
-  rows,
-  label,
-}: {
-  rows: Array<{ year: number; principalPaid: number; interestPaid: number; balance: number }>;
-  label: string;
-}) {
-  if (rows.length === 0) return null;
-  return (
-    <ToolOutput label={label === "Year" ? "Yearly schedule" : "Monthly schedule"}>
-      <div className="max-h-80 overflow-auto">
-        <table className="w-full min-w-[32rem] text-left text-sm">
-          <thead>
-            <tr className="border-b border-border">
-              <th className="py-2 pr-3 font-medium">{label}</th>
-              <th className="py-2 pr-3 font-medium">Principal paid</th>
-              <th className="py-2 pr-3 font-medium">Interest paid</th>
-              <th className="py-2 font-medium">Remaining balance</th>
-            </tr>
-          </thead>
-          <tbody>
-            {rows.map((row) => (
-              <tr key={`${label}-${row.year}-${row.balance}`} className="border-b border-border">
-                <td className="py-2 pr-3">{row.year}</td>
-                <td className="py-2 pr-3">{money(row.principalPaid)}</td>
-                <td className="py-2 pr-3">{money(row.interestPaid)}</td>
-                <td className="py-2">{money(row.balance)}</td>
-              </tr>
-            ))}
-          </tbody>
-        </table>
-      </div>
-    </ToolOutput>
   );
 }

@@ -4222,7 +4222,7 @@ export const extraGuideFaqs: Record<string, GuideFaq[]> = {
     {
       question: "How do voluntary extra payments change payoff timing?",
       answer:
-        "Extra principal cuts interest and can shorten the term; confirm the lender applies it to principal. The linked loan calculator does not model extra payments—its schedule assumes the same payment every month—so ask your lender for a revised payoff schedule.",
+        "Extra principal cuts interest and can shorten the term; confirm the lender applies it to principal. The linked loan calculator can model an extra monthly payment and a one-time payment, then show an updated schedule and a CSV download. A lender may still apply extras differently.",
     },
     {
       question: "How do fixed-rate and variable-rate loans differ?",

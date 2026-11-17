@@ -17,7 +17,7 @@ import { runAlmaOldFixChecks } from "./alma-oldfix-checks.ts";
 import { runSeoContentChecks } from "../content/seo-checks.ts";
 import { roundTo } from "./numbers.ts";
 import { calculateCompoundInterest } from "./compound-interest.ts";
-import { calculateLoan, monthlyInstallment } from "./loan.ts";
+import { calculateLoan, formatScheduleCsv, monthlyInstallment } from "./loan.ts";
 import { calculateMortgage } from "./mortgage.ts";
 import { calculateAutoLoan } from "./auto-loan.ts";
 import { calculateHomeAffordability } from "./home-affordability.ts";
@@ -1337,7 +1337,22 @@ if (loan.ok) {
   const first = loan.monthly[0];
   const firstInterest = roundTo(20000 * (0.07 / 12), 2);
   assert(first !== undefined && first.interestPaid === firstInterest, "First loan interest is the opening balance times the monthly rate");
+  assert(loan.monthsPaid === 60 && loan.payoff === null, "A loan without extras keeps the original term");
 }
+
+const loanExtra = calculateLoan("20000", "7", "5", "years", "0", "100", "");
+assert(
+  loanExtra.ok &&
+    loanExtra.payoff !== null &&
+    loanExtra.payoff.monthsSaved > 0 &&
+    loanExtra.payoff.interestSaved > 0 &&
+    loanExtra.monthly.length === loanExtra.payoff.monthsPaid &&
+    loanExtra.monthly.length < 60 &&
+    loanExtra.monthly.at(-1)?.balance === 0 &&
+    loanExtra.totalInterest === loanExtra.payoff.interest,
+  "Extra loan payments shorten the displayed schedule and save interest",
+);
+assert(calculateLoan("20000", "7", "5", "years", "0").ok, "Existing five-argument loan calls still work");
 
 const mortgage = calculateMortgage({
   priceRaw: "400000",
@@ -1460,6 +1475,45 @@ assert(
   }).ok,
   "Down payment above the home price is rejected",
 );
+
+assert(
+  mortgagePayoff.ok &&
+    mortgagePayoff.monthly.length === mortgagePayoff.payoff.monthsPaid &&
+    mortgagePayoff.monthly.length < 360 &&
+    mortgagePayoff.monthly[mortgagePayoff.monthly.length - 1]?.balance === 0 &&
+    mortgagePayoff.totalInterest === mortgagePayoff.payoff.interest,
+  "Mortgage schedule includes extra payments and pays the balance to zero",
+);
+
+const mortgageExample = calculateMortgage({
+  priceRaw: "300000",
+  downRaw: "0",
+  downMode: "amount",
+  rateRaw: "6.5",
+  yearsRaw: "30",
+  taxRaw: "",
+  insuranceRaw: "",
+  hoaRaw: "",
+  pmiRaw: "",
+  extraMonthlyRaw: "",
+  oneTimeRaw: "",
+});
+assert(
+  mortgageExample.ok &&
+    mortgageExample.loanAmount === 300000 &&
+    mortgageExample.payment === 1896.2 &&
+    mortgageExample.monthly.length === 360 &&
+    mortgageExample.monthly[359]?.balance === 0,
+  "A $300,000 30-year mortgage at 6.5% has a $1,896.20 payment and a final balance of 0",
+);
+if (mortgageExample.ok) {
+  const principalSum = roundTo(mortgageExample.monthly.reduce((sum, row) => sum + row.principalPaid, 0), 2);
+  const interestSum = roundTo(mortgageExample.monthly.reduce((sum, row) => sum + row.interestPaid, 0), 2);
+  assert(Math.abs(principalSum - 300000) < 0.1, "Mortgage principal paid sums to the loan amount");
+  assert(Math.abs(interestSum - mortgageExample.totalInterest) < 0.1, "Mortgage interest paid sums to total interest");
+  const csv = formatScheduleCsv(mortgageExample.monthly, "Month");
+  assert(csv.startsWith("Month,Principal paid,Interest paid,Remaining balance") && csv.includes("\nTotals,"), "Monthly mortgage CSV includes a header and totals");
+}
 
 const auto = calculateAutoLoan({
   priceRaw: "30000",
