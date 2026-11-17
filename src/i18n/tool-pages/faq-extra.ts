@@ -29,7 +29,7 @@ export const localeToolFaqExtras: Partial<
         {
           question: "¿Puedo comprimir una imagen a un tamaño objetivo, por ejemplo por debajo de 200 KB?",
           answer:
-            "No. La página indica el nuevo tamaño de archivo después de pulsar Comprimir. No busca por adelantado una calidad que cumpla un límite de tamaño.",
+            "Sí. Activa Comprimir a un tamaño de archivo objetivo e indica un tope, por ejemplo 200 KB, o usa un valor preestablecido. Para JPG, WebP y AVIF la página busca una calidad igual o inferior a ese tamaño. Si la calidad más baja sigue siendo demasiado grande, también puedes reducir las dimensiones. La página indica con honestidad el tamaño final cuando no se puede cumplir el objetivo. El PNG es sin pérdida, así que elige JPG o WebP, o reduce las dimensiones, si necesitas alcanzar un tope.",
         },
         {
           question: "¿Puedo comprimir varias imágenes a la vez o descargar un ZIP?",
@@ -955,7 +955,7 @@ export const localeToolFaqExtras: Partial<
         {
           question: "هل يمكنني ضغط صورة إلى حجم مستهدف، مثل أقل من 200 كيلوبايت؟",
           answer:
-            "لا. تعرض الصفحة حجم الملف الجديد بعد الضغط. وهي لا تبحث مسبقًا عن جودة تحقق حدًّا معيّنًا للحجم.",
+            "نعم. يمكنك تشغيل الضغط إلى حجم ملف مستهدف وإدخال حد مثل 200 كيلوبايت، أو استخدام قيمة جاهزة. وبالنسبة إلى JPG وWebP وAVIF تبحث الصفحة عن جودة تساوي ذلك الحجم أو تقل عنه. وإذا بقيت أدنى جودة أكبر من الحد، يمكنك أيضًا تصغير الأبعاد. وتبلغ الصفحة بصراحة عن الحجم النهائي عندما يتعذّر بلوغ الهدف. وPNG بلا فقد، لذا اختر JPG أو WebP، أو صغّر الأبعاد، إذا احتجت إلى بلوغ حد معيّن.",
         },
         {
           question: "هل يمكنني ضغط عدة صور دفعة واحدة أو تنزيل ملف ZIP؟",

@@ -13,6 +13,7 @@ import {
   ToolPanel,
   ToolPrivacyNote,
   ToolStatGrid,
+  toolControlClass,
 } from "@/components/tools/ToolForm";
 import {
   canEncodeAvif,
@@ -27,6 +28,12 @@ import {
   type ImageOutputType,
   type InspectableImageType,
 } from "@/lib/tools/image";
+import {
+  compressToTarget,
+  parseTargetSize,
+  TARGET_PRESETS,
+  type TargetSizeUnit,
+} from "@/lib/tools/compress-to-target";
 
 const ACCEPT =
   "image/jpeg,image/png,image/webp,image/avif,image/heic,image/heif,.jpg,.jpeg,.png,.webp,.avif,.heic,.heif";
@@ -57,6 +64,12 @@ type CompressedResult = {
   blob: Blob;
   url: string;
   name: string;
+  metTarget?: boolean;
+  downscaled?: boolean;
+  outputWidth?: number;
+  outputHeight?: number;
+  qualityUsed?: number;
+  message?: string;
 };
 
 function isLoaded(item: QueueItem): item is LoadedImage {
@@ -74,6 +87,10 @@ export function ImageCompressorTool() {
   const [error, setError] = useState("");
   const [results, setResults] = useState<Record<string, CompressedResult>>({});
   const [zip, setZip] = useState<{ blob: Blob; name: string } | null>(null);
+  const [targetMode, setTargetMode] = useState(false);
+  const [targetValue, setTargetValue] = useState("200");
+  const [targetUnit, setTargetUnit] = useState<TargetSizeUnit>("KB");
+  const [allowDownscale, setAllowDownscale] = useState(false);
 
   useEffect(() => {
     let cancelled = false;
@@ -179,15 +196,59 @@ export function ImageCompressorTool() {
     try {
       for (const image of ready) {
         const source = await loadImageSource(image.file, image.previewUrl);
-        const encoded = await rasterizeImage({
-          source,
-          sourceWidth: image.width,
-          sourceHeight: image.height,
-          destWidth: image.width,
-          destHeight: image.height,
-          mime: outputType,
-          quality,
-        });
+        let encoded: {
+          ok: true;
+          blob: Blob;
+          qualityUsed?: number;
+          width?: number;
+          height?: number;
+          metTarget?: boolean;
+          downscaled?: boolean;
+          message?: string;
+        } | { ok: false; error: string };
+
+        if (targetMode) {
+          const parsed = parseTargetSize(targetValue, targetUnit);
+          if (!parsed.ok) {
+            if ("close" in source && typeof source.close === "function") {
+              source.close();
+            }
+            setError(parsed.error);
+            setBusy(false);
+            return;
+          }
+          const targeted = await compressToTarget({
+            source,
+            sourceWidth: image.width,
+            sourceHeight: image.height,
+            mime: outputType,
+            targetBytes: parsed.bytes,
+            allowDownscale,
+          });
+          encoded = targeted.ok
+            ? {
+                ok: true,
+                blob: targeted.blob,
+                qualityUsed: targeted.quality,
+                width: targeted.width,
+                height: targeted.height,
+                metTarget: targeted.metTarget,
+                downscaled: targeted.downscaled,
+                message: targeted.message,
+              }
+            : targeted;
+        } else {
+          encoded = await rasterizeImage({
+            source,
+            sourceWidth: image.width,
+            sourceHeight: image.height,
+            destWidth: image.width,
+            destHeight: image.height,
+            mime: outputType,
+            quality,
+          });
+        }
+
         if ("close" in source && typeof source.close === "function") {
           source.close();
         }
@@ -211,6 +272,12 @@ export function ImageCompressorTool() {
           blob: encoded.blob,
           url: URL.createObjectURL(encoded.blob),
           name: replacementFileName(image.file.name, outputType, "-compressed"),
+          metTarget: encoded.metTarget,
+          downscaled: encoded.downscaled,
+          outputWidth: encoded.width,
+          outputHeight: encoded.height,
+          qualityUsed: encoded.qualityUsed,
+          message: encoded.message,
         };
       }
 
@@ -246,6 +313,10 @@ export function ImageCompressorTool() {
     replaceQueue([]);
     setQuality(80);
     setOutputType("image/jpeg");
+    setTargetMode(false);
+    setTargetValue("200");
+    setTargetUnit("KB");
+    setAllowDownscale(false);
     setError("");
     setLoading(false);
   }
@@ -326,6 +397,7 @@ export function ImageCompressorTool() {
                     {result ? (
                       <p className="mt-1 text-foreground" data-testid="compressor-row-result">
                         Compressed: {formatBytes(result.blob.size)} · {result.name}
+                        {result.message ? ` · ${result.message}` : ""}
                       </p>
                     ) : null}
                   </div>
@@ -339,8 +411,104 @@ export function ImageCompressorTool() {
         </ul>
       ) : null}
 
+      <div className="mt-6 rounded-2xl border border-border bg-card px-4 py-4" data-testid="target-controls">
+        <label className="flex items-start gap-2 text-sm text-foreground">
+          <input
+            type="checkbox"
+            className="mt-1"
+            checked={targetMode}
+            onChange={(event) => setTargetMode(event.target.checked)}
+            data-testid="target-mode"
+          />
+          <span>
+            <span className="font-medium">Compress to a target file size</span>
+            <span className="mt-1 block text-muted-foreground">
+              Optional. For JPG, WebP, and AVIF the page searches for a quality at or under your target. Leave this off to set quality yourself.
+            </span>
+          </span>
+        </label>
+        {targetMode ? (
+          <div className="mt-4 space-y-3">
+            <div className="flex flex-wrap items-end gap-3">
+              <ToolField id="compressor-target" label="Target size">
+                <input
+                  id="compressor-target"
+                  type="number"
+                  min={1}
+                  step="any"
+                  value={targetValue}
+                  onChange={(event) => setTargetValue(event.target.value)}
+                  className={`${toolControlClass} mt-2 w-28`}
+                  data-testid="target-input"
+                />
+              </ToolField>
+              <fieldset>
+                <legend className="sr-only">Target unit</legend>
+                <div className="flex gap-3 text-sm">
+                  {(["KB", "MB"] as const).map((unit) => (
+                    <label key={unit} className="flex items-center gap-1.5">
+                      <input
+                        type="radio"
+                        name="compressor-target-unit"
+                        checked={targetUnit === unit}
+                        onChange={() => setTargetUnit(unit)}
+                      />
+                      {unit}
+                    </label>
+                  ))}
+                </div>
+              </fieldset>
+            </div>
+            <div className="flex flex-wrap gap-2">
+              {TARGET_PRESETS.map((preset) => (
+                <button
+                  key={preset.label}
+                  type="button"
+                  className="rounded-full border border-border px-3 py-1.5 text-sm text-foreground hover:bg-muted"
+                  data-testid={`target-preset-${preset.label.replace(" ", "-").toLowerCase()}`}
+                  onClick={() => {
+                    setTargetValue(String(preset.value));
+                    setTargetUnit(preset.unit);
+                  }}
+                >
+                  {preset.label}
+                </button>
+              ))}
+            </div>
+            <label className="flex items-start gap-2 text-sm text-foreground">
+              <input
+                type="checkbox"
+                className="mt-1"
+                checked={allowDownscale}
+                onChange={(event) => setAllowDownscale(event.target.checked)}
+                data-testid="target-downscale"
+              />
+              <span>
+                Also shrink dimensions if needed
+                <span className="mt-1 block text-muted-foreground">
+                  If the lowest quality is still larger than the target, reduce the width and height in steps. The shorter side will not go below 32 pixels.
+                </span>
+              </span>
+            </label>
+            {outputType === "image/png" ? (
+              <p className="text-sm text-muted-foreground" data-testid="png-target-note">
+                PNG is lossless on this page, so the quality slider will not shrink the file. To hit a target size, choose JPG or WebP, or turn on shrinking dimensions.
+              </p>
+            ) : null}
+          </div>
+        ) : null}
+      </div>
+
       <div className="mt-6 grid gap-4 sm:grid-cols-2">
-        <ToolField id="compressor-quality" label="Quality" hint={qualityHint}>
+        <ToolField
+          id="compressor-quality"
+          label="Quality"
+          hint={
+            targetMode
+              ? "Quality is chosen automatically in target-size mode."
+              : qualityHint
+          }
+        >
           <input
             id="compressor-quality"
             type="range"
@@ -348,10 +516,11 @@ export function ImageCompressorTool() {
             max={100}
             step={1}
             value={quality}
+            disabled={targetMode}
             onChange={(event) => setQuality(Number(event.target.value))}
             className="mt-3 w-full"
           />
-          <p className="mt-1 text-sm tabular-nums text-foreground">{quality}</p>
+          <p className="mt-1 text-sm tabular-nums text-foreground">{targetMode ? "Auto" : quality}</p>
         </ToolField>
         <div>
           <ToolChoiceGroup
@@ -416,6 +585,15 @@ export function ImageCompressorTool() {
                 { label: "Output", value: singleResult.name },
               ]}
             />
+            {singleResult.message ? (
+              <p
+                className="text-sm text-foreground"
+                data-testid="target-result"
+                data-met={singleResult.metTarget ? "true" : "false"}
+              >
+                {singleResult.message}
+              </p>
+            ) : null}
             <ImagePreview
               src={singleResult.url}
               alt="Compressed image preview"
@@ -431,7 +609,7 @@ export function ImageCompressorTool() {
       </div>
 
       <ToolPrivacyNote>
-        Files are re-encoded in this tab at the quality you set. They are not sent to Tools Star Hub.
+        Files are re-encoded in this tab. They are not sent to Tools Star Hub.
       </ToolPrivacyNote>
     </ToolPanel>
   );
