@@ -8452,7 +8452,7 @@ export const extraToolFaqs: Record<string, ToolFaq[]> = {
     {
       question: "Can I compress an image to a target size, such as under 200 KB?",
       answer:
-        "No. The page reports the new file size after you press Compress. It does not search for a quality that meets a size cap in advance.",
+        "Yes. Turn on Compress to a target file size and enter a cap such as 200 KB, or use a preset. For JPG, WebP, and AVIF the page searches for a quality at or under that size. If the lowest quality is still too large, you can also shrink the dimensions. The page reports the final size honestly when the target cannot be met. PNG is lossless, so choose JPG or WebP, or shrink dimensions, if you need to hit a cap.",
     },
     {
       question: "Can I compress several images at once or download a ZIP?",

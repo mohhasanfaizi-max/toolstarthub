@@ -486,12 +486,12 @@ export const priorityToolContent: Record<string, ToolContent> = {
   },
   "image-compressor": {
     about:
-      "The Image Compressor re-encodes images in your browser. Set a quality from 10 to 100, pick an output format, and compare the file size the page reports after you press Compress. You can compress one file or up to 20 at a time, then download a file or a ZIP of the results. Use it before you attach a photo to an email or a page. PNG output is lossless in this tool, so a flat graphic may barely shrink. Compressing a JPEG again can add artifacts.",
+      "The Image Compressor re-encodes images in your browser. Set a quality from 10 to 100, or optionally aim at a target file size such as 200 KB. Pick an output format, and compare the file size the page reports after you press Compress. You can compress one file or up to 20 at a time, then download a file or a ZIP of the results. Use it before you attach a photo to an email or a page. PNG output is lossless in this tool, so a flat graphic may barely shrink. Compressing a JPEG again can add artifacts.",
     howTo: [
       "Choose one or more JPG, PNG, or WebP files, or drag them onto the box. AVIF and HEIC open only if this browser can decode them. Each file must be 25 MB or smaller, with neither side over 8,192 pixels, and a run is limited to 20 files.",
-      "Set quality from 10 to 100. The control starts at 80. Quality changes JPEG and WebP. It does not change PNG encoding on this page.",
+      "Set quality from 10 to 100, starting at 80, or turn on Compress to a target file size, such as 200 KB. In target mode the page searches for a quality at or under that size. PNG is lossless, so a target is met only if the file is already small enough or you also shrink the dimensions.",
       "Choose JPG, PNG, or WebP as the output, or AVIF if this browser can encode it, then press Compress.",
-      "Read the original size and the new size on the page, then download the file. If you compressed several images, download all of them as a ZIP. Reset clears the files from this tab.",
+      "Read the original size and the new size on the page. If you set a target, the page also says whether it was met. Download the file, or a ZIP if you compressed several images. Reset clears the files from this tab.",
     ],
     examples: [
       {
@@ -545,7 +545,7 @@ export const priorityToolContent: Record<string, ToolContent> = {
       "Check transparency. JPEG and WebP output on this page sit on white.",
     ],
     limitations:
-      "GIF and SVG files are rejected. HEIC and AVIF open only when this browser can decode them. You can choose JPG, PNG, or WebP as the output, and AVIF only when this browser can encode it. An image must be 25 MB or smaller, and neither side can exceed 8,192 pixels. Up to 20 files can be compressed in one run, and a ZIP is offered when more than one file succeeds. Quality must be from 10 to 100. PNG is re-encoded without a lossy quality control, so a flat graphic may barely shrink. JPEG, WebP, and AVIF are lossy, and compressing a JPEG again can add artifacts. The page shows the resulting file size after you compress. It does not promise a target size in advance.",
+      "GIF and SVG files are rejected. HEIC and AVIF open only when this browser can decode them. You can choose JPG, PNG, or WebP as the output, and AVIF only when this browser can encode it. An image must be 25 MB or smaller, and neither side can exceed 8,192 pixels. Up to 20 files can be compressed in one run, and a ZIP is offered when more than one file succeeds. Quality must be from 10 to 100, unless you turn on a target size. For a target such as 200 KB, JPG, WebP, and AVIF search quality, and can shrink dimensions if you turn that option on. The page reports the final size honestly if the target cannot be met. PNG is lossless, so a target without shrinking dimensions may not be reached.",
     faqs: [
       {
         question: "How do I compress a JPEG?",

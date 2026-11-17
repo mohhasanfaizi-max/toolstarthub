@@ -4,12 +4,12 @@ const data: ToolPageTranslations = {
   "image-compressor": {
     "answer": "Un compresor de imágenes reduce el tamaño de archivos JPG, PNG y WebP en tu dispositivo, sin subir la foto.",
     "content": {
-      "about": "El compresor de imágenes vuelve a codificar imágenes en tu navegador. Fija una calidad de 10 a 100, elige un formato de salida y compara el tamaño de archivo que indica la página después de pulsar Comprimir. Puedes comprimir un archivo o hasta 20 a la vez, y luego descargar un archivo o un ZIP con los resultados. Úsalo antes de adjuntar una foto a un correo o a una página. La salida PNG es sin pérdida en esta herramienta, así que un gráfico plano apenas puede reducirse. Comprimir otra vez un JPEG puede añadir artefactos.",
+      "about": "El compresor de imágenes vuelve a codificar imágenes en tu navegador. Fija una calidad de 10 a 100, o apunta de forma opcional a un tamaño objetivo, por ejemplo 200 KB. Elige un formato de salida y compara el tamaño de archivo que indica la página después de pulsar Comprimir. Puedes comprimir un archivo o hasta 20 a la vez, y luego descargar un archivo o un ZIP con los resultados. Úsalo antes de adjuntar una foto a un correo o a una página. La salida PNG es sin pérdida en esta herramienta, así que un gráfico plano apenas puede reducirse. Comprimir otra vez un JPEG puede añadir artefactos.",
       "howTo": [
         "Elige uno o varios archivos JPG, PNG o WebP, o arrástralos al recuadro. AVIF y HEIC se abren solo si este navegador puede decodificarlos. Cada archivo debe pesar 25 MB o menos, ningún lado puede superar los 8192 píxeles, y en una pasada caben hasta 20 archivos.",
-        "Fija la calidad de 10 a 100. El control empieza en 80. La calidad cambia JPEG y WebP. No cambia la codificación PNG en esta página.",
+        "Fija la calidad de 10 a 100, a partir de 80, o activa Comprimir a un tamaño de archivo objetivo, por ejemplo 200 KB. En ese modo la página busca una calidad igual o inferior a ese tamaño. El PNG es sin pérdida, así que el objetivo solo se cumple si el archivo ya es lo bastante pequeño o también reduces las dimensiones.",
         "Elige JPG, PNG o WebP como salida, o AVIF si este navegador puede codificarlo, y luego pulsa Comprimir.",
-        "Lee el tamaño original y el tamaño nuevo en la página, y luego descarga el archivo. Si comprimiste varias imágenes, descárgalas todas en un ZIP. Restablecer borra los archivos de esta pestaña."
+        "Lee el tamaño original y el tamaño nuevo en la página. Si fijaste un objetivo, la página también indica si se cumplió. Descarga el archivo, o un ZIP si comprimiste varias imágenes. Restablecer borra los archivos de esta pestaña."
       ],
       "examples": [
         {
@@ -61,7 +61,7 @@ const data: ToolPageTranslations = {
         "Espera que una segunda pasada JPEG se vea peor que la primera, aunque el archivo nuevo sea más pequeño.",
         "Comprueba la transparencia. La salida JPEG y WebP de esta página se apoya sobre blanco."
       ],
-      "limitations": "Se rechazan los archivos GIF y SVG. HEIC y AVIF se abren solo cuando este navegador puede decodificarlos. Puedes elegir JPG, PNG o WebP como salida, y AVIF solo cuando este navegador puede codificarlo. Una imagen debe ser de 25 MB o menos, y ningún lado puede superar los 8192 píxeles. Se pueden comprimir hasta 20 archivos en una pasada, y se ofrece un ZIP cuando sale bien más de un archivo. La calidad debe estar entre 10 y 100. PNG se vuelve a codificar sin un control de calidad con pérdida, así que un gráfico plano apenas puede reducirse. JPEG, WebP y AVIF tienen pérdida, y comprimir otra vez un JPEG puede añadir artefactos. La página muestra el tamaño de archivo resultante después de comprimir. No promete de antemano un tamaño objetivo.",
+      "limitations": "Se rechazan los archivos GIF y SVG. HEIC y AVIF se abren solo cuando este navegador puede decodificarlos. Puedes elegir JPG, PNG o WebP como salida, y AVIF solo cuando este navegador puede codificarlo. Una imagen debe ser de 25 MB o menos, y ningún lado puede superar los 8192 píxeles. Se pueden comprimir hasta 20 archivos en una pasada, y se ofrece un ZIP cuando sale bien más de un archivo. La calidad debe estar entre 10 y 100, salvo que actives un tamaño objetivo. Para un objetivo como 200 KB, JPG, WebP y AVIF buscan la calidad, y pueden reducir las dimensiones si activas esa opción. La página indica con honestidad el tamaño final si no se puede cumplir el objetivo. El PNG es sin pérdida, así que un objetivo sin reducir dimensiones puede no alcanzarse.",
       "faqs": [
         {
           "question": "¿Cómo comprimo un JPEG?",
