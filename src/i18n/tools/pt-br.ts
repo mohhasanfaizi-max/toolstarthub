@@ -101,6 +101,16 @@ const tools: ToolTranslations = {
   "favicon-generator": ["Gerador de favicon", "Desenhe uma letra ou cor sólida como ícones PNG de 16, 32 e 180 pixels, além de um ICO com os dois tamanhos menores."],
   "meta-tag-generator": ["Gerador de meta tags", "Escreva as tags title, description, robots, canonical, Open Graph e Twitter em HTML. Nenhuma página ao vivo é acessada."],
   "open-graph-preview": ["Pré-visualização Open Graph", "Confira o título, a descrição, a imagem e o card do Twitter de uma página pública. A URL é enviada a este site; endereços privados e locais são recusados."],
+  "secret-santa-generator": ["Gerador de amigo secreto", "Organize um sorteio de amigo secreto no seu navegador, com exclusões e mensagens privadas. Os nomes não são enviados a um servidor."],
+  "urdu-news-translator": ["Tradutor de notícias em urdu", "Cole uma notícia em urdu e obtenha rascunhos em inglês Brief, Medium e Full, com uma conferência de fatos. Um editor revisa o rascunho antes de ele ser publicado."],
+  "tdee-calculator": ["Calculadora TDEE: calcule suas calorias diárias", "Calculadora TDEE grátis com BMR Mifflin–St Jeor, cinco níveis de atividade e metas de calorias para manter, perder ou ganhar peso, com macros sugeridos."],
+  "alma-ai-nutrition-coach": ["Alma: coach de nutrição com IA e registro de alimentos", "Calcule calorias diárias, registre alimentos e controle proteínas, macros e micronutrientes com a Alma, sua coach de nutrição com IA grátis."],
+  "fantasy-point-calculator": ["Calculadora de pontos de fantasy", "Calcule pontos de fantasy de críquete, futebol e basquete a partir das estatísticas da partida, com regras editáveis salvas no seu navegador."],
+  "graduation-calculator-by-birthday": ["Calculadora de formatura por data de nascimento", "Estime o início escolar e o ano de formatura a partir da data de nascimento, com a idade de ingresso, a data-limite, o calendário e os anos de estudo."],
+  "partial-pressure-calculator": ["Calculadora de pressão parcial", "Calcule pressões parciais com a lei de Dalton a partir de frações molares, misturas ou o gás ideal, e converta entre atm, kPa, Pa, bar e mmHg."],
+  "significant-figures-calculator": ["Calculadora e contador de algarismos significativos", "Conte algarismos significativos, arredonde à precisão que você indicar, converta para notação científica e opere com as regras de algarismos significativos."],
+  "unemployment-benefits-calculator": ["Calculadora de seguro-desemprego", "Estime o benefício semanal e o total do pedido na Califórnia, em Nova York, no Texas e na Flórida, com a fórmula e as fontes de cada estado."],
+  "youtube-banner-maker": ["Criador de banners do YouTube", "Desenhe a imagem de canal do YouTube de 2560 × 1440 no seu navegador, com 15 modelos, texto, logotipos, formas, degradês, camadas e um guia da zona segura, e exporte PNG ou JPG de menos de 6 MB."],
 };
 
 export default tools;
