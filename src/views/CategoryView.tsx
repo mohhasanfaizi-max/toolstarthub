@@ -33,7 +33,7 @@ import {
   createPageMetadata,
   itemListJsonLd,
 } from "@/lib/seo";
-import { categoryMetaDescriptions, categoryMetaDescriptionsEs, categoryMetaDescriptionsAr } from "@/data/page-meta";
+import { categoryMetaDescriptions, categoryMetaDescriptionsEs, categoryMetaDescriptionsAr, categoryMetaDescriptionsPtBr } from "@/data/page-meta";
 
 export function categoryStaticParams() {
   return categories.map((category) => ({ slug: category.slug }));
@@ -57,7 +57,9 @@ export function categoryMetadata(locale: Locale, slug: string) {
           ? categoryMetaDescriptionsEs[category.slug]
           : locale === "ar"
             ? categoryMetaDescriptionsAr[category.slug]
-            : category.shortDescription,
+            : locale === "pt-br"
+              ? categoryMetaDescriptionsPtBr[category.slug]
+              : category.shortDescription,
     path: englishRoute,
     locale,
     hreflang: indexable && categoryLocales.length > 1,

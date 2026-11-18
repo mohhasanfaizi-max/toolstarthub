@@ -46,7 +46,7 @@ export function HomeView({ locale }: { locale: Locale }) {
       {locale === "en" ? <HelpfulGuides /> : null}
       <Pricing locale={locale} />
       {/* Guides stay English-only. The site FAQ is translated for indexable locales. */}
-      {locale === "en" || locale === "es" || locale === "ar" ? <HomeFaq locale={locale} /> : null}
+      {locale === "en" || locale === "es" || locale === "ar" || locale === "pt-br" ? <HomeFaq locale={locale} /> : null}
       <FinalCTA locale={locale} />
       {locale === "en" ? <HomeIntro /> : null}
     </>

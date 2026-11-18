@@ -75,6 +75,38 @@ export function getHomeFaqs(now = new Date(), locale: Locale = "en") {
       },
     ];
   }
+  if (locale === "pt-br") {
+    return [
+      {
+        question: `O que é ${siteConfig.name}?`,
+        answer: `${siteConfig.name} é um site grátis com ${tools.length} ferramentas on-line em ${categories.length} categorias: calculadoras, ferramentas de texto, para desenvolvedores, de imagem e PDF, utilitários de SEO e ferramentas de IA. Também inclui ${guideCount} guias passo a passo, redigidos em inglês, que explicam o método por trás das ferramentas.`,
+      },
+      {
+        question: `O ${siteConfig.name} é grátis?`,
+        answer:
+          "Sim. Todas as ferramentas são grátis. Não há cadastro, nem conta, nem sistema de pagamento.",
+      },
+      {
+        question: "Meus arquivos ou o meu texto são enviados?",
+        answer:
+          "A maioria das ferramentas funciona no seu navegador, então os arquivos e o texto colado permanecem no seu dispositivo. As exceções são os botões de IA, que enviam o texto que você digita ao modelo Gemini do Google, e a prévia de Open Graph, que envia a URL a este site. Cada página indica como trata os dados.",
+      },
+      {
+        question: "As ferramentas funcionam no celular?",
+        answer:
+          "Sim. As páginas foram pensadas para o navegador do telefone e para o computador. Os arquivos grandes podem ficar mais lentos em um celular porque o trabalho é feito no dispositivo.",
+      },
+      {
+        question: "Em quais idiomas o site está disponível?",
+        answer:
+          "O site está disponível em inglês e em outros 14 idiomas, entre eles o espanhol, o português, o francês, o alemão, o árabe, o urdu, o hindi, o japonês e o coreano. Os guias estão redigidos em inglês.",
+      },
+      {
+        question: "Como informo um resultado incorreto ou proponho uma ferramenta?",
+        answer: `Escreva para ${siteContact.email} ou use a página de contato. Inclua o nome da ferramenta, o que você digitou e o que esperava ver.`,
+      },
+    ];
+  }
   return [
     {
       question: `What is ${siteConfig.name}?`,
@@ -115,7 +147,7 @@ export function HomeFaq({ locale = "en" }: { locale?: Locale }) {
       <div className="max-w-3xl">
         <FaqList
           items={faqs}
-          heading={locale === "es" ? "Preguntas frecuentes" : locale === "ar" ? "الأسئلة الشائعة" : "Frequently asked questions"}
+          heading={locale === "es" ? "Preguntas frecuentes" : locale === "ar" ? "الأسئلة الشائعة" : locale === "pt-br" ? "Perguntas frequentes" : "Frequently asked questions"}
         />
       </div>
     </Section>

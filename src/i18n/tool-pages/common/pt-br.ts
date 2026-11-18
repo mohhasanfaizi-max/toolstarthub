@@ -86,6 +86,7 @@ const data: ToolTextDictionary = {
   "Enter a {0}.": "Digite um valor para: {0}.",
   "Enter a valid {0}.": "Digite um valor válido para: {0}.",
   "Enter a {0} that is 0 or greater.": "{0} deve ser 0 ou maior.",
+  "Download SVG": "Baixar SVG",
   "value": "valor"
 };
 

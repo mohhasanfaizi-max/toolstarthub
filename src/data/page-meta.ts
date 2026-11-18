@@ -55,3 +55,19 @@ export const categoryMetaDescriptionsAr: Record<CategorySlug, string> = {
   "ai-tools":
     "أدوات كتابة بالذكاء الاصطناعي: أنشئ أوامر للنص والصورة والفيديو، وراجع أنماط الكتابة، واختصر مسودة أو أعد صياغتها، في المتصفح أو مع Gemini.",
 };
+
+/** Brazilian Portuguese search-result descriptions for category pages. Incomplete categories stay noindex until their tools reach FAQ parity. */
+export const categoryMetaDescriptionsPtBr: Record<CategorySlug, string> = {
+  calculators:
+    "Calculadoras on-line grátis para porcentagens, descontos, idade, datas, empréstimos, financiamentos, poupança, salário, GPA, área e conversões. Sem cadastro.",
+  "text-tools":
+    "Ferramentas de texto on-line grátis: conte palavras e caracteres, mude maiúsculas, compare textos, remova duplicatas e quebras de linha, ordene linhas e converta números.",
+  "developer-tools":
+    "Ferramentas grátis para desenvolvedores no seu navegador: formate JSON, codifique Base64 e URLs, minifique HTML, CSS e JS, teste regex, decodifique JWTs e crie expressões cron.",
+  "image-tools":
+    "Ferramentas de imagem e PDF que rodam no seu navegador: comprima, redimensione, recorte e converta imagens, e una, divida, comprima ou converta PDFs sem enviar arquivos.",
+  "seo-utilities":
+    "Utilitários de SEO, privacidade e uso geral grátis: monte links UTM, slugs e meta tags, crie ou leia códigos QR, gere senhas seguras e faça um teste de clique CPS.",
+  "ai-tools":
+    "Ferramentas de escrita com IA grátis: monte prompts para texto, imagens e vídeo, revise padrões de escrita e encurte ou reescreva um rascunho, no navegador ou com o Gemini.",
+};
