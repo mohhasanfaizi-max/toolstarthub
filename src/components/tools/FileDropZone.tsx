@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import { useI18n } from "@/i18n/client";
+import { useTx } from "@/i18n/tool-text";
 import { formatMessage } from "@/i18n/config";
 import { cn } from "@/lib/cn";
 import { toolControlClass } from "@/components/tools/ToolForm";
@@ -32,6 +33,7 @@ export function FileDropZone({
   onFiles,
 }: FileDropZoneProps) {
   const { messages } = useI18n();
+  const tx = useTx();
   const [dragging, setDragging] = useState(false);
 
   function takeFiles(list: FileList | null) {
@@ -51,7 +53,7 @@ export function FileDropZone({
   return (
     <div>
       <label htmlFor={id} className="block text-sm font-medium text-foreground">
-        {label}
+        {tx(label)}
       </label>
       <div
         onDragEnter={(event) => {
@@ -80,7 +82,7 @@ export function FileDropZone({
         )}
       >
         <p className="text-sm text-foreground">
-          {prompt ?? messages.tool.dropPrompt}
+          {tx(prompt ?? messages.tool.dropPrompt)}
         </p>
         <input
           id={id}
@@ -101,7 +103,7 @@ export function FileDropZone({
         ) : null}
       </div>
       {hint ? (
-        <p className="mt-1.5 text-sm text-muted-foreground">{hint}</p>
+        <p className="mt-1.5 text-sm text-muted-foreground">{tx(hint)}</p>
       ) : null}
     </div>
   );
