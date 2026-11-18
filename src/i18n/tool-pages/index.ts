@@ -60,6 +60,7 @@ import aitools_ja from "./ai-tools/ja";
 import aitools_ko from "./ai-tools/ko";
 import calculators_ar from "./calculators/ar";
 import calculators_es from "./calculators/es";
+import calculators_ptbr from "./calculators/pt-br";
 import imagetools_es from "./image-tools/es";
 import imagetools_ar from "./image-tools/ar";
 import developertools_es from "./developer-tools/es";
@@ -83,7 +84,7 @@ export const commonToolText: Partial<Record<Locale, ToolTextDictionary>> = {
 };
 
 export const toolPageTranslations: Partial<Record<Locale, ToolPageTranslations>> = {
-  "pt-br": { ...texttools_ptbr, ...seoutilities_ptbr, ...aitools_ptbr },
+  "pt-br": { ...texttools_ptbr, ...seoutilities_ptbr, ...aitools_ptbr, ...calculators_ptbr },
   "nl": { ...texttools_nl, ...seoutilities_nl, ...aitools_nl },
   "ar": { ...texttools_ar, ...seoutilities_ar, ...aitools_ar, ...calculators_ar, ...imagetools_ar, ...developertools_ar },
   "es": { ...texttools_es, ...seoutilities_es, ...aitools_es, ...calculators_es, ...imagetools_es, ...developertools_es },
